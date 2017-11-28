@@ -28,7 +28,7 @@
 
 #define DEBUG
 
-inline void _check_bounds(void* array, int pos) {
+void _check_bounds(void* array, int pos) {
 	int size=*((int*)array-1);
 	if(pos<0 || pos>=size) {
 		fprintf(stderr, "array access out of bounds. position [%d]. size [%d]\n", pos, size);

@@ -69,4 +69,5 @@ __pycache__
 # node modules
 /node_modules
 
-/.pydmt
+/.pydmt/
+/.venv/

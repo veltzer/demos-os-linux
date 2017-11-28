@@ -67,6 +67,7 @@ int64_t ipow(int32_t base, uint8_t exp) {
 
 	uint64_t result = 1;
 
+	#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 	switch (highest_bit_set[exp]) {
 	case 255: // we use 255 as an overflow marker and return 0 on overflow/underflow
 		if (base == 1) {
