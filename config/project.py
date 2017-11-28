@@ -1,17 +1,14 @@
-'''
-project definitions for demos-linux
-'''
+import datetime
+import config.general
 
-def populate(d):
-    d.project_github_username='veltzer'
-    d.project_name='demos-linux'
-    d.project_website='https://{project_github_username}.github.io/{project_name}'.format(**d)
-    d.project_website_source='https://github.com/{project_github_username}/{project_name}'.format(**d)
-    d.project_website_git='git://github.com/{project_github_username}/{project_name}.git'.format(**d)
-    d.project_long_description='{project_name} is a project to demo and explore the Linux user space C/C++ API'.format(**d)
-    d.project_year_started='2010'
-    d.project_google_analytics_tracking_id='UA-80940105-1'
-    d.project_description='''This project is a source code repository for instructors or expert programmers
+project_github_username='veltzer'
+project_name='demos-linux'
+project_website='https://{project_github_username}.github.io/{project_name}'.format(**locals())
+project_website_source='https://github.com/{project_github_username}/{project_name}'.format(**locals())
+project_website_git='git://github.com/{project_github_username}/{project_name}.git'.format(**locals())
+project_long_description='{project_name} is a project to demo and explore the Linux user space C/C++ API'.format(**locals())
+project_year_started='2010'
+project_description='''This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 It has about 953 examples (as of 1/2016) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
@@ -82,24 +79,38 @@ Using it
     .[c|cc].
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
-'''.format(**d)
+'''.format(**locals())
 
-    d.project_keywords=[
-        'linux',
-        'API',
-        'C',
-        'C++',
-        'kernel',
-        'userspace',
-        'examples',
-        'samples',
-        'demos',
-    ]
+project_keywords=[
+    'linux',
+    'API',
+    'C',
+    'C++',
+    'kernel',
+    'userspace',
+    'examples',
+    'samples',
+    'demos',
+]
 
-    # deb section
-    d.deb_package=False
+# deb section
+deb_package=False
 
-def get_deps():
-    return [
-        __file__, # myself
-    ]
+project_copyright_years = ', '.join(
+    map(str, range(int(project_year_started), datetime.datetime.now().year + 1)))
+if str(config.general.general_current_year) == project_year_started:
+    project_copyright_years = config.general.general_current_year
+else:
+    project_copyright_years = '{0}-{1}'.format(project_year_started, config.general.general_current_year)
+# project_data_files.append(templar.utils.hlp_files_under('/usr/bin', 'src/*'))
+project_google_analytics_tracking_id='UA-80940105-1'
+project_google_analytics_snipplet = '''<script type="text/javascript">
+(function(i,s,o,g,r,a,m){{i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){{
+(i[r].q=i[r].q||[]).push(arguments)}},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+}})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '{0}', 'auto');
+ga('send', 'pageview');
+
+</script>'''.format(project_google_analytics_tracking_id)

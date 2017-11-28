@@ -27,7 +27,7 @@
  * for mysql++ are written.
  *
  * The mysql++ and mysql libraries are stupid and require -I to them
- * EXTRA_COMPILE_FLAGS=-I/usr/include/mysql++ -I/usr/include/mysql -Wno-deprecated-declarations
+ * EXTRA_COMPILE_FLAGS=-I/usr/include/mysql++ -I/usr/include/mysql -Wno-deprecated -Wno-deprecated-declarations
  * EXTRA_LINK_FLAGS=-lmysqlpp
  */
 

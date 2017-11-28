@@ -44,7 +44,10 @@ public:
 		printf("a is %d\n", a);
 		printf("b is %d\n", b);
 		printf("c is %d\n", c);
+#pragma GCC diagnostic push                                    
+#pragma GCC diagnostic ignored "-Wuninitialized"               
 		printf("this->a is %d\n", this->a);
+#pragma GCC diagnostic pop
 		printf("this->b is %d\n", this->b);
 		printf("this->c is %d\n", this->c);
 	}

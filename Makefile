@@ -1,7 +1,5 @@
 # first lets include the common makefile
 include Makefile.mk
-# include the templates makefile
-include /usr/share/templar/make/Makefile
 ##############
 # parameters #
 ##############
@@ -154,9 +152,9 @@ ALL:=$(ALL) $(MK_STP)
 # do not touch this recipe
 all: $(ALL)
 
-out/tools.stamp: package.json templardefs/deps.py
+out/tools.stamp: package.json config/deps.py
 	$(info doing [$@])
-	$(Q)templar install_deps
+	# $(Q)templar install_deps
 	$(Q)make_helper touch-mkdir $@
 
 .PHONY: clean_standalone

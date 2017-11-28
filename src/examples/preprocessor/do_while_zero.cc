@@ -62,6 +62,7 @@ int main(int argc, char** argv, char** envp) {
 	// if-based solution without the else is just wrong
 	// gcc with all warnings will prevent this so we ease up on parentheses warnings
 	#pragma GCC diagnostic ignored "-Wparentheses"
+	#pragma GCC diagnostic ignored "-Wdangling-else"
 	if(false)
 		wrong_if_based("this should not print")
 	else

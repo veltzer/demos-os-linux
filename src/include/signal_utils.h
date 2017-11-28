@@ -91,7 +91,7 @@ static signal_val_and_name signal_tbl[]={
 	entry(SIGPOLL),
 	entry(SIGPWR),
 	entry(SIGSYS),
-	entry(SIGUNUSED),
+	//entry(SIGUNUSED),
 	entry(__SIGRTMIN),
 	entry(__SIGRTMAX),
 	//entry(SIGRTMIN),
