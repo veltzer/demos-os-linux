@@ -129,9 +129,10 @@ static unsigned long map_to_user(struct file *filp, void *kptr,
 	 */
 	if (IS_ERR_VALUE(uptr))
 		PR_ERROR("ERROR: problem calling do_mmap_pgoff");
-	else
+	else {
 		PR_DEBUG("addr for user space is (lu) %lu / (p) %p", uptr,
 			(void *)uptr);
+	}
 	return uptr;
 }
 
@@ -185,7 +186,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	*/
 	case IOCTL_DEMO_UNMAP:
 		PR_DEBUG("trying to munmap");
-		res = do_munmap(current->mm, uptr, size);
+		res = do_munmap(current->mm, uptr, size, NULL);
 		if (res)
 			return res;
 		PR_DEBUG("After unmap");
@@ -254,7 +255,7 @@ static void kern_vma_close(struct vm_area_struct *vma)
 }
 
 /* on error should return VM_FAULT_SIGBUS */
-static int kern_vma_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
+static int kern_vma_fault(struct vm_fault *vmf)
 {
 	struct page *page = NULL;
 	/* kernel side address */
@@ -266,8 +267,8 @@ static int kern_vma_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 	/* for old kernels */
 	/* offset = (unsigned long)vmf->virtual_address - vma->vm_start; */
 	/* for new kernels */
-	offset = (unsigned long)vmf->address - vma->vm_start;
-	kaddr = vma->vm_private_data;
+	offset = (unsigned long)vmf->address - vmf->vma->vm_start;
+	kaddr = vmf->vma->vm_private_data;
 	kaddr += offset;
 	page = virt_to_page(kaddr);
 	if (page == NULL) {

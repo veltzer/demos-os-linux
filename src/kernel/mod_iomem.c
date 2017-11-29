@@ -19,6 +19,7 @@
 /* #define DEBUG */
 #include <linux/module.h> /* for MODULE_* */
 #include <linux/printk.h> /* for printk functions */
+#include <linux/ioport.h> /* for resources */
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 

@@ -167,7 +167,7 @@ static int __init mod_init(void)
 	nfho.hooknum = NF_INET_PRE_ROUTING;
 	nfho.pf = PF_INET;
 	nfho.priority = NF_IP_PRI_LAST;
-	ret = nf_register_hook(&nfho);
+	ret = nf_register_net_hook(NULL, &nfho);
 	if (ret) {
 		pr_err("could not register netfilter hook\n");
 		goto error_proc;
@@ -179,13 +179,13 @@ error_proc:
 	#ifdef DO_PROC
 	remove_proc_entry(skb_filter_name, NULL);
 	#endif /* DO_PROC */
-error:
+/* error: */
 	return ret;
 }
 
 static void __exit mod_exit(void)
 {
-	nf_unregister_hook(&nfho);
+	nf_unregister_net_hook(NULL, &nfho);
 	#ifdef DO_PROC
 	remove_proc_entry(skb_filter_name, NULL);
 	#endif /* DO_PROC */

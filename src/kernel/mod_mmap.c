@@ -179,7 +179,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		PR_DEBUG("deduced size is (d) %d", size);
 		PR_DEBUG("real size is (d) %d", ioctl_size);
 		PR_DEBUG("real kaddr is (p) %p", kaddr);
-		ret = do_munmap(current->mm, addr, ioctl_size);
+		ret = do_munmap(current->mm, addr, ioctl_size, NULL);
 		if (do_kmalloc)
 			kfree(kernel_addr);
 		else {

@@ -154,7 +154,7 @@ all: $(ALL)
 
 out/tools.stamp: package.json config/deps.py
 	$(info doing [$@])
-	# $(Q)templar install_deps
+	$(Q)# templar install_deps
 	$(Q)make_helper touch-mkdir $@
 
 .PHONY: clean_standalone
