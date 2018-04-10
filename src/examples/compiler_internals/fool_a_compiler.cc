@@ -53,7 +53,7 @@ int main(int argc, char** argv, char** envp) {
 		sum+=i*i;
 	}
 	*pi=700;
-	// what this magic trick! i has two different values...
+	// watch this magic trick! i has two different values...
 	printf("i is %d\n", i);
 	printf("i is %d\n", i);
 	return EXIT_SUCCESS;
