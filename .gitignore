@@ -6,6 +6,7 @@
 # *~
 
 # user space stuff...
+*.o.ur-safe
 *.o
 *.oo
 *.so
