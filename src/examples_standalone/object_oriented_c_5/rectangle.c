@@ -42,11 +42,11 @@ static void destroy(rectangle* r) {
 	free(r);
 }
 
-static int get_width(const rectangle const * r) {
+static int get_width(const rectangle * r) {
 	return r->width;
 }
 
-static int get_height(const rectangle const * r) {
+static int get_height(const rectangle * r) {
 	return r->height;
 }
 
@@ -58,7 +58,7 @@ static void set_height(rectangle * r, const int height) {
 	r->height=height;
 }
 
-static int area(const rectangle const * r) {
+static int area(const rectangle * r) {
 	return r->height*r->width;
 }
 

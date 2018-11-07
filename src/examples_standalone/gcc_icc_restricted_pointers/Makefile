@@ -1,7 +1,6 @@
 include ../../../Makefile.mk
 
-GPP:=g++-4.4
-GPP:=g++-4.9
+GPP:=g++-4.8
 
 # variables
 CC:=icpc

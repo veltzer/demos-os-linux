@@ -30,11 +30,11 @@ void rectangle_destroy(rectangle* r) {
 	free(r);
 }
 
-int rectangle_get_width(const rectangle const * r) {
+int rectangle_get_width(const rectangle * r) {
 	return r->width;
 }
 
-int rectangle_get_height(const rectangle const * r) {
+int rectangle_get_height(const rectangle * r) {
 	return r->height;
 }
 
@@ -46,6 +46,6 @@ void rectangle_set_height(rectangle * r, const int height) {
 	r->height=height;
 }
 
-int rectangle_area(const rectangle const * r) {
+int rectangle_area(const rectangle * r) {
 	return r->height*r->width;
 }

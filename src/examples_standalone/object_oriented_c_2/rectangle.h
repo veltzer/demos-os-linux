@@ -26,10 +26,10 @@ typedef struct _rectangle {
 
 rectangle* create_rectangle(const int width, const int height);
 void rectangle_destroy(rectangle*);
-int rectangle_get_width(const rectangle const * r);
-int rectangle_get_height(const rectangle const * r);
+int rectangle_get_width(const rectangle * r);
+int rectangle_get_height(const rectangle * r);
 void rectangle_set_width(rectangle * r, const int width);
 void rectangle_set_height(rectangle * r, const int height);
-int rectangle_area(const rectangle const * r);
+int rectangle_area(const rectangle * r);
 
 #endif // __rectangle_h
