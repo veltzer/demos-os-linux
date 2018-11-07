@@ -32,8 +32,8 @@ void scanthedir(const char* dirname) {
 	struct dirent* fddircontent;
 	struct stat statbuf;
 	char tmpdir[MAXPATHLEN];
-	char fddirname[MAXPATHLEN];
-	char linkname[MAXPATHLEN];
+	char fddirname[MAXPATHLEN+3];
+	char linkname[MAXPATHLEN+MAXPATHLEN+1];
 	char linktarget[MAXPATHLEN];
 	int linktargetsize;
 	DIR* sdir=(DIR*)CHECK_NOT_NULL(opendir(dirname));
@@ -44,14 +44,14 @@ void scanthedir(const char* dirname) {
 		CHECK_NOT_M1(lstat(tmpdir, &statbuf));
 		if (S_ISDIR(statbuf.st_mode)) {
 			if (statbuf.st_uid==getuid()) {
-				snprintf(fddirname, MAXPATHLEN, "%s/fd", tmpdir);
+				snprintf(fddirname, MAXPATHLEN+3, "%s/fd", tmpdir);
 				printf("%s\n", dircontent->d_name);
 				if(access(fddirname, R_OK)==0) {
 					DIR* fddir=(DIR*)CHECK_NOT_NULL(opendir(fddirname));
 					while((fddircontent=readdir(fddir))) {
 						if ((strcmp(fddircontent->d_name, "." )==0) || strcmp(fddircontent->d_name, "..")==0)
 							continue;
-						snprintf(linkname, MAXPATHLEN, "%s/%s", fddirname, fddircontent->d_name);
+						snprintf(linkname, MAXPATHLEN+MAXPATHLEN+1, "%s/%s", fddirname, fddircontent->d_name);
 						linktargetsize=CHECK_NOT_M1(readlink(linkname, linktarget, sizeof(linktarget)));
 						linktarget[linktargetsize]='\0';
 						printf("\t%s --> %s\n", linkname, linktarget);
