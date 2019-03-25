@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -132,7 +132,7 @@ static inline void process_print_name(void) {
 static inline void process_get_name(char* buffer, unsigned int bufsize) {
 	char name[name_size];
 	CHECK_ZERO(prctl(PR_GET_NAME, name));
-	strncpy(buffer, name, sizeof(name));
+	strncpy(buffer, name, name_size);
 }
 
 /*

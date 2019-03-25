@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,10 @@ int main(int argc, char** argv, char** envp) {
 	simple("you must end this with a semi-colon");
 	// this should not print anything and yet it does...
 	if(false)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmultistatement-macros"
 		wrong_macro("this should be silent, but it is not");
+#pragma GCC diagnostic pop
 	if(false)
 		right_macro("you will never see this, and that is good");
 	// example of breaking early out of the macro

@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -110,7 +110,7 @@ static void *consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 // removed by the consumer thread. A 0-sized message is enqueued when
 // there is no more data to read. The consumer uses this as a flag to
 // know when to exit.
-static void *producer() {
+static void *producer(void*) {
 	MyTime_Handler *th=new MyTime_Handler;
 
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("producer: thread=%t Line:%l\n")));

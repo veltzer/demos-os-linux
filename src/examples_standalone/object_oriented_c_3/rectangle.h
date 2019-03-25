@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,10 +23,10 @@ typedef struct _rectangle rectangle;
 
 rectangle* create_rectangle(const int width, const int height);
 void rectangle_destroy(rectangle*);
-int rectangle_get_width(const rectangle const * r);
-int rectangle_get_height(const rectangle const * r);
+int rectangle_get_width(const rectangle * r);
+int rectangle_get_height(const rectangle * r);
 void rectangle_set_width(rectangle * r, const int width);
 void rectangle_set_height(rectangle * r, const int height);
-int rectangle_area(const rectangle const * r);
+int rectangle_area(const rectangle * r);
 
 #endif // __rectangle_h

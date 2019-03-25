@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -120,14 +120,14 @@ static void sbd_request(struct request_queue *q)
 	struct request *req;
 	req = blk_fetch_request(q);
 	while (req != NULL) {
-		if (!blk_fs_request(req)) {
+		// if (req->cmd_type != REQ_TYPE_FS) {
 			/* we go a request that we can not handle.
 			* We give errors on these.
 			* a real device should handle these as well... */
 			pr_notice("Skip non-CMD request\n");
 			__blk_end_request_all(req, -EIO);
 			continue;
-		}
+		// }
 		/* from now on we know that we have a read or write request */
 		if (debug) {
 			PR_DEBUG(
@@ -156,7 +156,7 @@ static void sbd_request(struct request_queue *q)
 * calls this. We need to implement getgeo, since we can't
 * use tools such as fdisk to partition the drive otherwise.
 */
-int sbd_getgeo(struct block_device *block_device, struct hd_geometry *geo)
+static int sbd_getgeo(struct block_device *block_device, struct hd_geometry *geo)
 {
 	long size;
 

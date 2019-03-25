@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 /* #define DEBUG */
 #include <linux/module.h> /* for MODULE_*, module_* */
-#include <linux/timer.h> /* for setup_timer, mod_timer, del_timer */
+#include <linux/timer.h> /* for timer_setup, mod_timer, del_timer */
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 
@@ -35,7 +35,7 @@ MODULE_DESCRIPTION("Demo of the regular linux kernel timer API");
 
 static struct timer_list my_timer;
 
-static void my_timer_callback(unsigned long data)
+static void my_timer_callback(struct timer_list * list)
 {
 	pr_info("my_timer_callback called (%ld).\n", jiffies);
 }
@@ -44,7 +44,7 @@ static int __init mod_init(void)
 {
 	int ret;
 	pr_info("Timer module installing\n");
-	setup_timer(&my_timer, my_timer_callback, 0);
+	timer_setup(&my_timer, my_timer_callback, 0);
 	pr_info("Starting timer to fire in 200ms (%ld)\n", jiffies);
 	ret = mod_timer(&my_timer, jiffies+msecs_to_jiffies(200));
 	if (ret) {

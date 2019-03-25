@@ -1,6 +1,6 @@
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2017 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2018 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
  * http://stackoverflow.com/questions/3209918/how-to-implement-an-exchanger-rendezvous-pattern-in-c
  *
  * the next one should be "-lboost_thread" but ubuntu has no symlink to that...
- * EXTRA_LINK_FLAGS=-l:libboost_thread.so.1.62.0 -l:libboost_system.so.1.62.0
+ * EXTRA_LINK_FLAGS=-l:libboost_thread.so.1.65.1 -l:libboost_system.so.1.65.1 -lpthread
  */
 
 template <class T> class Exchanger {

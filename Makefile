@@ -134,7 +134,8 @@ MOD_CM2:=$(addprefix $(KERNEL_DIR)/.,$(addsuffix .mod.o.cmd,$(notdir $(MOD_BAS))
 MOD_CM3:=$(addprefix $(KERNEL_DIR)/.,$(addsuffix .o.cmd,$(notdir $(MOD_BAS))))
 MOD_MOD:=$(addsuffix .ko,$(MOD_BAS))
 MOD_STP:=$(addsuffix .ko.stamp,$(MOD_BAS))
-ALL:=$(ALL) $(MOD_STP) $(MOD_CHP)
+# ALL:=$(ALL) $(MOD_STP) $(MOD_CHP)
+ALL:=$(ALL) $(MOD_STP)
 CLEAN:=$(CLEAN) $(MOD_STP) $(MOD_MOD) $(MOD_SR2) $(MOD_OB2) $(KERNEL_DIR)/Module.symvers $(KERNEL_DIR)/modules.order $(MOD_CM1) $(MOD_CM2) $(MOD_CM3) $(MOD_OBJ)
 CLEAN_DIRS:=$(CLEAN_DIRS) $(KERNEL_DIR)/.tmp_versions
 
