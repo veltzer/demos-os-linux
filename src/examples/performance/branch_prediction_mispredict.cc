@@ -26,7 +26,7 @@
  * This example abuses the CPU as far as branch prediction goes...
  *
  * Test this application with:
- * perf -e branch-misses ./src/examples/performance/branch_prediction_mispredict.elf 1|0
+ * perf stat -e branch-misses ./src/examples/performance/branch_prediction_mispredict.elf 1|0
  */
 
 int main(int argc, char** argv, char** envp) {
@@ -39,7 +39,7 @@ int main(int argc, char** argv, char** envp) {
 	long long sum=0;
 	for(unsigned int i=0; i<100000000; i++) {
 		if(miss) {
-			if(rand()%2) {
+			if(rand()%2==0) {
 				sum+=i*i;
 			} else {
 				sum-=i*i;

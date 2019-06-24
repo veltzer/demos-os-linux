@@ -37,6 +37,7 @@
  * http://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-an-unsorted-array
  *
  * EXTRA_COMPILE_FLAGS=-mtune=corei7 -O3 -ftree-vectorize
+ * EXTRA_COMPILE_FLAGS=-O3
  */
 
 void do_work(int* data, unsigned int arraySize, const char* msg) {
