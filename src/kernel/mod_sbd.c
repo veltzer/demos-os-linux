@@ -118,7 +118,7 @@ static void sbd_transfer(struct sbd_device *dev, sector_t sector,
 static void sbd_request(struct request_queue *q)
 {
 	struct request *req;
-	req = blk_fetch_request(q);
+	// req = blk_fetch_request(q);
 	while (req != NULL) {
 		// if (req->cmd_type != REQ_TYPE_FS) {
 			/* we go a request that we can not handle.
@@ -146,7 +146,8 @@ static void sbd_request(struct request_queue *q)
 					/* req->buffer, */
 					rq_data_dir(req));
 			if (!__blk_end_request_cur(req, 0))
-				req = blk_fetch_request(q);
+				req = NULL;
+				// req = blk_fetch_request(q);
 		}
 	}
 }
@@ -195,7 +196,7 @@ static int __init sbd_init(void)
 	/*
 	* Get a request queue.
 	*/
-	Queue = blk_init_queue(sbd_request, &Device.lock);
+	// Queue = blk_init_queue(sbd_request, &Device.lock);
 	if (IS_ERR(Queue)) {
 		err = PTR_ERR(Queue);
 		goto out_free;
