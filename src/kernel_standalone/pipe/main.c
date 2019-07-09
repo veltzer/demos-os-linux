@@ -22,11 +22,12 @@
 #include <linux/fs.h> /* for fops */
 #include <linux/device.h> /* for class_create */
 #include <linux/slab.h> /* for kmalloc, kfree */
-#include <linux/uaccess.h> /* for copy_to_user, access_ok */
 #include <linux/cdev.h> /* for cdev_* */
 #include <linux/sched.h> /* for TASK_INTERRUPTIBLE and more constants */
 #include <linux/spinlock.h> /* for spinlock_t and ops on it */
 #include <linux/wait.h> /* for wait_queue_head_t and ops on it */
+#include <linux/uaccess.h> /* for copy_to_user, access_ok */
+
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");

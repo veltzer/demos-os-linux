@@ -18,7 +18,7 @@
 
 /* #define DEBUG */
 #include <linux/module.h> /* for MODULE_* stuff */
-#include <linux/bootmem.h> /* for the bootmem function */
+//#include <linux/bootmem.h> /* for the bootmem function */
 /* define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 
@@ -61,7 +61,7 @@ static int __init mod_init(void)
 	/* this will NOT work if your module is dynamic (you must be linked
 	into the kernel) */
 	/* alloc_bootmem(10000000); */
-	p = alloc_bootmem(PAGE_SIZE);
+	// p = alloc_bootmem(PAGE_SIZE);
 	if (IS_ERR(p)) {
 		PR_ERROR("unable to allocate bootmem");
 		return PTR_ERR(p);
