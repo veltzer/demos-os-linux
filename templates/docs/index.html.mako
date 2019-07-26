@@ -1,6 +1,6 @@
 <%!
     import config.project
-    import config.personal
+    import user.personal
 %><!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
 		<link rel="icon" type="image/x-icon" href="../static/favicon.ico"/>
 		<meta name="Description" content="${config.project.project_long_description}"/>
-		<meta name="Keywords" content="${config.personal.personal_fullname}, ${config.personal.personal_slug}, ${config.project.project_name}, ${', '.join(config.project.project_keywords)}"/>
+		<meta name="Keywords" content="${user.personal.personal_fullname}, ${user.personal.personal_slug}, ${config.project.project_name}, ${', '.join(config.project.project_keywords)}"/>
 		${config.project.project_google_analytics_snipplet}
 	</head>
 	<body>
@@ -29,8 +29,8 @@
 			<li>
 		</ul>
 		<p>
-			Copyright ${config.personal.personal_fullname}, ${config.project.project_copyright_years}
-			<a href="mailto:${config.personal.personal_email}">${config.personal.personal_email}</a>
+			Copyright ${user.personal.personal_fullname}, ${config.project.project_copyright_years}
+			<a href="mailto:${user.personal.personal_email}">${user.personal.personal_email}</a>
 		</p>
 	</body>
 </html>
