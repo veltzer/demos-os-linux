@@ -1,5 +1,5 @@
 regular files (can be created and destroyed by all users):
-	- - regular file
+	- - regular file (hard link)
 	d - folder
 	l - symbolic link
 created by programmers using API's in C:

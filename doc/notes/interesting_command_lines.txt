@@ -1,3 +1,5 @@
+show configuration of the current system:
+	$ getconf -a
 to clear buffer and cache of the os:
 	sudo sh -c "sync; echo 3 > /proc/sys/vm/drop_caches"
 	or

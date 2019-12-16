@@ -183,7 +183,7 @@ TEST(
 	"Too strong if all you want is to force just one variable to be read from memory instead of register.\n"
 	"The 'volatile' tells the compiler not to reorder around it.\n",
 	true,
-	asm ("" ::: "memory")
+	asm volatile ("" ::: "memory")
 	);
 TEST(
 	singvarbar,
