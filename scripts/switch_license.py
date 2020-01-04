@@ -20,6 +20,7 @@ f_new.close()
 
 suffixes=['.c','.cc','.h','.hh','.S']
 bad_suffixes=['.mod.c']
+bad_prefixes=['./.venv']
 root_folder='.'
 for root,dirs,files in os.walk(root_folder):
     for file in files:
@@ -30,6 +31,9 @@ for root,dirs,files in os.walk(root_folder):
                 doit=True
         for suf in bad_suffixes:
             if current_file.endswith(suf):
+                doit=False
+        for pref in bad_prefixes:
+            if current_file.startswith(pref):
                 doit=False
         if doit:
             in_f=open(current_file,'r')
