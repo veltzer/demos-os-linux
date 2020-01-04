@@ -7,7 +7,7 @@ demos-linux is a project to demo and explore the Linux user space C/C++ API
 
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
-It has about 953 examples (as of 1/2016) I found are useful in explaining the Linux API.
+It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
@@ -78,4 +78,4 @@ Using it
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 
 
-	Mark Veltzer <mark.veltzer@gmail.com>, 2010-2019
+	Mark Veltzer <mark.veltzer@gmail.com>, 2011-2020
