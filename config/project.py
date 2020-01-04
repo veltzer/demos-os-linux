@@ -7,10 +7,10 @@ project_website='https://{project_github_username}.github.io/{project_name}'.for
 project_website_source='https://github.com/{project_github_username}/{project_name}'.format(**locals())
 project_website_git='git://github.com/{project_github_username}/{project_name}.git'.format(**locals())
 project_long_description='{project_name} is a project to demo and explore the Linux user space C/C++ API'.format(**locals())
-project_year_started='2010'
+project_year_started='2011'
 project_description='''This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
-It has about 953 examples (as of 1/2016) I found are useful in explaining the Linux API.
+It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
