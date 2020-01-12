@@ -18,6 +18,8 @@ embedded linux:
 	http://elinux.org/Main_Page
 Rovert Love's book:
 	http://www.makelinux.net/books/lkd2
+How to write kernel modules:
+	http://www.tldp.org/LDP/lkmpg/2.6/html/index.html
 
 Memory reordering links:
 ========================
@@ -168,3 +170,7 @@ http://stackoverflow.com/questions/859023/how-are-debugger-breakpoints-implement
 futex/Futex:
 ============
 http://locklessinc.com/articles/futex_cheat_sheet
+
+systems progreamming:
+=====================
+http://www.tldp.org/LDP/lpg/index.htmw
