@@ -94,9 +94,11 @@ static inline int pthread_mutex_get_counter(const pthread_mutex_t * mutex) {
 /*
  * getting a thread id via the kernel (glibc doesnt have this)
  */
+/*
 static inline pid_t gettid(void) {
 	return(syscall(SYS_gettid));
 }
+*/
 
 /*
  * gettid_cached() implementation to avoid going to the kernel a lot.
