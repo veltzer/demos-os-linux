@@ -123,4 +123,7 @@ except Exception as e:
     #print('e is',e,file=sys.stderr)
     #print(dir(e),file=sys.stderr)
     #print(e.returncode,file=sys.stderr)
-    sys.exit(e.returncode)
+    print(e)
+    # fix the following line
+    #sys.exit(e.returncode)
+    sys.exit(1)
