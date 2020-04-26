@@ -9,11 +9,6 @@ to be added to the compilation or linkage.
 import sys # for exit, argv
 import subprocess # for Popen, PIPE, stderr, stdout
 
-##############
-# parameters #
-##############
-doDebug=False
-
 #############
 # functions #
 #############
@@ -33,7 +28,7 @@ def system_check_output(cmd, input=None, cwd=None, env=None):
 
 # start of code
 script=sys.argv.pop(0)
-showCmd=int(sys.argv.pop(0))
+doDebug=int(sys.argv.pop(0))
 ccache=int(sys.argv.pop(0))
 link=int(sys.argv.pop(0))
 source=sys.argv.pop(0)
@@ -115,7 +110,7 @@ for line in open(source):
             args[0]=line[f:]
 if ccache and not link:
     args.insert(0,'ccache')
-if showCmd:
+if doDebug:
     print('running',args)
 try:
     subprocess.check_call(args)

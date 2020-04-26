@@ -18,8 +18,8 @@
 
 /*
  * An example of how to write a classic "Hello, World!\n" program in assembly
- * EXTRA_COMPILE_FLAGS=
- * EXTRA_LINK_FLAGS=
+ * EXTRA_COMPILE_FLAGS=-fno-pic
+ * EXTRA_LINK_FLAGS=-fno-pie
  */
 
 #include <asm/unistd.h>
