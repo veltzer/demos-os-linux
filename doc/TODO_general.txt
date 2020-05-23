@@ -1,3 +1,7 @@
+- enable to put a tag inside an example that will prevent
+	it from compiling.
+	this will stop the situation where examples that don't
+	complie stop me from doing any progress.
 - find a general solution for storing TODO items inside source files.
 	the idea is that I will be able to extract all of those
 	todo items easily and track them.
