@@ -33,7 +33,7 @@
  * 2. Find the timidity ports (usually 128:0-4)
  *	aplaymidi -l
  * 3. play the demo midi file.
- *	aplaymidi -p 128:0 support/sample.midi
+ *	aplaymidi -p 128:0 data/sample.midi
  *
  * The original example was taken from:
  * http://alsamodular.sourceforge.net/miniArp.c
