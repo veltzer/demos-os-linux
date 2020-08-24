@@ -14,14 +14,16 @@ opt_debug=False
 # exit after debug?
 opt_exit=False
 # what boost to install?
-opt_boost_version='1.61.0'
-opt_boost_version_short='1.61'
+opt_boost_version_short='1.67'
+opt_boost_version=opt_boost_version_short+'.0'
 # install kernels?
 opt_do_kernel=True
 # install debug packages for kernels?
 opt_do_ddebs=False
+# do we want to install compilers?
+opt_do_compilers=False
 # version of the papi library
-opt_papiversion='5.4.3'
+opt_papiversion='5.7'
 # what version of wxgtk to install?
 opt_wxgtk_ver='3.0'
 
@@ -35,7 +37,7 @@ codename=subprocess.check_output(['lsb_release', '--codename', '--short']).decod
 if codename=='trusty':
     opt_urcu_ver=1
 else:
-    opt_urcu_ver=4
+    opt_urcu_ver=6
 
 if opt_debug:
     print('release is [{0}]'.format(release))
@@ -75,25 +77,25 @@ packs=[
     'binutils-doc', # for demangle.h
     'aspectc++',
     'dialog',
-    'iptables-dev',
+    'libxtables-dev',
     'unoconv',
 
     # libraries
     'libevent-dev',
-    'libevent-2.0-5',
-        'libiberty-dev',
+    'libevent-2.1-7',
+    'libiberty-dev',
     'libncurses5',
     'libncurses5-dev',
     'libncursesw5',
     'libncursesw5-dev',
     'ncurses-doc',
-    'libprocps6',
+    'libprocps8',
     'libprocps-dev',
     'libsystemd0',
     'libsystemd-dev',
-    'libgnomeui-0',
-    'libgnomeui-dev',
-    'libgnomeui-doc',
+    #'libgnomeui-0',
+    #'libgnomeui-dev',
+    #'libgnomeui-doc',
     'libsigc++-2.0-0v5',
     'libsigc++-2.0-dev',
     'libsigc++-2.0-doc',
@@ -104,9 +106,9 @@ packs=[
     'libpq-dev',
     'liblog4cpp5-dev',
     'libmysqlclient-dev',
-    'libcwd',
-    'libqt4-dev',
-    'libwxgtk{0}-dev'.format(opt_wxgtk_ver),
+    # 'libcwd',
+    'qt5-default',
+    'libwxgtk{0}-gtk3-dev'.format(opt_wxgtk_ver),
     'libmysql++-dev',
     'libsdl1.2-dev',
     'libace-dev',
@@ -135,7 +137,7 @@ packs=[
     'libdw-dev',
     'libasm1',
     'libasm-dev',
-    'libstdc++6-4.7-doc',
+    'libstdc++-9-doc',
     'aspell-doc',
     'libaspell-dev',
     'libacl1-dev',
@@ -143,18 +145,6 @@ packs=[
     'libdaemon-dev',
     'libsystemd-dev',
     'libsystemd0',
-
-    # compilers
-    'gcc-4.8-plugin-dev',
-    'gcc-4.7',
-    'g++-4.7',
-    'gcc-4.7-doc',
-    'gcc-4.8',
-    'g++-4.8',
-    'gcc-4.8-doc',
-    'g++-4.9',
-    'gcc-snapshot',
-    'clang',
 
     # libc
     'glibc-doc',
@@ -301,7 +291,7 @@ packs=[
     'makedumpfile',
 
     # databases
-    'tora',
+    # 'tora',
     'postgresql-client',
     'postgresql-client-common',
     'postgresql-doc',
@@ -345,4 +335,19 @@ if opt_do_ddebs:
         # TODO: make this script add sources to the dbgsyms if need be
         'linux-image-'+release_generic+'-generic'+'-dbgsym',
         'linux-image-'+release_lowlatency+'-lowlatency'+'-dbgsym',
+    ])
+
+if opt_do_compilers:
+    packs.extend([
+        # compilers
+        'gcc-4.8-plugin-dev',
+        'gcc-4.7',
+        'g++-4.7',
+        'gcc-4.7-doc',
+        'gcc-4.8',
+        'g++-4.8',
+        'gcc-4.8-doc',
+        'g++-4.9',
+        'gcc-snapshot',
+        'clang',
     ])
