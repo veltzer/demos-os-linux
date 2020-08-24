@@ -38,8 +38,8 @@
  * EXTRA_COMPILE_FLAGS=-g3
  * this is to make sure that we compile using gcc 4.4 since newer gcc versions
  * do not do this type of optimization...
- * COMPILER=g++-4.8
- * LINKER=g++-4.8
+ * COMPILE=g++-4.8
+ * LINKE=g++-4.8
  */
 
 /*

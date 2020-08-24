@@ -58,6 +58,7 @@ int main(int argc, char** argv, char** envp) {
 	void* mincore_pointer;
 	unsigned int memset_size;
 	void* free_pointer;
+	char* mp;
 	switch(method) {
 	case METHOD_POSIX_MEMALIGN:
 		void* p;
@@ -67,13 +68,15 @@ int main(int argc, char** argv, char** envp) {
 		free_pointer=p;
 		break;
 	case METHOD_MALLOC:
-		char* mp=(char*)CHECK_NOT_NULL(malloc(size));
+		mp=(char*)CHECK_NOT_NULL(malloc(size));
 		CHECK_NOT_NULL(malloc(10));
 		// mincore_pointer=mp+pagesize-(unsigned long)mp%pagesize;
 		mincore_pointer=mp-(unsigned long)mp%pagesize;
 		// memset_size=size-(unsigned long)mp%pagesize;
 		memset_size=size+pagesize;
 		free_pointer=(void*)mp;
+		break;
+	case METHOD_MMAP:
 		break;
 	}
 	// memset(mincore_pointer,0,memset_size);

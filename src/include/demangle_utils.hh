@@ -63,8 +63,8 @@ static inline void error_demangle(char* symbol,
 		if (status==0) {
 			// use possibly realloc()-ed string
 			funcname=ret;
-			strncpy(result_name, ret, max_name);
-			strncpy(result_offset, begin_offset, max_offset);
+			strncpy(result_name, ret, max_name-1);
+			strncpy(result_offset, begin_offset, max_offset-1);
 		} else {
 			// demangling failed. Output function name as a C function with
 			// no arguments.

@@ -194,6 +194,7 @@ packs=[
     'chrpath',
     'latencytop',
     'devmem2',
+    'libpopt-dev',
     'elfutils', # for manipulating elf files
     #'elfkickers',
     'pax-utils',

@@ -92,7 +92,7 @@ static inline void proc_get_self_filter(const char* filter, char* out, size_t si
 	while ((read = getline(&line, &len, fp)) != -1) {
 		if(strstr(line, filter)) {
 			found=true;
-			strncpy(out, line, size);
+			strncpy(out, line, size-1);
 		}
 	}
 	if(!feof(fp)) {

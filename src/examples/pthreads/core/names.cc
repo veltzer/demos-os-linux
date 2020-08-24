@@ -111,7 +111,7 @@ int main(int argc, char** argv, char** envp) {
 	for(unsigned int i=0;i<ARRAY_SIZEOF(todo);i++) {
 		pthread_t t;
 		thread_data td;
-		strncpy(td.name, todo[i].name, name_length);
+		strncpy(td.name, todo[i].name, name_length-1);
 		td.m=todo[i].m;
 		CHECK_ZERO_ERRNO(pthread_mutex_init(&td.start_mutex, NULL));
 		CHECK_ZERO_ERRNO(pthread_mutex_init(&td.end_mutex, NULL));
