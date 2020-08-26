@@ -18,31 +18,21 @@
 
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
-#include <stdlib.h>	// for srand(3), rand(3)
-#include <sys/types.h>	// for getpid(2)
-#include <unistd.h>	// for getpid(2)
+#include <stdlib.h>	// for atoi(3), EXIT_SUCCESS
+#include <dlfcn.h>	// for dlsym(3)
+#include <math.h>	// for cos(3)
 
-int func_imp1(int a, int b) {
-	printf("in func_imp1\n");
-	return a+b;
+/*
+ * This is a simple example of using dlsym
+ *
+ * EXTRA_LINK_FLAGS=-ldl -lm
+ */
+
+int main(int argc, char** argv, char** envp) {
+	double (*p_func)(double)=(typeof(p_func))dlsym(RTLD_NEXT, argv[1]);
+	printf("p_func is %p\n", p_func);
+	double val=atof(argv[2]);
+	printf("this is just a junk print %lf\n", cos(val));
+	printf("%s(%lf) is %lf\n", argv[1], val, p_func(val));
+	return EXIT_SUCCESS;
 }
-
-int func_imp2(int a, int b) {
-	printf("in func_imp2\n");
-	return a-b;
-}
-
-// the resolver function must be a C function
-extern "C" {
-static int (*resolve_func ())(int, int){
-		printf("selecting implementation now...\n");
-		srand(getpid());
-		if(rand()%2) {
-			return func_imp1;
-		} else {
-			return func_imp2;
-		}
-	}
-}
-
-int func(int, int) __attribute__ ((ifunc ("resolve_func")));

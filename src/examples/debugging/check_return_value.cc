@@ -17,32 +17,16 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h>	// for printf(3)
-#include <stdlib.h>	// for srand(3), rand(3)
-#include <sys/types.h>	// for getpid(2)
-#include <unistd.h>	// for getpid(2)
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <err_utils.h>
 
-int func_imp1(int a, int b) {
-	printf("in func_imp1\n");
-	return a+b;
+/*
+ */
+
+int main(int argc, char** argv, char** envp) {
+	CHECK_NOT_M1(open("/etc/this_file_does_not_exist", O_RDONLY));
+	return EXIT_SUCCESS;
 }
-
-int func_imp2(int a, int b) {
-	printf("in func_imp2\n");
-	return a-b;
-}
-
-// the resolver function must be a C function
-extern "C" {
-static int (*resolve_func ())(int, int){
-		printf("selecting implementation now...\n");
-		srand(getpid());
-		if(rand()%2) {
-			return func_imp1;
-		} else {
-			return func_imp2;
-		}
-	}
-}
-
-int func(int, int) __attribute__ ((ifunc ("resolve_func")));

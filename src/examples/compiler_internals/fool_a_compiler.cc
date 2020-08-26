@@ -44,16 +44,18 @@ int main(int argc, char** argv, char** envp) {
 	//printf("&i-&argc=%ld\n", &i-&argc); // this is 2 on x64 and 5 and i386
 	// pi points to i but the compiler does not know it...
 	int* pi=&argc+2;
+	//int* pi=&i;
 	// the next TWO print statements are neccessary to make the magic at the end happen...
 	printf("&i is %p\n", &i);
 	printf("&pi is %p\n", pi);
 	printf("pi is %p\n", pi);
 	unsigned long sum=0;
 	for(i=0; i<100; i++) {
-		sum+=i*i;
+		sum+=i*i*i;
 	}
 	*pi=700;
 	// watch this magic trick! i has two different values...
+	printf("i is %d\n", i);
 	printf("i is %d\n", i);
 	printf("i is %d\n", i);
 	return EXIT_SUCCESS;

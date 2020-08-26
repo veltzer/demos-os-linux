@@ -1,3 +1,5 @@
+https://sourceware.org/glibc/wiki/MallocInternals
+
 malloc debugging:
 	mpatrol valgrind yamd ccmalloc dmalloc
 	njamd insure++ electric-fence

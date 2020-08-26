@@ -39,45 +39,47 @@ pid_t pids[num];
 pthread_t threads[num];
 int ids[num];
 void* rets[num];
-// the barrier that all threads will wait on...
-pthread_barrier_t barrier;
 
 static void *worker(void *p) {
 	int num=*(int *)p;
 	// fill in my own thread id so that the other threads
 	// may know about me (and so kill me).
 	pids[num]=gettid();
-	CHECK_ONEOFTWO(pthread_barrier_wait(&barrier), 0, PTHREAD_BARRIER_SERIAL_THREAD);
 	if(num==0) {
 		while(true) {
-			pause();
+			printf("thread 0 is alive...\n");
+			sleep(1);
 		}
 	}
 	if(num==1) {
-		CHECK_NOT_M1(kill(pids[0],SIGKILL));
+		int i=0;
+		while(true) {
+			printf("thread 1 is alive...\n");
+			sleep(1);
+			i++;
+			if(i==5) {
+				//*(char*)0=0;
+				//CHECK_ZERO_ERRNO(pthread_kill(threads[0], SIGKILL));
+				CHECK_NOT_M1(tgkill(getpid(), pids[0], SIGKILL));
+				//printf("killing my brother...\n");
+				//CHECK_NOT_M1(kill(pids[0],SIGKILL));
+			}
+		}
 	}
 	return NULL;
 }
 
 int main(int argc, char** argv, char** envp) {
-	CHECK_ZERO_ERRNO(pthread_barrier_init(&barrier, NULL, num));
 	for(int i=0; i<num; i++) {
 		ids[i]=i;
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, ids + i));
 	}
-	for(int i=0; i < num; i++) {
-		CHECK_ZERO_ERRNO(pthread_join(threads[i], rets + i));
-	}
-	int i=0;
 	while(true) {
 		printf("Main thread is alive\n");
 		sleep(1);
-		i++;
-		if(i==5) {
-			printf("releasing the other threads to run\n");
-			CHECK_ZERO_ERRNO(pthread_barrier_destroy(&barrier));
-		}
-		//pause();
+	}
+	for(int i=0; i < num; i++) {
+		CHECK_ZERO_ERRNO(pthread_join(threads[i], rets + i));
 	}
 	return EXIT_SUCCESS;
 }

@@ -53,6 +53,8 @@
 #define SECTION ".compile_info"
 #define ATTR __attribute__((section(SECTION), used))
 
+static char buff[10000]={1};
+
 // the static allows us to use a compiled on tag for each file so you can put it in a common
 // header and get stamping for all files in your project.
 static const char* ATTR id_file="id_file=" __FILE__;
@@ -73,6 +75,9 @@ const char* script="src/examples/stamping_binaries/stamp.gdb";
 int main(int argc, char** argv, char** envp) {
 	printf("date is %s\n", __DATE__);
 	printf("time is %s\n", __TIME__);
+	printf("id_file is %s\n", id_file);
+	printf("buff is %p\n", buff);
+	printf("address of id_file is %p\n", &id_file);
 	struct tm tm;
 	CHECK_NOT_NULL(strptime(__DATE__ " " __TIME__, "%b %d %Y %H:%M:%S", &tm));
 	time_t t=mktime(&tm);
@@ -100,5 +105,7 @@ int main(int argc, char** argv, char** envp) {
 	snprintf(cmd, len, "gdb -c /tmp/core.%d -q %s -x %s", getpid(), argv[0], script);
 	printf("\nrunning [%s]\n", cmd);
 	CHECK_NOT_M1(system(cmd));
+
+	sleep(3600);
 	return EXIT_SUCCESS;
 }

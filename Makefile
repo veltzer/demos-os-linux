@@ -250,7 +250,7 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN) $(ALL_DEP)
 # rule about how to check kernel source files
 $(MOD_CHP): %.stamp: %.c $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)make_helper wrapper-silent $(SCRIPT_CHECKPATCH) --file $<
+	$(Q)$(SCRIPT_CHECKPATCH) --file $<
 	$(Q)touch $@
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c $(ALL_DEP) scripts/wrapper_make.pl
