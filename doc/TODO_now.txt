@@ -1,5 +1,3 @@
-- damn it! ccache does not work!!! make the damn thing work -
-	I'm tired of waiting for the compilation to finish.
 - do example of reading the temperature of all cpus
 	or maybe just of one cpu at N seconds intevals
 	from /proc.

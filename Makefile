@@ -177,8 +177,8 @@ clean_soft: clean_standalone
 GIT_CLEAN_FLAGS:=-xdf
 # soft clean (only removes stuff mentionaed in .gitignore files)
 #GIT_CLEAN_FLAGS:=-Xdf
-.PHONY: clean_hard
-clean_hard:
+.PHONY: clean
+clean:
 	$(info doing [$@])
 	$(Q)git clean $(GIT_CLEAN_FLAGS) > /dev/null
 .PHONY: clean_hard_test
