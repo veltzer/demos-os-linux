@@ -2,6 +2,8 @@
 - use github ci/cd and build on each commit.
 - get the repo to build
 - publicize build status on README.md
+- try to fix the compilation problems in files which are called "*.moved"
+	(which were renamed to *.moved to avoid compiling them)
 
 - do example of reading the temperature of all cpus
 	or maybe just of one cpu at N seconds intevals
