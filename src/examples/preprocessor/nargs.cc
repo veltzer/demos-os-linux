@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <nargs.h>	// for 
+#include <nargs.h>	// for
 
 #define PRINT(pp_narg) printf("%2d = %s\n", pp_narg, # pp_narg)
 
@@ -40,7 +40,7 @@ int main(int argc, char** argv, char** envp) {
 
 	/**
 	** If the number of arguments to PP_NARG() is greater than 63, the
-	** 64th argument is returned.  This is well-defined behaviour, but
+	** 64th argument is returned. This is well-defined behaviour, but
 	** not exactly what was intended.
 	*/
 	PRINT(PP_NARG(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, // 1..10

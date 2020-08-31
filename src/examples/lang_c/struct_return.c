@@ -33,8 +33,8 @@ foo giveMeFoo(void) {
 	// following line causes a compilation error...
 	// return {3,4};
 	foo f;
-#pragma GCC diagnostic push                                    
-#pragma GCC diagnostic ignored "-Wuninitialized"               
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wuninitialized"
 	return(f);
 #pragma GCC diagnostic pop
 }

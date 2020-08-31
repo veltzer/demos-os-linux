@@ -44,8 +44,8 @@ int main(int argc, char** argv, char** envp) {
 	printf("v2.b is %d\n", v2.b);
 	printf("v2.c is %d\n", v2.c);
 	// this will always work (values will be junk)
-#pragma GCC diagnostic push                                    
-#pragma GCC diagnostic ignored "-Wuninitialized"               
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wuninitialized"
 	struct mystruct v3;
 	printf("v3.a is %d\n", v3.a);
 	printf("v3.b is %d\n", v3.b);
