@@ -1,3 +1,8 @@
+- do the build of the modules in src/kernel
+- use github ci/cd and build on each commit.
+- get the repo to build
+- publicize build status on README.md
+
 - do example of reading the temperature of all cpus
 	or maybe just of one cpu at N seconds intevals
 	from /proc.
