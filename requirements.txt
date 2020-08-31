@@ -1,4 +1,4 @@
-# production
-# development tools
-pydmt
+# THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
+# dev requirements
 pymakehelper
+pydmt
