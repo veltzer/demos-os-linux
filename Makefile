@@ -13,6 +13,8 @@ US_INCLUDE:=src/include
 KVER:=$(shell uname -r)
 # folder of the build folder for the kernel you build against
 KDIR:=/lib/modules/$(KVER)/build
+# folder of a kernel source tree
+KSOURCE:=/home/mark/install/linux
 # fill in the vervosity level you want for the kernel module compilation process
 # V:=1 will give you the command lines used...
 V:=0
@@ -39,7 +41,7 @@ SUFFIX_BIN:=elf
 # suffix for c++ object files
 SUFFIX_OO:=oo
 # checkpatch executable...
-#SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
+# SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
 SCRIPT_CHECKPATCH:=scripts/checkpatch.pl
 # do tools?
 DO_TOOLS:=1
@@ -246,9 +248,9 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN) $(ALL_DEP)
 #	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
 
 # rule about how to check kernel source files
-$(MOD_CHP): %.stamp: %.c $(ALL_DEP)
+$(MOD_CHP): %.stamp: %.c
 	$(info doing [$@])
-	$(Q)$(SCRIPT_CHECKPATCH) --file $<
+	$(Q)cd $(KSOURCE); $(SCRIPT_CHECKPATCH) --file $(abspath $<)
 	$(Q)touch $@
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c $(ALL_DEP) scripts/wrapper_make.pl
@@ -347,7 +349,7 @@ check_firstinclude:
 .PHONY: check_check
 check_check:
 	$(info doing [$@])
-	$(Q)pymakehelper no_err git grep -e 'CHECK_' --and -e '=' --and --not -e '=CHECK_' --and --not -e ')CHECK_' --and --not -e ',CHECK_' --and --not -e 'CHECK_ASSERT' --and --not -e PTHREAD_ERROR --and --not -e ', CHECK_' --and --not -e ERRORCHECK_
+	$(Q)pymakehelper no_err git grep -e 'CHECK_' --and -e '=' --and --not -e '=CHECK_' --and --not -e 'CHECK_' --and --not -e ',CHECK_' --and --not -e 'CHECK_ASSERT' --and --not -e PTHREAD_ERROR --and --not -e ', CHECK_' --and --not -e ERRORCHECK_
 .PHONY: check_perror
 check_perror:
 	$(info doing [$@])

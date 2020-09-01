@@ -28,6 +28,8 @@
 
 /* THIS IS A C FILE, NO C++ here */
 
+#include <firstinclude.h>
+
 /* The PP_NARG macro returns the number of arguments that have been
 ** passed to it.
 */

@@ -1,3 +1,4 @@
+- make "check_all" pass without removing checks...:)
 - do the build of the modules in src/kernel
 - use github ci/cd and build on each commit.
 - get the repo to build
