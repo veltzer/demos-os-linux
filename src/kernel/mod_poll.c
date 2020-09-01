@@ -50,6 +50,7 @@ struct polldev {
 static int kern_open(struct inode *inode, struct file *filp)
 {
 	struct polldev *pd;
+
 	PR_INFO("start");
 	pd = kmalloc(sizeof(struct polldev), GFP_KERNEL);
 	if (IS_ERR(pd))
@@ -63,10 +64,10 @@ static int kern_open(struct inode *inode, struct file *filp)
 /*
  * This is the release implementation
  */
-
 static int kern_release(struct inode *inode, struct file *filp)
 {
 	struct polldev *pd;
+
 	PR_INFO("start");
 	pd = (struct polldev *)(filp->private_data);
 	kfree(pd);
@@ -75,24 +76,26 @@ static int kern_release(struct inode *inode, struct file *filp)
 
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *fp, unsigned int cmd,
-		unsigned long arg) {
+		unsigned long arg)
+{
 	struct polldev *pd;
+
 	pd = (struct polldev *)fp->private_data;
 	PR_INFO("start %p", pd);
 	switch (cmd) {
 	case IOCTL_EPOLL_WAKE:
 		PR_INFO("in WAKE");
 		pd->state = POLLIN;
-		wmb();
+		wmb(); /* comment */
 		wake_up_all(&pd->wq);
 		return 0;
 	case IOCTL_EPOLL_RESET:
 		PR_INFO("in RESET");
 		pd->state = 0;
-		wmb();
+		wmb(); /* comment */
 		wake_up_all(&pd->wq);
 		return 0;
 	}
@@ -104,20 +107,21 @@ static long kern_unlocked_ioctl(struct file *fp, unsigned int cmd,
 static unsigned int kern_poll(struct file *fp, poll_table *wait)
 {
 	struct polldev *pd;
+
 	pd = (struct polldev *)fp->private_data;
 	PR_INFO("start %p", pd);
 	poll_wait(fp, &pd->wq, wait);
 	unsigned int mask = pd->state;
 	/* no need to reset the state
-	pd->state = 0;
-	*/
+	 * pd->state = 0;
+	 */
 	PR_INFO("return with %u", mask);
 	return mask;
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.open = kern_open,

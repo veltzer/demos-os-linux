@@ -82,11 +82,11 @@ static int __init mod_init(void)
 	api_debug_address(physaddr);
 
 	/*
-	* if (!request_mem_region(physaddr,size,)) {
-	*	PR_ERROR("could not get the memory");
-	*	return 1;
-	* }
-	*/
+	 * if (!request_mem_region(physaddr,size,)) {
+	 *	PR_ERROR("could not get the memory");
+	 *	return 1;
+	 * }
+	 */
 	logical = ioremap(physaddr, size);
 	if (IS_ERR(logical)) {
 		pr_err("could not ioremap");
@@ -94,16 +94,17 @@ static int __init mod_init(void)
 		return PTR_ERR(logical);
 	}
 	PR_INFO("got logical address %p", logical);
-	/* memset(logical,0,size);
-	*logical=5;
-	PR_INFO("read %c",*logical);
-	logical=phys_to_virt(physaddr);
-	for(i=0;i<170*1024*1024;i++)
-		logical[i]=0;
-	api_print_addressinfo((void*)(1024*1024*700));
-	api_print_addressinfo((void*)(1024*1024*695));
-	api_print_addressinfo((void*)(1024*1024*720));
-	*/
+	/*
+	 * memset(logical,0,size);
+	 * logical=5;
+	 * PR_INFO("read %c",*logical);
+	 * logical=phys_to_virt(physaddr);
+	 * for(i=0;i<170*1024*1024;i++)
+	 *	logical[i]=0;
+	 * api_print_addressinfo((void*)(1024*1024*700));
+	 * api_print_addressinfo((void*)(1024*1024*695));
+	 * api_print_addressinfo((void*)(1024*1024*720));
+	 */
 	return 0;
 }
 

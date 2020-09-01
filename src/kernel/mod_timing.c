@@ -29,8 +29,8 @@
 #include "shared.h" /* for ioctl numbers */
 
 /*
-*	This driver shows how various timing delays are done in the kernel
-*/
+ *	This driver shows how various timing delays are done in the kernel
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -40,12 +40,15 @@ MODULE_DESCRIPTION("Modules for testing timing");
 static struct device *my_device;
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-	unsigned long arg) {
-	/* cycles_t is actually unsigned long long
-	(look at arch/x86/include/asm/tsc.h). */
+	unsigned long arg)
+{
+	/*
+	 * cycles_t is actually unsigned long long
+	 * (look at arch/x86/include/asm/tsc.h).
+	 */
 	/* for register measurements... */
 	cycles_t curreg, cnt1, cnt2;
 	unsigned long cdiff, crmic;
@@ -63,20 +66,23 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		/* this shows how to work with the x86 counters */
 		curreg = get_cycles();
 		pr_info("get_cycles: %llu\n", curreg);
-		/* getting the cpufreq for cpu0
-		I used the quick version under the assumption that the
-		frequency doesn't change. If this assumption is not
-		correct and the cpu scales for some reason you need
-		to use 'cpufreq_get'.
-		*/
+		/*
+		 * getting the cpufreq for cpu0
+		 * I used the quick version under the assumption that the
+		 * frequency doesn't change. If this assumption is not
+		 * correct and the cpu scales for some reason you need
+		 * to use 'cpufreq_get'.
+		 */
 		freq = cpufreq_quick_get(0);
 		pr_info("cpufreq_quick_get: %i\n", freq);
 		freq = cpufreq_get(0);
 		pr_info("cpufreq_get: %i\n", freq);
 		return 0;
 	case IOCTL_TIMING_TSC:
-		/* this is how to measure the speed of some code using
-		counters */
+		/*
+		 * this is how to measure the speed of some code using
+		 * counters
+		 */
 		freq = cpufreq_quick_get(0);
 		cnt1 = get_cycles();
 		udelay(arg);
@@ -93,10 +99,10 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 	case IOCTL_TIMING_JIFFIES:
 		/*
-		*	This shows how to work with jiffies...
-		*	It will demostrate the most important attribute of
-		*	jiffies and that is that jiffies DO NOT change
-		*/
+		 *	This shows how to work with jiffies...
+		 *	It will demostrate the most important attribute of
+		 *	jiffies and that is that jiffies DO NOT change
+		 */
 		j1 = jiffies;
 		udelay(arg);
 		/* msleep(mic/1000); */
@@ -115,9 +121,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 	case IOCTL_TIMING_EMPTY:
 		/*
-		*	This syscall does nothing on purpose to
-		*	enable timing from user space
-		*/
+		 *	This syscall does nothing on purpose to
+		 *	enable timing from user space
+		 */
 		return 0;
 	}
 	return -EINVAL;
@@ -125,8 +131,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,

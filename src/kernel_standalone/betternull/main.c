@@ -66,6 +66,7 @@ static int first_minor;
 static int __init null_init(void)
 {
 	int err;
+
 	pr_info("start\n");
 	/* allocate our own range of devices */
 	err = alloc_chrdev_region(&first_dev, first_minor, count,

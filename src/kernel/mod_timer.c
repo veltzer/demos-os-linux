@@ -28,22 +28,23 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Demo of the regular linux kernel timer API");
 
 /*
-* This module shows how to use timers (non-hi-res) in the linux kernel.
-*
-* References:
-* http://www.ibm.com/developerworks/linux/library/l-timers-list/
-*/
+ * This module shows how to use timers (non-hi-res) in the linux kernel.
+ *
+ * References:
+ * http://www.ibm.com/developerworks/linux/library/l-timers-list/
+ */
 
 static struct timer_list my_timer;
 
-static void my_timer_callback(struct timer_list * list)
+static void my_timer_callback(struct timer_list *list)
 {
-	pr_info("my_timer_callback called (%ld).\n", jiffies);
+	pr_info("%s called (%ld).\n", __func__, jiffies);
 }
 
 static int __init mod_init(void)
 {
 	int ret;
+
 	pr_info("Timer module installing\n");
 	timer_setup(&my_timer, my_timer_callback, 0);
 	pr_info("Starting timer to fire in 200ms (%ld)\n", jiffies);
@@ -58,6 +59,7 @@ static int __init mod_init(void)
 static void __exit mod_exit(void)
 {
 	int ret;
+
 	ret = del_timer(&my_timer);
 	if (ret)
 		pr_err("The timer is still in use...\n");

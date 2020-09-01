@@ -24,15 +24,15 @@
 #include "kernel_helper.h" /* our own helper */
 
 /*
-* This is a minimal module showing various logging functions
-* I show only kernel logging functions.
-* - Always prefer the pr_* functions, or better yet, the dev_* functions.
-* - Notice that debug messages will not reach the log unless you define DEBUG
-* at compile time.
-*
-* TODO:
-* - show rate limited functions here (see printk.h for details).
-*/
+ * This is a minimal module showing various logging functions
+ * I show only kernel logging functions.
+ * - Always prefer the pr_* functions, or better yet, the dev_* functions.
+ * - Notice that debug messages will not reach the log unless you define DEBUG
+ * at compile time.
+ *
+ * TODO:
+ * - show rate limited functions here (see printk.h for details).
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -48,25 +48,27 @@ static int __init mod_init(void)
 {
 	/* next ones create warnings with checkpatch.pl...*/
 	/*
-	printk(KERN_EMERG "this is an emergency message");
-	printk(KERN_ALERT "this is an alert message");
-	printk(KERN_CRIT "this is a critical message");
-	printk(KERN_ERR "this is a err message");
-	printk(KERN_WARNING "this is a warning message");
-	printk(KERN_NOTICE "this is a notice message");
-	printk(KERN_INFO "this is an info message");
-	printk(KERN_DEBUG "this is a debug message");
-	printk(FW_BUG "this is a firmware bug message");
-	printk(FW_WARN "this is a firmware warning message");
-	printk(FW_INFO "this is a firmware info message");
-	printk(HW_ERR "this is a hardware error message");
-	*/
+	 * printk(KERN_EMERG "this is an emergency message");
+	 * printk(KERN_ALERT "this is an alert message");
+	 * printk(KERN_CRIT "this is a critical message");
+	 * printk(KERN_ERR "this is a err message");
+	 * printk(KERN_WARNING "this is a warning message");
+	 * printk(KERN_NOTICE "this is a notice message");
+	 * printk(KERN_INFO "this is an info message");
+	 * printk(KERN_DEBUG "this is a debug message");
+	 * printk(FW_BUG "this is a firmware bug message");
+	 * printk(FW_WARN "this is a firmware warning message");
+	 * printk(FW_INFO "this is a firmware info message");
+	 * printk(HW_ERR "this is a hardware error message");
+	 */
 	pr_emerg("this is an emergency message\n");
 	pr_alert("this is an alert message\n");
 	pr_crit("this is a critical message\n");
 	pr_err("this is an error message\n");
-	/* next one create checkpatch.pl warnings which say to
-	prefer pr_warn */
+	/*
+	 * next one create checkpatch.pl warnings which say to
+	 * prefer pr_warn
+	 */
 	/* pr_warning("this is a warning message\n"); */
 	pr_warn("this is also a warning message\n");
 	pr_notice("this is a notice message\n");
