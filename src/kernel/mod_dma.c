@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -23,13 +24,13 @@
 #include "kernel_helper.h" /* our own helper */
 
 /*
-* This example demos how to allocate and deallocate coherent memory for DMA
-* When runnig this on intel/ubuntu 10.04 these are the conclusions:
-* - dma_alloc_coherent limit is 2Mb.
-* - kmalloc(GFP_DMA) limit is 2Mb.
-* - kmalloc(GFP_KERNEL) limit is 4Mb (which is still contiguous but ok
-*	to use for most hardware that does DMA).
-*/
+ * This example demos how to allocate and deallocate coherent memory for DMA
+ * When runnig this on intel/ubuntu 10.04 these are the conclusions:
+ * - dma_alloc_coherent limit is 2Mb.
+ * - kmalloc(GFP_DMA) limit is 2Mb.
+ * - kmalloc(GFP_KERNEL) limit is 4Mb (which is still contiguous but ok
+ *	to use for most hardware that does DMA).
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -69,8 +70,7 @@ static int __init mod_init(void)
 		if (IS_ERR(vptr)) {
 			pr_err("ERROR! could not allocate memory");
 			return PTR_ERR(vptr);
-		} else
-			dma_free_coherent(NULL, size, vptr, device_addr);
+		dma_free_coherent(NULL, size, vptr, device_addr);
 	}
 #endif /* DO_LOOP */
 #ifdef DO_ONE
@@ -91,9 +91,9 @@ static int __init mod_init(void)
 	stop = false;
 	while (!stop) {
 		/*
-		vptr = dma_alloc_coherent(NULL, size, &device_addr, GFP_DMA);
-		vptr = kmalloc(size,GFP_DMA);
-		*/
+		 * vptr = dma_alloc_coherent(NULL, size, &device_addr, GFP_DMA);
+		 * vptr = kmalloc(size,GFP_DMA);
+		 */
 		vptr = kmalloc(size, GFP_KERNEL);
 		if (IS_ERR(vptr)) {
 			pr_err("ERROR! could not allocate memory for size %d",
@@ -103,9 +103,9 @@ static int __init mod_init(void)
 		pr_info("vptr is %p\n", vptr);
 		pr_info("size is %d\n", size);
 		/*
-		printk("device_addr is %d\n", device_addr);
-		dma_free_coherent(NULL, size, vptr, device_addr);
-		*/
+		 * printk("device_addr is %d\n", device_addr);
+		 * dma_free_coherent(NULL, size, vptr, device_addr);
+		 */
 		kfree(vptr);
 		size += inc;
 	}

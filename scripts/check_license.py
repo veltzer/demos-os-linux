@@ -39,11 +39,19 @@ def main():
                     doit=False
             if doit:
                 #print('doing',current_file)
-                with open(current_file) as in_f:
-                    f=in_f.read()
-                    if not f.startswith(new_lic):
-                        error=True;
-                        print("bad license for",current_file)
+                with open(current_file) as f:
+                    content=f.read()
+                    if content.startswith(new_lic):
+                        continue
+                    # if first line is SPDX license (for kernel patches) then skip it
+                    first_line = content.split("\n")[0]
+                    # print(f"first_line is {first_line}")
+                    rest = "\n".join(content.split("\n")[1:])
+                    if first_line=='// SPDX-License-Identifier: GPL-2.0':
+                        if rest.startswith(new_lic):
+                            continue
+                    print("bad license for",current_file)
+                    error=True;
     if error:
         raise ValueError("had errors")
 

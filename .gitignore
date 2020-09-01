@@ -74,3 +74,5 @@ __pycache__
 
 /.pydmt/
 /.venv/
+
+/src/kernel/.*.tmp

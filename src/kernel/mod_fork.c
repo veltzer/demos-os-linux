@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -24,10 +25,10 @@
 #include "kernel_helper.h" /* our own helper */
 
 /*
-* This is a driver which prints stuff at open and release and allows you
-* to explore how open and close in user space translate to open and release
-* calls in the kernel
-*/
+ * This is a driver which prints stuff at open and release and allows you
+ * to explore how open and close in user space translate to open and release
+ * calls in the kernel
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -39,8 +40,8 @@ static struct device *my_device;
 /* fops */
 
 /*
-* The open implementation. Currently this does nothing
-*/
+ * The open implementation. Currently this does nothing
+ */
 static int kern_open(struct inode *inode, struct file *filp)
 {
 	dev_info(my_device, "open start");
@@ -49,8 +50,8 @@ static int kern_open(struct inode *inode, struct file *filp)
 }
 
 /*
-* The release implementation. Currently this does nothing
-*/
+ * The release implementation. Currently this does nothing
+ */
 static int kern_release(struct inode *inode, struct file *filp)
 {
 	dev_info(my_device, "release start");
@@ -59,15 +60,16 @@ static int kern_release(struct inode *inode, struct file *filp)
 }
 
 static ssize_t kern_read(struct file *file, char __user *buf, size_t count,
-		loff_t *ppos) {
+		loff_t *ppos)
+{
 	*ppos += count;
 	dev_info(my_device, "position %ld, filp %p", *ppos, file);
 	return count;
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.open = kern_open,

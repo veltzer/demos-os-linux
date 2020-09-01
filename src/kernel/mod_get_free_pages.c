@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -27,7 +28,8 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("This driver shows how to use get_free_pages");
 
 /* This demo is to show how to get a big size buffer with __get_free_pages
-and release them... */
+ * and release them...
+ */
 static int __init mod_init(void)
 {
 	int order;

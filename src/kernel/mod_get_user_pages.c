@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -224,7 +225,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	*/
 	case IOCTL_DEMO_READ:
 		cptr = (char *)ptr;
-		sloop = min_t(unsigned int, size, (unsigned int)10);
+		sloop = min_t(unsigned int, size, 10U);
 		PR_DEBUG("sloop is %d", sloop);
 		for (i = 0; i < sloop; i++)
 			PR_INFO("value of %d is %c", i, cptr[i]);

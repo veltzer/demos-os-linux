@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -33,14 +34,16 @@ static struct device *my_device;
 /* fops */
 
 /*
-* The open implementation.
-*/
+ * The open implementation.
+ */
 static int kern_open(struct inode *inode, struct file *filp)
 {
 	/* you can use dev_printk like you would printk only with the
-	added device... */
-	dev_printk(KERN_DEBUG, my_device, "this is my debug message");
-	/* or better yet, use the predefined ones: */
+	 * added device...
+	 */
+	dev_dbg(my_device, "this is my debug message");
+	/* or better yet, use the predefined ones:
+	 */
 	dev_emerg(my_device, "emergency");
 	dev_alert(my_device, "alert");
 	dev_crit(my_device, "critical");
@@ -52,8 +55,8 @@ static int kern_open(struct inode *inode, struct file *filp)
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.open = kern_open,

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -256,6 +257,7 @@ static void set_sys_call_entry(int nr, unsigned long val)
 static void test_sys_call_table(int nr)
 {
 	unsigned long val = get_sys_call_entry(nr);
+
 	PR_DEBUG("val is %lx", val);
 	set_sys_call_entry(nr, val);
 }

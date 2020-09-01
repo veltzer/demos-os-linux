@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -35,8 +36,8 @@ static struct device *my_device;
 /* fops */
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		unsigned long arg)
 {
@@ -61,8 +62,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,

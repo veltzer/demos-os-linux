@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -26,13 +27,13 @@ MODULE_DESCRIPTION("module with error in the initialisation process");
 /* init/exit functions */
 static int __init mod_init(void)
 {
-	pr_err("mod_init\n");
+	pr_err("%s\n", __func__);
 	return -1;
 }
 
 static void __exit mod_exit(void)
 {
-	pr_err("mod_exit\n");
+	pr_err("%s\n", __func__);
 }
 
 /* declaration of init/cleanup functions of this module */

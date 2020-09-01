@@ -42,7 +42,7 @@ SUFFIX_BIN:=elf
 SUFFIX_OO:=oo
 # checkpatch executable...
 # SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
-SCRIPT_CHECKPATCH:=scripts/checkpatch.pl
+SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
 # do tools?
 DO_TOOLS:=1
 
@@ -250,7 +250,7 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN) $(ALL_DEP)
 # rule about how to check kernel source files
 $(MOD_CHP): %.stamp: %.c
 	$(info doing [$@])
-	$(Q)cd $(KSOURCE); $(SCRIPT_CHECKPATCH) --file $(abspath $<)
+	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
 	$(Q)touch $@
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c $(ALL_DEP) scripts/wrapper_make.pl

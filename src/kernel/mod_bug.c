@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -26,18 +27,18 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Module showing how to use BUG()");
 
 /*
-*	Take note of the following facts:
-*	- after a driver does a BUG() it cannot be unloaded
-*	(reboot will be needed).
-*	- BUG() generates a snipplet in the kernel log that can be used to
-*	report
-*		bugs to kernel maintainers.
-*	- BUG() generates a stack trace that you can use for debugging.
-*
-*	TODO:
-*	- examin the behaviour in each of these and describe it.
-*	- add open and ioctl support.
-*/
+ *	Take note of the following facts:
+ *	- after a driver does a BUG() it cannot be unloaded
+ *	(reboot will be needed).
+ *	- BUG() generates a snipplet in the kernel log that can be used to
+ *	report
+ *		bugs to kernel maintainers.
+ *	- BUG() generates a stack trace that you can use for debugging.
+ *
+ *	TODO:
+ *	- examin the behaviour in each of these and describe it.
+ *	- add open and ioctl support.
+ */
 static int __init mod_init(void)
 {
 	BUG();

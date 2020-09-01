@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -24,8 +25,8 @@
 #include "kernel_helper.h" /* our own helper */
 
 /*
-* This module shows different contexts in the kernel.
-*/
+ * This module shows different contexts in the kernel.
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");

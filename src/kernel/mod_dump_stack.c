@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -26,8 +27,8 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Module showing how to use BUG()");
 
 /*
-* This demo shows the use of the 'dump_stack()' function.
-*/
+ * This demo shows the use of the 'dump_stack()' function.
+ */
 static int __init mod_init(void)
 {
 	dump_stack();
