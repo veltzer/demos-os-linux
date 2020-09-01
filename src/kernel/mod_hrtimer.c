@@ -29,11 +29,11 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Demo of the high resolution timer API");
 
 /*
-* This module shows how to use hi res timers in the linux kernel.
-*
-* References:
-* http://www.ibm.com/developerworks/linux/library/l-timers-list/
-*/
+ * This module shows how to use hi res timers in the linux kernel.
+ *
+ * References:
+ * http://www.ibm.com/developerworks/linux/library/l-timers-list/
+ */
 
 #define MS_TO_NS(x) (x*1E6L)
 
@@ -41,7 +41,7 @@ static struct hrtimer hr_timer;
 
 static enum hrtimer_restart my_hrtimer_callback(struct hrtimer *timer)
 {
-	pr_info("my_hrtimer_callback called (%ld).\n", jiffies);
+	pr_info("%s called (%ld).\n", __func__, jiffies);
 	return HRTIMER_NORESTART;
 }
 
@@ -49,6 +49,7 @@ static int __init mod_init(void)
 {
 	ktime_t ktime;
 	unsigned long delay_in_ms = 200L;
+
 	pr_info("HR Timer module installing\n");
 	ktime = ktime_set(0, MS_TO_NS(delay_in_ms));
 	hrtimer_init(&hr_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
@@ -62,6 +63,7 @@ static int __init mod_init(void)
 static void __exit mod_exit(void)
 {
 	int ret;
+
 	ret = hrtimer_cancel(&hr_timer);
 	if (ret)
 		pr_info("The timer was still in use...\n");

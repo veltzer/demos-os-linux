@@ -36,8 +36,8 @@ static struct device *my_device;
 /* fops */
 
 /*
-* The open implementation. Currently this does nothing
-*/
+ * The open implementation. Currently this does nothing
+ */
 static int kern_open(struct inode *inode, struct file *filp)
 {
 	dev_info(my_device, "open start");
@@ -46,8 +46,8 @@ static int kern_open(struct inode *inode, struct file *filp)
 }
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		unsigned long arg)
 {
@@ -74,8 +74,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 }
 
 /*
-* The release implementation.
-*/
+ * The release implementation.
+ */
 static int kern_release(struct inode *inode, struct file *filp)
 {
 	dev_info(my_device, "release start");
@@ -85,8 +85,8 @@ static int kern_release(struct inode *inode, struct file *filp)
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.open = kern_open,

@@ -24,19 +24,18 @@
 #include "kernel_helper.h" /* our own helper */
 
 /*
-* Which module name is better to use: KBUILD_MODNAME or THIS_MODULE->name?
-* Probably KBUILD_MODNAME. Look at this:
-
-mark@abel:~/install/linux-3.1.6/drivers$
-fgrep "KBUILD_MODNAME" `find . -type f -name "*.c"` | wc -l
-586
-mark@abel:~/install/linux-3.1.6/drivers$
-fgrep "THIS_MODULE->name" `find . -type f -name "*.c"` | wc -l
-1
-mark@abel:~/install/linux-3.1.6/drivers$
-
-* This sort of solves the issue.
-*/
+ * Which module name is better to use: KBUILD_MODNAME or THIS_MODULE->name?
+ * Probably KBUILD_MODNAME. Look at this:
+ *
+ * mark@abel:~/install/linux-3.1.6/drivers$
+ * fgrep "KBUILD_MODNAME" `find . -type f -name "*.c"` | wc -l
+ * 586
+ * mark@abel:~/install/linux-3.1.6/drivers$
+ * fgrep "THIS_MODULE->name" `find . -type f -name "*.c"` | wc -l
+ * 1
+ * mark@abel:~/install/linux-3.1.6/drivers$
+ * This sort of solves the issue.
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");

@@ -28,25 +28,25 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("This demo is to show how to create kmem caches and use them");
 
 /*
-* Why would you need your own cache? Or, to put it another way,
-* is kmalloc/kfree not enough ?!?
-* Well, it depends on what you are doing. If you are doing very infrequent
-* allocations (say on init and cleanup and maybe on open and close) then you
-* should be fine with kmalloc/kfree.
-* If, on the other hand, you are allocating lots and lots of tiny objects
-* (imagine the network stack for a second) and releasing them very frequently,
-* and you wish to be able to debug exactly how many of those you are using at
-* any point in time, then the cache is better suited to your needs.
-* The cache also gives you the guarantee that once you populate it you are
-* not going to be surprised by allocation functions failing.
-*
-* TODO:
-* - the cache does not appear in /proc/slabinfo. Check it out.
-* - do the allocation and deallocation from the cache via ioctl and add a user
-*	space demo application that shows slabtop(1) and /proc/slabinfo as it
-*	is allocating
-*	and deallocating.
-*/
+ * Why would you need your own cache? Or, to put it another way,
+ * is kmalloc/kfree not enough ?!?
+ * Well, it depends on what you are doing. If you are doing very infrequent
+ * allocations (say on init and cleanup and maybe on open and close) then you
+ * should be fine with kmalloc/kfree.
+ * If, on the other hand, you are allocating lots and lots of tiny objects
+ * (imagine the network stack for a second) and releasing them very frequently,
+ * and you wish to be able to debug exactly how many of those you are using at
+ * any point in time, then the cache is better suited to your needs.
+ * The cache also gives you the guarantee that once you populate it you are
+ * not going to be surprised by allocation functions failing.
+ *
+ * TODO:
+ * - the cache does not appear in /proc/slabinfo. Check it out.
+ * - do the allocation and deallocation from the cache via ioctl and add a user
+ *	space demo application that shows slabtop(1) and /proc/slabinfo as it
+ *	is allocating
+ *	and deallocating.
+ */
 
 /* statics for this module (initialized to 0 or NULL by default...) */
 static struct kmem_cache *cache_p;
@@ -57,8 +57,10 @@ static int __init kmem_init(void)
 {
 	PR_INFO("start");
 	cache_p = kmem_cache_create(
-		/* name of cache (will appear in slabtop(1),
-		/proc/slabinfo and more. */
+		/*
+		 * name of cache (will appear in slabtop(1),
+		 * /proc/slabinfo and more.
+		 */
 		"veltzer",
 		/* size of objects in cache */
 		100,
@@ -66,8 +68,10 @@ static int __init kmem_init(void)
 		0,
 		/* flags (look at the docs, will you ?) */
 		SLAB_HWCACHE_ALIGN | SLAB_DEBUG_OBJECTS,
-		/* ctor/dtor to be called when each element is allocated
-		or deallocated */
+		/*
+		 * ctor/dtor to be called when each element is allocated
+		 * or deallocated
+		 */
 		NULL
 	);
 	if (IS_ERR(cache_p))
@@ -79,8 +83,9 @@ static int __init kmem_init(void)
 		kmem_cache_destroy(cache_p);
 		return PTR_ERR(p);
 	}
-	/* mempool_create(number,mempool_alloc_slab, mempool_free_slab,
-			drbd_request_cache); */
+	/*
+	 * mempool_create(number,mempool_alloc_slab, mempool_free_slab, drbd_request_cache);
+	 */
 	PR_INFO("end");
 	return 0;
 }

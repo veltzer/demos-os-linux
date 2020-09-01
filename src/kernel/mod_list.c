@@ -25,10 +25,6 @@
 #include "kernel_helper.h" /* our own helper */
 #include "shared.h"
 
-/*
-* Kernel module that demostrates manipulation list structures in the kernel
-*/
-
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Kernel module that demostrates manipulation of list structures using kernel built in lists");
@@ -42,8 +38,8 @@ static void *lptr;
 /* fops */
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		unsigned long arg)
 {
@@ -78,8 +74,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,

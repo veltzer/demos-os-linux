@@ -31,7 +31,7 @@
 #include <net/ip.h>
 #include <linux/printk.h> /* for pr_* */
 #include <linux/proc_fs.h> /* Necessary because we use the proc fs */
-#include <asm/uaccess.h> /* For copy_from_user */
+#include <linux/uaccess.h> /* For copy_from_user */
 
 /*
  * This is a pretty simple example of a netfilter module.
@@ -54,22 +54,24 @@ static struct proc_dir_entry *skb_filter;
 #endif /* DO_PROC */
 
 /*
-old API
-static unsigned int hook_func(
-	unsigned int hooknum,
-	struct sk_buff *skb,
-	const struct net_device *in,
-	const struct net_device *out,
-	int (*okfn)(struct sk_buff *)) {
-*/
+ * old API
+ * static unsigned int hook_func(
+ *	unsigned int hooknum,
+ *	struct sk_buff *skb,
+ *	const struct net_device *in,
+ *	const struct net_device *out,
+ *	int (*okfn)(struct sk_buff *)) {
+ */
 static unsigned int hook_func(
 	void *priv,
 	struct sk_buff *skb,
 	const struct nf_hook_state *state
-) {
+)
+{
 	struct iphdr *ip_header; /* IP header struct */
 	struct udphdr *udp_header; /* UDP header struct */
 	struct icmphdr *icmp_header; /* ICMP Header */
+
 	if (!skb)
 		return NF_ACCEPT;
 	ip_header = (struct iphdr *)skb_network_header(skb);
@@ -110,6 +112,7 @@ static int skb_read(char *page, char **start, off_t off, int count, int *eof,
 		void *data)
 {
 	int len;
+
 	if (off > 0) {
 		*eof = 1;
 		return 0;
@@ -129,6 +132,7 @@ static int skb_write(struct file *file, const char *buffer, unsigned long len,
 {
 	int ret;
 	unsigned char userData;
+
 	if (len > PAGE_SIZE || len < 0) {
 		pr_err("SKB System: cannot allow space for data\n");
 		return -ENOSPC;

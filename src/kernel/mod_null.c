@@ -27,9 +27,9 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Showing how the kernel prints NULL pointers");
 
 /*
-* TODO:
-* - show a snipplet here of how the printing shows up in the kernel log.
-*/
+ * TODO:
+ * - show a snipplet here of how the printing shows up in the kernel log.
+ */
 
 /* our own functions */
 static int __init mod_init(void)

@@ -36,8 +36,8 @@ static struct device *my_device;
 /* fops */
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		unsigned long arg)
 {
@@ -50,10 +50,10 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	PR_DEBUG("start");
 	switch (cmd) {
 	/*
-	* kmalloc function.
-	*
-	* One argument which is the size to allocate
-	*/
+	 * kmalloc function.
+	 *
+	 * One argument which is the size to allocate
+	 */
 	case IOCTL_DEMO_KMALLOC:
 		size = arg * PAGE_SIZE;
 		ptr = kmalloc(GFP_KERNEL, size);
@@ -71,10 +71,10 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		ptr = NULL;
 		return 0;
 	/*
-	* __get_free_pages function.
-	*
-	* One argument which is the size to allocate
-	*/
+	 * __get_free_pages function.
+	 *
+	 * One argument which is the size to allocate
+	 */
 	case IOCTL_DEMO_GET_FREE_PAGES:
 		size = arg * PAGE_SIZE;
 		addr = __get_free_pages(GFP_KERNEL, get_order(size));
@@ -92,8 +92,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		addr = -1;
 		return 0;
 	/*
-	* PCI allocation function
-	*/
+	 * PCI allocation function
+	 */
 	case IOCTL_DEMO_PCI_ALLOC_CONSISTENT:
 		size = arg * PAGE_SIZE;
 		ptr = pci_alloc_consistent(NULL, size, &dma_handle);
@@ -132,8 +132,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,

@@ -31,11 +31,11 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("get_user_pages demo");
 
 /*
-*	This driver demostrates how to map user space (virtual space)
-*	to kernel space.
-*	You can either get it fragmented in pages, or if you really need to,
-*	use the MMU to map it to a single kernel side linear address...
-*/
+ *	This driver demostrates how to map user space (virtual space)
+ *	to kernel space.
+ *	You can either get it fragmented in pages, or if you really need to,
+ *	use the MMU to map it to a single kernel side linear address...
+ */
 
 #include "shared.h"
 
@@ -55,8 +55,8 @@ static unsigned int nr_pages;
 /* fops */
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 
 static inline void pages_unlock(void)
 {
@@ -104,9 +104,11 @@ static inline void pages_reserve(void)
 }
 
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg) {
+		unsigned long arg)
+{
 	/* this is the buffer which will hold the data of the buffer from user
-	 * space... */
+	 * space...
+	 */
 	BufferStruct b;
 	/* for results from calls */
 	int res;
@@ -124,8 +126,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	PR_DEBUG("start with ioctl %u", cmd);
 	switch (cmd) {
 	/*
-	*	This is asking the kernel to map the memory to kernel space.
-	*/
+	 *	This is asking the kernel to map the memory to kernel space.
+	 */
 	case IOCTL_DEMO_MAP:
 		/* get the data from the user */
 		res = copy_from_user(&b, (void *)arg, sizeof(b));
@@ -144,19 +146,18 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		PR_DEBUG("newsize is %u", newsize);
 
 		/*
-		* // make sure that the user data is page aligned...
-		* if(((unsigned int)b.pointer)%PAGE_SIZE!=0) {
-		*	PR_ERROR("pointer is not page aligned");
-		*	return -EFAULT;
-		* }
-		* PR_DEBUG("after modulu check");
-		*/
+		 * // make sure that the user data is page aligned...
+		 * if(((unsigned int)b.pointer)%PAGE_SIZE!=0) {
+		 *	PR_ERROR("pointer is not page aligned");
+		 *	return -EFAULT;
+		 * }
+		 * PR_DEBUG("after modulu check");
+		 */
 		/* find the number of pages */
 		nr_pages = (newsize - 1) / PAGE_SIZE + 1;
 		PR_DEBUG("nr_pages is %d", nr_pages);
 		/* alocate page structures... */
-		pages = kmalloc(nr_pages * sizeof(struct page *),
-				GFP_KERNEL);
+		pages = kmalloc_array(nr_pages, sizeof(struct page *), GFP_KERNEL);
 		if (IS_ERR(pages)) {
 			PR_ERROR("could not allocate page structs");
 			return PTR_ERR(pages);
@@ -166,8 +167,10 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		down_write(&current->mm->mmap_sem);
 		/* rw==READ means read from drive, write into memory area */
 		res = get_user_pages(
-			/* current->mm,
-			current, */
+			/*
+			 * current->mm,
+			 * current,
+			 */
 			aligned,
 			nr_pages,
 			1,/* write */
@@ -185,8 +188,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			return -EFAULT;
 		}
 		/* pages_lock();
-		pages_reserve();
-		pages_unlock(); */
+		 * pages_reserve();
+		 * pages_unlock();
+		 */
 		/* map the pages to kernel space... */
 		vptr = vmap(pages, nr_pages, VM_MAP, PAGE_KERNEL);
 		if (vptr == NULL) {
@@ -206,9 +210,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 
 	/*
-	*	This is asking the kernel to unmap the data
-	*	No arguments are passed
-	*/
+	 *	This is asking the kernel to unmap the data
+	 *	No arguments are passed
+	 */
 	case IOCTL_DEMO_UNMAP:
 		/* this function does NOT return an error code. Strange...:) */
 		vunmap(vptr);
@@ -220,9 +224,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 
 	/*
-	*	This is asking the kernel to read the data.
-	*	No arguments are passed
-	*/
+	 *	This is asking the kernel to read the data.
+	 *	No arguments are passed
+	 */
 	case IOCTL_DEMO_READ:
 		cptr = (char *)ptr;
 		sloop = min_t(unsigned int, size, 10U);
@@ -231,9 +235,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			PR_INFO("value of %d is %c", i, cptr[i]);
 		return 0;
 	/*
-	*	This is asking the kernel to write on our data
-	*	argument is the constant which will be used...
-	*/
+	 *	This is asking the kernel to write on our data
+	 *	argument is the constant which will be used...
+	 */
 	case IOCTL_DEMO_WRITE:
 		memset(ptr, arg, size);
 		/* pages_dirty(); */
@@ -243,8 +247,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,

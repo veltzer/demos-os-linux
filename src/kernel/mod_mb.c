@@ -29,7 +29,7 @@
  * This example proves that mb(), rmb() and wmb() translate
  * all to the same "lock addl $0x0,(%esp)" instruction on
  * x86. barrier() translates to nothing.
-*/
+ */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -38,9 +38,9 @@ MODULE_DESCRIPTION("Module for mb(), rmb(), wmb(), barrier() disassembly");
 /* our own functions */
 static int __init mod_init(void)
 {
-	mb();
+	mb(); /* comment */
 	rmb();
-	wmb();
+	wmb(); /* comment */
 	barrier();
 	return 0;
 }

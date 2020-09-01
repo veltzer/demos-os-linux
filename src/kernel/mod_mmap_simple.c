@@ -34,9 +34,9 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Showing how to implement mmap");
 
 /*
-* Mmap is way by which your module may map memory into the address space
-* of the process that is using it. This is an example of how to do it.
-*/
+ * Mmap is way by which your module may map memory into the address space
+ * of the process that is using it. This is an example of how to do it.
+ */
 static unsigned long addr;
 static void *vaddr;
 static unsigned int size;
@@ -49,8 +49,8 @@ static int ioctl_size;
 /* fops */
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		unsigned long arg)
 {
@@ -67,11 +67,12 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	struct mm_struct *mm;
 	void *kernel_addr;
 	unsigned long flags;
+
 	PR_DEBUG("start");
 	switch (cmd) {
 	/*
-	*	Exploring VMA issues
-	*/
+	 *	Exploring VMA issues
+	 */
 	case IOCTL_MMAP_PRINT:
 		ptr = (void *)arg;
 		PR_DEBUG("ptr is %p", ptr);
@@ -88,8 +89,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 
 	/*
-	*	This is asking the kernel to read the memory
-	*/
+	 *	This is asking the kernel to read the memory
+	 */
 	case IOCTL_MMAP_READ:
 		PR_DEBUG("starting to read");
 		memcpy(str, vaddr, 256);
@@ -98,17 +99,17 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 
 	/*
-	*	This is asking the kernel to write the memory
-	*/
+	 *	This is asking the kernel to write the memory
+	 */
 	case IOCTL_MMAP_WRITE:
 		PR_DEBUG("starting to write");
 		memset(vaddr, arg, size);
 		return 0;
 
 	/*
-	*	This demos how to take the user space pointer and turn it
-	*	into a kernel space pointer
-	*/
+	 *	This demos how to take the user space pointer and turn it
+	 *	into a kernel space pointer
+	 */
 	case IOCTL_MMAP_WRITE_USER:
 		PR_DEBUG("starting to write using us pointer");
 		ptr = (void *)arg;
@@ -116,27 +117,28 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 
 	/*
-	*	mmap a region from an ioctl
-	*/
+	 *	mmap a region from an ioctl
+	 */
 	case IOCTL_MMAP_MMAP:
 		PR_DEBUG("trying to mmap");
 
 		/*
-		* if(do_kmalloc) {
-		*	kaddr=kmalloc(ioctl_size,GFP_KERNEL);
-		* } else {
-		*	order=get_order(ioctl_size);
-		*	kaddr=(void*)__get_free_pages(GFP_KERNEL,order);
-		* }
-		*/
+		 * if(do_kmalloc) {
+		 *	kaddr=kmalloc(ioctl_size,GFP_KERNEL);
+		 * } else {
+		 *	order=get_order(ioctl_size);
+		 *	kaddr=(void*)__get_free_pages(GFP_KERNEL,order);
+		 * }
+		 */
 		mm = current->mm;
 		flags = MAP_POPULATE | MAP_SHARED;
 		flags &= ~(MAP_EXECUTABLE | MAP_DENYWRITE);
-		/* must hold process memory map semaphore because next
-		function will change memory layout for the process.
-		This also means that this code must be in a path that can
-		sleep.
-		*/
+		/*
+		 * must hold process memory map semaphore because next
+		 * function will change memory layout for the process.
+		 * This also means that this code must be in a path that can
+		 * sleep.
+		 */
 		/*
 		 * vm_mmap does not need the semaphore to be held
 		 * down_write(&mm->mmap_sem);
@@ -155,17 +157,17 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		 * up_write(&mm->mmap_sem);
 		 */
 		/*
-		PR_DEBUG("kaddr is (p) %p",kaddr);
-		PR_DEBUG("real size is (d) %d",ioctl_size);
-		*/
+		 * PR_DEBUG("kaddr is (p) %p",kaddr);
+		 * PR_DEBUG("real size is (d) %d",ioctl_size);
+		 */
 		PR_DEBUG(
 			"addr for user space is (lu) %lu / (p) %p",
 			addr, (void *)addr);
 		return addr;
 
 	/*
-	*	unmap a region
-	*/
+	 *	unmap a region
+	 */
 	case IOCTL_MMAP_UNMAP:
 		PR_DEBUG("trying to unmap");
 		vma = find_vma(current->mm, addr);
@@ -189,8 +191,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return ret;
 
 	/*
-	*	The the size of the region
-	*/
+	 *	The the size of the region
+	 */
 	case IOCTL_MMAP_SETSIZE:
 		PR_DEBUG("setting the size");
 		ioctl_size = arg;
@@ -201,8 +203,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 }
 
 /*
-*	VMA ops
-*/
+ *	VMA ops
+ */
 void kern_vma_open(struct vm_area_struct *vma)
 {
 	PR_DEBUG("start");
@@ -234,10 +236,10 @@ static const struct vm_operations_struct kern_remap_vm_ops = {
 };
 
 /*
-*	This is the most basic mmap implementation. It does NOT work because
-*	you don't really state WHAT memory kernel side you are mapping to user
-*	space...
-*/
+ *	This is the most basic mmap implementation. It does NOT work because
+ *	you don't really state WHAT memory kernel side you are mapping to user
+ *	space...
+ */
 static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 {
 	unsigned int size, order, pg_num;
@@ -275,8 +277,8 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,

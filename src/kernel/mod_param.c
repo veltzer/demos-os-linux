@@ -86,7 +86,7 @@ MODULE_DESCRIPTION("demonstrate the use of kernel module parameters");
 */
 static short int myshort = 1;
 static int myint = 420;
-static long int mylong = 9999;
+static long mylong = 9999;
 static char *mystring = "blah";
 
 /*
@@ -104,17 +104,19 @@ root can read write, group root can read write and others can read.
 for security reasons others writing is prohibited. This means that you
 will need root user or to be a member of group root to change kernel
 modules parameters at runtime... */
-module_param(myshort, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+module_param(myshort, short, 0664);
 MODULE_PARM_DESC(myshort, "A short integer");
 /* only root and group root will be able to both read this and write this
  * at runtime */
-module_param(myint, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(myint, int, 0644);
 MODULE_PARM_DESC(myint, "An integer");
 /* only root will be able to read this one */
-module_param(mylong, long, S_IRUSR);
+module_param(mylong, long, 0400);
 MODULE_PARM_DESC(mylong, "A long integer");
-/* this will not appear at all in /sys but will appear in modinfo.
-no one has permission to do anything with it... */
+/*
+ * this will not appear at all in /sys but will appear in modinfo.
+ * no one has permission to do anything with it...
+ */
 module_param(mystring, charp, 0000);
 MODULE_PARM_DESC(mystring, "A character string");
 

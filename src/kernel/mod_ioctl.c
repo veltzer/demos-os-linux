@@ -34,18 +34,19 @@ static struct device *my_device;
 /* fops */
 
 /*
-* This is the ioctl implementation.
-*/
+ * This is the ioctl implementation.
+ */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg) {
+		unsigned long arg)
+{
 	PR_INFO("start");
 	/* this means we don't support this ioctl */
 	return -ENOTTY;
 }
 
 /*
-* The file operations structure.
-*/
+ * The file operations structure.
+ */
 static const struct file_operations my_fops = {
 	.owner = THIS_MODULE,
 	.unlocked_ioctl = kern_unlocked_ioctl,
