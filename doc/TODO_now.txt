@@ -1,6 +1,6 @@
-- make "check_all" pass without removing checks...:)
 - do the build of the modules in src/kernel
 - use github ci/cd and build on each commit.
+	- make check_all part of CICD build.
 - get the repo to build
 - publicize build status on README.md
 - try to fix the compilation problems in files which are called "*.moved"
