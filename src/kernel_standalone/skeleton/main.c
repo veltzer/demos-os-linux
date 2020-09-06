@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -28,11 +29,11 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("A skeleton for a character device drivfer");
 
 /*
-* TODO:
-* - allocate the major and minors dynamically
-*/
+ * TODO:
+ * - allocate the major and minors dynamically
+ */
 static int auto_register = 1;
-module_param(auto_register, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(auto_register, int, 0644);
 MODULE_PARM_DESC(auto_register, "Do you want me to auto register the file in /dev ?");
 
 /* notice these hardcoded major and minor numbers (not good!!!) */
@@ -54,6 +55,7 @@ static struct device *my_device;
 static int __init skeleton_init(void)
 {
 	int err;
+
 	pr_info("start\n");
 	/* this is registering the new device operations */
 	err = register_chrdev(NULL_MAJOR, THIS_MODULE->name, &null_fops);
@@ -84,9 +86,10 @@ static int __init skeleton_init(void)
 	}
 	pr_info("device loaded successfuly\n");
 	return 0;
-/* err_device:
-	device_destroy(my_class, MKDEV(NULL_MAJOR, NULL_MINOR));
-*/
+/*
+ * err_device:
+ *	device_destroy(my_class, MKDEV(NULL_MAJOR, NULL_MINOR));
+ */
 err_class:
 	class_destroy(my_class);
 err_register:

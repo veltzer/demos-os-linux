@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -30,14 +31,14 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("A simple implementation for something like /dev/zero");
 
 /*
-* This is an implementation of a kernel module which exposes a /dev/zero like
-* device to user space. Whenever someone reads from the device the buffer passed
-* to kernel gets filled with zeros.
-* If you want to see the real implementation in the kernel see:
-* $KERNEL_SOURCES/drivers/char/mem.c
-*
-* TODO:
-*/
+ * This is an implementation of a kernel module which exposes a /dev/zero like
+ * device to user space. Whenever someone reads from the device the buffer passed
+ * to kernel gets filled with zeros.
+ * If you want to see the real implementation in the kernel see:
+ * $KERNEL_SOURCES/drivers/char/mem.c
+ *
+ * TODO:
+ */
 
 /* how many minors do we need ? */
 const int MINOR_COUNT = 1;
@@ -49,14 +50,16 @@ const bool do_print;
 static int open_zero(struct inode *inode, struct file *file)
 {
 	/*
-	char* p=(char*)kmalloc(PAGE_SIZE, GFP_KERNEL);
-	if (IS_ERR(p))
-		return ERR_PTR(p);
-	memset(p, 0, PAGE_SIZE);
-	file->private_data = (void*)p;
-	*/
-	/* file->private_data = get_zeroed_page(GFP_KERNEL);
-	pr_info("all is ok and buffer is %p\n", file->private_data); */
+	 * char* p=(char*)kmalloc(PAGE_SIZE, GFP_KERNEL);
+	 * if (IS_ERR(p))
+	 *	return ERR_PTR(p);
+	 * memset(p, 0, PAGE_SIZE);
+	 * file->private_data = (void*)p;
+	 */
+	/*
+	 * file->private_data = get_zeroed_page(GFP_KERNEL);
+	 * pr_info("all is ok and buffer is %p\n", file->private_data);
+	 */
 	return 0;
 }
 
@@ -65,10 +68,11 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 {
 	int ret;
 	ssize_t remaining;
-	/* do the access checking right at the start so that we would not
+	/*
+	 * do the access checking right at the start so that we would not
 	 * start zeroing the users pages and only then find out that the
 	 * buffer is off the edge...
-	*/
+	 */
 	ret = access_ok(VERIFY_WRITE, buf, count);
 	if (!ret)
 		return -EFAULT;
@@ -77,15 +81,17 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	while (remaining) {
 		ssize_t curr = min_t(ssize_t, remaining, PAGE_SIZE);
 		/*
-		if(copy_to_user(buf,file->private_data,curr)) {
-			return -EFAULT;
-		} else {
-			buf+=curr;
-			remaining-=curr;
-		}
-		*/
-		/* very efficient way of clearing user memory once it has
-		 * been verified... */
+		 * if(copy_to_user(buf,file->private_data,curr)) {
+		 *	return -EFAULT;
+		 * } else {
+		 *	buf+=curr;
+		 *	remaining-=curr;
+		 * }
+		 */
+		/*
+		 * very efficient way of clearing user memory once it has
+		 * been verified...
+		 */
 		__clear_user(buf, curr);
 		buf += curr;
 		remaining -= curr;
@@ -163,8 +169,8 @@ static int zero_init(void)
 	pr_info("loaded ok\n");
 	return 0;
 /* err_device:
-	device_destroy(my_class, first_dev);
-*/
+ *	device_destroy(my_class, first_dev);
+ */
 err_class:
 	class_destroy(my_class);
 err_cdev_del:

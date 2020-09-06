@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -49,46 +50,46 @@ MODULE_VERSION("1.12.43b");
 /* #define DO_NOTHING */
 
 /*
-* See exercise.txt for the description of this exercise.
-*
-* Notes:
-* - we protect the pipe here using a mutex. A spinlock option is also
-* present here but it is NOT good. We call 'copy_to_user' and
-* 'copy_from_user' while holding these functions may sleep so strictly
-* speaking this is prohibited. It will work on lots of kernels but has
-* failed for me on a PREEMPT kernel.
-* - Even though the pipe size is PAGE_SIZE (4096 on a i386) we can only
-* store PAGE_SIZE-1 bytes in the pipe. This is because if we stored 4096
-* bytes in the pipe we would not be able to distinguish between a full pipe
-* and an empty one. This is the reason for the weird -1 in the 'pipe_room'
-* function.
-* - the performace of this pipe as can be ascertained using the 'pipemeter'
-* is much lower than the kernels own pipe as can be checked
-* via 'cat /dev/zero | pipemeter > /dev/null' (I prepared a script for this).
-* - there is no need to allocated the memory for the pipe using kzalloc.
-* kmalloc is good enough assuming that we have no bugs in the driver and do
-* not supply unwritten data to user space by mistake...:)
-*
-* TODO:
-* - there is a bug in that closing the last writer does NOT make the readers
-* wake up and return EOF. Find the problem and fix it.
-* - explain the difference in performance mentioned above and improve this
-* example to give similar performance.
-* - hold the readers and writers as atomic variables.
-* This will enable us to remove the spinlock protection that we currently have
-* in the 'open' and 'release' fops.
-*
-* TOOLS: pipemeter
-*/
+ * See exercise.txt for the description of this exercise.
+ *
+ * Notes:
+ * - we protect the pipe here using a mutex. A spinlock option is also
+ * present here but it is NOT good. We call 'copy_to_user' and
+ * 'copy_from_user' while holding these functions may sleep so strictly
+ * speaking this is prohibited. It will work on lots of kernels but has
+ * failed for me on a PREEMPT kernel.
+ * - Even though the pipe size is PAGE_SIZE (4096 on a i386) we can only
+ * store PAGE_SIZE-1 bytes in the pipe. This is because if we stored 4096
+ * bytes in the pipe we would not be able to distinguish between a full pipe
+ * and an empty one. This is the reason for the weird -1 in the 'pipe_room'
+ * function.
+ * - the performace of this pipe as can be ascertained using the 'pipemeter'
+ * is much lower than the kernels own pipe as can be checked
+ * via 'cat /dev/zero | pipemeter > /dev/null' (I prepared a script for this).
+ * - there is no need to allocated the memory for the pipe using kzalloc.
+ * kmalloc is good enough assuming that we have no bugs in the driver and do
+ * not supply unwritten data to user space by mistake...:)
+ *
+ * TODO:
+ * - there is a bug in that closing the last writer does NOT make the readers
+ * wake up and return EOF. Find the problem and fix it.
+ * - explain the difference in performance mentioned above and improve this
+ * example to give similar performance.
+ * - hold the readers and writers as atomic variables.
+ * This will enable us to remove the spinlock protection that we currently have
+ * in the 'open' and 'release' fops.
+ *
+ * TOOLS: pipemeter
+ */
 
 static int pipes_count = 8;
-module_param(pipes_count, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(pipes_count, int, 0644);
 MODULE_PARM_DESC(pipes_count, "How many pipes to create ?");
 /* this size of pipe performs very well! (3.0 G/s) */
 static int pipe_size = PAGE_SIZE*10;
 /* this one doesnt... */
 /* static int pipe_size = PAGE_SIZE; */
-module_param(pipe_size, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(pipe_size, int, 0644);
 MODULE_PARM_DESC(pipe_size, "What is the pipe size ?");
 
 /* this is the first dev_t allocated to us... */
@@ -189,6 +190,7 @@ static inline void pipe_unlock(struct my_pipe_t *pipe)
 static inline int pipe_reader_should_i_wake_up(struct my_pipe_t *pipe)
 {
 	int ret;
+
 	pipe_lock(pipe);
 	ret = pipe_data(pipe) > 0 || pipe->writers == 0;
 	if (!ret)
@@ -206,6 +208,7 @@ static inline int pipe_wait_read(struct my_pipe_t *pipe)
 	#endif /* DO_WAITQUEUE */
 	#ifdef DO_WAITQUEUE_RISQUE
 	int ret;
+
 	pipe_unlock(pipe);
 	ret = wait_event_interruptible(pipe->read_queue,
 			pipe_data(pipe) > 0 || pipe->writers == 0);
@@ -215,6 +218,7 @@ static inline int pipe_wait_read(struct my_pipe_t *pipe)
 	#ifdef DO_SCHEDULE
 	int ret;
 	DEFINE_WAIT(wait);
+
 	prepare_to_wait(&pipe->read_queue, &wait, TASK_INTERRUPTIBLE);
 	pipe_unlock(pipe);
 	schedule();
@@ -234,6 +238,7 @@ static inline int pipe_wait_read(struct my_pipe_t *pipe)
 static inline int pipe_writer_should_i_wake_up(struct my_pipe_t *pipe)
 {
 	int ret;
+
 	pipe_lock(pipe);
 	ret = pipe_room(pipe) > 0;
 	if (!ret)
@@ -251,6 +256,7 @@ static inline int pipe_wait_write(struct my_pipe_t *pipe)
 	#endif /* DO_WAITQUEUE */
 	#ifdef DO_WAITQUEUE_RISQUE
 	int ret;
+
 	pipe_unlock(pipe);
 	ret = wait_event_interruptible(pipe->write_queue, pipe_room(pipe) > 0);
 	pipe_lock(pipe);
@@ -259,6 +265,7 @@ static inline int pipe_wait_write(struct my_pipe_t *pipe)
 	#ifdef DO_SCHEDULE
 	int ret;
 	DEFINE_WAIT(wait);
+
 	prepare_to_wait(&pipe->write_queue, &wait, TASK_INTERRUPTIBLE);
 	pipe_unlock(pipe);
 	schedule();
@@ -295,6 +302,7 @@ static inline void pipe_wake_writers(struct my_pipe_t *pipe)
 static inline int pipe_copy_from_user(struct my_pipe_t *pipe, int count,
 		const char __user **ubuf) {
 	int ret;
+
 	pr_debug("copy_from_user: count is %d, read_pos is %zd, write_pos is %zd, size is %zd\n",
 			count, pipe->read_pos, pipe->write_pos, pipe->size);
 	#ifdef DO_COPY
@@ -321,6 +329,7 @@ static inline int pipe_copy_to_user(struct my_pipe_t *pipe, int count,
 		char __user **ubuf)
 {
 	unsigned long ret;
+
 	pr_debug("copy_to_user: count is %d, read_pos is %zd, write_pos is %zd, size is %zd\n",
 			count, pipe->read_pos, pipe->write_pos, pipe->size);
 	#ifdef DO_COPY
@@ -366,18 +375,20 @@ static int pipe_open(struct inode *inode, struct file *filp)
 static int pipe_release(struct inode *inode, struct file *filp)
 {
 	struct my_pipe_t *pipe;
+
 	pipe = (struct my_pipe_t *)(filp->private_data);
 	pipe_lock(pipe);
 	if (filp->f_mode & FMODE_READ)
 		pipe->readers--;
 	if (filp->f_mode & FMODE_WRITE)
 		pipe->writers--;
-	/* wake up readers since they may want to end if there
-	are no more writers...
-	*/
+	/*
+	 * wake up readers since they may want to end if there
+	 * are no more writers...
+	 */
 	if (filp->f_mode & FMODE_WRITE) {
 		if (pipe->writers == 0) {
-			pr_debug("pipe_release: no more writers, waking up readers...\n");
+			pr_debug("%s: no more writers, waking up readers...\n", __func__);
 			pipe_wake_readers(pipe);
 		}
 	}
@@ -385,17 +396,20 @@ static int pipe_release(struct inode *inode, struct file *filp)
 	return 0;
 }
 
-static ssize_t pipe_read(struct file *file, char __user *buf, size_t count,
-		loff_t *ppos) {
+static ssize_t pipe_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+{
 	struct my_pipe_t *pipe;
 	size_t data, work_size, first_chunk, second_chunk, ret;
-	pr_debug("pipe_read: start with buf %p\n", buf);
+
+	pr_debug("%s: start with buf %p\n", __func__, buf);
 	if (!access_ok(VERIFY_WRITE, buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
-	/* lets sleep while there is no data in the pipe
+	/*
+	 * lets sleep while there is no data in the pipe
 	 * why do we not just use the waitqueue condition?
-	 * because we want to get the pipe LOCKED with data */
+	 * because we want to get the pipe LOCKED with data
+	 */
 	pipe_lock(pipe);
 	data = pipe_data(pipe);
 	while (data == 0 && pipe->writers > 0) {
@@ -447,10 +461,12 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count,
 }
 
 static ssize_t pipe_write(struct file *file, const char __user *buf,
-		size_t count, loff_t *ppos) {
+		size_t count, loff_t *ppos)
+{
 	struct my_pipe_t *pipe;
 	size_t work_size, room, first_chunk, second_chunk, ret;
-	pr_debug("pipe_write: start\n");
+
+	pr_debug("%s: start\n", __func__);
 	if (!access_ok(VERIFY_READ, buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
@@ -523,7 +539,7 @@ static int __init pipe_init(void)
 	int ret;
 	int i;
 	/* allocate all pipes */
-	pipes = kmalloc(sizeof(struct my_pipe_t)*pipes_count, GFP_KERNEL);
+	pipes = kmalloc_array(pipes_count, sizeof(struct my_pipe_t), GFP_KERNEL);
 	if (IS_ERR(pipes)) {
 		pr_err("kmalloc\n");
 		ret = PTR_ERR(pipes);
@@ -569,13 +585,13 @@ static int __init pipe_init(void)
 	}
 	pr_info(KBUILD_MODNAME " loaded successfully\n");
 	return 0;
-	/*
-err_device:
-	for (i = 0; i < pipes_count; i++) {
-		device_destroy(my_class, MKDEV(MAJOR(first_dev),
-			MINOR(first_dev)+i));
-	}
-	*/
+/*
+ * err_device:
+ *	for (i = 0; i < pipes_count; i++) {
+ *		device_destroy(my_class, MKDEV(MAJOR(first_dev),
+ *			MINOR(first_dev)+i));
+ *	}
+ */
 err_class:
 	class_destroy(my_class);
 err_cdev_del:
@@ -593,6 +609,7 @@ err_return:
 static void __exit pipe_exit(void)
 {
 	int i;
+
 	for (i = 0; i < pipes_count; i++)
 		device_destroy(my_class, MKDEV(MAJOR(first_dev),
 			MINOR(first_dev)+i));

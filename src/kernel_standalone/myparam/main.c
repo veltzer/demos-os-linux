@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -29,21 +30,21 @@ MODULE_VERSION("2.4.6");
 /* here comes the parameters */
 
 static int myint = 1;
-module_param(myint, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+module_param(myint, int, 0664);
 MODULE_PARM_DESC(myint, "myint controls bla bla bla...");
 
 /* our own functions */
 static int __init myparam_init(void)
 {
-	pr_info("in myparam_init\n");
-	pr_info("in myparam_init: myint is %d\n", myint);
+	pr_info("%s\n", __func__);
+	pr_info("%s: myint is %d\n", __func__, myint);
 	return 0;
 }
 
 static void __exit myparam_exit(void)
 {
-	pr_info("in myparam_exit: myint is %d\n", myint);
-	pr_info("in myparam_exit\n");
+	pr_info("%s: myint is %d\n", __func__, myint);
+	pr_info("%s\n", __func__);
 }
 
 module_init(myparam_init);

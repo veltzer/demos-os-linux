@@ -34,16 +34,16 @@ MODULE_DESCRIPTION("Demo module for testing");
 /* our own functions */
 static int __init mod_init(void)
 {
-	pr_info("start\n");
-	PR_INFO("start\n");
+	pr_info("%s\n", __func__);
+	PR_INFO("%s\n", __func__);
 	return 0;
 }
 
 
 static void __exit mod_exit(void)
 {
-	PR_INFO("start\n");
-	pr_info("start\n");
+	PR_INFO("%s\n", __func__);
+	pr_info("%s\n", __func__);
 }
 
 /* declaration of init/cleanup functions of this module */

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -28,14 +29,14 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("A simple implementation for something like /dev/null");
 
 /*
-* This is a module implementing something like /dev/null with hardcoded
-* major number. It can optionally register itself both as a class and in /dev.
-* TODO:
-* - allocate the major and minors dynamically
-*/
+ * This is a module implementing something like /dev/null with hardcoded
+ * major number. It can optionally register itself both as a class and in /dev.
+ * TODO:
+ * - allocate the major and minors dynamically
+ */
 
 static int auto_register = 1;
-module_param(auto_register, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(auto_register, int, 0644);
 MODULE_PARM_DESC(auto_register, "Do you want me to auto register the file in /dev ?");
 
 /* notice these hardcoded major and minor numbers (not good!!!) */
@@ -47,9 +48,10 @@ const int NULL_MINOR;
 static ssize_t write_null(struct file *file, const char __user *buf,
 		size_t count, loff_t *ppos)
 {
-	/* remmember to increment the position to let the user think that
-	he is actually writing something...
-	*/
+	/*
+	 * remmember to increment the position to let the user think that
+	 * he is actually writing something...
+	 */
 	pr_info("count is %zd\n", count);
 	*ppos += count;
 	return count;
@@ -69,6 +71,7 @@ static struct device *my_device;
 static int __init null_init(void)
 {
 	int err;
+
 	pr_info("start\n");
 	/* this is registering the new device operations */
 	err = register_chrdev(NULL_MAJOR, THIS_MODULE->name, &null_fops);
@@ -100,8 +103,8 @@ static int __init null_init(void)
 	pr_info("device loaded successfuly\n");
 	return 0;
 /* err_device:
-	device_destroy(my_class, MKDEV(NULL_MAJOR, NULL_MINOR));
-*/
+ *	device_destroy(my_class, MKDEV(NULL_MAJOR, NULL_MINOR));
+ */
 err_class:
 	class_destroy(my_class);
 err_register:

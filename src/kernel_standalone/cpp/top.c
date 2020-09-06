@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -16,9 +17,11 @@
  * along with linuxapi. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <linux/module.h> /* for MODULE_LICENSE(), MODULE_AUTHOR(),
-			MODULE_DESCRIPTION(), module_init(),
-			module_exit() */
+/*
+ * for MODULE_LICENSE(), MODULE_AUTHOR(), MODULE_DESCRIPTION(), module_init(),
+ * module_exit()
+ */
+#include <linux/module.h>
 #include <linux/slab.h> /* for kmalloc(), kfree() */
 #include "connect.h"
 
@@ -37,21 +40,21 @@ static void __exit link_exit(void)
 }
 
 /*
-static void myprintk(const char *msg)
-{
-	printk(msg);
-}
-
-static void *mymalloc(unsigned int size)
-{
-	return kmalloc(size, GFP_KERNEL);
-}
-
-static void myfree(void *pointer)
-{
-	kfree(pointer);
-}
-*/
+ * static void myprintk(const char *msg)
+ * {
+ *	printk(msg);
+ * }
+ *
+ * static void *mymalloc(unsigned int size)
+ * {
+ *	return kmalloc(size, GFP_KERNEL);
+ * }
+ *
+ * static void myfree(void *pointer)
+ * {
+ *	kfree(pointer);
+ * }
+ */
 
 module_init(link_init);
 module_exit(link_exit);

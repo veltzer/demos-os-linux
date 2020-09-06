@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -47,8 +48,8 @@ static struct class *my_class;
 struct device *clipboard_device;
 
 /*
-* Open the device. Optional.
-*/
+ * Open the device. Optional.
+ */
 static int clipboard_open(struct inode *inode, struct file *filp)
 {
 	pr_debug("device is open\n");
@@ -56,8 +57,8 @@ static int clipboard_open(struct inode *inode, struct file *filp)
 }
 
 /*
-* Release the device. Optional as well.
-*/
+ * Release the device. Optional as well.
+ */
 static int clipboard_release(struct inode *inode, struct file *filp)
 {
 	pr_debug("device is released\n");
@@ -65,8 +66,8 @@ static int clipboard_release(struct inode *inode, struct file *filp)
 }
 
 /*
-* Simply copy data to the user buffer...
-*/
+ * Simply copy data to the user buffer...
+ */
 static ssize_t clipboard_read(struct file *filp, __user char *user_buf,
 		size_t count, loff_t *offset)
 {
@@ -81,15 +82,13 @@ static ssize_t clipboard_read(struct file *filp, __user char *user_buf,
 	ret = copy_to_user(user_buf, *offset+buffer, bytes_to_read);
 	if (ret)
 		return ret;
-	else {
-		*offset += bytes_to_read;
-		return bytes_to_read;
-	}
+	*offset += bytes_to_read;
+	return bytes_to_read;
 }
 
 /*
-* Simply copy the data from the user buffer...
-*/
+ * Simply copy the data from the user buffer...
+ */
 static ssize_t clipboard_write(struct file *filp, const char *user_buf,
 		size_t count, loff_t *offset)
 {
@@ -99,20 +98,18 @@ static ssize_t clipboard_write(struct file *filp, const char *user_buf,
 	if (bytes_to_write == 0)
 		return -EIO;
 	/* now we have room in the clipboard
-	we don't need this code (short write implementation)
-	if the user wants to write more than we have space for
-	if (count>bytes_to_write) {
-		Can't write beyond the end of the device
-		return -EIO;
-	}
-	*/
+	 * we don't need this code (short write implementation)
+	 * if the user wants to write more than we have space for
+	 * if (count>bytes_to_write) {
+	 *	Can't write beyond the end of the device
+	 *	return -EIO;
+	 * }
+	 */
 	ret = copy_from_user(buffer + *offset, user_buf, bytes_to_write);
 	if (ret)
 		return ret;
-	else {
-		*offset += bytes_to_write;
-		return bytes_to_write;
-	}
+	*offset += bytes_to_write;
+	return bytes_to_write;
 }
 
 /* our file operations structure that gathers all the ops */
@@ -126,17 +123,13 @@ static const struct file_operations clipboard_fops = {
 };
 
 /*
-* Module housekeeping.
-*/
+ * Module housekeeping.
+ */
 static int __init clipboard_init(void)
 {
 	int ret; /* error code to return in case of error */
+
 	buffer = kmalloc(BUFFER_SIZE, GFP_KERNEL);
-	if (!buffer) {
-		pr_err("kmalloc\n");
-		ret = -ENOMEM;
-		goto any_error;
-	}
 	memset(buffer, 0, BUFFER_SIZE);
 
 	ret = alloc_chrdev_region(&clipboard_dev, 0, BUFFER_COUNT,
@@ -157,8 +150,10 @@ static int __init clipboard_init(void)
 
 	ret = cdev_add(clipboard_cdev, clipboard_dev, BUFFER_COUNT);
 	if (ret) {
-		/* Only if we allocated a cdev but did not register do we
-		* we need to kfree it. In any other case cdev_del is enough */
+		/*
+		 * Only if we allocated a cdev but did not register do we
+		 * we need to kfree it. In any other case cdev_del is enough
+		 */
 		pr_err("cdev_add\n");
 		kfree(clipboard_cdev);
 		goto error_after_region;
@@ -182,9 +177,9 @@ static int __init clipboard_init(void)
 	return 0;
 
 /*
-error_after_device_create:
-	device_destroy(my_class, clipboard_dev);
-*/
+ * error_after_device_create:
+ *	device_destroy(my_class, clipboard_dev);
+ */
 error_after_class_create:
 	class_destroy(my_class);
 error_after_register:
@@ -193,7 +188,6 @@ error_after_region:
 	unregister_chrdev_region(clipboard_dev, BUFFER_COUNT);
 error_after_alloc:
 	kfree(buffer);
-any_error:
 	return ret;
 }
 

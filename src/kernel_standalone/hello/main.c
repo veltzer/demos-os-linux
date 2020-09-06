@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -27,13 +28,13 @@ MODULE_VERSION("1.0.0");
 
 static int __init hello_init(void)
 {
-	pr_info("in hello_init\n");
+	pr_info("%s\n", __func__);
 	return 0;
 }
 
 static void __exit hello_exit(void)
 {
-	pr_info("in hello_exit\n");
+	pr_info("%s\n", __func__);
 }
 
 module_init(hello_init);

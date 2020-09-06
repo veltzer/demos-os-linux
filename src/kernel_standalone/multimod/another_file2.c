@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -21,10 +22,10 @@
 
 void do_something_init(void)
 {
-	pr_alert("init 2");
+	pr_alert("%s", __func__);
 }
 
 void do_something_exit(void)
 {
-	pr_alert("exit 2");
+	pr_alert("%s", __func__);
 }

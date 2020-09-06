@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -27,7 +28,7 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("A simple implementation for /dev based device");
 
 /*
-*/
+ */
 
 /* how many minors do we need ? */
 const int MINOR_COUNT = 1;
@@ -110,8 +111,8 @@ static int __init empty_init(void)
 	pr_info("loaded ok\n");
 	return 0;
 /* err_device:
-	device_destroy(my_class, first_dev);
-*/
+ *	device_destroy(my_class, first_dev);
+ */
 err_class:
 	class_destroy(my_class);
 err_cdev_del:

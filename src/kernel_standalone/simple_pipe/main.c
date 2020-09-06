@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -35,37 +36,37 @@ MODULE_DESCRIPTION("A named pipe exercise");
 #define DO_COPY
 
 /*
-* See exercise.txt for the description of this exercise.
-*
-* Notes:
-* - we protect the pipe here using a spinlock. Maybe a mutex would give better
-* results on a single CPU. Test it out.
-* - Even though the pipe size is PAGE_SIZE (4096 on a i386) we can only store
-* PAGE_SIZE-1 bytes in the pipe. This is because if we stored 4096 bytes in
-* the pipe we would not be able to distinguish between a full pipe and an
-* empty one. This is the reason for the weird -1 in the 'pipe_room' function.
-* - the performace of this pipe as can be ascertained using the 'pipemeter'
-* is much lower than the kernels own pipe as can be checked
-* via 'cat /dev/zero | pipemeter > /dev/null' (I prepared a script for this).
-*
-* TODO:
-* - explain the difference in performance mentioned above and improve this
-* example to give similar performance.
-* - hold the readers and writers as atomic variables.
-* This will enable us to remove the spinlock protection that we currently
-* have in the 'open' and 'release' fops.
-*
-* TOOLS: pipemeter
-*/
+ * See exercise.txt for the description of this exercise.
+ *
+ * Notes:
+ * - we protect the pipe here using a spinlock. Maybe a mutex would give better
+ * results on a single CPU. Test it out.
+ * - Even though the pipe size is PAGE_SIZE (4096 on a i386) we can only store
+ * PAGE_SIZE-1 bytes in the pipe. This is because if we stored 4096 bytes in
+ * the pipe we would not be able to distinguish between a full pipe and an
+ * empty one. This is the reason for the weird -1 in the 'pipe_room' function.
+ * - the performace of this pipe as can be ascertained using the 'pipemeter'
+ * is much lower than the kernels own pipe as can be checked
+ * via 'cat /dev/zero | pipemeter > /dev/null' (I prepared a script for this).
+ *
+ * TODO:
+ * - explain the difference in performance mentioned above and improve this
+ * example to give similar performance.
+ * - hold the readers and writers as atomic variables.
+ * This will enable us to remove the spinlock protection that we currently
+ * have in the 'open' and 'release' fops.
+ *
+ * TOOLS: pipemeter
+ */
 
 static int pipes_count = 8;
-module_param(pipes_count, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(pipes_count, int, 0644);
 MODULE_PARM_DESC(pipes_count, "How many pipes to create ?");
 /* this size of pipe performs very well! (3.0 G/s) */
 /* static int pipe_size = PAGE_SIZE*10; */
 /* this one (PAGE_SIZE) doesnt... */
 static int pipe_size = PAGE_SIZE;
-module_param(pipe_size, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+module_param(pipe_size, int, 0644);
 MODULE_PARM_DESC(pipe_size, "What is the pipe size ?");
 
 /* struct for each pipe */
@@ -131,6 +132,7 @@ static inline int pipe_copy_from_user(struct my_pipe_t *pipe, int count,
 		const char __user **ubuf)
 {
 	int ret;
+
 	pr_debug("count is %d, read_pos is %zd, write_pos is %zd, size is %zd\n",
 			count, pipe->read_pos, pipe->write_pos, pipe->size);
 	#ifdef DO_COPY
@@ -153,6 +155,7 @@ static inline int pipe_copy_to_user(struct my_pipe_t *pipe, int count,
 		char __user **ubuf)
 {
 	int ret;
+
 	pr_debug("count is %d, read_pos is %zd, write_pos is %zd, size is %zd\n",
 			count, pipe->read_pos, pipe->write_pos, pipe->size);
 	#ifdef DO_COPY
@@ -184,14 +187,16 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count,
 {
 	struct my_pipe_t *pipe;
 	size_t data, work_size, first_chunk, second_chunk, ret;
+
 	pr_debug("start\n");
 	if (!access_ok(VERIFY_WRITE, buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
-	/* lets sleep while there is no data in the pipe
-	why do we not just use the waitqueue condition? because we want to get
-	the pipe LOCKED with data
-	*/
+	/*
+	 * lets sleep while there is no data in the pipe
+	 * why do we not just use the waitqueue condition? because we want to get
+	 * the pipe LOCKED with data
+	 */
 	data = pipe_data(pipe);
 	if (data == 0)
 		return 0;
@@ -224,14 +229,16 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 {
 	struct my_pipe_t *pipe;
 	size_t work_size, room, first_chunk, second_chunk, ret;
+
 	pr_debug("start\n");
 	if (!access_ok(VERIFY_READ, buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
-	/* lets check if we have room in the pipe
-	why do we not just use the waitqueue condition? because we want to get
-	the pipe LOCKED with data
-	*/
+	/*
+	 * lets check if we have room in the pipe
+	 * why do we not just use the waitqueue condition? because we want to get
+	 * the pipe LOCKED with data
+	 */
 	room = pipe_room(pipe);
 	if (room == 0)
 		return 0;
@@ -274,7 +281,7 @@ static int __init pipe_init(void)
 	int j;
 	struct device *pipe_device;
 	/* allocate all pipes */
-	pipes = kmalloc(sizeof(struct my_pipe_t)*pipes_count, GFP_KERNEL);
+	pipes = kmalloc_array(pipes_count, sizeof(struct my_pipe_t), GFP_KERNEL);
 	if (IS_ERR(pipes)) {
 		pr_err("kmalloc\n");
 		ret = PTR_ERR(pipes);
@@ -328,12 +335,12 @@ static int __init pipe_init(void)
 	}
 	pr_info("%s loaded successfully\n", THIS_MODULE->name);
 	return 0;
-	/*
-err_device:
-	for (i = 0; i < pipes_count; i++)
-		device_destroy(my_class, MKDEV(MAJOR(first_dev),
-			MINOR(first_dev)+i));
-	*/
+/*
+ * err_device:
+ *	for (i = 0; i < pipes_count; i++)
+ *		device_destroy(my_class, MKDEV(MAJOR(first_dev),
+ *			MINOR(first_dev)+i));
+ */
 err_class:
 	class_destroy(my_class);
 err_cdev_del:
@@ -352,6 +359,7 @@ err_return:
 static void __exit pipe_exit(void)
 {
 	int i;
+
 	for (i = 0; i < pipes_count; i++)
 		device_destroy(my_class, MKDEV(MAJOR(first_dev),
 				MINOR(first_dev)+i));
