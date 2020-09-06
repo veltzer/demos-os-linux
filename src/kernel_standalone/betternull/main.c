@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
  * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
@@ -30,15 +31,16 @@ MODULE_DESCRIPTION("A simple implementation for something like /dev/null");
 
 /*
  * This is an improvement of the mynull exercise...
-*/
+ */
 
 /* these are the actual operations */
 static ssize_t write_null(struct file *file, const char __user *buf,
 		size_t count, loff_t *ppos)
 {
-	/* remmember to increment the position to let the user think that
-	he is actually writing something...
-	*/
+	/*
+	 * remmember to increment the position to let the user think that
+	 * he is actually writing something...
+	 */
 	pr_info("count is %zd\n", count);
 	*ppos += count;
 	return count;
@@ -104,8 +106,8 @@ static int __init null_init(void)
 	pr_info("device loaded successfuly\n");
 	return 0;
 /* err_device:
-	device_destroy(my_class, first_dev);
-*/
+ *	device_destroy(my_class, first_dev);
+ */
 err_class:
 	class_destroy(my_class);
 err_cdev_del:

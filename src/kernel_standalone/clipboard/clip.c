@@ -79,7 +79,7 @@ DECLARE_WAIT_QUEUE_HEAD(clipboard_read_wq);
 DECLARE_WAIT_QUEUE_HEAD(clipboard_write_wq);
 
 /* module paramters */
-module_param(debug_param, uint, S_IRWXU);
+module_param(debug_param, uint, 0700);
 
 /*
 * Open the device. Optional.
