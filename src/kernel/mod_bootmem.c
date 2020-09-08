@@ -20,6 +20,7 @@
 /* #define DEBUG */
 #include <linux/module.h> /* for MODULE_* stuff */
 //#include <linux/bootmem.h> /* for the bootmem function */
+#include <linux/slab.h> /* for the kmalloc API */
 /* define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 
@@ -64,7 +65,8 @@ static int __init mod_init(void)
 	 * into the kernel)
 	 */
 	/* alloc_bootmem(10000000); */
-	// p = alloc_bootmem(PAGE_SIZE);
+	/* p = alloc_bootmem(PAGE_SIZE); */
+	p=kmalloc(PAGE_SIZE, GFP_KERNEL);
 	if (IS_ERR(p)) {
 		PR_ERROR("unable to allocate bootmem");
 		return PTR_ERR(p);

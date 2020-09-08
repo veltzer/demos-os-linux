@@ -186,7 +186,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	 */
 	case IOCTL_DEMO_UNMAP:
 		PR_DEBUG("trying to munmap");
-		res = do_munmap(current->mm, uptr, size, NULL);
+		res = vm_munmap(uptr, size);
 		if (res)
 			return res;
 		PR_DEBUG("After unmap");
@@ -255,7 +255,7 @@ static void kern_vma_close(struct vm_area_struct *vma)
 }
 
 /* on error should return VM_FAULT_SIGBUS */
-static int kern_vma_fault(struct vm_fault *vmf)
+static vm_fault_t kern_vma_fault(struct vm_fault *vmf)
 {
 	struct page *page = NULL;
 	/* kernel side address */

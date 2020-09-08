@@ -75,7 +75,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	unsigned int diff;
 	int ret;
 	struct vm_area_struct *vma;
-	struct mm_struct *mm;
+	// struct mm_struct *mm;
 	void *kernel_addr;
 	unsigned long flags;
 
@@ -138,7 +138,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			order = get_order(ioctl_size);
 			kaddr = (void *)__get_free_pages(GFP_KERNEL, order);
 		}
-		mm = current->mm;
+		// mm = current->mm;
 		flags = MAP_POPULATE | MAP_SHARED | MAP_LOCKED;
 		flags &= ~(MAP_EXECUTABLE | MAP_DENYWRITE);
 		/*
@@ -180,7 +180,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		PR_DEBUG("deduced size is (d) %d", size);
 		PR_DEBUG("real size is (d) %d", ioctl_size);
 		PR_DEBUG("real kaddr is (p) %p", kaddr);
-		ret = do_munmap(current->mm, addr, ioctl_size, NULL);
+		ret = vm_munmap(addr, ioctl_size);
 		if (do_kmalloc)
 			kfree(kernel_addr);
 		else {
