@@ -9,6 +9,12 @@
 #include <uapi/linux/hdreg.h> //for struct hd_geometry
 #include <uapi/linux/cdrom.h> //for CDROM_GET_CAPABILITY
 
+/*
+ * Check this out:
+ * https://prog.world/linux-kernel-5-0-we-write-simple-block-device-under-blk-mq/
+ * https://github.com/CodeImp/sblkdev
+ */
+
 #ifndef SUCCESS
 #define SUCCESS 0
 #endif
