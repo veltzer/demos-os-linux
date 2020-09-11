@@ -5,6 +5,7 @@
 - publicize build status on README.md
 - try to fix the compilation problems in files which are called "*.moved"
 	(which were renamed to *.moved to avoid compiling them)
+- add "warnings as errors" for kernel modules.
 
 - do example of reading the temperature of all cpus
 	or maybe just of one cpu at N seconds intevals
