@@ -21,4 +21,5 @@ jobs:
         pip install -r requirements.txt
     - name: Install OS dependencies
       run: |
+        sudo apt-get update
         python -m scripts.install
