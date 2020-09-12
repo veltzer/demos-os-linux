@@ -11,8 +11,6 @@ jobs:
         python-version: [3.8]
     steps:
     - uses: actions/checkout@v2
-    - name: Install system-wide dependencies
-      run: sudo apt-get install lilypond qpdf
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
