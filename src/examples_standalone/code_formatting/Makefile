@@ -59,22 +59,22 @@ uncrustify_diff: uncrustify
 
 file.uncrustify.6.out: file.uncrustify.5.out $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)$(UNCRUSTIFY) -f $< -o $@ 2> /dev/null
+	$(Q)pymakehelper only_print_on_error $(UNCRUSTIFY) -f $< -o $@
 file.uncrustify.5.out: file.uncrustify.4.out $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)$(UNCRUSTIFY) -f $< -o $@ 2> /dev/null
+	$(Q)pymakehelper only_print_on_error $(UNCRUSTIFY) -f $< -o $@
 file.uncrustify.4.out: file.uncrustify.3.out $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)$(UNCRUSTIFY) -f $< -o $@ 2> /dev/null
+	$(Q)pymakehelper only_print_on_error $(UNCRUSTIFY) -f $< -o $@
 file.uncrustify.3.out: file.uncrustify.2.out $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)$(UNCRUSTIFY) -f $< -o $@ 2> /dev/null
+	$(Q)pymakehelper only_print_on_error $(UNCRUSTIFY) -f $< -o $@
 file.uncrustify.2.out: file.uncrustify.1.out $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)$(UNCRUSTIFY) -f $< -o $@ 2> /dev/null
+	$(Q)pymakehelper only_print_on_error $(UNCRUSTIFY) -f $< -o $@
 file.uncrustify.1.out: file.cc $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)$(UNCRUSTIFY) -f $< -o $@ 2> /dev/null
+	$(Q)pymakehelper only_print_on_error $(UNCRUSTIFY) -f $< -o $@
 
 .PHONY: clean
 clean:

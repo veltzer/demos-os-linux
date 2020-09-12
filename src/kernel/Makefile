@@ -12,12 +12,13 @@ endif
 
 KVER?=$(shell uname -r)
 KDIR:=/lib/modules/$(KVER)/build
-NAMES:=$(basename $(notdir $(shell find $(FOLDER) -name "mod_*.c")))
+NAMES:=$(basename $(notdir $(shell find $(FOLDER) -name "mod_*.c" -and -not -name "mod_*.mod.c")))
 KOS:=$(addsuffix .ko,$(NAMES))
-obj-m:=$(addprefix full_, $(addsuffix .o,$(NAMES)))
+obj-m:=$(addsuffix .o, $(addsuffix _mod, $(NAMES)))
+C_FILES:=$(shell find . -name "mod_*.c")
 
 define template
- 	full_$(1)-objs:=$(1).o
+ 	$(1)_mod-objs:=$(1).o
 endef
 $(foreach name,$(NAMES),$(eval $(call template,$(name))))
 
@@ -37,4 +38,3 @@ debug:
 	$(info NAMES is $(NAMES))
 	$(info KOS is $(KOS))
 	$(info obj-m is $(obj-m))
-	$(info full_mod_null-objs is $(full_mod_null-objs))

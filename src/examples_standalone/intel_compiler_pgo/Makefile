@@ -26,7 +26,7 @@ main_stage1.$(SUFFIX_BIN): main_stage1.o
 main_run.stamp: main_stage1.$(SUFFIX_BIN)
 	$(info doing [$@])
 	$(Q)rm -f *.dpi *.dyn *.lock
-	$(Q)./main_stage1.$(SUFFIX_BIN) 1> /dev/null 2> /dev/null
+	$(Q)pymakehelper only_print_on_error main_stage1.$(SUFFIX_BIN)
 	$(Q)touch main_run.stamp
 main_stage2.o: main.cc main_run.stamp
 	$(info doing [$@])

@@ -15,13 +15,12 @@ main_phase1.$(SUFFIX_BIN): main.o
 	$(Q)g++ -fprofile-generate -o $@ $<
 main.gcda main_run.stamp: main_phase1.$(SUFFIX_BIN)
 	$(info doing [$@])
-	$(Q)./main_phase1.$(SUFFIX_BIN) 1> /dev/null 2> /dev/null
+	$(Q)pymakehelper only_print_on_error ./main_phase1.$(SUFFIX_BIN)
 	$(Q)touch main_run.stamp
 main_phase2.o: main.cc main.gcda
 	$(info doing [$@])
 	$(Q)cp main.gcda main_phase2.gcda
 	$(Q)g++ $(CXXFLAGS) -fprofile-use -c -o main_phase2.o main.cc
-	#$(Q)mv main.o main_phase2.o
 main_phase2.$(SUFFIX_BIN): main_phase2.o
 	$(info doing [$@])
 	$(Q)g++ -o $@ $<

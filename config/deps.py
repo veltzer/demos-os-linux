@@ -55,6 +55,9 @@ packs=[
     'gcc-doc', # gcc documentation
     'cpp-doc', # gcc documentation
 
+    # compiler related
+    'gcc-9-plugin-dev', # for gcc plugin development
+
     # manual pages
     'manpages',
     'manpages-dev',

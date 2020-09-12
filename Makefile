@@ -84,7 +84,6 @@ Q:=@
 endif # DO_MKDBG
 
 # sources from the git perspective
-GIT_SOURCES:=$(shell git ls-files)
 ALL_DEP:=$(TEMPLAR_ALL_DEP)
 ALL:=$(TEMPLAR_ALL)
 CLEAN:=
@@ -121,10 +120,9 @@ ALL:=$(ALL) $(S_EXE) $(CC_EXE) $(C_EXE)
 CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_ASX) $(C_ASX) $(CC_PRE) $(C_PRE)
 
 # kernel modules
-#MOD_SRC:=$(shell find $(KERNEL_DIR) -name "mod_*.c" -and -not -name "mod_*.mod.c")
-MOD_SRC:=$(filter $(KERNEL_DIR)/%.c,$(GIT_SOURCES))
+MOD_SRC:=$(shell find $(KERNEL_DIR) -name "mod_*.c" -and -not -name "mod_*.mod.c")
 #MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c")
-MOD_SA_SRC:=$(filter $(KERNEL_SA_DIR)/%.c,$(GIT_SOURCES))
+MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c")
 MOD_BAS:=$(basename $(MOD_SRC))
 MOD_SA_BAS:=$(basename $(MOD_SA_SRC))
 MOD_OBJ:=$(addsuffix .o,$(MOD_BAS))
@@ -137,7 +135,7 @@ MOD_CM3:=$(addprefix $(KERNEL_DIR)/.,$(addsuffix .o.cmd,$(notdir $(MOD_BAS))))
 MOD_MOD:=$(addsuffix .ko,$(MOD_BAS))
 MOD_STP:=$(addsuffix .ko.stamp,$(MOD_BAS))
 # ALL:=$(ALL) $(MOD_STP) $(MOD_CHP)
-ALL:=$(ALL) $(MOD_STP)
+# ALL:=$(ALL) $(MOD_STP)
 CLEAN:=$(CLEAN) $(MOD_STP) $(MOD_MOD) $(MOD_SR2) $(MOD_OB2) $(KERNEL_DIR)/Module.symvers $(KERNEL_DIR)/modules.order $(MOD_CM1) $(MOD_CM2) $(MOD_CM3) $(MOD_OBJ)
 CLEAN_DIRS:=$(CLEAN_DIRS) $(KERNEL_DIR)/.tmp_versions
 
@@ -283,7 +281,6 @@ debug:
 	$(info KCFLAGS is $(KCFLAGS))
 	$(info CLEAN is $(CLEAN))
 	$(info CLEAN_DIRS is $(CLEAN_DIRS))
-	$(info GIT_SOURCES is $(GIT_SOURCES))
 	$(info ALL_DEP is $(ALL_DEP))
 	$(info CXX is $(CXX))
 	$(info CXXFLAGS is $(CXXFLAGS))
@@ -432,7 +429,6 @@ check_tests_for_drivers:
 PROJECTS_EXPR:=-name ".project" -or -name ".cproject" -or -wholename "./nbproject/*"
 SOURCE_EXPR:=-name "*.cc" -or -name "*.hh" -or -name "*.h" -or -name "*.c" -or -name "Makefile" -or -name "*.txt" -or -name "*.sed" -or -name "*.patch" -or -name "*.mk" -or -name "*.cfg" -or -name "*.sh" -or -name "*.cfg" -or -name "*.html" -or -name "*.css" -or -name "*.js" -or -name "*.ajax" -or -name "*.php" -or -name "*.gdb" -or -name ".gitignore" -or -name "*.pl" -or $(PROJECTS_EXPR) -or -name "*.gif" -or -name "*.png" -or -name "*.xml" -or -name "*.sxw" -or -name "*.sxg" -or -wholename "*/.settings/*" -or -name "*.doc" -or -name "*.pdf" -or -name "*.jar" -or -name ".classpath" -or -name "*.sqlite" -or -name "*.py"
 TARGET_EXPR:=-name "*.$(SUFFIX_BIN)" -or -name "*.d" -or -name "*.o" -or -name "*.so" -or -name "*.o.cmd" -or -name "*.ko" -or -name "*.ko.cmd" -or -wholename "*/.tmp_versions/*" -or -name "Module.symvers" -or -name "modules.order" -or -name "*.class" -or -name "*.stamp" -or -name "*.dis"
-GIT_SOURCE_EXPR:=-type f $(addprefix -or -path ./,$(GIT_SOURCES))
 
 .PHONY: find_not_source
 find_not_source:
@@ -443,12 +439,6 @@ find_not_target:
 .PHONY: find_not_source_target
 find_not_source_target:
 	-@find -type f -not -path "./.git/*" -and -not \( $(SOURCE_EXPR) \) -and -not \( $(TARGET_EXPR) \)
-.PHONY: find_not_git_target
-find_not_git_target:
-	-@find -type f -and -not \( $(GIT_SOURCE_EXPR) \) -and -not \( $(TARGET_EXPR) \)
-.PHONY: find_not_git_source
-find_not_git_source:
-	-@find -type f -and -not \( $(GIT_SOURCE_EXPR) \)
 .PHONY: find_exercises
 find_exercises:
 	-@find -type f -name "exercise.txt"

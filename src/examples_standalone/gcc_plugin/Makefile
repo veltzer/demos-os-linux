@@ -1,10 +1,21 @@
 include ../../../Makefile.mk
 
 VER:=$(shell gcc --version | head -1 | cut -f 4 -d " " | cut -c1-3)
-VER:=4.8
+VER:=9
+DO_PLUGIN:=0
+DO_MAIN:=0
+ALL:=
+
+ifeq ($(DO_MAIN),1)
+ALL:=$(ALL) main.elf
+endif # DO_MAIN
+
+ifeq ($(DO_PLUGIN),1)
+ALL:=$(ALL) plugin.so
+endif # DO_PLUGIN
 
 .PHONY: all
-all: main.elf plugin.so
+all: $(ALL)
 
 TARGET_GCC:=gcc-$(VER)
 HOST_GCC:=g++-$(VER)
