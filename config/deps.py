@@ -17,7 +17,7 @@ opt_exit=False
 opt_boost_version_short='1.67'
 opt_boost_version=opt_boost_version_short+'.0'
 # install kernels?
-opt_do_kernel=True
+opt_do_kernel=False
 # install debug packages for kernels?
 opt_do_ddebs=False
 # do we want to install compilers?
