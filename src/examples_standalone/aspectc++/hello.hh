@@ -16,11 +16,14 @@
  * along with linuxapi. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __HELLO_H__
-#define __HELLO_H__
+#ifndef __HELLO_HH__
+#define __HELLO_HH__
 
 #include <iostream>	// for std::cout, std::endl
 
+/*
+void hello();
+*/
 void hello(){
 	std::cout << "Hello, World!" << std::endl;
 }
