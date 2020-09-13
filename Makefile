@@ -181,6 +181,10 @@ GIT_CLEAN_FLAGS:=-xdf
 clean:
 	$(info doing [$@])
 	$(Q)git clean $(GIT_CLEAN_FLAGS) > /dev/null
+.PHONY: clean_hard
+clean_hard:
+	$(info doing [$@])
+	$(Q)git clean $(GIT_CLEAN_FLAGS) > /dev/null
 .PHONY: clean_hard_test
 clean_hard_test:
 	$(info doing [$@])
