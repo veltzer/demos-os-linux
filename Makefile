@@ -155,7 +155,7 @@ all: $(ALL)
 
 out/tools.stamp: package.json config/deps.py
 	$(info doing [$@])
-	$(Q)# templar install_deps
+	$(Q)pymakehelper only_print_on_error python -m scripts.install
 	$(Q)pymakehelper touch_mkdir $@
 
 .PHONY: clean_standalone
