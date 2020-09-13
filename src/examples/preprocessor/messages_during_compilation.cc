@@ -24,9 +24,12 @@
  *
  * References:
  * https://gcc.gnu.org/onlinedocs/gcc/Diagnostic-Pragmas.html
+ * https://html.developreference.com/article/18627906/How+to+hide+extra+output+from+%23pragma+message
  *
  * TODO:
  * - I cant seem to print the function name from #pragma message
+ *
+ * EXTRA_COMPILE_FLAGS=-fno-diagnostics-show-caret -ftrack-macro-expansion=0 -fno-diagnostics-show-option
  */
 
 #define quote(a) # a
