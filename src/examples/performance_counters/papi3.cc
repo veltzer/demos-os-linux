@@ -40,15 +40,17 @@ void print_counters(long long* arr, int num) {
 
 int main(int argc, char** argv, char** envp) {
 	printf("starting up...\n");
-	int counters=PAPI_num_counters();
+	int counters=PAPI_num_hwctrs();
 	printf("PAPI_num_counters() returned %d\n", counters);
 	int components=PAPI_num_components();
 	printf("PAPI_num_components() returned %d\n", components);
 
 	// array for counters
-	long long* arr=new long long[counters];
-	float rtime, ptime, ipc, mflops;
-	long long ins, flpops;
+	//long long* arr=new long long[counters];
+	float rtime, ptime, ipc;
+	//float mflops;
+	long long ins;
+	//long long flpops;
 
 	int ret=PAPI_ipc(&rtime, &ptime, &ins, &ipc);
 	printf("PAPI_ipc() returned:\n");
@@ -58,6 +60,7 @@ int main(int argc, char** argv, char** envp) {
 	printf("\tipc=%f\n", ipc);
 	printf("\tret=%d\n", ret);
 
+	/* need to adjust to new API
 	ret=PAPI_flops(&rtime, &ptime, &flpops, &mflops);
 	printf("PAPI_flops() returned:\n");
 	printf("\trtime=%f\n", rtime);
@@ -65,13 +68,16 @@ int main(int argc, char** argv, char** envp) {
 	printf("\tflpops=%lld\n", flpops);
 	printf("\tmflops=%f\n", mflops);
 	printf("\tret=%d\n", ret);
+	*/
 
-	ret=PAPI_read_counters(arr, counters);
+	/* need to adjust to new API
+	PAPI_read_ts(arr, counters);
 	printf("ret is %d\n", ret);
 	print_counters(arr, counters);
 	CHECK_ZERO(sleep(1));
 	ret=PAPI_read_counters(arr, counters);
 	printf("ret is %d\n", ret);
 	print_counters(arr, counters);
+	*/
 	return EXIT_SUCCESS;
 }

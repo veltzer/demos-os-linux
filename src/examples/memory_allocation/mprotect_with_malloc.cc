@@ -79,7 +79,7 @@ int do_read(char* buf) {
 int main(int argc, char** argv, char** envp) {
 	const bool handle_sigv=true;
 	if(handle_sigv) {
-		signal_register_handler_sigaction(SIGSEGV, handler);
+		signal_register_handler_sigaction(SIGSEGV, handler, 0);
 	}
 	char* buffer=(char*)mymalloc(10, 1);
 

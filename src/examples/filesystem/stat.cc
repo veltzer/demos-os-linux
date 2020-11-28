@@ -66,7 +66,7 @@ int main(int argc, char** argv, char** envp) {
 	printf("Last file access: %s", ctime(&sb.st_atime));
 	printf("Last file modification: %s", ctime(&sb.st_mtime));
 	printf("High resolution times (nanosecond level):\n");
-	char buf[256];
+	char buf[300];
 	timespec_snprintf(buf, sizeof(buf), &sb.st_ctim, 1);
 	printf("Last status change: %s\n", buf);
 	timespec_snprintf(buf, sizeof(buf), &sb.st_atim, 1);

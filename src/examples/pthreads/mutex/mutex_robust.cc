@@ -82,7 +82,7 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_ZERO_ERRNO(pthread_mutexattr_destroy(&attr));
 	if(CHECK_NOT_M1(fork())) {
 		TRACE("parent");
-		signal_register_handler_sigaction(SIGCHLD, handler);
+		signal_register_handler_sigaction(SIGCHLD, handler, 0);
 		sleep(1);
 		TRACE("parent after sleep");
 		// we do not error here automatically since we may get

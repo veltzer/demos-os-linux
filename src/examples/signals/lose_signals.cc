@@ -96,8 +96,8 @@ int main(int argc, char** argv, char** envp) {
 	if(CHECK_NOT_M1(fork())) {
 		// parent
 		// register signal handlers
-		signal_register_handler_sigaction(the_signal, handler);
-		signal_register_handler_sigaction(SIGCHLD, handler);
+		signal_register_handler_sigaction(the_signal, handler, 0);
+		signal_register_handler_sigaction(SIGCHLD, handler, 0);
 		got_signals=0;
 		// a non busy busy wait loop
 		while(child_alive) {

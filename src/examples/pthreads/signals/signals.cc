@@ -62,7 +62,7 @@ static void* worker(void* p) {
 	int num=*(int *)p;
 	printf("thread starting num=%d, gettid()=%d, pthread_self()=%lu\n", num, gettid(), pthread_self());
 	if(num==0) {
-		signal_register_handler_sigaction(SIGUSR1, handler);
+		signal_register_handler_sigaction(SIGUSR1, handler, SA_SIGINFO);
 	}
 	// this is the right way to sleep even while accepting signals.
 	// signal arrival will break the sleep and sleep will return number
@@ -94,7 +94,7 @@ int main(int argc, char** argv, char** envp) {
 	}
 	printf("main ended creating threads\n");
 	CHECK_ZERO(sleep(1));
-	signal_register_handler_sigaction(SIGUSR2, handler);
+	signal_register_handler_sigaction(SIGUSR2, handler, SA_SIGINFO);
 	printf("main started joining threads\n");
 	for(int i=0; i<num; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], rets + i));

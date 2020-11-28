@@ -43,6 +43,7 @@ int main(int argc, char** argv, char** envp) {
 	int i;
 	//printf("&i-&argc=%ld\n", &i-&argc); // this is 2 on x64 and 5 and i386
 	// pi points to i but the compiler does not know it...
+#pragma GCC diagnostic ignored "-Warray-bounds"
 	int* pi=&argc+2;
 	//int* pi=&i;
 	// the next TWO print statements are neccessary to make the magic at the end happen...

@@ -71,7 +71,7 @@ static void handler(int sig, siginfo_t *si, void *unused) {
 int main(int argc, char** argv, char** envp) {
 	// set up the signal handler (only need to do this once)
 	fprintf(stderr, "started registering signals\n");
-	old_action=signal_register_handler_sigaction(SIGUSR1, handler);
+	old_action=signal_register_handler_sigaction(SIGUSR1, handler, 0);
 	fprintf(stderr, "ended registering signals\n");
 	fprintf(stderr, "signal me with one of the following:\n");
 	fprintf(stderr, "[kill -s SIGUSR1 %d]\n", getpid());

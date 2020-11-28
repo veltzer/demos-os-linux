@@ -14,7 +14,7 @@ opt_debug=False
 # exit after debug?
 opt_exit=False
 # what boost to install?
-opt_boost_version_short='1.67'
+opt_boost_version_short='1.71'
 opt_boost_version=opt_boost_version_short+'.0'
 # install kernels?
 opt_do_kernel=False
@@ -23,7 +23,7 @@ opt_do_ddebs=False
 # do we want to install compilers?
 opt_do_compilers=False
 # version of the papi library
-opt_papiversion='5.7'
+opt_papiversion='6.0'
 # what version of wxgtk to install?
 opt_wxgtk_ver='3.0'
 
@@ -115,8 +115,9 @@ packs=[
     'libmysql++-dev',
     'libsdl1.2-dev',
     'libace-dev',
-    'libboost'+opt_boost_version_short+'-dev', # for boost threading
-    'libboost-thread'+opt_boost_version, # for the actual library
+    'libboost'+opt_boost_version_short+'-dev', # for boost development
+    'libboost-thread'+opt_boost_version, # for boost threading
+    'libboost-system'+opt_boost_version, # for boost system
     'libpcap-dev',
     'libasound2',
     'libasound2-dev',

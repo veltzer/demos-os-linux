@@ -100,8 +100,8 @@ static void handler(int sig, siginfo_t *si, void *unused) {
 int main(int argc, char **argv, char** envp) {
 	// lets check that we are root
 	check_root();
-	signal_register_handler_sigaction(SIGINT, handler);
-	signal_register_handler_sigaction(SIGTERM, handler);
+	signal_register_handler_sigaction(SIGINT, handler, 0);
+	signal_register_handler_sigaction(SIGTERM, handler, 0);
 	// setup the kernel (today there is no need for the modprobes here
 	// since the iptables use will automatically load the right modules...)
 	// my_system("modprobe iptable_filter");

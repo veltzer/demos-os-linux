@@ -60,7 +60,7 @@ int main(int argc, char** argv, char** envp) {
 	// register the signal handler for SIGALRM
 	// we have to do this since the default handler for SIGALRM
 	// will terminate the running program
-	signal_register_handler_sigaction(SIGALRM, handler);
+	signal_register_handler_sigaction(SIGALRM, handler, 0);
 	// demonstrate the use of our sleep function
 	while(true) {
 		printf("before sleep\n");

@@ -165,9 +165,9 @@ static inline sighandler_t signal_register_handler_signal(int signum, sighandler
  * easy registration of signals via sigaction(2)
  */
 typedef void (*my_signal_handler)(int, siginfo_t *, void *);
-static inline my_signal_handler signal_register_handler_sigaction(int sig, my_signal_handler handler) {
+static inline my_signal_handler signal_register_handler_sigaction(int sig, my_signal_handler handler, int sa_flags) {
 	struct sigaction sa;
-	sa.sa_flags=SA_SIGINFO;
+	sa.sa_flags=sa_flags;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction=handler;
 	struct sigaction old;
@@ -192,7 +192,7 @@ static void signal_handler_jmp_abs(int sig, siginfo_t *si, void *uap) {
 
 static inline void signal_segfault_jump_to(void* adr) {
 	signal_jmp_abs=(unsigned long)adr;
-	signal_register_handler_sigaction(SIGSEGV, signal_handler_jmp_abs);
+	signal_register_handler_sigaction(SIGSEGV, signal_handler_jmp_abs, 0);
 }
 
 static sigjmp_buf signal_env;
@@ -204,7 +204,7 @@ static void signal_handler_sigjmp(int sig, siginfo_t *si, void *uap) {
 }
 
 static inline int signal_segfault_protect() {
-	signal_register_handler_sigaction(SIGSEGV, signal_handler_sigjmp);
+	signal_register_handler_sigaction(SIGSEGV, signal_handler_sigjmp, 0);
 	return !sigsetjmp(signal_env, 0);
 }
 

@@ -52,7 +52,7 @@ inline void error_create(const char *message) {
 
 	p->size=backtrace(p->array, max_stack_frames);
 	p->symbols=backtrace_symbols(p->array, p->size);
-	strncpy(p->message, message, max_message_size);
+	strncpy(p->message, message, max_message_size-1);
 	last_error=p;
 	longjmp(env, (unsigned long)p);
 }

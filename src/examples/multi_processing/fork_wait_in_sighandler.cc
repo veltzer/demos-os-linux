@@ -73,7 +73,7 @@ int main(int argc, char** argv, char** envp) {
 	pid_t pid=CHECK_NOT_M1(fork());
 	if(pid) {
 		// parent
-		signal_register_handler_sigaction(SIGCHLD, handler);
+		signal_register_handler_sigaction(SIGCHLD, handler, 0);
 		// long calculation
 		while(true) {
 		}

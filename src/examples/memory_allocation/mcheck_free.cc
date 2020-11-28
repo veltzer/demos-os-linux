@@ -60,6 +60,7 @@ int main(int argc, char** argv, char** envp) {
 	// This call is neccessary if you havent linked with -lmcheck or if you really
 	// want to use your own handler. I haven't linked with -lmcheck so I will
 	// use my own handler...
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
 	mcheck(myhandler);
 	const int size_of_buffer=10;
 	char* buf=(char*)malloc(size_of_buffer);

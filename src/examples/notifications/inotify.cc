@@ -91,8 +91,7 @@ static int max_rec=0;
 static int max_len=0;
 
 int main(int argc, char** argv, char** envp) {
-	signal_register_handler_sigaction(SIGUSR1, myhandler);
-	CHECK_NOT_M1(siginterrupt(SIGUSR1, 1));
+	signal_register_handler_sigaction(SIGUSR1, myhandler, SA_RESTART);
 	int fd=CHECK_NOT_M1(inotify_init());
 	uint32_t mask=IN_CREATE | IN_DELETE | IN_MODIFY | IN_MOVED_TO | IN_MOVED_FROM;
 	const char* path="/tmp";

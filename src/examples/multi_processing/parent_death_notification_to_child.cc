@@ -56,7 +56,7 @@ int main(int argc, char** argv, char** envp) {
 		TRACE("parent is dying...");
 	} else {
 		TRACE("this is the child");
-		signal_register_handler_sigaction(SIGUSR1, handler);
+		signal_register_handler_sigaction(SIGUSR1, handler, 0);
 		CHECK_NOT_M1(prctl(PR_SET_PDEATHSIG, SIGUSR1));
 		bool cont=true;
 		while(cont) {

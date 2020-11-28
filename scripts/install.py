@@ -5,6 +5,7 @@ import config.deps
 args = [
         "sudo",
         "apt-get",
+        "-y",
         "install",
 ]
 args.extend(config.deps.packs)

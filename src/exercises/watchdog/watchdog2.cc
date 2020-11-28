@@ -72,7 +72,7 @@ static void fork_a_child() {
 }
 
 int main(int argc, char** argv, char** envp) {
-	signal_register_handler_sigaction(SIGCHLD, handler);
+	signal_register_handler_sigaction(SIGCHLD, handler, 0);
 	fork_a_child();
 	TRACE("parent starts monitoring");
 	while(true) {

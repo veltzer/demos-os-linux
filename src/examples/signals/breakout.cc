@@ -40,12 +40,12 @@ static int counterUSR1=0;
 static int counterUSR2=0;
 static int flag=0;
 
-static void SignalHandlerUSR1(int sig) {
+static void SignalHandlerUSR1(int sig, siginfo_t *, void *) {
 	counterUSR1++;
 	fprintf(stderr, "handler [%s]: %d starting\n", strsignal(sig), counterUSR1);
 }
 
-static void SignalHandlerUSR2(int sig) {
+static void SignalHandlerUSR2(int sig, siginfo_t *, void *) {
 	counterUSR2++;
 	fprintf(stderr, "handler [%s]: %d starting\n", strsignal(sig), counterUSR2);
 	// reverse the flag
@@ -55,13 +55,13 @@ static void SignalHandlerUSR2(int sig) {
 		flag=0;
 	}
 	fprintf(stderr, "handler [%s]: %d setting flag to %d\n", strsignal(sig), counterUSR2, flag);
-	CHECK_NOT_M1(siginterrupt(SIGUSR1, flag));
+	signal_register_handler_sigaction(SIGUSR1, SignalHandlerUSR1, SA_RESTART);
 }
 
 int main(int argc, char** argv, char** envp) {
 	// set up the signal handler (only need to do this once)
-	signal_register_handler_signal(SIGUSR1, SignalHandlerUSR1);
-	signal_register_handler_signal(SIGUSR2, SignalHandlerUSR2);
+	signal_register_handler_sigaction(SIGUSR1, SignalHandlerUSR1, 0);
+	signal_register_handler_sigaction(SIGUSR2, SignalHandlerUSR2, 0);
 	TRACE("set up the sig handler, lets start");
 	TRACE("send signals to me using:");
 	TRACE("kill -s SIGUSR1 %d", getpid());

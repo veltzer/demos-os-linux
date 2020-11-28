@@ -113,7 +113,7 @@ int main(int argc, char** argv, char** envp) {
 		return EXIT_FAILURE;
 	}
 	if(choice==0) {
-		signal_register_handler_sigaction(SIGSEGV, handler_safe);
+		signal_register_handler_sigaction(SIGSEGV, handler_safe, 0);
 		*(volatile int*)NULL=100;
 		*(volatile int*)NULL=101;
 		*(volatile int*)NULL=102;
@@ -121,20 +121,20 @@ int main(int argc, char** argv, char** envp) {
 	if(choice==1) {
 		// 10 is the size of the instruction
 		jmp_rel=10;
-		signal_register_handler_sigaction(SIGSEGV, handler_jmp_rel);
+		signal_register_handler_sigaction(SIGSEGV, handler_jmp_rel, 0);
 		*(volatile int*)NULL=200;
 		*(volatile int*)NULL=201;
 		*(volatile int*)NULL=202;
 	}
 	if(choice==2) {
 		jmp_abs=(unsigned long)&&mylabel;
-		signal_register_handler_sigaction(SIGSEGV, handler_jmp_abs);
+		signal_register_handler_sigaction(SIGSEGV, handler_jmp_abs, 0);
 		*(volatile int*)NULL=300;
 		*(volatile int*)NULL=301;
 		*(volatile int*)NULL=302;
 	}
 	if(choice==3) {
-		signal_register_handler_sigaction(SIGSEGV, handler_sigjmp);
+		signal_register_handler_sigaction(SIGSEGV, handler_sigjmp, 0);
 		int ret=sigsetjmp(env, 0);
 		if(ret==0) {
 			*(volatile int*)NULL=400;
