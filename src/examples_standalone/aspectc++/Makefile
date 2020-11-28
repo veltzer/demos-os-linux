@@ -8,9 +8,11 @@ DEPS    := $(addsuffix .$(SUFFIX_DEP),$(basename $(SOURCES)))
 HEADERS := $(wildcard *.$(SUFFIx_HH))
 ASPECTS := $(wildcard *.ah)
 CXXFLAGS := -Wall -Werror -O3
+#ALL := $(PROG)
+ALL :=
 
 .PHONY: all
-all: $(PROG)
+all: $(ALL)
 
 $(PROG): $(OBJECTS)
 	$(info doing [$@])
@@ -24,7 +26,7 @@ clean:
 # rules
 $(OBJECTS): %.$(SUFFIX_OO) : %.$(SUFFIX_CC)
 	$(info doing [$@])
-	$(Q)pymakehelper only_print_on_error $(ACXX) $(CXXFLAGS) -c -o $@ $<
+	$(Q)$(ACXX) $(CXXFLAGS) -c -o $@ $<
 
 $(DEPS): %.$(SUFFIX_DEP) : %.$(SUFFIX_CC)
 	$(info doing [$@])

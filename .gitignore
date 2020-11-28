@@ -20,6 +20,8 @@
 *.out
 *.p
 /core
+.modules.*.cmd
+.Module.*.cmd
 # libraries
 lib*.so.?.?.?
 # gnu precompiled headers
