@@ -19,8 +19,8 @@
 #include <firstinclude.h>
 #include <stdio.h> // for printf(3)
 
-int mysym;
-double x;
+int mysym __attribute__ ((weak));
+double x __attribute__ ((weak));
 
 void print_mysym() {
 	printf("mysym is [%d]\n", mysym);
