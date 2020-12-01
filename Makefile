@@ -155,10 +155,9 @@ all: $(ALL)
 
 out/tools.stamp: config/deps.py
 	$(info doing [$@])
-	$(Q)python -m scripts.install
+	$(Q)pymakehelper only_print_on_error python -m scripts.install
 	$(Q)pymakehelper touch_mkdir $@
 
-# $(Q)pymakehelper only_print_on_error python -m scripts.install
 
 .PHONY: clean_standalone
 clean_standalone:
