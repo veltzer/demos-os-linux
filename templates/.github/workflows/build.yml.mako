@@ -4,11 +4,13 @@
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ${"${{ matrix.os }}"}
+    name: Build on ${"${{ matrix.container }}"}
+    runs-on: ubuntu-latest
+    container: ${"${{ matrix.container }}"}
     strategy:
       matrix:
-        os: ${config.python.test_os}
-        python-version: ${config.python.test_python}
+        container: [ 'ubuntu:20.10' ]
+        python-version: [3.8]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${"${{ matrix.python-version }}"}
