@@ -11,3 +11,6 @@ This example shows that:
 
 Update 2020:
 - the above is wrong since the C linker is not much stricter.
+
+References:
+- https://gcc.gnu.org/onlinedocs/gcc-4.7.2/gcc/Function-Attributes.html
