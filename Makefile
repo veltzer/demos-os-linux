@@ -170,26 +170,14 @@ clean_soft: clean_standalone
 	$(Q)-rm -f $(CLEAN)
 	$(Q)-rm -rf $(CLEAN_DIRS)
 
-# -x: remove everything not known to git (not only ignore rules).
-# -X: remove files in .gitignore but not everything unknown to git
-# -d: remove directories also.
-# -f: force.
-# hard clean (may remove manually created files not yet added to the git index):
-GIT_CLEAN_FLAGS:=-xdf
-# soft clean (only removes stuff mentionaed in .gitignore files)
-#GIT_CLEAN_FLAGS:=-Xdf
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)git clean $(GIT_CLEAN_FLAGS) > /dev/null
+	$(Q)rm -f $(ALL)
 .PHONY: clean_hard
 clean_hard:
 	$(info doing [$@])
-	$(Q)git clean $(GIT_CLEAN_FLAGS) > /dev/null
-.PHONY: clean_hard_test
-clean_hard_test:
-	$(info doing [$@])
-	$(Q)git clean $(GIT_CLEAN_FLAGS) --dry-run
+	$(Q)git clean -qffxd
 .PHONY: build_standalone
 build_standalone:
 	$(Q)for x in $(MK_FLD); do $(MAKE) -C "$$x" Q=$(Q); if [ ! $$? -eq 0 ]; then exit $$?; fi; done
