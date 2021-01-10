@@ -35,17 +35,25 @@
  * - you want to reduce boot time and want to do things in parallel
  *	(listen to drivers loading while doing other initialization work).
  *
- * Strictly speaking this demo is not a real time demo per se. It is a demo that will
- * usually be used on embedded systems where a full udev is not available but not
- * necessarily a real time system.
+ * This demo has nothing to do with real time and can be used on non real time systems as well.
+ *
+ * Status of this demo
+ * - Currently this demo does not work.
+ * - I tried to stop udev using:
+ * 	$ systemctl stop systemd-udevd.service
+ *	$ systemctl status systemd-udevd.service
+ * but to no avail.
+ * - Still need to get this one running.
  */
 
 int main(int argc, char** argv, char** envp) {
 	int netlink_socket=CHECK_NOT_M1(socket(AF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT));
 	const unsigned int SIZE=1024;
 	char buf[SIZE];
-	ssize_t s=CHECK_NOT_M1(read(netlink_socket, buf, SIZE));
-	printf("s is %zd\n", s);
+	while(true) {
+		ssize_t s=CHECK_NOT_M1(read(netlink_socket, buf, SIZE));
+		printf("s is %zd\n", s);
+	}
 	CHECK_NOT_M1(close(netlink_socket));
 	return EXIT_SUCCESS;
 }
