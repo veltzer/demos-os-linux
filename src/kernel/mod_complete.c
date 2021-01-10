@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
  * This file is part of the linuxapi package.
- * Copyright (C) 2011-2020 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2021 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * linuxapi is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
