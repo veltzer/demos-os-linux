@@ -24,6 +24,7 @@ def main():
     bad_prefixes=['./.venv']
     error=False
     root_folder='.'
+    checked=0
     for root,dirs,files in os.walk(root_folder):
         for file in files:
             current_file=os.path.join(root,file)
@@ -38,6 +39,7 @@ def main():
                 if current_file.startswith(pref):
                     doit=False
             if doit:
+                checked+=1
                 #print('doing',current_file)
                 with open(current_file) as f:
                     content=f.read()
@@ -54,6 +56,7 @@ def main():
                     error=True;
     if error:
         raise ValueError("had errors")
+    print(f"checked {checked} licenses")
 
 
 if __name__ == '__main__':
