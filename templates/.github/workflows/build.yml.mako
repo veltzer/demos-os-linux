@@ -18,9 +18,9 @@ jobs:
       with:
         python-version: ${"${{ matrix.python-version }}"}
     - name: Upgrade pip
-      run: python -m pip install --upgrade pip
+      run: python3 -m pip install --upgrade pip
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip3 install -r requirements.txt
     - name: System upgrade
       run: sudo apt-get -y update
     - name: Install OS packages
