@@ -17,8 +17,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${"${{ matrix.python-version }}"}
-    - name: Upgrade pip
-      run: sudo -H python3 -m pip install --upgrade pip
+#    - name: Upgrade pip
+#      run: sudo -H python3 -m pip install --upgrade pip
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: System upgrade
