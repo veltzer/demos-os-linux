@@ -23,6 +23,7 @@ websites to get ideas from
 
 examples to add
 ===============
+- do example of -fsanitize
 - write example that shows how
 	-fstack-protector -fstack-protector-all -fstack-protector-strong -fstack-protector-explicit
 	protect your code.
