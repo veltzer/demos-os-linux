@@ -36,12 +36,13 @@ int main(int argc, char** argv, char** envp) {
 	int cpunum=sched_getcpu();
 	printf("sched_getcpu() says I'm running on core %d\n", cpunum);
 	while(true) {
+		printf("Still alive!\n");
 		int newcpunum=CHECK_NOT_M1(sched_getcpu());
 		if(cpunum!=newcpunum) {
 			cpunum=newcpunum;
 			printf("I've switched to running on core %d\n", cpunum);
 		}
-		sleep(3);
+		sleep(1);
 	}
 	return EXIT_SUCCESS;
 }
