@@ -66,9 +66,9 @@ int main(int argc, char** argv, char** envp) {
 	/* calculate first shot */
 	timespec_add_nanos(&t, interval);
 	while(true) {
-		/* wait untill next shot */
+		/* wait until next shot */
 		CHECK_NOT_M1(clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL));
-		/* do the stuff
+		/* do your stuff
 		 * ...
 		 * calculate next shot */
 		timespec_add_nanos(&t, interval);
