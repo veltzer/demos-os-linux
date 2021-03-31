@@ -44,15 +44,15 @@
  * You can also use iotop to see the process consuming first place in the io
  * category.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS=-lcpufreq -lpthread
  */
 
 char* filename;
 unsigned int bufsize;
 unsigned int count;
 unsigned int binnumber;
-unsigned int binsize;
-unsigned int binmean;
+double binsize;
+double binmean;
 
 void* func(void*) {
 	void* buf=malloc(bufsize);
@@ -62,7 +62,9 @@ void* func(void*) {
 		ticks_t t1=getticks();
 		CHECK_NOT_M1(write(fd, buf, bufsize));
 		ticks_t t2=getticks();
-		s.accept(t2-t1);
+		// ticks_t diff=t2-t1;
+		unsigned int mic_diff=get_mic_diff(t1, t2);
+		s.accept(mic_diff);
 	}
 	CHECK_NOT_M1(close(fd));
 	s.print();
@@ -79,8 +81,8 @@ int main(int argc, char** argv, char** envp) {
 	bufsize=atoi(argv[2]);
 	count=atoi(argv[3]);
 	binnumber=atoi(argv[4]);
-	binsize=atoi(argv[5]);
-	binmean=atoi(argv[6]);
+	binsize=atof(argv[5]);
+	binmean=atof(argv[6]);
 	sched_run_priority(func, NULL, SCHED_FIFO_HIGH_PRIORITY, SCHED_FIFO);
 	return EXIT_SUCCESS;
 }
