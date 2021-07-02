@@ -108,7 +108,8 @@ packs=[
     'liblog4cpp5-dev',
     'libmysqlclient-dev',
     # 'libcwd',
-    'qt5-default',
+    # removed by mark (2/6/21)
+    # 'qt5-default',
     'libwxgtk{0}-gtk3-dev'.format(opt_wxgtk_ver),
     'libmysql++-dev',
     'libsdl1.2-dev',
