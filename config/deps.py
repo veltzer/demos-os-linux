@@ -311,6 +311,10 @@ packs=[
     # firewalls
     'ufw',
     'shorewall',
+
+    # for computation
+    'libffi7',
+    'libffi-dev',
 ]
 
 if opt_do_kernel:
