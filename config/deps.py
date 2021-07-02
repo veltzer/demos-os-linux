@@ -26,18 +26,16 @@ opt_do_compilers=False
 opt_papiversion='6.0'
 # what version of wxgtk to install?
 opt_wxgtk_ver='3.0'
+# what version of urcu?
+opt_urcu_ver=6
 
 release=os.uname().release
 short_release=release[:release.rfind('-')]
 source_release=short_release[:short_release.rfind('-')]
 release_lowlatency=short_release
 release_generic=short_release
-codename=subprocess.check_output(['lsb_release', '--codename', '--short']).decode().rstrip()
+# codename=subprocess.check_output(['lsb_release', '--codename', '--short']).decode().rstrip()
 
-if codename=='trusty':
-    opt_urcu_ver=1
-else:
-    opt_urcu_ver=6
 
 if opt_debug:
     print('release is [{0}]'.format(release))
