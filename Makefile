@@ -3,6 +3,12 @@ include Makefile.mk
 ##############
 # parameters #
 ##############
+# do kernel modules
+DO_STP:=1
+
+#############
+# variables #
+#############
 # directories
 US_DIRS:=src/examples src/exercises src/tests
 KERNEL_DIR:=src/kernel
@@ -143,7 +149,10 @@ CLEAN_DIRS:=$(CLEAN_DIRS) $(KERNEL_DIR)/.tmp_versions
 MK_SRC:=$(shell find src/examples_standalone src/kernel_standalone -name "Makefile")
 MK_FLD:=$(dir $(MK_SRC))
 MK_STP:=$(addsuffix .stamp,$(MK_SRC))
+
+ifeq ($(DO_STP),1)
 ALL:=$(ALL) $(MK_STP)
+endif # DO_STP
 
 #########
 # rules #
