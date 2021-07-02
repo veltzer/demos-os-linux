@@ -3,7 +3,7 @@ import config.deps
 
 
 args = [
-        "sudo",
+        # "sudo",
         "apt-get",
         "-y",
         "install",
