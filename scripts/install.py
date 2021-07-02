@@ -2,6 +2,10 @@ import subprocess
 import config.deps
 
 
+subprocess.check_call([
+    "apt-get",
+    "update",
+])
 args = [
         # "sudo",
         "apt-get",
