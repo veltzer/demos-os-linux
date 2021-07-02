@@ -1,0 +1,19 @@
+
+
+
+
+
+		User space
+				open, read, write, close, seek, readdir
+				fopen, fread, fwrite, ....
+				std::ostream, std::ofsteam,...
+===================================================================================
+		Kernel space			        |			|
+						        |			|
+							|			|
+							|			|
+						file system driver		|
+							|			|
+						block device driver-------------
+							|
+					[Actual hard drive, say Western Digital]

@@ -1,0 +1,32 @@
+
+
+
+	USER SPACE
+
+			cat application
+			cat /proc/uptime
+				int fd=open("/proc/uptime", ...)
+				size_t size=read(fd, buffer, sizeofbutter);
+				p=[-----------buffer we want to fill with data from /proc/uptime -----]
+				|
+				v
+=====================================================================================
+	KERNEL SPACE
+				is /proc/uptime a "special" file? (should I read it from the disk or
+				do I have a special code to handle it)
+				YES! /proc/uptime should NOT BE READ FROM DISK
+				We have special module called "proc" to handle access to all files
+				under /proc----------------------------->
+									|
+									V
+								proc sum system
+
+								do we have a "fake file" called "uptime"?
+								YES WE DO!
+								call the "uptime" function and pass the pointer
+								to the userspace buffer to it
+
+								void uptime(char* p) {
+									sprintf(p, "asdgasdfasdf", asdfas , sadfasd ,asdf )
+								}
+				
