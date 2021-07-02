@@ -100,6 +100,7 @@ int main(int argc, char** argv, char** envp) {
 	}
 	malloc_stats();
 	malloc_info(0, stderr);
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 	struct mallinfo mymallinfo=mallinfo();
 	print_mallinfo(&mymallinfo);
 	return EXIT_SUCCESS;
