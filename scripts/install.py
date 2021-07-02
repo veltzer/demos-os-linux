@@ -4,6 +4,7 @@ import config.deps
 
 subprocess.check_call([
     "apt-get",
+    "-y",
     "update",
 ])
 args = [
