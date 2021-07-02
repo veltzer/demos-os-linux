@@ -155,7 +155,7 @@ all: $(ALL)
 
 out/tools.stamp: config/deps.py
 	$(info doing [$@])
-	$(Q)pymakehelper only_print_on_error python -m scripts.install
+	$(Q)pymakehelper only_print_on_error python -m scripts.install 1
 	$(Q)pymakehelper touch_mkdir $@
 
 
