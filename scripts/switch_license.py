@@ -20,6 +20,7 @@ with open('support/license.txt') as f:
 suffixes=[
     '.c',
     '.cc',
+    '.tt',
     '.h',
     '.hh',
     '.S',
