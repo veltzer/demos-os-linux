@@ -15,7 +15,7 @@
 	my own makefile so that this does not happen.
 
 build system:
-- make the linuxapi project compile for new ubuntu users
+- make the demos-linux project compile for new ubuntu users
 	(by default without intel compiler, without papi and without fcmp).
 - see that there are no warnings in eclipse.
 	(run the eclipse c++ validation tool out of eclipse).

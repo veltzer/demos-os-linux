@@ -248,7 +248,7 @@ packs=[
     'figlet',
     'sl',
 
-    # package used tools used by the linuxapi package
+    # tools used by the this package
     'libreoffice-common', # for soffice conversion
     'ccache', # for ccache(1) (faster building)
     'xutils-dev', # for makedepend(1)

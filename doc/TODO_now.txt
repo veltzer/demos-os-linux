@@ -11,7 +11,6 @@
 	or maybe just of one cpu at N seconds intevals
 	from /proc.
 	I need to find exactly where in /proc I can find that info.
-- find where I have linuxapi and replace with demos-linux
 - use templar to state EXACTLY how many demos I have in the REAMDE.md
 	file and the number of lines in them
 - do example of rdtsc on x64.

@@ -1,6 +1,6 @@
 - have a better favicon for this site.
 - add a donate button to the web page of this project.
-- the idea is to have a web site that discusses the C linuxapi.
+- the idea is to have a web site that discusses the C linux api.
 - it should show the code samples from the git (or parts of them with references to the full example).
 - you could search for examples according to tags too.
 - and ofcourse we need a discussion forum about each example.
