@@ -313,7 +313,8 @@ packs=[
     'shorewall',
 
     # for computation
-    'libffi7',
+    # I do not include the libffi7 because six is the default on some systems. the -dev will pull it in...
+    #'libffi7',
     'libffi-dev',
 ]
 
