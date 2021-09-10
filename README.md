@@ -32,7 +32,7 @@ Topics covered by the examples
 
 Platforms supported
 -------------------
-Only ia64 is supported. I used to support i386 but I don't have a 32 bit
+Only ia64 is supported. I used to support i386 but I don"t have a 32 bit
 machine anymore. 
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
@@ -71,7 +71,7 @@ Using it
 * cd into it: `cd demos-linux`
 * install the missing packages and headers needed to compile and run this project `./scripts/ubuntu_install.py`
     Mind you this only works for 15.10 and will install a ton of stuff.
-    If you don't want this ton of installations and only want to checkout specific examples
+    If you don"t want this ton of installations and only want to checkout specific examples
     compile the individual examples as described below.
     if you are on a different Linux distribution try to get as much of these for your platform
     as you can. If you really into contributing I would love a `redhat_install.py` or some such...

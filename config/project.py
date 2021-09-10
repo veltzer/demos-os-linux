@@ -1,14 +1,14 @@
 import datetime
 import config.general
 
-project_github_username='veltzer'
-project_name='demos-linux'
-project_website='https://{project_github_username}.github.io/{project_name}'.format(**locals())
-project_website_source='https://github.com/{project_github_username}/{project_name}'.format(**locals())
-project_website_git='git://github.com/{project_github_username}/{project_name}.git'.format(**locals())
-project_long_description='{project_name} is a project to demo and explore the Linux user space C/C++ API'.format(**locals())
-project_year_started='2011'
-project_description='''This project is a source code repository for instructors or expert programmers
+project_github_username="veltzer"
+project_name="demos-linux"
+project_website=f"https://{project_github_username}.github.io/{project_name}"
+project_website_source=f"https://github.com/{project_github_username}/{project_name}"
+project_website_git=f"git://github.com/{project_github_username}/{project_name}.git"
+project_long_description=f"{project_name} is a project to demo and explore the Linux user space C/C++ API"
+project_year_started="2011"
+project_description=f"""This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
@@ -29,7 +29,7 @@ Topics covered by the examples
 
 Platforms supported
 -------------------
-Only ia64 is supported. I used to support i386 but I don't have a 32 bit
+Only ia64 is supported. I used to support i386 but I don"t have a 32 bit
 machine anymore. 
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
@@ -68,7 +68,7 @@ Using it
 * cd into it: `cd demos-linux`
 * install the missing packages and headers needed to compile and run this project `./scripts/ubuntu_install.py`
     Mind you this only works for 15.10 and will install a ton of stuff.
-    If you don't want this ton of installations and only want to checkout specific examples
+    If you don"t want this ton of installations and only want to checkout specific examples
     compile the individual examples as described below.
     if you are on a different Linux distribution try to get as much of these for your platform
     as you can. If you really into contributing I would love a `redhat_install.py` or some such...
@@ -79,38 +79,38 @@ Using it
     .[c|cc].
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
-'''.format(**locals())
+"""
 
 project_keywords=[
-    'linux',
-    'API',
-    'C',
-    'C++',
-    'kernel',
-    'userspace',
-    'examples',
-    'samples',
-    'demos',
+    "linux",
+    "API",
+    "C",
+    "C++",
+    "kernel",
+    "userspace",
+    "examples",
+    "samples",
+    "demos",
 ]
 
 # deb section
 deb_package=False
 
-project_copyright_years = ', '.join(
+project_copyright_years = ", ".join(
     map(str, range(int(project_year_started), datetime.datetime.now().year + 1)))
 if str(config.general.general_current_year) == project_year_started:
     project_copyright_years = config.general.general_current_year
 else:
-    project_copyright_years = '{0}-{1}'.format(project_year_started, config.general.general_current_year)
-# project_data_files.append(templar.utils.hlp_files_under('/usr/bin', 'src/*'))
-project_google_analytics_tracking_id='UA-80940105-1'
-project_google_analytics_snipplet = '''<script type="text/javascript">
-(function(i,s,o,g,r,a,m){{i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){{
+    project_copyright_years = "{0}-{1}".format(project_year_started, config.general.general_current_year)
+# project_data_files.append(templar.utils.hlp_files_under("/usr/bin", "src/*"))
+project_google_analytics_tracking_id="UA-80940105-1"
+project_google_analytics_snipplet = """<script type="text/javascript">
+(function(i,s,o,g,r,a,m){{i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){{
 (i[r].q=i[r].q||[]).push(arguments)}},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-}})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+}})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
 
-ga('create', '{0}', 'auto');
-ga('send', 'pageview');
+ga("create", "{0}", "auto");
+ga("send", "pageview");
 
-</script>'''.format(project_google_analytics_tracking_id)
+</script>""".format(project_google_analytics_tracking_id)
