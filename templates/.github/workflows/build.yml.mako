@@ -19,6 +19,8 @@ jobs:
         python-version: ${"${{ matrix.python-version }}"}
     - name: Install OS packages
       run: python -m scripts.install
+    - name: Install dependencies
+      run: python -m pip install pymakehelper
 #    - name: Upgrade pip
 #      run: sudo -H python3 -m pip install --upgrade pip
 #    - name: Install dependencies
