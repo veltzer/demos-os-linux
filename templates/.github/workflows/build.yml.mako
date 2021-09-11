@@ -26,7 +26,7 @@ jobs:
         wget https://mirrors.edge.kernel.org/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
         dpkg --install libffi7_3.3-4_amd64.deb
     - name: Upgrade pip
-      run: sudo -H python3 -m pip install --upgrade pip
+      run: python -m pip install --upgrade pip
     - name: Install python requirements
       run: python -m pip install -r requirements.txt
     - name: System upgrade
