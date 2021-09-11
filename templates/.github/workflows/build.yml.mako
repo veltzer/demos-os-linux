@@ -32,4 +32,4 @@ jobs:
     - name: System upgrade
       run: sudo apt-get -y update
     - name: Build
-      run: make
+      run: make DO_STP=0
