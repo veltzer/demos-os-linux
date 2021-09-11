@@ -314,7 +314,8 @@ packs=[
 
     # for computation
     # I do not include the libffi7 because six is the default on some systems. the -dev will pull it in...
-    'libffi6',
+    #'libffi6',
+    'libffi8ubuntu1',
     #'libffi7',
     'libffi-dev',
 ]
