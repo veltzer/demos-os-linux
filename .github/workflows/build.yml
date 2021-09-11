@@ -17,6 +17,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install OS packages
       run: python -m scripts.install
+    - name: Install libffi.so.7
+      run: |
+        apt install wget
+        wget https://mirrors.edge.kernel.org/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
+        dpkg --install libffi7_3.3-4_amd64.deb
     - name: Install dependencies
       run: python -m pip install pymakehelper
 #    - name: Upgrade pip
