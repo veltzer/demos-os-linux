@@ -1,5 +1,6 @@
 import datetime
 import config.general
+import config.helpers
 
 project_github_username="veltzer"
 project_name="demos-linux"
@@ -29,7 +30,7 @@ Topics covered by the examples
 
 Platforms supported
 -------------------
-Only ia64 is supported. I used to support i386 but I don"t have a 32 bit
+Only ia64 is supported. I used to support i386 but I don't have a 32 bit
 machine anymore. 
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
@@ -68,7 +69,7 @@ Using it
 * cd into it: `cd demos-linux`
 * install the missing packages and headers needed to compile and run this project `./scripts/ubuntu_install.py`
     Mind you this only works for 15.10 and will install a ton of stuff.
-    If you don"t want this ton of installations and only want to checkout specific examples
+    If you don't want this ton of installations and only want to checkout specific examples
     compile the individual examples as described below.
     if you are on a different Linux distribution try to get as much of these for your platform
     as you can. If you really into contributing I would love a `redhat_install.py` or some such...
@@ -96,21 +97,12 @@ project_keywords=[
 # deb section
 deb_package=False
 
-project_copyright_years = ", ".join(
-    map(str, range(int(project_year_started), datetime.datetime.now().year + 1)))
-if str(config.general.general_current_year) == project_year_started:
-    project_copyright_years = config.general.general_current_year
-else:
-    project_copyright_years = "{0}-{1}".format(project_year_started, config.general.general_current_year)
-# project_data_files.append(templar.utils.hlp_files_under("/usr/bin", "src/*"))
-project_google_analytics_tracking_id="UA-80940105-1"
-project_google_analytics_snipplet = """<script type="text/javascript">
-(function(i,s,o,g,r,a,m){{i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){{
-(i[r].q=i[r].q||[]).push(arguments)}},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-}})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+project_data_files = []
 
-ga("create", "{0}", "auto");
-ga("send", "pageview");
+codacy_id = None
+project_google_analytics_tracking_id = "UA-80940105-1"
+project_paypal_donate_button_id = None
 
-</script>""".format(project_google_analytics_tracking_id)
+project_copyright_years = config.helpers.get_copyright_years(project_year_started)
+project_google_analytics_snipplet = config.helpers.get_google_analytics(project_google_analytics_tracking_id)
+project_paypal_donate_button_snipplet = config.helpers.get_paypal(project_paypal_donate_button_id)
