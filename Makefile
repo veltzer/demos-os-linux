@@ -267,6 +267,8 @@ $(MK_STP): %.stamp: % $(ALL_DEP)
 .PHONY: debug
 debug:
 	$(info MOD_MOD is $(MOD_MOD))
+	$(info MOD_STP is $(MOD_STP))
+	$(info MOD_CHP is $(MOD_CHP))
 	$(info CC_SRC is $(CC_SRC))
 	$(info CC_DIS is $(CC_DIS))
 	$(info CC_EXE is $(CC_EXE))
