@@ -1,3 +1,5 @@
+$(info start $(obj-m))
+
 # note that you cannot use "." but rather need to use "$(M)" since when you
 # run this makefile it changes directory!
 # We can actually use $(M) when not calling the kernel makefile since
@@ -14,7 +16,7 @@ KVER?=$(shell uname -r)
 KDIR:=/lib/modules/$(KVER)/build
 NAMES:=$(basename $(notdir $(shell find $(FOLDER) -name "mod_*.c" -and -not -name "mod_*.mod.c")))
 KOS:=$(addsuffix .ko,$(NAMES))
-obj-m:=$(addsuffix .o, $(addsuffix _mod, $(NAMES)))
+obj-m?=$(addsuffix .o, $(addsuffix _mod, $(NAMES)))
 C_FILES:=$(shell find . -name "mod_*.c")
 
 define template

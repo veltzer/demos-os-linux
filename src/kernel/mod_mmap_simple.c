@@ -48,8 +48,8 @@ static unsigned long addr;
 static int ioctl_size;
 
 /* prototypes */
-void kern_vma_open(struct vm_area_struct *vma);
-void kern_vma_close(struct vm_area_struct *vma);
+// void kern_vma_open(struct vm_area_struct *vma);
+// void kern_vma_close(struct vm_area_struct *vma);
 
 /* fops */
 
@@ -196,7 +196,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return ret;
 
 	/*
-	 *	The the size of the region
+	 *	The size of the region
 	 */
 	case IOCTL_MMAP_SETSIZE:
 		PR_DEBUG("setting the size");

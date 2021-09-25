@@ -1,0 +1,19 @@
+KVER?=$(shell uname -r)
+KDIR:=/lib/modules/$(KVER)/build
+obj-m:=MODNAME_mod.o
+MODNAME_mod-objs:=MODNAME.o
+
+V?=0
+W?=1
+
+.PHONY: modules
+modules:
+	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) W=$(W) modules
+
+.PHONY: clean
+clean:
+	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) W=$(W) clean
+
+.PHONY: debug
+debug:
+	$(info obj-m is $(obj-m))

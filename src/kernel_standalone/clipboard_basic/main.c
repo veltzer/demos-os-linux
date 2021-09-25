@@ -152,7 +152,7 @@ static int __init clipboard_init(void)
 	if (ret) {
 		/*
 		 * Only if we allocated a cdev but did not register do we
-		 * we need to kfree it. In any other case cdev_del is enough
+		 * need to kfree it. In any other case cdev_del is enough
 		 */
 		pr_err("cdev_add\n");
 		kfree(clipboard_cdev);

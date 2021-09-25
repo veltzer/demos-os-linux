@@ -191,7 +191,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return ret;
 
 	/*
-	 * The the size of the region
+	 * The size of the region
 	 */
 	case IOCTL_MMAP_SETSIZE:
 		PR_DEBUG("setting the size");

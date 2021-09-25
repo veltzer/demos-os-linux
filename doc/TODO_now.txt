@@ -1,3 +1,4 @@
+- add makefile dependency (currently, if i change the makefile nothing recompiles)
 - my README.mk I mention how many examples I have (1000).
  This should not be hardcoded but rather templated.
 - do the build of the modules in src/kernel

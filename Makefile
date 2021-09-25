@@ -255,18 +255,19 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN) $(ALL_DEP)
 $(MOD_CHP): %.stamp: %.c
 	$(info doing [$@])
 	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)pymakehelper only_print_on_error make -C $(KDIR) V=$(V) W=$(W) M=$(abspath $(dir $<)) modules obj-m=$(addsuffix .o,$(notdir $(basename $<)))
-	$(Q)touch $@
+	$(Q)sed 's/MODNAME/$(notdir $(basename $<))/g' src/kernel/Makefile.tmpl > src/kernel/Makefile
+	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
+	$(Q)pymakehelper touch_mkdir $@
 
 # rules about makefiles
 $(MK_STP): %.stamp: % $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)$(MAKE) -C $(dir $<) Q=$(Q)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 
 .PHONY: debug
 debug:
