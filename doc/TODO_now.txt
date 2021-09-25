@@ -1,13 +1,15 @@
 - my README.mk I mention how many examples I have (1000).
  This should not be hardcoded but rather templated.
 - do the build of the modules in src/kernel
-- use github ci/cd and build on each commit.
-	- make check_all part of CICD build.
-- get the repo to build
-- publicize build status on README.md
+	why isn't it building now?
+- my github ci/cd does not build kernel modules (make DO_STP=0 in templates/.github/workflows/build.yml.mako).
+	fix that.
+- my github ci/cd does not do "check_all".
+	fix that.
 - try to fix the compilation problems in files which are called "*.moved"
 	(which were renamed to *.moved to avoid compiling them)
 - add "warnings as errors" for kernel modules.
+	Look for KCFLAGS in the makefile and see that it's not used.
 
 - do example of reading the temperature of all cpus
 	or maybe just of one cpu at N seconds intevals
