@@ -22,6 +22,7 @@
 #include <linux/page-flags.h> /* for PG_* constants */
 #include <linux/mm.h> /* for page_* functions */
 #include <linux/ioport.h> /* for page_* functions */
+#include <linux/io.h> /* for */
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 

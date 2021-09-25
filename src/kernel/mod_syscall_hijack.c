@@ -20,6 +20,7 @@
 /* #define DEBUG */
 #include <linux/module.h> /* for MODULE_* */
 #include <linux/syscalls.h> /* for the sys call numbers */
+#include <linux/io.h>
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 

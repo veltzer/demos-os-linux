@@ -63,7 +63,7 @@ static ssize_t kern_read(struct file *file, char __user *buf, size_t count,
 		loff_t *ppos)
 {
 	*ppos += count;
-	dev_info(my_device, "position %ld, filp %p", *ppos, file);
+	dev_info(my_device, "position %lld, filp %p", *ppos, file);
 	return count;
 }
 

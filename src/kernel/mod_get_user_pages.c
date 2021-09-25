@@ -164,7 +164,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		}
 		PR_DEBUG("after pages allocation");
 		/* get user pages and fault them in */
-		down_write(&current->mm->mmap_sem);
+		mmap_write_lock(current->mm);
 		/* rw==READ means read from drive, write into memory area */
 		res = get_user_pages(
 			/*
@@ -179,7 +179,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		);
 		vma = find_vma(current->mm, bpointer);
 		vma->vm_flags |= VM_DONTCOPY;
-		up_write(&current->mm->mmap_sem);
+		mmap_write_unlock(current->mm);
 		PR_DEBUG("after get_user_pages res is %d", res);
 		/* Errors and no page mapped should return here */
 		if (res != nr_pages) {

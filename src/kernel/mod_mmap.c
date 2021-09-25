@@ -25,6 +25,7 @@
 #include <linux/sched.h> /* for current */
 #include <linux/mman.h> /* for remap_pfn_range */
 #include <linux/pagemap.h> /* for vma structures */
+#include <linux/io.h> /* for virt_to_phys */
 #include "shared.h" /* for the ioctl numbers */
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */

@@ -122,8 +122,8 @@ static int my_open(struct inode *inode, struct file *file)
 /*
  * This structure gathers "functions" that manage the /proc file
  */
-static const struct file_operations my_file_ops = {
-	.owner = THIS_MODULE,
+static const struct proc_ops my_file_ops = {
+	// .owner = THIS_MODULE,
 	.open = my_open,
 	.read = seq_read,
 	.llseek = seq_lseek,

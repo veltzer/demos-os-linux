@@ -66,7 +66,7 @@ static int __init mod_init(void)
 	 */
 	/* alloc_bootmem(10000000); */
 	/* p = alloc_bootmem(PAGE_SIZE); */
-	p=kmalloc(PAGE_SIZE, GFP_KERNEL);
+	p = kmalloc(PAGE_SIZE, GFP_KERNEL);
 	if (IS_ERR(p)) {
 		PR_ERROR("unable to allocate bootmem");
 		return PTR_ERR(p);
