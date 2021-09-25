@@ -61,7 +61,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			PR_ERROR("unable to allocate %lu", size);
 			return PTR_ERR(ptr);
 		}
-		addr = (unsigned int)ptr;
+		addr = (unsigned long)ptr;
 		if (addr % PAGE_SIZE != 0) {
 			PR_ERROR("page size issue with addr=%lu", addr);
 			return -EFAULT;
@@ -101,7 +101,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			PR_ERROR("unable to allocate %lu", size);
 			return PTR_ERR(ptr);
 		}
-		addr = (unsigned int)ptr;
+		addr = (unsigned long)ptr;
 		if (addr % PAGE_SIZE != 0) {
 			PR_ERROR("page size issue with addr=%lu", addr);
 			return -EFAULT;
@@ -118,7 +118,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			PR_ERROR("unable to allocate %lu", size);
 			return PTR_ERR(ptr);
 		}
-		addr = (unsigned int)ptr;
+		addr = (unsigned long)ptr;
 		if (addr % PAGE_SIZE != 0) {
 			PR_ERROR("page size issue with addr=%lu", addr);
 			return -EFAULT;

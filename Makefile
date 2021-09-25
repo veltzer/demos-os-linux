@@ -257,9 +257,9 @@ $(MOD_CHP): %.stamp: %.c
 	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
 	$(Q)touch $@
 # rule about how to create .ko files...
-$(MOD_STP): %.ko.stamp: %.c $(ALL_DEP) scripts/wrapper_make.pl
+$(MOD_STP): %.ko.stamp: %.c $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)+scripts/wrapper_make.pl -C $(KDIR) V=$(V) W=$(W) M=$(abspath $(dir $<)) modules obj-m=$(addsuffix .o,$(notdir $(basename $<)))
+	$(Q)pymakehelper only_print_on_error make -C $(KDIR) V=$(V) W=$(W) M=$(abspath $(dir $<)) modules obj-m=$(addsuffix .o,$(notdir $(basename $<)))
 	$(Q)touch $@
 
 # rules about makefiles
