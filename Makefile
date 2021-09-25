@@ -6,7 +6,7 @@ include Makefile.mk
 # do kernel modules
 DO_STP:=1
 # check kernel modules
-DO_CHP:=1
+DO_CHP:=0
 
 #############
 # variables #
