@@ -1,6 +1,9 @@
-- add makefile dependency (currently, if i change the makefile nothing recompiles)
 - my README.md I mention how many examples I have (1000).
 	This should not be hardcoded but rather templated.
+- currently checking kernel code is disabled
+	(DO_CHP:=0 in the Makefile)
+	fix that.
+	see that this works in ci/cd too.
 - my github ci/cd does not build kernel modules (make DO_STP=0 in templates/.github/workflows/build.yml.mako).
 	fix that.
 - my github ci/cd does not do "check_all".
