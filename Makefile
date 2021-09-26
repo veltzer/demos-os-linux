@@ -94,18 +94,9 @@ Q:=@
 endif # DO_MKDBG
 
 # sources from the git perspective
-ALL_DEP:=
 ALL:=
 CLEAN:=
 CLEAN_DIRS:=
-
-ifeq ($(DO_ALL_DEP),1)
-ALL_DEP+=Makefile
-endif # DO_ALL_DEP
-
-ifeq ($(DO_TOOLS),1)
-ALL_DEP+=out/tools.stamp
-endif # DO_TOOLS
 
 # user space applications (c and c++)
 S_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.S")
@@ -221,56 +212,56 @@ git_maintain:
 # general rules...
 
 # how to create regular executables...
-$(CC_OBJ): %.$(SUFFIX_OO): %.cc $(ALL_DEP) scripts/wrapper_compile.py
+$(CC_OBJ): %.$(SUFFIX_OO): %.cc scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
-$(C_OBJ): %.o: %.c $(ALL_DEP) scripts/wrapper_compile.py
+$(C_OBJ): %.o: %.c scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c $(CFLAGS) -o $@ $<
-$(S_OBJ): %.o: %.S $(ALL_DEP) scripts/wrapper_compile.py
+$(S_OBJ): %.o: %.S scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c -o $@ $<
-$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) $(ALL_DEP) scripts/wrapper_compile.py
+$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $<)) $@ $(CXX) $(CXXFLAGS) -o $@ $<
-$(C_EXE): %.$(SUFFIX_BIN): %.o $(ALL_DEP) scripts/wrapper_compile.py
+$(C_EXE): %.$(SUFFIX_BIN): %.o scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $<)) $@ $(CC) $(CFLAGS) -o $@ $<
-$(S_EXE): %.$(SUFFIX_BIN): %.o $(ALL_DEP) scripts/wrapper_compile.py
+$(S_EXE): %.$(SUFFIX_BIN): %.o scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .S,$(basename $<)) $@ $(CC) -o $@ $<
-$(CC_ASX): %.s: %.cc $(ALL_DEP) scripts/wrapper_compile.py
+$(CC_ASX): %.s: %.cc scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -S -o $@ $<
-$(C_ASX): %.s: %.cc $(ALL_DEP) scripts/wrapper_compile.py
+$(C_ASX): %.s: %.cc scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -S -o $@ $<
-$(CC_PRE): %.p: %.cc $(ALL_DEP) scripts/wrapper_compile.py
+$(CC_PRE): %.p: %.cc scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
-$(C_PRE): %.p: %.c $(ALL_DEP) scripts/wrapper_compile.py
+$(C_PRE): %.p: %.c scripts/wrapper_compile.py
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -E -o $@ $<
-$(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN) $(ALL_DEP)
+$(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
 	$(info doing [$@])
 	$(Q)objdump --disassemble --source --demangle $< > $@
 #	$(Q)objdump --demangle --disassemble --no-show-raw-insn --section=.text $< > $@
 #	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
 
 # rule about how to check kernel source files
-$(MOD_CHP): %.stamp: %.c $(ALL_DEP)
+$(MOD_CHP): %.stamp: %.c
 	$(info doing [$@])
 	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
 	$(Q)pymakehelper touch_mkdir $@
 # rule about how to create .ko files...
-$(MOD_STP): %.ko.stamp: %.c $(ALL_DEP)
+$(MOD_STP): %.ko.stamp: %.c
 	$(info doing [$@])
 	$(Q)sed 's/MODNAME/$(notdir $(basename $<))/g' src/kernel/Makefile.tmpl > src/kernel/Makefile
 	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
 	$(Q)pymakehelper touch_mkdir $@
 
 # rules about makefiles
-$(MK_STP): %.stamp: % $(ALL_DEP)
+$(MK_STP): %.stamp: %
 	$(info doing [$@])
 	$(Q)$(MAKE) -C $(dir $<) Q=$(Q)
 	$(Q)pymakehelper touch_mkdir $@
@@ -296,7 +287,6 @@ debug:
 	$(info KCFLAGS is $(KCFLAGS))
 	$(info CLEAN is $(CLEAN))
 	$(info CLEAN_DIRS is $(CLEAN_DIRS))
-	$(info ALL_DEP is $(ALL_DEP))
 	$(info CXX is $(CXX))
 	$(info CXXFLAGS is $(CXXFLAGS))
 	$(info CC is $(CC))
@@ -317,114 +307,114 @@ todo:
 # various checks
 
 .PHONY: check_ws
-check_ws: $(ALL_DEP)
+check_ws:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "\ \ " -- '*.h' '*.hh' '*.c' '*.cc'
 	$(Q)pymakehelper no_err git grep -l " $$" -- '*.h' '*.hh' '*.c' '*.cc'
 	$(Q)pymakehelper no_err git grep -l "\s$$" -- '*.h' '*.hh' '*.c' '*.cc'
 	$(Q)pymakehelper no_err git grep -l "$$$$" -- '*.h' '*.hh' '*.c' '*.cc'
 .PHONY: check_main
-check_main: $(ALL_DEP)
+check_main:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -e " main(" --and --not -e argc -- '*.h' '*.hh' '*.c' '*.cc'
 	$(Q)pymakehelper no_err git grep -e "ACE_TMAIN" --and --not -e argc -- '*.h' '*.hh' '*.c' '*.cc'
 .PHONY: check_ace_include
-check_ace_include: $(ALL_DEP)
+check_ace_include:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "include\"ace" -- '*.h' '*.hh' '*.c' '*.cc'
 	$(Q)pymakehelper no_err git grep -l "include \"ace" -- '*.h' '*.hh' '*.c' '*.cc'
 .PHONY: check_include
-check_include: $(ALL_DEP)
+check_include:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "#include[^ ]" -- '*.h' '*.hh' '*.c' '*.cc'
 	$(Q)pymakehelper no_err git grep -l "#include  " -- '*.h' '*.hh' '*.c' '*.cc'
 # enable this when you have the balls...
 #$(Q)pymakehelper no_err git grep -l -e "#include" --and --not -e "\/\/ for" --and --not -e "firstinclude" -- '*.h' '*.hh' '*.c' '*.cc'
 .PHONY: check_license
-check_license: $(ALL_DEP)
+check_license:
 	$(info doing [$@])
 	$(Q)scripts/check_license.py
 #	$(Q)pymakehelper no_err git grep -L "Copyright (C) 2011-2013 Mark Veltzer <mark.veltzer@gmail.com>" -- '*.c' '*.cc' '*.h' '*.hh' '*.S'
 .PHONY: check_exit
-check_exit: $(ALL_DEP)
+check_exit:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "exit(1)" -- '*.c' '*.cc' '*.h' '*.hh'
 # " =" cannot be checked because of void foo(void* =0) and that is the reason for the next
 .PHONY: check_pgrep
-check_pgrep: $(ALL_DEP)
+check_pgrep:
 	$(info doing [$@])
 	$(Q)wrapper-ok git grep -e $$"$$$$$$" --or -e "= " --or -e "[^\*] =" --or -e "^ " --or -e $$'\t ' --or -e $$" \t" --or -e "\ \ " --or -e $$"\t$$" --or -e " $$" -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_firstinclude
-check_firstinclude: $(ALL_DEP)
+check_firstinclude:
 	$(info doing [$@])
 	$(Q)git grep -L -e '^#include <firstinclude.h>$$' -- '*.c' '*.cc' '*.h' '*.hh' | grep -v kernel_standalone | grep -v mod_ | grep -v examples_standalone | grep -v firstinclude | grep -v shared.h | pymakehelper no_err grep -v kernel_helper.h
 .PHONY: check_check
-check_check: $(ALL_DEP)
+check_check:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -e 'CHECK_' --and -e '=' --and --not -e '=CHECK_' --and --not -e 'CHECK_' --and --not -e ',CHECK_' --and --not -e 'CHECK_ASSERT' --and --not -e PTHREAD_ERROR --and --not -e ', CHECK_' --and --not -e ERRORCHECK_
 .PHONY: check_perror
-check_perror: $(ALL_DEP)
+check_perror:
 	$(info doing [$@])
 	$(Q)git grep 'perror' -- '*.c' '*.cc' '*.h' '*.hh' | grep -v assert_perror | grep -v perror.cc | pymakehelper no_err grep -v err_utils.h
 #--and --not -e "assert_perror" --and --not -e "perror.cc" --and --not -e "us_helper.h" -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_fixme
-check_fixme: $(ALL_DEP)
+check_fixme:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep FIXME -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_while1
-check_while1: $(ALL_DEP)
+check_while1:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep "while\(1\)" -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_usage
-check_usage: $(ALL_DEP)
+check_usage:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -e \\\"usage --and -e stderr -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_pthread
-check_pthread: $(ALL_DEP)
+check_pthread:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l 'CHECK_ZERO(pthread' -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_usage_2
-check_usage_2: $(ALL_DEP)
+check_usage_2:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "Usage" -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_gitignore
-check_gitignore: $(ALL_DEP)
+check_gitignore:
 	$(info doing [$@])
 	$(Q)find . -mindepth 2 -and -name ".gitignore"
 .PHONY: check_exitzero
-check_exitzero: $(ALL_DEP)
+check_exitzero:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l 'exit\(0\)' -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_no_symlinks
-check_no_symlinks: $(ALL_DEP)
+check_no_symlinks:
 	$(info doing [$@])
 	$(Q)scripts/git_check_no_symlinks.py
 .PHONY: check_check_header
-check_check_header: $(ALL_DEP)
+check_check_header:
 	$(info doing [$@])
 	$(Q)git grep include -- '*.c' '*.cc' '*.h' '*.hh' | grep us_helper | pymakehelper no_err grep CHECK
 .PHONY: check_veltzer_https
-check_veltzer_https: $(ALL_DEP)
+check_veltzer_https:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep "http:\/\/veltzer.net"
 .PHONY: check_all
-check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check kernel_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_gitignore check_exitzero check_check_header check_veltzer_https check_for check_semisemi $(ALL_DEP)
+check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check kernel_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_gitignore check_exitzero check_check_header check_veltzer_https check_for check_semisemi
 
 .PHONY: check_semisemi
-check_semisemi: $(ALL_DEP)
+check_semisemi:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep ";;" -- '*.c' '*.cc' '*.h' '*.hh'
 .PHONY: check_for
-check_for: $(ALL_DEP)
+check_for:
 	$(info doing [$@])
 	$(Q)git grep "for (" -- '*.h' '*.hh' '*.c' '*.cc' | pymakehelper no_err grep -v kernel
 .PHONY: check_dots
-check_dots: $(ALL_DEP)
+check_dots:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l " : " -- '*.h' '*.hh' '*.c' '*.cc'
 # checks that dont pass
 .PHONY: check_syn
-check_syn: $(ALL_DEP)
+check_syn:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "while (" -- '*.c' '*.h' '*.cc' '*.hh'
 	$(Q)pymakehelper no_err git grep -l "for (" -- '*.c' '*.h' '*.cc' '*.hh'
@@ -432,7 +422,7 @@ check_syn: $(ALL_DEP)
 	$(Q)pymakehelper no_err git grep -l "switch (" -- '*.c' '*.h' '*.cc' '*.hh'
 
 .PHONY: check_files
-check_files: $(ALL_DEP)
+check_files:
 	-find . -mindepth 2 -type f -and -not -name "*.cc" -and -not -name "*.h" -and -not -name "*.h" -and -not -name "*.txt" -and -not -name "*.conf" -and -not -name "*.ini" -and -not -name "*.sample" -and -not -name "*.data" -and -not -name "*.doc" -and -not -name "*.bash" -and -not -name "*.c"
 .PHONY: check_tests_for_drivers
 check_tests_for_drivers:
@@ -446,75 +436,75 @@ SOURCE_EXPR:=-name "*.cc" -or -name "*.hh" -or -name "*.h" -or -name "*.c" -or -
 TARGET_EXPR:=-name "*.$(SUFFIX_BIN)" -or -name "*.d" -or -name "*.o" -or -name "*.so" -or -name "*.o.cmd" -or -name "*.ko" -or -name "*.ko.cmd" -or -wholename "*/.tmp_versions/*" -or -name "Module.symvers" -or -name "modules.order" -or -name "*.class" -or -name "*.stamp" -or -name "*.dis"
 
 .PHONY: find_not_source
-find_not_source: $(ALL_DEP)
+find_not_source:
 	-@find -type f -not -path "./.git/*" -and -not \( $(SOURCE_EXPR) \)
 .PHONY: find_not_target
-find_not_target: $(ALL_DEP)
+find_not_target:
 	-@find -type f -not -path "./.git/*" -and -not \( $(TARGET_EXPR) \)
 .PHONY: find_not_source_target
-find_not_source_target: $(ALL_DEP)
+find_not_source_target:
 	-@find -type f -not -path "./.git/*" -and -not \( $(SOURCE_EXPR) \) -and -not \( $(TARGET_EXPR) \)
 .PHONY: find_exercises
-find_exercises: $(ALL_DEP)
+find_exercises:
 	-@find -type f -name "exercise.txt"
 
 # kernel section
 
 .PHONY: kernel_clean
-kernel_clean: $(ALL_DEP)
+kernel_clean:
 	$(info doing [$@])
 	$(Q)-rm -rf $(KERNEL_DIR)/.tmp_versions
 	$(Q)-rm -f $(KERNEL_DIR)/Module.symvers $(KERNEL_DIR)/modules.order $(KERNEL_DIR)/mod_*.ko $(KERNEL_DIR)/mod_*.o $(KERNEL_DIR)/*.mod.c $(KERNEL_DIR)/.??* $(KERNEL_DIR)/*.stamp
 .PHONY: kernel_check
-kernel_check: $(MOD_CHP) $(ALL_DEP)
+kernel_check: $(MOD_CHP)
 .PHONY: kernel_build
-kernel_build: $(MOD_MOD) $(ALL_DEP)
+kernel_build: $(MOD_MOD)
 .PHONY: kernel_help
-kernel_help: $(ALL_DEP)
+kernel_help:
 	$(MAKE) -C $(KDIR) help
 .PHONY: kernel_tail
-kernel_tail: $(ALL_DEP)
+kernel_tail:
 	@sudo tail /var/log/kern.log
 .PHONY: kernel_tailf
-kernel_tailf: $(ALL_DEP)
+kernel_tailf:
 	@sudo tail -f /var/log/kern.log
 .PHONY: kernel_syslog_tail
-kernel_syslog_tail: $(ALL_DEP)
+kernel_syslog_tail:
 	@sudo tail /var/log/kern.log
 .PHONY: kernel_syslog_tailf
-kernel_syslog_tailf: $(ALL_DEP)
+kernel_syslog_tailf:
 	@sudo tail -f /var/log/kern.log
 .PHONY: kernel_dmesg
-kernel_dmesg: $(ALL_DEP)
+kernel_dmesg:
 	@sudo dmesg
 .PHONY: kernel_dmesg_clean
-kernel_dmesg_clean: $(ALL_DEP)
+kernel_dmesg_clean:
 	@sudo dmesg -c > /dev/null
 .PHONY: kernel_halt
-kernel_halt: $(ALL_DEP)
+kernel_halt:
 	@sudo halt
 .PHONY: kernel_reboot
-kernel_reboot: $(ALL_DEP)
+kernel_reboot:
 	@sudo reboot
 .PHONY: kernel_makeeasy
-kernel_makeeasy: $(ALL_DEP)
+kernel_makeeasy:
 	@sudo echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers
 
 # code formatting
 
 # This is what I use
 .PHONY: format_uncrustify
-format_uncrustify: $(ALL_DEP)
+format_uncrustify:
 	$(info doing [$@])
 	$(Q)uncrustify -c support/uncrustify.cfg --no-backup -l C $(ALL_US_C)
 	$(Q)uncrustify -c support/uncrustify.cfg --no-backup -l CPP $(ALL_US_CC)
 .PHONY: format_astyle
-format_astyle: $(ALL_DEP)
+format_astyle:
 	$(error disabled - use format_uncrustify instead)
 	$(info doing [$@])
 	$(Q)astyle --verbose --suffix=none --formatted --preserve-date --options=support/astyle.cfg $(ALL_US)
 .PHONY: format_indent
-format_indent: $(ALL_DEP)
+format_indent:
 	$(error disabled - use format_uncrustify instead)
 	$(info doing [$@])
 	$(Q)indent $(ALL_US)
@@ -522,15 +512,28 @@ format_indent: $(ALL_DEP)
 # code measurements
 
 .PHONY: sloccount
-sloccount: $(ALL_DEP)
+sloccount:
 	$(info doing [$@])
 	$(Q)sloccount .
 .PHONY: count_files
-count_files: $(ALL_DEP)
+count_files:
 	$(info doing [$@])
 	$(Q)echo number of C++ or C files not including headers: `find . -name "*.cc" -or -name "*.c" | wc -l`
 	$(Q)echo number of C++ or C headers: `find . -name "*.hh" -or -name "*.h" | wc -l`
 .PHONY: cloc
-cloc: $(ALL_DEP)
+cloc:
 	$(info doing [$@])
 	$(Q)cloc .
+
+
+############
+# all deps #
+############
+
+ifeq ($(DO_ALL_DEP),1)
+.EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
+endif # DO_ALL_DEP
+
+ifeq ($(DO_TOOLS),1)
+.EXTRA_PREREQS+=out/tools.stamp
+endif # DO_TOOLS
