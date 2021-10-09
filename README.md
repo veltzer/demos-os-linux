@@ -6,8 +6,8 @@ version: 5
 build
 -----
 ![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
-* test_container: [ubuntu-20.10]
-* test_python: [3.9]
+* test_container: [ubuntu-20.04]
+* test_python: [3.8]
 
 demos-linux is a project to demo and explore the Linux user space C/C++ API
 
