@@ -9,8 +9,8 @@ jobs:
     container: ${"${{ matrix.container }}"}
     strategy:
       matrix:
-        container: [ 'ubuntu:20.10' ]
-        python-version: [3.8]
+        container: ${config.python.test_container}
+        python-version: ${config.python.test_python}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${"${{ matrix.python-version }}"}

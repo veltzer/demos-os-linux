@@ -11,7 +11,7 @@ version: ${config.git.last_tag}
 build
 -----
 ![build](https://github.com/veltzer/${config.project.project_name}/workflows/build/badge.svg)
-* test_os: ${config.python.test_os}
+* test_container: ${config.python.test_container}
 * test_python: ${config.python.test_python}
 
 ${config.project.project_long_description}

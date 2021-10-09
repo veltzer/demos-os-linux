@@ -15,16 +15,13 @@ dev_requires = [
     'pydmt',  # for building
 ]
 
-# test_os="[ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]"
-test_os="[ubuntu-20.04]"
-# test_python="[3.6, 3.7, 3.8]"
-test_python="[3.8]"
+test_container="[ubuntu-20.10]"
+test_python="[3.9]"
 
 install_requires = list(setup_requires)
 install_requires.extend(run_requires)
 
-python_requires = ">=3.6"
+python_requires = ">=3.9"
 
 extras_require = {
-    # ':python_version == "2.7"': ['futures'],  # for python2.7 backport of concurrent.futures
 }
