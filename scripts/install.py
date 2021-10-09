@@ -33,5 +33,5 @@ args.extend([
     "-y",
     "install",
 ])
-args.extend(config.deps.packs)
+args.extend(config.deps.packages)
 subprocess.check_call(args)

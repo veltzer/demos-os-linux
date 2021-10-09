@@ -48,7 +48,7 @@ if opt_debug:
 if opt_exit:
     sys.exit(0)
 
-packs=[
+packages=[
     # most important - compiler parts
     'gcc-doc', # gcc documentation
     'cpp-doc', # gcc documentation
@@ -321,7 +321,7 @@ packs=[
 ]
 
 if opt_do_kernel:
-    packs.extend([
+    packages.extend([
         # kernel stuff
         'linux-image-'+release_generic+'-generic',
         'linux-image-'+release_lowlatency+'-lowlatency',
@@ -339,7 +339,7 @@ if opt_do_kernel:
     ])
 
 if opt_do_ddebs:
-    packs.extend([
+    packages.extend([
         # for systemtap - this one does not exist in the regular ubuntu archives
         # ubuntu does not always carry the "-lowlatency" dbgsym and that why
         # it is commented out...
@@ -349,7 +349,7 @@ if opt_do_ddebs:
     ])
 
 if opt_do_compilers:
-    packs.extend([
+    packages.extend([
         # compilers
         'gcc-4.8-plugin-dev',
         'gcc-4.7',
