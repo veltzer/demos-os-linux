@@ -15,7 +15,7 @@ dev_requires = [
     'pydmt',  # for building
 ]
 
-test_container="[ubuntu-20.04]"
+test_container="[ 'ubuntu:20.10' ]"
 test_python="[3.8]"
 
 install_requires = list(setup_requires)
