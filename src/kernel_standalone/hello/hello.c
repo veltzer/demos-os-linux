@@ -28,13 +28,13 @@ MODULE_VERSION("1.0.0");
 
 static int __init hello_init(void)
 {
-	pr_info("%s\n", __func__);
+	pr_info("%s: %s\n", THIS_MODULE->name, __func__);
 	return 0;
 }
 
 static void __exit hello_exit(void)
 {
-	pr_info("%s\n", __func__);
+	pr_info("%s: %s\n", THIS_MODULE->name, __func__);
 }
 
 module_init(hello_init);
