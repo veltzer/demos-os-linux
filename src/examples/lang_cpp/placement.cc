@@ -57,8 +57,8 @@ public:
 		std::cout << "pointer is " << pointer << std::endl;
 		// next two lines have no effect since the constructor
 		// will be called and will override it
-		A *p=(A *)pointer;
-		p->val=val;
+		// A *p=(A *)pointer;
+		// p->val=val;
 		return(pointer);
 	}
 
@@ -79,9 +79,10 @@ public:
 		free(pointer);
 	}
 
-	void *operator new(size_t size) {
+	void* operator new(size_t size) {
 		std::cout << "in new operator" << std::endl;
 		std::cout << "size is " << size << std::endl;
+		// void *pointer=new char[size];
 		void *pointer=malloc(size);
 		std::cout << "pointer is " << pointer << std::endl;
 		return(pointer);
@@ -99,11 +100,13 @@ int main(int argc, char** argv, char** envp) {
 	A* a=new A();
 
 	std::cout << "a->val is " << a->val << std::endl;
+#pragma GCC diagnostic ignored "-Wmismatched-new-delete"
 	delete a;
 
 	std::cout << "heap arguments example" << std::endl;
 	A* b=new(5.5)A();
 	std::cout << "b->val is " << b->val << std::endl;
+#pragma GCC diagnostic ignored "-Wmismatched-new-delete"
 	delete b;
 
 	std::cout << "many heap no arguments example" << std::endl;
@@ -112,7 +115,7 @@ int main(int argc, char** argv, char** envp) {
 	for(unsigned int i=0; i<num_objs; i++) {
 		std::cout << i << " " << "e->val is " << e[i].val << std::endl;
 	}
-	delete e;
+	delete[] e;
 
 	// the next two examples are stack examples in which case neither
 	// the new nor the delete operator will be called (memory is stack

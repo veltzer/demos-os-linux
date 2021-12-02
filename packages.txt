@@ -15,7 +15,6 @@ sloccount
 cloc
 binutils-dev
 binutils-doc
-aspectc++
 dialog
 libxtables-dev
 unoconv
@@ -45,9 +44,9 @@ libwxgtk3.0-gtk3-dev
 libmysql++-dev
 libsdl1.2-dev
 libace-dev
-libboost1.71-dev
-libboost-thread1.71.0
-libboost-system1.71.0
+libboost1.74-dev
+libboost-thread1.74.0
+libboost-system1.74.0
 libpcap-dev
 libasound2
 libasound2-dev

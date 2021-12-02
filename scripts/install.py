@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 """
-This script does not use 'sudo' so you need to run it as sudo yourself with:
+This script supports running it with sudo or without. With arguments it runs with sudo.
+If you want to run the sudo yourself use:
     $ sudo python -m scripts.install
 """
 

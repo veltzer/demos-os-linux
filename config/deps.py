@@ -14,7 +14,7 @@ opt_debug=False
 # exit after debug?
 opt_exit=False
 # what boost to install?
-opt_boost_version_short='1.71'
+opt_boost_version_short='1.74'
 opt_boost_version=opt_boost_version_short+'.0'
 # install kernels?
 opt_do_kernel=False
@@ -76,7 +76,7 @@ packages=[
     # basic tools
     'binutils-dev', # for demangle.h
     'binutils-doc', # for demangle.h
-    'aspectc++',
+    # 'aspectc++',
     'dialog',
     'libxtables-dev',
     'unoconv',
