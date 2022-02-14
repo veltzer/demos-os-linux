@@ -13,38 +13,38 @@ import subprocess # for check_output
 opt_debug=False
 # exit after debug?
 opt_exit=False
-# what boost to install?
-opt_boost_version_short='1.74'
-opt_boost_version=opt_boost_version_short+'.0'
 # install kernels?
 opt_do_kernel=False
 # install debug packages for kernels?
 opt_do_ddebs=False
 # do we want to install compilers?
 opt_do_compilers=False
+
 # version of the papi library
 opt_papiversion='6.0'
 # what version of wxgtk to install?
 opt_wxgtk_ver='3.0'
 # what version of urcu?
 opt_urcu_ver=6
+# what boost to install?
+opt_boost_version_short='1.74'
+opt_boost_version=opt_boost_version_short+'.0'
 
 release=os.uname().release
 short_release=release[:release.rfind('-')]
 source_release=short_release[:short_release.rfind('-')]
 release_lowlatency=short_release
 release_generic=short_release
-# codename=subprocess.check_output(['lsb_release', '--codename', '--short']).decode().rstrip()
+codename=subprocess.check_output(['lsb_release', '--codename', '--short']).decode().rstrip()
 
 
 if opt_debug:
-    print('release is [{0}]'.format(release))
-    print('short_release is [{0}]'.format(short_release))
-    print('source_release is [{0}]'.format(source_release))
-    print('release_lowlatency is [{0}]'.format(release_lowlatency))
-    print('release_generic is [{0}]'.format(release_generic))
-    print('codename is [{0}]'.format(codename))
-    print('opt_urcu_ver is [{0}]'.format(opt_urcu_ver))
+    print(f"release is [{release}]")
+    print(f"short_release is [{short_release}]")
+    print(f"source_release is [{source_release}]")
+    print(f"release_lowlatency is [{release_lowlatency}]")
+    print(f"release_generic is [{releae_generic}]")
+    print(f"codename is [{codename}]")
 if opt_exit:
     sys.exit(0)
 

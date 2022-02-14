@@ -93,6 +93,7 @@ void *worker(void *p) {
 			#ifdef USE_SCHED_YIELD
 			CHECK_NOT_M1(sched_yield());
 			#else
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 			CHECK_ZERO_ERRNO(pthread_yield());
 			#endif
 		}

@@ -64,6 +64,7 @@ int main(int argc, char** argv, char** envp) {
 	const int to_overrun=1;
 	int i;
 	for(i=size_of_buffer; i<size_of_buffer+to_overrun; i++) {
+#pragma GCC diagnostic ignored "-Warray-bounds"
 		buf[i]=i%26+'a';
 	}
 	for(i=-to_overrun; i<0; i++) {

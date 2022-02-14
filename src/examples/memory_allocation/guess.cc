@@ -68,6 +68,7 @@ unsigned int get_block_size(void* p) {
 	if(debug) {
 		printf("*u is %d (char ptr is %d)\n", *u, *((char*)u));
 	}
+#pragma GCC diagnostic ignored "-Wuninitialized"
 	return (*u)-1;
 }
 

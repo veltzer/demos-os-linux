@@ -28,6 +28,7 @@
  * some consistency check and you will catch the errors.
  */
 
+
 void myhandler(enum mcheck_status status) {
 	// inside my handler, careful not to do something complicated here since the system is in a bad state as it is...
 	char state[256];
@@ -61,6 +62,7 @@ int main(int argc, char** argv, char** envp) {
 	// want to use your own handler. I haven't linked with -lmcheck so I will
 	// use my own handler...
 #pragma GCC diagnostic ignored "-Wstringop-overflow"
+#pragma GCC diagnostic ignored "-Warray-bounds"
 	mcheck(myhandler);
 	const int size_of_buffer=10;
 	char* buf=(char*)malloc(size_of_buffer);

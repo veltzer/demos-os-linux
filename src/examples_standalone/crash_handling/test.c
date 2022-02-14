@@ -91,10 +91,10 @@ void croak(void) {
 	char * p=sbrk(0);
 
 	/* try to catch implicit malloc calls */
-	__malloc_hook=kill_malloc;
-	__realloc_hook=kill_realloc;
-	__free_hook=kill_free;
-	__memalign_hook=kill_memalign;
+	// __malloc_hook=kill_malloc;
+	// __realloc_hook=kill_realloc;
+	// __free_hook=kill_free;
+	// __memalign_hook=kill_memalign;
 
 	/* Corrupt the malloc arena as a real fault would do.
 	*/
