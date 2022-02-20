@@ -12,10 +12,10 @@ if len(sys.argv)>1:
     raise ValueError('this script does not accept parameters on the cmd line')
 
 spdx="// SPDX-License-Identifier: GPL-2.0\n"
-with open('support/old_license.txt') as f:
-    old_lic=f.read()
-with open('support/license.txt') as f:
-    new_lic=f.read()
+with open('support/license_old.txt') as f:
+    lic_old=f.read()
+with open('support/license_new.txt') as f:
+    lic_new=f.read()
 
 suffixes=[
     '.c',
@@ -53,14 +53,14 @@ for root,dirs,files in os.walk(root_folder):
             in_f=open(current_file,'r')
             f=in_f.read()
             in_f.close()
-            if f.startswith(old_lic):
-                f=new_lic+f[len(old_lic):]
+            if f.startswith(lic_old):
+                f=lic_new+f[len(lic_old):]
                 with open(current_file,'wb') as out_f:
                     out_f.write(f.encode('utf-8'))
                     print(f"file [{current_file}] got its license replaced...")
                     next
-            if f.startswith(spdx+old_lic):
-                f=spdx+new_lic+f[len(spdx+old_lic):]
+            if f.startswith(spdx+lic_old):
+                f=spdx+lic_new+f[len(spdx+lic_old):]
                 with open(current_file,'wb') as out_f:
                     out_f.write(f.encode('utf-8'))
                     print(f"file [{current_file}] got its license replaced...")
