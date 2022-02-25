@@ -84,4 +84,4 @@ Using it
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 
 
-	Mark Veltzer <mark.veltzer@gmail.com>, 2011-2021
+	Mark Veltzer <mark.veltzer@gmail.com>, 2011-2022
