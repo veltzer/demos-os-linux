@@ -318,6 +318,9 @@ packages=[
     'libffi8ubuntu1',
     #'libffi7',
     'libffi-dev',
+
+    # uring
+    'liburing-dev',
 ]
 
 if opt_do_kernel:
