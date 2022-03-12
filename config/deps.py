@@ -35,7 +35,6 @@ short_release=release[:release.rfind('-')]
 source_release=short_release[:short_release.rfind('-')]
 release_lowlatency=short_release
 release_generic=short_release
-codename=subprocess.check_output(['lsb_release', '--codename', '--short']).decode().rstrip()
 
 
 if opt_debug:
@@ -44,7 +43,6 @@ if opt_debug:
     print(f"source_release is [{source_release}]")
     print(f"release_lowlatency is [{release_lowlatency}]")
     print(f"release_generic is [{releae_generic}]")
-    print(f"codename is [{codename}]")
 if opt_exit:
     sys.exit(0)
 
