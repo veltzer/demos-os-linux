@@ -8,9 +8,9 @@ DO_STP:=1
 # check kernel modules
 DO_CHP:=0
 # should we depend on the Makefile itself?
-DO_ALL_DEP:=0
+DO_ALL_DEP:=1
 # do tools?
-DO_TOOLS:=0
+DO_TOOLS:=1
 
 #############
 # variables #
