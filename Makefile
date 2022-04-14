@@ -8,9 +8,9 @@ DO_STP:=1
 # check kernel modules
 DO_CHP:=0
 # should we depend on the Makefile itself?
-DO_ALL_DEP:=1
+DO_ALL_DEP:=0
 # do tools?
-DO_TOOLS:=1
+DO_TOOLS:=0
 
 #############
 # variables #
@@ -42,7 +42,7 @@ KCFLAGS:=-Werror
 DEBUG:=0
 OPT:=1
 # do you want to show the commands executed ?
-DO_MKDBG:=0
+DO_MKDBG?=0
 # the c++ compiler to be used
 CXX:=g++
 CC:=gcc
