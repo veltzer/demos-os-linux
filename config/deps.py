@@ -108,7 +108,7 @@ packages=[
     # 'libcwd',
     # removed by mark (2/6/21)
     # 'qt5-default',
-    'libwxgtk{0}-gtk3-dev'.format(opt_wxgtk_ver),
+    f'libwxgtk{opt_wxgtk_ver}-gtk3-dev',
     'libmysql++-dev',
     'libsdl1.2-dev',
     'libace-dev',
@@ -127,7 +127,7 @@ packages=[
     'libnetfilter-queue1',
     'libnetfilter-queue-dev',
     'libcap-dev', # for capability.h
-    'liburcu{0}'.format(opt_urcu_ver), # rcu library
+    f'liburcu{opt_urcu_ver}', # rcu library
     'liburcu-dev', # rcu library
     'libunwind8', # unwind library
     'libunwind-setjmp0', # unwind library
