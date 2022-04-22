@@ -8,7 +8,7 @@ DO_STP:=1
 # check kernel modules
 DO_CHP:=0
 # should we depend on the Makefile itself?
-DO_ALL_DEP:=1
+DO_ALLDEP:=1
 # do tools?
 DO_TOOLS:=1
 
@@ -530,9 +530,9 @@ cloc:
 # all deps #
 ############
 
-ifeq ($(DO_ALL_DEP),1)
+ifeq ($(DO_ALLDEP),1)
 .EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
-endif # DO_ALL_DEP
+endif # DO_ALLDEP
 
 ifeq ($(DO_TOOLS),1)
 .EXTRA_PREREQS+=out/tools.stamp
