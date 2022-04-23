@@ -162,6 +162,7 @@ endif # DO_CHP
 # generic section
 # do not touch this recipe
 all: $(ALL)
+	@true
 
 out/tools.stamp: config/deps.py
 	$(info doing [$@])
