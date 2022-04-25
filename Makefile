@@ -11,6 +11,8 @@ DO_CHP:=0
 DO_ALLDEP:=1
 # do tools?
 DO_TOOLS:=1
+# do you want to show the commands executed ?
+DO_MKDBG?=0
 
 #############
 # variables #
@@ -41,8 +43,6 @@ KCFLAGS:=-Werror
 # optimization with debug info (for disassembly)
 DEBUG:=0
 OPT:=1
-# do you want to show the commands executed ?
-DO_MKDBG?=0
 # the c++ compiler to be used
 CXX:=g++
 CC:=gcc
@@ -73,11 +73,11 @@ CXXFLAGS:=$(CXXFLAGS) -g3
 CFLAGS:=$(CFLAGS) -g3
 else
 LDFLAGS:=$(LDFLAGS) -s
-endif
+endif # DEBUG
 ifeq ($(OPT),1)
 CXXFLAGS:=$(CXXFLAGS) -O2
 CFLAGS:=$(CFLAGS) -O2
-endif
+endif # OPT
 #WARN_FLAGS:=-Wall -Werror
 #WARN_FLAGS:=-Wall -Werror -pedantic
 WARN_FLAGS:=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-clobbered -Wno-missing-field-initializers
