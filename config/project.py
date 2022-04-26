@@ -8,7 +8,7 @@ project_website=f"https://{project_github_username}.github.io/{project_name}"
 project_website_source=f"https://github.com/{project_github_username}/{project_name}"
 project_website_git=f"git://github.com/{project_github_username}/{project_name}.git"
 project_long_description=f"{project_name} is a project to demo and explore the Linux user space C/C++ API"
-project_year_started="2011"
+project_year_started=2011
 project_description=f"""This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
