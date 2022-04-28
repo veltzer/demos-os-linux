@@ -68,16 +68,20 @@ SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
 # compilation flags
 CXXFLAGS:=
 CFLAGS:=
+TOOLS:=out/tools.stamp
+
 ifeq ($(DEBUG),1)
 CXXFLAGS:=$(CXXFLAGS) -g3
 CFLAGS:=$(CFLAGS) -g3
 else
 LDFLAGS:=$(LDFLAGS) -s
 endif # DEBUG
+
 ifeq ($(OPT),1)
 CXXFLAGS:=$(CXXFLAGS) -O2
 CFLAGS:=$(CFLAGS) -O2
 endif # OPT
+
 #WARN_FLAGS:=-Wall -Werror
 #WARN_FLAGS:=-Wall -Werror -pedantic
 WARN_FLAGS:=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-clobbered -Wno-missing-field-initializers
@@ -164,11 +168,10 @@ endif # DO_CHP
 all: $(ALL)
 	@true
 
-out/tools.stamp: config/deps.py
+$(TOOLS): packages.txt config/deps.py
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error python -m scripts.install 1
 	$(Q)pymakehelper touch_mkdir $@
-
 
 .PHONY: clean_standalone
 clean_standalone:
@@ -526,7 +529,6 @@ cloc:
 	$(info doing [$@])
 	$(Q)cloc .
 
-
 ############
 # all deps #
 ############
@@ -536,5 +538,5 @@ ifeq ($(DO_ALLDEP),1)
 endif # DO_ALLDEP
 
 ifeq ($(DO_TOOLS),1)
-.EXTRA_PREREQS+=out/tools.stamp
+.EXTRA_PREREQS+=$(TOOLS)
 endif # DO_TOOLS
