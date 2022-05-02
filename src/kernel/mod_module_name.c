@@ -57,7 +57,7 @@ static int __init mod_init(void)
 	 * PR_INFO("init_text_size is %d", THIS_MODULE->init_text_size);
 	 * PR_INFO("core_text_size is %d", THIS_MODULE->core_text_size);
 	 */
-	PR_INFO("printk is %p", printk);
+	// PR_INFO("printk is %p", printk);
 	/*
 	 * using this symbol_get function you can also get kernel symbols,
 	 * other modules symbols or your own exported symbols.
