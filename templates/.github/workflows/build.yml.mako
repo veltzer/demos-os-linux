@@ -31,5 +31,7 @@ jobs:
       run: python -m pip install -r requirements.txt
     - name: System upgrade
       run: sudo apt-get -y update
+    - name: pydmt build_tools
+      run: pydmt build_tools
     - name: Build
       run: make DO_STP=0

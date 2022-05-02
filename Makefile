@@ -9,8 +9,6 @@ DO_STP:=1
 DO_CHP:=0
 # should we depend on the Makefile itself?
 DO_ALLDEP:=1
-# do tools?
-DO_TOOLS:=1
 # do you want to show the commands executed ?
 DO_MKDBG?=0
 
@@ -68,7 +66,6 @@ SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
 # compilation flags
 CXXFLAGS:=
 CFLAGS:=
-TOOLS:=out/tools.stamp
 
 ifeq ($(DEBUG),1)
 CXXFLAGS:=$(CXXFLAGS) -g3
@@ -167,11 +164,6 @@ endif # DO_CHP
 # do not touch this recipe
 all: $(ALL)
 	@true
-
-$(TOOLS): packages.txt config/deps.py
-	$(info doing [$@])
-	$(Q)pymakehelper only_print_on_error python -m scripts.install 1
-	$(Q)pymakehelper touch_mkdir $@
 
 .PHONY: clean_standalone
 clean_standalone:
