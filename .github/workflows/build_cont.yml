@@ -18,7 +18,7 @@ jobs:
 # This is needed for the python stuff to complie (stupid 20.10!)
     - name: Install libffi.so.7
       run: |
-	apt-get update
+        apt-get update
         apt-get install --yes wget
         wget https://mirrors.edge.kernel.org/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
         dpkg --install libffi7_3.3-4_amd64.deb
