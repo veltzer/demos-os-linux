@@ -45,13 +45,14 @@ if opt_debug:
 if opt_exit:
     sys.exit(0)
 
-desktop = platform.freedesktop_os_release()
-VERSION_ID = desktop["VERSION_ID"]
-# what version of urcu?
-opt_urcu_ver = None
-if VERSION_ID == "22.04":
-    opt_urcu_ver = 8
-if VERSION_ID == "21.04":
+if hasattr(platform, "freedesktop_os_release"):
+    desktop = platform.freedesktop_os_release()
+    VERSION_ID = desktop["VERSION_ID"]
+    # what version of urcu?
+    opt_urcu_ver = None
+    if VERSION_ID == "22.04":
+        opt_urcu_ver = 8
+else:
     opt_urcu_ver = 6
 
 packages=[
