@@ -9,7 +9,6 @@ manpages-posix-dev
 gnulib
 bikeshed
 cgdb
-xxgdb
 qtcreator
 sloccount
 cloc
@@ -59,7 +58,7 @@ netperf
 libnetfilter-queue1
 libnetfilter-queue-dev
 libcap-dev
-liburcu6
+liburcu8
 liburcu-dev
 libunwind8
 libunwind-setjmp0
@@ -106,7 +105,6 @@ smartmontools
 gsmartcontrol
 lm-sensors
 inxi
-hddtemp
 htop
 glances
 sysprof
@@ -136,7 +134,6 @@ sysdig
 iperf
 smem
 sysbench
-ksysguard
 gnome-system-monitor
 xfce4-taskmanager
 mrtg

@@ -25,7 +25,7 @@ opt_papiversion='6.0'
 # what version of wxgtk to install?
 opt_wxgtk_ver='3.0'
 # what version of urcu?
-opt_urcu_ver=6
+opt_urcu_ver=8
 # what boost to install?
 opt_boost_version_short='1.74'
 opt_boost_version=opt_boost_version_short+'.0'
@@ -64,7 +64,8 @@ packages=[
 
     # debugging
     'cgdb',
-    'xxgdb',
+    # doesn't exist on 22.04
+    # 'xxgdb',
     'qtcreator',
 
     # code measurements
@@ -180,7 +181,8 @@ packages=[
     'gsmartcontrol',
     'lm-sensors',
     'inxi',
-    'hddtemp',
+    # doesn't exist on 22.04
+    # 'hddtemp',
     'htop',
     'glances',
     'sysprof',
@@ -215,7 +217,8 @@ packages=[
     'sysbench',
     #'icinga-core', # causes performance problems
     #'nagios3-core', # causes performance problems
-    'ksysguard',
+    # doesn't exist on 22.04
+    # 'ksysguard',
     'gnome-system-monitor',
     'xfce4-taskmanager',
     'mrtg',
