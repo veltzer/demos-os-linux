@@ -20,6 +20,6 @@ jobs:
     - name: Install python requirements
       run: python -m pip install -r requirements.txt
     - name: pydmt build_tools
-      run: pydmt build_tools
+      run: pydmt build_tools --sudo False
     - name: Build
       run: make DO_STP=0
