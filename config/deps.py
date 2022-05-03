@@ -5,6 +5,7 @@ dependencies for this project
 import os # for uname
 import sys # for exit
 import subprocess # for check_output
+import platform
 
 ##############
 # parameters #
@@ -24,8 +25,6 @@ opt_do_compilers=False
 opt_papiversion='6.0'
 # what version of wxgtk to install?
 opt_wxgtk_ver='3.0'
-# what version of urcu?
-opt_urcu_ver=8
 # what boost to install?
 opt_boost_version_short='1.74'
 opt_boost_version=opt_boost_version_short+'.0'
@@ -36,15 +35,24 @@ source_release=short_release[:short_release.rfind('-')]
 release_lowlatency=short_release
 release_generic=short_release
 
-
 if opt_debug:
     print(f"release is [{release}]")
     print(f"short_release is [{short_release}]")
     print(f"source_release is [{source_release}]")
     print(f"release_lowlatency is [{release_lowlatency}]")
     print(f"release_generic is [{releae_generic}]")
+
 if opt_exit:
     sys.exit(0)
+
+desktop = platform.freedesktop_os_release()
+VERSION_ID = desktop["VERSION_ID"]
+# what version of urcu?
+opt_urcu_ver = None
+if VERSION_ID == "22.04":
+    opt_urcu_ver = 8
+if VERSION_ID == "21.04":
+    opt_urcu_ver = 6
 
 packages=[
     # most important - compiler parts
