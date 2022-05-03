@@ -11,7 +11,6 @@ test_requires = [
 ]
 
 dev_requires = [
-    'setuptools', # for installing non wheel packages
     'pymakehelper',  # for the makefile
     'pydmt',  # for building
 ]
