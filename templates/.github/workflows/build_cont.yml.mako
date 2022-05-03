@@ -17,9 +17,15 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${"${{ matrix.python-version }}"}
+# This is needed for the python stuff to complie (stupid 20.10!)
+    - name: Install libffi.so.7
+      run: |
+        apt install wget
+        wget https://mirrors.edge.kernel.org/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
+        dpkg --install libffi7_3.3-4_amd64.deb
     - name: Install python requirements
       run: python -m pip install -r requirements.txt
     - name: pydmt build_tools
       run: pydmt build_tools --sudo False
     - name: Build
-      run: make DO_STP=0
+      run: pymakehelper make DO_STP=0
