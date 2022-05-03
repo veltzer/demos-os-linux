@@ -195,3 +195,5 @@ shorewall
 libffi8ubuntu1
 libffi-dev
 liburing-dev
+nodejs
+npm
