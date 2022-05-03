@@ -322,6 +322,10 @@ packages=[
 
     # uring
     'liburing-dev',
+
+    # tools
+    'nodejs',
+    'npm',
 ]
 
 if opt_do_kernel:
