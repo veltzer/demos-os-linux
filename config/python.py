@@ -16,12 +16,12 @@ dev_requires = [
 ]
 
 test_container="[ 'ubuntu:21.10' ]"
-test_python="[3.8]"
+test_python="[3.9]"
 
 install_requires = list(setup_requires)
 install_requires.extend(run_requires)
 
-python_requires = ">=3.8"
+python_requires = ">=3.9"
 
 extras_require = {
 }
