@@ -2,3 +2,4 @@
 # dev requirements
 pymakehelper
 pydmt
+setuptools
