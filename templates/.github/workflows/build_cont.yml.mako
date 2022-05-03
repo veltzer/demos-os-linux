@@ -29,4 +29,4 @@ jobs:
     - name: pydmt build_tools
       run: pydmt build_tools --sudo False
     - name: Build
-      run: pymakehelper make DO_STP=0
+      run: pymakehelper run_make DO_STP=0
