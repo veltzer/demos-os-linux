@@ -25,9 +25,11 @@ jobs:
         apt-get install --yes wget
         wget https://mirrors.edge.kernel.org/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
         dpkg --install libffi7_3.3-4_amd64.deb
-    - name: requirements
-      run: python -m pip install -r requirements.txt
+    - name: pydmt
+      run: python -m pip install pydmt pyclassifiers
     - name: pydmt
       run: pydmt build_tools --sudo False
+    - name: build_reqs
+      run: pydmt build_reqs
     - name: make
       run: pymakehelper run_make DO_STP=0
