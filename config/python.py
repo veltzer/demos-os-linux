@@ -3,6 +3,7 @@ dev_requires = [
     "pydmt",
 ]
 
-python_requires = ">=3.9"
-test_python=["3.9"]
+python_requires = ">=3.10"
+
+test_python=["3.10"]
 test_container=["ubuntu:21.10"]
