@@ -7,7 +7,7 @@ build
 -----
 ![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
 * test_container: ['ubuntu:21.10']
-* test_python: ['3.9']
+* test_python: ['3.10']
 
 demos-linux is a project to demo and explore the Linux user space C/C++ API
 
