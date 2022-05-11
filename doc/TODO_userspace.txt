@@ -23,6 +23,8 @@ websites to get ideas from
 
 examples to add
 ===============
+- get another example for epoll from Ilan Smith of Nvidia from here:
+	https://github.com/ilansmith/pipe_trigger/blob/master/wakeup.c
 - do example of -fsanitize
 - write example that shows how
 	-fstack-protector -fstack-protector-all -fstack-protector-strong -fstack-protector-explicit
