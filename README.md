@@ -1,7 +1,9 @@
 demos-linux
 ===========
 
-version: 5
+version: 0.0.2
+
+description: demos-linux is a project to demo and explore the Linux user space C/C++ API
 
 build
 -----
@@ -9,7 +11,6 @@ build
 * test_os: ['ubuntu-22.04']
 * test_python: ['3.10']
 
-demos-linux is a project to demo and explore the Linux user space C/C++ API
 
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
@@ -82,6 +83,7 @@ Using it
     .[c|cc].
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
+
 
 
 	Mark Veltzer <mark.veltzer@gmail.com>, 2011-2022
