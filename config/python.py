@@ -1,6 +1,5 @@
-dev_requires = [
+make_requires = [
     "pymakehelper",
-    "pydmt",
 ]
 
 python_requires = ">=3.10"
