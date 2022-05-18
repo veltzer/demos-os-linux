@@ -1,21 +1,11 @@
-import datetime
-import config.general
-import config.helpers
-
-project_github_username="veltzer"
-project_name="demos-linux"
-project_website=f"https://{project_github_username}.github.io/{project_name}"
-project_website_source=f"https://github.com/{project_github_username}/{project_name}"
-project_website_git=f"git://github.com/{project_github_username}/{project_name}.git"
-project_description=f"{project_name} is a project to demo and explore the Linux user space C/C++ API"
-project_year_started=2011
-project_long_description=f"""This project is a source code repository for instructors or expert programmers
+description_short=f"demos-linux is a project to demo and explore the Linux user space C/C++ API"
+description_long=f"""This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
-You can find the project at {project_website}
+You can find the project at {website}
 
 Topics covered by the examples
 ------------------------------
@@ -82,7 +72,7 @@ Using it
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 """
 
-project_keywords=[
+keywords=[
     "linux",
     "API",
     "C",
@@ -93,16 +83,3 @@ project_keywords=[
     "samples",
     "demos",
 ]
-
-# deb section
-deb_package=False
-
-project_data_files = []
-
-codacy_id = None
-project_google_analytics_tracking_id = "UA-80940105-1"
-project_paypal_donate_button_id = None
-
-project_copyright_years = config.helpers.get_copyright_years(project_year_started)
-project_google_analytics_snipplet = config.helpers.get_google_analytics(project_google_analytics_tracking_id)
-project_paypal_donate_button_snipplet = config.helpers.get_paypal(project_paypal_donate_button_id)

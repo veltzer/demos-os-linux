@@ -5,31 +5,30 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>${config.project.project_name}</title>
+		<title>${config.project.name}</title>
 		<link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
 		<link rel="icon" type="image/x-icon" href="../static/favicon.ico"/>
-		<meta name="Description" content="${config.project.project_long_description}"/>
-		<meta name="Keywords" content="${user.personal.personal_fullname}, ${user.personal.personal_slug}, ${config.project.project_name}, ${', '.join(config.project.project_keywords)}"/>
-		${config.project.project_google_analytics_snipplet}
+		<meta name="Description" content="${config.project.long_description}"/>
+		<meta name="Keywords" content="${user.personal.personal_fullname}, ${user.personal.personal_slug}, ${config.project.name}, ${', '.join(config.project.keywords)}"/>
 	</head>
 	<body>
-		<h1>Welcome to the <i>${config.project.project_name}</i> web site</h1>
-		<p>Some related <b>${config.project.project_name}</b> project links:</p>
+		<h1>Welcome to the <i>${config.project.name}</i> web site</h1>
+		<p>Some related <b>${config.project.name}</b> project links:</p>
 		<ul>
 			<li>
-			The <b>${config.project.project_name}</b> github project is <a title="${config.project.project_name} github project" href="${config.project.project_website_source}">here</a>
+			The <b>${config.project.name}</b> github project is <a title="${config.project.name} github project" href="${config.project.website_source}">here</a>
 			</li>
 			<li>
-			The <b>${config.project.project_name}</b> web site for the project is <a title="${config.project.project_name} web site" href="${config.project.project_website}">here</a>
+			The <b>${config.project.name}</b> web site for the project is <a title="${config.project.name} web site" href="${config.project.website}">here</a>
 			</li>
 			<li>
-			The <b>${config.project.project_name}</b> git clone link is <a title="${config.project.project_name} git clone link" href="${config.project.project_website_git}">here</a>
+			The <b>${config.project.name}</b> git clone link is <a title="${config.project.name} git clone link" href="${config.project.website_git}">here</a>
 
 			</li>
 			<li>
 		</ul>
 		<p>
-			Copyright ${user.personal.personal_fullname}, ${config.project.project_copyright_years}
+			Copyright ${user.personal.personal_fullname}, ${config.project.copyright_years}
 			<a href="mailto:${user.personal.personal_email}">${user.personal.personal_email}</a>
 		</p>
 	</body>
