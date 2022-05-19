@@ -94,6 +94,17 @@ static void *regular_worker(void *p) {
 	for(int i=0; i<td->attempts; i++) {
 		*(td->value)+=1;
 	}
+	// so the computer (if optimizations are turned on, of course) turns the above code
+	// into the following:
+	// AX=*(td->value)
+	// inc AX, attempts
+	// write AX, td->value
+	// maybe the computer is not good enough for this and instead we get:
+	// AX=*(td->value)
+	// for(int i=0; i<td->attempts; i++) {
+	//	inc AX
+	// }
+	// write AX, td->value
 	TRACE("end thread %d", td->num);
 	return NULL;
 }
