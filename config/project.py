@@ -5,8 +5,6 @@ It has about 1000 examples (as of 1/2020) I found are useful in explaining the L
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
-You can find the project at {website}
-
 Topics covered by the examples
 ------------------------------
 * Multi-threading

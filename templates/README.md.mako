@@ -1,23 +1,37 @@
 <%!
+    import pydmt.helpers.project
+    import pydmt.helpers.misc
+    import pydmt.helpers.signature
+    import pydmt.helpers.urls
     import config.project
     import user.personal
-    import config.version
-    import config.python
-%>${config.project.name}
-${'=' * len(config.project.name)}
+    import os.path
+    import glob
+    import yaml
+%>## ${pydmt.helpers.project.get_name()}
 
-version: ${config.version.version_str}
+version: ${pydmt.helpers.misc.get_version_str()}
 
 description: ${config.project.description_short}
 
-build
------
-![build](https://github.com/veltzer/${config.project.name}/workflows/build/badge.svg)
-* test_os: ${config.python.test_os}
-* test_python: ${config.python.test_python}
+website: ${pydmt.helpers.urls.get_website()}
 
+${"##"} build
 
+<%
+	action_files = glob.glob('.github/workflows/*.yml')
+	for action_file in action_files:
+		with open(action_file, 'r') as stream:
+			action_name=yaml.safe_load(stream)["name"]
+			context.write(f"![{action_name}](https://github.com/{user.personal.github_username}/{pydmt.helpers.project.get_name()}/workflows/{action_name}/badge.svg)")
+%>
+
+% if hasattr(config.project, "description_long"):
 ${config.project.description_long}
+% endif
+chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
 
-
-	${user.personal.personal_origin}, ${config.project.copyright_years_long}
+% if os.path.isfile("../snipplets/main.md.mako"):
+<%include file="../snipplets/main.md.mako" />
+% endif
+${user.personal.fullname}, Copyright © ${pydmt.helpers.signature.get_copyright_years_long()}

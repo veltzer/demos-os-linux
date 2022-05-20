@@ -1,24 +1,20 @@
-demos-linux
-===========
+## demos-linux
 
 version: 0.0.2
 
 description: demos-linux is a project to demo and explore the Linux user space C/C++ API
 
-build
------
-![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
-* test_os: ['ubuntu-22.04']
-* test_python: ['3.10']
+website: https://veltzer.github.io/demos-linux
 
+## build
+
+![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
 
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
-
-You can find the project at https://veltzer.github.io/demos-linux
 
 Topics covered by the examples
 ------------------------------
@@ -84,6 +80,6 @@ Using it
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 
+chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
 
-
-	Mark Veltzer <mark.veltzer@gmail.com>, 2011-2022
+Mark Veltzer, Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021
