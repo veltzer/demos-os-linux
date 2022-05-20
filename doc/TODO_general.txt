@@ -1,3 +1,7 @@
+- make this project be compilable on other platforms as well: 
+	workflows_platforms = [
+	    ("ubuntu-20.04", "3.9"),
+	]
 - enable to put a tag inside an example that will prevent
 	it from compiling.
 	this will stop the situation where examples that don't
