@@ -1,38 +1,32 @@
-# git-ls-files --others --exclude-from=.git/info/exclude
-# Lines that start with '#' are comments.
-# For a project mostly in C, the following would be a good set of
-# exclude patterns (uncomment them if you want to use them):
-# *.[oa]
-# *~
+# generated
+/build/
+/dist/
+/target/
+/out/
+*.out
 
-# user space stuff...
-*.o.ur-safe
+# hive
+/derby.log
+/dfs/
+/metastore_db/
+
+# c, c++ stuff
 *.o
-*.oo
 *.so
 *.a
-*.elf
 *.dis
+/Makefile.bak
+/bin/
+/obj/
+*.o.ur-safe
+*.oo
+*.elf
 *.s
 *.d
-*.class
-*.stamp
-*.out
-*.p
-/core
-.modules.*.cmd
-.Module.*.cmd
-# libraries
-lib*.so.?.?.?
-# gnu precompiled headers
+core.*
+lib*.so.*
 *.gch
-# intel precompiled headers
 *.pchi
-# locks by open office
-.~lock.*
-# makefiles
-/misc/makefiles/*.junk
-# profiling
 *.gcda
 
 # kernel stuff...
@@ -47,12 +41,43 @@ lib*.so.?.?.?
 Module.symvers
 modules.order
 *.objdump
+/src/kernel/.*.tmp
+.modules.*.cmd
+.Module.*.cmd
+
+# sphinx
+/docs/_build/
+/docs/.doctrees/environment.pickle
+
+# installations
+/external/
+/install/
+*.tar.gz
+
+# python
+__pycache__/
+*.py[oc]
+/wheel/
+/.venv/
+
+# mine
+/.pydmt/
+*.stamp
+
+# java
+*.class
+*.jar
+*.war
+*.ear
+/.mtj.tmp/
+/hs_err_pid*
+
+# node modules
+/node_modules/
 
 # ppt, pdf
 /doc/odp/*.pdf
 /doc/odp/*.ppt
-# various output files
-*.out
 
 # intel compiler pgo
 *.dyn
@@ -62,19 +87,5 @@ modules.order
 # dwarf dynamic debug info
 *.dwo
 
-# python cache in any folder (this is for python3)
-__pycache__
-
-# downloaded packages
-*.tar.gz
-
-# generated stuff
-/out
-
-# node modules
-/node_modules
-
-/.pydmt/
-/.venv/
-
-/src/kernel/.*.tmp
+# locks by open office
+.~lock.*
