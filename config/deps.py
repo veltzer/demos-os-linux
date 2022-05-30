@@ -175,9 +175,8 @@ packages_tools=[
     "figlet",
     "sl",
 
-    # tools used by the this package
+    # tools used by this package
     "libreoffice-common", # for soffice conversion
-    "ccache", # for ccache(1) (faster building)
     "xutils-dev", # for makedepend(1)
     "uncrustify", # for uncrustify(1) (code formatting)
     "indent", # for indent(1) (code formatting)
@@ -239,6 +238,8 @@ packages_tools=[
 ]
 
 packages=[
+    "ccache",
+
     "gcc-9-plugin-dev",
     "binutils-dev",
     "libxtables-dev",
