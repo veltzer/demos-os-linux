@@ -176,7 +176,6 @@ packages_tools=[
     # tools used by this package
     "libreoffice-common", # for soffice conversion
     "xutils-dev", # for makedepend(1)
-    "indent", # for indent(1) (code formatting)
     "astyle", # for indent(1) (code formatting)
 
     # these packages are for the developers pleasure...:)
@@ -238,6 +237,7 @@ packages=[
     # packages needed for the build
     "ccache",
     "uncrustify", # for uncrustify(1) (code formatting)
+    "indent", # for indent(1) (code formatting)
 
     # dialog really has header files and that is why it is here
     "dialog",
