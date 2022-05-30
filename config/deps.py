@@ -92,8 +92,6 @@ packages_tools=[
     "manpages-posix-dev",
     # tools for building
     "gnulib",
-    # tools for building uis
-    "dialog",
     # tool for converting documents from one format to another
     "unoconv",
     "cpufrequtils",
@@ -240,6 +238,8 @@ packages_tools=[
 packages=[
     "ccache",
 
+    # dialog really has header files and that is why it is here
+    "dialog",
     "gcc-9-plugin-dev",
     "binutils-dev",
     "libxtables-dev",
