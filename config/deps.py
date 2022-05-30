@@ -99,7 +99,6 @@ packages_tools=[
     # tools
     "linux-tools-common", # for perf(1)
     "python3-uno", # for soffice conversion
-    "electric-fence",
     #"vnstat", # causes performance problems
     #"vnstati", # causes performance problems
     "wireshark-common",
@@ -238,6 +237,7 @@ packages=[
     "ccache",
     "uncrustify", # for uncrustify(1) (code formatting)
     "indent", # for indent(1) (code formatting)
+    "electric-fence",
 
     # dialog really has header files and that is why it is here
     "dialog",
