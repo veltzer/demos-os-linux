@@ -230,6 +230,9 @@ packages_tools=[
     # javascript
     "nodejs",
     "npm",
+
+    # openmpi
+    "openmpi-bin",
 ]
 
 packages=[
@@ -303,6 +306,8 @@ packages=[
     "libffi7",
     "libffi8",
     "libffi-dev",
+    "libopenmpi3",
+    "libopenmpi-dev",
 ]
 
 if opt_do_kernel:
