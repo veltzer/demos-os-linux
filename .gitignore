@@ -44,6 +44,7 @@ modules.order
 /src/kernel/.*.tmp
 .modules.*.cmd
 .Module.*.cmd
+/flags.cfg
 
 # sphinx
 /docs/_build/
@@ -59,6 +60,10 @@ __pycache__/
 *.py[oc]
 /wheel/
 /.venv/
+.coverage
+.coverage.*
+coverage.xml
+*.egg-info/
 
 # mine
 /.pydmt/
@@ -69,6 +74,7 @@ __pycache__/
 *.jar
 *.war
 *.ear
+*.jsa
 /.mtj.tmp/
 /hs_err_pid*
 
@@ -89,3 +95,9 @@ __pycache__/
 
 # locks by open office
 .~lock.*
+
+# haskell
+*.hi
+
+# repositries of deb packages
+/deb/mypackage/DEBIAN/control
