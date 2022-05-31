@@ -81,7 +81,7 @@ Using it
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 
 
-## contact 
+## contact
 
 chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
 
