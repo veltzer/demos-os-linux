@@ -27,10 +27,13 @@
 #include <signal_utils.h>	// for register_handler_signal()
 
 /*
+ * This is an example of how to stop a thread/process which is doing 100%
+ * CPU work
  */
 
 static void handler(int sig) {
 	fprintf(stderr, "Im inside the signal handler\n");
+	exit(1);
 }
 
 int main(int argc, char** argv, char** envp) {
