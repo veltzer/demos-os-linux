@@ -43,16 +43,20 @@
  */
 
 static bool broken=false;
+static bool actually_break=false;
 
 static void handler(int sig, siginfo_t *, void *) {
-	TRACE("start handler, sig is %d", sig);
-	broken=true;
+	TRACE("start: sig is %d", sig);
 	TRACE("end");
 }
 
 int main(int argc, char** argv, char** envp) {
 	// make sure we break out on receiving the SIGUSR1 signal...
-	signal_register_handler_sigaction(SIGUSR1, handler, SA_RESTART);
+	if(actually_break) {
+		signal_register_handler_sigaction(SIGUSR1, handler, 0);
+	} else {
+		signal_register_handler_sigaction(SIGUSR1, handler, SA_RESTART);
+	}
 	int ret;
 	printf("signal me with [kill -s SIGUSR1 %d]\n", getpid());
 	bool matchingError=false;
@@ -61,19 +65,18 @@ int main(int argc, char** argv, char** envp) {
 		fflush(stdout);
 		int a;
 		if(broken) {
-			break;
+			if(actually_break) {
+				break;
+			}
 		}
 		ret=scanf("%d", &a);
 		if(ret==EOF && errno==EINTR) {
-			printf("\n\n\n\ninterrupted...shutting down...\n");
+			printf("interrupted, shutting down\n");
 			broken=true;
 			break;
 		}
 		if(ret!=1) {
 			matchingError=true;
-			break;
-		}
-		if(broken) {
 			break;
 		}
 		printf("enter number b: ");
@@ -81,7 +84,7 @@ int main(int argc, char** argv, char** envp) {
 		int b;
 		ret=scanf("%d", &b);
 		if(ret==EOF && errno==EINTR) {
-			printf("\n\n\n\ninterrupted...shutting down...\n");
+			printf("interrupted, shutting down\n");
 			broken=true;
 			break;
 		}
@@ -89,17 +92,14 @@ int main(int argc, char** argv, char** envp) {
 			matchingError=true;
 			break;
 		}
-		if(broken) {
-			break;
-		}
 		printf("a+b is %d\n", a+b);
 		fflush(stdout);
 	}
 	if(broken) {
-		printf("doing some cleanup code at end of program in case of break...\n");
+		printf("doing some cleanup code at end of program in case of break\n");
 	}
 	if(matchingError) {
-		printf("doing some cleanup code at end of program in case of EOF or parse error...\n");
+		printf("doing some cleanup code at end of program in case of EOF or parse error\n");
 	}
 	return EXIT_SUCCESS;
 }
