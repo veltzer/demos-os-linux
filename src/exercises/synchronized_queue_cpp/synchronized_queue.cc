@@ -54,6 +54,8 @@ public:
 		if(waiters>0) {
 			CHECK_ZERO_ERRNO(pthread_cond_signal(&mycond));
 		}
+		// a simpler piece of code, which is less efficients, could be:
+		// CHECK_ZERO_ERRNO(pthread_cond_broadcast(&mycond));
 		CHECK_ZERO_ERRNO(pthread_mutex_unlock(&mymutex));
 	}
 	T get() {
