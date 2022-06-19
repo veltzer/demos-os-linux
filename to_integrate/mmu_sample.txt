@@ -1,0 +1,27 @@
+
+
+
+
+	Task	Virtual page #		Physcal page #
+	0	xxx			xxx
+	7	1			451
+	7	2			222
+	9	45			451
+	8	xxx			xxx
+	23456	xxxx			xxx
+
+	1*4096 -> 3 * 4096
+	4096 -> 12345
+
+
+	if app 7 tries to access address 4100 using the instruction
+		Load 4100, %ebx
+
+		4100 // 4096 = 1
+		4100 % 4096 = 4
+
+	so the app is really trying to access offset 4 of its second page
+
+	second page of app 7 according to the mmu is physical page 451
+	and so the real address that 7 is trying to access is:
+		451*4069 + 4

@@ -1,0 +1,14 @@
+
+
+
+				two global variables
+				data_for_operation: int
+				go=0: int
+		
+
+		T1						T2
+
+	data_for_operation = 7				while(!go) {}
+	mb()
+	go = 1						x = data_for_operation
+							// do something with x
