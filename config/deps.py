@@ -257,7 +257,8 @@ packages=[
     "libprocps8",
     "libprocps-dev",
     "libsystemd0",
-    "libsystemd-dev",
+    # does not install now
+    # "libsystemd-dev",
     "libsigc++-2.0-0v5",
     "libsigc++-2.0-dev",
     "libgtkmm-2.4-dev",
