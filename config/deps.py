@@ -297,7 +297,6 @@ packages=[
     "libacl1-dev",
     "libattr1-dev",
     "libdaemon-dev",
-    "libsystemd-dev",
     "libsystemd0",
     "libpapi-dev",
     f"libpapi{opt_papiversion}",
