@@ -37,15 +37,31 @@ int main(int argc, char** argv, char** envp) {
 	int miss=atoi(argv[1]);
 	srand(getpid());
 	long long sum=0;
+	int delay=0;
+	int current_rand;
+	const int LIMIT=10000;
 	for(unsigned int i=0; i<100000000; i++) {
 		if(miss) {
-			if(rand()%2==0) {
+			if(delay==0) {
+				current_rand=rand();
+			}
+			delay++;
+			if(delay==LIMIT) {
+				delay=0;
+			}
+			if(current_rand%2==0) {
 				sum+=i*i;
 			} else {
 				sum-=i*i;
 			}
 		} else {
-			rand();
+			if(delay==0) {
+				current_rand=rand();
+			}
+			delay++;
+			if(delay==LIMIT) {
+				delay=0;
+			}
 			if(i<50000000) {
 				sum+=i*i;
 			} else {
