@@ -224,7 +224,7 @@ void run(bool doVolatile, void *(*start_routine1)(void *), void *(*start_routine
 
 int main(int argc, char** argv, char** envp) {
 	if(argc!=4) {
-		fprintf(stderr, "%s: usage: %s iterations core1 core2\n", argv[0], argv[0]);
+		fprintf(stderr, "%s: usage: %s core1 core2 iterations\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: to see reordering use\n", argv[0]);
 		fprintf(stderr, "%s: example: %s 0 1 40000\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: to see them go away use\n", argv[0]);
