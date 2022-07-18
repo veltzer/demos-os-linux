@@ -1,0 +1,5 @@
+In newer ubuntus the core file is configured to go to app_port
+
+To get core files you need to:
+- ulimit -c 50000
+- echo core | sudo tee /proc/sys/kernel/core_pattern
