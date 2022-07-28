@@ -1,6 +1,13 @@
-This project is a source code repository for instructors or expert programmers
+<%!
+    import pydmt.helpers.files
+    file_number = pydmt.helpers.files.count_files("src", ".cc") + pydmt.helpers.files.count_files("src", ".c")
+%>This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
-It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
+
+${"##"} number of examples and their selection
+
+Currently there are ${file_number} examples in this repo.
+These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 

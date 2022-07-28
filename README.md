@@ -18,7 +18,11 @@ chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gi
 
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
-It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
+
+## number of examples and their selection
+
+Currently there are 954 examples in this repo.
+These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
