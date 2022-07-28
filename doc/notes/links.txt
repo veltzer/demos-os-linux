@@ -178,3 +178,4 @@ http://www.tldp.org/LDP/lpg/index.htmw
 iouring:
 ========
 https://github.com/shuveb/loti-examples
+https://unixism.net/loti
