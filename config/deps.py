@@ -308,6 +308,8 @@ packages=[
     "libffi-dev",
     "libopenmpi3",
     "libopenmpi-dev",
+    "liburing2",
+    "liburing-dev",
 ]
 
 if opt_do_kernel:
