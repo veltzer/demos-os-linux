@@ -60,6 +60,7 @@ struct foo {
 		} real;
 	} un;
 };
+static_assert(sizeof(foo)==LEVEL2_CACHE_LINESIZE, "size of foo is wrong");
 
 // this guarantess that the size of the structure will be exactly 64 bytes
 struct bar {
@@ -67,6 +68,7 @@ struct bar {
 	int i1;
 	char c2;
 } __attribute__((aligned (LEVEL2_CACHE_LINESIZE)));
+static_assert(sizeof(bar)==LEVEL2_CACHE_LINESIZE, "size of bar is wrong");
 
 // same as before, applied to a Class instead...
 class MyClass {
@@ -75,8 +77,8 @@ private:
 	int i1;
 	char c2;
 } __attribute__((aligned (LEVEL2_CACHE_LINESIZE)));
+static_assert(sizeof(MyClass)==LEVEL2_CACHE_LINESIZE, "size of MyClass is wrong");
 
-static_assert(sizeof(foo)==LEVEL2_CACHE_LINESIZE, "size of foo is wrong");
 
 typedef struct _barestruct {
 	int field1;

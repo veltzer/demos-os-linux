@@ -1,28 +1,10 @@
-## demos-linux
-
-version: 0.0.3
-
-description: demos-linux is a project to demo and explore the Linux user space C/C++ API
-
-website: https://veltzer.github.io/demos-linux
-
-## build
-
-![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
-
-demos-linux is a project to demo and explore the Linux user space C/C++ API
-
-## contact
-
-chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
-
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 It has about 1000 examples (as of 1/2020) I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
-## Topics covered by the examples
+${"##"} Topics covered by the examples
 * Multi-threading
 * Multi-processing
 * Locking
@@ -32,30 +14,30 @@ about exactly how a certain API works.
 * Various compiler directives
 * Many more...
 
-## Platforms supported
+${"##"} Platforms supported
 Only ia64 is supported. I used to support i386 but I don't have a 32 bit
 machine anymore. 
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
 
-## Contributing
+${"##"} Contributing
 This project needs help. fork, commit and request me to pull.
 Just open a github account, modify and add examples, commit and ask me to pull...
 A lot of the code is documented but some of it is not. More documentation would be welcome.
 I would give attribution to whomever contributes.
 
-## License
+${"##"} License
 Code is licensed GPL3 and I hold the copyright unless explicity stolen as attributed in the source code.
 I encourage people to use this source code as aid for instructing courses.
 Please give me some credit if you do wind up using this package and consider dropping
 me a note about the fact that you did use the package so I could feel good...
 
-## Similar projects
+${"##"} Similar projects
 Michael Kerrisk, the maintainer and author of many of the Linux manual pages has a similar project he calls
 TLPI (The Linux Programming Interface) of programs he used in his book of the same title. You can find
 it here http://man7.org/tlpi/code/.
 
-## Using it
+${"##"} Using it
 * you need python on your machine:
     try:
         `python --version`
@@ -79,5 +61,3 @@ it here http://man7.org/tlpi/code/.
     .[c|cc].
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
-
-Mark Veltzer, Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022

@@ -39,6 +39,8 @@
 int main(int argc, char** argv, char** envp) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [size] [times]\n", argv[0], argv[0]);
+		fprintf(stderr, "%s: 104857600 100000000\n", argv[0]);
+		fprintf(stderr, "%s: measure with: perf stat -e cache-misses ./src/examples/performance/cache_misser.elf [size] [times]\n", argv[0]);
 		return EXIT_FAILURE;
 	}
 	printf("RAND_MAX is %d\n", RAND_MAX);
