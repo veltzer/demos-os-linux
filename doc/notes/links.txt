@@ -174,3 +174,7 @@ http://locklessinc.com/articles/futex_cheat_sheet
 systems progreamming:
 =====================
 http://www.tldp.org/LDP/lpg/index.htmw
+
+iouring:
+========
+https://github.com/shuveb/loti-examples
