@@ -13,7 +13,7 @@ SUFFIX_O:=o
 # suffix for c++ object files
 SUFFIX_OO:=oo
 # suffix for dependency files
-SUFFIX_DEP:=d
+SUFFIX_DEP:=dep
 # suffix for library files
 SUFFIX_LIB:=so
 # compile with intel compiler?

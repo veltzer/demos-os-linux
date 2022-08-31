@@ -31,7 +31,7 @@ $(OBJECTS): %.$(SUFFIX_OO) : %.$(SUFFIX_CC)
 $(DEPS): %.$(SUFFIX_DEP) : %.$(SUFFIX_CC)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
-	$(Q)$(CXX) $(CXXFLAGS) -x c++ -MM $(INCLUDE_LIST) $< | sed -e "s/$*\.o/$(JUNK)\/& $(JUNK)\/$*.d/g" > $@
+	$(Q)$(CXX) $(CXXFLAGS) -x c++ -MM $(INCLUDE_LIST) $< | sed -e "s/$*\.o/$(JUNK)\/& $(JUNK)\/$*.$(SUFFIX_DEP)/g" > $@
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(DEPS)

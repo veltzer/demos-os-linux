@@ -22,7 +22,7 @@
 *.oo
 *.elf
 *.s
-*.d
+*.dep
 core.*
 lib*.so.*
 *.gch
