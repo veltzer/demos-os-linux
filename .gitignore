@@ -37,6 +37,7 @@ lib*.so.*
 .*.o.cmd
 .*.ko.cmd
 .*.o.tmp
+.*.o.d
 .tmp_versions
 Module.symvers
 modules.order
