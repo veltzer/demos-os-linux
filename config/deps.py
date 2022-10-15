@@ -1,6 +1,6 @@
-import os # for uname
-import sys # for exit
-import subprocess # for check_output
+import os
+import sys
+import subprocess
 import platform
 
 ##############
