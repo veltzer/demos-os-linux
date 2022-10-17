@@ -1,6 +1,0 @@
-I want to set up a web server.
-Find and install a service which is a web server.
-make it listen on port 8081 (change it's configuration).
-point your browser to:
-	http://localhost:8081
-and see that the service is working...
