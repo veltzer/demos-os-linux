@@ -32,8 +32,8 @@ static __thread int myid;
 static void* worker(void* arg) {
 	int* pint=(int*)arg;
 	myid=*pint;
+	TRACE("going to deallocate [%p]", pint);
 	free(pint);
-	TRACE("dellocated [%p]", pint);
 	// now lets pull our id
 	TRACE("myid is [%d]", myid);
 	return NULL;

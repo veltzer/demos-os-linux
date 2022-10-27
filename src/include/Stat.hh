@@ -71,7 +71,7 @@ public:
 		counter=0;
 	}
 	~Stat(void) {
-		delete bins;
+		delete[] bins;
 	}
 
 	void accept(double val) {

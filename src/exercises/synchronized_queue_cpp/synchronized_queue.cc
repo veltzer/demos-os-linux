@@ -131,9 +131,9 @@ int main(int argc, char** argv, char** envp) {
 	for(unsigned int i=0; i<thread_num; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
-	delete threads;
-	delete attrs;
-	delete tds;
-	delete cpu_sets;
+	delete[] threads;
+	delete[] attrs;
+	delete[] tds;
+	delete[] cpu_sets;
 	return EXIT_SUCCESS;
 }

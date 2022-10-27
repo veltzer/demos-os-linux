@@ -20,6 +20,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <unistd.h>	// for malloc(3)
 #include <stdio.h>	// for printf(3)
+#include <string.h>	// for memset(3)
 
 /*
  * This example proves that glibc does not protect against
@@ -29,6 +30,7 @@
 
 int main(int argc, char** argv, char** envp) {
 	char* malicious_string=(char*)malloc(20);
+	memset(malicious_string, 0, 20);
 	printf(malicious_string, 45);
 	return EXIT_SUCCESS;
 }

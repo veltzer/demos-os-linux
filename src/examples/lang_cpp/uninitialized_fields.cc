@@ -21,7 +21,8 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
- * Example showing forgetting for initialization of members
+ * Example showing forgetting the initialization of members
+ * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  */
 
 class A {

@@ -75,7 +75,7 @@ void mergesort(int* arr, unsigned int from, unsigned int to, int* scratch) {
 void mergesort(int* arr, unsigned int size) {
 	int* scratch=new int[size];
 	mergesort(arr, 0, size, scratch);
-	delete scratch;
+	delete[] scratch;
 }
 
 int main(int argc, char** argv, char** envp) {

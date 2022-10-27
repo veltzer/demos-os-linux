@@ -22,6 +22,7 @@
 
 /*
  * This is an example of initializing a struct in C++...
+ * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  */
 
 struct mystruct {

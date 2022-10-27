@@ -180,9 +180,9 @@ int main(int argc, char** argv, char** envp) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
 	CHECK_ZERO(mypthread_rwlock_destroy(&lock));
-	delete threads;
-	delete attrs;
-	delete tds;
-	delete cpu_sets;
+	delete[] threads;
+	delete[] attrs;
+	delete[] tds;
+	delete[] cpu_sets;
 	return EXIT_SUCCESS;
 }

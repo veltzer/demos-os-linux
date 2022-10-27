@@ -69,6 +69,7 @@ unsigned int get_block_size(void* p) {
 		printf("*u is %d (char ptr is %d)\n", *u, *((char*)u));
 	}
 #pragma GCC diagnostic ignored "-Wuninitialized"
+#pragma GCC diagnostic ignored "-Warray-bounds"
 	return (*u)-1;
 }
 

@@ -1,6 +1,5 @@
 import os
 import sys
-import subprocess
 import platform
 
 ##############
@@ -17,13 +16,12 @@ opt_do_ddebs=False
 # do we want to install compilers?
 opt_do_compilers=False
 
-# version of the papi library
-opt_papiversion="6.0"
-# what version of wxgtk to install?
-opt_wxgtk_ver="3.0"
-# what boost to install?
-opt_boost_version_short="1.74"
-opt_boost_version=opt_boost_version_short+".0"
+ver_papi = "6.0"
+ver_wxgtk = "3.0"
+ver_boost_short = "1.74"
+ver_boost=ver_boost_short+".0"
+ver_urcu = "8"
+ver_unwind = "8"
 
 release=os.uname().release
 short_release=release[:release.rfind("-")]
@@ -36,7 +34,7 @@ if opt_debug:
     print(f"short_release is [{short_release}]")
     print(f"source_release is [{source_release}]")
     print(f"release_lowlatency is [{release_lowlatency}]")
-    print(f"release_generic is [{releae_generic}]")
+    print(f"release_generic is [{release_generic}]")
 
 if opt_exit:
     sys.exit(0)
@@ -44,12 +42,13 @@ if opt_exit:
 if hasattr(platform, "freedesktop_os_release"):
     desktop = platform.freedesktop_os_release()
     VERSION_ID = desktop["VERSION_ID"]
-    # what version of urcu?
-    opt_urcu_ver = None
     if VERSION_ID == "22.04":
-        opt_urcu_ver = 8
+        libevent_ver = "2.1-7"
+    if VERSION_ID == "22.10":
+        ver_unwind = "-15"
+        libevent_ver = "2.1-7a"
 else:
-    opt_urcu_ver = 6
+    ver_urcu = 6
 
 packages_kernels=[
 ]
@@ -189,7 +188,7 @@ packages_tools=[
     # memory testing tools
     "memtester",
     "memtest86+",
-    
+
     # papi
     "papi-tools", # PAPI utilities
 
@@ -248,7 +247,7 @@ packages=[
     "binutils-dev",
     "libxtables-dev",
     "libevent-dev",
-    "libevent-2.1-7",
+    f"libevent-{libevent_ver}",
     "libiberty-dev",
     "libncurses5",
     "libncurses5-dev",
@@ -266,13 +265,13 @@ packages=[
     "libpq-dev",
     "liblog4cpp5-dev",
     "libmysqlclient-dev",
-    f"libwxgtk{opt_wxgtk_ver}-gtk3-dev",
+    f"libwxgtk{ver_wxgtk}-gtk3-dev",
     "libmysql++-dev",
     "libsdl1.2-dev",
     "libace-dev",
-    f"libboost{opt_boost_version_short}-dev",
-    f"libboost-thread{opt_boost_version}",
-    f"libboost-system{opt_boost_version}",
+    f"libboost{ver_boost_short}-dev",
+    f"libboost-thread{ver_boost}",
+    f"libboost-system{ver_boost}",
     "libpcap-dev",
     "libasound2",
     "libasound2-dev",
@@ -282,11 +281,11 @@ packages=[
     "libnetfilter-queue1",
     "libnetfilter-queue-dev",
     "libcap-dev", # for capability.h
-    f"liburcu{opt_urcu_ver}", # rcu library
+    f"liburcu{ver_urcu}", # rcu library
     "liburcu-dev", # rcu library
-    "libunwind8", # unwind library
+    f"libunwind{ver_unwind}", # unwind library
     "libunwind-setjmp0", # unwind library
-    "libunwind8-dev", # unwind library
+    "libunwind-dev", # unwind library
     "libunwind-setjmp0-dev", # unwind library
     "libelf1", # for reading elf files
     "libdw1",
@@ -299,7 +298,7 @@ packages=[
     "libdaemon-dev",
     "libsystemd0",
     "libpapi-dev",
-    f"libpapi{opt_papiversion}",
+    f"libpapi{ver_papi}",
     "libpopt-dev",
     "systemtap-sdt-dev",
     "liburing-dev",

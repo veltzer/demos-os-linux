@@ -65,6 +65,7 @@ inline int array_get_value(void* array, int pos) {
 
 inline void array_set_value(void* array, int pos, int val) {
 	CHECK_BOUNDS(array, pos);
+#pragma GCC diagnostic ignored "-Warray-bounds"
 	((int*)array)[pos]=val;
 }
 

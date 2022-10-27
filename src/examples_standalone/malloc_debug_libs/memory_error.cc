@@ -84,6 +84,7 @@ int main(int argc, char** argv, char** envp) {
 		break;
 	case 7:
 		free(buffer);
+#pragma GCC diagnostic ignored "-Wuse-after-free"
 		free(buffer);
 		break;
 	}

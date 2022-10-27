@@ -26,6 +26,8 @@
  * This example shows how mcheck helps to catch errors in free...
  * This means that if you activated mcheck your free(3) calls will run
  * some consistency check and you will catch the errors.
+ *
+ * EXTRA_COMPILE_FLAGS=-Wno-use-after-free
  */
 
 
