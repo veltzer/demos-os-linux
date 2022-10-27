@@ -94,22 +94,6 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	/*
 	 * PCI allocation function
 	 */
-	case IOCTL_DEMO_PCI_ALLOC_CONSISTENT:
-		size = arg * PAGE_SIZE;
-		ptr = pci_alloc_consistent(NULL, size, &dma_handle);
-		if (IS_ERR(ptr)) {
-			PR_ERROR("unable to allocate %lu", size);
-			return PTR_ERR(ptr);
-		}
-		addr = (unsigned long)ptr;
-		if (addr % PAGE_SIZE != 0) {
-			PR_ERROR("page size issue with addr=%lu", addr);
-			return -EFAULT;
-		}
-		addr = -1;
-		pci_free_consistent(NULL, size, ptr, dma_handle);
-		ptr = NULL;
-		return 0;
 	case IOCTL_DEMO_DMA_ALLOC_COHERENT:
 		size = arg * PAGE_SIZE;
 		ptr = dma_alloc_coherent(my_device, size, &dma_handle,

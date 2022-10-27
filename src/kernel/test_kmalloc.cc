@@ -46,8 +46,6 @@ int main(int argc, char** argv, char** envp) {
 		printf("__get_free_pages: i is %d\n", i);
 		// I don't seem to be able to call these unless I have a real
 		// device (like PCI etc...).
-		// CHECK_NOT_M1(ioctl(d,IOCTL_DEMO_PCI_ALLOC_CONSISTENT,i),"pci_alloc_consistent");
-		// printf("pci_alloc_consistent: i is %d",i);
 		// CHECK_NOT_M1(ioctl(d,IOCTL_DEMO_DMA_ALLOC_COHERENT,i),"dma_alloc_coherent");
 		// printf("dma_alloc_coherent: i is %d",i);
 	}
