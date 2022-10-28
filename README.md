@@ -8,7 +8,7 @@ website: https://veltzer.github.io/demos-linux
 
 ## build
 
-![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
+
 
 demos-linux is a project to demo and explore the Linux user space C/C++ API
 
