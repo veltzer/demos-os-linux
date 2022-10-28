@@ -302,7 +302,7 @@ packages=[
     "libpopt-dev",
     "systemtap-sdt-dev",
     "liburing-dev",
-    "libffi7",
+    # "libffi7",
     "libffi8",
     "libffi-dev",
     "libopenmpi3",
