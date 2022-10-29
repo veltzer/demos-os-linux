@@ -1,3 +1,4 @@
 - we use python3
 - we use venv with pydmt
 - use python with "#!/usr/bin/env python"
+- we use double quotes for python string.

@@ -2,9 +2,6 @@ import os
 import sys
 import platform
 
-##############
-# parameters #
-##############
 # debug this script?
 opt_debug=False
 # exit after debug?

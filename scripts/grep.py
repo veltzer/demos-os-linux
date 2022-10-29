@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """
 Implemting a better grep in python
@@ -26,15 +26,16 @@ for root,dirs,files in os.walk(folder):
     for file in files:
         full=os.path.join(root,file)
         #if debug:
-        #    print("file is %s" % full)
+        #    print(f"file is [{full}]")
         if cf.match(full):
             if debug:
-                print("doing file %s" % full)
-            for num,line in enumerate(open(full)):
-                for x in c.finditer(line):
-                    if printOnlyFiles:
-                        if not full in printedFiles:
-                            print full
-                            printedFiles.add(full)
-                    else:
-                        print("%s, %s: %s" % (full,num,line[:-1]))
+                print(f"doing file [{full}]")
+            with open(full, "r") as stream:
+                for num,line in enumerate(stream):
+                    for x in c.finditer(line):
+                        if printOnlyFiles:
+                            if not full in printedFiles:
+                                print(full)
+                                printedFiles.add(full)
+                        else:
+                            print(f"{full}, {num}: {line[:-1]}")
