@@ -4,4 +4,5 @@ make_requires = [
     "pymakehelper",
     "pydmt",
     "pyclassifiers",
+    "pylint",
 ]

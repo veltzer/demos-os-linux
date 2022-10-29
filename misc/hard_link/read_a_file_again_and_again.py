@@ -1,19 +1,21 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
-'''
+"""
 This demo shows the fact that removing a file does not stop the process accessing it from working
 and even working correctly...
-'''
+"""
 
-import time # for sleep
-import shutil # for copy
+import time
+import shutil
 
-filename='/tmp/passwd'
-shutil.copy('/etc/passwd', filename)
-print('while I am working please remove [{0}] and see that I keep working right...'.format(filename))
-f=open(filename, 'r')
-while True:
-    for line in f:
-        print(line, end="")
-        time.sleep(1)
-    f.seek(0)
+
+def main():
+    filename="/tmp/passwd"
+    shutil.copy("/etc/passwd", filename)
+    print(f"while I am working please remove [{filename}] and see that I keep working right...")
+    with open(filename, "r") as stream:
+        while True:
+            for line in stream:
+                print(line, end="")
+                time.sleep(1)
+            stream.seek(0)

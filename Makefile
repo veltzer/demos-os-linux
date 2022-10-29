@@ -11,6 +11,8 @@ DO_CHP:=0
 DO_ALLDEP:=1
 # do you want to show the commands executed ?
 DO_MKDBG?=0
+# do you want to check python script?
+DO_PYLINT:=1
 
 #############
 # variables #
@@ -142,6 +144,7 @@ MOD_MOD:=$(addsuffix .ko,$(MOD_BAS))
 MOD_STP:=$(addsuffix .ko.stamp,$(MOD_BAS))
 CLEAN:=$(CLEAN) $(MOD_STP) $(MOD_MOD) $(MOD_SR2) $(MOD_OB2) $(KERNEL_DIR)/Module.symvers $(KERNEL_DIR)/modules.order $(MOD_CM1) $(MOD_CM2) $(MOD_CM3) $(MOD_OBJ)
 CLEAN_DIRS:=$(CLEAN_DIRS) $(KERNEL_DIR)/.tmp_versions
+ALL_PY:=$(shell find . -type f -not -path "./.venv/*" -name "*.py")
 
 # standlone
 MK_SRC:=$(shell find src/examples_standalone src/kernel_standalone -name "Makefile")
@@ -155,6 +158,10 @@ endif # DO_STP
 ifeq ($(DO_CHP),1)
 ALL:=$(ALL) $(MOD_CHP)
 endif # DO_CHP
+
+ifeq ($(DO_PYLINT),1)
+ALL:=$(ALL) out/pylint.stamp
+endif # DO_PYLINT
 
 #########
 # rules #
@@ -295,6 +302,7 @@ debug:
 	$(info ALL_US_C is $(ALL_US_C))
 	$(info ALL_US_CC is $(ALL_US_CC))
 	$(info ALL_US is $(ALL_US))
+	$(info ALL_PY is $(ALL_PY))
 
 .PHONY: todo
 todo:
@@ -504,6 +512,12 @@ format_indent:
 	$(error disabled - use format_uncrustify instead)
 	$(info doing [$@])
 	$(Q)indent $(ALL_US)
+
+.PHONY: pylint
+pylint: out/pylint.stamp
+out/pylint.stamp: $(ALL_PY)
+	$(Q)pylint --reports=n --score=n $(ALL_PY)
+	$(Q)pymakehelper touch_mkdir $@
 
 # code measurements
 
