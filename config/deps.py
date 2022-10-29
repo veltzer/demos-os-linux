@@ -93,8 +93,8 @@ packages_tools=[
     "cpufrequtils",
     "netperf",
     # tools
-    "linux-tools-common", # for perf(1)
-    "python3-uno", # for soffice conversion
+    "linux-tools-common", # perf(1)
+    "python3-uno", # soffice conversion
     #"vnstat", # causes performance problems
     #"vnstati", # causes performance problems
     "wireshark-common",
@@ -113,8 +113,8 @@ packages_tools=[
     "schedtool",
     "blktrace",
     "fdutils", # floppy disk utilities ?!?
-    "iotop", # for the iotop command
-    "jnettop", # for the jnettop command
+    "iotop", # the iotop command
+    "jnettop", # the jnettop command
     "smartmontools",
     "gsmartcontrol",
     "lm-sensors",
@@ -125,8 +125,8 @@ packages_tools=[
     "glances",
     "sysprof",
     "mutrace",
-    "cpulimit", # for the cpulimit command
-    "bridge-utils", # for bridging utilities to demo creation of a bridge
+    "cpulimit", # the cpulimit command
+    "bridge-utils", # bridging utilities to demo creation of a bridge
     "iptraf",
     "numactl",
     "pstack",
@@ -135,7 +135,7 @@ packages_tools=[
     "chrpath",
     "latencytop",
     "devmem2",
-    "elfutils", # for manipulating elf files
+    "elfutils", # manipulating elf files
     "pax-utils",
     "paxctl",
     "execstack",
@@ -169,9 +169,9 @@ packages_tools=[
     "sl",
 
     # tools used by this package
-    "libreoffice-common", # for soffice conversion
-    "xutils-dev", # for makedepend(1)
-    "astyle", # for indent(1) (code formatting)
+    "libreoffice-common", # soffice conversion
+    "xutils-dev", # makedepend(1)
+    "astyle", # indent(1) (code formatting)
 
     # these packages are for the developers pleasure...:)
     "vim",
@@ -234,8 +234,8 @@ packages_tools=[
 packages=[
     # packages needed for the build
     "ccache",
-    "uncrustify", # for uncrustify(1) (code formatting)
-    "indent", # for indent(1) (code formatting)
+    "uncrustify", # uncrustify(1) (code formatting)
+    "indent", # indent(1) (code formatting)
     "electric-fence",
 
     # dialog really has header files and that is why it is here
@@ -274,17 +274,17 @@ packages=[
     "libasound2-dev",
     "libdmalloc5",
     "libdmalloc-dev",
-    "libcpufreq-dev", # for cpufreq.h
+    "libcpufreq-dev", # cpufreq.h
     "libnetfilter-queue1",
     "libnetfilter-queue-dev",
-    "libcap-dev", # for capability.h
+    "libcap-dev", # capability.h
     f"liburcu{ver_urcu}", # rcu library
     "liburcu-dev", # rcu library
     f"libunwind{ver_unwind}", # unwind library
     "libunwind-setjmp0", # unwind library
     "libunwind-dev", # unwind library
     "libunwind-setjmp0-dev", # unwind library
-    "libelf1", # for reading elf files
+    "libelf1", # reading elf files
     "libdw1",
     "libdw-dev",
     "libasm1",
@@ -332,7 +332,7 @@ if opt_do_kernel:
 
 if opt_do_ddebs:
     packages_kernels.extend([
-        # for systemtap - this one does not exist in the regular ubuntu archives
+        # systemtap - this one does not exist in the regular ubuntu archives
         # ubuntu does not always carry the "-lowlatency" dbgsym and that why
         # it is commented out...
         # TODO: make this script add sources to the dbgsyms if need be
