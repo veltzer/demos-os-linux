@@ -11,7 +11,7 @@ DO_CHP:=0
 DO_ALLDEP:=1
 # do you want to show the commands executed ?
 DO_MKDBG?=0
-# do you want to check python script?
+# do you want to check python scripts?
 DO_PYLINT:=1
 # do you want to depend on the wrapper script?
 DO_DEP_WRAPPER:=1
