@@ -30,6 +30,7 @@
  * - I cant seem to print the function name from #pragma message
  *
  * EXTRA_COMPILE_FLAGS=-fno-diagnostics-show-caret -ftrack-macro-expansion=0 -fno-diagnostics-show-option
+ * ALLOW_OUTPUT
  */
 
 #define quote(a) # a

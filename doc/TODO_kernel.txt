@@ -1,3 +1,6 @@
+- bring back checking of my kernel modules
+	DO_CHP:=1
+	in the Makefile
 - do example of dynamic loading of modules using these:
 	symbol_request(x) try_then_request_module(symbol_get(x), "symbol:" #x)
 - add example of using the in_interrupt function to find out if we're in interrupt context or not.

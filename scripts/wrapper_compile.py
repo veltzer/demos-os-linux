@@ -26,14 +26,14 @@ def system_check_output(cmd):
         return out_stdout.decode()
 
 
-def check_no_output(args):
+def check_no_output(args, allow_output):
     """ Run a command and check that it has not output """
     with subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as pipe:
         (out_stdout,out_stderr)=pipe.communicate()
         status=pipe.returncode
         out_stdout = out_stdout.decode()
         out_stderr = out_stderr.decode()
-        if status or out_stdout!="" or out_stderr!="":
+        if status or ((out_stdout!="" or out_stderr!="") and not allow_output):
             #raise ValueError(f"error in executing [{args}]")
             print(f"could not run [{args}]", file=sys.stderr)
             if out_stderr!="":
@@ -112,6 +112,7 @@ def main():
             "noexecstack",
         ])
     # scan the source code
+    allow_output=False
     with open(source, "r") as stream:
         for line in stream:
             line=line.strip()
@@ -125,12 +126,14 @@ def main():
                 handle(line, args, "EXTRA_COMPILE_FLAGS=", False, subs, inject=1)
                 handle(line, args, "EXTRA_COMPILE_FLAGS_AFTER=", False, subs)
                 handle_first(line, args, "COMPILER=")
+            if "ALLOW_OUTPUT" in line:
+                allow_output=True
     if ccache and not link:
         args.insert(0,"ccache")
     if doDebug:
         print(f"running [{args}]")
     try:
-        check_no_output(args)
+        check_no_output(args, allow_output=allow_output)
     except ValueError:
         # print(f"removing [{target}]")
         os.unlink(target)
