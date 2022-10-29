@@ -25,6 +25,7 @@
 
 /*
  * This test program simply simulates various memory errors
+ * EXTRA_COMPILE_FLAGS=-Wno-use-after-free
  */
 
 int main(int argc, char** argv, char** envp) {
@@ -84,6 +85,7 @@ int main(int argc, char** argv, char** envp) {
 		break;
 	case 7:
 		free(buffer);
+#pragma GCC diagnostic ignored "-Wpragmas"
 #pragma GCC diagnostic ignored "-Wuse-after-free"
 		free(buffer);
 		break;
