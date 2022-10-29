@@ -28,7 +28,7 @@
 /*
  * This is a solution to the spin locks exercise.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - get more ideas from the glibc implementation of spin locks

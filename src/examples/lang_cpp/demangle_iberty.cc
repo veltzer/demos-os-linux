@@ -34,7 +34,7 @@
  * - it does not seem that pkg-config knows about libiberty so we have to use explicit
  * command line flags to link with it.
  *
- * EXTRA_LINK_FLAGS=-liberty
+ * EXTRA_LINK_FLAGS_AFTER=-liberty
  */
 
 typedef struct _dmgl_val_and_name {

@@ -47,7 +47,7 @@
  * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
  * EXTRA_COMPILE_FLAGS=-g -femit-struct-debug-baseonly
  * EXTRA_LINK_CMDS=pkg-config --libs ACE
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // Accepting end point. This is actually "localhost:10010", but some

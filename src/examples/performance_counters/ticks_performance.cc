@@ -35,7 +35,7 @@
  * lack of synchronization regarding the performance counter between
  * cores.
  *
- * EXTRA_LINK_FLAGS=-lcpufreq -lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lcpufreq -lpthread
  */
 void* worker(void*) {
 	const unsigned int times=10;

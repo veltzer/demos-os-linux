@@ -36,8 +36,8 @@ while($line=<FILE>) {
 		$extra=trim(`$extra`);
 		push(@flags,$extra);
 	}
-	if($line=~/EXTRA_LINK_FLAGS=(.*)/) {
-		my($extra)=$line=~/EXTRA_LINK_FLAGS=(.*)/;
+	if($line=~/EXTRA_LINK_FLAGS_AFTER=(.*)/) {
+		my($extra)=$line=~/EXTRA_LINK_FLAGS_AFTER=(.*)/;
 		$extra=~s/SOURCE/$source/g;
 		$extra=~s/TARGET/$target/g;
 		$extra=trim($extra);

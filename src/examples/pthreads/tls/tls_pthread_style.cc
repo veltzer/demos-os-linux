@@ -32,7 +32,7 @@
  * This is why, as in this example, it is customary for the main thread to avoid doing
  * any interesting code but rather just collect dead threads via pthread_join(3).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 pthread_key_t key_myid;

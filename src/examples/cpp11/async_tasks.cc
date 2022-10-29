@@ -33,7 +33,7 @@
  * http://bartoszmilewski.com/2011/10/10/async-tasks-in-c11-not-quite-there-yet
  *
  * EXTRA_COMPILE_FLAGS=-std=c++11 -pthread
- * EXTRA_LINK_FLAGS=-std=c++11 -pthread -Wl,--no-as-needed
+ * EXTRA_LINK_FLAGS_AFTER=-std=c++11 -pthread -Wl,--no-as-needed
  *
  * TODO:
  * - add a thread pool to show that we could use many threads to execute the tasks

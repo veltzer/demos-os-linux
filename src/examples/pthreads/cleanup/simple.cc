@@ -29,7 +29,7 @@
  * This is a simple example of using the pthread_cleanup_push(3), pthread_cleanup_pop(3) API.
  *
  * TODO: write this example?!?
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void *worker(void *p) {

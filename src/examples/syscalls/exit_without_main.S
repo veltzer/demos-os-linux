@@ -31,7 +31,7 @@
  * - use 'ldd' to see that this executable does not link with anything.
  * - use 'objdump -D [exefile]' to see how little content this executable has.
  *
- * EXTRA_LINK_FLAGS=-nostdlib -Xlinker --strip-all -Xlinker --build-id=none
+ * EXTRA_LINK_FLAGS_AFTER=-nostdlib -Xlinker --strip-all -Xlinker --build-id=none
  */
 
 #include <asm/unistd.h>

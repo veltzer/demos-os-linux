@@ -40,7 +40,7 @@
  * - the '-rdynamic' flag is needed if the 'backtrace_symbols' function is to
  * work and return symbols to you.
  *
- * EXTRA_LINK_FLAGS=-rdynamic
+ * EXTRA_LINK_FLAGS_AFTER=-rdynamic
  * EXTRA_COMPILE_FLAGS=-g
  *
  * TODO:

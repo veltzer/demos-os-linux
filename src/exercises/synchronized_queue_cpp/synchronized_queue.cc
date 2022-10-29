@@ -28,7 +28,7 @@
 /*
  * This is a solution to the synchronized queue exercise.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 template <typename T> class SynchronizedQueue {

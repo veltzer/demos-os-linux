@@ -28,7 +28,7 @@
  * strace(1) this example to see that these semaphores are implemented
  * in user space in the uncontended case (futex(2) based).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 int main(int argc, char** argv, char** envp) {

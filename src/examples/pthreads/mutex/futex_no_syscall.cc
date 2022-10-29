@@ -42,7 +42,7 @@
  *	How can this be if the futex is robust?!? investigate...
  * Actually this is not a problem as the futex is robust only if you set it to robust type.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static int arr_robust[]={

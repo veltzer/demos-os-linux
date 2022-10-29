@@ -28,7 +28,7 @@
 /*
  * This is a solution to the pthread condition lock exercise.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // this is the spin lock implementation (pthread "like")

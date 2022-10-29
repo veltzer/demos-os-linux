@@ -35,7 +35,7 @@
  * References:
  * http://nandal.in/2012/04/copy-file-using-c-threads/
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - this example is not yet finished and has correctness issues. Fix them.

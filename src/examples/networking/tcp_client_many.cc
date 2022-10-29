@@ -33,7 +33,7 @@
 /*
  * This is a tcp client demo.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 unsigned int numrequests;

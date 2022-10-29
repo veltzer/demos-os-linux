@@ -43,7 +43,7 @@
  * - ACE has wrappers for atomics. Look at ACE examples for more.
  * - We can plainly see that volatile does not guarantee atomicity.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - explain the results for the non atomic threads.

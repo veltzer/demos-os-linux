@@ -32,7 +32,7 @@
  * Remmember that in order to use these you must protect the entire area where you are checking the condition
  * using a mutex. And since conditions do not come with mutexes you must create one yourself.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static pthread_mutex_t condition_mutex=PTHREAD_MUTEX_INITIALIZER;

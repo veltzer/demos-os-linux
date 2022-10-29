@@ -20,7 +20,7 @@
  * This is an extension of the exit_without_main.S example. See
  * its documentation for more info.
  *
- * EXTRA_LINK_FLAGS=-nostdlib -Xlinker --strip-all -Xlinker --build-id=none
+ * EXTRA_LINK_FLAGS_AFTER=-nostdlib -Xlinker --strip-all -Xlinker --build-id=none
  */
 
 #include <asm/unistd.h>

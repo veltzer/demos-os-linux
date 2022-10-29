@@ -25,7 +25,7 @@
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO()
 
 /*
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void* PrintHello(void *threadid) {

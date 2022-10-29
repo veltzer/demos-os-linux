@@ -25,7 +25,7 @@
  * This example shows the disassembly of a single system call.
  *
  * We must link static to have the system call code in our own executable
- * EXTRA_LINK_FLAGS=-static
+ * EXTRA_LINK_FLAGS_AFTER=-static
  */
 
 int main(int argc, char** argv, char** envp) {

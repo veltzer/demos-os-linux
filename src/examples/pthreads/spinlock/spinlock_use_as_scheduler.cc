@@ -28,7 +28,7 @@
  * This example uses spin lock as a way to schedule thread to do
  * work in a certain order.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 const unsigned int loops=3;

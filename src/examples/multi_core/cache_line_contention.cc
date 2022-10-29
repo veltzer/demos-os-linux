@@ -42,7 +42,7 @@
  * (see below) or to use the 'td->XXXXXXXXX[td->num]+=1;' notation used below (the compiler
  * does not know what 'td->num' is and so actually writes the data.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // data to be passed to each thread...

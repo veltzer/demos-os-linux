@@ -25,7 +25,7 @@
 /*
  * Lists ALSA cards in the system and counts them.
  *
- * EXTRA_LINK_FLAGS=-lasound
+ * EXTRA_LINK_FLAGS_AFTER=-lasound
  */
 
 int main(int argc, char** argv, char** envp) {

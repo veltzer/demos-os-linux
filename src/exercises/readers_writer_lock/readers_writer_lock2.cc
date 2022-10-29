@@ -27,7 +27,7 @@
 /*
  * This is a solution to the readers/writer lock exercise.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // this is the spin lock implementation (pthread "like")

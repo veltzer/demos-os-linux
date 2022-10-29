@@ -60,6 +60,7 @@ def handle(line, args, string, process, subs, inject=None, shell=False):
             out=out.split()
             args.extend(out)
         else:
+            cmd=cmd.split()
             args.extend(cmd)
 
 

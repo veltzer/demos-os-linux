@@ -22,7 +22,7 @@
 #include <stdlib.h>	// for exit(3), EXIT_SUCCESS, EXIT_FAILURE
 
 /*
- * EXTRA_LINK_FLAGS=-lpq
+ * EXTRA_LINK_FLAGS_AFTER=-lpq
  */
 
 void exit_nicely(PGconn* conn) {

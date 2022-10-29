@@ -55,7 +55,7 @@
  * problem has disappeared.
  *
  * the -lcpufreq is for the get_mic_diff
- * EXTRA_LINK_FLAGS=-lcpufreq -lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lcpufreq -lpthread
  *
  * TODO:
  * - use usleep and sleep also and compare the results to those of nanosleep.

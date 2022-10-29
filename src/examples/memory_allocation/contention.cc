@@ -48,7 +48,7 @@
  * - http://journal.siddhesh.in/posts/malloc-per-thread-arenas-in-glibc.html
  * - http://www.gnu.org/software/libc/manual/html_node/Malloc-Tunable-Parameters.html
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // data available to the threads

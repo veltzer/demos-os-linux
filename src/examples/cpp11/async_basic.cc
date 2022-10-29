@@ -28,7 +28,7 @@
  * http://solarianprogrammer.com/2012/10/17/cpp-11-async-tutorial
  *
  * EXTRA_COMPILE_FLAGS=-std=c++11 -pthread
- * EXTRA_LINK_FLAGS=-std=c++11 -pthread -Wl,--no-as-needed
+ * EXTRA_LINK_FLAGS_AFTER=-std=c++11 -pthread -Wl,--no-as-needed
  */
 
 int main(int argc, char** argv, char** envp) {

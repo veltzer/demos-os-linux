@@ -26,7 +26,7 @@
 /*
  * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
  * EXTRA_LINK_CMDS=pkg-config --libs ACE
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void *ClientContext::get_attribute(const char *name) {

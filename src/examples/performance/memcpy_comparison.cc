@@ -35,7 +35,7 @@
  * The idea is that systems programmers can take care of themselves and the APIs should be as fast
  * as possible to cater for good programmers and not to aid the incompetant few with their debugging problems.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef struct _threaddata {

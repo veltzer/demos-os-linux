@@ -25,7 +25,7 @@
  * This program calls pthread_create and tries to fail on purpse to see the error
  * messages for this function.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void* myfunc(void*) {

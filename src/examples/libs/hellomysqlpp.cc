@@ -28,7 +28,7 @@
  *
  * The mysql++ and mysql libraries are stupid and require -I to them
  * EXTRA_COMPILE_FLAGS=-I/usr/include/mysql++ -I/usr/include/mysql -Wno-deprecated -Wno-deprecated-declarations
- * EXTRA_LINK_FLAGS=-lmysqlpp
+ * EXTRA_LINK_FLAGS_AFTER=-lmysqlpp
  */
 
 int main(int argc, char** argv, char** envp) {

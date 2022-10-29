@@ -28,7 +28,7 @@
  * The idea is to replace pthread_setspecific(3) with a different implementation which
  * arranges for deallocation via on_exit(3).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void delfunc(int exitstatus, void* ptr) {

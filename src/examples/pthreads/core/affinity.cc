@@ -40,7 +40,7 @@
  * - Threads and processes inherit the affinity of their parents and cannot
  * extend that affinity (unless they are root or have special privileges).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void *worker(void *p) {

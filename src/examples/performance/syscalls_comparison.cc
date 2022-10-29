@@ -42,7 +42,7 @@
  * How do I know that gcc actually calls getpid or gettid? I see it in the disassemly.
  * (gettimeofday is obviously called)
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void* work(void* p) {

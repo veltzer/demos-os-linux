@@ -36,7 +36,7 @@
  * - a cancelled thread gets PTHREAD_CANCELED back as a result from pthread_join(3). This also
  * means that PTHREAD_CANCELED should not be used as a valid return value for a pthread thread.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void * thread_func(void *ignored_argument) {

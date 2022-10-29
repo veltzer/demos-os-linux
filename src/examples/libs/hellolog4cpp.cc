@@ -32,7 +32,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
- * EXTRA_LINK_FLAGS=-llog4cpp
+ * EXTRA_LINK_FLAGS_AFTER=-llog4cpp
  */
 
 int main(int argc, char** argv, char** envp) {

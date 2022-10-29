@@ -30,7 +30,7 @@
  * CPU time that all threads in this process take which, on a multi-core
  * machine, may be greater than 100%.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 void *worker(void *p) {
 	// int num=*(int *)p;

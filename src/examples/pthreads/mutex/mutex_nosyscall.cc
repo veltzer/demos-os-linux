@@ -27,7 +27,7 @@
  * DO ANY SYSTEM CALL IN LINUX because the default implementation of a mutex in
  * Linux is really a futex(2).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 int main(int argc, char** argv, char** envp) {

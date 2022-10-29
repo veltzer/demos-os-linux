@@ -45,7 +45,7 @@
  * References:
  * http://www.ellipsix.net/blog/2009/3/how-to-use-random-r.html
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  * for the atomics
  * EXTRA_COMPILE_FLAGS=-std=c++11
  *

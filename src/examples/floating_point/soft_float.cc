@@ -29,7 +29,7 @@
  *
  * this is so disassembly will show interleaved code
  * EXTRA_COMPILE_FLAGS=-g3
- * EXTRA_LINK_FLAGS=-lgcc
+ * EXTRA_LINK_FLAGS_AFTER=-lgcc
  */
 
 extern "C" double __bid64dq_div(double, double);

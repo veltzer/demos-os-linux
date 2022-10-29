@@ -29,7 +29,7 @@
  *
  * This is an example of how to use wide characters in curses...
  *
- * EXTRA_LINK_FLAGS=-lncursesw
+ * EXTRA_LINK_FLAGS_AFTER=-lncursesw
  */
 
 static const char *myMsg=NULL;

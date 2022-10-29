@@ -32,7 +32,7 @@
  * References:
  * http://icl.cs.utk.edu/papi/index.html
  *
- * EXTRA_LINK_FLAGS=-lpapi
+ * EXTRA_LINK_FLAGS_AFTER=-lpapi
  */
 
 int main(int argc, char** argv, char** envp) {

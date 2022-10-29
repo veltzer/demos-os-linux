@@ -31,7 +31,7 @@
  * - killing the thread causes the entire application to die (as expected).
  * this includes the main thread.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 const int num=2;

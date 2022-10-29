@@ -32,7 +32,7 @@
  * and the program as a whole.
  *
  * We use a thread here to show that it stops...
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void handler(int sig) {

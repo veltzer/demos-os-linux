@@ -30,7 +30,7 @@
  * example is running run:
  * while [[ true ]]; do ps -C sizes.exe -o comm,min_flt,rss; sleep 1;done
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - show number of page faults for this application programmatically.

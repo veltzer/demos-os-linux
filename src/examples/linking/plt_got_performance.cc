@@ -42,7 +42,7 @@
  * that is the reason why there is no performance benefit to using dlsym(3) in that
  * case (look at the results).
  *
- * EXTRA_LINK_FLAGS=-ldl -lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-ldl -lpthread
  */
 
 const unsigned int count=10000000;

@@ -38,7 +38,7 @@
  * protection against hackers.
  *
  * EXTRA_COMPILE_FLAGS=-fPIE
- * EXTRA_LINK_FLAGS=-pie
+ * EXTRA_LINK_FLAGS_AFTER=-pie
  */
 
 int main(int argc, char** argv, char** envp) {

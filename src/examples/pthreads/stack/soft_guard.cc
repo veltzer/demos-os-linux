@@ -30,7 +30,7 @@
  * This test shows how to test for bad stack state (distance from
  * end of the stack is too short...)
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void check_stack() {

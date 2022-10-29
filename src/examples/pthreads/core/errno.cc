@@ -30,7 +30,7 @@
  * Each thread manipulates it's own errno variable with complete disregard
  * to other threads and checks that it is correct.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 const unsigned long long loop=10000000000L;

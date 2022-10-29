@@ -32,7 +32,7 @@
  * This example explores the CPU utilisation of doing XXXM memcpy per second.
  * You need to supply how many megs you want copied and in how many intervals.
  *
- * EXTRA_LINK_FLAGS=-lpthread -lrt
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread -lrt
  */
 
 /* we use 49 as the PRREMPT_RT use 50 as the priority of kernel tasklets

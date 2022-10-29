@@ -52,7 +52,7 @@
 
 	TODO:
 
-	EXTRA_LINK_FLAGS=-lpthread -lprocps
+	EXTRA_LINK_FLAGS_AFTER=-lpthread -lprocps
 */
 
 const char* rw(bool v) {

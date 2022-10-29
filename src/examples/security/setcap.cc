@@ -24,7 +24,7 @@
 /*
  * This is an example showing setting of capabilities
  *
- * EXTRA_LINK_FLAGS=-lcap
+ * EXTRA_LINK_FLAGS_AFTER=-lcap
  */
 
 int main(int argc, char** argv, char** envp) {

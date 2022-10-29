@@ -24,7 +24,7 @@
 /* This is an ncurses playground in C/C++ so that I could test exactly what
  * ncurses is and how it works
  *
- * EXTRA_LINK_FLAGS=-lncursesw
+ * EXTRA_LINK_FLAGS_AFTER=-lncursesw
  */
 
 static WINDOW* stdinit() {

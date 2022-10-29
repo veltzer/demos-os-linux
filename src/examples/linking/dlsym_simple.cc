@@ -25,7 +25,7 @@
 /*
  * This is a simple example of using dlsym
  *
- * EXTRA_LINK_FLAGS=-ldl -lm
+ * EXTRA_LINK_FLAGS_AFTER=-ldl -lm
  */
 
 int main(int argc, char** argv, char** envp) {

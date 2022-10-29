@@ -45,7 +45,7 @@
  * So that we could disassemble this easily...
  * EXTRA_COMPILE_FLAGS=-g3
  * We are multi threaded in this example
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef struct _threaddata {

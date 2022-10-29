@@ -30,7 +30,7 @@
 /*
  * This is an example exploring handling errors returned from the pthread library.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 int main(int argc, char** argv, char** envp) {

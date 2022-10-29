@@ -29,7 +29,7 @@
  * of locks. It also shows how to extract from the lock the number of times
  * that it was locked. This feature has no official API.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static pthread_mutex_t mylock=PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;

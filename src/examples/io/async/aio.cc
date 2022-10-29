@@ -35,7 +35,7 @@
  * man aio.h
  * http://www.ibm.com/developerworks/linux/library/l-async/
  *
- * EXTRA_LINK_FLAGS=-lrt
+ * EXTRA_LINK_FLAGS_AFTER=-lrt
  */
 
 int main(int argc, char** argv, char** envp) {

@@ -40,7 +40,7 @@
 /*
  * This is an example of using vmsplice to send mucho data to clients.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void *worker(void* arg) {

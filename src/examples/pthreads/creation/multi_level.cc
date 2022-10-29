@@ -30,7 +30,7 @@
  * The result is that they all have similar tids, same pid and same ppid. This means
  * they look as if all threads were created by the main thread.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef struct _thread_data {

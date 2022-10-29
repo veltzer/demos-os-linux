@@ -31,7 +31,7 @@
 /*
  * This example explores how to use thread priorities
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - show that high priority threads preempt lower priority.

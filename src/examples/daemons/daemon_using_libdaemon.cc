@@ -39,7 +39,7 @@
  * NOTES:
  * - this one needs to run via sudo(1) since it creates a pid file in /var/run/argv[0]
  *
- * EXTRA_LINK_FLAGS=-ldaemon
+ * EXTRA_LINK_FLAGS_AFTER=-ldaemon
  */
 
 int main(int argc, char **argv, char** envp) {

@@ -37,7 +37,7 @@
  * This is a demo of a simple echo socket server implementation in pure C
  * in Linux
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // const unsigned int port=7000;

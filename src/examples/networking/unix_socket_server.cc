@@ -37,7 +37,7 @@
  * This is a unix socket server demo.
  * It is a simple echo server sending back anything that is send to it.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 const char* filename="/tmp/myunixsocket";

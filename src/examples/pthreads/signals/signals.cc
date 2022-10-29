@@ -38,7 +38,7 @@
  * - You can also do it after the child threads are created.
  * - What if a signal is registered by the child? Same. All threads get the handler.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - write the results of this example in detail.

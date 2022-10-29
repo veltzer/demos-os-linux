@@ -40,7 +40,7 @@
  * it do an infinite loop and just looking at it's page faults. Or maybe
  * printing it's page faults while it is running?
  *
- * EXTRA_LINK_FLAGS=-lpthread -lrt
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread -lrt
  */
 
 /*

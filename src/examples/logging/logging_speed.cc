@@ -63,7 +63,7 @@
  * - explain the results in the text above.
  * - do better stats (min, max, variance and more - max is the most important).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // this emulates an async implementation

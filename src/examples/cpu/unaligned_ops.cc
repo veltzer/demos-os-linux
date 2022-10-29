@@ -40,7 +40,7 @@
  * will cause delays. Reproduce these patterns (the blog has some code
  * attached that will help in that effort).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static int diff;

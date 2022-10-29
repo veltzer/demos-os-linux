@@ -39,7 +39,7 @@
  * This is the new non-portable/non-posix API for setting and getting thread names.
  * - Reading and writing from /proc/self/task/[tid]/comm.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 const int name_length=16;

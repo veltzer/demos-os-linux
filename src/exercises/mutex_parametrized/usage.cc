@@ -27,7 +27,7 @@
 /*
  * This is a test for the mutex exercise.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static MyMutex<MT_SYNCH> mylock;

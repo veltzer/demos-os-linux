@@ -38,7 +38,7 @@
  * memory and compiler barriers.
  *
  * needed for shm_* functions...
- * EXTRA_LINK_FLAGS=-lrt
+ * EXTRA_LINK_FLAGS_AFTER=-lrt
  *
  * References:
  * man 2 nice

@@ -32,7 +32,7 @@
  * on.
  *
  * EXTRA_COMPILE_FLAGS=-g
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void *worker(void *p) {

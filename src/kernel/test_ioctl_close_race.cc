@@ -41,7 +41,7 @@
  *	- any new operations on this file descriptor are not allowed (bad file descriptor).
  *	- makes it easier to program in the kernel.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // file descriptor

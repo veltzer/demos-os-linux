@@ -38,7 +38,7 @@
  * threads on the same CPU) then you will see the time slice of the operating
  * system in the histograms that are produced.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef struct _threaddata {

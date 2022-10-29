@@ -34,7 +34,7 @@
  * References:
  * http://stackoverflow.com/questions/4252005/what-is-the-attribute-of-a-pthread-mutex
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 int main(int argc, char** argv, char** envp) {

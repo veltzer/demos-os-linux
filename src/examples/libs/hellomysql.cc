@@ -29,7 +29,7 @@
  * database user and the password are hardcoded. Get
  * them out of here to some outside xml options file
  *
- * EXTRA_LINK_FLAGS=-lmysqlclient
+ * EXTRA_LINK_FLAGS_AFTER=-lmysqlclient
  */
 
 int main(int argc, char** argv, char** envp) {

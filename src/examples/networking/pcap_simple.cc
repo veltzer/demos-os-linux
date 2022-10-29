@@ -29,7 +29,7 @@
  * In addition you have to run it as root.
  * Example: sudo ./src/examples/networking/pcap_simple.elf any ip -1
  *
- * EXTRA_LINK_FLAGS=-lpcap
+ * EXTRA_LINK_FLAGS_AFTER=-lpcap
  */
 
 /*

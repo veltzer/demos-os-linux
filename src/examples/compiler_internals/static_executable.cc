@@ -28,7 +28,7 @@
  * this example shows. This example deals with making libstdc++ static.
  *
  * This is what causes the static link:
- * EXTRA_LINK_FLAGS=-static-libstdc++
+ * EXTRA_LINK_FLAGS_AFTER=-static-libstdc++
  */
 
 int main(int argc, char** argv, char** envp) {

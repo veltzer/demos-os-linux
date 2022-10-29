@@ -26,7 +26,7 @@
  * This example shows how to exit threads (pthread_exit and return
  * from thread function).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void* PrintHello(void *threadid) {

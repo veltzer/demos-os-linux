@@ -34,7 +34,7 @@
  * https://unixism.net/loti/tutorial/cp_liburing.html
  * It shows how to use the io_uring library API to implement a cat(1) like program
  *
- * EXTRA_LINK_FLAGS=-luring
+ * EXTRA_LINK_FLAGS_AFTER=-luring
  */
 
 #define QD  2

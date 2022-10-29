@@ -31,7 +31,7 @@
  * This example was stolen shamelessly from the timerfd_create(2) manpage,
  * and adapted to my coding style.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void print_current_time(struct timespec* since) {

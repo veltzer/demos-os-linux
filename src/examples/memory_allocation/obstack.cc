@@ -45,7 +45,7 @@
  * References:
  * 'info libc' and search for 'obstack'
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // these are needed so that obstacks would work fine...

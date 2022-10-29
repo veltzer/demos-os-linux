@@ -25,7 +25,7 @@
 /*
  * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
  * EXTRA_LINK_CMDS=pkg-config --libs ACE
- * EXTRA_LINK_FLAGS=-lACE -ldl -lrt -lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
 // Global thread manager.

@@ -28,7 +28,7 @@
 /*
  * This shows how to create threads with a certain affinity
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 void another_func() {
 	printf("Hello, World!");

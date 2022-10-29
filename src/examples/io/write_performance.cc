@@ -44,7 +44,7 @@
  * You can also use iotop to see the process consuming first place in the io
  * category.
  *
- * EXTRA_LINK_FLAGS=-lcpufreq -lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lcpufreq -lpthread
  */
 
 char* filename;

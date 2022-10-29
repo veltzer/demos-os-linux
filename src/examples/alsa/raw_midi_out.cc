@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 
 /*
- * EXTRA_LINK_FLAGS=-lasound
+ * EXTRA_LINK_FLAGS_AFTER=-lasound
  */
 // Programmer: Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Sat May 9 18:57:48 PDT 2009

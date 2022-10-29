@@ -33,7 +33,7 @@
  * - enable to run this via high priority and show dead locks.
  * - show the results.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static pthread_spinlock_t mylock;

@@ -52,7 +52,7 @@
  * - show the number of voluntary context switches going up. Show this via proc
  * or via libproc.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // #define DO_BARRIER

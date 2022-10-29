@@ -29,7 +29,7 @@
  * each other. This blockage does not turn into a dead lock since the OS
  * will preempt them and eventually each will get it's turn.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *
  * TODO:
  * - get the thread number from the command line

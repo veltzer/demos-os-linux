@@ -27,7 +27,7 @@
 /*
  * This demo shows off pthread barriers which are a way to synchronize a number of threads.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef struct _thread_data {

@@ -37,7 +37,7 @@
  * This is a tcp server listening on two tcp ports using select(2)
  * and pthreads.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 // const unsigned int port=7000;

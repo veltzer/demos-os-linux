@@ -28,7 +28,7 @@
  * This is a basic demo of how to use the Linux timer API.
  *
  * we must link with the 'rt' library to get the time API.
- * EXTRA_LINK_FLAGS=-lrt
+ * EXTRA_LINK_FLAGS_AFTER=-lrt
  */
 void sigusr(int signal) {
 	return;

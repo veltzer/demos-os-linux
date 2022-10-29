@@ -27,7 +27,7 @@
 #include "mymutex.hh"
 
 /*
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void* MyThread::realsvc(void* arg) {

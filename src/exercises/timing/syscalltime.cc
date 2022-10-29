@@ -26,7 +26,7 @@
 /*
  * A solution to the timing exercise (timing gettimeofday(2) using gettimeofday(2)).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 unsigned int count;

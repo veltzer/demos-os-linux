@@ -37,7 +37,7 @@
  * Taken from:
  * http://www.opengl.org/wiki/Programming_OpenGL_in_Linux:_Programming_Animations_with_GLX_and_Xlib
  *
- * EXTRA_LINK_FLAGS=-lX11 -lGL -lGLU
+ * EXTRA_LINK_FLAGS_AFTER=-lX11 -lGL -lGLU
  */
 
 // GLOBAL IDENTIFIERS

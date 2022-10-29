@@ -44,7 +44,7 @@
  * space. It does not get optimized out (checked the disassembly). It also states that it is cached in user space since some version of glibc (check out man getpid())
  * - we also measure the time of a function call in user space, which, as expected, is a lot faster than even simple system calls.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef enum _measure_type {

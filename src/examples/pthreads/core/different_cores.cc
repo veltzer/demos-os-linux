@@ -24,7 +24,7 @@
 
 /*
  * This example shows distribution of pthreads across cores.
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 void *worker(void *p) {

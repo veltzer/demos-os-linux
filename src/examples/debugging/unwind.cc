@@ -38,7 +38,7 @@
  * - you do need to unmangle the names if you are working with C++.
  *
  * EXTRA_LINK_CMDS=pkg-config --libs libunwind-generic
- * EXTRA_LINK_FLAGS=-liberty
+ * EXTRA_LINK_FLAGS_AFTER=-liberty
  */
 
 void do_backtrace() {

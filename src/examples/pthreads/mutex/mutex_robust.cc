@@ -41,7 +41,7 @@
  * - if you do not set the mutex as robust (pthread_mutexattr_setrobust(3) below)
  * the the parent process will be stalled (the mutex will never be released).
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void handler(int sig, siginfo_t *si, void *context) {

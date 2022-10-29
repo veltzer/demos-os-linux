@@ -37,7 +37,7 @@
  * http://en.wikipedia.org/wiki/Memory_ordering
  * http://ridiculousfish.com/blog/posts/barrier.html
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 typedef struct _shared_data {

@@ -35,7 +35,7 @@
  * - pthread_exit(2) is actually built on top of the real _exit(2)
  * system call.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static void *worker(void *p) {

@@ -39,7 +39,7 @@
  * TODO:
  * - show that this example works the same even if you call pthread_detach.
  *
- * EXTRA_LINK_FLAGS=-lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
 static pthread_mutex_t mutex_init, mutex_start, mutex_end;
