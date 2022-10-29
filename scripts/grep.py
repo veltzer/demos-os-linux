@@ -23,7 +23,7 @@ def main():
     printedFiles=set()
     #debug=True
 
-    for root,dirs,files in os.walk(folder):
+    for root, _dirs, files in os.walk(folder):
         for file in files:
             full=os.path.join(root,file)
             #if debug:
@@ -33,7 +33,7 @@ def main():
                     print(f"doing file [{full}]")
                 with open(full, "r") as stream:
                     for num,line in enumerate(stream):
-                        for x in c.finditer(line):
+                        for _match in c.finditer(line):
                             if printOnlyFiles:
                                 if not full in printedFiles:
                                     print(full)

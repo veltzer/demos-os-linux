@@ -43,18 +43,20 @@ def check_no_output(args):
             sys.exit(1)
 
 
-def handle(line, args, string, process, subs, inject=None):
+def handle(line, args, string, process, subs, inject=None, shell=False):
     f=line.find(string)
     if f!=-1:
         f=line.find(string)+len(string)
         cmd=line[f:]
         cmd=cmd.format(**subs)
-        cmd=cmd.split()
         if inject is not None:
+            cmd=cmd.split()
             args[inject:inject] = cmd
             return
         if process:
-            out=subprocess.check_output(cmd).decode()
+            if not shell:
+                cmd=cmd.split()
+            out=subprocess.check_output(cmd, shell=shell).decode()
             out=out.split()
             args.extend(out)
         else:
@@ -111,11 +113,12 @@ def main():
         for line in stream:
             line=line.strip()
             if link:
-                handle(line, args, "EXTRA_LINK_CMDS=", True, subs)
-                handle(line, args, "EXTRA_LINK_FLAGS=", False, subs)
+                handle(line, args, "EXTRA_LINK_CMD=", True, subs, shell=True)
+                handle(line, args, "EXTRA_LINK_FLAGS=", False, subs, inject=1)
+                handle(line, args, "EXTRA_LINK_FLAGS_AFTER=", False, subs)
                 handle_first(line, args, "LINKER=")
             else:
-                handle(line, args, "EXTRA_COMPILE_CMDS=", True, subs)
+                handle(line, args, "EXTRA_COMPILE_CMD=", True, subs, shell=True)
                 handle(line, args, "EXTRA_COMPILE_FLAGS=", False, subs, inject=1)
                 handle(line, args, "EXTRA_COMPILE_FLAGS_AFTER=", False, subs)
                 handle_first(line, args, "COMPILER=")
