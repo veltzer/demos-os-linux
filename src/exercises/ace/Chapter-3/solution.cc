@@ -28,8 +28,8 @@
  *
  * Try to run this with "taskset 1" and more to see the difference in performance.
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  *
  */
 

@@ -29,8 +29,8 @@
  * This example demostrates the scheduling of timers on a reactor and the ability
  * to handle signals at the same time with the same singleton reactor.
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 // This is our timer handler which handles some periodic job in the system

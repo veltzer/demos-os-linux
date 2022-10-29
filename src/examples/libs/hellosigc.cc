@@ -25,8 +25,8 @@
 /*
  * This is a demo program for using the sigc++ signaling library
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags sigc++-2.0
- * EXTRA_LINK_CMDS=pkg-config --libs sigc++-2.0
+ * EXTRA_COMPILE_CMD=pkg-config --cflags sigc++-2.0
+ * EXTRA_LINK_CMD=pkg-config --libs sigc++-2.0
  */
 
 void on_print(const std::string& str) {

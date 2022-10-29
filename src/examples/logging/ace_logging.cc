@@ -35,8 +35,8 @@
  * note that ACE_NTRACE can be enabled/disabled on a per file basis and so can
  * only be enabled at compile time in modules that you want to debug...
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 void bar(void) {

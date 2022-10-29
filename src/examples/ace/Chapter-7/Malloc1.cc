@@ -23,8 +23,8 @@
 #include <ace/Null_Mutex.h>	// for ACE_Null_Mutex
 
 /*
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 typedef ACE_Malloc<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex> ALLOCATOR;

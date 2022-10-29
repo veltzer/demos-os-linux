@@ -36,7 +36,7 @@
  * Both ways DO NOT force malloc to allocate these structures aligned. You will
  * still need something like posix_memalign(3) for that...
  *
- * EXTRA_COMPILE_CMDS=echo -DLEVEL2_CACHE_LINESIZE=`getconf LEVEL2_CACHE_LINESIZE`
+ * EXTRA_COMPILE_CMD=echo -DLEVEL2_CACHE_LINESIZE=`getconf LEVEL2_CACHE_LINESIZE`
  * required for the static_assert below to work...
  * EXTRA_COMPILE_FLAGS=-std=c++0x
  *

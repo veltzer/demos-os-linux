@@ -43,8 +43,8 @@
  * References:
  * http://gitorious.org/meshias/mainline/blobs/db36f92bfcbdb78631aaf7f03c1ed1c156f8c218/examples/nfqueue.c
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags libnetfilter_queue
- * EXTRA_LINK_CMDS=pkg-config --libs libnetfilter_queue
+ * EXTRA_COMPILE_CMD=pkg-config --cflags libnetfilter_queue
+ * EXTRA_LINK_CMD=pkg-config --libs libnetfilter_queue
  *
  * TODO:
  * - make this program shut down nicer when we do CTRL+C.

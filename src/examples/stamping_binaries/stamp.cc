@@ -39,7 +39,7 @@
  *	If you want to see more macros that the compiler provides just run:
  *	cpp -dM < /dev/null
  *
- * EXTRA_COMPILE_CMDS=echo -DCHECKSUM=`md5sum {source} | cut -f 1 -d " "` -DHOST=`hostname` -DUSER=$USER -DSYSTEM=`uname -a | tr ' ' '-'`
+ * EXTRA_COMPILE_CMD=echo -DCHECKSUM=`md5sum {source} | cut -f 1 -d " "` -DHOST=`hostname` -DUSER=$USER -DSYSTEM=`uname -a | tr ' ' '-'`
  * EXTRA_COMPILE_FLAGS=-g3
  */
 

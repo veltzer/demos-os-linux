@@ -28,8 +28,8 @@
  * We will see that all of them (except the 5th) are activated.
  * ACE will activate the handle_timeout method when timer timeout arrives.
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 const int NUMBER_TIMERS=10;

@@ -24,8 +24,8 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
- * EXTRA_COMPILE_CMDS=pkg-config --cflags sdl gl glu
- * EXTRA_LINK_CMDS=pkg-config --libs sdl gl glu
+ * EXTRA_COMPILE_CMD=pkg-config --cflags sdl gl glu
+ * EXTRA_LINK_CMD=pkg-config --libs sdl gl glu
  */
 
 const int SCREEN_WIDTH=640;

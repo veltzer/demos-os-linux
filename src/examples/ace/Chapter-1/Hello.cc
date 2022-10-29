@@ -26,8 +26,8 @@
  * Short program demonstrates printing Hello World using the ACE environment
  * notice that both ACE_DEBUG and ACE_ERROR are going to stderr.
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 // Notice the use of the ACE version of main

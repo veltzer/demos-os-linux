@@ -22,8 +22,8 @@
  * each client connection, and closes each connection once it is flushed.
  * Where possible, it exits cleanly in response to a SIGINT (ctrl-c).
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags libevent
- * EXTRA_LINK_CMDS=pkg-config --libs libevent
+ * EXTRA_COMPILE_CMD=pkg-config --cflags libevent
+ * EXTRA_LINK_CMD=pkg-config --libs libevent
  */
 
 #include <firstinclude.h>

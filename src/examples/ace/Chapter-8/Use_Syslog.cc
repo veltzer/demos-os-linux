@@ -25,8 +25,8 @@
  * - note the care which is taken to keep the compiler from
  * inlining the foo function.
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 void __attribute__((noinline)) foo(void) {

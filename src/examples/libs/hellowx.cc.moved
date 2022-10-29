@@ -24,8 +24,8 @@
  * This example is a simple wxWindows application.
  *
  * EXTRA_COMPILE_FLAGS=-Wno-cast-function-type -Wno-ignored-qualifiers
- * EXTRA_COMPILE_CMDS=wx-config --cflags
- * EXTRA_LINK_CMDS=wx-config --libs
+ * EXTRA_COMPILE_CMD=wx-config --cflags
+ * EXTRA_LINK_CMD=wx-config --libs
  */
 
 class MyApp : public wxApp {

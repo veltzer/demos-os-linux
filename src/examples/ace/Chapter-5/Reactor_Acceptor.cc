@@ -27,8 +27,8 @@
 /*
  * This example shows how to use a socket acceptor through a reactor
  *
- * EXTRA_COMPILE_CMDS=pkg-config --cflags ACE
- * EXTRA_LINK_CMDS=pkg-config --libs ACE
+ * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
+ * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
 class ClientAcceptor : public ACE_Event_Handler {

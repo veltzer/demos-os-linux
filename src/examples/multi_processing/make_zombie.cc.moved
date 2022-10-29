@@ -59,7 +59,7 @@
  * XTRA_LINK_CMDS=pkg-config --libs libprocps
  * libprocps .pc configuration for pkg-config does not correctly specify
  * how to statically link with static versions of libprocps
- * EXTRA_LINK_CMDS=pkg-config --static libprocps
+ * EXTRA_LINK_CMD=pkg-config --static libprocps
  * XTRA_LINK_FLAGS=/usr/lib/{deb_build_multiarch}/libprocps.a -lsystemd
  */
 

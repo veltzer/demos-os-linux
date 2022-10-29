@@ -37,7 +37,7 @@
  * - as you can see you do not need to compile with debug info for this to work.
  * - you do need to unmangle the names if you are working with C++.
  *
- * EXTRA_LINK_CMDS=pkg-config --libs libunwind-generic
+ * EXTRA_LINK_CMD=pkg-config --libs libunwind-generic
  * EXTRA_LINK_FLAGS_AFTER=-liberty
  */
 
