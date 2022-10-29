@@ -14,7 +14,7 @@ DO_MKDBG?=0
 # do you want to check python script?
 DO_PYLINT:=1
 # do you want to depend on the wrapper script?
-DO_DEP_WRAPPER:=0
+DO_DEP_WRAPPER:=1
 
 #############
 # variables #
