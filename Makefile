@@ -13,6 +13,8 @@ DO_ALLDEP:=1
 DO_MKDBG?=0
 # do you want to check python script?
 DO_PYLINT:=1
+# do you want to depend on the wrapper script?
+DO_DEP_WRAPPER:=0
 
 #############
 # variables #
@@ -47,7 +49,7 @@ OPT:=1
 CXX:=g++
 CC:=gcc
 # do you want ccache support?
-CCACHE:=1
+CCACHE:=0
 # suffix for binary files
 SUFFIX_BIN:=elf
 # suffix for c++ object files
@@ -163,6 +165,12 @@ ifeq ($(DO_PYLINT),1)
 ALL:=$(ALL) out/pylint.stamp
 endif # DO_PYLINT
 
+ifeq ($(DO_DEP_WRAPPER),1)
+DEP_WRAPPER:=scripts/wrapper_compile.py
+else
+DEP_WRAPPER:=
+endif # DO_DEP_WRAPPER
+
 #########
 # rules #
 #########
@@ -215,34 +223,34 @@ git_maintain:
 # general rules...
 
 # how to create regular executables...
-$(CC_OBJ): %.$(SUFFIX_OO): %.cc scripts/wrapper_compile.py
+$(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
-$(C_OBJ): %.o: %.c scripts/wrapper_compile.py
+$(C_OBJ): %.o: %.c $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c $(CFLAGS) -o $@ $<
-$(S_OBJ): %.o: %.S scripts/wrapper_compile.py
+$(S_OBJ): %.o: %.S $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c -o $@ $<
-$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) scripts/wrapper_compile.py
+$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) $(DEP_WRAPPER) 
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $<)) $@ $(CXX) $(CXXFLAGS) -o $@ $<
-$(C_EXE): %.$(SUFFIX_BIN): %.o scripts/wrapper_compile.py
+$(C_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER) 
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $<)) $@ $(CC) $(CFLAGS) -o $@ $<
-$(S_EXE): %.$(SUFFIX_BIN): %.o scripts/wrapper_compile.py
+$(S_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .S,$(basename $<)) $@ $(CC) -o $@ $<
-$(CC_ASX): %.s: %.cc scripts/wrapper_compile.py
+$(CC_ASX): %.s: %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -S -o $@ $<
-$(C_ASX): %.s: %.cc scripts/wrapper_compile.py
+$(C_ASX): %.s: %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -S -o $@ $<
-$(CC_PRE): %.p: %.cc scripts/wrapper_compile.py
+$(CC_PRE): %.p: %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
-$(C_PRE): %.p: %.c scripts/wrapper_compile.py
+$(C_PRE): %.p: %.c $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -E -o $@ $<
 $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)

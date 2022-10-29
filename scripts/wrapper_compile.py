@@ -9,6 +9,7 @@ to be added to the compilation or linkage.
 
 import sys
 import subprocess
+import os
 
 
 def system_check_output(cmd):
@@ -16,13 +17,12 @@ def system_check_output(cmd):
         (out_stdout,out_stderr)=pipe.communicate()
         status=pipe.returncode
         if status:
-            #raise ValueError(f"error in executing [{cmd}]")
             print(f"could not run [{cmd}]", file=sys.stderr)
             print("error follows...", file=sys.stderr)
             print(out_stderr.decode(), file=sys.stderr)
             print("output follows...", file=sys.stderr)
             print(out_stdout.decode(), file=sys.stderr)
-            sys.exit(status)
+            raise ValueError(f"error in executing [{cmd}]")
         return out_stdout.decode()
 
 
@@ -36,11 +36,13 @@ def check_no_output(args):
         if status or out_stdout!="" or out_stderr!="":
             #raise ValueError(f"error in executing [{args}]")
             print(f"could not run [{args}]", file=sys.stderr)
-            print("error follows...", file=sys.stderr)
-            print(out_stderr, file=sys.stderr)
-            print("output follows...", file=sys.stderr)
-            print(out_stdout, file=sys.stderr)
-            sys.exit(1)
+            if out_stderr!="":
+                print("error follows...", file=sys.stderr)
+                print(out_stderr, file=sys.stderr)
+            if out_stdout!="":
+                print("output follows...", file=sys.stderr)
+                print(out_stdout, file=sys.stderr)
+            raise ValueError(f"error in executing [{args}]")
 
 
 def handle(line, args, string, process, subs, inject=None, shell=False):
@@ -127,7 +129,12 @@ def main():
         args.insert(0,"ccache")
     if doDebug:
         print(f"running [{args}]")
-    check_no_output(args)
+    try:
+        check_no_output(args)
+    except ValueError:
+        # print(f"removing [{target}]")
+        os.unlink(target)
+        raise
 
 
 if __name__ == "__main__":
