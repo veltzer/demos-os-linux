@@ -95,6 +95,7 @@ io:
 		does not have a manual page.
 		graphical viewer for io logs
 	/proc/scsi/scsi - /proc filesystem area where you can find scsi info
+	(1) fatrace - report system wide file system events
 
 network filesystems:
 	(8) nfsiostat - Emulate iostat for NFS mount points using /proc/self/mountstats
