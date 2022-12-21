@@ -55,6 +55,7 @@ int main(int argc, char** argv, char** envp) {
 	int ids[num];
 	void* rets[num];
 
+	TRACE("main getpid() is %d", getpid());
 	TRACE("main starting");
 	for(int i=0; i<num; i++) {
 		ids[i]=i;
