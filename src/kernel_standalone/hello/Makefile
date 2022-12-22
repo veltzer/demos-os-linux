@@ -1,6 +1,6 @@
 # this is a minimal makefile for demo purposes, keep it that way...
-obj-m:=hello_mod.o
-hello_mod-objs:=hello.o
+obj-m:=hello.o
+hello-objs:=main.o
 V?=0
 KDIR?=/lib/modules/$(shell uname -r)/build
 # in an embedded system:
