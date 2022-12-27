@@ -17,3 +17,12 @@ modules:
 clean:
 	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) clean
 	rm -f *.stamp
+.PHONY: insmod
+insmod:
+	@sudo insmod ./hello.ko
+.PHONY: rmmod
+rmmod:
+	@sudo rmmod hello
+.PHONY: dmesg
+dmesg:
+	@sudo dmesg | tail -10
