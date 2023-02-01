@@ -28,6 +28,7 @@
 #include <linux/spinlock.h> /* for spinlock_t and ops on it */
 #include <linux/wait.h> /* for wait_queue_head_t and ops on it */
 #include <linux/uaccess.h> /* for copy_to_user, access_ok */
+#include <linux/mutex.h> /* for mutex_* */
 
 
 MODULE_LICENSE("GPL");
@@ -107,7 +108,7 @@ struct my_pipe_t {
 	#endif /* DO_SPINLOCK */
 	struct device *pipe_device;
 	#ifdef DO_MUTEX
-	struct inode *inode;
+	struct mutex mutex;
 	#endif /* DO_MUTEX */
 	int readers;
 	int writers;
@@ -172,7 +173,7 @@ static inline void pipe_lock(struct my_pipe_t *pipe)
 	spin_lock(&pipe->lock);
 	#endif /* DO_SPINLOCK */
 	#ifdef DO_MUTEX
-	mutex_lock(&pipe->inode->i_mutex);
+	mutex_lock(&pipe->mutex);
 	#endif /* DO_MUTEX */
 }
 
@@ -183,7 +184,7 @@ static inline void pipe_unlock(struct my_pipe_t *pipe)
 	spin_unlock(&pipe->lock);
 	#endif /* DO_SPINLOCK */
 	#ifdef DO_MUTEX
-	mutex_unlock(&pipe->inode->i_mutex);
+	mutex_unlock(&pipe->mutex);
 	#endif /* DO_MUTEX */
 }
 
@@ -359,9 +360,6 @@ static int pipe_open(struct inode *inode, struct file *filp)
 	/* hide the pipe in the private_data of the struct file... */
 	int the_pipe_number = iminor(inode)-MINOR(first_dev);
 	struct my_pipe_t *pipe = pipes+the_pipe_number;
-#ifdef DO_MUTEX
-	pipe->inode = inode;
-#endif /* DO_MUTEX */
 	filp->private_data = pipe;
 	pipe_lock(pipe);
 	if (filp->f_mode & FMODE_READ)
@@ -402,7 +400,7 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count, loff
 	size_t data, work_size, first_chunk, second_chunk, ret;
 
 	pr_debug("%s: start with buf %p\n", __func__, buf);
-	if (!access_ok(VERIFY_WRITE, buf, count))
+	if (!access_ok(buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
 	/*
@@ -467,7 +465,7 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 	size_t work_size, room, first_chunk, second_chunk, ret;
 
 	pr_debug("%s: start\n", __func__);
-	if (!access_ok(VERIFY_READ, buf, count))
+	if (!access_ok(buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
 	/* lets check if we have room in the pipe

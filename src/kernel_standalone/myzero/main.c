@@ -73,7 +73,7 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	 * start zeroing the users pages and only then find out that the
 	 * buffer is off the edge...
 	 */
-	ret = access_ok(VERIFY_WRITE, buf, count);
+	ret = access_ok(buf, count);
 	if (!ret)
 		return -EFAULT;
 
