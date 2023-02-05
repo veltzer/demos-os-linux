@@ -127,6 +127,9 @@ static inline void pipe_ctor(struct my_pipe_t *pipe)
 #ifdef DO_SPINLOCK
 	spin_lock_init(&pipe->lock);
 #endif /* DO_SPINLOCK */
+#ifdef DO_MUTEX
+	mutex_init(&pipe->mutex);
+#endif /* DO_MUTEX */
 	pipe->pipe_device = NULL;
 	init_waitqueue_head(&pipe->read_queue);
 	init_waitqueue_head(&pipe->write_queue);
