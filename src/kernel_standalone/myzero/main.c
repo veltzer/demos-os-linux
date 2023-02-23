@@ -40,6 +40,8 @@ MODULE_DESCRIPTION("A simple implementation for something like /dev/zero");
  * TODO:
  */
 
+#define DO_CLEAR
+
 /* how many minors do we need ? */
 const int MINOR_COUNT = 1;
 /* initialized to 0 by default */
@@ -66,13 +68,24 @@ static int open_zero(struct inode *inode, struct file *file)
 static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 		loff_t *ppos)
 {
+#ifdef DO_CLEAR
+	int ret;
+	ret=clear_user(buf, count);
+	if (ret)
+		return -EFAULT;
+	*ppos += count;
+	return count;
+#endif // DO_CLEAR
+	/*
 	int ret;
 	ssize_t remaining;
+	*/
 	/*
 	 * do the access checking right at the start so that we would not
 	 * start zeroing the users pages and only then find out that the
 	 * buffer is off the edge...
 	 */
+#ifdef DO_RESCHED
 	ret = access_ok(buf, count);
 	if (!ret)
 		return -EFAULT;
@@ -100,8 +113,9 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	}
 	*ppos += count;
 	if (do_print)
-		pr_info("returning %d\n", count);
+		pr_info("returning %ld\n", count);
 	return count;
+#endif // DO_RESCHED
 }
 
 static int release_zero(struct inode *inode, struct file *file)
