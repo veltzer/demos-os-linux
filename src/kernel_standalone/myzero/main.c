@@ -72,6 +72,7 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	if (ret)
 		return -EFAULT;
 	*ppos += count;
+	pr_info("returning %ld\n", count);
 	return count;
 #endif // DO_CLEAR
 #ifdef DO_COPY_TO_USER
@@ -79,6 +80,7 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	if(copy_to_user(buf,file->private_data,curr))
 		return -EFAULT;
 	*ppos += curr;
+	pr_info("returning %ld\n", count);
 	return curr;
 #endif // DO_COPY_TO_USER
 #ifdef DO_RESCHED
