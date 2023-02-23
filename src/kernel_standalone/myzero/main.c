@@ -36,21 +36,22 @@ MODULE_DESCRIPTION("A simple implementation for something like /dev/zero");
  * to kernel gets filled with zeros.
  * If you want to see the real implementation in the kernel see:
  * $KERNEL_SOURCES/drivers/char/mem.c
- *
- * TODO:
  */
 
 #define DO_CLEAR
+//#define DO_RESCHED
+//#define DO_COPY_TO_USER
 
 /* how many minors do we need ? */
 const int MINOR_COUNT = 1;
-/* initialized to 0 by default */
-const bool do_print;
 
 /* these are the actual operations */
 
 static int open_zero(struct inode *inode, struct file *file)
 {
+#ifdef DO_COPY_TO_USER
+	file->private_data = get_zeroed_page(GFP_KERNEL);
+	pr_info("all is ok and buffer is %p\n", file->private_data);
 	/*
 	 * char* p=(char*)kmalloc(PAGE_SIZE, GFP_KERNEL);
 	 * if (IS_ERR(p))
@@ -58,10 +59,7 @@ static int open_zero(struct inode *inode, struct file *file)
 	 * memset(p, 0, PAGE_SIZE);
 	 * file->private_data = (void*)p;
 	 */
-	/*
-	 * file->private_data = get_zeroed_page(GFP_KERNEL);
-	 * pr_info("all is ok and buffer is %p\n", file->private_data);
-	 */
+#endif // DO_COPY_TO_USER
 	return 0;
 }
 
@@ -76,16 +74,21 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	*ppos += count;
 	return count;
 #endif // DO_CLEAR
-	/*
+#ifdef DO_COPY_TO_USER
+	ssize_t curr = min_t(ssize_t, remaining, PAGE_SIZE);
+	if(copy_to_user(buf,file->private_data,curr))
+		return -EFAULT;
+	*ppos += curr;
+	return curr;
+#endif // DO_COPY_TO_USER
+#ifdef DO_RESCHED
 	int ret;
 	ssize_t remaining;
-	*/
 	/*
 	 * do the access checking right at the start so that we would not
 	 * start zeroing the users pages and only then find out that the
 	 * buffer is off the edge...
 	 */
-#ifdef DO_RESCHED
 	ret = access_ok(buf, count);
 	if (!ret)
 		return -EFAULT;
@@ -93,14 +96,6 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 	remaining = count;
 	while (remaining) {
 		ssize_t curr = min_t(ssize_t, remaining, PAGE_SIZE);
-		/*
-		 * if(copy_to_user(buf,file->private_data,curr)) {
-		 *	return -EFAULT;
-		 * } else {
-		 *	buf+=curr;
-		 *	remaining-=curr;
-		 * }
-		 */
 		/*
 		 * very efficient way of clearing user memory once it has
 		 * been verified...
@@ -112,8 +107,7 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 		cond_resched();
 	}
 	*ppos += count;
-	if (do_print)
-		pr_info("returning %ld\n", count);
+	pr_info("returning %ld\n", count);
 	return count;
 #endif // DO_RESCHED
 }
