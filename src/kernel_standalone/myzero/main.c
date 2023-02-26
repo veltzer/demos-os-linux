@@ -116,8 +116,10 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 
 static int release_zero(struct inode *inode, struct file *file)
 {
+#ifdef DO_COPY_TO_USER
+	free_page((unsigned long)file->private_data);
 	/* kfree(file->private_data); */
-	/* free_page((unsigned long)file->private_data); */
+#endif // DO_COPY_TO_USER
 	return 0;
 }
 
