@@ -178,14 +178,6 @@ TEST(
 	asm volatile ("" ::: "memory")
 	);
 TEST(
-	fullcompbar2,
-	"Official full compiler barrier for gcc for all variables.\n"
-	"Too strong if all you want is to force just one variable to be read from memory instead of register.\n"
-	"The 'volatile' tells the compiler not to reorder around it.\n",
-	true,
-	asm volatile ("" ::: "memory")
-	);
-TEST(
 	singvarbar,
 	"A single variable barrier -> this is what you should use instead of volatile\n",
 	true,
@@ -276,7 +268,6 @@ int main(int argc, char** argv, char** envp) {
 	test_emptasm(val_before, val_after, dummy);
 	test_funccall(val_before, val_after, dummy);
 	test_fullcompbar(val_before, val_after, dummy);
-	test_fullcompbar2(val_before, val_after, dummy);
 	test_singvarbar(val_before, val_after, dummy);
 	test_singvarbar2(val_before, val_after, dummy);
 	test_singvarbar3(val_before, val_after, dummy);
