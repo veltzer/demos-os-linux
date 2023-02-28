@@ -6,3 +6,11 @@ Use a sudo user and the commands:
 	rmmod
 	lsmod
 	modinfo
+use the following commands to view the kernel log:
+$ sudo dmesg
+or
+$ tail /var/log/kern.log
+
+https://github.com/veltzer/demos-linux
+the example is in:
+	src/kernel_standalone/hello
