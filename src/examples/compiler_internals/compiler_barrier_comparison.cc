@@ -79,6 +79,8 @@
  * states that I cannot use it for non static variables so we would need
  * some other mechanism (__attribute__((unused)) ?!?) to force the compiler
  * for forgo warnings on these variables.
+ *
+ * EXTRA_COMPILE_FLAGS=-O3
  */
 
 FILE* outfile;
