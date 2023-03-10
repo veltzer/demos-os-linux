@@ -32,7 +32,15 @@ if ! getent group kvm | grep -q "\b${USER}\b"
 then
 	echo "you are not a member of the 'kvm' group"
 	echo "try"
-	echo "sudo usermod -aG kvm $USER"
+	echo "sudo usermod -aG kvm $$USER"
+	echo "and re-login..."
+	exit 1
+fi
+if ! getent group libvirt | grep -q "\b${USER}\b"
+then
+	echo "you are not a member of the 'libvirt' group"
+	echo "try"
+	echo "sudo usermod -aG libvirt $$USER"
 	echo "and re-login..."
 	exit 1
 fi
