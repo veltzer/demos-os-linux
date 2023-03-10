@@ -91,6 +91,7 @@ packages_tools=[
     # tool for converting documents from one format to another
     "unoconv",
     "cpufrequtils",
+    "cpu-checker",
     "netperf",
     # tools
     "linux-tools-common", # perf(1)
@@ -306,6 +307,13 @@ packages=[
     "libopenmpi-dev",
     "liburing2",
     "liburing-dev",
+    # qemu stuff
+    "qemu-kvm",
+    "virt-manager",
+    "virtinst",
+    "libvirt-clients",
+    "bridge-utils",
+    "libvirt-daemon-system",
 ]
 
 if opt_do_kernel:
