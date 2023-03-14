@@ -25,6 +25,7 @@
  *
  * EXTRA_COMPILE_CMD=pkg-config --cflags gtk+-2.0
  * EXTRA_LINK_CMD=pkg-config --libs gtk+-2.0
+ * EXTRA_COMPILE_FLAGS=-Wno-deprecated-declarations
  */
 
 int main(int argc, char** argv, char** envp) {
