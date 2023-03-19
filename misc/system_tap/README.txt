@@ -24,12 +24,16 @@ second way (better):
 
 How to run the scripts
 ======================
-- The scripts here should be run using 'sudo'.
+- The scripts here should be run by a member of the 'stapusr' group.
+- Just as yourself to the three groups: 'stapusr', 'stapsys', 'stapdep'
 - They seem to fail in some way when they are not.
 - It does not suffice to add the user to the various '*stap*' groups. Here are my groups and sudo
 is still required:
 	abel$ groups
 	mark : mark adm dialout cdrom plugdev lpadmin admin sambashare stapdev stapusr stapsys
+- you also need to run have the service 'stap-server' running.
+	It cannot be run as root for security reasons.
+	So it has to be run as user: ???
 
 Finding scripts to run
 ======================

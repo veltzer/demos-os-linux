@@ -1,0 +1,5 @@
+#!/usr/bin/env stap
+
+probe scheduler.ctxswitch {
+    printf("Switch from %d to %d at %d\n", prev_pid, next_pid, gettimeofday_us())
+}
