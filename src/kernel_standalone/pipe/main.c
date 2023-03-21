@@ -87,9 +87,9 @@ static int pipes_count = 8;
 module_param(pipes_count, int, 0644);
 MODULE_PARM_DESC(pipes_count, "How many pipes to create ?");
 /* this size of pipe performs very well! (3.0 G/s) */
-static int pipe_size = PAGE_SIZE*10;
+/* static int pipe_size = PAGE_SIZE*10; */
 /* this one doesnt... */
-/* static int pipe_size = PAGE_SIZE; */
+static int pipe_size = PAGE_SIZE;
 module_param(pipe_size, int, 0644);
 MODULE_PARM_DESC(pipe_size, "What is the pipe size ?");
 
@@ -454,8 +454,8 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count, loff
 			}
 		}
 	}
-	pipe_unlock(pipe);
 	*ppos += work_size;
+	pipe_unlock(pipe);
 	/* wake up the writers */
 	pipe_wake_writers(pipe);
 	return work_size;
@@ -512,8 +512,8 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 			return ret;
 		}
 	}
-	pipe_unlock(pipe);
 	*ppos += work_size;
+	pipe_unlock(pipe);
 	/* wake up the readers */
 	pipe_wake_readers(pipe);
 	return work_size;
