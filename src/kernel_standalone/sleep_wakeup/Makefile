@@ -11,9 +11,9 @@ KDIR?=/lib/modules/$(shell uname -r)/build
 # fail those...
 W?=1
 .PHONY: modules
-modules:
+modules: ioctl_sleep ioctl_wakeup
 	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) W=$(W) modules
 .PHONY: clean
 clean:
 	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) clean
-	rm -f *.stamp
+	rm -f *.stamp ioctl_sleep ioctl_wakeup
