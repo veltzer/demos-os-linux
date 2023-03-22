@@ -23,6 +23,7 @@
 #include <linux/device.h> /* for device_create */
 #include <linux/moduleparam.h> /* for module_param, MODULE_PARM_DESC... */
 #include <linux/init.h> /* for __init, __exit */
+#include <linux/sched.h> /* for wait/wakeup */
 
 #include "ioctl.h"
 
