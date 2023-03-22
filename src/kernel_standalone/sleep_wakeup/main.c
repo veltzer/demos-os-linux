@@ -28,7 +28,7 @@
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
-MODULE_DESCRIPTION("A simple implementation for something like /dev/null");
+MODULE_DESCRIPTION("Exercise in going to sleep and waking up");
 
 /*
  * This is a module demonstrating how to do 'ioctl' in a kernel module
