@@ -1,0 +1,2 @@
+#define IOCTL_SLEEP 100
+#define IOCTL_WAKEUP 101
