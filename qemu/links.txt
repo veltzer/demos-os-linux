@@ -1,0 +1,16 @@
+first download the VM from : https://www.dropbox.com/s/fr3qw4dav0hgfpq/newlinux.zip?dl=0  
+
+Note: open with winrar or 7zip only - WINDOWS BUILT IN UNZIP CANT OPEN IT !!!!  (produced with macos)
+
+first tutorial - how to use the qemu emulator here: https://devarea.com/embedded-linux-getting-started/#.ZAmXFXZBwuV
+
+nice lab (Task 2) - like tasks on RTOS  with processes: https://devarea.com/lab-processes-and-threads/#.ZAmXgnZBwuU    
+solution - https://github.com/dev-area/linux/blob/master/userspace/fork_tasks/a.c
+
+kernel simple labs - https://github.com/dev-area/linux/blob/master/labs/Lab%20%E2%80%93%20Writing%20a%20simple%20module%20with%20parameters.pdf
+
+char driver lab - https://github.com/dev-area/linux/blob/master/labs/Lab%20%E2%80%93%20Writing%20a%20simple%20chardev.pdf
+
+interrupts lab - https://github.com/dev-area/linux/blob/master/labs/Lab%20%E2%80%93%20Writing%20a%20simple%20ISR.pdf
+
+more here: https://devarea.com/labs/#.ZAmYoXZBwuX
