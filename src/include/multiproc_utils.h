@@ -140,7 +140,7 @@ static inline void process_get_name(char* buffer, unsigned int bufsize) {
  */
 static inline void process_set_name(const char* newname) {
 	char name[name_size];
-	strncpy(name, newname, name_size);
+	strncpy(name, newname, name_size-1);
 	CHECK_ZERO(prctl(PR_SET_NAME, name));
 }
 

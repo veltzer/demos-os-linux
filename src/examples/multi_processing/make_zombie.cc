@@ -56,11 +56,8 @@
  *
  * the dynamically linked procps does not work since it is missing the
  * 'get_proc_stats' symbol.
- * XTRA_LINK_CMDS=pkg-config --libs libprocps
- * libprocps .pc configuration for pkg-config does not correctly specify
- * how to statically link with static versions of libprocps
- * EXTRA_LINK_CMD=pkg-config --static libprocps
- * XTRA_LINK_FLAGS=/usr/lib/{deb_build_multiarch}/libprocps.a -lsystemd
+ * XTRA_LINK_CMD=pkg-config --libs libprocps
+ * EXTRA_LINK_FLAGS_AFTER=/lib/x86_64-linux-gnu/libprocps.a -lsystemd
  */
 
 // print the state of a process in 3 different ways...
