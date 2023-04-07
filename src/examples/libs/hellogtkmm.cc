@@ -25,13 +25,14 @@
 /*
  * A stolen example from the gtkmm distribution. Slightly modified.
  *
- * EXTRA_COMPILE_CMD=pkg-config --cflags gtkmm-2.4 sigc++-2.0 libgnomeui-2.0
- * EXTRA_LINK_CMD=pkg-config --libs gtkmm-2.4 sigc++-2.0 libgnomeui-2.0
+ * EXTRA_COMPILE_CMD=pkg-config --cflags gtkmm-2.4 sigc++-2.0
+ * EXTRA_LINK_CMD=pkg-config --libs gtkmm-2.4 sigc++-2.0
+ * EXTRA_COMPILE_FLAGS=-Wno-deprecated-declarations
  */
 
 class HelloWorld : public Gtk::Window {
 public:
-	HelloWorld();
+	HelloWorld(Gtk::Main&);
 	virtual ~HelloWorld();
 
 protected:
@@ -39,10 +40,13 @@ protected:
 	void on_button_clicked();
 	// Member widgets:
 	Gtk::Button m_button;
+	// Application
+	Gtk::Main& app;
 };
 
-HelloWorld::HelloWorld() :
-	m_button("Hello World")	// creates a new button with label "Hello World".
+HelloWorld::HelloWorld(Gtk::Main& iapp):
+	m_button("Exit"),
+	app(iapp)
 {
 	// Sets the border width of the window.
 	set_border_width(10);
@@ -62,13 +66,12 @@ HelloWorld::~HelloWorld() {
 }
 
 void HelloWorld::on_button_clicked() {
-	std::cout << "Hello World" << std::endl;
+	app.quit();
 }
 
 int main(int argc, char** argv, char** envp) {
-	Gtk::Main kit(argc, argv);
-	HelloWorld helloworld;
-	// Shows the window and returns when it is closed.
-	Gtk::Main::run(helloworld);
+	Gtk::Main app(argc, argv);
+	HelloWorld helloworld(app);
+	app.run(helloworld);
 	return EXIT_SUCCESS;
 }
