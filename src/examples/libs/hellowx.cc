@@ -23,7 +23,7 @@
 /*
  * This example is a simple wxWindows application.
  *
- * EXTRA_COMPILE_FLAGS=-Wno-cast-function-type -Wno-ignored-qualifiers
+ * EXTRA_COMPILE_FLAGS=-Wno-cast-function-type -Wno-deprecated-copy
  * EXTRA_COMPILE_CMD=wx-config --cflags
  * EXTRA_LINK_CMD=wx-config --libs
  */
