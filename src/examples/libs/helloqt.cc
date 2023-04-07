@@ -26,9 +26,14 @@
  * We need to add -fPIC to the compilation
  * see https://stackoverflow.com/questions/47958083/how-to-build-qt-with-reduce-relocations
  * These flags are for Qt6 which is on 22.10
- * EXTRA_COMPILE_FLAGS=-fpic
- * EXTRA_COMPILE_CMD=pkg-config --cflags Qt6Widgets
- * EXTRA_LINK_CMD=pkg-config --libs Qt6Widgets
+ * XTRA_COMPILE_FLAGS=-fPIC
+ * XTRA_COMPILE_CMD=pkg-config --cflags Qt6Widgets
+ * XTRA_LINK_CMD=pkg-config --libs Qt6Widgets
+ *
+ * These flags are for Qt5 which is on 22.04
+ * EXTRA_COMPILE_FLAGS=-fPIC
+ * EXTRA_COMPILE_CMD=pkg-config --cflags Qt5Widgets
+ * EXTRA_LINK_CMD=pkg-config --libs Qt5Widgets
  */
 
 int main(int argc, char** argv, char** envp) {

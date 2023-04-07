@@ -266,7 +266,6 @@ packages=[
     f"libwxgtk{ver_wxgtk}-gtk3-dev",
     "libmysql++-dev",
     "libsdl1.2-dev",
-    "qt6-base-dev",
     "libace-dev",
     f"libboost{ver_boost_short}-dev",
     f"libboost-thread{ver_boost}",
@@ -315,6 +314,11 @@ packages=[
     "libvirt-clients",
     "bridge-utils",
     "libvirt-daemon-system",
+    # qt stuff
+    # this is for qt6
+    "qt6-base-dev",
+    # this is for qt5
+    "qtbase5-dev",
 ]
 
 if opt_do_kernel:
