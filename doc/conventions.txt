@@ -1,0 +1,2 @@
+files which are not to be compiled but kept for later fixing should be moved
+from [filename] to [filename.moved]
