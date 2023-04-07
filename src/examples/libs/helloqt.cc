@@ -17,19 +17,21 @@
  */
 
 #include <firstinclude.h>
-#include <QtGui/qapplication.h>
-#include <QtGui/qpushbutton.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qpushbutton.h>
 
 /*
  * This is a simple Qt hello world program
  *
- * EXTRA_COMPILE_CMD=pkg-config --cflags QtGui
- * EXTRA_LINK_CMD=pkg-config --libs QtGui
+ * I don't know why I need the -fpic flag
+ * EXTRA_COMPILE_FLAGS=-fpic
+ * EXTRA_COMPILE_CMD=pkg-config --cflags Qt6Widgets
+ * EXTRA_LINK_CMD=pkg-config --libs Qt6Widgets
  */
 
 int main(int argc, char** argv, char** envp) {
 	QApplication app(argc, argv);
-	QPushButton hello("Hello, world!", 0);
+	QPushButton hello("Push me to exit", 0);
 
 	QObject::connect(&hello, SIGNAL(clicked()), &app, SLOT(quit()));
 	hello.show();
