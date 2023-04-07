@@ -32,7 +32,9 @@
 
 int main(int argc, char** argv, char** envp) {
 	double pi=4.0*atan(1.0);
-	double complex z=cexp(I*pi);
+	// this should be "double complex" but we are in C++ and "complex" is in the
+	// standard C++ library
+	double _Complex z=cexp(I*pi);
 	printf("%f+%f*i\n", creal(z), cimag(z));
 	return EXIT_SUCCESS;
 }
