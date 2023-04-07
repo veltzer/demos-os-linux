@@ -23,7 +23,9 @@
 /*
  * This is a simple Qt hello world program
  *
- * I don't know why I need the -fpic flag
+ * We need to add -fPIC to the compilation
+ * see https://stackoverflow.com/questions/47958083/how-to-build-qt-with-reduce-relocations
+ * These flags are for Qt6 which is on 22.10
  * EXTRA_COMPILE_FLAGS=-fpic
  * EXTRA_COMPILE_CMD=pkg-config --cflags Qt6Widgets
  * EXTRA_LINK_CMD=pkg-config --libs Qt6Widgets
