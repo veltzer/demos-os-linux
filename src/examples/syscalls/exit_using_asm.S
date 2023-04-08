@@ -32,9 +32,9 @@
 .text
 .global _start
 _start:
-	## the system call we want (from syscall.h)
-	movl $SYS_exit, %eax
-	## the value we want to return
-	movl $7, %ebx
-	## call the system call itself
-	int $0x80
+## the system call we want (from syscall.h)
+movl $SYS_exit, %eax
+## the value we want to return
+movl $7, %ebx
+## call the system call itself
+int $0x80
