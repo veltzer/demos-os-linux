@@ -1,7 +1,9 @@
 <%!
     import pydmt.helpers.github
     import pydmt.helpers.python
-%>name: build
+%>env:
+  MAKEFLAGS: "-j"
+name: build
 on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
