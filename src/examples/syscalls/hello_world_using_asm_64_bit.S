@@ -17,30 +17,32 @@
  */
 
 /*
- * This is an extension of the exit_without_main.S example. See
- * its documentation for more info.
+ * An example of how to write a classic "Hello, World!\n" program in assembly
+ * see: https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
  *
- * EXTRA_LINK_FLAGS_AFTER=-nostdlib -Xlinker --strip-all -Xlinker --build-id=none
+ * The next flags are needed:
+ * EXTRA_COMPILE_FLAGS=-static -m64
+ * EXTRA_LINK_FLAGS=-static -m64 -nostdlib
  */
 
 #include <asm/unistd.h>
 #include <syscall.h>
 
-.section	.rodata
+.section .rodata
 hello:
-	.string	"Hello, World!\n"
-.text
-.global _start
-.type _start, @function
-_start:
-	## write(1,hello,14)
-	movl $SYS_write, %eax
-	movl $1, %ebx
-	movl $hello, %ecx
-	movl $14, %edx
-	int $0x80
+.ascii "Hello, world!\n"
 
-	## _exit(7)
-	movl $7, %ebx
-	movl $SYS_exit, %eax
-	int $0x80
+.section .text
+.global _start
+_start:
+## write(1,hello,14)
+movq $1, %rax # use the `write` [fast] syscall
+movq $1, %rdi # write to stdout
+movq $hello, %rsi # use string "Hello World"
+movq $14, %rdx # write 14 characters
+syscall # make syscall
+
+## _exit(7)
+movq $60, %rax # use the `_exit` [fast] syscall
+movq $0, %rdi # error code 0
+syscall # make syscall

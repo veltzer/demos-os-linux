@@ -18,33 +18,31 @@
 
 /*
  * An example of how to write a classic "Hello, World!\n" program in assembly
- * EXTRA_COMPILE_FLAGS=-fno-pic
- * EXTRA_LINK_FLAGS_AFTER=-fno-pie
+ * see: https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
+ *
+ * The next flags are needed:
+ * EXTRA_COMPILE_FLAGS=-static -m32
+ * EXTRA_LINK_FLAGS=-static -m32 -nostdlib
  */
 
 #include <asm/unistd.h>
 #include <syscall.h>
 
-//.data
-//hello:
-//	.ascii "Hello World!\n\0"
-
-.section	.rodata
+.section .rodata
 hello:
-	.string	"Hello, World!\n"
+.ascii "Hello, world!\n"
 
-.text
-.global	main
-.type main, @function
-main:
-	## write(1,hello,14)
-	movl $SYS_write, %eax
-	movl $1, %ebx
-	movl $hello, %ecx
-	movl $14, %edx
-	int $0x80
+.section .text
+.global _start
+_start:
+## write(1,hello,14)
+movl $SYS_write, %eax
+movl $1, %ebx
+movl $hello, %ecx
+movl $14, %edx
+int $0x80
 
-	## _exit(7)
-	movl $SYS_exit, %eax
-	movl $7, %ebx
-	int $0x80
+## _exit(7)
+movl $SYS_exit, %eax
+movl $7, %ebx
+int $0x80

@@ -104,13 +104,6 @@ def main():
     ]).decode().rstrip()
     subs["source"]=source
     subs["target"]=target
-    # this is for the note.GNU-stack warning
-    # https://stackoverflow.com/questions/73435637/how-can-i-fix-usr-bin-ld-warning-trap-o-missing-note-gnu-stack-section-imp
-    if source.endswith(".S"):
-        args.extend([
-            "-z",
-            "noexecstack",
-        ])
     # scan the source code
     allow_output=False
     with open(source, "r") as stream:
