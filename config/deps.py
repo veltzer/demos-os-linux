@@ -318,6 +318,8 @@ packages=[
     "qt6-base-dev",
     # this is for qt5
     "qtbase5-dev",
+    # this is for assembly 32 bit examples to work
+    "libc6-dev-i386",
 ]
 
 if opt_do_kernel:
