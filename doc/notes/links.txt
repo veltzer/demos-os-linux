@@ -144,6 +144,7 @@ http://asm.sourceforge.net/resources.html#docs
 http://ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html
 putting and getting registers: $LINUX_SOURCE/include/uapi/asm/gcc_intrin.h
 https://cs.nyu.edu/courses/fall11/CSCI-GA.2130-001/x64-intro.pdf
+https://github.com/airvzxf/programming-ground-up-and-under-hood
 
 Object oriented in the C language:
 ==================================
