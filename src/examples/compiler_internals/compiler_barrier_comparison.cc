@@ -172,6 +172,12 @@ TEST(
 	srandom(5)
 	);
 TEST(
+	funccall2,
+	"printf is always external and should work as a compiler barrier\n",
+	true,
+	printf("hello")
+	);
+TEST(
 	fullcompbar,
 	"Official full compiler barrier for gcc for all variables.\n"
 	"Too strong if all you want is to force just one variable to be read from memory instead of register.\n"
@@ -269,6 +275,7 @@ int main(int argc, char** argv, char** envp) {
 	test_machbar(val_before, val_after, dummy);
 	test_emptasm(val_before, val_after, dummy);
 	test_funccall(val_before, val_after, dummy);
+	test_funccall2(val_before, val_after, dummy);
 	test_fullcompbar(val_before, val_after, dummy);
 	test_singvarbar(val_before, val_after, dummy);
 	test_singvarbar2(val_before, val_after, dummy);

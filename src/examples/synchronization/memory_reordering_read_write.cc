@@ -43,7 +43,7 @@
  * http://preshing.com/20120515/memory-reordering-caught-in-the-act
  *
  * So that we could disassemble this easily...
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS=-g3 -O0
  * We are multi threaded in this example
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
