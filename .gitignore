@@ -4,6 +4,10 @@
 /target/
 /out/
 *.out
+/.mypy_cache
+
+# general ignore stuff
+/*.gi
 
 # hive
 /derby.log
