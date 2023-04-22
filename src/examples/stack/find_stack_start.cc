@@ -49,10 +49,6 @@
 	- to turn off kernel randomization of address space layout:
 	echo 0 > /proc/sys/kernel/randomize_va_space
 	the ubuntu default for this /proc value is 2.
-
-	TODO:
-
-	EXTRA_LINK_FLAGS_AFTER=-lpthread -lprocps
 */
 
 const char* rw(bool v) {

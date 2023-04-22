@@ -25,7 +25,6 @@
 #include <err_utils.h>	// for CHECK_ZERO(), CHECK_NOT_M1(), CHECK_1()
 #include <trace_utils.h>// for TRACE()
 #include <multiproc_utils.h>	// for print_code(), print_status(), process_set_name()
-#include <proc/readproc.h>	// for get_proc_stats(3)
 
 /*
  * This example demostrates how processes become zombies in Linux...
@@ -50,25 +49,11 @@
  * - ps(1) (done in this example).
  * - catting files from the /proc folder (done in two ways in this example).
  * - top(1)
- *
- * TODO: this static lib crap is blocking this code from being
- * 32/64 bit agnostic
- *
- * the dynamically linked procps does not work since it is missing the
- * 'get_proc_stats' symbol.
- * XTRA_LINK_CMD=pkg-config --libs libprocps
- * EXTRA_LINK_FLAGS_AFTER=/lib/x86_64-linux-gnu/libprocps.a -lsystemd
  */
 
-// print the state of a process in 3 different ways...
 static inline void print_state(pid_t pid) {
 	my_system("ps --no-headers -o comm,state %d", pid);
 	my_system("cat /proc/%d/status | grep State", pid);
-	// the function get_proc_stats is declared by the procps headers
-	// but does not exist in the procps shared object...
-	proc_t myproc;
-	get_proc_stats(pid,&myproc);
-	printf("pid is %d, state is %c\n",pid, myproc.state);
 }
 
 int main(int argc, char** argv, char** envp) {

@@ -30,7 +30,6 @@
 #include <sys/types.h>	// for getpid(2), pid_t:type
 #include <unistd.h>	// for getpid(2), pid_t:type
 #include <stdio.h>	// for snprintf(3), printf(3), fopen(3), fgets(3), fclose(3), feof(3), FILE:type, getline(3), sscanf(3), fread(3) , fwrite(3)
-#include <proc/readproc.h>	// for get_proc_stats(3), proc_t, look_up_our_self(3)
 #include <sys/time.h>	// for getrusage(2), rusage:struct
 #include <sys/resource.h>	// for getrusage(2), rusage:struct
 #include <string.h>	// for strstr(3)
@@ -136,18 +135,19 @@ static inline void proc_print_mmap_self_only() {
  * Print memory stats for the current process
  */
 static inline void proc_print_mem_stats(pid_t pid) {
+	/*
+	 * TODO
 	proc_t myproc;
 	get_proc_stats(pid, &myproc);
 	printf("size is %ld, min_flt is %ld, state is %c\n", myproc.rss, myproc.min_flt, myproc.state);
+	*/
 }
 
 /*
  * Print memory stats for the current process
  */
 static inline void proc_print_mem_stats_self(void) {
-	proc_t myproc;
-	look_up_our_self(&myproc);
-	printf("size is %ld, min_flt is %ld\n", myproc.rss, myproc.min_flt);
+	printf("this should be implemented\n");
 }
 
 /*
@@ -206,9 +206,8 @@ static inline void set_thread_name_proc(char* name) {
  * get the current stack from /proc
  */
 static inline void* proc_get_start_stack() {
-	proc_t myproc;
-	look_up_our_self(&myproc);
-	return (void*)myproc.start_stack;
+	// TODO
+	return (void*)NULL;
 }
 
 /*

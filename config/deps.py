@@ -13,8 +13,16 @@ opt_do_ddebs=False
 # do we want to install compilers?
 opt_do_compilers=False
 
+# for 22.10, 22.4
 ver_papi = "6.0"
+# for 23.04
+ver_papi = "7.0"
+# for 22.10, 22.4
 ver_wxgtk = "3.0"
+lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
+# for 23.04
+ver_wxgtk = "3.2"
+lib_wx=f"libwxgtk{ver_wxgtk}-dev"
 ver_boost_short = "1.74"
 ver_boost=ver_boost_short+".0"
 ver_urcu = "8"
@@ -36,16 +44,17 @@ if opt_debug:
 if opt_exit:
     sys.exit(0)
 
-if hasattr(platform, "freedesktop_os_release"):
-    desktop = platform.freedesktop_os_release()
-    VERSION_ID = desktop["VERSION_ID"]
-    if VERSION_ID == "22.04":
-        libevent_ver = "2.1-7"
-    if VERSION_ID == "22.10":
-        ver_unwind = "-15"
-        libevent_ver = "2.1-7a"
-else:
-    ver_urcu = 6
+libevent_ver = None
+desktop = platform.freedesktop_os_release()
+VERSION_ID = desktop["VERSION_ID"]
+if VERSION_ID == "22.04":
+    libevent_ver = "2.1-7"
+if VERSION_ID == "22.10":
+    ver_unwind = "-15"
+    libevent_ver = "2.1-7a"
+if VERSION_ID == "23.04":
+    libevent_ver = "2.1-7a"
+assert libevent_ver is not None
 
 packages_kernels=[
 ]
@@ -251,8 +260,9 @@ packages=[
     "libncurses5-dev",
     "libncursesw5",
     "libncursesw5-dev",
-    "libprocps8",
-    "libprocps-dev",
+    # libprocps is gone
+    # "libprocps8",
+    # "libprocps-dev",
     "libsystemd0",
     "libsystemd-dev",
     "libsigc++-2.0-0v5",
@@ -262,7 +272,7 @@ packages=[
     "libpq-dev",
     "liblog4cpp5-dev",
     "libmysqlclient-dev",
-    f"libwxgtk{ver_wxgtk}-gtk3-dev",
+    lib_wx,
     "libmysql++-dev",
     "libsdl1.2-dev",
     "libace-dev",
@@ -307,7 +317,7 @@ packages=[
     "liburing2",
     "liburing-dev",
     # qemu stuff
-    "qemu-kvm",
+    "qemu-system-x86",
     "virt-manager",
     "virtinst",
     "libvirt-clients",
