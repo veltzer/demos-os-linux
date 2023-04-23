@@ -13,16 +13,6 @@ opt_do_ddebs=False
 # do we want to install compilers?
 opt_do_compilers=False
 
-# for 22.10, 22.4
-ver_papi = "6.0"
-# for 23.04
-ver_papi = "7.0"
-# for 22.10, 22.4
-ver_wxgtk = "3.0"
-lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
-# for 23.04
-ver_wxgtk = "3.2"
-lib_wx=f"libwxgtk{ver_wxgtk}-dev"
 ver_boost_short = "1.74"
 ver_boost=ver_boost_short+".0"
 ver_urcu = "8"
@@ -48,12 +38,21 @@ libevent_ver = None
 desktop = platform.freedesktop_os_release()
 VERSION_ID = desktop["VERSION_ID"]
 if VERSION_ID == "22.04":
+    ver_papi = "6.0"
     libevent_ver = "2.1-7"
+    ver_wxgtk = "3.0"
+    lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
 if VERSION_ID == "22.10":
+    ver_papi = "6.0"
     ver_unwind = "-15"
     libevent_ver = "2.1-7a"
+    ver_wxgtk = "3.0"
+    lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
 if VERSION_ID == "23.04":
+    ver_papi = "7.0"
     libevent_ver = "2.1-7a"
+    ver_wxgtk = "3.2"
+    lib_wx=f"libwxgtk{ver_wxgtk}-dev"
 assert libevent_ver is not None
 
 packages_kernels=[
