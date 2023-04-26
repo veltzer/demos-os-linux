@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <nargs.h>	// for
+#include <preprocessor_utils.h>	// for PP_NARG
 
 #define PRINT(pp_narg) printf("%2d = %s\n", pp_narg, # pp_narg)
 

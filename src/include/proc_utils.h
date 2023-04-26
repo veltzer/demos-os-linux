@@ -108,10 +108,10 @@ static inline void proc_get_self_filter(const char* filter, char* out, size_t si
 static inline void proc_print_mmap_self_filter(const char* filter) {
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t read;
+	ssize_t read_size;
 
 	FILE* fp=CHECK_NOT_NULL_FILEP(fopen("/proc/self/maps", "r"));
-	while ((read = getline(&line, &len, fp)) != -1) {
+	while (CHECK_NOT_M1(read_size=getline(&line, &len, fp))) {
 		if(strstr(line, filter)) {
 			printf("%s", line);
 		}

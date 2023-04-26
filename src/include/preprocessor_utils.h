@@ -16,8 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __nargs_h
-#define __nargs_h
+#ifndef __preprocessor_utils_h
+#define __preprocessor_utils_h
 
 /*
  * This creates a C preprocessor macro that returns the number
@@ -53,4 +53,4 @@
 	19,18,17,16,15,14,13,12,11,10,\
 	9, 8, 7, 6, 5, 4, 3, 2, 1, 0
 
-#endif	/* !__nargs_h */
+#endif	/* !__preprocessor_utils_h */
