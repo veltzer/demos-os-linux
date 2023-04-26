@@ -23,7 +23,13 @@
 #include <err_utils.h>	// for CHECK_NOT_M1()
 
 /*
- * This example shows that you can read /proc/self/stack 
+ * This example shows how you you can read /proc/self/stack 
+ * It turns out that you can't by default on ubuntu
+ * You need to either:
+ * - add capabities to your user
+ * - remove some security features from the kernel
+ *   	either in compilation or at runtime at /proc
+ * - run this as sudo.
  */
 
 int main(int argc, char** argv, char** envp) {
