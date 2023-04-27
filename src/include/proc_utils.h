@@ -117,7 +117,7 @@ static inline void proc_print_mmap_self_filter(const char* filter) {
 		}
 	}
 	if(!feof(fp)) {
-		CHECK_NOT_M1(read);
+		CHECK_NOT_M1(read_size);
 	}
 	free(line);
 	CHECK_ZERO_ERRNO(fclose(fp));
