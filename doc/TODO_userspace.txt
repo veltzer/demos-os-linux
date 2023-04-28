@@ -28,6 +28,8 @@ websites to get ideas from
 
 examples to add
 ===============
+- add example of using "usefafultfd" to monitor page faults from user space.
+	https://man7.org/linux/man-pages/man2/userfaultfd.2.html
 - get another example for epoll from Ilan Smith of Nvidia from here:
 	https://github.com/ilansmith/pipe_trigger/blob/master/wakeup.c
 - do example of -fsanitize
