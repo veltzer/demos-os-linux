@@ -3,7 +3,7 @@
     import pydmt.helpers.urls
     import pydmt.helpers.signature
     import config.project
-    import user.personal
+    import config.personal
 %><!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
 		<link rel="icon" type="image/x-icon" href="../static/favicon.ico"/>
 		<meta name="Description" content="${config.project.description_short}"/>
-		<meta name="Keywords" content="${user.personal.fullname}, ${user.personal.slug}, ${pydmt.helpers.project.get_name()}, ${', '.join(config.project.keywords)}"/>
+		<meta name="Keywords" content="${config.personal.fullname}, ${config.personal.slug}, ${pydmt.helpers.project.get_name()}, ${', '.join(config.project.keywords)}"/>
 	</head>
 	<body>
 		<h1>Welcome to the <i>${pydmt.helpers.project.get_name()}</i> web site</h1>
@@ -31,8 +31,8 @@
 			<li>
 		</ul>
 		<p>
-			Copyright ${user.personal.fullname} © ${pydmt.helpers.signature.get_copyright_years_long()}
-			<a href="mailto:${user.personal.email}">${user.personal.email}</a>
+			Copyright ${config.personal.fullname} © ${pydmt.helpers.signature.get_copyright_years_long()}
+			<a href="mailto:${config.personal.email}">${config.personal.email}</a>
 		</p>
 	</body>
 </html>
