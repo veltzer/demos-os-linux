@@ -3,6 +3,10 @@ fixes
 I no longer use "libprocps" which is deprecated and so I need to write some code in the places where it used to be.
 this includes filling in some functions in src/include/proc_utils.h
 
+compilers
+=========
+compile all user space examples with clang and not just gcc.
+
 websites to get ideas from
 ==========================
 	https://github.com/gby/hacks
