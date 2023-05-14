@@ -34,7 +34,7 @@
 
 static void handler(int sig, siginfo_t *si, void *unused) {
 	printf("got signal %s\n", strsignal(sig));
-	printf("si is %p\n", si);
+	printf("si is %p\n", (void*)si);
 	printf("Got SIGSEGV at address: 0x%lx\n", (long) si->si_addr);
 	psiginfo(si, "This is a message\n");
 	exit(EXIT_FAILURE);

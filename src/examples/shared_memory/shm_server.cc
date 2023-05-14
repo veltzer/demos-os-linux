@@ -52,7 +52,7 @@ int main(int argc, char** argv, char** envp) {
 	printf("shmid is %d\n", shmid);
 	void* ptr=CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
 	shared_data* dateptr=(shared_data*)ptr;
-	printf("pointer is %p\n", dateptr);
+	printf("pointer is %p\n", (void*)dateptr);
 	int count=0;
 	printf("shared memory was created, you can now run the client\n");
 	printf("you can see info about the shared memory using \"ipcs -m -i %d\"\n", shmid);

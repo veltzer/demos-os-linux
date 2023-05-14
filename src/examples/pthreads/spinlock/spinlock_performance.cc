@@ -95,9 +95,9 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_ZERO_ERRNO(pthread_spin_init(&td.lock, PTHREAD_PROCESS_PRIVATE));
 	CHECK_ZERO_ERRNO(pthread_mutex_init(&td.mtx, NULL));
 	const unsigned int thread_num=argc-5;
-	pthread_t threads[thread_num];
-	cpu_set_t cpu_sets[thread_num];
-	pthread_attr_t attrs[thread_num];
+	pthread_t* threads=new pthread_t[thread_num];
+	cpu_set_t* cpu_sets=new cpu_set_t[thread_num];
+	pthread_attr_t* attrs=new pthread_attr_t[thread_num];
 	for(unsigned int i=0; i<thread_num; i++) {
 		CPU_ZERO(cpu_sets+i);
 		CPU_SET(atoi(argv[i+5]), cpu_sets+i);
@@ -110,5 +110,8 @@ int main(int argc, char** argv, char** envp) {
 	}
 	CHECK_ZERO_ERRNO(pthread_spin_destroy(&td.lock));
 	CHECK_ZERO_ERRNO(pthread_mutex_destroy(&td.mtx));
+	delete[] threads;
+	delete[] cpu_sets;
+	delete[] attrs;
 	return EXIT_SUCCESS;
 }

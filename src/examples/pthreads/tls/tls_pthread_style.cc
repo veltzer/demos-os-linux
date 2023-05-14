@@ -57,7 +57,7 @@ static void run_threads() {
 	for(unsigned int i=0; i<num; i++) {
 		int* p=(int*)malloc(sizeof(int));
 		*p=i;
-		TRACE("allocated [%p]", p);
+		TRACE("allocated [%p]", (void*)p);
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, p));
 	}
 	for(unsigned int i=0; i<num; i++) {

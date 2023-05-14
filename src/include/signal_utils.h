@@ -146,7 +146,7 @@ static inline void signal_print_table() {
  * structure as there are just too many of them...
  */
 static inline void signal_print_siginfo(FILE* out, siginfo_t *si) {
-	fprintf(out, "sighandler: si is %p\n", si);
+	fprintf(out, "sighandler: si is %p\n", (void*)si);
 	fprintf(out, "sighandler: si_signo is: %d\n", si->si_signo);
 	fprintf(out, "sighandler: si_errno is: %d\n", si->si_errno);
 	fprintf(out, "sighandler: si_pid is: %d\n", si->si_pid);

@@ -89,8 +89,8 @@ int main(int argc, char** argv, char** envp) {
 	// if you are in gcc 4.4 then search for times
 	// p has to be volatile or else the assignment to it will not happen
 	volatile char* p=find_cell((void*)function, times);
-	fprintf(stderr, "address of function is %p\n", function);
-	fprintf(stderr, "address of p is %p\n", p);
+	fprintf(stderr, "address of function is %p\n", (void*)function);
+	fprintf(stderr, "address of p is %p\n", (void*)p);
 	// fprintf(stderr,"*function is %c\n",*(char*)function);
 	// *(char*)(function)=5;
 	// fprintf(stderr,"*function is %c\n",*(char*)function);

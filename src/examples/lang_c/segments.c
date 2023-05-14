@@ -30,9 +30,9 @@ const char* buf_data="this is the data buffer";
 int main(int argc, char** argv, char** envp) {
 	int var_stack=5;
 	const char* buf_stack="this is a buffer";
-	printf("var_stack is %p\n", &var_stack);
+	printf("var_stack is %p\n", (void*)&var_stack);
 	printf("buf_stack is %p\n", buf_stack);
-	printf("var_data is %p\n", &var_data);
+	printf("var_data is %p\n", (void*)&var_data);
 	printf("buf_data is %p\n", buf_data);
 	return EXIT_SUCCESS;
 }

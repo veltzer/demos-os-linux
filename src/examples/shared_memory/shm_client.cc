@@ -41,7 +41,7 @@ int main(int argc, char** argv, char** envp) {
 	int shmid=CHECK_NOT_M1(shmget(key, 0, 0));
 	void* ptr=CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
 	shared_data* dateptr=(shared_data*)ptr;
-	printf("connected to shared memory at address %p\n", dateptr);
+	printf("connected to shared memory at address %p\n", (void*)dateptr);
 	for(int count=0; count<10000; count++) {
 		struct tm mytm;
 		CHECK_NOT_NULL(localtime_r(&dateptr->now, &mytm));

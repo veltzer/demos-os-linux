@@ -98,11 +98,11 @@ int main(int argc, char** argv, char** envp) {
 	counter_random_r=0;
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int thread_num=cpu_num;
-	pthread_t threads[thread_num];
-	pthread_attr_t attrs[thread_num];
-	cpu_set_t cpu_sets[thread_num];
-	int ids[thread_num];
-	void* rets[thread_num];
+	pthread_t* threads=new pthread_t[thread_num];
+	pthread_attr_t* attrs=new pthread_attr_t[thread_num];
+	cpu_set_t* cpu_sets=new cpu_set_t[thread_num];
+	int* ids=new int[thread_num];
+	void** rets=new void*[thread_num];
 	for(int i=0; i<thread_num; i++) {
 		ids[i]=i;
 		CPU_ZERO(cpu_sets+i);
@@ -121,11 +121,15 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_ZERO(sleep(seconds_for_each));
 	stop_random_r=true;
 	for(int i=0; i<thread_num; i++) {
-		CHECK_ZERO_ERRNO(pthread_join(threads[i], rets + i));
+		CHECK_ZERO_ERRNO(pthread_join(threads[i], &rets[i]));
 	}
 	printf("rand() results are %d\n", (int)counter_rand);
 	printf("rand_r() results are %d\n", (int)counter_rand_r);
 	printf("random() results are %d\n", (int)counter_random);
 	printf("random_r() results are %d\n", (int)counter_random_r);
+	delete[] threads;
+	delete[] attrs;
+	delete[] cpu_sets;
+	delete[] rets;
 	return EXIT_SUCCESS;
 }

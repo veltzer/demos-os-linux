@@ -131,16 +131,16 @@ int main(int argc, char** argv, char** envp) {
 		case 3:
 			CHECK_NOT_M1(msgctl(msqid, IPC_STAT, &msgCtlBuf));
 			printf("From %ld\nTo ", msgCtlBuf.msg_qbytes);
-			CHECK_INT(scanf("%ld", &msgCtlBuf.msg_qbytes), 1);
+			CHECK_INT(scanf("%lu", &msgCtlBuf.msg_qbytes), 1);
 			CHECK_NOT_M1(msgctl(msqid, IPC_SET, &msgCtlBuf));
 			break;
 		case 4:
 			fprintf(stderr, "Enter msg_perm.uid: ");
-			CHECK_INT(scanf ("%d", &msgCtlBuf.msg_perm.uid), 1);
+			CHECK_INT(scanf ("%u", &msgCtlBuf.msg_perm.uid), 1);
 			fprintf(stderr, "Enter msg_perm.gid: ");
-			CHECK_INT(scanf("%d", &msgCtlBuf.msg_perm.gid), 1);
+			CHECK_INT(scanf("%u", &msgCtlBuf.msg_perm.gid), 1);
 			fprintf(stderr, "Enter msg_perm.mode: ");
-			CHECK_INT(scanf("%d", &msgCtlBuf.msg_perm.mode), 1);
+			CHECK_INT(scanf("%u", &msgCtlBuf.msg_perm.mode), 1);
 			CHECK_NOT_M1(msgctl(msqid, IPC_SET, &msgCtlBuf));
 			break;
 		}

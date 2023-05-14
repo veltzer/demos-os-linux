@@ -127,7 +127,10 @@ int main(int argc, char** argv, char** envp) {
 		*(volatile int*)NULL=202;
 	}
 	if(choice==2) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 		jmp_abs=(unsigned long)&&mylabel;
+#pragma GCC diagnostic pop
 		signal_register_handler_sigaction(SIGSEGV, handler_jmp_abs, 0);
 		*(volatile int*)NULL=300;
 		*(volatile int*)NULL=301;

@@ -39,7 +39,7 @@
 
 struct file_info {
     off_t file_sz;
-    struct iovec iovecs[];      /* Referred by readv/writev */
+    struct iovec* iovecs;      /* Referred by readv/writev */
 };
 
 /*

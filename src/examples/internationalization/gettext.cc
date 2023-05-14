@@ -26,6 +26,9 @@
  */
 
 int main(int argc, char** argv, char** envp) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat"
 	printf(gettext("Operation failed: %m\n"));
+#pragma GCC diagnostic pop
 	return EXIT_SUCCESS;
 }

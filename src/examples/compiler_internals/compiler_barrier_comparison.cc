@@ -105,9 +105,9 @@ FILE* outfile;
 		int *pa=&a; \
 		/* this printing is essential to keep the compiler from telling us
 		 * that 'pa' is an unused variable. */ \
-		fprintf(outfile, "pa is %p\n", pa); \
-		fprintf(outfile, "p is %p\n", p); \
-		fprintf(outfile, "&a is %p\n", &a); \
+		fprintf(outfile, "pa is %p\n", (void*)pa); \
+		fprintf(outfile, "p is %p\n", (void*)p); \
+		fprintf(outfile, "&a is %p\n", (void*)&a); \
 		fprintf(outfile, "now starting\n"); \
 		/* this loop will force the compiler to load a into a register */ \
 		a=100; \

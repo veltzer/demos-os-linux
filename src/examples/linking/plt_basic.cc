@@ -39,9 +39,9 @@ int main(int argc, char** argv, char** envp) {
 	typeof(printf)* p_printf=&printf;
 	typeof(snprintf)* p_snprintf=&snprintf;
 	typeof(atoi)* p_atoi=&atoi;
-	printf("&printf is %p\n", p_printf);
-	printf("&snprintf is %p\n", p_snprintf);
-	printf("&atoi is %p\n", p_atoi);
+	printf("&printf is %p\n", (void*)p_printf);
+	printf("&snprintf is %p\n", (void*)p_snprintf);
+	printf("&atoi is %p\n", (void*)p_atoi);
 	proc_print_mmap_self();
 	return EXIT_SUCCESS;
 }

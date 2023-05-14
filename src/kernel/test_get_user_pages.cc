@@ -104,7 +104,10 @@ int main(int argc, char** argv, char** envp) {
 
 	d=CHECK_NOT_M1(open(filename, O_RDWR));
 	if (do_stack_test) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wvla"
 		char data[csize + getpagesize() * 10];
+#pragma GCC diagnostic pop
 		do_test(data, csize, "stack");
 	}
 	if (do_valloc_test) {

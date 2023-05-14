@@ -74,7 +74,7 @@ int main(int argc, char** argv, char** envp) {
 	int fd=CHECK_NOT_M1(open(file, O_RDONLY));
 	int ret;
 	unsigned int buflen=getpagesize();
-	char buf[buflen];
+	char* buf=new char[buflen];
 	while((ret=read(fd, buf, buflen))>0) {
 		TRACE("read %d bytes", ret);
 		int bytes=ret;
@@ -86,6 +86,7 @@ int main(int argc, char** argv, char** envp) {
 			pbuf+=written;
 		}
 	}
+	delete[] buf;
 	CHECK_NOT_M1(ret);
 	CHECK_NOT_M1(close(fd));
 	TRACE("closed the file");

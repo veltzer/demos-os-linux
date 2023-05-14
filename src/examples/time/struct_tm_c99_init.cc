@@ -23,6 +23,8 @@
  * the wrong place. This is because struct tm has MORE fields
  * than are documented... This is actually a bug I saw happening
  * no a real system.
+ *
+ * EXTRA_COMPILE_FLAGS=-std=c++20
  */
 
 #include <firstinclude.h>

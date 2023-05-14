@@ -76,7 +76,10 @@ static inline void pthread_stack_prefault() {
 	char* pa=(char*)&a;
 	size_t diff=pa-(char*)stackaddr;
 	size_t prefault_size=diff-getpagesize();
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wvla"
 	unsigned char dummy[prefault_size];
+	#pragma GCC diagnostic pop
 	memset(&dummy, 0, prefault_size);
 }
 

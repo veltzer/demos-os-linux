@@ -111,8 +111,8 @@ int main(int argc, char** argv, char** envp) {
 	// message to the user
 	printf("contact me at host %s port %d\n", host, port);
 	// go into the endless service loop
+	struct epoll_event* events=new struct epoll_event[maxevents];
 	while(true) {
-		struct epoll_event events[maxevents];
 		int nfds=CHECK_NOT_M1(epoll_wait(epollfd, events, maxevents, -1));
 		for(int n=0; n<nfds; n++) {
 			int currfd=events[n].data.fd;
@@ -179,5 +179,6 @@ int main(int argc, char** argv, char** envp) {
 			}
 		}
 	}
+	delete[] events;
 	return EXIT_SUCCESS;
 }

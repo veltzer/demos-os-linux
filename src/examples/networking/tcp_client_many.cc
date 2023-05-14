@@ -58,6 +58,9 @@ void* worker(void* arg) {
 	// lets connect...
 	CHECK_NOT_M1(connect(sockfd, (struct sockaddr *)&server, sizeof(server)));
 	printf("%d: connected successfully\n", threadid);
+	unsigned int rbuflen=getpagesize();
+	char* rbuf=new char[rbuflen];
+	char* prbuf=new char[rbuflen+1];
 	for(unsigned int i=0; i<numrequests; i++) {
 		// lets send "hello"...
 		const char* sbuf="hello";
@@ -66,13 +69,12 @@ void* worker(void* arg) {
 		CHECK_NOT_M1(send(sockfd, sbuf, sbuflen, 0));
 
 		// lets receive
-		unsigned int rbuflen=getpagesize();
-		char rbuf[rbuflen];
 		int ret=CHECK_NOT_M1(recv(sockfd, rbuf, rbuflen, 0));
-		char prbuf[rbuflen+1];
 		snprintf(prbuf, ret+1, "%s", rbuf);
 		printf("%d: received [%s]\n", threadid, prbuf);
 	}
+	delete[] rbuf;
+	delete[] prbuf;
 	// lets close...
 	CHECK_NOT_M1(close(sockfd));
 	printf("%d: closed, exiting\n", threadid);

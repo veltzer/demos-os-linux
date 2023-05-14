@@ -55,10 +55,10 @@ void *worker(void *p) {
 int main(int argc, char** argv, char** envp) {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int num=cpu_num;
-	pthread_t threads[num];
-	pthread_attr_t attrs[num];
-	cpu_set_t cpu_sets[num];
-	int ids[num];
+	pthread_t* threads=new pthread_t[num];
+	pthread_attr_t* attrs=new pthread_attr_t[num];
+	cpu_set_t* cpu_sets=new cpu_set_t[num];
+	int* ids=new int[num];
 
 	//TRACE("main starting");
 	for(int i=0; i<num; i++) {
@@ -75,5 +75,9 @@ int main(int argc, char** argv, char** envp) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
 	//TRACE("main ended");
+	delete[] threads;
+	delete[] attrs;
+	delete[] cpu_sets;
+	delete[] ids;
 	return EXIT_SUCCESS;
 }

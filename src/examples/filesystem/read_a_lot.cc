@@ -53,7 +53,7 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_INT(write(fd, content, len), len);
 	CHECK_NOT_M1(fsync(fd));
 	INFO("file [%s] is ready, see it, and delete it while I am running...", filename);
-	char buffer[len+1];
+	char* buffer=new char[len+1];
 	buffer[len]='\0';
 	unsigned int counter=0;
 	while(true) {

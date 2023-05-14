@@ -47,7 +47,9 @@ DEBUG:=0
 OPT:=1
 # the c++ compiler to be used
 CXX:=g++
+# CXX:=clang++
 CC:=gcc
+# CC:=clang
 # do you want ccache support?
 CCACHE:=0
 # suffix for binary files
@@ -83,9 +85,8 @@ CXXFLAGS:=$(CXXFLAGS) -O2
 CFLAGS:=$(CFLAGS) -O2
 endif # OPT
 
-#WARN_FLAGS:=-Wall -Werror
-#WARN_FLAGS:=-Wall -Werror -pedantic
-WARN_FLAGS:=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-clobbered -Wno-missing-field-initializers
+# other interesting flags: -pedantic
+WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-variadic-macros
 CXXFLAGS:=$(CXXFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 CFLAGS:=$(CFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 

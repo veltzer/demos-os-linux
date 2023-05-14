@@ -102,7 +102,7 @@ static void* worker(void* c) {
 			// Use the guard to serialize access to printf...
 			ACE_GUARD_RETURN(ACE_Thread_Mutex, ace_mon, printf_lock, 0);
 			// Print the thread id portably.
-			ACE_OS::printf("(%p)", &handle);
+			ACE_OS::printf("(%p)", (void*)&handle);
 			ACE_OS::printf(" errno=%d, lineno=%d, flags=%d\n",
 				tss_error->error(),
 				tss_error->line(),

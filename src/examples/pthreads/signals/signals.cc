@@ -51,7 +51,7 @@ static void handler(int sig, siginfo_t *si, void *unused) {
 	printf("sighandler: gettid() is %d\n", gettid());
 	printf("sighandler: counter is %d\n", counter);
 	printf("sighandler: got signal %s\n", strsignal(sig));
-	printf("sighandler: si is %p\n", si);
+	printf("sighandler: si is %p\n", (void*)si);
 	printf("sighandler: address is: 0x%lx\n", (long) si->si_addr);
 	printf("sighandler: psiginfo follows...\n");
 	psiginfo(si, "sighandler");

@@ -69,11 +69,13 @@ int main(int argc, char** argv, char** envp) {
 
 	// lets receive
 	unsigned int rbuflen=1024;
-	char rbuf[rbuflen];
+	char* rbuf=new char[rbuflen];
 	int ret=CHECK_NOT_M1(recv(sockfd, rbuf, rbuflen, 0));
-	char prbuf[rbuflen];
+	char* prbuf=new char[rbuflen];
 	snprintf(prbuf, ret+1, "%s", rbuf);
 	printf("received [%s]\n", prbuf);
+	delete[] rbuf;
+	delete[] prbuf;
 
 	// lets close...
 	CHECK_NOT_M1(close(sockfd));

@@ -38,10 +38,16 @@
  * - Show the results inside this source code for 32bit and 64bit linux.
  */
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 typedef struct _struct_empty {
 } struct_empty;
+#pragma GCC diagnostic pop
 typedef struct _struct_emptyarray {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 	char a[0];
+#pragma GCC diagnostic pop
 } struct_emptyarray;
 typedef struct _struct_char {
 	char c;
@@ -82,8 +88,9 @@ int main(int argc, char** argv, char** envp) {
 	// but this is...
 	float fourfloatarray[]={ 5, 3, 2, 1 };
 	printf("size of fourfloatarray is %zd\n", sizeof(fourfloatarray));
-	float zerofloatarray[]={};
-	printf("size of zerofloatarray is %zd\n", sizeof(zerofloatarray));
+// this does not compile
+//	float zerofloatarray[]={};
+//	printf("size of zerofloatarray is %zd\n", sizeof(zerofloatarray));
 	PRINT_SIZEOF(struct_empty);
 	PRINT_SIZEOF(struct_emptyarray);
 	PRINT_SIZEOF(struct_char);

@@ -31,7 +31,7 @@
  */
 
 void copy_file(const char* filein, const char* fileout, const unsigned int bufsize) {
-	char buf[bufsize];
+	char* buf=new char[bufsize];
 	int fdin=CHECK_NOT_M1(open(filein, O_RDONLY|O_LARGEFILE, 0666));
 	int fdout=CHECK_NOT_M1(open(fileout, O_WRONLY|O_CREAT|O_TRUNC|O_LARGEFILE, 0666));
 	// this is the main copy loop
@@ -52,6 +52,7 @@ void copy_file(const char* filein, const char* fileout, const unsigned int bufsi
 	} while(read_bytes>0);
 	CHECK_NOT_M1(close(fdin));
 	CHECK_NOT_M1(close(fdout));
+	delete[] buf;
 }
 
 int main(int argc, char** argv, char** envp) {

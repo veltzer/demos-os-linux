@@ -24,9 +24,9 @@ int var_global=1972;
 
 void foo(int var_local) {
 	static int var_static=0;
-	printf("address of local variable is %p\n", &var_local);
-	printf("address of static variable is %p\n", &var_static);
-	printf("address of global variable is %p\n", &var_global);
+	printf("address of local variable is %p\n", (void*)&var_local);
+	printf("address of static variable is %p\n", (void*)&var_static);
+	printf("address of global variable is %p\n", (void*)&var_global);
 }
 
 int main(int argc, char** argv, char** envp) {

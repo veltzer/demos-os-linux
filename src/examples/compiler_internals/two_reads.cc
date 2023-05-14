@@ -33,7 +33,7 @@
  */
 
 void __attribute__((noinline)) print_address_of(int* ptr) {
-	printf("ptr is %p\n", ptr);
+	printf("ptr is %p\n", (void*)ptr);
 }
 
 void __attribute__((noinline)) printit(int val) {

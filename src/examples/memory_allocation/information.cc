@@ -90,7 +90,7 @@ int main(int argc, char** argv, char** envp) {
 	num_threads=atoi(argv[1]);
 	num_allocations=atoi(argv[2]);
 	size_to_alloc=atoi(argv[3]);
-	pthread_t threads[num_threads];
+	pthread_t* threads=new pthread_t[num_threads];
 
 	for(unsigned int i=0; i<num_threads; i++) {
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, NULL));
@@ -103,5 +103,6 @@ int main(int argc, char** argv, char** envp) {
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 	struct mallinfo mymallinfo=mallinfo();
 	print_mallinfo(&mymallinfo);
+	delete[] threads;
 	return EXIT_SUCCESS;
 }

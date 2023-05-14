@@ -23,7 +23,10 @@
 #include <err_utils.h>	// for CHECK_ZERO()
 
 void myfunc(int arg) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wvla"
 	int myarray[arg];
+#pragma GCC diagnostic pop
 	bzero(myarray, arg*sizeof(int));
 }
 

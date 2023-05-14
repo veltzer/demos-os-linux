@@ -62,7 +62,7 @@ void *worker(void *p) {
 	//int num=*(int *)p;
 	int diff=size_max-size_min;
 	for(int i=0;i<num_iterations;i++) {
-		void* buffers[num_allocations];
+		void** buffers=new void*[num_allocations];
 		for(int j=0;j<num_allocations;j++) {
 			int size_to_alloc;
 			if(diff==0) {
@@ -76,6 +76,7 @@ void *worker(void *p) {
 			// free(3) has not return value
 			free(buffers[j]);
 		}
+		delete[] buffers;
 	}
 	return NULL;
 }
@@ -96,10 +97,10 @@ int main(int argc, char** argv, char** envp) {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int num_threads=cpu_num;
 
-	pthread_t threads[num_threads];
-	pthread_attr_t attrs[num_threads];
-	cpu_set_t cpu_sets[num_threads];
-	int ids[num_threads];
+	pthread_t* threads=new pthread_t[num_threads];
+	pthread_attr_t* attrs=new pthread_attr_t[num_threads];
+	cpu_set_t* cpu_sets=new cpu_set_t[num_threads];
+	int* ids=new int[num_threads];
 
 	for(int i=0; i<num_threads; i++) {
 		ids[i]=i;
@@ -112,5 +113,9 @@ int main(int argc, char** argv, char** envp) {
 	for(int i=0; i<num_threads; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
+	delete[] threads;
+	delete[] attrs;
+	delete[] cpu_sets;
+	delete[] ids;
 	return EXIT_SUCCESS;
 }

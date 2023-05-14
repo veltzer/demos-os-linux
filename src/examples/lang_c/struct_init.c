@@ -39,7 +39,10 @@ int main(int argc, char** argv, char** envp) {
 	printf("v1.c is %d\n", v1.c);
 	// this is the GNU style...
 	// fields not initialized will be 0
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 	struct mystruct v2={ a: 8, b: 9 };
+#pragma GCC diagnostic pop
 	printf("v2.a is %d\n", v2.a);
 	printf("v2.b is %d\n", v2.b);
 	printf("v2.c is %d\n", v2.c);

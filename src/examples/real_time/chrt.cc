@@ -45,9 +45,8 @@ int main(int argc, char** argv, char** envp) {
 		fprintf(stderr, "%s: priority must be between 0 - 99!\n", argv[0]);
 		return EXIT_FAILURE;
 	}
-	struct sched_param sched {
-		.sched_priority=priority
-	};
+	struct sched_param sched;
+	sched.sched_priority=priority;
 	CHECK_NOT_M1(sched_setscheduler(0, SCHED_FIFO, &sched));
 	printf("%s: executing %s in realtime priority %d...\n", argv[0], argv[2], sched.sched_priority);
 	CHECK_NOT_M1(execvp(program, params));

@@ -30,7 +30,7 @@
 
 int main(int argc, char** argv, char** envp) {
 	double (*p_func)(double)=(typeof(p_func))dlsym(RTLD_NEXT, argv[1]);
-	printf("p_func is %p\n", p_func);
+	printf("p_func is %p\n", (void*)p_func);
 	double val=atof(argv[2]);
 	printf("this is just a junk print %lf\n", cos(val));
 	printf("%s(%lf) is %lf\n", argv[1], val, p_func(val));

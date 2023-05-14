@@ -44,8 +44,8 @@ void* create_threads(void* arg) {
 	int num=pd->num;
 	int level=pd->level;
 	int highest=pd->highest;
-	pthread_t threads[num];
-	thread_data td[num];
+	pthread_t* threads=new pthread_t[num];
+	thread_data* td=new thread_data[num];
 
 	if(level>0) {
 		for(int i=0; i<num; i++) {
@@ -68,6 +68,8 @@ void* create_threads(void* arg) {
 			CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 		}
 	}
+	delete[] threads; 
+	delete[] td; 
 	return NULL;
 }
 

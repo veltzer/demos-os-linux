@@ -26,7 +26,7 @@ void addone(double* a) {
 
 int main(int argc, char** argv, char** envp) {
 	double g=4.5;
-	printf("the address of g is %p\n", &g);
+	printf("the address of g is %p\n", (void*)&g);
 	addone(&g);
 	printf("g is %f\n", g);
 	return EXIT_SUCCESS;

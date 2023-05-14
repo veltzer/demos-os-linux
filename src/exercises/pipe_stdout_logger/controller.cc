@@ -52,9 +52,10 @@ void runUncontrolled(int* fd) {
 static int logfile_counter=0;
 int getnextlogfile() {
 	unsigned int filename_length=CHECK_NOT_M1(pathconf("/tmp", _PC_NAME_MAX));
-	char logfilename[filename_length];
+	char* logfilename=new char[filename_length];
 	snprintf(logfilename, filename_length, "/tmp/log%d.txt", logfile_counter);
 	int logfd=CHECK_NOT_M1(open(logfilename, O_WRONLY|O_CREAT|O_TRUNC, 0666));
+	delete[] logfilename;
 	logfile_counter++;
 	return logfd;
 }
@@ -70,7 +71,7 @@ void runLogger(int* fd) {
 	int logfd=-1;
 	// buffer for the logging...
 	const unsigned int bufsize=getpagesize();
-	char buf[bufsize];
+	char* buf=new char[bufsize];
 	unsigned int msg_count=0;
 	while(true) {
 		if(msg_count%1000==0) {
@@ -91,6 +92,7 @@ void runLogger(int* fd) {
 			ptr+=size_write;
 		}
 	}
+	delete[] buf;
 }
 
 int main(int argc, char** argv, char** envp) {

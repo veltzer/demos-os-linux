@@ -35,8 +35,8 @@
  */
 
 class A {
-private:
-	int secret;
+// private:
+// 	int secret;
 
 public:
 	A(void) {

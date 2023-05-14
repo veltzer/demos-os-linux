@@ -123,7 +123,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
 
 	// real code
 	SharedResource sharedResource;
-	HA_CommandHandler* handlers[num_threads];
+	HA_CommandHandler** handlers=new HA_CommandHandler*[num_threads];
 	for(unsigned int i=0; i<num_threads; i++) {
 		handlers[i]=new HA_CommandHandler(sharedResource, i);
 	}
@@ -133,6 +133,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
 	for(unsigned int i=0; i<num_threads; i++) {
 		handlers[i]->wait();
 	}
+	delete[] handlers;
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) LockedCounter=%u\n"), sharedResource.getLockedCounter()));
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) GeneralCounter=%u\n"), sharedResource.getAttemptCounter()));
 	return EXIT_SUCCESS;

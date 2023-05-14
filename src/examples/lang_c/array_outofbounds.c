@@ -30,7 +30,7 @@
 int main(int argc, char** argv, char** envp) {
 	int a[10];
 	int num=1995;
-	printf("%p %p\n", a, &num);
+	printf("%p %p\n", (void*)a, (void*)&num);
 	int i;
 	for(i=0; i<10; i++) {
 		a[i]=i;

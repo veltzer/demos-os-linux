@@ -53,16 +53,19 @@ void debug(bool short_print, const char *file, const char *function, int line, c
  * TRACE - always enabled and always shows max info (usually for debug)
  * DEBUG - cancelled by default and shows max info (turn it on with DO_DEBUG).
  * INFO, WARNING, ERROR, FATAL - doesn't show a lot of info (just the message).
+ *
+ * In the next macros we use __func__ and not __FUNCTION__ because ISO C does not
+ * support __FUNCTION__ and we want to be able to pass compliation with the -pedantic flag on.
  */
-#define TRACE(fmt, args ...) debug(false, __FILE__, __FUNCTION__, __LINE__, fmt, ## args)
+#define TRACE(fmt, args ...) debug(false, __FILE__, __func__, __LINE__, fmt, ## args)
 #ifdef DO_DEBUG
-#define DEBUG(fmt, args ...) debug(false, __FILE__, __FUNCTION__, __LINE__, fmt, ## args)
+#define DEBUG(fmt, args ...) debug(false, __FILE__, __func__, __LINE__, fmt, ## args)
 #else
 #define DEBUG(fmt, args ...) do {} while(0)
 #endif
-#define INFO(fmt, args ...) debug(true, __FILE__, __FUNCTION__, __LINE__, fmt, ## args)
-#define WARNING(fmt, args ...) debug(true, __FILE__, __FUNCTION__, __LINE__, fmt, ## args)
-#define ERROR(fmt, args ...) debug(true, __FILE__, __FUNCTION__, __LINE__, fmt, ## args)
-#define FATAL(fmt, args ...) debug(true, __FILE__, __FUNCTION__, __LINE__, fmt, ## args)
+#define INFO(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
+#define WARNING(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
+#define ERROR(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
+#define FATAL(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
 
 #endif	/* !__trace_utils_h */

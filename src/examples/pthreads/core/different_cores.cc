@@ -39,8 +39,8 @@ void *worker(void *p) {
 int main(int argc, char** argv, char** envp) {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int num=cpu_num;
-	pthread_t threads[num];
-	int ids[num];
+	pthread_t* threads=new pthread_t[num];
+	int* ids=new int[num];
 
 	for(int i=0; i<num; i++) {
 		ids[i]=i;
@@ -49,5 +49,7 @@ int main(int argc, char** argv, char** envp) {
 	for(int i=0; i<num; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
+	delete[] threads;
+	delete[] ids;
 	return EXIT_SUCCESS;
 }

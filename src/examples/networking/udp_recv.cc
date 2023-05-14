@@ -74,7 +74,7 @@ int main(int argc, char** argv, char** envp) {
 
 	// lets recvfrom
 	unsigned int buflen=getpagesize();
-	char buf[buflen];
+	char* buf=new char[buflen];
 	int ret;
 	int fd=CHECK_NOT_M1(open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666));
 	while((ret=recvfrom(sockfd, buf, buflen, 0, (struct sockaddr *)&peer_addr, &peer_len))>0) {
@@ -98,6 +98,7 @@ int main(int argc, char** argv, char** envp) {
 	TRACE("closed the file");
 	CHECK_NOT_M1(close(sockfd));
 	TRACE("closed the socket");
+	delete[] buf;
 
 	TRACE("exiting");
 	return EXIT_SUCCESS;

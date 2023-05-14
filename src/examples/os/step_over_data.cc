@@ -52,10 +52,10 @@ int main(int argc, char** argv, char** envp) {
 	page_size=CHECK_NOT_M1(sysconf(_SC_PAGESIZE));
 	printf("page size is %d\n", page_size);
 	my_system("pmap %d", getpid());
-	printf("address of a is %p, look it up above...\n", &a);
-	printf("address of ptr is %p, look it up above...\n", &ptr);
-	printf("address of page_size is %p, look it up above...\n", &page_size);
-	printf("address of old_handler is %p, look it up above...\n", &old_handler);
+	printf("address of a is %p, look it up above...\n", (void*)&a);
+	printf("address of ptr is %p, look it up above...\n", (void*)&ptr);
+	printf("address of page_size is %p, look it up above...\n", (void*)&page_size);
+	printf("address of old_handler is %p, look it up above...\n", (void*)&old_handler);
 	waitkey(NULL);
 	// lets install our own SIGSEGV signal handler so that we could print the address we
 	// failed at...

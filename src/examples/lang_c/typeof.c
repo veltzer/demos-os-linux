@@ -50,7 +50,7 @@ int main(int argc, char** argv, char** envp) {
 
 	/* e's type is a pointer to whatever c type is... */
 	typeof(typeof(c) *)e=(typeof(typeof(c) *)) 100;
-	printf("e is %p\n", e);
+	printf("e is %p\n", (void*)e);
 
 	/* f's type is the return type of myfunction... */
 	typeof(myfunction(1))f=3;

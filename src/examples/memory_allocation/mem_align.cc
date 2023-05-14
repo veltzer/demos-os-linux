@@ -119,7 +119,10 @@ int main(int argc, char** argv, char** envp) {
 	printf("pt4 is %p (%ld)\n", pt4, (unsigned long)pt4 % ps);
 	printf("pt5 is %p (%ld)\n", pt5, (unsigned long)pt5 % ps);
 	proc_print_mmap(NULL);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 	void* ptr=(void*)main;
+#pragma GCC diagnostic pop
 	printf("ptr is %p\n", ptr);
 	printf("ptr aligned is %p\n", align_address(ptr));
 	return EXIT_SUCCESS;

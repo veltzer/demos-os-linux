@@ -28,6 +28,8 @@
  * This is an example of using setjmp/longjmp to simulate exception handling
  * in C code. This example expands on the previous example in that it adds stack
  * traces to the "errors" which are generated.
+ *
+ * EXTRA_COMPILE_FLAGS=-Wno-clobbered
  */
 
 const int max_stack_frames=25;

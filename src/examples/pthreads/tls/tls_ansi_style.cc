@@ -32,7 +32,7 @@ static __thread int myid;
 static void* worker(void* arg) {
 	int* pint=(int*)arg;
 	myid=*pint;
-	TRACE("going to deallocate [%p]", pint);
+	TRACE("going to deallocate [%p]", (void*)pint);
 	free(pint);
 	// now lets pull our id
 	TRACE("myid is [%d]", myid);
@@ -45,7 +45,7 @@ int main(int argc, char** argv, char** envp) {
 	for(unsigned int i=0; i<num; i++) {
 		int* p=(int*)malloc(sizeof(int));
 		*p=i;
-		TRACE("allocated [%p]", p);
+		TRACE("allocated [%p]", (void*)p);
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, p));
 	}
 	myid=1000;

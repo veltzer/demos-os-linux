@@ -66,7 +66,7 @@ void call_big() {
 	my_big_struct biggie;
 	bzero(&biggie, sizeof(my_big_struct));
 	check_stack();
-	printf("disregard this print %p\n", &biggie);
+	printf("disregard this print %p\n", (void*)&biggie);
 }
 
 void* doit(void*) {
