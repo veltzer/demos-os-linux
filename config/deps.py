@@ -11,7 +11,7 @@ opt_do_kernel=False
 # install debug packages for kernels?
 opt_do_ddebs=False
 # do we want to install compilers?
-opt_do_compilers=False
+opt_do_compilers=True
 
 ver_boost_short = "1.74"
 ver_boost=ver_boost_short+".0"
@@ -365,17 +365,9 @@ if opt_do_ddebs:
 
 if opt_do_compilers:
     packages.extend([
-        # compilers
-        "gcc-4.7",
-        "g++-4.7",
-        "gcc-4.8",
-        "g++-4.8",
-        "gcc-4.8-plugin-dev",
-        "g++-4.9",
-        "gcc-snapshot",
+        "gcc",
         "clang",
     ])
     packages_doc.extend([
-        "gcc-4.7-doc",
-        "gcc-4.8-doc",
+        "gcc-doc",
     ])
