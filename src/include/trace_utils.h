@@ -56,6 +56,9 @@ void debug(bool short_print, const char *file, const char *function, int line, c
  *
  * In the next macros we use __func__ and not __FUNCTION__ because ISO C does not
  * support __FUNCTION__ and we want to be able to pass compliation with the -pedantic flag on.
+ * Note that there is a definiency in using __func__ which can't be used outside of any function,
+ * but that is not a big problem since trying to use a function name outside of any function is
+ * suspect at best.
  */
 #define TRACE(fmt, args ...) debug(false, __FILE__, __func__, __LINE__, fmt, ## args)
 #ifdef DO_DEBUG

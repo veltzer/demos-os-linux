@@ -406,6 +406,9 @@ static inline int check_gezero(int val, const char* msg, const char* file, const
 /**
  * In the next macros we use __func__ and not __FUNCTION__ because ISO C does not
  * support __FUNCTION__ and we want to be able to pass compliation with the -pedantic flag on.
+ * Note that there is a definiency in using __func__ which can't be used outside of any function,
+ * but that is not a big problem since trying to use a function name outside of any function is
+ * suspect at best.
  */
 #define CHECK_ZERO(v) check_zero(v, stringify(v), __FILE__, __func__, __LINE__, NULL)
 #define CHECK_MSG_ZERO(v, m) check_zero(v, stringify(v), __FILE__, __func__, __LINE__, m)
