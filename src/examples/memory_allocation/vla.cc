@@ -27,10 +27,16 @@
  * This memory is allocated on the stack, and this example demonstrates this althrough the gcc documentation
  * does not state so explicitly.
  * You can just run this example and see that the address of the variable length array is the same as the stack.
+ *
  * This feature is therefore similar to alloca(3) but more elegant.
+ * This also means that this feature is subject to the same constraints as alloc(3). For instance, you
+ * should not keep a pointer to such an a variable sized array and try to use it after the function or
+ * scope in which it was defined goes out of scope.
+ *
  * Jumping or breaking out of the scope of the array name deallocates the storage.
  * Jumping into the scope is not allowed; you get an error message for it.
  * This is epecially important for longjmp(3) and exception handling in C++.
+ *
  * Note that "pedantic" gcc mode does not allow the "vla" features and so we need to supply the
  * "-Wno-vla" flag below.
  *
