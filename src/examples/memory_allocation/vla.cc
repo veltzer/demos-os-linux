@@ -39,6 +39,7 @@
  * References:
  * - https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html
  * - https://www.geeksforgeeks.org/variable-length-arrays-in-c-and-c/
+ * - https://stackoverflow.com/questions/2863347/declaring-the-array-size-with-a-non-constant-variable
  */
 
 void function(int len) {
