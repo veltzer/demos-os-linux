@@ -36,7 +36,8 @@ examples to add
 	https://man7.org/linux/man-pages/man2/userfaultfd.2.html
 - get another example for epoll from Ilan Smith of Nvidia from here:
 	https://github.com/ilansmith/pipe_trigger/blob/master/wakeup.c
-- do example of -fsanitize
+- do example of	-fsanitize=thread
+	(I already have an example of -fsanitize=address)
 - write example that shows how
 	-fstack-protector -fstack-protector-all -fstack-protector-strong -fstack-protector-explicit
 	protect your code.
@@ -72,9 +73,6 @@ examples to add
 - do a demo of tracing user space apps using the lttng ust tracer.
 	more info is here: https://lttng.org/
 - demo the use of MADV_DONTDUMP for determining what will go into a core dump from within a process.
-- demo the user of the following gcc flags:
-	-fsanitize=address
-	-fsanitize=thread
 - demo the use of open_by_handle_at, name_to_handle_at.
 	I don't have manual pages for these because ubuntu carries old manual pages.
 	http://man7.org/linux/man-pages/man2/open_by_handle_at.2.html
