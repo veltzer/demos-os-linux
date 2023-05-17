@@ -25,7 +25,11 @@
 
 /*
  * This test program simply simulates various memory errors
- * EXTRA_COMPILE_FLAGS=-Wno-use-after-free
+ *
+ * IMPORTANT NOTE! EXTRA_COMPILE_FLAGS do not work here (!!!) becuase this is a standalone example
+ * and does not use the python compile script that knows how to extract extra compliation flags from the
+ * compilation units themselves.
+ * EXTRA_COMPILE_FLAGS=-XXXX DONT USE THIS HERE XXXX-
  */
 
 int main(int argc, char** argv, char** envp) {
@@ -85,9 +89,10 @@ int main(int argc, char** argv, char** envp) {
 		break;
 	case 7:
 		free(buffer);
-#pragma GCC diagnostic ignored "-Wpragmas"
+#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wuse-after-free"
 		free(buffer);
+#pragma GCC diagnostic pop
 		break;
 	}
 	fprintf(stderr, "ending\n");
