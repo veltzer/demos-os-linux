@@ -90,6 +90,7 @@ int main(int argc, char** argv, char** envp) {
 	case 7:
 		free(buffer);
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpragmas"
 #pragma GCC diagnostic ignored "-Wuse-after-free"
 		free(buffer);
 #pragma GCC diagnostic pop
