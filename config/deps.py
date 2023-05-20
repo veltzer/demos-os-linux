@@ -58,8 +58,6 @@ assert libevent_ver is not None
 packages_kernels=[
 ]
 packages_doc=[
-    "gcc-doc", # gcc documentation
-    "cpp-doc", # gcc documentation
     "ncurses-doc", # ncurses documentation
     "binutils-doc", # binutils documentation
     "libasound2-doc",
@@ -370,4 +368,5 @@ if opt_do_compilers:
     ])
     packages_doc.extend([
         "gcc-doc",
+        "cpp-doc",
     ])
