@@ -12,4 +12,4 @@ analyze:
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)-rm -f c_run.$(SUFFIX_BIN) Makefile.stamp
+	$(Q)-rm -f hello.$(SUFFIX_BIN) Makefile.stamp
