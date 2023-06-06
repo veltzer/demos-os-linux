@@ -6,4 +6,7 @@ How do you measure it?
 	Its less than a 4 us
 
 Better, if you affine it to a single core:
+	for processes:
 	$ taskset -c 1 perf bench sched pipe
+	for threads:
+	$ taskset -c 1 perf bench sched pipe -T
