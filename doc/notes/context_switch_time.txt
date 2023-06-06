@@ -4,3 +4,6 @@ How do you measure it?
 	for threads:
 	$ perf bench sched pipe -T
 	Its less than a 4 us
+
+Better, if you affine it to a single core:
+	$ taskset -c 1 perf bench sched pipe
