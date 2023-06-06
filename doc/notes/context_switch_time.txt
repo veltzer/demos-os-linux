@@ -1,0 +1,6 @@
+How do you measure it?
+	for processes:
+	$ perf bench sched pipe
+	for threads:
+	$ perf bench sched pipe -T
+	Its less than a 4 us
