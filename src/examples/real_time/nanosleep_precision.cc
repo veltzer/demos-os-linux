@@ -22,6 +22,7 @@
 #include <time.h>	// for nanosleep(2), timespec
 #include <lowlevel_utils.h>	// for getticks(), get_mic_diff()
 #include <sched_utils.h>// for sched_run_priority(), SCHED_FIFO_LOW_PRIORITY:const, SCHED_FIFO_MID_PRIORITY:const, SCHED_FIFO_HIGH_PRIORITY:const
+#include <timespec_utils.h> // for timespec_diff_nano
 
 /*
  * This is an example showing how to sleep for very short periods of
@@ -64,6 +65,7 @@
  */
 
 void* measure(void* val) {
+	int clock_id=CLOCK_REALTIME;
 	const unsigned int repeats=100;
 	for(unsigned int i=100; i<2000; i+=100) {
 		unsigned long sum=0;
@@ -71,10 +73,15 @@ void* measure(void* val) {
 			timespec t;
 			t.tv_sec=0;
 			t.tv_nsec=1000 * i;
-			ticks_t start=getticks();
+			timespec t_start, t_end;
+			// ticks_t start=getticks();
+			CHECK_NOT_M1(clock_gettime(clock_id, &t_start));
 			nanosleep(&t, NULL);
-			ticks_t end=getticks();
-			sum+=get_mic_diff(start, end);
+			CHECK_NOT_M1(clock_gettime(clock_id, &t_end));
+			unsigned long long diff = timespec_diff_nano(&t_end, &t_start);
+			sum+=diff/1000;
+			// ticks_t end=getticks();
+			// sum+=get_mic_diff(start, end);
 		}
 		printf("time expired for nanosleep(2) of %u micros is %lu diff is %lu\n", i, sum / repeats, sum / repeats - i);
 	}
