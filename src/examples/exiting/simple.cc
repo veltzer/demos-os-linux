@@ -44,7 +44,7 @@ int main(int argc, char** argv, char** envp) {
 		return EXIT_FAILURE;
 	}
 	if(argc==2 && strcmp(argv[1], "secret")==0) {
-		_exit(5);
+		_exit(0);
 	} else {
 		my_system("strace %s secret", argv[0]);
 	}
