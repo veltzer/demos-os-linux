@@ -1,4 +1,0 @@
-These are the groups you need to belong to if you want to run all of the demos
-in this repository:
-
-adm cdrom sudo dip plugdev kvm lpadmin lxd sambashare docker libvirt microk8s stapusr stapdev stapsys
