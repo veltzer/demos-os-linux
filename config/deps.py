@@ -100,6 +100,7 @@ packages_tools=[
     "cpu-checker",
     "netperf",
     # tools
+    "shellcheck", # for checking shell scripts
     "linux-tools-common", # perf(1)
     "python3-uno", # soffice conversion
     #"vnstat", # causes performance problems

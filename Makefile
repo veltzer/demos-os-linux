@@ -15,6 +15,8 @@ DO_MKDBG?=0
 DO_PYLINT:=1
 # do you want to depend on the wrapper script?
 DO_DEP_WRAPPER:=1
+# do you want to check bash syntax?
+DO_CHECK_SYNTAX:=1
 
 #############
 # variables #
@@ -127,6 +129,8 @@ C_OBJ:=$(addsuffix .o,$(basename $(C_SRC)))
 S_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(S_SRC)))
 CC_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC)))
 C_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC)))
+ALL_SH:=$(shell find src -name "*.sh")
+ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
 ALL:=$(ALL) $(S_EXE) $(CC_EXE) $(C_EXE)
 CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_ASX) $(C_ASX) $(CC_PRE) $(C_PRE)
 
@@ -165,6 +169,10 @@ endif # DO_CHP
 ifeq ($(DO_PYLINT),1)
 ALL:=$(ALL) out/pylint.stamp
 endif # DO_PYLINT
+
+ifeq ($(DO_CHECK_SYNTAX),1)
+ALL:=$(ALL) $(ALL_STAMP)
+endif # DO_CHECK_SYNTAX
 
 ifeq ($(DO_DEP_WRAPPER),1)
 DEP_WRAPPER:=scripts/wrapper_compile.py
@@ -271,6 +279,11 @@ $(MOD_STP): %.ko.stamp: %.c
 	$(Q)sed 's/MODNAME/$(notdir $(basename $<))/g' src/kernel/Makefile.tmpl > src/kernel/Makefile
 	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
 	$(Q)pymakehelper touch_mkdir $@
+# shell checking rules
+$(ALL_STAMP): out/%.stamp: % .shellcheckrc
+	$(info doing [$@])
+	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$$HOME" $<
+	$(Q)pymakehelper touch_mkdir $@
 
 # rules about makefiles
 $(MK_STP): %.stamp: %
@@ -312,6 +325,7 @@ debug:
 	$(info ALL_US_CC is $(ALL_US_CC))
 	$(info ALL_US is $(ALL_US))
 	$(info ALL_PY is $(ALL_PY))
+	$(info ALL_SH is $(ALL_SH))
 
 .PHONY: todo
 todo:

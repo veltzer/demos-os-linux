@@ -8,5 +8,7 @@ do
 	if ! sudo usermod -a -G "${group}" "${USER}"
 	then
 		echo "failed to add user ${USER} to group ${group}"
+	else
+		echo "added you to group ${group}"
 	fi
 done
