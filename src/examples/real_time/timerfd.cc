@@ -41,7 +41,7 @@ static void print_current_time(struct timespec* since) {
 	timespec_snprintf(buf, sizeof(buf), &current_time, 1);
 	printf("current: %s\n", buf);
 	struct timespec diff;
-	timespec_sub(&diff, &current_time, since);
+	timespec_sub(&current_time, since, &diff);
 	timespec_snprintf(buf, sizeof(buf), &diff, 0);
 	printf("diff: %s\n", buf);
 }

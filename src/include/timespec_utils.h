@@ -33,7 +33,9 @@
 #include <err_utils.h>	// for CHECK_ASSERT(), CHECK_NOT_ZERO(), CHECK_NOT_NULL()
 
 /* The number of nsecs per sec. */
-const long long NSEC_PER_SEC=1000000000;
+const long long NSEC_PER_SEC=1000000000L;
+/* The number of msecs per sec. */
+const long long MSEC_PER_SEC=1000000;
 
 /*
  * Add a number of nanoseconds to a timespec
@@ -83,34 +85,28 @@ static inline unsigned long long timespec_diff_nano(struct timespec* t_end, stru
 }
 
 /*
- * Subtract the `struct timespec' values X and Y, storing the result in RESULT.
- * Fail with error if the result is negative.
- *
- * This code was shamelessly stolen from the GNU C libraries documentation of
- * the timeval strcture and adjusted for timespec...
+ * subtract start from end and put the difference into result.
  */
-static inline void timespec_sub(struct timespec* result, struct timespec* x, struct timespec* y) {
-	/* Perform the carry for the later subtraction by updating Y. */
-	if (x->tv_nsec < y->tv_nsec) {
-		int nsec = (y->tv_nsec - x->tv_nsec) / NSEC_PER_SEC + 1;
-		y->tv_nsec -= NSEC_PER_SEC * nsec;
-		y->tv_sec += nsec;
-	}
-	if (x->tv_nsec - y->tv_nsec > NSEC_PER_SEC) {
-		int nsec = (x->tv_nsec - y->tv_nsec) / NSEC_PER_SEC;
-		y->tv_nsec += NSEC_PER_SEC * nsec;
-		y->tv_sec -= nsec;
-	}
-	/* Compute the time remaining to wait. `tv_nsec' is certainly positive. */
-	result->tv_sec = x->tv_sec - y->tv_sec;
-	result->tv_nsec = x->tv_nsec - y->tv_nsec;
-
-	/* Check that result is not negative */
-	CHECK_ASSERT(x->tv_sec >= y->tv_sec);
+static inline void timespec_sub(struct timespec *end, struct timespec *start, struct timespec *result) {
+    result->tv_sec  = end->tv_sec  - start->tv_sec;
+    result->tv_nsec = end->tv_nsec - start->tv_nsec;
+    if (result->tv_nsec < 0) {
+        --result->tv_sec;
+        result->tv_nsec += NSEC_PER_SEC;
+    }
 }
 
-static inline void timespec_set_secs(struct timespec* t, long long secs) {
+static inline void timespec_set_sec(struct timespec* t, long long secs) {
 	t->tv_sec=secs;
+}
+
+static inline void timespec_set_nsec(struct timespec* t, long long nsec) {
+	t->tv_nsec=nsec;
+}
+
+static inline void timespec_clear(struct timespec* t) {
+	t->tv_sec=0;
+	t->tv_nsec=0;
 }
 
 static inline void timespec_set(struct timespec* t, long long secs, long long nsecs) {
@@ -126,7 +122,7 @@ static inline void timespec_copy(struct timespec* to, struct timespec* from) {
 static inline int timespec_snprintf(char* str, size_t size, struct timespec* t, int tz) {
 	// this is very simple printing
 	// return snprintf(str, size, "%ld.%09ld: ", t->tv_sec, t->tv_nsec);
-	// this is more complicated one
+	// this is a more complicated one
 	struct tm mytm;
 	if(tz) {
 		CHECK_NOT_NULL(localtime_r(&t->tv_sec, &mytm));
@@ -139,8 +135,12 @@ static inline int timespec_snprintf(char* str, size_t size, struct timespec* t, 
 	return snprintf(str, size, "%s.%09ld", mybuf, t->tv_nsec);
 }
 
-static inline unsigned long long timespec_nanos(const struct timespec* t) {
+static inline unsigned long long timespec_to_nanos(const struct timespec* t) {
 	return t->tv_sec*NSEC_PER_SEC+t->tv_nsec;
+}
+
+static inline unsigned long long timespec_to_micros(const struct timespec* t) {
+	return t->tv_sec*MSEC_PER_SEC+t->tv_nsec/1000;
 }
 
 #endif	/* !__timespec_utils_h */
