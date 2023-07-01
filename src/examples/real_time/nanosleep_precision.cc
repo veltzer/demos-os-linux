@@ -65,29 +65,43 @@
  * compare results.
  */
 
+bool use_ticks = false;
+
 void* measure(void* val) {
 	int clock_id=CLOCK_REALTIME;
 	const unsigned int repeats=100;
 	for(unsigned int i=100; i<2000; i+=100) {
-		// unsigned long sum=0;
+		unsigned long sum=0;
 		timespec t_sum = {0, 0};
 		for(unsigned int j=0; j<repeats; j++) {
 			timespec t;
 			t.tv_sec=0;
 			t.tv_nsec=1000 * i;
 			timespec t_start, t_end, t_diff;
-			// ticks_t start=getticks();
-			CHECK_NOT_M1(clock_gettime(clock_id, &t_start));
+			ticks_t start=0, end=0;
+			if(use_ticks) {
+				start=getticks();
+			} else {
+				CHECK_NOT_M1(clock_gettime(clock_id, &t_start));
+			}
 			nanosleep(&t, NULL);
-			CHECK_NOT_M1(clock_gettime(clock_id, &t_end));
-			// unsigned long long diff = timespec_diff_nano(&t_end, &t_start);
-			timespec_sub(&t_end, &t_start, &t_diff);
-			timespec_add(&t_sum, &t_diff);
-			//sum+=diff/1000;
-			// ticks_t end=getticks();
-			// sum+=get_mic_diff(start, end);
+			if(use_ticks) {
+				end=getticks();
+			} else {
+				CHECK_NOT_M1(clock_gettime(clock_id, &t_end));
+			}
+			if(use_ticks) {
+				sum+=get_mic_diff(start, end);
+				// unsigned long long diff = timespec_diff_nano(&t_end, &t_start);
+				// sum+=diff/1000;
+			} else {
+				timespec_sub(&t_end, &t_start, &t_diff);
+				timespec_add(&t_sum, &t_diff);
+			}
 		}
-		unsigned long sum = timespec_to_micros(&t_sum);
+		if(!use_ticks) {
+			sum = timespec_to_micros(&t_sum);
+		}
 		printf("time expired for nanosleep(2) of %u micros is %lu diff is %lu\n", i, sum / repeats, sum / repeats - i);
 	}
 	return NULL;
