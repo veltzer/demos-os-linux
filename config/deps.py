@@ -365,6 +365,7 @@ if opt_do_ddebs:
 if opt_do_compilers:
     packages.extend([
         "gcc",
+        "gcc-multilib",
         "clang",
     ])
     packages_doc.extend([
