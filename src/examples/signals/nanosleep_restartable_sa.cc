@@ -21,6 +21,7 @@
 #include <unistd.h>	// for sleep(3)
 #include <stdlib.h>	// for EXIT_SUCCESS, atoi(3)
 #include <err_utils.h>	// for CHECK_ZERO()
+#include <signal_utils.h>	// for signal_register_handler_sigaction()
 #include <assert.h>	// for assert(3)
 
 /*
@@ -37,7 +38,7 @@
  * - https://stackoverflow.com/questions/5198560/using-sleep-and-select-with-signals
  */
 
-static void handler(int signum) {
+static void handler(int signum, siginfo_t*, void*) {
 	printf("got signal %d...\n", signum);
 	//sleep(2);
 }
@@ -51,20 +52,12 @@ static void print_current_time() {
 int main(int argc, char** argv, char** envp) {
 	fprintf(stderr, "signal me with one of the following:\n");
 	fprintf(stderr, "[kill -s SIGUSR1 %d]\n", getpid());
-	CHECK_NOT_SIGT(signal(SIGUSR1, handler), SIG_ERR);
+	signal_register_handler_sigaction(SIGUSR1, handler, SA_RESTART);
 	struct timespec timeout;
 	timeout.tv_sec = 30;
 	timeout.tv_nsec = 0;
 	print_current_time();
-	while(1) {
-		int ret=nanosleep(&timeout, &timeout);
-		if(ret==-1) {
-			assert(errno==EINTR);
-			printf("restarting system call\n");
-		} else {
-			break;
-		}
-	}
+	nanosleep(&timeout, NULL);
 	print_current_time();
 	return EXIT_SUCCESS;
 }
