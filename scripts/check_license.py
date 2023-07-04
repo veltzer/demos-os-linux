@@ -15,7 +15,7 @@ def main():
     if len(sys.argv)>1:
         raise ValueError("no parameters on the cmd line")
 
-    with open("support/license.txt") as stream:
+    with open("support/license_new.txt") as stream:
         new_lic=stream.read()
 
     suffixes=[".c",".cc",".h",".hh",".S"]

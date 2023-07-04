@@ -41,39 +41,39 @@
 #include <linux/io_uring.h>
 
 #define QUEUE_DEPTH 1
-#define BLOCK_SZ    1024
+#define BLOCK_SZ 1024
 
 /* This is x86 specific */
-#define read_barrier()  __asm__ __volatile__("":::"memory")
+#define read_barrier() __asm__ __volatile__("":::"memory")
 #define write_barrier() __asm__ __volatile__("":::"memory")
 
 struct app_io_sq_ring {
-    unsigned *head;
-    unsigned *tail;
-    unsigned *ring_mask;
-    unsigned *ring_entries;
-    unsigned *flags;
-    unsigned *array;
+	unsigned *head;
+	unsigned *tail;
+	unsigned *ring_mask;
+	unsigned *ring_entries;
+	unsigned *flags;
+	unsigned *array;
 };
 
 struct app_io_cq_ring {
-    unsigned *head;
-    unsigned *tail;
-    unsigned *ring_mask;
-    unsigned *ring_entries;
-    struct io_uring_cqe *cqes;
+	unsigned *head;
+	unsigned *tail;
+	unsigned *ring_mask;
+	unsigned *ring_entries;
+	struct io_uring_cqe *cqes;
 };
 
 struct submitter {
-    int ring_fd;
-    struct app_io_sq_ring sq_ring;
-    struct io_uring_sqe *sqes;
-    struct app_io_cq_ring cq_ring;
+	int ring_fd;
+	struct app_io_sq_ring sq_ring;
+	struct io_uring_sqe *sqes;
+	struct app_io_cq_ring cq_ring;
 };
 
 struct file_info {
-    off_t file_sz;
-    struct iovec* iovecs;      /* Referred by readv/writev */
+	off_t file_sz;
+	struct iovec* iovecs; /* Referred by readv/writev */
 };
 
 /*
@@ -84,14 +84,13 @@ struct file_info {
 
 int io_uring_setup(unsigned entries, struct io_uring_params *p)
 {
-    return (int) syscall(__NR_io_uring_setup, entries, p);
+	return (int) syscall(__NR_io_uring_setup, entries, p);
 }
 
 int io_uring_enter(int ring_fd, unsigned int to_submit,
-                        unsigned int min_complete, unsigned int flags)
+	unsigned int min_complete, unsigned int flags)
 {
-    return (int) syscall(__NR_io_uring_enter, ring_fd, to_submit, min_complete,
-                flags, NULL, 0);
+	return (int) syscall(__NR_io_uring_enter, ring_fd, to_submit, min_complete, flags, NULL, 0);
 }
 
 /*
@@ -100,23 +99,22 @@ int io_uring_enter(int ring_fd, unsigned int to_submit,
 * */
 
 off_t get_file_size(int fd) {
-    struct stat st;
+	struct stat st;
 
-    if(fstat(fd, &st) < 0) {
-        perror("fstat");
-        return -1;
-    }
-    if (S_ISBLK(st.st_mode)) {
-        unsigned long long bytes;
-        if (ioctl(fd, BLKGETSIZE64, &bytes) != 0) {
-            perror("ioctl");
-            return -1;
-        }
-        return bytes;
-    } else if (S_ISREG(st.st_mode))
-        return st.st_size;
-
-    return -1;
+	if(fstat(fd, &st) < 0) {
+		perror("fstat");
+		return -1;
+	}
+	if (S_ISBLK(st.st_mode)) {
+		unsigned long long bytes;
+		if (ioctl(fd, BLKGETSIZE64, &bytes) != 0) {
+			perror("ioctl");
+			return -1;
+		}
+		return bytes;
+	} else if (S_ISREG(st.st_mode))
+		return st.st_size;
+	return -1;
 }
 
 /*
@@ -129,10 +127,10 @@ off_t get_file_size(int fd) {
 * */
 
 int app_setup_uring(struct submitter *s) {
-    struct app_io_sq_ring *sring = &s->sq_ring;
-    struct app_io_cq_ring *cring = &s->cq_ring;
-    struct io_uring_params p;
-    void *sq_ptr, *cq_ptr;
+	struct app_io_sq_ring *sring = &s->sq_ring;
+	struct app_io_cq_ring *cring = &s->cq_ring;
+	struct io_uring_params p;
+	void *sq_ptr, *cq_ptr;
 
     /*
     * We need to pass in the io_uring_params structure to the io_uring_setup()

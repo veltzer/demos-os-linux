@@ -88,12 +88,12 @@ static inline unsigned long long timespec_diff_nano(struct timespec* t_end, stru
  * subtract start from end and put the difference into result.
  */
 static inline void timespec_sub(struct timespec *end, struct timespec *start, struct timespec *result) {
-    result->tv_sec  = end->tv_sec  - start->tv_sec;
-    result->tv_nsec = end->tv_nsec - start->tv_nsec;
-    if (result->tv_nsec < 0) {
-        --result->tv_sec;
-        result->tv_nsec += NSEC_PER_SEC;
-    }
+	result->tv_sec = end->tv_sec - start->tv_sec;
+	result->tv_nsec = end->tv_nsec - start->tv_nsec;
+	if (result->tv_nsec < 0) {
+		--result->tv_sec;
+		result->tv_nsec += NSEC_PER_SEC;
+	}
 }
 
 static inline void timespec_set_sec(struct timespec* t, long long secs) {
