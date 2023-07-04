@@ -33,7 +33,7 @@
 
 static void handler(int sig) {
 	fprintf(stderr, "Im inside the signal handler\n");
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 int main(int argc, char** argv, char** envp) {

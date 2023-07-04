@@ -20,9 +20,9 @@
  * This is the most simple example of using signals on linux.
  * This shows that:
  * - signal handlers need to be installed just one time and will be trigger
- *   every time the signal is delivered to the process.
+ * every time the signal is delivered to the process.
  * - signals can wake you up when you are sleeping in the kernel and pull you
- *   out back to user space to handle the signal in user space.
+ * out back to user space to handle the signal in user space.
  */
 
 #include <firstinclude.h>

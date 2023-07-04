@@ -55,7 +55,7 @@ def main():
                     error=True
     if error:
         raise ValueError("had errors")
-    print(f"checked {checked} licenses")
+    # print(f"checked {checked} licenses")
 
 
 if __name__ == "__main__":

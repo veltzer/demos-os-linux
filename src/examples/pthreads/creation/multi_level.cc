@@ -68,8 +68,8 @@ void* create_threads(void* arg) {
 			CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 		}
 	}
-	delete[] threads; 
-	delete[] td; 
+	delete[] threads;
+	delete[] td;
 	return NULL;
 }
 

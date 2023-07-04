@@ -41,10 +41,10 @@ int min_a(int a, int b) {
 int max_a(int a, int b) {
 	return (a > b ? a : b);
 }
-int min_b(int a, int b) { 
+int min_b(int a, int b) {
 	return b + ((a-b) & (a-b)>>31);
 }
-int max_b(int a, int b) { 
+int max_b(int a, int b) {
 	return b + ((a-b) & (a-b)>>31);
 }
 */

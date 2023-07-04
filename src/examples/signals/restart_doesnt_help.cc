@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -27,7 +28,7 @@
  * This shows that SA_RESTART doesn't help every system call.
  */
 
-static void handler(int sig_num,  siginfo_t *, void *) {
+static void handler(int sig_num, siginfo_t *, void *) {
 	printf("Inside the signal handler %d in process %d\n", sig_num, getpid());
 	printf("signal handler is done...\n");
 }
@@ -35,11 +36,11 @@ static void handler(int sig_num,  siginfo_t *, void *) {
 int main(int argc, char** argv, char** envp) {
 	// signal registration
 	struct sigaction sa;
-        sa.sa_flags=SA_RESTART;
-        sigemptyset(&sa.sa_mask);
-        sa.sa_sigaction=handler;
-        struct sigaction old;
-        int ret=sigaction(SIGUSR1, &sa, &old);
+	sa.sa_flags=SA_RESTART;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_sigaction=handler;
+	struct sigaction old;
+	int ret=sigaction(SIGUSR1, &sa, &old);
 	assert(ret!=-1);
 
 	// main code

@@ -68,7 +68,8 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 {
 #ifdef DO_CLEAR
 	int ret;
-	ret=clear_user(buf, count);
+
+	ret = clear_user(buf, count);
 	if (ret)
 		return -EFAULT;
 	*ppos += count;
@@ -77,7 +78,8 @@ static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 #endif // DO_CLEAR
 #ifdef DO_COPY_TO_USER
 	ssize_t curr = min_t(ssize_t, remaining, PAGE_SIZE);
-	if(copy_to_user(buf,file->private_data,curr))
+
+	if (copy_to_user(buf, file->private_data, curr))
 		return -EFAULT;
 	*ppos += curr;
 	pr_info("returning %ld\n", count);
