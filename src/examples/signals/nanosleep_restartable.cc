@@ -39,7 +39,7 @@
 
 static void handler(int signum) {
 	printf("got signal %d...\n", signum);
-	//sleep(2);
+	sleep(5);
 }
 
 static void print_current_time() {
