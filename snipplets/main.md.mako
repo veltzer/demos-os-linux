@@ -1,6 +1,8 @@
 <%!
     import pydmt.helpers.git
-    file_number = pydmt.helpers.git.count_files("src/**/*.cc") + pydmt.helpers.git.count_files("src/**/*.c")
+    file_number = pydmt.helpers.git.count_files("src/**/*.cc") +\
+	pydmt.helpers.git.count_files("src/**/*.c") +\
+	pydmt.helpers.git.count_files("src/**/*.S")
 %>This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
