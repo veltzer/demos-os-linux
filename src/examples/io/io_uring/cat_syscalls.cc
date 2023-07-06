@@ -263,7 +263,7 @@ void read_from_cq(struct submitter *s) {
 		int blocks = (int) fi->file_sz / BLOCK_SZ;
 		if (fi->file_sz % BLOCK_SZ) blocks++;
 
-		for (int i = 0; i < blocks; i++)
+		for(int i = 0; i < blocks; i++)
 			output_to_console((char*)(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
 
 		head++;
@@ -371,7 +371,7 @@ int main(int argc, char *argv[]) {
 	struct submitter *s;
 
 	if (argc < 2) {
-		fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+		fprintf(stderr, "%s: usage: %s <filename>\n", argv[0], argv[0]);
 		return EXIT_FAILURE;
 	}
 
@@ -387,7 +387,7 @@ int main(int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	}
 
-	for (int i = 1; i < argc; i++) {
+	for(int i = 1; i < argc; i++) {
 		if(submit_to_sq(argv[i], s)) {
 			fprintf(stderr, "Error reading file\n");
 			return EXIT_FAILURE;

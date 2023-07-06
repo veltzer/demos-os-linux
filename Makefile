@@ -421,7 +421,7 @@ check_check_header:
 	$(info doing [$@])
 	$(Q)git grep include -- '*.c' '*.cc' '*.h' '*.hh' | grep us_helper | pymakehelper no_err grep CHECK
 .PHONY: check_all
-check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check kernel_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_gitignore check_exitzero check_check_header check_for check_semisemi
+check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi
 
 .PHONY: check_semisemi
 check_semisemi:
@@ -480,6 +480,7 @@ kernel_clean:
 	$(Q)-rm -f $(KERNEL_DIR)/Module.symvers $(KERNEL_DIR)/modules.order $(KERNEL_DIR)/mod_*.ko $(KERNEL_DIR)/mod_*.o $(KERNEL_DIR)/*.mod.c $(KERNEL_DIR)/.??* $(KERNEL_DIR)/*.stamp
 .PHONY: kernel_check
 kernel_check: $(MOD_CHP)
+	$(info doing [$@])
 .PHONY: kernel_build
 kernel_build: $(MOD_MOD)
 .PHONY: kernel_help

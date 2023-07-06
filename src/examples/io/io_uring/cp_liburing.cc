@@ -241,7 +241,7 @@ int main(int argc, char *argv[]) {
 	int ret;
 
 	if (argc < 3) {
-		printf("Usage: %s <infile> <outfile>\n", argv[0]);
+		printf("%s: usage: %s <infile> <outfile>\n", argv[0], argv[0]);
 		return 1;
 	}
 

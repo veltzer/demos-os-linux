@@ -55,7 +55,7 @@ int main(int argc, char** argv, char** envp) {
 	double sum = 0;
 	double add = 1;
 	int iterations = 1000*1000*1000;
-	for (int i=0; i<iterations; i++) {
+	for(int i=0; i<iterations; i++) {
 		sum += add;
 		if(i%10000==0) {
 			usleep(1);

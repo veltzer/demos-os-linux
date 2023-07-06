@@ -98,7 +98,7 @@ int get_completion_and_print(struct io_uring *ring) {
 	struct file_info *fi = (struct file_info*)io_uring_cqe_get_data(cqe);
 	int blocks = (int) fi->file_sz / BLOCK_SZ;
 	if (fi->file_sz % BLOCK_SZ) blocks++;
-	for (int i = 0; i < blocks; i ++)
+	for(int i = 0; i < blocks; i ++)
 		output_to_console((char*)(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
 
 	io_uring_cqe_seen(ring, cqe);
@@ -168,15 +168,15 @@ int main(int argc, char *argv[]) {
 	struct io_uring ring;
 
 	if (argc < 2) {
-		fprintf(stderr, "Usage: %s [file name] <[file name] ...>\n",
-				argv[0]);
+		fprintf(stderr, "%s: usage: %s [file name] <[file name] ...>\n",
+				argv[0], argv[0]);
 		return 1;
 	}
 
 	/* Initialize io_uring */
 	io_uring_queue_init(QUEUE_DEPTH, &ring, 0);
 
-	for (int i = 1; i < argc; i++) {
+	for(int i = 1; i < argc; i++) {
 		int ret = submit_read_request(argv[i], &ring);
 		if (ret) {
 			fprintf(stderr, "Error reading file: %s\n", argv[i]);
