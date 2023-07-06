@@ -24,6 +24,7 @@
 #include <sys/ioctl.h>
 #include <liburing.h>
 #include <stdlib.h>
+#include <err_utils.h>
 
 /*
  * This example was shamelessly stoen from:
@@ -50,17 +51,11 @@ struct file_info {
 off_t get_file_size(int fd) {
 	struct stat st;
 
-	if(fstat(fd, &st) < 0) {
-		perror("fstat");
-		return -1;
-	}
+	CHECK_NOT_M1(fstat(fd, &st));
 
 	if (S_ISBLK(st.st_mode)) {
 		unsigned long long bytes;
-		if (ioctl(fd, BLKGETSIZE64, &bytes) != 0) {
-			perror("ioctl");
-			return -1;
-		}
+		CHECK_NOT_M1(ioctl(fd, BLKGETSIZE64, &bytes));
 		return bytes;
 	} else if (S_ISREG(st.st_mode))
 		return st.st_size;
@@ -86,11 +81,8 @@ void output_to_console(char *buf, int len) {
 
 int get_completion_and_print(struct io_uring *ring) {
 	struct io_uring_cqe *cqe;
-	int ret = io_uring_wait_cqe(ring, &cqe);
-	if (ret < 0) {
-		perror("io_uring_wait_cqe");
-		return 1;
-	}
+	int ret;
+	CHECK_NOT_M1(ret=io_uring_wait_cqe(ring, &cqe));
 	if (cqe->res < 0) {
 		fprintf(stderr, "Async readv failed.\n");
 		return 1;
@@ -109,11 +101,8 @@ int get_completion_and_print(struct io_uring *ring) {
  * Submit the readv request via liburing
  * */
 int submit_read_request(char *file_path, struct io_uring *ring) {
-	int file_fd = open(file_path, O_RDONLY);
-	if (file_fd < 0) {
-		perror("open");
-		return 1;
-	}
+	int file_fd;
+	CHECK_NOT_M1(file_fd=open(file_path, O_RDONLY));
 	off_t file_sz = get_file_size(file_fd);
 	off_t bytes_remaining = file_sz;
 	off_t offset = 0;
@@ -141,10 +130,7 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 		offset += bytes_to_read;
 		fi->iovecs[current_block].iov_len = bytes_to_read;
 		void *buf;
-		if( posix_memalign(&buf, BLOCK_SZ, BLOCK_SZ)) {
-			perror("posix_memalign");
-			return 1;
-		}
+		CHECK_ZERO(posix_memalign(&buf, BLOCK_SZ, BLOCK_SZ));
 		fi->iovecs[current_block].iov_base = buf;
 
 		current_block++;

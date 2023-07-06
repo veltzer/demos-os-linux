@@ -35,7 +35,7 @@ void protect_me(void* precious_data, size_t len) {
 int main(int argc, char** argv, char** envp) {
 	void* precious_data=NULL;
 	const unsigned int size=8192;
-	CHECK_NOT_M1(posix_memalign(&precious_data, getpagesize(), size));
+	CHECK_ZERO(posix_memalign(&precious_data, getpagesize(), size));
 	protect_me(precious_data, size);
 	bad_code(precious_data);
 	return EXIT_SUCCESS;

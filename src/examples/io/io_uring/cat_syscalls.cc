@@ -28,6 +28,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <err_utils.h>
 
 /*
  * This example was shamelessly stoen from:
@@ -101,16 +102,10 @@ int io_uring_enter(int ring_fd, unsigned int to_submit,
 off_t get_file_size(int fd) {
 	struct stat st;
 
-	if(fstat(fd, &st) < 0) {
-		perror("fstat");
-		return -1;
-	}
+	CHECK_NOT_M1(fstat(fd, &st));
 	if (S_ISBLK(st.st_mode)) {
 		unsigned long long bytes;
-		if (ioctl(fd, BLKGETSIZE64, &bytes) != 0) {
-			perror("ioctl");
-			return -1;
-		}
+		CHECK_NOT_M1(ioctl(fd, BLKGETSIZE64, &bytes));
 		return bytes;
 	} else if (S_ISREG(st.st_mode))
 		return st.st_size;
@@ -138,11 +133,7 @@ int app_setup_uring(struct submitter *s) {
 	* example, we don't.
 	* */
 	memset(&p, 0, sizeof(p));
-	s->ring_fd = io_uring_setup(QUEUE_DEPTH, &p);
-	if (s->ring_fd < 0) {
-		perror("io_uring_setup");
-		return 1;
-	}
+	CHECK_NOT_M1(s->ring_fd = io_uring_setup(QUEUE_DEPTH, &p));
 
 	/*
 	* io_uring communication happens via 2 shared kernel-user space ring buffers,
@@ -171,25 +162,17 @@ int app_setup_uring(struct submitter *s) {
 	/* Map in the submission and completion queue ring buffers.
 	* Older kernels only map in the submission queue, though.
 	* */
-	sq_ptr = mmap(0, sring_sz, PROT_READ | PROT_WRITE,
+	CHECK_NOT_VOIDP(sq_ptr = mmap(0, sring_sz, PROT_READ | PROT_WRITE,
 			MAP_SHARED | MAP_POPULATE,
-			s->ring_fd, IORING_OFF_SQ_RING);
-	if (sq_ptr == MAP_FAILED) {
-		perror("mmap");
-		return 1;
-	}
+			s->ring_fd, IORING_OFF_SQ_RING), MAP_FAILED);
 
 	if (p.features & IORING_FEAT_SINGLE_MMAP) {
 		cq_ptr = sq_ptr;
 	} else {
 		/* Map in the completion queue ring buffer in older kernels separately */
-		cq_ptr = mmap(0, cring_sz, PROT_READ | PROT_WRITE,
+		CHECK_NOT_VOIDP(cq_ptr = mmap(0, cring_sz, PROT_READ | PROT_WRITE,
 				MAP_SHARED | MAP_POPULATE,
-				s->ring_fd, IORING_OFF_CQ_RING);
-		if (cq_ptr == MAP_FAILED) {
-			perror("mmap");
-			return 1;
-		}
+				s->ring_fd, IORING_OFF_CQ_RING), MAP_FAILED);
 	}
 	/* Save useful fields in a global app_io_sq_ring struct for later
 	* easy reference */
@@ -201,13 +184,9 @@ int app_setup_uring(struct submitter *s) {
 	sring->array = (unsigned int*)sq_ptr + p.sq_off.array;
 
 	/* Map in the submission queue entries array */
-	s->sqes = (io_uring_sqe*)mmap(0, p.sq_entries * sizeof(struct io_uring_sqe),
+	CHECK_NOT_VOIDP(s->sqes = (io_uring_sqe*)mmap(0, p.sq_entries * sizeof(struct io_uring_sqe),
 			PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE,
-			s->ring_fd, IORING_OFF_SQES);
-	if (s->sqes == MAP_FAILED) {
-		perror("mmap");
-		return 1;
-	}
+			s->ring_fd, IORING_OFF_SQES), MAP_FAILED);
 
 	/* Save useful fields in a global app_io_cq_ring struct for later
 	* easy reference */
@@ -282,11 +261,8 @@ void read_from_cq(struct submitter *s) {
 int submit_to_sq(char *file_path, struct submitter *s) {
 	struct file_info *fi;
 
-	int file_fd = open(file_path, O_RDONLY);
-	if (file_fd < 0 ) {
-		perror("open");
-		return 1;
-	}
+	int file_fd;
+	CHECK_NOT_M1(file_fd=open(file_path, O_RDONLY));
 
 	struct app_io_sq_ring *sring = &s->sq_ring;
 	unsigned index = 0, current_block = 0, tail = 0, next_tail = 0;
@@ -319,10 +295,7 @@ int submit_to_sq(char *file_path, struct submitter *s) {
 		fi->iovecs[current_block].iov_len = bytes_to_read;
 
 		void *buf;
-		if( posix_memalign(&buf, BLOCK_SZ, BLOCK_SZ)) {
-			perror("posix_memalign");
-			return 1;
-		}
+		CHECK_ZERO(posix_memalign(&buf, BLOCK_SZ, BLOCK_SZ));
 		fi->iovecs[current_block].iov_base = buf;
 
 		current_block++;
@@ -357,12 +330,9 @@ int submit_to_sq(char *file_path, struct submitter *s) {
 	* io_uring_enter() call to wait until min_complete events (the 3rd param)
 	* complete.
 	* */
-	int ret = io_uring_enter(s->ring_fd, 1,1,
-			IORING_ENTER_GETEVENTS);
-	if(ret < 0) {
-		perror("io_uring_enter");
-		return 1;
-	}
+	int ret;
+	CHECK_NOT_M1(ret = io_uring_enter(s->ring_fd, 1,1,
+			IORING_ENTER_GETEVENTS));
 
 	return 0;
 }
@@ -375,11 +345,7 @@ int main(int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	}
 
-	s = (submitter*)malloc(sizeof(*s));
-	if (!s) {
-		perror("malloc");
-		return EXIT_FAILURE;
-	}
+	CHECK_NOT_NULL(s = (submitter*)malloc(sizeof(*s)));
 	memset(s, 0, sizeof(*s));
 
 	if(app_setup_uring(s)) {

@@ -27,6 +27,7 @@
 #include <sys/stat.h>
 #include <sys/ioctl.h>
 #include <liburing.h>
+#include <err_utils.h>
 
 
 /*
@@ -245,17 +246,9 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	infd = open(argv[1], O_RDONLY);
-	if (infd < 0) {
-		perror("open infile");
-		return 1;
-	}
+	CHECK_NOT_M1(infd = open(argv[1], O_RDONLY));
 
-	outfd = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (outfd < 0) {
-		perror("open outfile");
-		return 1;
-	}
+	CHECK_NOT_M1(outfd = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644));
 
 	if (setup_context(QD, &ring))
 		return 1;
