@@ -19,4 +19,4 @@ clean:
 	rm -f *.stamp ioctl_sleep ioctl_wakeup
 
 %.elf: %.c
-	gcc -o $@ $<
+	gcc -I../../include -o $@ $<

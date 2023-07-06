@@ -16,25 +16,21 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <assert.h>
 #include <errno.h>
 #include <stdio.h>
+#include <err_utils.h>
 
 #include "ioctl.h"
 
 int main(int argc, char** argv, char** envp) {
-	int fd=open("/dev/ioctl", O_RDWR);
-	if(fd==-1) {
-		perror(argv[0]);
-		return -1;
-	}
-	assert(fd!=-1);
-	int ret=ioctl(fd, IOCTL_SLEEP);
-	assert(ret!=-1);
-	ret=close(fd);
-	assert(ret!=-1);
-	return 0;
+	int fd;
+	CHECK_NOT_M1(fd=open("/dev/ioctl", O_RDWR));
+	CHECK_NOT_M1(ioctl(fd, IOCTL_SLEEP));
+	CHECK_NOT_M1(close(fd));
+	return EXIT_SUCCESS;
 }
