@@ -44,7 +44,7 @@ static void *worker(void *p) {
 	TRACE("thread %d: gettid_cached() is %d", num, gettid_cached());
 	TRACE("thread %d: getpid() is %d", num, getpid());
 	TRACE("thread %d: sched_getcpu() is %d", num, sched_getcpu());
-	CHECK_ZERO(sleep(2));
+	CHECK_ZERO(sleep(60));
 	TRACE("ending thread %d", num);
 	return NULL;
 }

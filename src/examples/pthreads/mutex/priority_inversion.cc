@@ -26,6 +26,7 @@
 
 /*
  * This example will trigger priority inversion on purpose.
+ * TODO: write this example!
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
