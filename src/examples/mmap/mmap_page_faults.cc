@@ -31,14 +31,15 @@
  */
 
 int main(int argc, char** argv, char** envp) {
-	const unsigned long length = 1024*1024*1024L;
+	const unsigned long length = 4*1024*1024*1024L;
 	const int pagesize = getpagesize();
 	// allocate the memory
 	char* p=(char*)CHECK_NOT_VOIDP(mmap(
 		NULL,
 		length,
 		PROT_READ|PROT_WRITE,
-		MAP_ANONYMOUS|MAP_PRIVATE|MAP_POPULATE,
+		// MAP_ANONYMOUS|MAP_PRIVATE|MAP_POPULATE,
+		MAP_ANONYMOUS|MAP_PRIVATE,
 		-1,
 		0
 	), MAP_FAILED);
