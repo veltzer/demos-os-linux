@@ -132,10 +132,10 @@ packages_tools=[
     "htop",
     "glances",
     "sysprof",
-    "mutrace",
+    # "mutrace",
     "cpulimit", # the cpulimit command
     "bridge-utils", # bridging utilities to demo creation of a bridge
-    "iptraf",
+    "iptraf-ng",
     "numactl",
     "pstack",
     "x86info",
@@ -162,7 +162,7 @@ packages_tools=[
     "mrtg",
     "isag",
     "sdparm",
-    "mytop",
+    # "mytop",
     "cutils",
     "hlint",
     "dlint",
@@ -372,3 +372,5 @@ if opt_do_compilers:
         "gcc-doc",
         "cpp-doc",
     ])
+
+packages.extend(packages_tools)
