@@ -18,6 +18,7 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
+#include <stdio.h>	// for printf(3)
 
 /*
  * This is a simple example that spends lots of time in a function.
@@ -37,7 +38,7 @@
  * - if you turn off optimisation you should see completely different assembly code.
  *
  * This is to make sure I can see annotation (adding the debug info).
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS=-g3 -O0
  */
 
 class A {
@@ -45,7 +46,7 @@ public:
 	// the function is not inlined on purpose so it would show up in profilers
 	// like 'perf(1)'...
 	// static void performance_hog_function2() {
-	static void performance_hog_function_cpu() __attribute__((noinline)) {
+	static float performance_hog_function_cpu() __attribute__((noinline)) {
 		float sum=0;
 		for(unsigned int i=0; i<1000000; i++) {
 			for(unsigned int j=0; j<500000; j++) {
@@ -53,6 +54,7 @@ public:
 			}
 			A::inner_loop(&sum, i);
 		}
+		return sum;
 	}
 	static void inner_loop(float* sum, int i) __attribute__((noinline)) {
 		for(unsigned int j=0; j<1000000; j++) {
@@ -62,6 +64,7 @@ public:
 };
 
 int main(int argc, char** argv, char** envp) {
-	A::performance_hog_function_cpu();
+	float s=A::performance_hog_function_cpu();
+	printf("s is %lf\n", s);
 	return EXIT_SUCCESS;
 }
