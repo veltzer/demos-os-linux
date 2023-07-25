@@ -3,14 +3,16 @@ This is a real time design pattern exercise
 You are required to implement a real time design pattern
 called "Exchanger" or, by another name, "Randezvous".
 The idea is that two threads can meet, waiting for one another
-in other to exchange a value. Each thread brings it's own
-value to the encounter, waits for the other thread to arrive
-(if that thread has not yet arrived). When both arrive, they
-exchange the values.
+in order to exchange a value. Each thread brings it's own
+value to the encounter.
+
+First thread to the encounter sleeps until the other thread arrives.
+Second thread to the encounter wakes up the first one.
+After the wakeup they exchange the values.
 
 Write the exchanger as a template with one method exchange.
 
-somewhere, a global variable:
+Accessible to both threads (global, or passed to them):
 Exchanger<int> e;
 
 Inside each thread:
