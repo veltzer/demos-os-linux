@@ -85,7 +85,7 @@ int mypthread_rwlock_unlock(mypthread_rwlock_t* lock) {
 		// I am a writer
 		lock->writers--;
 	}
-CHECK_ZERO_ERRNO(pthread_cond_broadcast(&lock->mycond));
+	CHECK_ZERO_ERRNO(pthread_cond_broadcast(&lock->mycond));
 	CHECK_ZERO_ERRNO(pthread_mutex_unlock(&lock->mymutex));
 	return 0;
 }
