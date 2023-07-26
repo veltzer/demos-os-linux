@@ -17,25 +17,18 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h>	// for printf(3)
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <sys/types.h>
+#include <iostream>
+#include <boost/integer_traits.hpp>
+
+using namespace std;
 
 /*
- * This example shows that printf(3) is really a marco in the standard glibc library.
- *
- * How does it work?
- * It checks the number of arguments passed to it and if it is 1 then it converts into
- * a call to puts(3), if the number of arguments is greater than 1 then it really calls
- * printf(3).
- *
- * This is all based on the feature that allows macros to ask with how many arguments they
- * are called. This happens at compile time, not run time.
- *
- * How can you see that?
- * $ nm [this executable] | grep puts
+ * References:
+ * - https://stackoverflow.com/questions/6294133/maximum-pid-in-linux
  */
 
-int main(int argc, char** argv, char** envp) {
-	printf("Hello, World!\n");
-	return EXIT_SUCCESS;
+int main ()
+{
+	cout << "pid_t max = " << boost::integer_traits<pid_t>::const_max << endl;
 }
