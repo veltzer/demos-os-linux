@@ -40,6 +40,11 @@ class Worker1 {
 	Worker1(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
 	}
 	void operator()() {
+			// sleep for a random amount of time, simulating some work done by
+			// this thread
+			//pthread_barrier_wait(bar);
+			//position+=1;
+			//position%=size;
 	}
 };
 class Worker2 {
@@ -50,6 +55,16 @@ class Worker2 {
 	Worker2(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
 	}
 	void operator()() {
+		pthread_barrier_wait(bar);
+		/*
+		for(int i=0;i<counter;i++) {
+			// sleep for a random amount of time, simulating some work done by
+			// this thread
+			//pthread_barrier_wait(bar);
+			//position+=1;
+			//position%=size;
+		}
+		*/
 	}
 };
 class Worker3 {
@@ -60,6 +75,8 @@ class Worker3 {
 	Worker3(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
 	}
 	void operator()() {
+		pthread_barrier_wait(bar);
+		pthread_barrier_wait(bar);
 	}
 };
 class Worker4 {
@@ -70,6 +87,9 @@ class Worker4 {
 	Worker4(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
 	}
 	void operator()() {
+		pthread_barrier_wait(bar);
+		pthread_barrier_wait(bar);
+		pthread_barrier_wait(bar);
 	}
 };
 
