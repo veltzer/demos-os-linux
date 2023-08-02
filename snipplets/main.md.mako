@@ -57,7 +57,7 @@ ${"##"} Using it
             `sudo apt-get install python`
         for rpm based distributions (fedora, redhat, centos,...) do:
             `sudo yum install python`
-* clone the examples: `git clone git@github.com:veltzer/demos-linux.git`
+* clone the examples: `git clone https://github.com/veltzer/demos-linux.git`
 * cd into it: `cd demos-linux`
 * install the missing packages and headers needed to compile and run this project `./scripts/ubuntu_install.py`
     Mind you this only works for 15.10 and will install a ton of stuff.
