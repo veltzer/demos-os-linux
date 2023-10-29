@@ -6,8 +6,8 @@ section .text
 
 _start:
 
-; open()
-mov rax, 2 ; NR_OPEN
+; open(2)
+mov rax, 2 ; NR_open
 mov rdi, [rsp+16] ; rsp+16 -> first argument; rsp+8 -> program name; rsp -> argc
 mov rsi, 0 ; O_RDONLY
 syscall
@@ -15,8 +15,8 @@ mov r8, rax
 cmp r8, 0
 jl error
 
-; sendfile()
-mov rax, 40 ; NR_SENDFILE
+; sendfile(2)
+mov rax, 40 ; NR_sendfile
 mov rsi, r8 ; r8 is the return value of open(2) before = 3
 mov rdi, 1 ; out_fd = stdout
 mov rdx, 0 ; offset, this is 0=NULL
