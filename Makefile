@@ -107,7 +107,6 @@ CLEAN:=
 CLEAN_DIRS:=
 
 # user space applications (c and c++)
-S_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.S")
 CC_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.cc")
 C_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.c" -and -not -name "mod_*.c")
 ALL_C:=$(shell find . -name "*.c")
@@ -121,15 +120,13 @@ CC_PRE:=$(addsuffix .p,$(basename $(CC_SRC)))
 C_PRE:=$(addsuffix .p,$(basename $(C_SRC)))
 CC_DIS:=$(addsuffix .dis,$(basename $(CC_SRC)))
 C_DIS:=$(addsuffix .dis,$(basename $(C_SRC)))
-S_OBJ:=$(addsuffix .$(SUFFIX_O),$(basename $(S_SRC)))
 CC_OBJ:=$(addsuffix .$(SUFFIX_OO),$(basename $(CC_SRC)))
 C_OBJ:=$(addsuffix .o,$(basename $(C_SRC)))
-S_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(S_SRC)))
 CC_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC)))
 C_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC)))
 ALL_SH:=$(shell find src -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
-ALL:=$(ALL) $(S_EXE) $(CC_EXE) $(C_EXE)
+ALL:=$(ALL) $(CC_EXE) $(C_EXE)
 CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_PRE) $(C_PRE)
 
 # kernel modules
@@ -238,8 +235,6 @@ debug:
 	$(info C_SRC is $(C_SRC))
 	$(info C_DIS is $(C_DIS))
 	$(info C_EXE is $(C_EXE))
-	$(info S_OBJ is $(S_OBJ))
-	$(info S_EXE is $(S_EXE))
 	$(info MOD_SRC is $(MOD_SRC))
 	$(info MOD_SA_SRC is $(MOD_SA_SRC))
 	$(info ALL is $(ALL))
@@ -501,18 +496,12 @@ $(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
 $(C_OBJ): %.o: %.c $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c $(CFLAGS) -o $@ $<
-$(S_OBJ): %.o: %.S $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c -o $@ $<
 $(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $<)) $@ $(CXX) $(CXXFLAGS) -o $@ $<
 $(C_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $<)) $@ $(CC) $(CFLAGS) -o $@ $<
-$(S_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .S,$(basename $<)) $@ $(CC) -o $@ $<
 $(CC_PRE): %.p: %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
