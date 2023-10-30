@@ -230,7 +230,7 @@ git_maintain:
 	$(Q)git gc
 
 #################
-# pettern rules #
+# pattern rules #
 #################
 # how to create regular executables...
 $(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
