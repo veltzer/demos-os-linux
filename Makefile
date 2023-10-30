@@ -117,8 +117,6 @@ ALL_HH:=$(shell find . -name "*.hh")
 ALL_US_C:=$(shell find $(US_DIRS) -name "*.c" -or -name "*.h") $(shell find src/include -name "*.h")
 ALL_US_CC:=$(ALL_CC) $(ALL_HH)
 ALL_US:=$(ALL_US_C) $(ALL_US_CC)
-CC_ASX:=$(addsuffix .s,$(basename $(CC_SRC)))
-C_ASX:=$(addsuffix .s,$(basename $(C_SRC)))
 CC_PRE:=$(addsuffix .p,$(basename $(CC_SRC)))
 C_PRE:=$(addsuffix .p,$(basename $(C_SRC)))
 CC_DIS:=$(addsuffix .dis,$(basename $(CC_SRC)))
@@ -132,7 +130,7 @@ C_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC)))
 ALL_SH:=$(shell find src -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
 ALL:=$(ALL) $(S_EXE) $(CC_EXE) $(C_EXE)
-CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_ASX) $(C_ASX) $(CC_PRE) $(C_PRE)
+CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_PRE) $(C_PRE)
 
 # kernel modules
 MOD_SRC:=$(shell find $(KERNEL_DIR) -name "mod_*.c" -and -not -name "mod_*.mod.c")
@@ -515,12 +513,6 @@ $(C_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
 $(S_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .S,$(basename $<)) $@ $(CC) -o $@ $<
-$(CC_ASX): %.s: %.cc $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -S -o $@ $<
-$(C_ASX): %.s: %.cc $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -S -o $@ $<
 $(CC_PRE): %.p: %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
