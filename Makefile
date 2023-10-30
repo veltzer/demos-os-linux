@@ -229,69 +229,6 @@ git_maintain:
 	$(info doing [$@])
 	$(Q)git gc
 
-#################
-# pattern rules #
-#################
-# how to create regular executables...
-$(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
-$(C_OBJ): %.o: %.c $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c $(CFLAGS) -o $@ $<
-$(S_OBJ): %.o: %.S $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c -o $@ $<
-$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) $(DEP_WRAPPER) 
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $<)) $@ $(CXX) $(CXXFLAGS) -o $@ $<
-$(C_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER) 
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $<)) $@ $(CC) $(CFLAGS) -o $@ $<
-$(S_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .S,$(basename $<)) $@ $(CC) -o $@ $<
-$(CC_ASX): %.s: %.cc $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -S -o $@ $<
-$(C_ASX): %.s: %.cc $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -S -o $@ $<
-$(CC_PRE): %.p: %.cc $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
-$(C_PRE): %.p: %.c $(DEP_WRAPPER)
-	$(info doing [$@])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -E -o $@ $<
-$(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
-	$(info doing [$@])
-	$(Q)objdump --disassemble --source --demangle $< > $@
-#	$(Q)objdump --demangle --disassemble --no-show-raw-insn --section=.text $< > $@
-#	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
-
-# rule about how to check kernel source files
-$(MOD_CHP): %.stamp: %.c
-	$(info doing [$@])
-	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
-	$(Q)pymakehelper touch_mkdir $@
-# rule about how to create .ko files...
-$(MOD_STP): %.ko.stamp: %.c
-	$(info doing [$@])
-	$(Q)sed 's/MODNAME/$(notdir $(basename $<))/g' src/kernel/Makefile.tmpl > src/kernel/Makefile
-	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
-	$(Q)pymakehelper touch_mkdir $@
-# shell checking rules
-$(ALL_STAMP): out/%.stamp: % .shellcheckrc
-	$(info doing [$@])
-	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$$HOME" $<
-	$(Q)pymakehelper touch_mkdir $@
-
-# rules about makefiles
-$(MK_STP): %.stamp: %
-	$(info doing [$@])
-	$(Q)$(MAKE) -C $(dir $<) Q=$(Q)
-	$(Q)pymakehelper touch_mkdir $@
-
 .PHONY: debug
 debug:
 	$(info MOD_MOD is $(MOD_MOD))
@@ -555,6 +492,69 @@ count_files:
 cloc:
 	$(info doing [$@])
 	$(Q)cloc .
+
+#################
+# pattern rules #
+#################
+# how to create regular executables...
+$(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
+$(C_OBJ): %.o: %.c $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c $(CFLAGS) -o $@ $<
+$(S_OBJ): %.o: %.S $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c -o $@ $<
+$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $<)) $@ $(CXX) $(CXXFLAGS) -o $@ $<
+$(C_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $<)) $@ $(CC) $(CFLAGS) -o $@ $<
+$(S_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .S,$(basename $<)) $@ $(CC) -o $@ $<
+$(CC_ASX): %.s: %.cc $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -S -o $@ $<
+$(C_ASX): %.s: %.cc $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -S -o $@ $<
+$(CC_PRE): %.p: %.cc $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
+$(C_PRE): %.p: %.c $(DEP_WRAPPER)
+	$(info doing [$@])
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -E -o $@ $<
+$(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
+	$(info doing [$@])
+	$(Q)objdump --disassemble --source --demangle $< > $@
+#	$(Q)objdump --demangle --disassemble --no-show-raw-insn --section=.text $< > $@
+#	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
+
+# rule about how to check kernel source files
+$(MOD_CHP): %.stamp: %.c
+	$(info doing [$@])
+	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
+	$(Q)pymakehelper touch_mkdir $@
+# rule about how to create .ko files...
+$(MOD_STP): %.ko.stamp: %.c
+	$(info doing [$@])
+	$(Q)sed 's/MODNAME/$(notdir $(basename $<))/g' src/kernel/Makefile.tmpl > src/kernel/Makefile
+	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
+	$(Q)pymakehelper touch_mkdir $@
+# shell checking rules
+$(ALL_STAMP): out/%.stamp: % .shellcheckrc
+	$(info doing [$@])
+	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$$HOME" $<
+	$(Q)pymakehelper touch_mkdir $@
+
+# rules about makefiles
+$(MK_STP): %.stamp: %
+	$(info doing [$@])
+	$(Q)$(MAKE) -C $(dir $<) Q=$(Q)
+	$(Q)pymakehelper touch_mkdir $@
 
 ############
 # all deps #
