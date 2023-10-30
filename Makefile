@@ -229,8 +229,9 @@ git_maintain:
 	$(info doing [$@])
 	$(Q)git gc
 
-# general rules...
-
+#################
+# pettern rules #
+#################
 # how to create regular executables...
 $(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
