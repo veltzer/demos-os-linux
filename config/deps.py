@@ -42,17 +42,26 @@ if VERSION_ID == "22.04":
     libevent_ver = "2.1-7"
     ver_wxgtk = "3.0"
     lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
+    libncurses_ver="5"
 if VERSION_ID == "22.10":
     ver_papi = "6.0"
     ver_unwind = "-15"
     libevent_ver = "2.1-7a"
     ver_wxgtk = "3.0"
     lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
+    libncurses_ver="5"
 if VERSION_ID == "23.04":
     ver_papi = "7.0"
     libevent_ver = "2.1-7a"
     ver_wxgtk = "3.2"
     lib_wx=f"libwxgtk{ver_wxgtk}-dev"
+    libncurses_ver="5"
+if VERSION_ID == "23.10":
+    ver_papi = "7.0"
+    libevent_ver = "2.1-7"
+    ver_wxgtk = "3.2"
+    lib_wx=f"libwxgtk{ver_wxgtk}-dev"
+    libncurses_ver="6"
 assert libevent_ver is not None
 
 packages_kernels=[
@@ -145,7 +154,7 @@ packages_tools=[
     "devmem2",
     "elfutils", # manipulating elf files
     "pax-utils",
-    "paxctl",
+    # "paxctl",
     "execstack",
     "prelink",
     "dstat",
@@ -250,10 +259,10 @@ packages=[
     "libevent-dev",
     f"libevent-{libevent_ver}",
     "libiberty-dev",
-    "libncurses5",
-    "libncurses5-dev",
-    "libncursesw5",
-    "libncursesw5-dev",
+    f"libncurses{libncurses_ver}",
+    "libncurses-dev",
+    f"libncursesw{libncurses_ver}",
+    # f"libncursesw{libncurses_ver}-dev",
     # libprocps is gone
     # "libprocps8",
     # "libprocps-dev",
