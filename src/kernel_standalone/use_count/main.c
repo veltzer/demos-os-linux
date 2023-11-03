@@ -25,6 +25,7 @@
 #include <linux/gfp.h> /* for get_zeroed_page */
 #include <linux/cdev.h> /* for cdev_* */
 #include <linux/sched.h> /* for cond_resched */
+#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -115,7 +116,11 @@ static int zero_init(void)
 	}
 	pr_info("added the cdev\n");
 	/* this is creating a new class (/proc/devices) */
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
 	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
+#else
+	my_class = class_create(THIS_MODULE->name);
+#endif
 	if (IS_ERR(my_class)) {
 		pr_err("failed in class_create\n");
 		err = PTR_ERR(my_class);
