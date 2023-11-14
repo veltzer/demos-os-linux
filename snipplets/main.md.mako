@@ -6,7 +6,7 @@
 %>This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
-${"##"} number of examples and their selection
+${"##"} Number of examples and their selection
 
 Currently there are ${file_number} examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
