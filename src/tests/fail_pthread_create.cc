@@ -22,7 +22,7 @@
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO()
 
 /*
- * This program calls pthread_create and tries to fail on purpse to see the error
+ * This program calls pthread_create and tries to fail on purpose to see the error
  * messages for this function.
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
