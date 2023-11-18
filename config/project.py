@@ -3,9 +3,9 @@ description_short = "demos-linux is a project to demo and explore the Linux user
 description_long = description_short
 keywords = [
     "linux",
-    "API",
-    "C",
-    "C++",
+    "api",
+    "c",
+    "c-plus-plus",
     "kernel",
     "userspace",
     "examples",
