@@ -122,7 +122,8 @@ int main(int argc, char** argv, char** envp) {
 		printf("accepted fd %d\n", fd);
 		// spawn a thread to handle the connection to that client...
 		pthread_t thread;
-		int* p=new int(fd);
+		int* p=(int*)malloc(sizeof(int));
+		*p=fd;
 		CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, p));
 	}
 	return EXIT_SUCCESS;
