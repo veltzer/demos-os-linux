@@ -139,6 +139,7 @@ packages_tools=[
     # doesn"t exist on 22.04
     # "hddtemp",
     "htop",
+    "btop",
     "glances",
     "sysprof",
     # "mutrace",
