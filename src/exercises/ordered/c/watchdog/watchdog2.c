@@ -37,7 +37,7 @@
 
 const char* process_to_exec="src/exercises/watchdog/process_to_monitor.elf";
 const char* const args[]={
-	process_to_exec
+	"src/exercises/watchdog/process_to_monitor.elf"
 };
 
 static bool fork_again;

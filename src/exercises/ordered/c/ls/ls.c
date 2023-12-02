@@ -32,6 +32,9 @@
 #include <err_utils.h>	// for CHECK_NOT_NULL(), CHECK_NOT_M1()
 
 /*
+ * This is a solution to the ls exercise.
+ *
+ * EXTRA_LINK_FLAGS_AFTER=-lm
  * TODO:
  * - date printing is not exactly as in ls as ls shows the date
  * for stuff which happened a year ago.
@@ -44,7 +47,7 @@
 // see 'info ls' for more info...
 const double oldsecs=192*24*60*60;
 
-static int strcmp_wrap(const void* pa, const void* pb, void*) {
+static int strcmp_wrap(const void* pa, const void* pb, void* extra) {
 	const char** ppa=(const char**)pa;
 	const char** ppb=(const char**)pb;
 	return strcasecmp(*ppa, *ppb);

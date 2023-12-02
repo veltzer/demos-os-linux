@@ -33,8 +33,9 @@
 #include <multiproc_utils.h>	// for print_status()
 
 const char* process_to_exec="src/exercises/watchdog/process_to_monitor.elf";
+
 const char* const args[]={
-	process_to_exec
+	"src/exercises/watchdog/process_to_monitor.elf"
 };
 
 static void fork_a_child() {

@@ -29,7 +29,7 @@
  * This is a solution to the spin locks exercise.
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS=
  *
  * TODO:
  * - get more ideas from the glibc implementation of spin locks
@@ -71,7 +71,6 @@ int mypthread_spin_unlock(mypthread_spinlock_t* lock) {
 	return 0;
 }
 
-FILE* pfile=stderr;
 const int loops=3;
 mypthread_spinlock_t lock;
 int counter=0;
@@ -79,32 +78,32 @@ int counter=0;
 void *worker(void *p) {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	int num=*(int *)p;
-	fprintf(pfile, "starting thread %d\n", num);
+	fprintf(stderr, "starting thread %d\n", num);
 	int success=0;
 	while(success<loops) {
 		CHECK_ZERO(mypthread_spin_lock(&lock));
 		if(counter%cpu_num==num) {
-			fprintf(pfile, "thread %d caught lock\n", num);
+			fprintf(stderr, "thread %d caught lock\n", num);
 			CHECK_ZERO(sleep(1));
 			counter++;
 			success++;
-			fprintf(pfile, "thread %d released lock\n", num);
+			fprintf(stderr, "thread %d released lock\n", num);
 		}
 		CHECK_ZERO(mypthread_spin_unlock(&lock));
 	}
-	fprintf(pfile, "ending thread %d\n", num);
+	fprintf(stderr, "ending thread %d\n", num);
 	return NULL;
 }
 
 int main(int argc, char** argv, char** envp) {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int thread_num=cpu_num;
-	pthread_t* threads=new pthread_t[thread_num];
-	pthread_attr_t* attrs=new pthread_attr_t[thread_num];
-	int* ids=new int[thread_num];
-	cpu_set_t* cpu_sets=new cpu_set_t[thread_num];
+	pthread_t* threads=(pthread_t*)malloc(thread_num*sizeof(pthread_t));
+	pthread_attr_t* attrs=(pthread_attr_t*)malloc(thread_num*sizeof(pthread_attr_t));
+	int* ids=(int*)malloc(thread_num*sizeof(int));
+	cpu_set_t* cpu_sets=(cpu_set_t*)malloc(thread_num*sizeof(cpu_set_t));
 
-	fprintf(pfile, "main starting\n");
+	fprintf(stderr, "main starting\n");
 	CHECK_ZERO(mypthread_spin_init(&lock));
 	for(int i=0; i<thread_num; i++) {
 		ids[i]=i;
@@ -114,16 +113,16 @@ int main(int argc, char** argv, char** envp) {
 		CHECK_ZERO_ERRNO(pthread_attr_setaffinity_np(attrs+i, sizeof(cpu_set_t), cpu_sets+i));
 		CHECK_ZERO_ERRNO(pthread_create(threads+i, attrs+i, worker, ids+i));
 	}
-	fprintf(pfile, "main ended creating threads\n");
+	fprintf(stderr, "main ended creating threads\n");
 	for(int i=0; i<thread_num; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
 	CHECK_ZERO(mypthread_spin_destroy(&lock));
-	delete[] threads;
-	delete[] attrs;
-	delete[] ids;
-	delete[] cpu_sets;
-	fprintf(pfile, "counter is %d\n", counter);
-	fprintf(pfile, "main ended\n");
+	free(threads);
+	free(attrs);
+	free(ids);
+	free(cpu_sets);
+	fprintf(stderr, "counter is %d\n", counter);
+	fprintf(stderr, "main ended\n");
 	return EXIT_SUCCESS;
 }
