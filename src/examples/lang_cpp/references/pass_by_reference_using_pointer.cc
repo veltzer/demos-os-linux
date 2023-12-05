@@ -15,6 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
+
+/*
+ * This example shows how to pass a variable by pointer.
+ * The idea of this example is to contract it with the same example using
+ * a reference and not a pointer
+ *
+ * References:
+ * - https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html
+ */
 #include <firstinclude.h>
 #include <iostream>
 #include <stdlib.h>
