@@ -15,7 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
-/* Pass-by-reference using reference (TestPassByReference.cpp) */
+
+/*
+ * This example is here to show how to idiomatically pass a variable by references
+ * to a c++ function using a reference.
+ * Whether the reference should be tagged as "const" or not depends on whether
+ * the function will modify the variable or not
+ *
+ * References
+ * - https://www3.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html
+ */
 #include <firstinclude.h>
 #include <iostream>
 using namespace std;
