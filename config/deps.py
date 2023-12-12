@@ -243,6 +243,10 @@ packages_tools=[
 
     # openmpi
     "openmpi-bin",
+
+    # tracing
+    "strace",
+    "ltrace",
 ]
 
 packages=[
