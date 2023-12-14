@@ -1,13 +1,14 @@
-Write a proper `Rectangle` class with the following methods:
-* `Constructur`
-* `get_area`
-* `get_width`
-* `get_height`
-* `set_width`
-* `set_height`
-* `get_diagonal_length`
-* `get_circumfench`
+# Const use in C++
 
-You decide on the prototypes.
-Use const as much as possible
-Demonstrate your class.
+* Write a proper `Rectangle` class with the following methods:
+    * `Constructur`
+    * `get_area`
+    * `get_width`
+    * `get_height`
+    * `set_width`
+    * `set_height`
+    * `get_diagonal_length`
+    * `get_circumfench`
+    You decide on the prototypes.
+* Use const as much as possible
+* Demonstrate the use of your class.
