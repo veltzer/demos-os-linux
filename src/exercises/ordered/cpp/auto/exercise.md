@@ -1,4 +1,4 @@
-# Audo
+# `Auto`
 
 * Write a standard piece of code that populates an STL `map<string, string>`
 
