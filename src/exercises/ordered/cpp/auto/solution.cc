@@ -15,45 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include <firstinclude.h>
 #include <iostream>
 #include <stdlib.h>
+#include <map>
 using namespace std;
 
-// Base class
-class Shape {
-public:
-	void draw() {
-		cout << "Drawing a shape..." << endl;
-	}
-};
-
-// Inherited class
-class Circle : public Shape {
-public:
-	void draw() {
-		Shape::draw();
-		cout << "Drawing a circle..." << endl;
-	}
-};
-
-// Composition class
-class Square {
-public:
-	void draw() {
-		shape.draw();
-		cout << "Drawing a square..." << endl;
-	}
-
-private:
-	Shape shape;
-};
-
 int main(int argc, char** argv, char** envp) {
-	Circle c;
-	c.draw(); // Calling derived
-	Square s;
-	s.draw(); // Calls base via composition
+	map<string, string> myMap;
+
+	// Populate
+	myMap["red"] = "rojo";
+	myMap["green"] = "verde";
+	myMap["blue"] = "azul";
+
+	// Iterate and print
+	for(auto it = myMap.begin(); it != myMap.end(); ++it) {
+		cout << it->first << " : " << it->second << '\n';
+	}
+	for(map<string, string>::iterator it = myMap.begin(); it != myMap.end(); ++it) {
+		cout << it->first << " : " << it->second << '\n';
+	}
 	return EXIT_SUCCESS;
 }

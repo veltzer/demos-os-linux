@@ -17,6 +17,7 @@
  */
 #include <firstinclude.h>
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 class Shape {
@@ -84,5 +85,5 @@ int main(int argc, char** argv, char** envp) {
 		cout << "Null pointer" << endl;
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
