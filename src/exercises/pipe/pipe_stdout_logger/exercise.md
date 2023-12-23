@@ -1,10 +1,11 @@
+# Pipe STDOUT Logger
+
 This is a pipe exercise.
 
-Given
-=====
-An executable which prints to stdout. You cannot change it.
+You are given an executable which prints to STDOUT. You cannot change it.
+This is the `uncontrolled` executable in this directory.
 
 What do you need to do?
 Wrap it in an executable that runs the afore-mentioned executable and
-directs it's stdout to whereever and allows for log file rotation and other
+directs it's STDOUT to where-ever and allows for log file rotation and other
 features...

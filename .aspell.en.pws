@@ -1,4 +1,4 @@
-personal_ws-1.1 en 991 
+personal_ws-1.1 en 1014 
 AARRR
 ACLs
 ADPlus
@@ -49,6 +49,7 @@ Bitfield
 Boltzman
 Bootlin
 Bootloaders
+BroadcastClient
 Buildroot
 Burndown
 BusyBox
@@ -73,6 +74,7 @@ CSV
 CTF
 CTOR
 CTORs
+CTRL
 CTest
 Captcha
 Catenating
@@ -176,6 +178,7 @@ Elbit
 Employability
 EnableAutoConfiguration
 Endedness
+Exchanger
 Extjs
 FFT
 FS
@@ -487,6 +490,7 @@ SREs
 SSL
 SSO
 SSRF
+STDOUT
 STL
 SUID
 SVD
@@ -585,6 +589,7 @@ WAF
 WAFs
 WEP
 WG
+WIFSIGNLED
 WPA
 WSL
 Wallclock
@@ -608,6 +613,7 @@ Yocto's
 ZooKeeper
 Zuul
 addOnLoad
+afore
 aio
 ajax
 allarch
@@ -629,6 +635,7 @@ balancer
 balancers
 bbclass
 benchmarking
+bert
 bitbucket
 bitfields
 blackbox
@@ -646,6 +653,7 @@ busses
 callgrind
 canonicalization
 cd
+cet
 cgroups
 chatbot
 checkpatch
@@ -659,6 +667,7 @@ cloudnative
 cmake
 cmd
 codecs
+cond
 conf
 config
 configurability
@@ -709,12 +718,14 @@ enums
 epoll
 ethernet
 eventfd
+exchanger
 exe
 executables
 execve
 extensibility
 facter
 facto
+fd
 fdisk
 fds
 fifo
@@ -735,6 +746,7 @@ gRPC
 gcd
 gdb
 gdbserver
+getArea
 getpid
 gettid
 gettimeofday
@@ -792,6 +804,7 @@ listOf
 livelock
 lmdb
 ln
+localhost
 lockdep
 lockless
 loopback
@@ -830,6 +843,7 @@ netlink
 netstat
 ng
 nginx
+nicbe
 nostd
 npm
 numpy
@@ -847,6 +861,7 @@ passwd
 pathspec
 perceptron
 perf
+phonebook
 pid
 pipenv
 polymorphism
@@ -857,6 +872,7 @@ pre
 prem
 preprocessing
 preprocessor
+printArea
 proactor
 proc
 profiler
@@ -882,6 +898,7 @@ reinterpretcast
 repo
 repos
 resolvers
+respawn
 retainment
 rmdir
 rpath
@@ -896,6 +913,7 @@ sbin
 sbrk
 scalability
 scalable
+scanf
 scriptable
 sed
 sendfile
@@ -921,6 +939,8 @@ strace
 struct
 stylesheets
 subnets
+subsequence
+substring
 sudo
 syllabi
 sys
@@ -934,7 +954,9 @@ systemd
 tSNE
 tasklet
 taskset
+tcpdump
 tcsh
+templatized
 theming
 tid
 timerfd
@@ -971,6 +993,7 @@ vmsplice
 vscode
 waitqueues
 wakelocks
+wakeup
 watchdogging
 watchpoints
 wc

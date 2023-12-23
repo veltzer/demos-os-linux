@@ -1,7 +1,9 @@
-This is a real time design pattern exercise
-===========================================
+# Exchanger
+
+* This is a real time design pattern exercise
+
 You are required to implement a real time design pattern
-called "Exchanger" or, by another name, "Randezvous".
+called "Exchanger" or, by another name, "Rendezvous".
 The idea is that two threads can meet, waiting for one another
 in order to exchange a value. Each thread brings it's own
 value to the encounter.
@@ -13,11 +15,12 @@ After the wakeup they exchange the values.
 Write the exchanger as a template with one method exchange.
 
 Accessible to both threads (global, or passed to them):
-Exchanger<int> e;
+
+`Exchanger<int> e;`
 
 Inside each thread:
 
-	int value_for_me=e.exchange(value_for_him);
+`int value_for_me=e.exchange(value_for_him);`
 
 Demonstrate your use and prove (using assertions) that the
 exchange has been made.
