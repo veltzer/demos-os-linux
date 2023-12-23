@@ -1,5 +1,7 @@
-Implement a pthread spin lock like api using atomic operations in gcc.
+# Spinlock
 
-The api could be gotten by "man -k pthread | grep spin"
+* Implement a pthread spin lock like api using atomic operations in gcc.
 
-Demonstrate the use of your spinlock.
+* The api could be gotten by `man -k pthread | grep spin`
+
+* Demonstrate the use of your spinlock.

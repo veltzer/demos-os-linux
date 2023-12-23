@@ -17,6 +17,10 @@ DO_PYLINT:=1
 DO_DEP_WRAPPER:=1
 # do you want to check bash syntax?
 DO_CHECK_SYNTAX:=1
+# do you want to run mdl on md files?
+DO_MD_MDL:=1
+# do spell check on all?
+DO_MD_ASPELL:=1
 
 #############
 # variables #
@@ -66,6 +70,11 @@ SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
 # this could cause command line too long problems because all the make variables
 # would be exported and they are pretty long (for instance the source files list...).
 #export
+
+MD_SRC:=$(shell find src/exercises -type f -and -name "*.md")
+MD_BAS:=$(basename $(MD_SRC))
+MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
+MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
 
 ########
 # code #
@@ -175,6 +184,14 @@ else
 DEP_WRAPPER:=
 endif # DO_DEP_WRAPPER
 
+ifeq ($(DO_MD_MDL),1)
+ALL+=$(MD_MDL)
+endif # DO_MD_MDL
+
+ifeq ($(DO_MD_ASPELL),1)
+ALL+=$(MD_ASPELL)
+endif # DO_MD_ASPELL
+
 #########
 # rules #
 #########
@@ -257,6 +274,10 @@ debug:
 	$(info ALL_US is $(ALL_US))
 	$(info ALL_PY is $(ALL_PY))
 	$(info ALL_SH is $(ALL_SH))
+	$(info MD_SRC is $(MD_SRC))
+	$(info MD_BAS is $(MD_BAS))
+	$(info MD_ASPELL is $(MD_ASPELL))
+	$(info MD_MDL is $(MD_MDL))
 
 .PHONY: todo
 todo:
@@ -534,6 +555,15 @@ $(ALL_STAMP): out/%.stamp: % .shellcheckrc
 $(MK_STP): %.stamp: %
 	$(info doing [$@])
 	$(Q)$(MAKE) -C $(dir $<) Q=$(Q)
+	$(Q)pymakehelper touch_mkdir $@
+$(MD_MDL): out/%.mdl: %.md .mdlrc .mdl.style.rb
+	$(info doing [$@])
+	$(Q)GEM_HOME=gems gems/bin/mdl $<
+	$(Q)mkdir -p $(dir $@)
+	$(Q)touch $@
+$(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
+	$(info doing [$@])
+	$(Q)aspell --conf-dir=. --conf=.aspell.conf list < $< | pymakehelper error_on_print sort -u
 	$(Q)pymakehelper touch_mkdir $@
 
 ############

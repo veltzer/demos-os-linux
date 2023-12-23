@@ -1,8 +1,8 @@
 # Static and Dynamic cast
 
-* Create a base class called Shape and derived classes called Circle, Square, and Triangle that inherit from Shape. Give Shape a virtual method called getArea() that returns an area. Override this method in the derived classes to return the area specific to that shape. 
+* Create a base class called Shape and derived classes called Circle, Square, and Triangle that inherit from Shape. Give Shape a virtual method called getArea() that returns an area. Override this method in the derived classes to return the area specific to that shape.
 
-* Next, create a function that takes a pointer to Shape called printArea. Inside this, call getArea() and print the result. 
+* Next, create a function that takes a pointer to Shape called printArea. Inside this, call getArea() and print the result.
 
 * Call printArea with objects of type Circle, Square, and Triangle. It should display the proper area for each when calling the virtual method on the Shape pointer.
 

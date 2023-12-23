@@ -38,7 +38,7 @@ about exactly how a certain API works.
 
 ## Platforms supported
 Only ia64 is supported. I used to support i386 but I don't have a 32 bit
-machine anymore. 
+machine anymore.
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
 

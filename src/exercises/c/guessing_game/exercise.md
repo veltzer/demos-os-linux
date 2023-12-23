@@ -1,6 +1,8 @@
-Write a guessing game.
-This is how it should look like:
-================================
+# Guessing Game
+
+* this is how it should look like:
+
+```text
 Guess my number (1-100)...
 What is your guess? 50
 lower
@@ -16,3 +18,4 @@ What is your guess? 32
 RIGHT!
 want to play again (y/n)? n
 Bye bye...
+```
