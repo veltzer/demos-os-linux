@@ -88,6 +88,11 @@ packages_doc=[
 ]
 
 packages_tools=[
+    # ruby stuff
+    "ruby-bundler",
+    "rbenv",
+    # for spelling
+    "aspell",
     # debugging
     "cgdb",
     "qtcreator",

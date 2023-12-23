@@ -57,8 +57,8 @@ void maximum_subset(char str[], int index, char curr[], char best[]) {
 
 void check(const char* val, const char* expected) {
 	char str[MAX_STR_LEN];
-	char curr[MAX_STR_LEN]="";
-	char best[MAX_STR_LEN]="";
+	char curr[MAX_STR_LEN];
+	char best[MAX_STR_LEN];
 	strcpy(str, val);
 	maximum_subset(str, 0, curr, best);
 	printf("[%s] - [%s] - ", val, expected);
