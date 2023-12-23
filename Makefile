@@ -489,7 +489,6 @@ cloc:
 #################
 # pattern rules #
 #################
-# how to create regular executables...
 $(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
 	$(info doing [$@])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
