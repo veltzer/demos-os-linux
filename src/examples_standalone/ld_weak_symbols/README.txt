@@ -10,7 +10,7 @@ This example shows that:
 - Mind you - this whole thing only applies to C. in C++ the linker is more strict.
 
 Update 2020:
-- the above is wrong since the C linker is not much stricter.
+- the above is wrong since the C++ linker is not much stricter.
 
 References:
 - https://gcc.gnu.org/onlinedocs/gcc-4.7.2/gcc/Function-Attributes.html
