@@ -25,3 +25,6 @@
 * Add an iterator for your class and make sure that your instances cannot be changed while being iterated. 
 
 * Demontrate that by writing code that tries to modify your instances while iterating them and fails.
+
+## References
+* [Rule Of Three](https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming))
