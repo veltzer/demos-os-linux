@@ -23,6 +23,7 @@ using namespace std;
 class Shape {
 public:
 	virtual double getArea() { return 0; }
+	//double getArea() { return 0; }
 };
 
 class Circle : public Shape {
@@ -59,28 +60,33 @@ void printArea(Shape* shape) {
 
 int main(int argc, char** argv, char** envp) {
 
-	Circle c(5);
-	printArea(&c);
+	Circle circle(5);
+	printArea(&circle);
 
-	Square s(4);
-	printArea(&s);
+	Square square(4);
+	printArea(&square);
 
-	Triangle t(2, 3);
-	printArea(&t);
+	Triangle triangle(2, 3);
+	printArea(&triangle);
+	
+	Shape& shape=triangle;
 
 	// Static cast
+	// compiles because of the compiler stupidity
+	Circle* c1 = static_cast<Circle*>(&shape);
+	cout << c1 << endl;
 	// does not compile
-	//Circle* sc = static_cast<Circle*>(&s);
-	//
-	Shape& sh=t;
+	//Circle* c2 = static_cast<Circle*>(&square);
+	//cout << c2 << endl;
 
 	// Dynamic cast
 	// does not compile
-	//Circle* dc = dynamic_cast<Circle*>(&s); // returns NULL
-	Circle* dc = dynamic_cast<Circle*>(&sh); // returns NULL
+	//Circle* c3 = dynamic_cast<Circle*>(&square); // returns NULL
+	//cout << c3 << endl;
+	Circle* c4 = dynamic_cast<Circle*>(&shape); // returns NULL
 
-	if(dc != nullptr) {
-		cout << dc->getArea() << endl;
+	if(c4 != nullptr) {
+		cout << c4->getArea() << endl;
 	} else {
 		cout << "Null pointer" << endl;
 	}
