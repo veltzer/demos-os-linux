@@ -2,7 +2,7 @@
 
 * Implment a class called `IntVector` which implements a vector of integers of any size.
 
-* Some methods can be (there are NOT all the methods):
+* Some methods can be (these are *not* all the methods):
 
 ```c++
     // Constructor
