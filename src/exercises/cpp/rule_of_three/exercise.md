@@ -22,7 +22,7 @@
 
 * Demonstrate that your class works and demonstrate what the Rule of Three means for copying the object and assigning to it.
 
-* Add an iterator for your class and make sure that your instances cannot be changed while being iterated. 
+* Add an iterator for your class and make sure that your instances cannot be changed while being iterated.
 
 * Demontrate that by writing code that tries to modify your instances while iterating them and fails.
 
