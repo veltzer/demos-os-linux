@@ -141,6 +141,7 @@ packages_tools=[
     "gsmartcontrol",
     "lm-sensors",
     "inxi",
+    "nmap",
     # doesn"t exist on 22.04
     # "hddtemp",
     "htop",
