@@ -68,7 +68,7 @@ int main(int argc, char** argv, char** envp) {
 
 	Triangle triangle(2, 3);
 	printArea(&triangle);
-	
+
 	Shape& shape=triangle;
 
 	// Static cast

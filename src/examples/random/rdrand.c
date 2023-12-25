@@ -22,14 +22,15 @@
 
 /*
  * This example shows how to use the gcc _rdrand64_step intrinsic function
+ * EXTRA_COMPILE_FLAGS=-m64 -mrdrnd
  *
  * References:
  * - https://stackoverflow.com/questions/31214457/how-to-use-rdrand-intrinsics
  */
 
 int main(int argc, char** argv, char** envp) {
-	unsigned long long result = 0ULL;
-	int rc = _rdrand64_step (&result);
-	printf("%i %llu", rc, result);
+	unsigned long long result;
+	int rc = _rdrand64_step(&result);
+	printf("%i %llu\n", rc, result);
 	return (rc != 1);
 }
