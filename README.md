@@ -1,6 +1,6 @@
 ## demos-linux
 
-version: 0.0.3
+version: 0.0.1
 
 description: demos-linux is a project to demo and explore the Linux user space C/C++ API
 
