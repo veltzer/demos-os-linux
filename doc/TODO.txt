@@ -1,0 +1,3 @@
+- add example for using inline for optimization.
+	Compare the runtime of doing a million method calls when the method is inlined vs not inlined.
+	This will be a method on an object.
