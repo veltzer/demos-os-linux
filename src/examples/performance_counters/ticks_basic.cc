@@ -40,5 +40,6 @@ int main(int argc, char** argv, char** envp) {
 	printf("t2 is %lu\n", t2);
 	printf("t2_rd is %lu\n", t2_rd);
 	printf("t2_p is %lu\n", t2_p);
+	printf("t2-t1 is %lu\n", t2-t1);
 	return EXIT_SUCCESS;
 }
