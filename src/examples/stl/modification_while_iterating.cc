@@ -35,7 +35,7 @@
  * 'remove' method.
  * - vector is ok with removing the current element.
  * - list dumps core when removing the current element.
- * - many other weird side effects happend. Play around with the numbers and
+ * - many other weird side effects happen. Play around with the numbers and
  * you will see it.
  *
  * Note that all of these behaviours are particular to the GNU implementation
@@ -50,7 +50,6 @@ void do_list() {
 	for(int i=0; i<size; i++) {
 		l.push_back(i);
 	}
-	// remove an element in a position already passed
 	std::list<int>::iterator i;
 	int counter=0;
 	for(i=l.begin(); i!=l.end(); i++) {
@@ -69,7 +68,6 @@ void do_vector() {
 	for(int i=0; i<size; i++) {
 		l.push_back(i);
 	}
-	// remove an element in a position already passed
 	std::vector<int>::iterator i;
 	int counter=0;
 	for(i=l.begin(); i!=l.end(); i++) {
@@ -85,7 +83,7 @@ void do_vector() {
 
 int main(int argc, char** argv, char** envp) {
 	if(argc!=6) {
-		std::cerr << argv[0] << ": usage: " << argv[0] << " [list or vector (1 for list)] [size] [postoact] [postoremove] [numtoremove]" << std::endl;
+		std::cerr << argv[0] << ": usage: " << argv[0] << " [list(1) or vector(0)] [size] [postoact] [postoremove] [numtoremove]" << std::endl;
 		std::cerr << argv[0] << ": example: " << argv[0] << " 1 10 5 5 1" << std::endl;
 		return EXIT_FAILURE;
 	}
