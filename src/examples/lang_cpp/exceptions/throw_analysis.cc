@@ -30,6 +30,7 @@
  *
  * This example shows that throwing an exception will terminate any running threads
  * and the program as a whole.
+ * The same applied for exit(3).
  *
  * We use a thread here to show that it stops...
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
@@ -55,7 +56,8 @@ int main(int argc, char** argv, char** envp) {
 	pthread_t thread;
 	CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, NULL));
 	CHECK_ZERO(sleep(5));
-	throw 20;
+	//throw 20;
+	exit(1);
 	std::cout << "Where did this go?" << std::endl;
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));
 	return EXIT_SUCCESS;
