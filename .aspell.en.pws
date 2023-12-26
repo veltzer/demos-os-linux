@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1014 
+personal_ws-1.1 en 1016 
 AARRR
 ACLs
 ADPlus
@@ -138,6 +138,7 @@ DataFrame
 Datatypes
 DateOffset
 DateTimeIndex
+DayOfWeek
 DbUnit
 DebugDiag
 DebugView
@@ -764,6 +765,7 @@ initializers
 initramfs
 initrd
 inittab
+inlined
 inotify
 intel
 interoperable
