@@ -21,6 +21,8 @@ DO_CHECK_SYNTAX:=1
 DO_MD_MDL:=1
 # do spell check on all?
 DO_MD_ASPELL:=1
+# are we in a dev enviornment?
+DEV:=1
 
 #############
 # variables #
@@ -75,6 +77,11 @@ MD_SRC:=$(shell find src/exercises -type f -and -name "*.md")
 MD_BAS:=$(basename $(MD_SRC))
 MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
 MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
+
+ifeq ($(DEV),0)
+DO_STP=0
+DO_CHP=0
+endif
 
 ########
 # code #

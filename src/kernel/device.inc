@@ -44,11 +44,7 @@ static int __init register_dev(void)
 {
 	int ret;
 	// create a class
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
-#else
 	my_class = class_create(THIS_MODULE->name);
-#endif
 	if (IS_ERR(my_class)) {
 		ret=PTR_ERR(my_class);
 		PR_ERROR("cannot class_create");
