@@ -363,6 +363,7 @@ static int pipe_open(struct inode *inode, struct file *filp)
 	/* hide the pipe in the private_data of the struct file... */
 	int the_pipe_number = iminor(inode)-MINOR(first_dev);
 	struct my_pipe_t *pipe = pipes+the_pipe_number;
+
 	filp->private_data = pipe;
 	pipe_lock(pipe);
 	if (filp->f_mode & FMODE_READ)
@@ -467,7 +468,6 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 	struct my_pipe_t *pipe;
 	size_t work_size, room, first_chunk, second_chunk, ret;
 
-	pr_debug("%s: start\n", __func__);
 	if (!access_ok(buf, count))
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
@@ -566,7 +566,7 @@ static int __init pipe_init(void)
 	}
 	pr_debug("added the cdev\n");
 	/* this is creating a new class (/proc/devices) */
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 5, 0)
 	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
 #else
 	my_class = class_create(THIS_MODULE->name);

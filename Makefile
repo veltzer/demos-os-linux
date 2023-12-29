@@ -6,7 +6,7 @@ include Makefile.mk
 # do kernel modules
 DO_STP:=1
 # check kernel modules
-DO_CHP:=0
+DO_CHP:=1
 # should we depend on the Makefile itself?
 DO_ALLDEP:=1
 # do you want to show the commands executed ?
@@ -141,7 +141,7 @@ CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_PR
 # kernel modules
 MOD_SRC:=$(shell find $(KERNEL_DIR) -name "mod_*.c" -and -not -name "mod_*.mod.c")
 #MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c")
-MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c")
+MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c" -and -not -name "*.mod.c")
 MOD_BAS:=$(basename $(MOD_SRC))
 MOD_SA_BAS:=$(basename $(MOD_SA_SRC))
 MOD_OBJ:=$(addsuffix .o,$(MOD_BAS))

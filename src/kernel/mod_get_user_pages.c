@@ -23,7 +23,6 @@
 #include <linux/pagemap.h> /* for vma structures */
 #include <linux/sched.h> /* for current */
 #include <linux/vmalloc.h> /* for vmap */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 
@@ -168,22 +167,12 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		mmap_write_lock(current->mm);
 		/* rw==READ means read from drive, write into memory area */
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-		res = get_user_pages(
-			aligned,
-			nr_pages,
-			1,/* write */
-			pages,
-			NULL
-		);
-#else
 		res = get_user_pages(
 			aligned,
 			nr_pages,
 			1,/* write */
 			pages
 		);
-#endif
 		vma = find_vma(current->mm, bpointer);
 		// vma->vm_flags |= VM_DONTCOPY;
 		mmap_write_unlock(current->mm);

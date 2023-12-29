@@ -268,7 +268,7 @@ static int clipboard_init(void)
 		ret = -ENODEV;
 		/*
 		 * Only if we allocated a cdev but did not register do we
-		 * we need to kfree it. In any other case cdev_del is enough
+		 * need to kfree it. In any other case cdev_del is enough
 		 */
 		kfree(clipboard_cdev);
 		goto error_after_region;

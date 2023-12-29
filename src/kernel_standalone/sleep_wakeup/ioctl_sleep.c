@@ -27,9 +27,11 @@
 
 #include "ioctl.h"
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char **argv, char **envp)
+{
 	int fd;
-	CHECK_NOT_M1(fd=open("/dev/ioctl", O_RDWR));
+
+	CHECK_NOT_M1(fd = open("/dev/ioctl", O_RDWR));
 	CHECK_NOT_M1(ioctl(fd, IOCTL_SLEEP));
 	CHECK_NOT_M1(close(fd));
 	return EXIT_SUCCESS;

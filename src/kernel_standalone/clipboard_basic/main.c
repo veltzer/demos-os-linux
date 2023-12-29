@@ -26,7 +26,6 @@
 #include <linux/printk.h> /* printk and pr_* API */
 #include <linux/cdev.h> /* Character device */
 #include <linux/device.h> /* for class_create */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 MODULE_AUTHOR("Mark Veltzer");
 MODULE_LICENSE("GPL");
@@ -160,11 +159,7 @@ static int __init clipboard_init(void)
 		goto error_after_region;
 	}
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
-#else
 	my_class = class_create(THIS_MODULE->name);
-#endif
 	if (IS_ERR(my_class)) {
 		pr_err("class_create\n");
 		ret = PTR_ERR(my_class);

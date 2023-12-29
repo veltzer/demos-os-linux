@@ -88,7 +88,7 @@ static int __init null_init(void)
 	}
 	pr_info("added the cdev\n");
 	/* this is creating a new class (/sys/class) */
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 5, 0)
 	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
 #else
 	my_class = class_create(THIS_MODULE->name);
