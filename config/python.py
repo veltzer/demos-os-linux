@@ -6,3 +6,5 @@ make_requires = [
     "pyclassifiers",
     "pylint",
 ]
+
+requires = make_requires
