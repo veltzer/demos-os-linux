@@ -5,7 +5,6 @@
 #include<linux/cdev.h> // for struct cdev, cdev_init, cdev_add, cdev_del
 #include<linux/fs.h> // for fops
 #include<linux/device.h> // for device support
-#include<linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 // structures
 struct kern_dev {

@@ -24,7 +24,6 @@
 #include <linux/moduleparam.h> /* for module_param, MODULE_PARM_DESC... */
 #include <linux/init.h> /* for __init, __exit */
 #include <linux/sched.h> /* for wait/wakeup */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 #include "ioctl.h"
 
@@ -41,22 +40,22 @@ MODULE_DESCRIPTION("Exercise in going to sleep and waking up");
 const int IOCTL_MAJOR = 190;
 const int IOCTL_MINOR;
 DECLARE_WAIT_QUEUE_HEAD(queue);
-int state=0;
+int state;
 
 /* these are the actual operations */
 static long ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
-	switch(cmd) {
-		case IOCTL_SLEEP:
-			state=0;
-			wait_event(queue, state==1);
-			return 0;
-		case IOCTL_WAKEUP:
-			state=1;
-			wake_up(&queue);
-			return 0;
-		default:
-			return -EFAULT;
+	switch (cmd) {
+	case IOCTL_SLEEP:
+		state = 0;
+		wait_event(queue, state == 1);
+		return 0;
+	case IOCTL_WAKEUP:
+		state = 1;
+		wake_up(&queue);
+		return 0;
+	default:
+		return -EFAULT;
 	}
 }
 
@@ -84,11 +83,7 @@ static int __init ioctl_init(void)
 		goto err_nothing;
 	}
 	/* this is creating a new class (/sys/class) */
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
-#else
 	my_class = class_create(THIS_MODULE->name);
-#endif
 	if (IS_ERR(my_class)) {
 		pr_err("failed to create class\n");
 		err = PTR_ERR(my_class);

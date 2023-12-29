@@ -23,7 +23,6 @@
 #include <linux/device.h> /* for device_create */
 #include <linux/moduleparam.h> /* for module_param, MODULE_PARM_DESC... */
 #include <linux/init.h> /* for __init, __exit */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -67,11 +66,7 @@ static int __init skeleton_init(void)
 	}
 	if (auto_register) {
 		/* this is creating a new class (/sys/class) */
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-		my_class = class_create(THIS_MODULE, THIS_MODULE->name);
-#else
 		my_class = class_create(THIS_MODULE->name);
-#endif
 		if (IS_ERR(my_class)) {
 			pr_err("failed to create class\n");
 			err = PTR_ERR(my_class);

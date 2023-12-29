@@ -22,10 +22,8 @@
 
 void do_something_init(void)
 {
-	pr_alert("%s\n", __func__);
 }
 
 void do_something_exit(void)
 {
-	pr_alert("%s\n", __func__);
 }

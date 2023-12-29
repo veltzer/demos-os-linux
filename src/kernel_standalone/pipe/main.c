@@ -29,7 +29,6 @@
 #include <linux/wait.h> /* for wait_queue_head_t and ops on it */
 #include <linux/uaccess.h> /* for copy_to_user, access_ok */
 #include <linux/mutex.h> /* for mutex_* */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -566,11 +565,7 @@ static int __init pipe_init(void)
 	}
 	pr_debug("added the cdev\n");
 	/* this is creating a new class (/proc/devices) */
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 5, 0)
-	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
-#else
 	my_class = class_create(THIS_MODULE->name);
-#endif
 	if (IS_ERR(my_class)) {
 		pr_err("class_create\n");
 		ret = PTR_ERR(my_class);

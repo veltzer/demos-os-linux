@@ -28,8 +28,6 @@
 #include <linux/sched.h> /* for TASK_INTERRUPTIBLE and more constants */
 #include <linux/spinlock.h> /* for spinlock_t and ops on it */
 #include <linux/wait.h> /* for wait_queue_head_t and ops on it */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
-#include <linux/version.h> /* for LINUX_VERSION_CODE, KERNEL_VERSION */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -191,11 +189,7 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count,
 	size_t data, work_size, first_chunk, second_chunk, ret;
 
 	pr_debug("start\n");
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-	if (!access_ok(VERIFY_WRITE, buf, count))
-#else
 	if (!access_ok(buf, count))
-#endif
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
 	/*
@@ -237,11 +231,7 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 	size_t work_size, room, first_chunk, second_chunk, ret;
 
 	pr_debug("start\n");
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-	if (!access_ok(VERIFY_READ, buf, count))
-#else
 	if (!access_ok(buf, count))
-#endif
 		return -EFAULT;
 	pipe = (struct my_pipe_t *)(file->private_data);
 	/*
@@ -323,11 +313,7 @@ static int __init pipe_init(void)
 	}
 	pr_debug("added the cdev\n");
 	/* this is creating a new class (/proc/devices) */
-#if LINUX_VERSION_CODE < KERNEL_VERSION(6,5,0)
-	my_class = class_create(THIS_MODULE, THIS_MODULE->name);
-#else
 	my_class = class_create(THIS_MODULE->name);
-#endif
 	if (IS_ERR(my_class)) {
 		pr_err("class_create\n");
 		ret = PTR_ERR(my_class);
