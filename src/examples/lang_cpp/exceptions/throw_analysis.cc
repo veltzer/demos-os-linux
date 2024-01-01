@@ -56,8 +56,7 @@ int main(int argc, char** argv, char** envp) {
 	pthread_t thread;
 	CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, NULL));
 	CHECK_ZERO(sleep(5));
-	//throw 20;
-	exit(1);
+	throw 20;
 	std::cout << "Where did this go?" << std::endl;
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));
 	return EXIT_SUCCESS;
