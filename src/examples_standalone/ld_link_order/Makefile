@@ -21,10 +21,10 @@ liba.so: a.o
 libb.so: b.o
 	$(info doing [$@])
 	$(Q)$(CC) -shared -o $@ $<
-libawithb.so: a.o
+libawithb.so: a.o libb.so
 	$(info doing [$@])
 	$(Q)$(CC) -shared -o $@ $< -L. -lb
-libawithbrpath.so: a.o
+libawithbrpath.so: a.o libb.so
 	$(info doing [$@])
 	$(Q)$(CC) -shared -o $@ $< -Wl,-rpath=$(CURDIR) -L. -lb
 main.$(SUFFIX_BIN): main.o liba.so libb.so
