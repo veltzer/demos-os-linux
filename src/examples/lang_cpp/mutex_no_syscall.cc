@@ -19,14 +19,18 @@
 #include <firstinclude.h>
 #include <stdlib.h>
 #include <mutex>
+#include <iostream>
 
 /*
  * References:
  */
 
 int main(int argc, char** argv, char** envp) {
+	std::cout << "Hello, World!" << std::endl;
 	std::mutex m;
-	m.lock();
-	m.unlock();
+	for(int i=0;i<1000000; i++) {
+		m.lock();
+		m.unlock();
+	}
 	return EXIT_SUCCESS;
 }
