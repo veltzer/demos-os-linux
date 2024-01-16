@@ -4,9 +4,9 @@ include Makefile.mk
 # parameters #
 ##############
 # do kernel modules
-DO_STP:=0
+DO_STP:=1
 # check kernel modules
-DO_CHP:=0
+DO_CHP:=1
 # should we depend on the Makefile itself?
 DO_ALLDEP:=1
 # do you want to show the commands executed ?
