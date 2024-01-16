@@ -77,8 +77,7 @@ MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
 MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))
 
 ifdef GITHUB_WORKFLOW
-DO_STP=0
-DO_CHP=0
+$(info in GITHUB_WORKFLOW)
 endif # GITHUB_WORKFLOW
 
 ########
