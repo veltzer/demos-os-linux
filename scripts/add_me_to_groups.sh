@@ -3,7 +3,24 @@
 # This script adds the current user to all the groups that you need to be
 # a member of in order to run all the demos in this repository.
 
-for group in adm cdrom sudo dip plugdev kvm lpadmin lxd sambashare docker libvirt microk8s stapusr stapdev stapsys
+groups=(
+	"adm"
+	"cdrom"
+	"sudo"
+	"dip"
+	"plugdev"
+	"kvm"
+	"lpadmin"
+	"lxd"
+	"sambashare"
+	"docker"
+	"libvirt"
+	"stapusr"
+	"stapdev"
+	"stapsys"
+	"audio"
+)
+for group in "${groups[@]}"
 do
 	if ! sudo usermod -a -G "${group}" "${USER}"
 	then
