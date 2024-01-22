@@ -35,9 +35,7 @@ US_INCLUDE:=src/include
 KVER:=$(shell uname -r)
 # folder of the build folder for the kernel you build against
 KDIR:=/lib/modules/$(KVER)/build
-# folder of a kernel source tree
-KSOURCE:=/home/mark/install/linux
-# fill in the vervosity level you want for the kernel module compilation process
+# fill in the verbosity level you want for the kernel module compilation process
 # V:=1 will give you the command lines used...
 V:=0
 # warnings for kernel code (0,1,2,3,...). Better use 1 since kernel
@@ -63,8 +61,8 @@ SUFFIX_BIN:=elf
 # suffix for c++ object files
 SUFFIX_OO:=oo
 # checkpatch executable...
-# SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
-SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
+SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
+# SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
 
 # export all variables to sub-make processes...
 # this could cause command line too long problems because all the make variables
@@ -151,7 +149,7 @@ MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c" -and -not -name "*.mod.c" 
 MOD_BAS:=$(basename $(MOD_SRC))
 MOD_SA_BAS:=$(basename $(MOD_SA_SRC))
 MOD_OBJ:=$(addsuffix .o,$(MOD_BAS))
-MOD_CHP:=$(addsuffix .stamp,$(MOD_BAS) $(MOD_SA_BAS))
+MOD_CHP:=$(addsuffix .stamp.chp,$(MOD_BAS) $(MOD_SA_BAS))
 MOD_SR2:=$(addsuffix .mod.c,$(MOD_BAS))
 MOD_OB2:=$(addsuffix .mod.o,$(MOD_BAS))
 MOD_CM1:=$(addprefix $(KERNEL_DIR)/.,$(addsuffix .ko.cmd,$(notdir $(MOD_BAS))))
@@ -541,9 +539,9 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
 #	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
 
 # rule about how to check kernel source files
-$(MOD_CHP): %.stamp: %.c
+$(MOD_CHP): %.stamp.chp: %.c
 	$(info doing [$@])
-	$(Q)cd $(KSOURCE); pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --file $(abspath $<)
+	$(Q)pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --no-tree --file $<
 	$(Q)pymakehelper touch_mkdir $@
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c
