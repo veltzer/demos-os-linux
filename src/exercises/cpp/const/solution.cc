@@ -16,53 +16,54 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <cmath>
 #include <stdlib.h>
 #include <iostream>
 
 class Rectangle {
-  private:
-    double width;
-    double height;
+	private:
+		double width;
+		double height;
 
-  public:
-    Rectangle(const double w, const double h) : width(w), height(h) {}
-    
-    double getArea() const {
-      return width * height;
-    }
-    
-    double getWidth() const {
-      return width; 
-    }
-    
-    double getHeight() const {
-      return height;
-    }
-    
-    void setWidth(const double w) {
-      width = w;
-    }
-    
-    void setHeight(const double h) {
-      height = h; 
-    }
-    
-    double getDiagonalLength() const {
-      return sqrt(width * width + height * height);
-    }
-    
-    double getCircumference() const {
-      return 2 * (width + height);
-    }
+	public:
+		Rectangle(const double w, const double h) : width(w), height(h) {}
+
+		double getArea() const {
+			return width * height;
+		}
+
+		double getWidth() const {
+			return width;
+		}
+
+		double getHeight() const {
+			return height;
+		}
+
+		void setWidth(const double w) {
+			width = w;
+		}
+
+		void setHeight(const double h) {
+			height = h;
+		}
+
+		double getDiagonalLength() const {
+			return sqrt(width * width + height * height);
+		}
+
+		double getCircumference() const {
+			return 2 * (width + height);
+		}
 };
 
 int main(int argc, char** argv, char** envp) {
-  const Rectangle r(5, 3);
-  std::cout << "Area: " << r.getArea() << std::endl;
-  std::cout << "Width: " << r.getWidth() << std::endl;
-  std::cout << "Height: " << r.getHeight() << std::endl;
-  std::cout << "Diagonal Length: " << r.getDiagonalLength() << std::endl;
-  std::cout << "Circumference: " << r.getCircumference() << std::endl;
-  return EXIT_SUCCESS;
+	const Rectangle r(5, 3);
+	std::cout << "Area: " << r.getArea() << std::endl;
+	std::cout << "Width: " << r.getWidth() << std::endl;
+	std::cout << "Height: " << r.getHeight() << std::endl;
+	std::cout << "Diagonal Length: " << r.getDiagonalLength() << std::endl;
+	std::cout << "Circumference: " << r.getCircumference() << std::endl;
+	return EXIT_SUCCESS;
 }
