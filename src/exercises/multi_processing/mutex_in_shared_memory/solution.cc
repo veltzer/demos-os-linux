@@ -33,23 +33,23 @@ int main(int argc, char** argv, char** envp) {
 	int shm_fd = CHECK_NOT_M1(shm_open("data", O_CREAT | O_RDWR, 0666));
 	CHECK_NOT_M1(ftruncate(shm_fd, sizeof(int)+sizeof(pthread_mutex_t)) == -1);
 	int* data =(int*)CHECK_NOT_VOIDP(mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0), MAP_FAILED);
-	pthread_mutex_t* pLock = (pthread_mutex_t*)(data+1);
+	pthread_mutex_t* lock = (pthread_mutex_t*)(data+1);
 	pthread_mutexattr_t attr;
-	pthread_mutexattr_init(&attr);
-	pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED);
-	pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST);
-	pthread_mutex_init(pLock, &attr);
-	pthread_mutexattr_destroy(&attr);
+	CHECK_ZERO_ERRNO(pthread_mutexattr_init(&attr));
+	CHECK_ZERO_ERRNO(pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED));
+	CHECK_ZERO_ERRNO(pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST));
+	CHECK_ZERO_ERRNO(pthread_mutex_init(lock, &attr));
+	CHECK_ZERO_ERRNO(pthread_mutexattr_destroy(&attr));
 
 	int counter = 0;
 	while(true) {
-		pthread_mutex_lock(pLock);
+		CHECK_ZERO_ERRNO(pthread_mutex_lock(lock));
 		printf("writer lock\n");
 		sleep(10);
 		counter++;
 		memcpy(data, &counter, sizeof(int));
 		printf("writer unlock %d\n", counter);
-		pthread_mutex_unlock(pLock);
+		CHECK_ZERO_ERRNO(pthread_mutex_unlock(lock));
 		sleep(1);
 	}
 	return EXIT_SUCCESS;
