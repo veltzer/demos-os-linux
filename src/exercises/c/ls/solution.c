@@ -128,7 +128,7 @@ int main(int argc, char** argv, char** envp) {
 	int i=0;
 	// this function does not have an error state
 	rewinddir(d);
-	int max_size=0;
+	int max_size=1;
 	nlink_t max_link=0;
 	while((dircontent=readdir(d))) {
 		if(hidedots && dircontent->d_name[0]=='.') {

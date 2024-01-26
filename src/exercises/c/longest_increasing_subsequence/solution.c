@@ -60,6 +60,8 @@ void check(const char* val, const char* expected) {
 	char curr[MAX_STR_LEN];
 	char best[MAX_STR_LEN];
 	strcpy(str, val);
+	strcpy(curr, val);
+	strcpy(best, val);
 	maximum_subset(str, 0, curr, best);
 	printf("[%s] - [%s] - ", val, expected);
 	if(strcmp(expected, best)!=0) {

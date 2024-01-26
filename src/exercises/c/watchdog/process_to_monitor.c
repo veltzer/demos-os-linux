@@ -38,6 +38,7 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_ZERO(sleep(sleep_time));
 	// no return value for abort(3)
 	TRACE("dying");
+	// cppcheck-suppress nullPointer
 	*(char*)0=0;
 	// abort();
 	return EXIT_SUCCESS;

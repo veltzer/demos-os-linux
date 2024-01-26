@@ -50,8 +50,12 @@ int main(int argc, char** argv, char** envp) {
 	a a6={ j:10 };
 	a a7;
 
+	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember
 	printf("a0.i=%d \n", a0.i);
+	// cppcheck-suppress uninitStructMember
 	printf("a0.j=%d \n", a0.j);
+	// cppcheck-suppress uninitStructMember
 	printf("a0.k=%d \n", a0.k);
 
 	printf("a1.i=%d \n", a1.i);
@@ -78,8 +82,12 @@ int main(int argc, char** argv, char** envp) {
 	printf("a6.j=%d \n", a6.j);
 	printf("a6.k=%d \n", a6.k);
 
+	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember
 	printf("a7.i=%d \n", a7.i);
+	// cppcheck-suppress uninitStructMember
 	printf("a7.j=%d \n", a7.j);
+	// cppcheck-suppress uninitStructMember
 	printf("a7.k=%d \n", a7.k);
 	return EXIT_SUCCESS;
 }

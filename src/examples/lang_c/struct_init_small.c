@@ -44,14 +44,24 @@ struct largestruct {
 
 int main(int argc, char** argv, char** envp) {
 	struct smallstruct vsmall;
+	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember
 	printf("vsmall.a is %d\n", vsmall.a);
+	// cppcheck-suppress uninitStructMember
 	printf("vsmall.b is %d\n", vsmall.b);
 	struct largestruct vlarge;
+	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember
 	printf("vlarge.a is %d\n", vlarge.a);
+	// cppcheck-suppress uninitStructMember
 	printf("vlarge.b is %d\n", vlarge.b);
+	// cppcheck-suppress uninitStructMember
 	printf("vlarge.c is %d\n", vlarge.c);
 	struct largestruct vlarge2;
+	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember
 	printf("vlarge2.a is %d\n", vlarge2.a);
+	// cppcheck-suppress uninitStructMember
 	printf("vlarge2.b is %d\n", vlarge2.b);
 	printf("vlarge2.b(second time) is %d\n", vlarge2.b);
 	return EXIT_SUCCESS;
