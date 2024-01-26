@@ -101,6 +101,7 @@ int main(int argc, char** argv, char** envp) {
 		TRACE("child after lock");
 		sleep(2);
 		TRACE("child after sleep");
+		// cppcheck-suppress nullPointer
 		*(volatile int*)0=0;
 		TRACE("child after crash?!?");
 		CHECK_ZERO_ERRNO(pthread_mutex_unlock(mylock));

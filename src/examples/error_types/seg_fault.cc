@@ -74,6 +74,7 @@ int main(int argc, char** argv, char** envp) {
 	}
 	if(choice==2) {
 		printf("going to write on a read only string\n");
+		// cppcheck-suppress stringLiteralWrite
 		const char* hello="hello";
 		char* p=(char*)hello;
 		p[2]='g';

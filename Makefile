@@ -45,7 +45,7 @@ KDIR:=/lib/modules/$(KVER)/build
 # V:=1 will give you the command lines used...
 V:=0
 # warnings for kernel code (0,1,2,3,...). Better use 1 since kernel
-# headers don't pass more than 1
+# headers dont pass more than 1
 W:=1
 # extra flags to pass to the kernel module creation process...
 # regular kernels do not have -Werror and we want it!
@@ -127,6 +127,7 @@ CLEAN_DIRS:=
 
 # user space applications (c and c++)
 CC_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.cc")
+HH_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.hh")
 C_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.c" -and -not -name "mod_*.c")
 CC_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(CC_SRC)))
 C_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(C_SRC)))
@@ -192,7 +193,7 @@ ALL:=$(ALL) $(ALL_STAMP)
 endif # DO_CHECK_SYNTAX
 
 ifeq ($(DO_CHECK_ALL),1)
-ALL:=$(ALL) check_all
+ALL:=$(ALL) out/check_all.stamp
 endif # DO_CHECK_ALL
 
 ifeq ($(DO_DEP_WRAPPER),1)
@@ -314,75 +315,75 @@ todo:
 .PHONY: check_ws
 check_ws:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l "\ \ " -- '*.h' '*.hh' '*.c' '*.cc'
-	$(Q)pymakehelper no_err git grep -l " $$" -- '*.h' '*.hh' '*.c' '*.cc'
-	$(Q)pymakehelper no_err git grep -l "\s$$" -- '*.h' '*.hh' '*.c' '*.cc'
-	$(Q)pymakehelper no_err git grep -l "$$$$" -- '*.h' '*.hh' '*.c' '*.cc'
+	$(Q)pymakehelper no_err git grep -l "\ \ " -- "*.h" "*.hh" "*.c" "*.cc"
+	$(Q)pymakehelper no_err git grep -l " $$" -- "*.h" "*.hh" "*.c" "*.cc"
+	$(Q)pymakehelper no_err git grep -l "\s$$" -- "*.h" "*.hh" "*.c" "*.cc"
+	$(Q)pymakehelper no_err git grep -l "$$$$" -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_main
 check_main:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -e " main(" --and --not -e argc -- '*.h' '*.hh' '*.c' '*.cc'
-	$(Q)pymakehelper no_err git grep -e "ACE_TMAIN" --and --not -e argc -- '*.h' '*.hh' '*.c' '*.cc'
+	$(Q)pymakehelper no_err git grep -e " main(" --and --not -e argc -- "*.h" "*.hh" "*.c" "*.cc"
+	$(Q)pymakehelper no_err git grep -e "ACE_TMAIN" --and --not -e argc -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_ace_include
 check_ace_include:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l "include\"ace" -- '*.h' '*.hh' '*.c' '*.cc'
-	$(Q)pymakehelper no_err git grep -l "include \"ace" -- '*.h' '*.hh' '*.c' '*.cc'
+	$(Q)pymakehelper no_err git grep -l "include\"ace" -- "*.h" "*.hh" "*.c" "*.cc"
+	$(Q)pymakehelper no_err git grep -l "include \"ace" -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_include
 check_include:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l "#include[^ ]" -- '*.h' '*.hh' '*.c' '*.cc'
-	$(Q)pymakehelper no_err git grep -l "#include  " -- '*.h' '*.hh' '*.c' '*.cc'
+	$(Q)pymakehelper no_err git grep -l "#include[^ ]" -- "*.h" "*.hh" "*.c" "*.cc"
+	$(Q)pymakehelper no_err git grep -l "#include  " -- "*.h" "*.hh" "*.c" "*.cc"
 # enable this when you have the balls...
-#$(Q)pymakehelper no_err git grep -l -e "#include" --and --not -e "\/\/ for" --and --not -e "firstinclude" -- '*.h' '*.hh' '*.c' '*.cc'
+#$(Q)pymakehelper no_err git grep -l -e "#include" --and --not -e "\/\/ for" --and --not -e "firstinclude" -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_license
 check_license:
 	$(info doing [$@] from [$<])
 	$(Q)scripts/check_license.py
-#	$(Q)pymakehelper no_err git grep -L "Copyright (C) 2011-2013 Mark Veltzer <mark.veltzer@gmail.com>" -- '*.c' '*.cc' '*.h' '*.hh' '*.S'
+#	$(Q)pymakehelper no_err git grep -L "Copyright (C) 2011-2013 Mark Veltzer <mark.veltzer@gmail.com>" -- "*.c" "*.cc" "*.h" "*.hh" "*.S"
 .PHONY: check_exit
 check_exit:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l "exit(1)" -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep -l "exit(1)" -- "*.c" "*.cc" "*.h" "*.hh"
 # " =" cannot be checked because of void foo(void* =0) and that is the reason for the next
 .PHONY: check_pgrep
 check_pgrep:
 	$(info doing [$@] from [$<])
-	$(Q)wrapper-ok git grep -e $$"$$$$$$" --or -e "= " --or -e "[^\*] =" --or -e "^ " --or -e $$'\t ' --or -e $$" \t" --or -e "\ \ " --or -e $$"\t$$" --or -e " $$" -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)wrapper-ok git grep -e $$"$$$$$$" --or -e "= " --or -e "[^\*] =" --or -e "^ " --or -e $$"\t " --or -e $$" \t" --or -e "\ \ " --or -e $$"\t$$" --or -e " $$" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_firstinclude
 check_firstinclude:
 	$(info doing [$@] from [$<])
-	$(Q)git grep -L -e '^#include <firstinclude.h>$$' -- '*.c' '*.cc' '*.h' '*.hh' | grep -v kernel_standalone | grep -v mod_ | grep -v examples_standalone | grep -v firstinclude | grep -v shared.h | pymakehelper no_err grep -v kernel_helper.h
+	$(Q)git grep -L -e "^#include <firstinclude.h>$$" -- "*.c" "*.cc" "*.h" "*.hh" | grep -v kernel_standalone | grep -v mod_ | grep -v examples_standalone | grep -v firstinclude | grep -v shared.h | pymakehelper no_err grep -v kernel_helper.h
 .PHONY: check_check
 check_check:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -e 'CHECK_' --and -e '=' --and --not -e '=CHECK_' --and --not -e 'CHECK_' --and --not -e ',CHECK_' --and --not -e 'CHECK_ASSERT' --and --not -e PTHREAD_ERROR --and --not -e ', CHECK_' --and --not -e ERRORCHECK_
+	$(Q)pymakehelper no_err git grep -e "CHECK_" --and -e "=" --and --not -e "=CHECK_" --and --not -e "CHECK_" --and --not -e ",CHECK_" --and --not -e "CHECK_ASSERT" --and --not -e PTHREAD_ERROR --and --not -e ", CHECK_" --and --not -e ERRORCHECK_
 .PHONY: check_perror
 check_perror:
 	$(info doing [$@] from [$<])
-	$(Q)git grep 'perror' -- '*.c' '*.cc' '*.h' '*.hh' | grep -v assert_perror | grep -v perror.cc | pymakehelper no_err grep -v err_utils.h
-#--and --not -e "assert_perror" --and --not -e "perror.cc" --and --not -e "us_helper.h" -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)git grep "perror" -- "*.c" "*.cc" "*.h" "*.hh" | grep -v assert_perror | grep -v perror.cc | pymakehelper no_err grep -v err_utils.h
+#--and --not -e "assert_perror" --and --not -e "perror.cc" --and --not -e "us_helper.h" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_fixme
 check_fixme:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep FIXME -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep FIXME -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_while1
 check_while1:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep "while\(1\)" -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep "while\(1\)" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_usage
 check_usage:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep "while\(1\)" -- '*.c' '*.cc' '*.h' '*.hh'
-	$(Q)pymakehelper no_err git grep -e \\\"usage --and -e stderr -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep "while\(1\)" -- "*.c" "*.cc" "*.h" "*.hh"
+	$(Q)pymakehelper no_err git grep -e \\\"usage --and -e stderr -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_pthread
 check_pthread:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l 'CHECK_ZERO(pthread' -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep -l "CHECK_ZERO(pthread" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_usage_2
 check_usage_2:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l "Usage" -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep -l "Usage" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_gitignore
 check_gitignore:
 	$(info doing [$@] from [$<])
@@ -390,7 +391,7 @@ check_gitignore:
 .PHONY: check_exitzero
 check_exitzero:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l 'exit\(0\)' -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep -l "exit\(0\)" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_no_symlinks
 check_no_symlinks:
 	$(info doing [$@] from [$<])
@@ -398,32 +399,37 @@ check_no_symlinks:
 .PHONY: check_check_header
 check_check_header:
 	$(info doing [$@] from [$<])
-	$(Q)git grep include -- '*.c' '*.cc' '*.h' '*.hh' | grep us_helper | pymakehelper no_err grep CHECK
-.PHONY: check_all
-check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi
+	$(Q)git grep include -- "*.c" "*.cc" "*.h" "*.hh" | grep us_helper | pymakehelper no_err grep CHECK
+.PHONY: check_all 
+check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi scripts/check_have_solutions.py
 	$(info doing [$@] from [$<])
 	$(Q)scripts/check_have_solutions.py
+
+out/check_all.stamp: $(ALL_US)
+	$(info doing [$@] from [$<])
+	$(Q)scripts/check_have_solutions.py
+	$(Q)pymakehelper touch_mkdir $@
 
 .PHONY: check_semisemi
 check_semisemi:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep ";;" -- '*.c' '*.cc' '*.h' '*.hh'
+	$(Q)pymakehelper no_err git grep ";;" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_for
 check_for:
 	$(info doing [$@] from [$<])
-	$(Q)git grep "for (" -- '*.h' '*.hh' '*.c' '*.cc' | pymakehelper no_err grep -v kernel
+	$(Q)git grep "for (" -- "*.h" "*.hh" "*.c" "*.cc" | pymakehelper no_err grep -v kernel
 .PHONY: check_dots
 check_dots:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l " : " -- '*.h' '*.hh' '*.c' '*.cc'
+	$(Q)pymakehelper no_err git grep -l " : " -- "*.h" "*.hh" "*.c" "*.cc"
 # checks that dont pass
 .PHONY: check_syn
 check_syn:
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper no_err git grep -l "while (" -- '*.c' '*.h' '*.cc' '*.hh'
-	$(Q)pymakehelper no_err git grep -l "for (" -- '*.c' '*.h' '*.cc' '*.hh'
-	$(Q)pymakehelper no_err git grep -l "if (" -- '*.c' '*.h' '*.cc' '*.hh'
-	$(Q)pymakehelper no_err git grep -l "switch (" -- '*.c' '*.h' '*.cc' '*.hh'
+	$(Q)pymakehelper no_err git grep -l "while (" -- "*.c" "*.h" "*.cc" "*.hh"
+	$(Q)pymakehelper no_err git grep -l "for (" -- "*.c" "*.h" "*.cc" "*.hh"
+	$(Q)pymakehelper no_err git grep -l "if (" -- "*.c" "*.h" "*.cc" "*.hh"
+	$(Q)pymakehelper no_err git grep -l "switch (" -- "*.c" "*.h" "*.cc" "*.hh"
 
 .PHONY: check_files
 check_files:
@@ -583,7 +589,7 @@ $(MOD_CHP): %.stamp.chp: %.c
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c
 	$(info doing [$@] from [$<])
-	$(Q)sed 's/MODNAME/$(notdir $(basename $<))/g' src/kernel/Makefile.tmpl > src/kernel/Makefile
+	$(Q)sed "s/MODNAME/$(notdir $(basename $<))/g" src/kernel/Makefile.tmpl > src/kernel/Makefile
 	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
 	$(Q)pymakehelper touch_mkdir $@
 # shell checking rules
