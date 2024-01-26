@@ -76,6 +76,7 @@ void do_vector() {
 				l.erase(l.begin()+postoremove);
 			}
 		}
+		// cppcheck-suppress invalidContainer
 		std::cout << "visiting " << *i << std::endl;
 		counter++;
 	}

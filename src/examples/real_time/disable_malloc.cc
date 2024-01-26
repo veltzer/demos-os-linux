@@ -81,12 +81,14 @@ int main(int argc, char** argv, char** envp) {
 	printf("This allocation should succeed...\n");
 	void* p=malloc(200);
 	assert(p!=NULL);
+	free(p);
 	printf("We are going into the critical phase of the application...\n");
 	malloc_disable();
 	printf("This should fail...\n");
 	p=malloc(200);
-	printf("p is %p\n", p);
 	// we should never get to this line
+	printf("p is %p\n", p);
 	assert(p!=NULL);
+	free(p);
 	return EXIT_SUCCESS;
 }

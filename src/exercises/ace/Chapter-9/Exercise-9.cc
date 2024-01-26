@@ -74,9 +74,9 @@ int DoAccept(long ReceivePort, ACE_SOCK_Stream *peer, ACE_INET_Addr *peer_addr, 
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Trying to accept %d.\n"), ReceivePort));
 	if (acceptor->accept(*peer, peer_addr, &timeout, 0)==-1) {
 		if (ACE_OS::last_error()==EINTR) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Interrupted while ") ACE_TEXT("waiting for connection\n")));
+			ACE_DEBUG((LM_DEBUG, "waiting for connection"));
 		} else if (ACE_OS::last_error()==ETIMEDOUT) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while ") ACE_TEXT("waiting for connection\n")));
+			ACE_DEBUG((LM_DEBUG, "Timeout while waiting for connection"));
 		}
 	} else {
 		ACE_TCHAR peer_name[MAXHOSTNAMELEN];
@@ -129,9 +129,9 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%p\n"), ACE_TEXT("(%P|%t) Client %d connect"), MyIndex + 1));
 			return(1);
 		}
-		sprintf(buffer, "I'm Child %d This is My Message.", MyIndex + 1);
+		sprintf(buffer, "Im a child %d This is My Message.", MyIndex + 1);
 		size_t size=ACE_OS::strlen(buffer);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Child %d sending: <%s>\n"), MyIndex + 1, buffer));
+		ACE_DEBUG((LM_DEBUG, "Child %d sending: <%s>\n", MyIndex + 1, buffer));
 		peer.send_n(buffer, size, 0);
 		// Get Acknowledge
 		peer.recv(buffer, sizeof(buffer));

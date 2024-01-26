@@ -46,7 +46,7 @@ public:
 	}
 	int status_update(void) {
 		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::status_update"));
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Obtaining a status_update in %t ") ACE_TEXT("thread of control\n")));
+		ACE_DEBUG((LM_DEBUG, "Obtaining a status_update in thread of control"));
 		// Simulate time to send message and get status.
 		ACE_OS::sleep(2);
 		return(next_result_id());

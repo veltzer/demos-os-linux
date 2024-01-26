@@ -123,6 +123,7 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_ASSERT((unsigned long)&mybar%LEVEL2_CACHE_LINESIZE==0);
 	CHECK_ASSERT((unsigned long)&myfoo%LEVEL2_CACHE_LINESIZE!=0);
 #ifndef __x86_64__
+	// cppcheck-suppress uninitvar
 	myfunction('4', mybar, '5', myfoo);
 #endif	/* __x86_64__ */
 	printf("sizeof(barestruct)=%zd\n", sizeof(barestruct));

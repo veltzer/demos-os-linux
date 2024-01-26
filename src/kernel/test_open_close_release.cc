@@ -83,6 +83,7 @@ void do_open_and_forget(void) {
 void do_open_and_segfault(void) {
 	CHECK_NOT_M1(open(filename, O_RDWR));
 	char *p=(char *)NULL;
+	// cppcheck-suppress nullPointer
 	*p=0;
 }
 

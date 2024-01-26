@@ -55,6 +55,7 @@ int main(int argc, char** argv, char** envp) {
 		} else {
 			printf("This is the child\n");
 			sleep(10);
+			// cppcheck-suppress nullPointer
 			*(char*)0=0;
 			return EXIT_SUCCESS;
 		}

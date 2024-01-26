@@ -33,6 +33,7 @@
 int main(int argc, char** argv, char** envp) {
 	printf("quote(5) is %s\n", quote(5));
 	// C/C++ automatically catenates adjacent strings into one large string
+	// cppcheck-suppress unknownMacro
 	printf("Hello, " quote(World) "\n");
 	printf("Hello, " quote(printf("World")) "\n");
 	// FOO will not get substituted for BAR in the next line (the pre-processor does not DO

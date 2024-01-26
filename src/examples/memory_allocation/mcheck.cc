@@ -65,11 +65,14 @@ int main(int argc, char** argv, char** envp) {
 	int i;
 	for(i=size_of_buffer; i<size_of_buffer+to_overrun; i++) {
 #pragma GCC diagnostic ignored "-Warray-bounds"
+		// cppcheck-suppress arrayIndexOutOfBounds
 		buf[i]=i%26+'a';
 	}
 	for(i=-to_overrun; i<0; i++) {
+		// cppcheck-suppress negativeIndex
 		buf2[i]=i%26+'a';
 	}
+	// cppcheck-suppress arrayIndexOutOfBounds
 	buf[size_of_buffer+to_overrun]='\0';
 	printf("buf is %s\n", buf);
 	// check the status of our allocated chunk...

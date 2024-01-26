@@ -50,14 +50,22 @@ int main(int argc, char** argv, char** envp) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wuninitialized"
 	struct mystruct v3;
+	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitvar
 	printf("v3.a is %d\n", v3.a);
+	// cppcheck-suppress uninitStructMember
 	printf("v3.b is %d\n", v3.b);
+	// cppcheck-suppress uninitStructMember
 	printf("v3.c is %d\n", v3.c);
 	// this will also always work but because we are accessing the values later
 	// then gcc will 0 them for us...
 	struct mystruct v4;
+	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitvar
 	printf("v4.a is %d\n", v4.a);
+	// cppcheck-suppress uninitStructMember
 	printf("v4.b is %d\n", v4.b);
+	// cppcheck-suppress uninitStructMember
 	printf("v4.c is %d\n", v4.c);
 #pragma GCC diagnostic pop
 	v4.a=10;
