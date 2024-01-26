@@ -69,6 +69,7 @@ int main(int argc, char** argv, char** envp) {
 		// lets show that the NULL constant is actually the number 0...
 		INFO("NULL is %zd", NULL);
 		char *p=(char*)0;
+		// cppcheck-suppress nullPointer
 		p[0]=0;
 	}
 	if(choice==2) {

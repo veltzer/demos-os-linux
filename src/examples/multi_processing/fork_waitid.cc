@@ -66,6 +66,7 @@ int main(int argc, char** argv, char** envp) {
 			break;
 
 		case 3:
+			// cppcheck-suppress nullPointer
 			*((char *)0)=0;
 			break;
 		}

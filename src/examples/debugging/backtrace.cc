@@ -130,7 +130,7 @@ void trace_register(void) {
  */
 void do_fault(void) {
 	char* p=(char*)0;
-
+	// cppcheck-suppress nullPointer
 	p[0]=0;
 }
 

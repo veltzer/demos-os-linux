@@ -33,6 +33,7 @@ static inline unsigned long getbx() {
 	#if __x86_64__
 	val=5;
 	#endif	// __x86_64__
+	// cppcheck-suppress uninitvar
 	return val;
 }
 

@@ -28,6 +28,7 @@
 
 int main(int argc, char** argv, char** envp) {
 	int i=0;
+	// cppcheck-suppress zerodiv
 	int j=1 / i;
 
 	std::cout << j << std::endl;
