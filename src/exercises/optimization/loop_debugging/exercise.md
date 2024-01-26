@@ -1,4 +1,4 @@
-# Loops Optimized Away
+# Loops Debugging
 
 * Write a simple program that counts and has a bug.
 * Compile with optimizations.
