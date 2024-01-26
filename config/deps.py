@@ -85,9 +85,6 @@ packages_doc=[
     "systemtap-doc",
     "postgresql-doc",
     "papi-examples", # PAPI example files and test programs
-    # linters
-    "cppcheck",
-    "cpplint",
 ]
 
 packages_tools=[
@@ -345,6 +342,9 @@ packages=[
     "qt6-base-dev",
     # this is for qt5
     "qtbase5-dev",
+    # linters
+    "cppcheck",
+    "cpplint",
 ]
 
 if opt_do_kernel:
