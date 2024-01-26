@@ -17,6 +17,7 @@
  */
 
 #include <firstinclude.h>
+#include <err_utils.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <unistd.h>	// for malloc(3)
 #include <stdio.h>	// for printf(3)
@@ -29,8 +30,9 @@
  */
 
 int main(int argc, char** argv, char** envp) {
-	char* malicious_string=(char*)malloc(20);
+	char* malicious_string=(char*)CHECK_NOT_NULL(malloc(20));
 	memset(malicious_string, 0, 20);
 	printf(malicious_string, 45);
+	free(malicious_string);
 	return EXIT_SUCCESS;
 }

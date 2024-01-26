@@ -47,6 +47,7 @@ public:
 			std::cout << "Hello from A, i is " << i << std::endl;
 		}
 	}
+	virtual ~A() {}
 };
 
 class B : public A {
@@ -81,11 +82,18 @@ int main(int argc, char** argv, char** envp) {
 
 	A* a=new A();
 	a->dosomething();
+	delete a;
+
 	A* ab=new B();
 	ab->dosomething();
+	delete ab;
+
 	B* b=new B();
 	b->dosomething();
+	delete b;
+
 	A anotherA;
 	anotherA.dosomething();
+
 	return EXIT_SUCCESS;
 }

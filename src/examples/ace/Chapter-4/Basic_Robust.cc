@@ -78,9 +78,9 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
 	ACE_SOCK_Stream log;
 	if (logConnector.connect(log, addr, &timeout)==-1) {
 		if (ACE_OS::last_error()==ETIME) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while ") ACE_TEXT("connecting to log server\n")));
+			ACE_DEBUG((LM_DEBUG, "Timeout while connecting to log server\n"));
 		} else {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("log")));
+			ACE_ERROR((LM_ERROR, "%p\nlog"));
 		}
 		return(101);
 	}
@@ -105,7 +105,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
 	ACE_Time_Value sendTimeout(0, 5);
 	if (status.send_n("uptime\n", 7, &sendTimeout)==-1) {
 		if (ACE_OS::last_error()==ETIME) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while sending ") ACE_TEXT("query to status server\n")));
+			ACE_DEBUG((LM_DEBUG, "Timeout while sending"));
 		}
 		// Listing 6
 		else {

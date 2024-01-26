@@ -31,6 +31,7 @@ int main(int argc, char** argv, char** envp) {
 	fprintf(stderr, "stderr data2");
 	printf("\n");
 	printf("help me user!!!!");
+	// cppcheck-suppress nullPointer
 	*(char*)0=0;
 	return EXIT_SUCCESS;
 }

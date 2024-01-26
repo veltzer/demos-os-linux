@@ -70,6 +70,7 @@ static int __init mod_init(void)
 		if (IS_ERR(vptr)) {
 			pr_err("ERROR! could not allocate memory");
 			return PTR_ERR(vptr);
+		}
 		dma_free_coherent(NULL, size, vptr, device_addr);
 	}
 #endif /* DO_LOOP */

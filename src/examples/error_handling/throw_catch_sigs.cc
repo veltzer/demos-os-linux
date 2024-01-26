@@ -83,6 +83,7 @@ static void doBadCode(int i) {
 		// turning x into float here would not work since it
 		// will not cause an exception
 		x=0;
+		// cppcheck-suppress zerodiv
 		y=1 / x;
 		std::cerr << "y is " << y << std::endl;
 		std::cerr << "this is never reached" << std::endl;
@@ -94,6 +95,7 @@ static void doBadCode(int i) {
 	case 1:
 		std::cerr << "Lets access some illegal memory address" << std::endl;
 		p=0;
+		// cppcheck-suppress nullPointer
 		p[0]=0;
 		break;
 

@@ -31,6 +31,7 @@ int* get_address_on_the_stack() {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wreturn-local-addr"
 	int a=7;
+	// cppcheck-suppress returnDanglingLifetime
 	return &a;
 	#pragma GCC diagnostic pop
 }

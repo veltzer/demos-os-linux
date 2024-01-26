@@ -60,15 +60,22 @@ int main(int argc, char** argv, char** envp) {
 	// from this point prints do not get anywhere (/dev/null redirection).
 	// so we use the terminal we collected before instead.
 	// note that the right thing to do it to use syslog(3) instead.
-	FILE* newout=CHECK_NOT_NULL_FILEP(fopen(myttyname,"w"));
-	CHECK_POSITIVE(fprintf(newout, "after daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid()));
+	FILE* newout;
+	if (myttyname) {
+		newout=CHECK_NOT_NULL_FILEP(fopen(myttyname,"w"));
+		CHECK_POSITIVE(fprintf(newout, "after daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid()));
+	}
 	// demo of how to use syslog
 	openlog(argv[0], LOG_PID, LOG_USER);
 	syslog(LOG_ERR, "after daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid());
 	sleep(10);
 	syslog(LOG_ERR, "daemon dying\n");
-	CHECK_POSITIVE(fprintf(newout, "daemon dying\n"));
+	if (myttyname) {
+		CHECK_POSITIVE(fprintf(newout, "daemon dying\n"));
+	}
 	closelog();
-	CHECK_ZERO_ERRNO(fclose(newout));
+	if (myttyname) {
+		CHECK_ZERO_ERRNO(fclose(newout));
+	}
 	return EXIT_SUCCESS;
 }

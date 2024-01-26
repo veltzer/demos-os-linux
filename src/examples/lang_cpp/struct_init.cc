@@ -43,8 +43,6 @@ int main(int argc, char** argv, char** envp) {
 	printf("v2.b is %d\n", v2.b);
 	// this will always work
 	struct mystruct v3;
-	printf("v3.a is %d\n", v3.a);
-	printf("v3.b is %d\n", v3.b);
 	v3.a=10;
 	v3.b=11;
 	printf("v3.a is %d\n", v3.a);

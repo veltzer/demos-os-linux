@@ -61,7 +61,8 @@ extern "C" int c_style_add(int a, int b) {
 	A *obj=new A();
 
 	obj->a=0;
-	return(a + b + obj->a);
+	int return_value = a + b + obj->a;
+	return(return_value);
 }
 
 int main(int argc, char** argv, char** envp) {

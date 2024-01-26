@@ -79,16 +79,16 @@ int main(int argc, char** argv, char** envp) {
 	blksize_t block_size=mystat.st_blksize;
 	char* p;
 	if(use_malloc) {
-		p=(char*)malloc(size);
+		p=(char*)CHECK_NOT_NULL(malloc(size));
 	} else {
-		p=(char*)aligned_alloc(block_size, size);
+		p=(char*)CHECK_NOT_NULL(aligned_alloc(block_size, size));
 	}
+	bzero(p, size);
 	if(((unsigned long)p)%block_size!=0) {
 		printf("p (%p) is not a multiple of block_size (%ld) !!!...\n", p, block_size);
 	} else {
 		printf("p (%p) is a multiple of block_size (%ld)...\n", p, block_size);
 	}
-	bzero(p, size);
 	CHECK_INT(read(fd, p, size), size);
 	CHECK_NOT_M1(close(fd));
 	return EXIT_SUCCESS;

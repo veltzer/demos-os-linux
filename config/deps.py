@@ -85,6 +85,9 @@ packages_doc=[
     "systemtap-doc",
     "postgresql-doc",
     "papi-examples", # PAPI example files and test programs
+    # linters
+    "cppcheck",
+    "cpplint",
 ]
 
 packages_tools=[

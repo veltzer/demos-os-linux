@@ -114,16 +114,22 @@ int main(int argc, char** argv, char** envp) {
 	}
 	if(choice==0) {
 		signal_register_handler_sigaction(SIGSEGV, handler_safe, 0);
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=100;
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=101;
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=102;
 	}
 	if(choice==1) {
 		// 10 is the size of the instruction
 		jmp_rel=10;
 		signal_register_handler_sigaction(SIGSEGV, handler_jmp_rel, 0);
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=200;
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=201;
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=202;
 	}
 	if(choice==2) {
@@ -132,16 +138,22 @@ int main(int argc, char** argv, char** envp) {
 		jmp_abs=(unsigned long)&&mylabel;
 #pragma GCC diagnostic pop
 		signal_register_handler_sigaction(SIGSEGV, handler_jmp_abs, 0);
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=300;
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=301;
+		// cppcheck-suppress nullPointer
 		*(volatile int*)NULL=302;
 	}
 	if(choice==3) {
 		signal_register_handler_sigaction(SIGSEGV, handler_sigjmp, 0);
 		int ret=sigsetjmp(env, 0);
 		if(ret==0) {
+			// cppcheck-suppress nullPointer
 			*(volatile int*)NULL=400;
+			// cppcheck-suppress nullPointer
 			*(volatile int*)NULL=401;
+			// cppcheck-suppress nullPointer
 			*(volatile int*)NULL=402;
 		} else {
 			printf("after...\n");

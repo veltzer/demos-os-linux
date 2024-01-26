@@ -176,7 +176,8 @@ void parse_sequence() {
 		case 'h':
 			sequence[2][seq_len]=11; break;
 		}
-		c=fgetc(f); pos++;
+		c=fgetc(f);
+		pos++;
 		if(c==EOF) {
 			break;
 		}
@@ -184,24 +185,29 @@ void parse_sequence() {
 			sequence[2][seq_len]++;
 			c=fgetc(f); pos++;
 		}
+		// cppcheck-suppress invalidFunctionArgStr
 		sequence[2][seq_len]+=12*atoi(&c);
 		c=fgetc(f); pos++;
 		if(c==EOF) {
 			break;
 		}
+		// cppcheck-suppress invalidFunctionArgStr
 		if(atoi(&c)==0) {
 			fprintf(stderr, "error: atoi(&c)==0 with c=%s, pos=%u\n", &c, pos);
 			exit(EXIT_FAILURE);
 		}
+		// cppcheck-suppress invalidFunctionArgStr
 		sequence[1][seq_len]=TICKS_PER_QUARTER / atoi(&c);
 		c=fgetc(f); pos++;
 		if(c==EOF) {
 			break;
 		}
+		// cppcheck-suppress invalidFunctionArgStr
 		if(atoi(&c)==0) {
 			fprintf(stderr, "error: atoi(&c)==0 with c=%s, pos=%u\n", &c, pos);
 			exit(EXIT_FAILURE);
 		}
+		// cppcheck-suppress invalidFunctionArgStr
 		sequence[0][seq_len]=TICKS_PER_QUARTER / atoi(&c);
 		seq_len++;
 	}
