@@ -27,7 +27,9 @@ class Rectangle {
 		double height;
 
 	public:
-		Rectangle(const double w, const double h) : width(w), height(h) {}
+		Rectangle(const double w, const double h) : width(w), height(h) {
+			std::cout << getArea() << std::endl;
+		}
 
 		double getArea() const {
 			return width * height;
@@ -55,6 +57,11 @@ class Rectangle {
 
 		double getCircumference() const {
 			return 2 * (width + height);
+		}
+
+		bool is_intersectiog(const Rectangle& r) {
+			// TBD
+			return true;
 		}
 };
 

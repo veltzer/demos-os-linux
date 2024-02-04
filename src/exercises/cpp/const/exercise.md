@@ -1,7 +1,7 @@
 # Const use in C++
 
 * Write a proper `Rectangle` class with the following methods:
-    * Constructur
+    * Constructor
     * `get_width`/`set_width`
     * `get_height`/`set_height`
     * `get_area`
