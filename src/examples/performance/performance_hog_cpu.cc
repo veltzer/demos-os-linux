@@ -37,8 +37,8 @@
  * - if you strip the executable you will not get the function names.
  * - if you turn off optimisation you should see completely different assembly code.
  *
- * This is to make sure I can see annotation (adding the debug info).
- * EXTRA_COMPILE_FLAGS=-g3 -O0
+ * This is to make sure I can see annotations (adding the debug info).
+ * EXTRA_COMPILE_FLAGS=-g3 -O2
  */
 
 class A {
