@@ -2,10 +2,10 @@
 
 Write a `string` class which supports the following:
 
-* Constuction from `string` and const char*`.
+* Construction from `string` and `const char*`.
 
 * Efficient `operator=` for various kinds.
 
-* Addition of two string.
+* Addition of two strings.
 
-* Copy constructor form both `string` and `const char *`.
+* Copy constructor from both `string` and `const char *`.
