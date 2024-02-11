@@ -44,6 +44,7 @@ public:
 		std::cout << "in Derived1" << std::endl;
 	}
 };
+
 class Derived2 : public Base {
 private:
 	Base& base;
@@ -57,6 +58,19 @@ public:
 	}
 };
 
+class Derived3 : public Base {
+private:
+	Base& base;
+
+public:
+	Derived3(Base& ibase) : base(ibase) {
+	}
+	virtual void act(void) {
+		base.act();
+		std::cout << "in Derived3" << std::endl;
+	}
+};
+
 int main(int argc, char** argv, char** envp) {
 	Base base;
 	Derived1 derived1(base);
@@ -66,5 +80,9 @@ int main(int argc, char** argv, char** envp) {
 	Derived2 derived2_2(base_2);
 	Derived1 derived1_2(derived2_2);
 	derived1_2.act();
+	Base base_3;
+	Derived3 derived2_3(base_3);
+	Derived1 derived1_3(derived2_3);
+	derived1_3.act();
 	return EXIT_SUCCESS;
 }
