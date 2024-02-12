@@ -32,28 +32,38 @@
  * generating.
  * make the value bigger to see more misses...
  *
+ * EXTRA_COMPILE_FLAGS=-g3
+ *
  * TODO:
  * - allocate the memory using mmap(2) and MAP_POPULATE before starting the loop in * order to get number of cache misses lower.
  */
 
 int main(int argc, char** argv, char** envp) {
-	if(argc!=3) {
-		fprintf(stderr, "%s: usage: %s [size] [times]\n", argv[0], argv[0]);
-		fprintf(stderr, "%s: 104857600 100000000\n", argv[0]);
+	if(argc!=4) {
+		fprintf(stderr, "%s: usage: %s [size] [times] [rand]\n", argv[0], argv[0]);
+		fprintf(stderr, "%s: 104857600 100000000 1 - with randon access\n", argv[0]);
+		fprintf(stderr, "%s: 104857600 100000000 0 - with linear access\n", argv[0]);
 		fprintf(stderr, "%s: measure with: perf stat -e cache-misses ./src/examples/performance/cache_misser.elf [size] [times]\n", argv[0]);
 		return EXIT_FAILURE;
 	}
-	printf("RAND_MAX is %d\n", RAND_MAX);
+	//srandom(getpid());
 	unsigned int size=atoi(argv[1]);
 	unsigned int times=atoi(argv[2]);
+	unsigned int random=atoi(argv[3]);
 	char* p=(char*)malloc(size);
 	for(unsigned int i=0; i<size; i++) {
 		p[i]=i%256;
 	}
 	long long sum=0;
-	for(unsigned int i=0; i<times; i++) {
-		int pos=rand()%size;
-		sum+=p[pos];
+	if(random) {
+		for(unsigned int i=0; i<times; i++) {
+			int pos=rand()%size;
+			sum+=p[pos];
+		}
+	} else {
+		for(unsigned int i=0; i<times; i++) {
+			sum+=p[i%size];
+		}
 	}
 	printf("sum is %lld\n", sum);
 	return EXIT_SUCCESS;
