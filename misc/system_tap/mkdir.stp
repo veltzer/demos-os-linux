@@ -1,4 +1,4 @@
-#!/usr/bin/env stap
+#!/usr/bin/stap -v
 
 probe kernel.function("sys_mkdir") { println ($$parms) }
 probe kernel.function("sys_mkdir").return { println ("exit") }
