@@ -12,6 +12,8 @@ opt_do_kernel=False
 opt_do_ddebs=False
 # do we want to install compilers?
 opt_do_compilers=True
+# do we want kernel related tools?
+opt_do_kernel_tools=False
 
 ver_boost_short = "1.74"
 ver_boost=ver_boost_short+".0"
@@ -391,3 +393,10 @@ if opt_do_compilers:
     ])
 
 packages.extend(packages_tools)
+
+if opt_do_kernel_tools:
+    packages.extend([
+        "device-tree-compiler",
+        "util-linux",
+        "util-linux-extra",
+    ])
