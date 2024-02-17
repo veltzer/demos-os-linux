@@ -1,4 +1,4 @@
-#!/usr/bin/env stap
+#!/usr/bin/stap -W
 
 probe begin
 {

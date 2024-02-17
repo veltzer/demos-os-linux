@@ -1,3 +1,3 @@
-#!/usr/bin/env stap
+#!/usr/bin/stap
 
 probe process("test").function("doit") { log($$parms) }
