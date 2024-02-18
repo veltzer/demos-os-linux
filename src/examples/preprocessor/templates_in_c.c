@@ -26,7 +26,7 @@
  * (type independent code) but in C.
  */
 
-#define make_add(t) t add ## t(t a, t b) { return a+b; }
+#define make_add(t) t add_ ## t(t a, t b) { return a+b; }
 
 make_add(float)
 make_add(double)
@@ -45,7 +45,7 @@ int main(int argc, char** argv, char** envp) {
 	float y=3.2f;
 	double dx=4.5f;
 	double dy=3.2f;
-	printf("%f+%f=%f\n", x, y, addfloat(x, y));
-	printf("%lf+%lf=%lf\n", dx, dy, adddouble(dx, dy));
+	printf("%f+%f=%f\n", x, y, add_float(x, y));
+	printf("%lf+%lf=%lf\n", dx, dy, add_double(dx, dy));
 	return EXIT_SUCCESS;
 }
