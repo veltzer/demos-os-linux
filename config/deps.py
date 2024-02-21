@@ -173,6 +173,8 @@ packages_tools=[
     "saidar",
     "sysdig",
     "iperf",
+    "trace-cmd",
+    "kernelshark",
     "smem",
     "sysbench",
     "gnome-system-monitor",
@@ -361,6 +363,7 @@ if opt_do_kernel:
         f"linux-image-{release_lowlatency}-lowlatency",
     ])
     packages_tools.extend([
+        "linux-tools-common",
         "linux-tools-generic",
         "linux-tools-lowlatency",
         f"linux-tools-{release_generic}-generic",
