@@ -1,6 +1,6 @@
 # Correct use of templates
 
-Write an array sorter: 
+Write an array sorter:
 
 ```c++
 template<typename type> void sort(type array[], size_t size);
