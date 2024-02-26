@@ -17,21 +17,27 @@
  */
 
 #include <firstinclude.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/mman.h>
+#include <stdio.h> // for printf(3)
+#include <stdlib.h> // for EXIT_SUCCESS
+#include <stdbool.h> // for bool
+
+/*
+ * This example shows one way to find if the stack goes up or down
+*/
+
+bool called(int* b) __attribute__((noinline));
+bool called(int* b) {
+	int a;
+	return &a < b;
+}
+
+bool stack_is_up() {
+	int b;
+	return called(&b);
+}
 
 
 int main(int argc, char** argv, char** envp) {
-	const char* filename = "/etc/passwd";
-	// evict the file from the cache
-	int fd = open(filename, O_RDONLY);
-	posix_fadvise(fd, 0, 0, POSIX_FADV_DONTNEED);
-	close(fd);
-	// check that the evict worked...
-	//fd = open(filename, O_RDONLY);
-	//mmap();
-	//mincore();
+	printf("stack_is_up is %d\n", stack_is_up());
 	return EXIT_SUCCESS;
 }
