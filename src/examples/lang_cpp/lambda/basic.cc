@@ -17,21 +17,19 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h> // for EXIT_SUCCESS
-#include <mutex> // for std::mutex
+#include <iostream>	// for std::cout, std::endl
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <vector>	// for std::vector
+#include <algorithm>	// for std::transform
 
 /*
- * This example shows that mutexes in linux, even in C++ are really futexes which means
- * that they do not issue any syscalls to the OS.
- *
- * Compare the output of ltrace and strace to this program to see the difference.
+ * Examples of lambdas from C++
  */
 
 int main(int argc, char** argv, char** envp) {
-	std::mutex m;
-	for(int i=0;i<1000000; i++) {
-		m.lock();
-		m.unlock();
-	}
+	// create the lambda
+	auto f=[] { std::cout << "Hello, Lambda" << std::endl; };
+	// now run the lambda
+	f();
 	return EXIT_SUCCESS;
 }
