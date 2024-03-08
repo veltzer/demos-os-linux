@@ -230,22 +230,22 @@ all: $(ALL)
 
 .PHONY: clean_standalone
 clean_standalone:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)for x in $(MK_FLD); do $(MAKE) -C "$$x" clean Q=$(Q); if [ ! $$? -eq 0 ]; then exit $$?; fi; done
 	$(Q)rm -f $(MK_STP)
 .PHONY: clean_soft
 clean_soft: clean_standalone
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)-rm -f $(CLEAN)
 	$(Q)-rm -rf $(CLEAN_DIRS)
 
 .PHONY: clean
 clean:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)rm -f $(ALL)
 .PHONY: clean_hard
 clean_hard:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git clean -qffxd
 .PHONY: build_standalone
 build_standalone:
@@ -256,16 +256,16 @@ build_standalone:
 # for other languages where the permission stuff is not that important (e.g. php).
 .PHONY: archive_src
 archive_src:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git archive --format=tar --prefix=archive_src/ HEAD src Makefile scripts | gzip > /tmp/archive_src.tar.gz
 .PHONY: archive_ace
 archive_ace:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git archive --format=tar --prefix=archive_ace/ HEAD src/user_space/ace/examples | gzip > /tmp/ace.tar.gz
 
 .PHONY: git_maintain
 git_maintain:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git gc
 
 .PHONY: debug
@@ -314,118 +314,118 @@ todo:
 
 .PHONY: check_ws
 check_ws:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "\ \ " -- "*.h" "*.hh" "*.c" "*.cc"
 	$(Q)pymakehelper no_err git grep -l " $$" -- "*.h" "*.hh" "*.c" "*.cc"
 	$(Q)pymakehelper no_err git grep -l "\s$$" -- "*.h" "*.hh" "*.c" "*.cc"
 	$(Q)pymakehelper no_err git grep -l "$$$$" -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_main
 check_main:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -e " main(" --and --not -e argc -- "*.h" "*.hh" "*.c" "*.cc"
 	$(Q)pymakehelper no_err git grep -e "ACE_TMAIN" --and --not -e argc -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_ace_include
 check_ace_include:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "include\"ace" -- "*.h" "*.hh" "*.c" "*.cc"
 	$(Q)pymakehelper no_err git grep -l "include \"ace" -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_include
 check_include:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "#include[^ ]" -- "*.h" "*.hh" "*.c" "*.cc"
 	$(Q)pymakehelper no_err git grep -l "#include  " -- "*.h" "*.hh" "*.c" "*.cc"
 # enable this when you have the balls...
 #$(Q)pymakehelper no_err git grep -l -e "#include" --and --not -e "\/\/ for" --and --not -e "firstinclude" -- "*.h" "*.hh" "*.c" "*.cc"
 .PHONY: check_license
 check_license:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)scripts/check_license.py
 #	$(Q)pymakehelper no_err git grep -L "Copyright (C) 2011-2013 Mark Veltzer <mark.veltzer@gmail.com>" -- "*.c" "*.cc" "*.h" "*.hh" "*.S"
 .PHONY: check_exit
 check_exit:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "exit(1)" -- "*.c" "*.cc" "*.h" "*.hh"
 # " =" cannot be checked because of void foo(void* =0) and that is the reason for the next
 .PHONY: check_pgrep
 check_pgrep:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)wrapper-ok git grep -e $$"$$$$$$" --or -e "= " --or -e "[^\*] =" --or -e "^ " --or -e $$"\t " --or -e $$" \t" --or -e "\ \ " --or -e $$"\t$$" --or -e " $$" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_firstinclude
 check_firstinclude:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git grep -L -e "^#include <firstinclude.h>$$" -- "*.c" "*.cc" "*.h" "*.hh" | grep -v kernel_standalone | grep -v mod_ | grep -v examples_standalone | grep -v firstinclude | grep -v shared.h | pymakehelper no_err grep -v kernel_helper.h
 .PHONY: check_check
 check_check:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -e "CHECK_" --and -e "=" --and --not -e "=CHECK_" --and --not -e "CHECK_" --and --not -e ",CHECK_" --and --not -e "CHECK_ASSERT" --and --not -e PTHREAD_ERROR --and --not -e ", CHECK_" --and --not -e ERRORCHECK_
 .PHONY: check_perror
 check_perror:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git grep "perror" -- "*.c" "*.cc" "*.h" "*.hh" | grep -v assert_perror | grep -v perror.cc | pymakehelper no_err grep -v err_utils.h
 #--and --not -e "assert_perror" --and --not -e "perror.cc" --and --not -e "us_helper.h" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_fixme
 check_fixme:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep FIXME -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_while1
 check_while1:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep "while\(1\)" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_usage
 check_usage:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep "while\(1\)" -- "*.c" "*.cc" "*.h" "*.hh"
 	$(Q)pymakehelper no_err git grep -e \\\"usage --and -e stderr -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_pthread
 check_pthread:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "CHECK_ZERO(pthread" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_usage_2
 check_usage_2:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "Usage" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_gitignore
 check_gitignore:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)find . -mindepth 2 -and -name ".gitignore"
 .PHONY: check_exitzero
 check_exitzero:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "exit\(0\)" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_no_symlinks
 check_no_symlinks:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)scripts/git_check_no_symlinks.py
 .PHONY: check_check_header
 check_check_header:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git grep include -- "*.c" "*.cc" "*.h" "*.hh" | grep us_helper | pymakehelper no_err grep CHECK
 .PHONY: check_all 
 check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi scripts/check_have_solutions.py
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)scripts/check_have_solutions.py
 
 out/check_all.stamp: $(ALL_US)
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)scripts/check_have_solutions.py
 	$(Q)pymakehelper touch_mkdir $@
 
 .PHONY: check_semisemi
 check_semisemi:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep ";;" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_for
 check_for:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)git grep "for (" -- "*.h" "*.hh" "*.c" "*.cc" | pymakehelper no_err grep -v kernel
 .PHONY: check_dots
 check_dots:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l " : " -- "*.h" "*.hh" "*.c" "*.cc"
 # checks that dont pass
 .PHONY: check_syn
 check_syn:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -l "while (" -- "*.c" "*.h" "*.cc" "*.hh"
 	$(Q)pymakehelper no_err git grep -l "for (" -- "*.c" "*.h" "*.cc" "*.hh"
 	$(Q)pymakehelper no_err git grep -l "if (" -- "*.c" "*.h" "*.cc" "*.hh"
@@ -462,12 +462,12 @@ find_exercises:
 
 .PHONY: kernel_clean
 kernel_clean:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)-rm -rf $(KERNEL_DIR)/.tmp_versions
 	$(Q)-rm -f $(KERNEL_DIR)/Module.symvers $(KERNEL_DIR)/modules.order $(KERNEL_DIR)/mod_*.ko $(KERNEL_DIR)/mod_*.o $(KERNEL_DIR)/*.mod.c $(KERNEL_DIR)/.??* $(KERNEL_DIR)/*.stamp
 .PHONY: kernel_check
 kernel_check: $(MOD_CHP)
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 .PHONY: kernel_build
 kernel_build: $(MOD_MOD)
 .PHONY: kernel_help
@@ -506,18 +506,18 @@ kernel_makeeasy:
 # This is what I use
 .PHONY: format_uncrustify
 format_uncrustify:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)uncrustify -c support/uncrustify.cfg --no-backup -l C $(ALL_US_C)
 	$(Q)uncrustify -c support/uncrustify.cfg --no-backup -l CPP $(ALL_US_CC)
 .PHONY: format_astyle
 format_astyle:
 	$(error disabled - use format_uncrustify instead)
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)astyle --verbose --suffix=none --formatted --preserve-date --options=support/astyle.cfg $(ALL_US)
 .PHONY: format_indent
 format_indent:
 	$(error disabled - use format_uncrustify instead)
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)indent $(ALL_US)
 
 .PHONY: pylint
@@ -530,16 +530,16 @@ out/pylint.stamp: $(ALL_PY)
 
 .PHONY: sloccount
 sloccount:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)sloccount .
 .PHONY: count_files
 count_files:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)echo number of C++ or C files not including headers: `find . -name "*.cc" -or -name "*.c" | wc -l`
 	$(Q)echo number of C++ or C headers: `find . -name "*.hh" -or -name "*.h" | wc -l`
 .PHONY: cloc
 cloc:
-	$(info doing [$@] from [$<])
+	$(info doing [$@])
 	$(Q)cloc .
 
 #################
