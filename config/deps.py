@@ -171,7 +171,7 @@ packages_tools=[
     "sysstat",
     "nmon",
     "saidar",
-    "sysdig",
+    # "sysdig",
     "iperf",
     "trace-cmd",
     "kernelshark",
