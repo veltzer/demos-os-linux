@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash -e
+sudo cgdelete cpu:/cpu_demo
 sudo cgcreate -g cpu:/cpu_demo
-sudo cgcreate -g cpu:/
-sudo cgset -r cpu.cfs_quota_us=50000 cpu_demo
+# to see all parameters
+# sudo cgget -g cpu:/cpu_demo
+sudo cgset -r cpu.max=50000 cpu_demo
