@@ -144,6 +144,7 @@ packages_tools=[
     "lm-sensors",
     "inxi",
     "nmap",
+    "cgroup-tools",
     # doesn"t exist on 22.04
     # "hddtemp",
     "htop",
