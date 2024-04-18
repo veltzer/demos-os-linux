@@ -28,7 +28,7 @@
 
 int main(int argc, char** argv, char** envp) {
 	// create the lambda
-	auto f=[] { std::cout << "Hello, Lambda" << std::endl; };
+	auto f=[=] { std::cout << "Hello, Lambda" << argv[0] << std::endl; };
 	// now run the lambda
 	f();
 	return EXIT_SUCCESS;
