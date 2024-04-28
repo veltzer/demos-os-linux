@@ -542,9 +542,14 @@ cloc:
 	$(info doing [$@])
 	$(Q)cloc .
 
-#################
-# pattern rules #
-#################
+.PHONY: spell_many
+spell_many:
+	$(info doing [$@])
+	$(Q)aspell_many.sh $(MD_SRC)
+
+############
+# patterns #
+############
 $(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
