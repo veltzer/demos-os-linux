@@ -17,25 +17,38 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <vector>	// for std::vector
-#include <algorithm>	// for std::transform
+#include <X11/Xlib.h>
+#include <err_utils.h>
 
 /*
- * An example of using lambda with algorithms
+ * Simple X11 exapmle
+ *
+ * EXTRA_LINK_FLAGS_AFTER=-lX11
  */
 
 int main(int argc, char** argv, char** envp) {
-	std::vector<int> v;
-	for(int i=0; i<10; i++) {
-		v.push_back(i);
+	Display* display = (Display*)CHECK_NOT_NULL(XOpenDisplay(NULL));
+	int screen = DefaultScreen(display);
+	Window window = XCreateSimpleWindow(
+		display,
+		RootWindow(display, screen),
+		10, 10, 400, 300, 1,
+		BlackPixel(display, screen),
+		WhitePixel(display, screen)
+	);
+	XSelectInput(display, window, ExposureMask | KeyPressMask);
+	XMapWindow(display, window);
+	while (true) {
+		XEvent event;
+		XNextEvent(display, &event);
+		if (event.type == Expose) {
+			/* Handle window exposure */
+			XFillRectangle(display, window, DefaultGC(display, screen), 20, 20, 100, 50);
+		} else if (event.type == KeyPress) {
+			/* Handle key press */
+			break;
+		}
 	}
-	auto f=[] (double x){ return x*x*12+x*4+7; };
-	std::transform(v.begin(), v.end(), v.begin(), f);
-	for(int num: v) {
-		std::cout << num << " ";
-	}
-	std::cout << std::endl;
+	XCloseDisplay(display);
 	return EXIT_SUCCESS;
 }

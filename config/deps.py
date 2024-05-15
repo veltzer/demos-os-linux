@@ -87,6 +87,7 @@ packages_doc=[
     "systemtap-doc",
     "postgresql-doc",
     "papi-examples", # PAPI example files and test programs
+    "libx11-doc",
 ]
 
 packages_tools=[
