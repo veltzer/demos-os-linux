@@ -83,7 +83,7 @@ int GetMessageType(char *data) {
 	}
 }
 
-int main() {
+int main(int argc, char** argv) {
 	int FinalDelay=4;
 	if (argc < 2) {
 		ACE_DEBUG((LM_DEBUG, "%s: usage %s <port_number> [Final delay(sec)]\n", argv[0], argv[0]));

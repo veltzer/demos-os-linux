@@ -66,7 +66,7 @@ static void print_usage_and_die(void) {
 }
 
 // Parse the command-line arguments and set options.
-int main(int argc, char** argv) {
+void parse_args(int argc, char** argv) {
 	ACE_Get_Opt get_opt(argc, argv, ACE_TEXT("r:w:n:l:"));
 	int c;
 	while((c=get_opt())!=-1) {
@@ -143,7 +143,7 @@ static void *writer(void *) {
 	return 0;
 }
 
-int main(int, char** argv) {
+int main(int argc, char** argv) {
 	ACE_LOG_MSG->open(argv[0]);
 	parse_args(argc, argv);
 	current_readers=0;

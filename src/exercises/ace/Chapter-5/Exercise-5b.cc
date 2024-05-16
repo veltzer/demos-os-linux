@@ -197,7 +197,7 @@ public:
 	}
 };
 
-int main() {
+int main(int argc, char** argv) {
 	Net_Listener* listener1=0;
 	Net_Listener* listener2=0;
 	int port=ACE_DEFAULT_SERVER_PORT;

@@ -43,15 +43,6 @@ void FunA() {
 }
 
 int main(int argc, char** argv) {
-	MessageAgentProxy message;
-	// Save place for up to 100 messages. If we are not sure we may use malloc
-	// and have unlimited number.
-	ACE_Future<int> results[100];
-	char buffer[100];
-
-	CompletionCallBack cb(message);
-
-	int i=-1;
 	// Set a value just initializing the while loop. It will terminate when EOF will generate type=0
 	ACE_LOG_MSG->open(argv[0], ACE_Log_Msg::SYSLOG, ACE_TEXT("ACE-Course"));
 	ACE_DEBUG((LM_INFO, ACE_TEXT("%I a - This was here\n")));

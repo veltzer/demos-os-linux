@@ -110,7 +110,7 @@ public:
 	}
 };
 
-int main() {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [num_threads] [attempts] [debug]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 3 10000 0\n", argv[0], argv[0]);

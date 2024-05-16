@@ -169,7 +169,7 @@ int Net_Listener::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 	return 0;
 }
 
-int main() {
+int main(int argc, char** argv) {
 	int port=ACE_DEFAULT_SERVER_PORT;
 	if (argc > 1) {
 		port=atoi(argv[1]);
