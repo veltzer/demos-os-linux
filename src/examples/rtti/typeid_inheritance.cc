@@ -39,7 +39,7 @@ public:
 	}
 };
 
-class Employee : public Person {
+class Employee:public Person {
 	// ... Employee members ...
 };
 

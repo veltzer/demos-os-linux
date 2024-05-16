@@ -29,7 +29,7 @@
 
 class HA_Device_Repository {
 public:
-	HA_Device_Repository() : owner_(0) {
+	HA_Device_Repository():owner_(0) {
 	}
 	int is_free(void) {
 		return this->owner_==0;
@@ -49,12 +49,12 @@ private:
 	ACE_Task_Base* owner_;
 };
 
-class HA_CommandHandler : public ACE_Task_Base {
+class HA_CommandHandler:public ACE_Task_Base {
 public:
 	enum {
 		NUM_USES=10
 	};
-	HA_CommandHandler(HA_Device_Repository & rep, ACE_Condition_Thread_Mutex& wait, ACE_Thread_Mutex & mutex) : rep_(rep), waitCond_(wait), mutex_(mutex) {
+	HA_CommandHandler(HA_Device_Repository & rep, ACE_Condition_Thread_Mutex& wait, ACE_Thread_Mutex & mutex):rep_(rep), waitCond_(wait), mutex_(mutex) {
 	}
 	virtual int svc(void);
 

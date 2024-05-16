@@ -51,7 +51,7 @@ private:
 	enum { EMPTY, FIRST_ARRIVED, SECOND_ARRIVED } state;
 
 public:
-	Exchanger() : ptr(0), state(EMPTY) {
+	Exchanger():ptr(0), state(EMPTY) {
 	}
 
 	void exchange(T &t)

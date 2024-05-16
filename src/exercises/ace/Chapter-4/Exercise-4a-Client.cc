@@ -31,7 +31,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class SocketHandler : public ACE_Task_Base {
+class SocketHandler:public ACE_Task_Base {
 public:
 	void set_value(int ivalue) {
 		value=ivalue;

@@ -40,7 +40,7 @@ private:
 	ACE_SOCK_Stream new_stream_;
 
 public:
-	Server(int port) : server_addr_(port), peer_acceptor_(server_addr_) {
+	Server(int port):server_addr_(port), peer_acceptor_(server_addr_) {
 	}
 	// Handle the connection once it has been established. Here the
 	// connection is handled by reading BUFFER_SIZE amount of data from the

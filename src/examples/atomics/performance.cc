@@ -69,7 +69,7 @@ int main(int argc, char** argv, char** envp) {
 	for(int i=0; i<attempts; i++) {
 		counter++;
 		// this is to make the compiler actually do the loop
-		asm volatile ("" : "=g" (counter) ::);
+		asm volatile ("":"=g" (counter) ::);
 	}
 	measure_end(&m);
 	measure_print(&m);

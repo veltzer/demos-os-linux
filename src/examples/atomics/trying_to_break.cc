@@ -201,7 +201,7 @@ int main(int argc, char** argv, char** envp) {
 	volatile int vvalue=0;
 	const int usleep_interval=10000;
 	const int real_threads=argc-optind;
-	const int thread_num=doObserver ? real_threads+1 : real_threads;
+	const int thread_num=doObserver ? real_threads+1:real_threads;
 	TRACE("cpu_num is %d", cpu_num);
 	TRACE("attempts is %d", attempts);
 	TRACE("thread_num is %d", thread_num);

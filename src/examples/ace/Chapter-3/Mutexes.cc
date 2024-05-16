@@ -43,12 +43,12 @@ public:
 private:
 	ACE_Thread_Mutex mutex_;
 };
-class HA_CommandHandler : public ACE_Task_Base {
+class HA_CommandHandler:public ACE_Task_Base {
 public:
 	enum {
 		NUM_USES=10
 	};
-	HA_CommandHandler(HA_Device_Repository & rep) : rep_(rep) {
+	HA_CommandHandler(HA_Device_Repository & rep):rep_(rep) {
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Handler Thread running\n")));

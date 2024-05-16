@@ -67,7 +67,7 @@ void make_child(const int niceval, int* const prog, int core) {
 		// this barrier is too heavy...
 		asm volatile ("" ::: "memory");
 		// this one isn't...
-		//asm volatile ("" : "=g" (*prog) ::);
+		//asm volatile ("":"=g" (*prog) ::);
 		*prog=*prog+1;
 	}
 	printf("child done with sum %f\n", sum);

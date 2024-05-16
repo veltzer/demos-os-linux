@@ -36,7 +36,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
-class ClientAcceptor : public ACE_Event_Handler {
+class ClientAcceptor:public ACE_Event_Handler {
 public:
 	virtual ~ClientAcceptor();
 	int open(const ACE_INET_Addr& listen_addr);
@@ -52,7 +52,7 @@ protected:
 	ACE_SOCK_Acceptor acceptor_;
 };
 
-class ClientService : public ACE_Event_Handler {
+class ClientService:public ACE_Event_Handler {
 public:
 	ACE_SOCK_Stream& peer(void) {
 		return this->sock_;
@@ -169,7 +169,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 		}
 		mb->release();
 	}
-	return (this->output_queue_.is_empty()) ? -1 : 0;
+	return (this->output_queue_.is_empty()) ? -1:0;
 }
 
 int ClientService::handle_close(ACE_HANDLE, ACE_Reactor_Mask mask) {
@@ -184,7 +184,7 @@ int ClientService::handle_close(ACE_HANDLE, ACE_Reactor_Mask mask) {
 	return 0;
 }
 
-class LoopStopper : public ACE_Event_Handler {
+class LoopStopper:public ACE_Event_Handler {
 public:
 	LoopStopper(int signum=SIGINT);
 	// Called when object is signaled by OS.
@@ -200,7 +200,7 @@ int LoopStopper::handle_signal(int, siginfo_t*, ucontext_t*) {
 	return 0;
 }
 
-class LogSwitcher : public ACE_Event_Handler {
+class LogSwitcher:public ACE_Event_Handler {
 public:
 	LogSwitcher(int on_sig, int off_sig);
 	// Called when object is signaled by OS.
@@ -219,7 +219,7 @@ private:
 	int on_off_;
 };
 
-LogSwitcher::LogSwitcher(int on_sig, int off_sig) : on_sig_(on_sig), off_sig_(off_sig) {
+LogSwitcher::LogSwitcher(int on_sig, int off_sig):on_sig_(on_sig), off_sig_(off_sig) {
 	ACE_Sig_Set sigs;
 	sigs.sig_add(on_sig);
 	sigs.sig_add(off_sig);

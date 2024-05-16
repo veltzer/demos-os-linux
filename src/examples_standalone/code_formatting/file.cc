@@ -36,7 +36,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class ClientAcceptor : public ACE_Event_Handler {
+class ClientAcceptor:public ACE_Event_Handler {
 public:
 	virtual ~ClientAcceptor();
 
@@ -60,7 +60,7 @@ protected:
 	ACE_SOCK_Acceptor acceptor_;
 };
 
-class ClientService : public ACE_Event_Handler {
+class ClientService:public ACE_Event_Handler {
 public:
 	ACE_SOCK_Stream& peer(void) {
 		return(this->sock_);
@@ -201,7 +201,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 		}
 		mb->release();
 	}
-	return((this->output_queue_.is_empty()) ? -1 : 0);
+	return((this->output_queue_.is_empty()) ? -1:0);
 }
 
 // Listing 9
@@ -222,7 +222,7 @@ int ClientService::handle_close(ACE_HANDLE, ACE_Reactor_Mask mask) {
 // Listing 10
 
 // Listing 12 code/ch07
-class LoopStopper : public ACE_Event_Handler {
+class LoopStopper:public ACE_Event_Handler {
 public:
 	LoopStopper(int signum);
 
@@ -239,7 +239,7 @@ int LoopStopper::handle_signal(int, siginfo_t *, ucontext_t *) {
 	return(0);
 }
 
-class LogSwitcher : public ACE_Event_Handler {
+class LogSwitcher:public ACE_Event_Handler {
 public:
 	LogSwitcher(int on_sig, int off_sig);
 

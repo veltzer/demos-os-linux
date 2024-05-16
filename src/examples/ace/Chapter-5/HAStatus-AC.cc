@@ -102,7 +102,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 		}
 		mb->release();
 	}
-	return (this->msg_queue()->is_empty()) ? -1 : 0;
+	return (this->msg_queue()->is_empty()) ? -1:0;
 }
 
 int ClientService::handle_close(ACE_HANDLE h, ACE_Reactor_Mask mask) {

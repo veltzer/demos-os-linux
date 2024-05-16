@@ -118,9 +118,9 @@ int main(int argc, char** argv, char** envp) {
 			fprintf(stderr, "msg_lspid=%d\n", msgCtlBuf.msg_lspid);
 			fprintf(stderr, "msg_lrpid=%d\n", msgCtlBuf.msg_lrpid);
 			fprintf(stderr, "msg_stime=%s", msgCtlBuf.msg_stime ?
-				ctime(&msgCtlBuf.msg_stime) : "Not Set\n");
+				ctime(&msgCtlBuf.msg_stime):"Not Set\n");
 			fprintf(stderr, "msg_rtime=%s", msgCtlBuf.msg_rtime ?
-				ctime(&msgCtlBuf.msg_rtime) : "Not Set\n");
+				ctime(&msgCtlBuf.msg_rtime):"Not Set\n");
 			fprintf(stderr, "msg_ctime=%s", ctime(&msgCtlBuf.msg_ctime));
 			break;
 		case 2:

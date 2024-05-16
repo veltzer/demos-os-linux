@@ -46,7 +46,7 @@ public:
 	}
 };
 
-class B : public A {
+class B:public A {
 public:
 	virtual void vbmethod0() {
 	}

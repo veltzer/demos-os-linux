@@ -33,16 +33,16 @@
 
 class TemperatureSensor {
 public:
-	TemperatureSensor(const char *location) : location_(location), count_(0), temperature_(0.0) {
+	TemperatureSensor(const char *location):location_(location), count_(0), temperature_(0.0) {
 	}
 	const char *location() const {
-		return(this->location_);
+		return this->location_;
 	}
 	int querySensor(void) {
-		return(++this->count_);
+		return ++this->count_;
 	}
 	float temperature(void) const {
-		return(this->temperature_);
+		return this->temperature_;
 	}
 
 private:
@@ -51,9 +51,9 @@ private:
 	float temperature_;
 };
 
-class TemperatureQueryHandler : public ACE_Event_Handler {
+class TemperatureQueryHandler:public ACE_Event_Handler {
 public:
-	TemperatureQueryHandler() : ACE_Event_Handler(), counter_(0), averageTemperature_(0.0) {
+	TemperatureQueryHandler():ACE_Event_Handler(), counter_(0), averageTemperature_(0.0) {
 	}
 	int handle_timeout(const ACE_Time_Value& current_time, const void* arg) {
 		time_t epoch=((timespec_t)current_time).tv_sec;
@@ -62,7 +62,7 @@ public:
 		int queryCount=sensor->querySensor();
 		this->updateAverageTemperature(sensor);
 		ACE_DEBUG((LM_INFO, ACE_TEXT("%s\t%d/%d\t%.2f/%.2f\t%s\n"), sensor->location(), ++this->counter_, queryCount, this->averageTemperature_, sensor->temperature(), ACE_OS::ctime(&epoch)));
-		return(0);
+		return 0;
 	}
 
 private:
@@ -74,13 +74,13 @@ private:
 
 // Create a SIGINT handler so that we can exit
 // the program politely
-class SigintHandler : public ACE_Event_Handler {
+class SigintHandler:public ACE_Event_Handler {
 public:
 	int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		if(signum==SIGINT) {
 			ACE_Reactor::instance()->end_reactor_event_loop();
 		}
-		return(0);
+		return 0;
 	}
 };
 

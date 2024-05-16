@@ -48,7 +48,7 @@
  * - bring back the c++ demangling code (it was removed because it was crashing the app).
  */
 
-class TracedException : public std::exception {
+class TracedException:public std::exception {
 private:
 	// how many frames to drop from the stack frame
 	// setting this to 0 will show you functions above 'main'

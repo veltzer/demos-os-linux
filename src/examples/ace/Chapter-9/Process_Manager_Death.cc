@@ -30,9 +30,9 @@
 
 static const int NCHILDREN=2;
 
-class DeathHandler : public ACE_Event_Handler {
+class DeathHandler:public ACE_Event_Handler {
 public:
-	DeathHandler() : count_(0) {
+	DeathHandler():count_(0) {
 		ACE_TRACE(ACE_TEXT("DeathHandler::DeathHandler"));
 	}
 	virtual int handle_exit(ACE_Process *process) {

@@ -67,7 +67,7 @@ private:
 	int status_result_;
 };
 
-class MessageRequest : public ACE_Method_Request {
+class MessageRequest:public ACE_Method_Request {
 public:
 	MessageRequest(MessageAgent & message, ACE_Future<int> &returnVal)
 		: message_(message), returnVal_(returnVal) {
@@ -87,7 +87,7 @@ private:
 	ACE_Future<int> returnVal_;
 };
 
-class ExitMethod : public ACE_Method_Request {
+class ExitMethod:public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
@@ -96,7 +96,7 @@ public:
 	}
 };
 
-class Scheduler : public ACE_Task_Base {
+class Scheduler:public ACE_Task_Base {
 public:
 	Scheduler() {
 		ACE_TRACE(ACE_TEXT("Scheduler::Scheduler"));
@@ -147,9 +147,9 @@ private:
 	MessageAgent message_;
 };
 
-class CompletionCallBack : public ACE_Future_Observer<int> {
+class CompletionCallBack:public ACE_Future_Observer<int> {
 public:
-	CompletionCallBack(MessageAgentProxy& proxy) : proxy_(proxy) {
+	CompletionCallBack(MessageAgentProxy& proxy):proxy_(proxy) {
 	}
 	virtual void update(const ACE_Future<int>& future) {
 		int result=0;

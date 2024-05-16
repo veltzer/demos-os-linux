@@ -190,7 +190,7 @@ void list_subdevice_info(snd_ctl_t *ctl, int card, int device) {
 	snd_rawmidi_info_set_stream(info, SND_RAWMIDI_STREAM_OUTPUT);
 	snd_ctl_rawmidi_info(ctl, info);
 	subs_out=snd_rawmidi_info_get_subdevices_count(info);
-	subs=subs_in > subs_out ? subs_in : subs_out;
+	subs=subs_in > subs_out ? subs_in:subs_out;
 
 	sub=0;
 	in=out=0;
@@ -210,13 +210,13 @@ void list_subdevice_info(snd_ctl_t *ctl, int card, int device) {
 	sub_name=snd_rawmidi_info_get_subdevice_name(info);
 	if (sub_name[0]=='\0') {
 		if (subs==1) {
-			printf("%c%c,hw:%d,%d,[%s]\n", in ? 'I' : ' ', out ? 'O' : ' ', card, device, name);
+			printf("%c%c,hw:%d,%d,[%s]\n", in ? 'I':' ', out ? 'O':' ', card, device, name);
 		} else
-			printf("%c%c,hw:%d,%d,[%s] (%d subdevices)\n", in ? 'I' : ' ', out ? 'O' : ' ', card, device, name, subs);
+			printf("%c%c,hw:%d,%d,[%s] (%d subdevices)\n", in ? 'I':' ', out ? 'O':' ', card, device, name, subs);
 	} else {
 		sub=0;
 		while(true) {
-			printf("%c%c,hw:%d,%d,%d,[%s]\n", in ? 'I' : ' ', out ? 'O' : ' ', card, device, sub, sub_name);
+			printf("%c%c,hw:%d,%d,%d,[%s]\n", in ? 'I':' ', out ? 'O':' ', card, device, sub, sub_name);
 			if (++sub >=subs)
 				break;
 			in=is_input(ctl, card, device, sub);

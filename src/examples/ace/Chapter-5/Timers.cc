@@ -34,26 +34,26 @@ typedef void (*timerTask_t)(void);
 
 pid_t timerTask(int initialDelay, int interval, timerTask_t task) {
 	if((initialDelay < 1) && (interval < 1)) {
-		return(-1);
+		return -1;
 	}
 	pid_t pid=ACE_OS::fork();
 	if(pid < 0) {
-		return(-1);
+		return -1;
 	}
 	if(pid > 0) {
-		return(pid);
+		return pid;
 	}
 	if(initialDelay > 0) {
 		ACE_OS::sleep(initialDelay);
 	}
 	if(interval < 1) {
-		return(0);
+		return 0;
 	}
 	while(true) {
 		(*task)();
 		ACE_OS::sleep(interval);
 	}
-	ACE_NOTREACHED(return 0);
+	return 0;
 }
 
 void foo() {

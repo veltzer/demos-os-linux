@@ -27,7 +27,7 @@ class Rectangle {
 		double height;
 
 	public:
-		Rectangle(const double w, const double h) : width(w), height(h) {
+		Rectangle(const double w, const double h):width(w), height(h) {
 			std::cout << getArea() << std::endl;
 		}
 

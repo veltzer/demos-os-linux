@@ -105,7 +105,7 @@ void arpeggio() {
 	snd_seq_event_t ev;
 	double dt;
 	for(int l1=0; l1 < seq_len; l1++) {
-		dt=(l1 % 2==0) ? (double)swing / 16384.0 : -(double)swing / 16384.0;
+		dt=(l1 % 2==0) ? (double)swing / 16384.0:-(double)swing / 16384.0;
 		snd_seq_ev_clear(&ev);
 		snd_seq_ev_set_note(&ev, 0, sequence[2][l1] + transpose, 127, sequence[1][l1]);
 		snd_seq_ev_schedule_tick(&ev, queue_id, 0, tick);

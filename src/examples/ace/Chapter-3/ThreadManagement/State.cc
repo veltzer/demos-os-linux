@@ -25,7 +25,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class HA_CommandHandler : public ACE_Task_Base {
+class HA_CommandHandler:public ACE_Task_Base {
 public:
 	virtual int svc(void) {
 		ACE_DEBUG ((LM_DEBUG, ACE_TEXT("(%t) Handler Thread running\n")));

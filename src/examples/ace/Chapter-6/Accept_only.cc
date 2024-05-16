@@ -38,7 +38,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class ClientAcceptor : public ACE_Event_Handler {
+class ClientAcceptor:public ACE_Event_Handler {
 public:
 	virtual ~ClientAcceptor() {
 		// this->handle_close(ACE_INVALID_HANDLE, 0);
@@ -48,12 +48,12 @@ public:
 		if(this->acceptor_.open(listen_addr, 1)==-1) {
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), -1);
 		}
-		return(this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK));
+		return this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 	}
 
 	// Get this handler's I/O handle.
 	virtual ACE_HANDLE get_handle(void) const {
-		return(this->acceptor_.get_handle());
+		return this->acceptor_.get_handle();
 	}
 
 	// Called when a connection is ready to accept.
@@ -73,7 +73,7 @@ protected:
 	ACE_SOCK_Acceptor acceptor_;
 };
 
-class LoopStopper : public ACE_Event_Handler {
+class LoopStopper:public ACE_Event_Handler {
 public:
 	LoopStopper(int signum) {
 		ACE_Reactor::instance()->register_handler(signum, this);
@@ -82,7 +82,7 @@ public:
 	// Called when object is signaled by OS.
 	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		ACE_Reactor::instance()->end_reactor_event_loop();
-		return(0);
+		return 0;
 	}
 };
 
@@ -95,7 +95,7 @@ int main() {
 	ClientAcceptor acceptor;
 	acceptor.reactor(ACE_Reactor::instance());
 	if(acceptor.open(port_to_listen)==-1) {
-		return(1);
+		return 1;
 	}
 	LoopStopper loopstopper(SIGINT);
 

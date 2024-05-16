@@ -31,7 +31,7 @@
 // Specify that termination has not occured yet
 bool Termination=false;
 
-class Net_Handler : public ACE_Event_Handler {
+class Net_Handler:public ACE_Event_Handler {
 public:
 	Net_Handler(ACE_SOCK_Stream & s);
 	virtual int handle_input(ACE_HANDLE handle);
@@ -43,7 +43,7 @@ protected:
 	ACE_SOCK_Stream stream;
 };
 
-Net_Handler::Net_Handler(ACE_SOCK_Stream& s) : stream(s) {
+Net_Handler::Net_Handler(ACE_SOCK_Stream& s):stream(s) {
 	this->reactor(ACE_Reactor::instance());
 	int result=this->reactor()->register_handler(this, READ_MASK);
 	ACE_ASSERT(result==0);
@@ -104,7 +104,7 @@ int Net_Handler::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 	return(0);
 }
 
-class Net_Listener : public ACE_Event_Handler {
+class Net_Listener:public ACE_Event_Handler {
 public:
 	Net_Listener(int local_address);
 	~Net_Listener(void);
@@ -168,7 +168,7 @@ int Net_Listener::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 	return(0);
 }
 
-class CatchSignal : public ACE_Event_Handler {
+class CatchSignal:public ACE_Event_Handler {
 protected:
 
 public:
@@ -176,7 +176,7 @@ public:
 	int signum;
 
 public:
-	CatchSignal(int isignum) : listener(NULL), signum(isignum) {
+	CatchSignal(int isignum):listener(NULL), signum(isignum) {
 	}
 	virtual ~CatchSignal() {
 	}

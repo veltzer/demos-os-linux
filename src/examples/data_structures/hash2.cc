@@ -59,8 +59,8 @@ int main(int argc, char** argv, char** envp) {
 		ep=hsearch(e, FIND);
 		printf("%9.9s -> %9.9s:%zd\n",
 			e.key,
-			ep ? ep->key : "NULL",
-			ep ? (ssize_t)(ep->data) : 0
+			ep ? ep->key:"NULL",
+			ep ? (ssize_t)(ep->data):0
 			);
 	}
 	return EXIT_SUCCESS;

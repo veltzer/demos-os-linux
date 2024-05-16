@@ -100,13 +100,13 @@ public:
 	}
 };
 
-class HA_CommandHandler : public ACE_Task_Base {
+class HA_CommandHandler:public ACE_Task_Base {
 private:
 	SharedResource& sharedResource;
 	const unsigned int value;
 
 public:
-	HA_CommandHandler(SharedResource & sharedResource, const unsigned int value) : sharedResource(sharedResource), value(value) {
+	HA_CommandHandler(SharedResource & sharedResource, const unsigned int value):sharedResource(sharedResource), value(value) {
 	}
 
 	// The real body of the thread

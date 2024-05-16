@@ -26,7 +26,7 @@ public:
 	//double getArea() { return 0; }
 };
 
-class Circle : public Shape {
+class Circle:public Shape {
 private:
 	double radius;
 public:
@@ -34,7 +34,7 @@ public:
 	double getArea() override { return 3.14 * radius * radius; }
 };
 
-class Square : public Shape {
+class Square:public Shape {
 private:
 	double side;
 public:
@@ -42,7 +42,7 @@ public:
 	double getArea() override { return side * side; }
 };
 
-class Triangle : public Shape {
+class Triangle:public Shape {
 private:
 	double base;
 	double height;

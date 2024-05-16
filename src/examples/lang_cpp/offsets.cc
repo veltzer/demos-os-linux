@@ -55,11 +55,11 @@ class NameTwovirt {
 	virtual void doother(void)=0;
 	virtual void dothat(void)=0;
 };
-class NameSimpleInherit : public NameOnevirt {
+class NameSimpleInherit:public NameOnevirt {
 };
-class NameSimpleInherit2 : public NameTwovirt {
+class NameSimpleInherit2:public NameTwovirt {
 };
-class NameMultInherit : public NameOnevirt, public NameTwovirt {
+class NameMultInherit:public NameOnevirt, public NameTwovirt {
 };
 class NameOneVirtOneField {
 public:
@@ -74,7 +74,7 @@ public:
 	int m;
 	int y;
 };
-class NameFMultInherit : public NameOneVirtOneField, public NameOneVirtTwoField {
+class NameFMultInherit:public NameOneVirtOneField, public NameOneVirtTwoField {
 public:
 	int z;
 };

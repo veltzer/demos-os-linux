@@ -44,27 +44,27 @@ public:
 		ACE_DEBUG((LM_DEBUG, "Obtaining a status_update in thread of control\n"));
 		// Simulate sending message to controller and getting status.
 		ACE_OS::sleep(2);
-		return(next_result_id());
+		return next_result_id();
 	}
 
 private:
 	int next_result_id(void) {
 		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::next_cmd_id"));
-		return(status_result_++);
+		return status_result_++;
 	}
 	int status_result_;
 };
 
-class StatusUpdate : public ACE_Method_Request {
+class StatusUpdate:public ACE_Method_Request {
 public:
-	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal) : controller_(controller), returnVal_(returnVal) {
+	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal):controller_(controller), returnVal_(returnVal) {
 		ACE_TRACE(ACE_TEXT("StatusUpdate::StatusUpdate"));
 	}
 	virtual int call(void) {
 		ACE_TRACE(ACE_TEXT("StatusUpdate::call"));
 		// status_update with the controller.
 		this->returnVal_.set(this->controller_.status_update());
-		return(0);
+		return 0;
 	}
 
 private:
@@ -72,15 +72,15 @@ private:
 	ACE_Future<int> returnVal_;
 };
 
-class ExitMethod : public ACE_Method_Request {
+class ExitMethod:public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
-		return(-1);
+		return -1;
 	}
 };
 
-class Scheduler : public ACE_Task_Base {
+class Scheduler:public ACE_Task_Base {
 public:
 	Scheduler() {
 		ACE_TRACE(ACE_TEXT("Scheduler::Scheduler"));
@@ -96,11 +96,11 @@ public:
 				break;
 			}
 		}
-		return(0);
+		return 0;
 	}
 	int enqueue(ACE_Method_Request *request) {
 		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
-		return(this->activation_queue_.enqueue(request));
+		return this->activation_queue_.enqueue(request);
 	}
 
 private:
@@ -117,7 +117,7 @@ public:
 		// Create and enqueue a method request on the scheduler.
 		this->scheduler_.enqueue(new StatusUpdate(this->controller_, result));
 		// Return Future to the client.
-		return(result);
+		return result;
 	}
 	// FUZZ: disable check_for_lack_ACE_OS
 	void exit(void) {

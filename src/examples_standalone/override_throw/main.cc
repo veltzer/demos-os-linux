@@ -19,7 +19,7 @@
 #include <iostream>	// for std::exception, std::cout
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-class MyException : public std::exception {
+class MyException:public std::exception {
 };
 
 int main(int argc, char** argv, char** envp) {

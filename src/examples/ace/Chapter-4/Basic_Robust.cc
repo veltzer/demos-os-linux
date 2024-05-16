@@ -111,13 +111,13 @@ int main() {
 		else {
 			ACE_ERROR((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("send_n")));
 		}
-		return(102);
+		return 102;
 	}
 	ssize_t bc;
 	ACE_Time_Value recvTimeout(0, 1);
 	if((bc=status.recv(buf, sizeof(buf), &recvTimeout))==-1) {
 		ACE_ERROR((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("recv")));
-		return(103);
+		return 103;
 	}
 	log.send_n(buf, bc);
 	status.close();

@@ -50,7 +50,7 @@ public:
 	virtual ~A() {}
 };
 
-class B : public A {
+class B:public A {
 public:
 	int e;
 	char f;

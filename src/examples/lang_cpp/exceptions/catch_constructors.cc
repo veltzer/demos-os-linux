@@ -45,7 +45,7 @@ private:
 	B b;
 
 public:
-	A() try : b() {
+	A() try:b() {
 		std::cerr << "In A constructor - you won't see this..." << std::endl;
 	} catch (int e) {
 		std::cerr << "got the exception in A constructor" << std::endl;

@@ -28,7 +28,7 @@
 static inline unsigned long getbx() {
 	unsigned long val;
 	#if __i386__
-	asm ("movl %%ebx, %0" : "=r" (val));
+	asm ("movl %%ebx, %0":"=r" (val));
 	#endif	// __i386__
 	#if __x86_64__
 	val=5;

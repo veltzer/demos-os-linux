@@ -40,7 +40,7 @@ public:
 	ACE_SOCK_Stream client_stream_;
 	ACE_INET_Addr remote_addr_;
 	ACE_SOCK_Connector connector_;
-	Client(char *hostname, int port) : remote_addr_(port, hostname) {
+	Client(char *hostname, int port):remote_addr_(port, hostname) {
 		// Nothing need to be done
 	}
 

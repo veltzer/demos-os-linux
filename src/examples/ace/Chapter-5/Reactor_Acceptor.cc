@@ -31,7 +31,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class ClientAcceptor : public ACE_Event_Handler {
+class ClientAcceptor:public ACE_Event_Handler {
 public:
 	int open(const ACE_INET_Addr& listen_addr);
 	virtual ~ClientAcceptor();
@@ -49,7 +49,7 @@ int ClientAcceptor::open(const ACE_INET_Addr& listen_addr) {
 		return -1;
 	}
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) connected\n")));
-	return(this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK));
+	return this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 }
 
 ClientAcceptor::~ClientAcceptor() {
@@ -61,7 +61,7 @@ ClientAcceptor::~ClientAcceptor() {
 // is "connected" to the socket that the acceptor gets from the operating
 // system when calling 'socket(2)'...
 ACE_HANDLE ClientAcceptor::get_handle(void) const {
-	return(this->m_acceptor.get_handle());
+	return this->m_acceptor.get_handle();
 }
 int ClientAcceptor::handle_input(ACE_HANDLE) {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) handle_input\n")));
@@ -70,7 +70,7 @@ int ClientAcceptor::handle_input(ACE_HANDLE) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n","Failed to accept client connection"), -1);
 	}
 	peer.close();
-	return(0);
+	return 0;
 }
 
 int main() {

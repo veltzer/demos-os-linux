@@ -34,7 +34,7 @@
  * This is just a file that should generate lots of debug info
  */
 
-class Request_Handler : public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_MT_SYNCH> {
+class Request_Handler:public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_MT_SYNCH> {
 	// This class is the Svc_Handler used by <Acceptor>.
 
 public:
@@ -72,7 +72,7 @@ static int req_delay=50;
 
 typedef ACE_Strategy_Acceptor<Request_Handler, ACE_SOCK_ACCEPTOR> ACCEPTOR;
 
-Request_Handler::Request_Handler(ACE_Thread_Manager *thr_mgr) : ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_MT_SYNCH> (thr_mgr), nr_msgs_rcvd_(0) {
+Request_Handler::Request_Handler(ACE_Thread_Manager *thr_mgr):ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_MT_SYNCH> (thr_mgr), nr_msgs_rcvd_(0) {
 	this->reactor(ACE_Reactor::instance());
 }
 
@@ -108,7 +108,7 @@ static int reactor_event_hook(ACE_Reactor *) {
 	return(0);
 }
 
-class ServerTP : public ACE_Task_Base {
+class ServerTP:public ACE_Task_Base {
 public:
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Running the event loop\n")));
@@ -122,9 +122,9 @@ public:
 };
 // Listing 2
 
-class Client : public ACE_Task_Base {
+class Client:public ACE_Task_Base {
 public:
-	Client() : addr_(rendezvous) {
+	Client():addr_(rendezvous) {
 	}
 	virtual int svc() {
 		ACE_OS::sleep(3);

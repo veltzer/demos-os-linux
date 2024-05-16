@@ -26,7 +26,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class ExitHandler : public ACE_At_Thread_Exit {
+class ExitHandler:public ACE_At_Thread_Exit {
 public:
 	virtual void apply(void) {
 		ACE_DEBUG((LM_INFO, ACE_TEXT("(%t) is exiting \n")));
@@ -34,9 +34,9 @@ public:
 	}
 };
 
-class HA_CommandHandler : public ACE_Task_Base {
+class HA_CommandHandler:public ACE_Task_Base {
 public:
-	HA_CommandHandler(ExitHandler & eh) : eh_(eh) {
+	HA_CommandHandler(ExitHandler & eh):eh_(eh) {
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up \n")));

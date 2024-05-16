@@ -189,27 +189,27 @@ TEST(
 	singvarbar,
 	"A single variable barrier -> this is what you should use instead of volatile\n",
 	true,
-	asm volatile ("" : "=g" (a) ::)
+	asm volatile ("":"=g" (a) ::)
 	);
 TEST(
 	singvarbar2,
 	"A single variable read.\n"
 	"This tells the compiler that someone read the variable, which means nothing since there is no reason to re-read it.\n",
 	false,
-	asm volatile ("" : "=r" (a) ::)
+	asm volatile ("":"=r" (a) ::)
 	);
 TEST(
 	singvarbar3,
 	"A single variable barrier on the wrong variable1 (write)\n",
 	false,
-	asm volatile ("" : "=g" (u) ::)
+	asm volatile ("":"=g" (u) ::)
 	);
 TEST(
 	singvarbar4,
 	"A single variable barrier on the wrong variable1 (read)\n"
 	"This actually worked on some gcc versions because of a bug.\n",
 	false,
-	asm volatile ("" : "=r" (u) ::)
+	asm volatile ("":"=r" (u) ::)
 	);
 TEST(
 	singvarvol,

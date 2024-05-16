@@ -31,7 +31,7 @@
 
 class Follower {
 public:
-	Follower(ACE_Thread_Mutex & leader_lock) : cond_(leader_lock) {
+	Follower(ACE_Thread_Mutex & leader_lock):cond_(leader_lock) {
 		owner_=ACE_Thread::self();
 	}
 
@@ -52,9 +52,9 @@ private:
 	ACE_thread_t owner_;
 };
 
-class LF_ThreadPool : public ACE_Task<ACE_MT_SYNCH> {
+class LF_ThreadPool:public ACE_Task<ACE_MT_SYNCH> {
 public:
-	LF_ThreadPool() : shutdown_(0), current_leader_(0) {
+	LF_ThreadPool():shutdown_(0), current_leader_(0) {
 		ACE_TRACE(ACE_TEXT("LF_ThreadPool::TP"));
 	}
 
@@ -155,7 +155,7 @@ int LF_ThreadPool::elect_new_leader(void) {
 			return(-1);
 		}
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Resigning and Electing %d\n"), fw->owner()));
-		return((fw->signal()==0) ? 0 : -1);
+		return((fw->signal()==0) ? 0:-1);
 	} else {
 		ACE_DEBUG((LM_ERROR, ACE_TEXT("(%t) Oops no followers left\n")));
 		return(-1);

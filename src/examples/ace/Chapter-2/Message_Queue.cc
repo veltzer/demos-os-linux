@@ -75,18 +75,18 @@ int Message_Receiver::copy_payload(ACE_Message_Block *mb, int payload_length) {
 		return -1;
 	}
 	mb->wr_ptr(payload_length);
-	return(0);
+	return 0;
 }
 
 int Message_Receiver::handle_input(ACE_HANDLE) {
 	DeviceCommandHeader dch;
 	if (this->read_header(&dch) < 0) {
-		return(-1);
+		return -1;
 	}
 	if (dch.deviceId_ < 0) {
 		// Handle shutdown.
 		this->handler_->putq(shut_down_message());
-		return(-1);
+		return -1;
 	}
 	ACE_Message_Block *mb;
 	ACE_NEW_RETURN(mb, ACE_Message_Block(dch.length_ + sizeof dch), -1);
@@ -98,7 +98,7 @@ int Message_Receiver::handle_input(ACE_HANDLE) {
 	}
 	// Pass it off to the handler thread.
 	this->handler_->putq(mb);
-	return(0);
+	return 0;
 }
 
 static void report_usage(int argc, ACE_TCHAR *argv[]) {
@@ -108,15 +108,15 @@ static void report_usage(int argc, ACE_TCHAR *argv[]) {
 	}
 }
 
-class Acceptor : public ACE_Acceptor<Message_Receiver, ACE_SOCK_ACCEPTOR> {
+class Acceptor:public ACE_Acceptor<Message_Receiver, ACE_SOCK_ACCEPTOR> {
 public:
-	Acceptor(HA_CommandHandler * handler) : handler_(handler) {
+	Acceptor(HA_CommandHandler * handler):handler_(handler) {
 	}
 
 protected:
 	virtual int make_svc_handler(Message_Receiver *& mr) {
 		ACE_NEW_RETURN(mr, Message_Receiver(handler_), -1);
-		return(0);
+		return 0;
 	}
 
 private:

@@ -145,8 +145,8 @@ extern "C" void handler(int signum) {
 int main(int argc, char** argv) {
 	// The Service_Config must be the first object defined in main...
 	ACE_Service_Config daemon(argv[0]);
-	int threads=argc>1 ? ACE_OS::atoi(argv[1]) : 4;
-	intptr_t count=argc>2 ? ACE_OS::atoi(argv[2]) : 10;
+	int threads=argc>1 ? ACE_OS::atoi(argv[1]):4;
+	intptr_t count=argc>2 ? ACE_OS::atoi(argv[2]):10;
 	// Register a signal handler.
 	ACE_Sig_Action sa((ACE_SignalHandler)(handler), SIGINT);
 	ACE_UNUSED_ARG(sa);

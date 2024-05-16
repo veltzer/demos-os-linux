@@ -24,11 +24,11 @@
 
 class MyClass {
 public:
-	MyClass(std::string str) : data(std::move(str)) {}
-	MyClass(const MyClass& other) : data(other.data) {
+	MyClass(std::string str):data(std::move(str)) {}
+	MyClass(const MyClass& other):data(other.data) {
 		std::cout << "Copy constructor called" << std::endl;
 	}
-	MyClass(MyClass&& other) : data(std::move(other.data)) {
+	MyClass(MyClass&& other):data(std::move(other.data)) {
 		std::cout << "Move constructor called" << std::endl;
 	}
 	~MyClass() {

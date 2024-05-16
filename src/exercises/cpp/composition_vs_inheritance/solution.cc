@@ -30,7 +30,7 @@ public:
 };
 
 // Inherited class
-class Circle : public Shape {
+class Circle:public Shape {
 public:
 	void draw() {
 		Shape::draw();

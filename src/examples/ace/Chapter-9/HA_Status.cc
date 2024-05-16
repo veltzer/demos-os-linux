@@ -30,7 +30,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class HA_Status : public ACE_Service_Object {
+class HA_Status:public ACE_Service_Object {
 public:
 	virtual int init(int argc, ACE_TCHAR *argv[]);
 

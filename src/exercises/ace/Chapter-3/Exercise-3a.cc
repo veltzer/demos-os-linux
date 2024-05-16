@@ -60,9 +60,9 @@ private:
 	int status_result_;
 };
 
-class StatusUpdate : public ACE_Method_Request {
+class StatusUpdate:public ACE_Method_Request {
 public:
-	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal) : controller_(controller), returnVal_(returnVal) {
+	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal):controller_(controller), returnVal_(returnVal) {
 		ACE_TRACE(ACE_TEXT("StatusUpdate::StatusUpdate"));
 	}
 	virtual int call(void) {
@@ -78,7 +78,7 @@ private:
 	ACE_Future<int> returnVal_;
 };
 
-class ExitMethod : public ACE_Method_Request {
+class ExitMethod:public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
@@ -86,7 +86,7 @@ public:
 	}
 };
 
-class Scheduler : public ACE_Task_Base {
+class Scheduler:public ACE_Task_Base {
 public:
 	Scheduler() {
 		ACE_TRACE(ACE_TEXT("Scheduler::Scheduler"));

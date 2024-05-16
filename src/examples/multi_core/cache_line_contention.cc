@@ -141,7 +141,7 @@ int main(int argc, char** argv, char** envp) {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int usleep_interval=10000;
 	const int real_threads=argc-optind;
-	const int thread_num=doObserver ? real_threads+1 : real_threads;
+	const int thread_num=doObserver ? real_threads+1:real_threads;
 	INFO("cpu_num is %d", cpu_num);
 	INFO("attempts is %llu", attempts);
 	INFO("thread_num is %d", thread_num);

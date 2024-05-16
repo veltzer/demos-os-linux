@@ -32,7 +32,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
-class SignalableTask : public ACE_Task<ACE_MT_SYNCH> {
+class SignalableTask:public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		if(signum==SIGUSR1) {

@@ -32,12 +32,12 @@ int Client::open(void *p) {
 	// Two seconds
 	ACE_Time_Value iter_delay(2);
 	if(super::open(p)==-1) {
-		return(-1);
+		return -1;
 	}
 	this->notifier_.reactor(this->reactor());
 	this->msg_queue()->notification_strategy(&this->notifier_);
 	this->iterations_=0;
-	return(this->reactor()->schedule_timer (this, 0, ACE_Time_Value::zero, iter_delay));
+	return this->reactor()->schedule_timer (this, 0, ACE_Time_Value::zero, iter_delay);
 }
 
 // Listing 2
@@ -49,13 +49,13 @@ int Client::handle_input(ACE_HANDLE) {
 	if(recv_cnt > 0) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("YES! GOT DATA!!!")));
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%.*C"), static_cast<int>(recv_cnt), buf));
-		return(0);
+		return 0;
 	}
 	if((recv_cnt==0) || (ACE_OS::last_error()!=EWOULDBLOCK)) {
 		this->reactor()->end_reactor_event_loop();
-		return(-1);
+		return -1;
 	}
-	return(0);
+	return 0;
 }
 
 // Listing 3
@@ -64,7 +64,7 @@ int Client::handle_input(ACE_HANDLE) {
 int Client::handle_timeout(const ACE_Time_Value&, const void *) {
 	if(++this->iterations_>=ITERATIONS) {
 		this->peer().close_writer();
-		return(0);
+		return 0;
 	}
 	ACE_Message_Block *mb;
 	ACE_NEW_RETURN(mb, ACE_Message_Block(128), -1);
@@ -72,7 +72,7 @@ int Client::handle_timeout(const ACE_Time_Value&, const void *) {
 	ACE_ASSERT(nbytes > 0);
 	mb->wr_ptr(static_cast<size_t>(nbytes));
 	this->putq(mb);
-	return(0);
+	return 0;
 }
 
 // Listing 4
@@ -100,7 +100,7 @@ int Client::handle_output(ACE_HANDLE) {
 	} else {
 		this->reactor()->schedule_wakeup (this, ACE_Event_Handler::WRITE_MASK);
 	}
-	return(0);
+	return 0;
 }
 
 int main() {
@@ -115,5 +115,5 @@ int main() {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("connect")), 1);
 	}
 	ACE_Reactor::instance()->run_reactor_event_loop();
-	return(0);
+	return 0;
 }

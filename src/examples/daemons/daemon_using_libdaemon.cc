@@ -66,7 +66,7 @@ int main(int argc, char **argv, char** envp) {
 		/* Check if the new function daemon_pid_file_kill_wait() is available, if it is, use it. */
 		if ((ret = daemon_pid_file_kill_wait(SIGTERM, 5)) < 0)
 			daemon_log(LOG_WARNING, "Failed to kill daemon: %s", strerror(errno));
-		return ret < 0 ? 1 : 0;
+		return ret < 0 ? 1:0;
 	}
 
 	/* Check that the daemon is not rung twice a the same time */
@@ -94,7 +94,7 @@ int main(int argc, char **argv, char** envp) {
 			daemon_log(LOG_ERR, "Could not receive return value from daemon process: %s", strerror(errno));
 			return 255;
 		}
-		daemon_log(ret != 0 ? LOG_ERR : LOG_INFO, "Daemon returned %i as return value.", ret);
+		daemon_log(ret != 0 ? LOG_ERR:LOG_INFO, "Daemon returned %i as return value.", ret);
 		return ret;
 	} else { /* The daemon */
 		int fd, quit = 0;

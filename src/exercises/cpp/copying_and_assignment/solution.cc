@@ -24,7 +24,7 @@
 class string
 {
 public:
-	string() : m_data(nullptr) {}
+	string():m_data(nullptr) {}
 
 	string(const char* str)
 	{

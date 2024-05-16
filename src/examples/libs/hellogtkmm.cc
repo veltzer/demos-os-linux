@@ -30,7 +30,7 @@
  * EXTRA_COMPILE_FLAGS=-Wno-deprecated-declarations
  */
 
-class HelloWorld : public Gtk::Window {
+class HelloWorld:public Gtk::Window {
 public:
 	HelloWorld(Gtk::Main&);
 	virtual ~HelloWorld();
