@@ -50,7 +50,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// to catch when the signal is thrown
 	signal_register_handler_signal(SIGABRT, handler);
 	pthread_t thread;

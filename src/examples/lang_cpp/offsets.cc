@@ -79,7 +79,7 @@ public:
 	int z;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "Hello, World!" << std::endl;
 	// this will print out 1 just because an object needs to take at least
 	// one byte of ram...

@@ -20,7 +20,7 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// const int i=5;
 	// const int* pi=&i;
 	// const int& ri=i;

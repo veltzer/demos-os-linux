@@ -42,6 +42,6 @@ static_assert(sizeof(s1)==12, "something went wrong");
 // this will cause a compile time error
 // _Static_assert(sizeof(s1)==12,"something went wrong");
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

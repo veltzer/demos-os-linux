@@ -31,7 +31,7 @@ using namespace std;
 
 void square(int &);
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int number = 8;
 	cout << "In main: " << &number << endl; // 0x22ff1c
 	cout << number << endl; // 8

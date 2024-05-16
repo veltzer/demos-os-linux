@@ -23,11 +23,11 @@
  * References:
  * - https://en.cppreference.com/w/cpp/atomic/atomic_thread_fence
  *
- * XTRA_COMPILE_FLAGS=-std=c++11
+ * EXTRA_COMPILE_FLAGS=-std=c++11
  */
 
-int main(int argc, char** argv, char** envp) {
-	//__atomic_thread_fence(__ATOMIC_ACQUIRE);
+int main() {
+	__atomic_thread_fence(__ATOMIC_ACQUIRE);
 	__sync_synchronize();
 	return EXIT_SUCCESS;
 }
