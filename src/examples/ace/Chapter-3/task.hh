@@ -33,7 +33,7 @@
  * earlier than others. There's no real harm in it but you can get
  * better "work by thread" statistics if they start out together.
  */
-class Task : public ACE_Task<ACE_MT_SYNCH> {
+class Task:public ACE_Task<ACE_MT_SYNCH> {
 public:
 
 	typedef ACE_Task<ACE_MT_SYNCH> inherited;

@@ -56,8 +56,7 @@ MODULE_DESCRIPTION("This is a driver that demos the alloc_bootmem function");
  */
 
 /* our own functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	void *p;
 
 	PR_DEBUG("start");
@@ -75,8 +74,7 @@ static int __init mod_init(void)
 	return 0;
 }
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 	PR_DEBUG("start");
 }
 

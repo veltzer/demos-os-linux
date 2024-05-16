@@ -47,14 +47,14 @@
 // this works by creating an error for size of array being negative at compile time.
 // can be used outside/inside of code and therefore if placed outside of your functions
 // will not make your functions any less efficient.
-#define PR_STATIC_ASSERT(condition) extern void pr_static_assert(int arg[(condition) ? 1 : -1])
+#define PR_STATIC_ASSERT(condition) extern void pr_static_assert(int arg[(condition) ? 1:-1])
 // this is similar to what the kernel is using
 // cannot be used outside of functions
 #define ct_assert(e) ((void)sizeof(char[1 - 2*!(e)]))
 // another option (can be used outside functions, mesage is not nice)
-#define STATIC_ASSERT(COND, MSG) typedef char static_assertion_ ## MSG[(COND) ? 1 : -1]
+#define STATIC_ASSERT(COND, MSG) typedef char static_assertion_ ## MSG[(COND) ? 1:-1]
 // using error (does not work, need to fix it...)
-#define CTC(X) { extern int __attribute__((error("assertion failure: '" # X "' not true"))) compile_time_check(); ((X) ? 0 : compile_time_check()), 0; };
+#define CTC(X) { extern int __attribute__((error("assertion failure: '" # X "' not true"))) compile_time_check(); ((X) ? 0:compile_time_check()), 0; };
 
 PR_STATIC_ASSERT(1==1);
 _Static_assert(1==1, "fail message");

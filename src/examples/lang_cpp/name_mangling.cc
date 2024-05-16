@@ -34,7 +34,7 @@ void A::doit() {
 	std::cout << "Hello, World!" << std::endl;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	A a;
 	a.doit();
 	my_system("nm -C %s | grep A::", argv[0]);

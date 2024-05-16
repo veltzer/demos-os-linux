@@ -60,12 +60,12 @@ public:
 
 	// No need for any locking for getting the value
 	unsigned int getLockedCounter() {
-		return(LockedCounter);
+		return LockedCounter;
 	}
 
 	// No need for any locking for getting the value
 	unsigned int getAttemptCounter() {
-		return(AttemptCounter);
+		return AttemptCounter;
 	}
 
 	// This method only attempts one increase
@@ -115,11 +115,11 @@ public:
 		for(unsigned int i=0; i<attempts; i++) {
 			sharedResource.attemptIncreaseValue(value);
 		}
-		return(0);
+		return 0;
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR ** argv) {
+int main() {
 	if(argc!=5) {
 		fprintf(stderr, "%s: usage: %s [num_threads] [attempts] [yield] [debug]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 3 10000 0 0\n", argv[0], argv[0]);

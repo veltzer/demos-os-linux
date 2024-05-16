@@ -57,19 +57,19 @@ public:
 			if (!ACE_OS::strcmp(buf, "End")) {
 				printf("Client: <%d> End\n", value);
 				peer.close();
-				return(0);
+				return 0;
 			}
 			printf("Client: <%d> %2d. %s", value, ++i, buf);
 			ACE_OS::sleep(1);
 		}
-		return(0);
+		return 0;
 	}
 
 private:
 	int value;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	SocketHandler handler[3];
 	for(int i=0; i<3; i++) {
 		handler[i].set_value(i);

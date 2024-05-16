@@ -46,8 +46,7 @@ protected:
 
 HelloWorld::HelloWorld(Gtk::Main& iapp):
 	m_button("Exit"),
-	app(iapp)
-{
+	app(iapp) {
 	// Sets the border width of the window.
 	set_border_width(10);
 

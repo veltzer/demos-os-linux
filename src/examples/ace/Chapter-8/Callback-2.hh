@@ -27,7 +27,7 @@
 #include <ace/SString.h>
 #include <ace/Time_Value.h>
 
-class Callback : public ACE_Log_Msg_Callback {
+class Callback:public ACE_Log_Msg_Callback {
 public:
 	void log(ACE_Log_Record& log_record) {
 		cerr << "Log Message Received:" << endl;

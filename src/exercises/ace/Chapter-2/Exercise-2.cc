@@ -155,7 +155,7 @@ static void *producer(ProducerData* pdata) {
 	return NULL;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// Spawn off one thread that copies stdin to stdout in order of the size of each line.
 	// Global thread manager.
 	ACE_Thread_Manager thr_mgr;

@@ -43,7 +43,7 @@ int HA_Status::init(int argc, ACE_TCHAR *argv[]) {	// Do ACE_Get_Opt and get con
 
 	ACE_Get_Opt cmd_opts(argc, argv, options);
 	if (cmd_opts.long_option(ACE_TEXT("config"), 'f', ACE_Get_Opt::ARG_REQUIRED)==-1) {
-		return(-1);
+		return -1;
 	}
 	int option;
 	ACE_TCHAR config_file[MAXPATHLEN];
@@ -81,12 +81,12 @@ int HA_Status::init(int argc, ACE_TCHAR *argv[]) {	// Do ACE_Get_Opt and get con
 	}
 	this->listen_addr_.set(static_cast<u_short>(status_port));
 
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	HA_Status status;
 
 	status.init(argc, argv);
-	return(0);
+	return 0;
 }

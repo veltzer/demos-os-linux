@@ -36,7 +36,7 @@
 // --the_answer - we get 42 into the switch
 //
 //
-int main() {
+int main(int argc, char** argv) {
 	// Example for a long option without a corresponding short option.
 	// Just put some context here so the following compiles and runs.
 	static const ACE_TCHAR options[]=ACE_TEXT(":f:l:gh");

@@ -107,7 +107,7 @@ public:
 	int enqueue(ACE_Method_Request *request) {
 		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%N - In Scheduler::enqueue\n")));
-		return(this->activation_queue_.enqueue(request));
+		return this->activation_queue_.enqueue(request);
 	}
 
 private:
@@ -128,7 +128,7 @@ public:
 		this->scheduler_.enqueue(new StatusUpdate(this->controller_, result));
 
 		// Return Future to the client.
-		return(result);
+		return result;
 	}
 	// FUZZ: disable check_for_lack_ACE_OS
 	void exit(void) {

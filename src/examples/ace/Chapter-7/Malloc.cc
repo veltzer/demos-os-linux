@@ -57,15 +57,15 @@ public:
 		g_allocator->free(name_);
 	}
 	char *name(void) {
-		return(name_);
+		return name_;
 	}
 
 	int id1(void) {
-		return(id1_);
+		return id1_;
 	}
 
 	int id2(void) {
-		return(id2_);
+		return id2_;
 	}
 
 private:
@@ -92,7 +92,7 @@ int addRecords(void) {
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
 		}
 	}
-	return(0);
+	return 0;
 }
 
 void showRecords(void) {
@@ -121,7 +121,7 @@ int main() {
 	// Flush to the disk
 	g_allocator->sync();
 	delete g_allocator;
-	return(0);
+	return 0;
 }
 
 #else
@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
 	}
 	g_allocator->sync();
 	delete g_allocator;
-	return(0);
+	return 0;
 }
 
 #endif

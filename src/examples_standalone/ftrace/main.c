@@ -20,10 +20,10 @@
 #include <stdlib.h> // for EXIT_SUCCESS
 
 int call_func(int a, int b) {
-	return(a + b);
+	return a + b;
 }
 
-int main(int argc,char** argv,char** envp) {
+int main() {
 	int res;
 	res=call_func(1, 1);
 	return EXIT_SUCCESS;

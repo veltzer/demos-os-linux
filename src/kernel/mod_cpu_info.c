@@ -32,15 +32,13 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("show info about CPUS in the kernel");
 
 /* our own functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	pr_info("number of cores is %d\n", nr_cpu_ids);
 	return 0;
 }
 
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 }
 
 /* declaration of init/cleanup functions of this module */

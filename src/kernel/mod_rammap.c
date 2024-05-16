@@ -36,8 +36,7 @@ static unsigned int size = 170 * 1024 * 1024;
 static void *logical;
 
 /* our own functions */
-static void api_print_addressinfo(void *logical_adr)
-{
+static void api_print_addressinfo(void *logical_adr) {
 	struct page *page = virt_to_page(logical_adr);
 
 	if (page == NULL) {

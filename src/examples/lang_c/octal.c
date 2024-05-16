@@ -24,9 +24,8 @@
  * This is to test octal use in user space...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int i=0777;
-
 	printf("i is %d\n", i);
-	return(0);
+	return 0;
 }

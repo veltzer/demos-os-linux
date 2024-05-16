@@ -36,15 +36,15 @@ public:
 	}
 
 	int wait(void) {
-		return(this->cond_.wait());
+		return this->cond_.wait();
 	}
 
 	int signal(void) {
-		return(this->cond_.signal());
+		return this->cond_.signal();
 	}
 
 	ACE_thread_t owner(void) {
-		return(this->owner_);
+		return this->owner_;
 	}
 
 private:
@@ -71,7 +71,7 @@ private:
 
 	int leader_active(void) {
 		ACE_TRACE(ACE_TEXT("LF_ThreadPool::leader_active"));
-		return(this->current_leader_!=0);
+		return this->current_leader_!=0;
 	}
 
 	void leader_active(ACE_thread_t leader) {
@@ -82,7 +82,7 @@ private:
 	void process_message(ACE_Message_Block *mb);
 
 	int done(void) {
-		return(shutdown_==1);
+		return shutdown_==1;
 	}
 
 private:
@@ -113,7 +113,7 @@ int LF_ThreadPool::svc(void) {
 		elect_new_leader();
 		process_message(mb);
 	}
-	return(0);
+	return 0;
 }
 
 int LF_ThreadPool::become_leader(void) {
@@ -130,7 +130,7 @@ int LF_ThreadPool::become_leader(void) {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Becoming the leader\n")));
 	// Mark yourself as the active leader.
 	leader_active(ACE_Thread::self());
-	return(0);
+	return 0;
 }
 
 Follower *LF_ThreadPool::make_follower(void) {
@@ -139,7 +139,7 @@ Follower *LF_ThreadPool::make_follower(void) {
 	Follower *fw;
 	ACE_NEW_RETURN(fw, Follower(this->leader_lock_), 0);
 	this->followers_.enqueue_tail(fw);
-	return(fw);
+	return fw;
 }
 
 int LF_ThreadPool::elect_new_leader(void) {
@@ -152,13 +152,13 @@ int LF_ThreadPool::elect_new_leader(void) {
 		// Get the old follower.
 		Follower *fw;
 		if(this->followers_.dequeue_head(fw)!=0) {
-			return(-1);
+			return -1;
 		}
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Resigning and Electing %d\n"), fw->owner()));
-		return((fw->signal()==0) ? 0:-1);
+		return (fw->signal()==0) ? 0:-1;
 	} else {
 		ACE_DEBUG((LM_ERROR, ACE_TEXT("(%t) Oops no followers left\n")));
-		return(-1);
+		return -1;
 	}
 }
 
@@ -174,7 +174,7 @@ void LF_ThreadPool::process_message(ACE_Message_Block *mb) {
 
 long LF_ThreadPool::LONG_TIME=5L;
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	LF_ThreadPool tp;
 
 	tp.activate(THR_NEW_LWP | THR_JOINABLE, 5);

@@ -48,7 +48,7 @@ inline void *operator new(const size_t size) {
 	void *p=malloc(size);
 
 	fprintf(stderr, "in operator new with size=%zd,p=%p\n", size, p);
-	return(p);
+	return p;
 }
 
 inline void operator delete(void *p) {
@@ -60,14 +60,14 @@ inline void *operator new(const size_t size, const unsigned int type) {
 	void *p=malloc(size);
 
 	fprintf(stderr, "in operator new with size=%zd,type=%d,p=%p\n", size, type, p);
-	return(p);
+	return p;
 }
 
 inline void *operator new[] (const size_t size) {
 	void *p=malloc(size);
 
 	fprintf(stderr, "in operator new[] with size=%zd, p=%p\n", size, p);
-	return(p);
+	return p;
 }
 
 inline void operator delete[] (void *p) {
@@ -79,7 +79,7 @@ inline void *operator new[] (const size_t size, const unsigned int type) {
 	void *p=malloc(size);
 
 	fprintf(stderr, "in operator new[] with size=%zd,type=%d,p=%p\n", size, type, p);
-	return(p);
+	return p;
 }
 
 inline void operator delete[] (void *p, const long unsigned int type) {

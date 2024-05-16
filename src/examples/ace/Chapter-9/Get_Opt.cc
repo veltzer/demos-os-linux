@@ -27,7 +27,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int argc, char** argv) {
 	// Example for a long option without a corresponding short option.
 	// Just put some context here so the following compiles and runs.
 	static const ACE_TCHAR options[]=ACE_TEXT(":f:");

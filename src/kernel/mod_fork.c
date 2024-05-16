@@ -42,8 +42,7 @@ static struct device *my_device;
 /*
  * The open implementation. Currently this does nothing
  */
-static int kern_open(struct inode *inode, struct file *filp)
-{
+static int kern_open(struct inode *inode, struct file *filp) {
 	dev_info(my_device, "open start");
 	dev_info(my_device, "open end");
 	return 0;
@@ -52,16 +51,13 @@ static int kern_open(struct inode *inode, struct file *filp)
 /*
  * The release implementation. Currently this does nothing
  */
-static int kern_release(struct inode *inode, struct file *filp)
-{
+static int kern_release(struct inode *inode, struct file *filp) {
 	dev_info(my_device, "release start");
 	dev_info(my_device, "release end");
 	return 0;
 }
 
-static ssize_t kern_read(struct file *file, char __user *buf, size_t count,
-		loff_t *ppos)
-{
+static ssize_t kern_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
 	*ppos += count;
 	dev_info(my_device, "position %lld, filp %p", *ppos, file);
 	return count;

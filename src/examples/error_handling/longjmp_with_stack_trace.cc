@@ -90,7 +90,7 @@ inline error_data *error_setjmp() {
 	if (!ret) {
 		return NULL;
 	} else {
-		return((error_data *)ret);
+		return (error_data *)ret;
 	}
 }
 

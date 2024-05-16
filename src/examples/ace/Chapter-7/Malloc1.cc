@@ -48,13 +48,13 @@ public:
 		g_allocator->free(name_);
 	}
 	char *name(void) {
-		return(name_);
+		return name_;
 	}
 	int id1(void) {
-		return(id1_);
+		return id1_;
 	}
 	int id2(void) {
-		return(id2_);
+		return id2_;
 	}
 };
 
@@ -82,13 +82,13 @@ int addRecords() {
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
 		}
 	}
-	return(0);
+	return 0;
 }
 
 // Backing file where the data is kept.
 #define BACKING_STORE ACE_TEXT("backing.store")
 
-int main(int argc) {
+int main(int argc, char**) {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Starting Program\n")));
 	ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE), -1);
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("After g_allocator\n")));

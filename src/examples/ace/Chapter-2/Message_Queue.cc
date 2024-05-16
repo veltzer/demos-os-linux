@@ -101,7 +101,7 @@ int Message_Receiver::handle_input(ACE_HANDLE) {
 	return 0;
 }
 
-static void report_usage(int argc, ACE_TCHAR *argv[]) {
+static void report_usage(int argc, char** argv) {
 	if (argc < 2) {
 		ACE_DEBUG((LM_ERROR, ACE_TEXT("%s: please use me with port\n"), argv[1]));
 		ACE_OS::exit(EXIT_FAILURE);
@@ -123,7 +123,7 @@ private:
 	HA_CommandHandler *handler_;
 };
 
-int main() {
+int main(int argc, char** argv) {
 	report_usage(argc, argv);
 
 	u_short port=ACE_OS::atoi(argv[1]);

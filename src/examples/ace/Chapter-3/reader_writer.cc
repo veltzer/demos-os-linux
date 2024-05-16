@@ -143,7 +143,7 @@ static void *writer(void *) {
 	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int, char** argv) {
 	ACE_LOG_MSG->open(argv[0]);
 	parse_args(argc, argv);
 	current_readers=0;

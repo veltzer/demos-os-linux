@@ -52,8 +52,7 @@ static const struct file_operations null_fops = {
 static struct class *my_class;
 static struct device *my_device;
 
-static int __init skeleton_init(void)
-{
+static int __init skeleton_init(void) {
 	int err;
 
 	pr_info("start\n");
@@ -98,8 +97,7 @@ err_nothing:
 	return err;
 }
 
-static void __exit skeleton_exit(void)
-{
+static void __exit skeleton_exit(void) {
 	pr_info("start\n");
 	if (auto_register) {
 		device_destroy(my_class, MKDEV(NULL_MAJOR, NULL_MINOR));

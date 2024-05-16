@@ -38,8 +38,7 @@ static struct device *my_device;
 /*
  * The open implementation. Currently this does nothing
  */
-static int kern_open(struct inode *inode, struct file *filp)
-{
+static int kern_open(struct inode *inode, struct file *filp) {
 	dev_info(my_device, "open start");
 	dev_info(my_device, "open end");
 	return 0;
@@ -49,8 +48,7 @@ static int kern_open(struct inode *inode, struct file *filp)
  * This is the ioctl implementation.
  */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg)
-{
+		unsigned long arg) {
 	/* dev_info(my_device, "ioctl start"); */
 	switch (cmd) {
 	case IOCTL_RACE_EMPTY:
@@ -76,8 +74,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 /*
  * The release implementation.
  */
-static int kern_release(struct inode *inode, struct file *filp)
-{
+static int kern_release(struct inode *inode, struct file *filp) {
 	dev_info(my_device, "release start");
 	ssleep(2);
 	dev_info(my_device, "release end");

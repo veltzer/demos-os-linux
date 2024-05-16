@@ -24,11 +24,11 @@ clean:
 	$(Q)rm -rf *.$(SUFFIX_DEP) *.$(SUFFIX_OO) $(PROG)
 
 # rules
-$(OBJECTS): %.$(SUFFIX_OO) : %.$(SUFFIX_CC)
+$(OBJECTS): %.$(SUFFIX_OO):%.$(SUFFIX_CC)
 	$(info doing [$@])
 	$(Q)$(ACXX) $(CXXFLAGS) -c -o $@ $<
 
-$(DEPS): %.$(SUFFIX_DEP) : %.$(SUFFIX_CC)
+$(DEPS): %.$(SUFFIX_DEP):%.$(SUFFIX_CC)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
 	$(Q)$(CXX) $(CXXFLAGS) -x c++ -MM $(INCLUDE_LIST) $< | sed -e "s/$*\.o/$(JUNK)\/& $(JUNK)\/$*.$(SUFFIX_DEP)/g" > $@

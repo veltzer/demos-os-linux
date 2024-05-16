@@ -64,7 +64,7 @@ snd_seq_t *open_seq() {
 		fprintf(stderr, "Error creating sequencer port.\n");
 		exit(EXIT_FAILURE);
 	}
-	return(seq_handle);
+	return seq_handle;
 }
 
 void set_tempo() {
@@ -84,7 +84,7 @@ snd_seq_tick_time_t get_tick() {
 	snd_seq_get_queue_status(seq_handle, queue_id, status);
 	current_tick=snd_seq_queue_status_get_tick_time(status);
 	snd_seq_queue_status_free(status);
-	return(current_tick);
+	return current_tick;
 }
 
 void init_queue() {

@@ -38,7 +38,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	A a;
 	a.doit();
 	return EXIT_SUCCESS;

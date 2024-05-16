@@ -41,5 +41,5 @@ int main(int argc, char** argv, char** envp) {
 	printf("bool is really %s\n", stringify(bool));
 	printf("true is really %s\n", stringify(true));
 	printf("false is really %s\n", stringify(false));
-	return(0);
+	return 0;
 }

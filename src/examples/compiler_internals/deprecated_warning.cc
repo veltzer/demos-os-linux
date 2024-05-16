@@ -35,7 +35,7 @@ int add(int a, int b) __attribute__((deprecated));
 
 // now for the function definition (you cant put the __attribute__ here)...
 int add(int a, int b) {
-	return(a + b);
+	return a + b;
 }
 
 int main(int argc, char** argv, char** envp) {

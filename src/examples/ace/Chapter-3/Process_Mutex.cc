@@ -53,7 +53,7 @@ private:
 	ACE_Process_Mutex& gmutex_;
 };
 
-int main() {
+int main(int argc, char** argv) {
 	// Run as the child.
 	if (argc > 1) {
 		// Create or get the global mutex.

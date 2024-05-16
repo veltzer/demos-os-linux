@@ -114,8 +114,7 @@ static inline char * code2str(int code, int signal) {
 	return "Unhandled signal handler";
 }
 
-void fault_handler (int signal, siginfo_t * siginfo, void *context)
-{
+void fault_handler (int signal, siginfo_t * siginfo, void *context) {
 	#define MAX_FRAMES 25
 
 	void * frames[MAX_FRAMES];

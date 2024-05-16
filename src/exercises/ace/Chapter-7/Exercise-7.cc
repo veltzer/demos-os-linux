@@ -51,7 +51,7 @@ public:
 	}
 
 	char *name(void) {
-		return(name_);
+		return name_;
 	}
 
 private:
@@ -68,7 +68,7 @@ int PrintMessages(SHARED_ALLOC *shared) {
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%C\n"), record->name()));
 		}
 	}
-	return(0);
+	return 0;
 }
 
 int StoreMessages(SHARED_ALLOC *shared, char *buf) {
@@ -81,7 +81,7 @@ int StoreMessages(SHARED_ALLOC *shared, char *buf) {
 	if (shared->bind(buf, newRecord)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
 	}
-	return(0);
+	return 0;
 }
 
 int GetMessageType(char *data) {
@@ -94,13 +94,13 @@ int GetMessageType(char *data) {
 	if (buffer==0) {
 		// return message type zero when EOF is reached
 		// Return 0 as message type
-		return(0);
+		return 0;
 	} else {
 		int type;
 		sscanf(buffer, "%d", &type);
 		// Remove the type from the buffer
 		ACE_OS::sprintf(data, "%s", buffer + 2);
-		return(type);
+		return type;
 	}
 }
 
@@ -108,7 +108,7 @@ int GetMessageType(char *data) {
 #define STORE_NAME ACE_TEXT("Exercise_7.store")
 #define Address ACE_DEFAULT_BASE_ADDR
 
-int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
+int main(int argc, char** argv) {
 	if (argc > 1) {
 		// Use an existing file
 		ACE_MMAP_Memory_Pool_Options options(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::FIRSTCALL_FIXED);
@@ -132,5 +132,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
 	}
 	shared->sync();
 	delete shared;
-	return(0);
+	return 0;
 }

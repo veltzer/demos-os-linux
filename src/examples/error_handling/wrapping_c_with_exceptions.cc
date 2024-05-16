@@ -45,7 +45,7 @@ template<class T> T syscall(T val, T err_val) {
 	if(val==err_val) {
 		throw std::exception();
 	}
-	return(val);
+	return val;
 }
 
 void myhandler(int sig) {

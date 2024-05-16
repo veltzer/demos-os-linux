@@ -57,7 +57,7 @@ bool MyApp::OnInit(void) {
 
 	frame->Show(TRUE);
 	SetTopWindow(frame);
-	return(TRUE);
+	return TRUE;
 }
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size):wxFrame((wxFrame *)NULL, -1, title, pos, size) {

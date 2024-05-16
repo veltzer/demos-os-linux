@@ -27,7 +27,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	Callback* callback=new Callback;
 	ACE_LOG_MSG->set_flags(ACE_Log_Msg::MSG_CALLBACK);
 	ACE_LOG_MSG->clr_flags(ACE_Log_Msg::STDERR);

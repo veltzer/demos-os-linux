@@ -50,7 +50,7 @@ public:
 		}
 	}
 	char* name(void) {
-		return(name_);
+		return name_;
 	}
 
 private:
@@ -64,7 +64,7 @@ int PrintMessages(SHARED_ALLOC *shared, int index) {
 		Record *record=reinterpret_cast<Record *>(temp);
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%C\n"), record->name()));
 	}
-	return(0);
+	return 0;
 }
 
 int StoreMessages(SHARED_ALLOC* shared, char* buf) {
@@ -77,7 +77,7 @@ int StoreMessages(SHARED_ALLOC* shared, char* buf) {
 	if(shared->bind(buf, newRecord)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
 	}
-	return(0);
+	return 0;
 }
 
 int GetMessageType(char* data) {
@@ -90,13 +90,13 @@ int GetMessageType(char* data) {
 	if(buffer==0) {
 		// return message type zero when EOF is reached
 		// Return 0 as message type
-		return(0);
+		return 0;
 	} else {
 		int type;
 		sscanf(buffer, "%d", &type);
 		// Remove the type from the buffer
 		ACE_OS::sprintf(data, "%s", buffer + 2);
-		return(type);
+		return type;
 	}
 }
 
@@ -104,7 +104,7 @@ int GetMessageType(char* data) {
 char *StoreName[3];
 #define Address1 ACE_DEFAULT_BASE_ADDR
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
+int main(int argc, char** argv) {
 	ACE_MMAP_Memory_Pool_Options* options[3];
 	int index;
 	StoreName[0]=(char*)"Exercise_7a-store.0";

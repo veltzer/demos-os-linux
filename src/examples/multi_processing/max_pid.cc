@@ -28,7 +28,7 @@ using namespace std;
  * - https://stackoverflow.com/questions/6294133/maximum-pid-in-linux
  */
 
-int main ()
-{
+int main() {
 	cout << "pid_t max = " << boost::integer_traits<pid_t>::const_max << endl;
+	return EXIT_SUCCESS;
 }

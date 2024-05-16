@@ -86,11 +86,11 @@ int Request_Handler::handle_input(ACE_HANDLE fd) {
 		if (ACE_OS::strcmp(buffer, ACE_TEXT("shutdown"))==0) {
 			ACE_Reactor::instance()->end_reactor_event_loop();
 		}
-		return(0);
+		return 0;
 	} else {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Request_Handler: 0x%x peer closed (0x%x)\n"), this, fd));
 	}
-	return(-1);
+	return -1;
 }
 
 int Request_Handler::handle_close(ACE_HANDLE fd, ACE_Reactor_Mask) {
@@ -99,13 +99,13 @@ int Request_Handler::handle_close(ACE_HANDLE fd, ACE_Reactor_Mask) {
 		ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) Handler 0x%x: Expected %d messages; got %d\n"), this, cli_req_no, this->nr_msgs_rcvd_));
 	}
 	this->destroy();
-	return(0);
+	return 0;
 }
 
 // Listing 2 code/ch16
 static int reactor_event_hook(ACE_Reactor *) {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) handling events ....\n")));
-	return(0);
+	return 0;
 }
 
 class ServerTP:public ACE_Task_Base {
@@ -117,7 +117,7 @@ public:
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("(%t) %p\n"), ACE_TEXT("Error handling events")), 0);
 		}
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Done handling events.\n")));
-		return(0);
+		return 0;
 	}
 };
 // Listing 2
@@ -136,7 +136,7 @@ public:
 			send_work_to_server(buf);
 		}
 		shut_down();
-		return(0);
+		return 0;
 	}
 
 private:
@@ -179,7 +179,7 @@ private:
 	ACE_INET_Addr addr_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_TP_Reactor sr;
 	ACE_Reactor new_reactor(&sr);
 	ACE_Reactor::instance(&new_reactor);

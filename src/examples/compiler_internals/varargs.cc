@@ -50,7 +50,7 @@ int trace(const char *fmt, ...) {
 	int ret;
 	ret=vprintf(fmt, args);
 	__builtin_va_end(args);
-	return(ret);
+	return ret;
 }
 
 int trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));

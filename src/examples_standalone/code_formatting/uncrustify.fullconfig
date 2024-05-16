@@ -169,8 +169,8 @@ indent_col1_comment                      { False, True }
 
 indent_label                             Number
   How to indent goto labels
-   >0 : absolute column where 1 is the leftmost column
-   <=0 : subtract from brace indent
+   >0:absolute column where 1 is the leftmost column
+   <=0:subtract from brace indent
 
 indent_access_spec                       Number
   Same as indent_label, but for access specifiers that are followed by a colon
@@ -562,7 +562,7 @@ sp_after_oc_colon                        { Ignore, Add, Remove, Force }
 
 sp_before_oc_colon                       { Ignore, Add, Remove, Force }
   Add or remove space before the colon in message specs
-  '-(int) f: (int) x;' vs '-(int) f : (int) x;'
+  '-(int) f: (int) x;' vs '-(int) f:(int) x;'
 
 sp_after_send_oc_colon                   { Ignore, Add, Remove, Force }
   Add or remove space after the colon in message specs
@@ -603,10 +603,10 @@ sp_after_oc_block_caret                  { Ignore, Add, Remove, Force }
   '^int (int arg){...}' vs. '^ int (int arg){...}'
 
 sp_cond_colon                            { Ignore, Add, Remove, Force }
-  Add or remove space around the ':' in 'b ? t : f'
+  Add or remove space around the ':' in 'b ? t:f'
 
 sp_cond_question                         { Ignore, Add, Remove, Force }
-  Add or remove space around the '?' in 'b ? t : f'
+  Add or remove space around the '?' in 'b ? t:f'
 
 sp_case_label                            { Ignore, Add, Remove, Force }
   Fix the spacing between 'case' and the label. Only 'ignore' and 'force' make sense here.
@@ -1108,7 +1108,7 @@ pos_compare                              { Ignore, Lead, Trail }
   The position of comparison operators in wrapped expressions
 
 pos_conditional                          { Ignore, Lead, Trail }
-  The position of conditional (b ? t : f) operators in wrapped expressions
+  The position of conditional (b ? t:f) operators in wrapped expressions
 
 pos_comma                                { Ignore, Lead, Trail }
   The position of the comma in wrapped expressions

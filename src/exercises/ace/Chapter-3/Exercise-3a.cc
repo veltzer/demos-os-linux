@@ -49,13 +49,13 @@ public:
 		ACE_DEBUG((LM_DEBUG, "Obtaining a status_update in thread of control"));
 		// Simulate time to send message and get status.
 		ACE_OS::sleep(2);
-		return(next_result_id());
+		return next_result_id();
 	}
 
 private:
 	int next_result_id(void) {
 		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::next_cmd_id"));
-		return(status_result_++);
+		return status_result_++;
 	}
 	int status_result_;
 };
@@ -70,7 +70,7 @@ public:
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Entered call\n")));
 		// status_update with the controller.
 		this->returnVal_.set(this->controller_.status_update());
-		return(0);
+		return 0;
 	}
 
 private:
@@ -82,7 +82,7 @@ class ExitMethod:public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
-		return(-1);
+		return -1;
 	}
 };
 
@@ -105,12 +105,12 @@ public:
 				break;
 			}
 		}
-		return(0);
+		return 0;
 	}
 	int enqueue(ACE_Method_Request *request) {
 		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("In Scheduler::enqueue\n")));
-		return(this->activation_queue_.enqueue(request));
+		return this->activation_queue_.enqueue(request);
 	}
 
 private:
@@ -131,7 +131,7 @@ public:
 		this->scheduler_.enqueue(new StatusUpdate(this->controller_, result));
 
 		// Return Future to the client.
-		return(result);
+		return result;
 	}
 	// FUZZ: disable check_for_lack_ACE_OS
 	void exit(void) {
@@ -146,7 +146,7 @@ private:
 	HA_ControllerAgent controller_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_Read_Buffer rb(ACE_STDIN);
 	HA_ControllerAgentProxy controller;
 	int counter=0;

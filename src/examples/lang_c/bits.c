@@ -35,5 +35,5 @@ int main(int argc, char** argv, char** envp) {
 	printf("COMB(0x800,%d) is %d\n", cone, COMB(0x800, cone));
 	printf("COMB(0x801,%d) is %d\n", cone, COMB(0x801, cone));
 	printf("COMB(%d,%d) is %d\n", one, two, COMB(one, two));
-	return(0);
+	return 0;
 }

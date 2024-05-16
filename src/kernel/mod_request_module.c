@@ -28,8 +28,7 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("module demos how to insmod one module from another");
 
 /* our own functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	PR_DEBUG("start");
 	if (request_module("crc7") > 0)
 		pr_info("looks bad\n");

@@ -4,10 +4,10 @@
 #include <iostream>
 
 aspect World {
-	advice execution("void hello()") : before() {
+	advice execution("void hello()"):before() {
 		std::cout << "before" << std::endl;
 	}
-	advice execution("void hello()") : after() {
+	advice execution("void hello()"):after() {
 		std::cout << "after" << std::endl;
 	}
 };

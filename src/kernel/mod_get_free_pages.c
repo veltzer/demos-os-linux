@@ -30,8 +30,7 @@ MODULE_DESCRIPTION("This driver shows how to use get_free_pages");
 /* This demo is to show how to get a big size buffer with __get_free_pages
  * and release them...
  */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	int order;
 	unsigned long addr;
 	int i;
@@ -52,8 +51,7 @@ static int __init mod_init(void)
 }
 
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 	PR_DEBUG("start");
 }
 

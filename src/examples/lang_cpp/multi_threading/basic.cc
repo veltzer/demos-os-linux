@@ -25,8 +25,7 @@
 using namespace std;
 
 // The function we want to execute on the new thread.
-void task(string id)
-{
+void task(string id) {
 	int counter = 0;
 	while(true) {
 		cout << id << " " << counter++ << endl;
@@ -34,7 +33,7 @@ void task(string id)
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// Constructs threads and runs them. Does not block execution.
 	thread t1(task, "one");
 	thread t2(task, "two");

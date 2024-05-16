@@ -43,8 +43,7 @@ typedef unsigned long longest_t;
  *
  */
 template<longest_t N>
-class bin
-{
+class bin {
 public:
 	enum {
 		value = (N % 8) + (bin<N / 8>::value << 1)
@@ -56,8 +55,7 @@ public:
  *
  */
 template<>
-class bin<0>
-{
+class bin<0> {
 public:
 	enum {
 		value = 0
@@ -75,7 +73,7 @@ public:
  * Tests
  *
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	assert(binary(11)==3);
 	assert(binary(111)==7);
 	assert(binary(1111)==15);

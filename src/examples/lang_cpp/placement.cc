@@ -50,7 +50,7 @@ public:
 		val=ival;
 	}
 
-	void *operator new(size_t size, double val) {
+	void *operator new(size_t size, double) {
 		std::cout << "in new operator" << std::endl;
 		std::cout << "size is " << size << std::endl;
 		void *pointer=malloc(size);
@@ -59,7 +59,7 @@ public:
 		// will be called and will override it
 		// A *p=(A *)pointer;
 		// p->val=val;
-		return(pointer);
+		return pointer;
 	}
 
 	// this is for allocating arrays, the size that you get
@@ -69,7 +69,7 @@ public:
 		std::cout << "size is " << size << std::endl;
 		void *pointer=malloc(size);
 		std::cout << "pointer is " << pointer << std::endl;
-		return(pointer);
+		return pointer;
 	}
 
 	// notice that this does NOT get called...
@@ -85,7 +85,7 @@ public:
 		// void *pointer=new char[size];
 		void *pointer=malloc(size);
 		std::cout << "pointer is " << pointer << std::endl;
-		return(pointer);
+		return pointer;
 	}
 
 	void operator delete(void *pointer) {
@@ -95,7 +95,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "heap no arguments example" << std::endl;
 	A* a=new A();
 

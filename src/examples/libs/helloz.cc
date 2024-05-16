@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lz
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char *source="Merry had a little lamb";
 	unsigned long sourcelen=strlen(source);
 	unsigned long destlen=100;
@@ -36,7 +36,7 @@ int main(int argc, char** argv, char** envp) {
 	int code=compress2(dest, &destlen, (const unsigned char *)source, sourcelen, Z_DEFAULT_COMPRESSION);
 	if (code!=Z_OK) {
 		printf("compress failed with code [%d]\n", code);
-		return(1);
+		return EXIT_FAILURE;
 	}
 	printf("result is [%s]\n", dest);
 	return EXIT_SUCCESS;

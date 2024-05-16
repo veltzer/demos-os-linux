@@ -27,6 +27,6 @@ template<class T> class A {
 			for(int i=0;i<it;i++) {
 				sum+=i;
 			}
-			return(sum);
+			return sum;
 		}
 };

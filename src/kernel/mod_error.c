@@ -25,13 +25,11 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("module with error in the initialisation process");
 
 /* init/exit functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	return -1;
 }
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 }
 
 /* declaration of init/cleanup functions of this module */

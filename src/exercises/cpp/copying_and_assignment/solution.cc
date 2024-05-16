@@ -21,8 +21,7 @@
 #include <cstring>
 #include <stdlib.h>
 
-class string
-{
+class string {
 public:
 	string():m_data(nullptr) {}
 

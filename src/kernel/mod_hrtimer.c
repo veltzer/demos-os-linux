@@ -39,14 +39,12 @@ MODULE_DESCRIPTION("Demo of the high resolution timer API");
 
 static struct hrtimer hr_timer;
 
-static enum hrtimer_restart my_hrtimer_callback(struct hrtimer *timer)
-{
+static enum hrtimer_restart my_hrtimer_callback(struct hrtimer *timer) {
 	pr_info("%s called (%ld).\n", __func__, jiffies);
 	return HRTIMER_NORESTART;
 }
 
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	ktime_t ktime;
 	unsigned long delay_in_ms = 200L;
 
@@ -60,8 +58,7 @@ static int __init mod_init(void)
 	return 0;
 }
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 	int ret;
 
 	ret = hrtimer_cancel(&hr_timer);

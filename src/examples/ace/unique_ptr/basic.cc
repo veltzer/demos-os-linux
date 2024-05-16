@@ -43,7 +43,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	std::unique_ptr<A> a(new A("a"));
 	new A("b");
 	return EXIT_SUCCESS;

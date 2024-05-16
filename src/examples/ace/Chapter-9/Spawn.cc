@@ -56,7 +56,7 @@ public:
 		}
 		// Dump whatever happened.
 		this->dumpRun();
-		return(0);
+		return 0;
 	}
 
 private:
@@ -73,7 +73,7 @@ private:
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%C\n"), buf));
 		}
 		ACE_OS::close(this->outputfd_);
-		return(0);
+		return 0;
 	}
 
 	// prepare() is inherited from ACE_Process.
@@ -82,13 +82,13 @@ private:
 
 		options.command_line(ACE_TEXT("%s 1"), this->programName_);
 		if ((this->setStdHandles(options)==-1) || (this->setEnvVariable(options)==-1)) {
-			return(-1);
+			return -1;
 		}
 #if !defined (ACE_WIN32) && !defined (ACE_LACKS_PWD_FUNCTIONS)
-		return(this->setUserID(options));
+		return this->setUserID(options);
 
 #else
-		return(0);
+		return 0;
 #endif
 	}
 
@@ -97,12 +97,12 @@ private:
 
 		ACE_OS::unlink("output.dat");
 		this->outputfd_=ACE_OS::open("output.dat", O_RDWR | O_CREAT);
-		return(options.set_handles(ACE_STDIN, ACE_STDOUT, this->outputfd_));
+		return options.set_handles(ACE_STDIN, ACE_STDOUT, this->outputfd_);
 	}
 
 	int setEnvVariable(ACE_Process_Options& options) {
 		ACE_TRACE("Manager::setEnvVariables");
-		return(options.setenv(ACE_TEXT("PRIVATE_VAR=/that/seems/to/be/it")));
+		return options.setenv(ACE_TEXT("PRIVATE_VAR=/that/seems/to/be/it"));
 	}
 
 #if !defined (ACE_LACKS_PWD_FUNCTIONS)
@@ -110,10 +110,10 @@ private:
 		ACE_TRACE("Manager::setUserID");
 		passwd *pw=ACE_OS::getpwnam("nobody");
 		if (pw==0) {
-			return(-1);
+			return -1;
 		}
 		options.seteuid(pw->pw_uid);
-		return(0);
+		return 0;
 	}
 #endif	/* !ACE_LACKS_PWD_FUNCTIONS */
 
@@ -140,7 +140,7 @@ public:
 		ACE_OS::write(ACE_STDOUT, str, ACE_OS::strlen(str));
 		this->readLine(str);
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P) Executed: %C\n"), str));
-		return(0);
+		return 0;
 	}
 
 	void showWho(void) {
@@ -160,25 +160,25 @@ public:
 			if (retval > 0) {
 				if (str[i]=='\n') {
 					str[++i]=0;
-					return(str);
+					return str;
 				}
 				i++;
 			} else {
-				return(str);
+				return str;
 			}
 		}
 		return NULL;
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	if (argc > 1) {
 		// Slave mode
 		Slave s;
-		return(s.doWork());
+		return s.doWork();
 	}
 	// Else, Master mode
 	Manager m(argv[0]);
 
-	return(m.doWork());
+	return m.doWork();
 }

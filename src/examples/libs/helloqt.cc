@@ -42,5 +42,5 @@ int main(int argc, char** argv, char** envp) {
 
 	QObject::connect(&hello, SIGNAL(clicked()), &app, SLOT(quit()));
 	hello.show();
-	return(app.exec());
+	return app.exec();
 }

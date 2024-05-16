@@ -66,8 +66,7 @@ static unsigned int hook_func(
 	void *priv,
 	struct sk_buff *skb,
 	const struct nf_hook_state *state
-)
-{
+) {
 	struct iphdr *ip_header; /* IP header struct */
 	struct udphdr *udp_header; /* UDP header struct */
 	struct icmphdr *icmp_header; /* ICMP Header */
@@ -104,7 +103,7 @@ static unsigned int hook_func(
 		} else
 			return NF_DROP;
 	}
-	return filter_value == 0 ? NF_ACCEPT : NF_DROP;
+	return filter_value == 0 ? NF_ACCEPT:NF_DROP;
 }
 
 #ifdef DO_PROC

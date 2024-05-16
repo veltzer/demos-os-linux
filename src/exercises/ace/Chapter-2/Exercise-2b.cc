@@ -59,15 +59,15 @@ public:
 			if (thr_mgr.spawn(ACE_THR_FUNC(consumer), (void *)&msg_queue1, THR_NEW_LWP | THR_DETACHED)==-1) {
 				ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn consumer1"), 1);
 			}
-			return(1);
+			return 1;
 		} else {
 			if (thr_mgr.spawn(ACE_THR_FUNC(consumer), (void *)&msg_queue2, THR_NEW_LWP | THR_DETACHED)==-1) {
 				ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn consumer2"), 1);
 			}
-			return(1);
+			return 1;
 		}
 		// Keep yourself registered with the Reactor.
-		return(0);
+		return 0;
 	}
 };
 
@@ -84,7 +84,7 @@ static void *consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	// Read ONLY one message and return !!!
 	ACE_Message_Block *mb;
 	if (msg_queue->dequeue_head(mb)==-1) {
-		return(0);
+		return 0;
 	}
 	size_t length=mb->length();
 	// Skip the type and delay
@@ -102,7 +102,7 @@ static void *consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	if (!length) {
 		done++;
 	}
-	return(0);
+	return 0;
 }
 
 // The producer reads data from the stdin stream, creates a message,
@@ -199,10 +199,10 @@ static void *producer(void*) {
 	}
 	// finished ? then return
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("end of producer: thread=%t Line:%l\n")));
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// Spawn off one thread that copies stdin to stdout in order of the size of each line.
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("main: thread=%t Line:%l\n")));
 	if (thr_mgr.spawn(ACE_THR_FUNC(producer), (void *)NULL, THR_NEW_LWP | THR_DETACHED)==-1) {

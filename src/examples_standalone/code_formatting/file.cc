@@ -47,7 +47,7 @@ public:
 
 	// Get this handler's I/O handle.
 	virtual ACE_HANDLE get_handle(void) const {
-		return(this->acceptor_.get_handle());
+		return this->acceptor_.get_handle();
 	}
 
 	// Called when a connection is ready to accept.
@@ -63,7 +63,7 @@ protected:
 class ClientService:public ACE_Event_Handler {
 public:
 	ACE_SOCK_Stream& peer(void) {
-		return(this->sock_);
+		return this->sock_;
 	}
 
 	// FUZZ: disable check_for_lack_ACE_OS
@@ -73,7 +73,7 @@ public:
 
 	// Get this handler's I/O handle.
 	virtual ACE_HANDLE get_handle(void) const {
-		return(this->sock_.get_handle());
+		return this->sock_.get_handle();
 	}
 
 	// Called when input is available from the client.
@@ -98,7 +98,7 @@ int ClientAcceptor::open(const ACE_INET_Addr& listen_addr) {
 	if(this->acceptor_.open(listen_addr, 1)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), -1);
 	}
-	return(this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK));
+	return this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 }
 
 int ClientAcceptor::handle_input(ACE_HANDLE) {
@@ -114,7 +114,7 @@ int ClientAcceptor::handle_input(ACE_HANDLE) {
 	if(client->open()==-1) {
 		client->handle_close(ACE_INVALID_HANDLE, 0);
 	}
-	return(0);
+	return 0;
 }
 
 // Listing 3
@@ -126,7 +126,7 @@ int ClientAcceptor::handle_close(ACE_HANDLE, ACE_Reactor_Mask) {
 		this->reactor()->remove_handler(this, m);
 		this->acceptor_.close();
 	}
-	return(0);
+	return 0;
 }
 
 // Listing 4
@@ -138,7 +138,7 @@ int ClientService::open(void) {
 	if((this->sock_.get_remote_addr(peer_addr)==0) && (peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN)==0)) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 	}
-	return(this->reactor()->register_handler (this, ACE_Event_Handler::READ_MASK));
+	return this->reactor()->register_handler (this, ACE_Event_Handler::READ_MASK);
 }
 
 // Listing 7
@@ -150,13 +150,13 @@ int ClientService::handle_input(ACE_HANDLE) {
 	ssize_t recv_cnt, send_cnt;
 	if((recv_cnt=this->sock_.recv(buffer, sizeof(buffer)))<=0) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection closed\n")));
-		return(-1);
+		return -1;
 	}
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) got %.*C from client\n"), static_cast<int>(recv_cnt), buffer));
 
 	send_cnt=this->sock_.send(buffer, static_cast<size_t>(recv_cnt));
 	if(send_cnt==recv_cnt) {
-		return(0);
+		return 0;
 	}
 	if((send_cnt==-1) && (ACE_OS::last_error()!=EWOULDBLOCK)) {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")), 0);
@@ -173,12 +173,12 @@ int ClientService::handle_input(ACE_HANDLE) {
 	if(this->output_queue_.enqueue_tail(mb, &nowait)==-1) {
 		ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p; discarding data\n"), ACE_TEXT("enqueue failed")));
 		mb->release();
-		return(0);
+		return 0;
 	}
 	if(output_off) {
-		return(this->reactor()->register_handler (this, ACE_Event_Handler::WRITE_MASK));
+		return this->reactor()->register_handler (this, ACE_Event_Handler::WRITE_MASK);
 	}
-	return(0);
+	return 0;
 }
 
 // Listing 8
@@ -201,7 +201,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 		}
 		mb->release();
 	}
-	return((this->output_queue_.is_empty()) ? -1:0);
+	return (this->output_queue_.is_empty()) ? -1:0;
 }
 
 // Listing 9
@@ -209,14 +209,14 @@ int ClientService::handle_output(ACE_HANDLE) {
 // Listing 10 code/ch07
 int ClientService::handle_close(ACE_HANDLE, ACE_Reactor_Mask mask) {
 	if(mask==ACE_Event_Handler::WRITE_MASK) {
-		return(0);
+		return 0;
 	}
 	mask=ACE_Event_Handler::ALL_EVENTS_MASK | ACE_Event_Handler::DONT_CALL;
 	this->reactor()->remove_handler(this, mask);
 	this->sock_.close();
 	this->output_queue_.flush();
 	delete this;
-	return(0);
+	return 0;
 }
 
 // Listing 10
@@ -236,7 +236,7 @@ LoopStopper::LoopStopper(int signum) {
 
 int LoopStopper::handle_signal(int, siginfo_t *, ucontext_t *) {
 	ACE_Reactor::instance()->end_reactor_event_loop();
-	return(0);
+	return 0;
 }
 
 class LogSwitcher:public ACE_Event_Handler {
@@ -275,7 +275,7 @@ int LogSwitcher::handle_signal(int signum, siginfo_t *, ucontext_t *) {
 		this->on_off_=signum==this->on_sig_;
 		ACE_Reactor::instance()->notify(this);
 	}
-	return(0);
+	return 0;
 }
 
 int LogSwitcher::handle_exception(ACE_HANDLE) {
@@ -284,10 +284,10 @@ int LogSwitcher::handle_exception(ACE_HANDLE) {
 	} else {
 		ACE_LOG_MSG->set_flags(ACE_Log_Msg::SILENT);
 	}
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
+int main() {
 	// ACE_INET_Addr port_to_listen("HAStatus");
 	const unsigned int port=8081;
 	ACE_INET_Addr port_to_listen(port);
@@ -299,7 +299,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
 
 	acceptor.reactor(ACE_Reactor::instance());
 	if(acceptor.open(port_to_listen)==-1) {
-		return(1);
+		return EXIT_FAILURE;
 	}
 	ACE_Reactor::instance()->run_reactor_event_loop();
 	return EXIT_SUCCESS;

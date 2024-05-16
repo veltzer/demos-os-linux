@@ -36,7 +36,7 @@ void __attribute__((noinline)) foo(void) {
 	ACE_DEBUG((LM_INFO, ACE_TEXT("%I(1)Is this info seen?\n")));
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int, char** argv) {
 	// This will be directed to stderr (the default ACE_Log_Msg behavior).
 	ACE_TRACE("main");
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("%IHi Mom\n")));

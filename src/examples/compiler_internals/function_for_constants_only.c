@@ -28,7 +28,7 @@
  * a void* instead of an int.
  */
 static inline int _sum(int i) {
-	return(i *(i + 1) / 2);
+	return i *(i + 1) / 2;
 }
 
 #define sum1(i)	\
@@ -38,14 +38,14 @@ static inline int _sum(int i) {
 	(void)0)
 
 #define sum2(i)	\
-	(__builtin_constant_p(i) ? _sum(i) : 0)
+	(__builtin_constant_p(i) ? _sum(i):0)
 
 /*
  * This inline version does not work because of bug in gcc whereby __builtin_constant_p(i) is not a constant
  */
 
 static inline int sum3(int i) {
-	return __builtin_constant_p(i) ? _sum(i) : 0;
+	return __builtin_constant_p(i) ? _sum(i):0;
 }
 
 int main(int argc, char** argv, char** envp) {
@@ -61,5 +61,5 @@ int main(int argc, char** argv, char** envp) {
 	printf("sum2 for j is %d\n", sum2(j));
 	// this one just returns bad value
 	printf("sum3 for j is %d\n", sum3(j));
-	return(0);
+	return EXIT_SUCCESS;
 }

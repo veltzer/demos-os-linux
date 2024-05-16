@@ -39,8 +39,7 @@ static struct device *my_device;
  * This is the ioctl implementation.
  */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg)
-{
+		unsigned long arg) {
 	void *ptr = NULL;
 	unsigned long addr = -1;
 	dma_addr_t dma_handle;

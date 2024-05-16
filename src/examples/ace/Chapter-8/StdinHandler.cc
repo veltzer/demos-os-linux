@@ -41,14 +41,14 @@ public:
 	// Initialize Consumer.
 	virtual int open(void *) {
 		// <activate> is inherited from class Task.
-		return(activate(THR_BOUND));
+		return activate(THR_BOUND);
 	}
 
 	// Enqueue the message on the Message_Queue
 	// for subsequent processing in <svc>.
 	virtual int put(ACE_Message_Block *mb, ACE_Time_Value *tv=0) {
 		// <putq> is inherited from class Task.
-		return(putq(mb, tv));
+		return putq(mb, tv);
 	}
 
 	// Receive message from producer and print to stdout.
@@ -61,7 +61,7 @@ public:
 	// Initialize Producer.
 	virtual int open(void *) {
 		// activate() is inherited from class Task.
-		return(activate(THR_BOUND));
+		return activate(THR_BOUND);
 	}
 
 	// Read data from stdin and pass to consumer.
@@ -93,7 +93,7 @@ int Producer::svc(void) {
 			this->put_next(mb);
 		}
 	}
-	return(0);
+	return 0;
 }
 
 int Consumer::svc(void) {
@@ -114,10 +114,10 @@ int Consumer::svc(void) {
 			break;
 		}
 	}
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// Control hierarchically-related active objects.
 	MT_Stream stream;
 	// All processing is performed in the

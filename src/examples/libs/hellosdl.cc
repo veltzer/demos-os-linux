@@ -60,7 +60,7 @@ int resizeWindow(int width, int height) {
 	gluPerspective(45.0f, ratio, 0.1f, 100.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	return(true);
+	return true;
 }
 
 int initGL() {
@@ -70,7 +70,7 @@ int initGL() {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	return(true);
+	return true;
 }
 
 int drawGLScene() {
@@ -95,7 +95,7 @@ int drawGLScene() {
 	glVertex3f(1.0f, -1.0f, 0.0f);	/* Bottom Right Of The Quad */
 	glEnd();/* Done Drawing The Quad */
 	SDL_GL_SwapBuffers();
-	return(true);
+	return true;
 }
 
 int main(int argc, char** argv, char** envp) {

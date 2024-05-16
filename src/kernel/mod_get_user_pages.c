@@ -58,24 +58,21 @@ static unsigned int nr_pages;
  * This is the ioctl implementation.
  */
 
-static inline void pages_unlock(void)
-{
+static inline void pages_unlock(void) {
 	unsigned int i;
 	/* unlock the pages */
 	for (i = 0; i < nr_pages; i++)
 		unlock_page(pages[i]);
 }
 
-static inline void pages_lock(void)
-{
+static inline void pages_lock(void) {
 	unsigned int i;
 	/* unlock the pages */
 	for (i = 0; i < nr_pages; i++)
 		lock_page(pages[i]);
 }
 
-static inline void pages_dirty(void)
-{
+static inline void pages_dirty(void) {
 	unsigned int i;
 
 	/* set the pages as dirty */
@@ -83,8 +80,7 @@ static inline void pages_dirty(void)
 		SetPageDirty(pages[i]);
 }
 
-static inline void pages_unmap(void)
-{
+static inline void pages_unmap(void) {
 	unsigned int i;
 
 	/* set the pages as dirty */
@@ -95,8 +91,7 @@ static inline void pages_unmap(void)
 	}
 }
 
-static inline void pages_reserve(void)
-{
+static inline void pages_reserve(void) {
 	unsigned int i;
 	/* set the pages as reserved */
 	for (i = 0; i < nr_pages; i++)
@@ -104,8 +99,7 @@ static inline void pages_reserve(void)
 }
 
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg)
-{
+		unsigned long arg) {
 	/* this is the buffer which will hold the data of the buffer from user
 	 * space...
 	 */

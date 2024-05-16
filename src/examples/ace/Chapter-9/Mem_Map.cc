@@ -29,7 +29,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int, char** argv) {
 	ACE_HANDLE srcHandle=ACE_OS::open(argv[1], O_RDONLY);
 	ACE_ASSERT(srcHandle!=ACE_INVALID_HANDLE);
 	ACE_Mem_Map srcMap(srcHandle, static_cast<size_t>(-1), PROT_READ, ACE_MAP_PRIVATE);

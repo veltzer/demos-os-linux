@@ -36,7 +36,7 @@ foo giveMeFoo(void) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wuninitialized"
 	// cppcheck-suppress uninitvar
-	return(f);
+	return f;
 #pragma GCC diagnostic pop
 }
 

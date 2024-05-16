@@ -38,16 +38,16 @@
  */
 
 typedef struct _s1 {
-	unsigned int f1 : 4;
-	unsigned int f2 : 3;
-	unsigned int f3 : 2;
+	unsigned int f1:4;
+	unsigned int f2:3;
+	unsigned int f3:2;
 } s1;
 
 typedef struct _s2 {
-	unsigned int f1 : 4;
-	unsigned int f2 : 4;
-	unsigned int f3 : 8;
-	unsigned int f4 : 16;
+	unsigned int f1:4;
+	unsigned int f2:4;
+	unsigned int f3:8;
+	unsigned int f4:16;
 } __attribute__ ((__packed__)) s2;
 
 int main(int argc, char** argv, char** envp) {

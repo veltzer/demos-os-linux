@@ -64,11 +64,11 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// const unsigned int size=1024*1024;
 	// char* buf1=(char*)malloc(size);
 	// char* buf2=(char*)malloc(size);
 	// A::performance_hog_function(buf1,buf2,size);
 	A::performance_hog_function_cpu();
-	return(0);
+	return EXIT_SUCCESS;
 }

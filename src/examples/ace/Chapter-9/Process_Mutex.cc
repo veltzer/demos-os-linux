@@ -60,7 +60,7 @@ private:
 // Listing 1
 
 // Listing 0 code/ch10
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	if (argc > 1) {
 		// Run as the child.
 		// Create or get the global mutex.
@@ -86,7 +86,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("processb wait")), -1);
 		}
 	}
-	return(0);
+	return 0;
 }
 
 // Listing 0

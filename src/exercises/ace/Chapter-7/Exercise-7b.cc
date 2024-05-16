@@ -55,13 +55,13 @@ public:
 		// Read message from queue
 		ReadMessage(&msg_queue);
 		ACE_OS::sleep(2);
-		return(next_result_id());
+		return next_result_id();
 	}
 
 private:
 	int next_result_id(void) {
 		ACE_TRACE(ACE_TEXT("MessageAgent::next_cmd_id"));
-		return(status_result_++);
+		return status_result_++;
 	}
 
 	int status_result_;
@@ -79,7 +79,7 @@ public:
 
 		// message_read with the message.
 		this->returnVal_.set(this->message_.message_read());
-		return(0);
+		return 0;
 	}
 
 private:
@@ -92,7 +92,7 @@ public:
 	virtual int call(void) {
 		// Cause exit.
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Finally reached Future call()\n")));
-		return(-1);
+		return -1;
 	}
 };
 
@@ -113,12 +113,12 @@ public:
 				break;
 			}
 		}
-		return(0);
+		return 0;
 	}
 
 	int enqueue(ACE_Method_Request *request) {
 		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
-		return(this->activation_queue_.enqueue(request));
+		return this->activation_queue_.enqueue(request);
 	}
 
 private:
@@ -135,7 +135,7 @@ public:
 		// Create and enqueue a method request on the scheduler.
 		this->scheduler_.enqueue(new MessageRequest(this->message_, result));
 		// Return Future to the client.
-		return(result);
+		return result;
 	}
 	void exit(void) {
 		ACE_TRACE(ACE_TEXT("MessageAgentProxy::exit"));
@@ -173,13 +173,13 @@ int GetMessageType(char* data) {
 	if(buffer==0) {
 		// return message type zero when EOF is reached
 		// Return 0 as message type
-		return(0);
+		return 0;
 	} else {
 		int type;
 		sscanf(buffer, "%d", &type);
 		// Remove the type from the buffer
 		ACE_OS::sprintf(data, "%s", buffer + 2);
-		return(type);
+		return type;
 	}
 }
 
@@ -232,13 +232,13 @@ int SendMessage(char* buffer, int type) {
 		}
 		break;
 	}
-	return(0);
+	return 0;
 }
 
 int ReadMessage(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	ACE_Message_Block *mb;
 	if (msg_queue->dequeue_head(mb)==-1) {
-		return(1);
+		return 1;
 	}
 	int length=ACE_Utils::truncate_cast<int> (mb->length());
 	int type=mb->msg_type();
@@ -249,10 +249,10 @@ int ReadMessage(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	// Free the Memory Block
 	mb->release();
 
-	return(type);
+	return type;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	MessageAgentProxy message;
 	// Save place for up to 100 messages. If we are not sure we may use malloc
 	// and have unlimited number.
@@ -280,5 +280,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
 	}
 	ACE_Thread_Manager::instance()->wait();
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Finshed. After waiting for threads\n")));
-	return(0);
+	return 0;
 }

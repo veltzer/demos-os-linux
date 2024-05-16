@@ -77,7 +77,7 @@ static void *consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 			}
 		}
 	}
-	return(0);
+	return 0;
 }
 
 // The producer reads data from the stdin stream, creates a message,
@@ -170,10 +170,10 @@ static void *producer(void*) {
 	}
 	// finished ? then return
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("end of producer: thread=%t Line:%l\n")));
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// Spawn off one thread that copies stdin to stdout in order of the size of each line.
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("main: thread=%t Line:%l\n")));
 	if (thr_mgr.spawn(ACE_THR_FUNC(producer), (void *)NULL, THR_NEW_LWP | THR_DETACHED)==-1) {

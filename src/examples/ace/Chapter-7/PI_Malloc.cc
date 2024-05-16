@@ -52,15 +52,15 @@ public:
 	}
 
 	char *name(void) {
-		return(name_);
+		return name_;
 	}
 
 	int id1(void) {
-		return(id1_);
+		return id1_;
 	}
 
 	int id2(void) {
-		return(id2_);
+		return id2_;
 	}
 
 private:
@@ -95,13 +95,13 @@ int addRecords(void) {
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
 		}
 	}
-	return(0);
+	return 0;
 }
 
 // Backing file where the data is kept.
 #define BACKING_STORE ACE_TEXT("backing2.store")
 
-int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
+int main(int argc, char**) {
 	if (argc > 1) {
 		ACE_MMAP_Memory_Pool_Options options(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::ALWAYS_FIXED);
 

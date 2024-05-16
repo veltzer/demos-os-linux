@@ -36,8 +36,7 @@ static struct device *my_device;
 /*
  * The open implementation.
  */
-static int kern_open(struct inode *inode, struct file *filp)
-{
+static int kern_open(struct inode *inode, struct file *filp) {
 	/* you can use dev_printk like you would printk only with the
 	 * added device...
 	 */

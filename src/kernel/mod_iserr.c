@@ -42,8 +42,7 @@ MODULE_DESCRIPTION("Showing how IS_ERR_VALUE works");
  * Have a look at $KERNEL_SOURCES/include/linux/err.h for more details.
  */
 
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	int i;
 
 	for (i = -10; i < 10; i++) {
@@ -59,8 +58,7 @@ static int __init mod_init(void)
 	return 0;
 }
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 }
 
 module_init(mod_init);

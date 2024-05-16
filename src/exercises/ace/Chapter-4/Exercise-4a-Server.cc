@@ -36,13 +36,13 @@ int GetMessageType(char* data) {
 	char* buffer=rb.read('\n');
 	if(buffer==0) {
 		// return message type zero when EOF is reached
-		return(0);
+		return 0;
 	} else {
 		int type;
 		sscanf(buffer, "%d", &type);
 		// Remove the type from the buffer
 		ACE_OS::sprintf(data, "%s", buffer+2);
-		return(type);
+		return type;
 	}
 }
 
@@ -69,10 +69,10 @@ int MakeConnection(ACE_SOCK_Acceptor *acceptor, ACE_INET_Addr *port_to_listen, A
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 	}
 #endif	/* NO_TIMEOUT */
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_INET_Addr port_to_listen[3];
 	ACE_SOCK_Acceptor acceptor[3];
 	ACE_INET_Addr peer_addr[3];

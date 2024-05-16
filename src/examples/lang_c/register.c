@@ -40,7 +40,7 @@ int main(int argc, char** argv, char** envp) {
 	for(i=0; i<100; i++) {
 		printf("i is %d\n", i);
 		int reg;
-		asm volatile ("movl %%ebx, %0;" : "=r" (reg));
+		asm volatile ("movl %%ebx, %0;":"=r" (reg));
 		printf("reg is %d\n", reg);
 	}
 	return EXIT_SUCCESS;

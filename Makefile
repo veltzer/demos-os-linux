@@ -122,7 +122,7 @@ endif # DO_ADD_STD
 
 # removed these flags
 # -Wno-unused-parameter -Wno-missing-field-initializers
-WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros
+WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros -Wno-unused-parameter
 CXXFLAGS:=$(CXXFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 CFLAGS:=$(CFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 
@@ -417,9 +417,18 @@ check_check_header:
 	$(Q)git grep include -- "*.c" "*.cc" "*.h" "*.hh" | grep us_helper | pymakehelper no_err grep CHECK
 check_return:
 	$(info doing [$@])
-	$(Q)git grep "return(" -- "*.c" "*.cc" "*.h" "*.hh"
+	$(Q)pymakehelper no_err git grep -P "\s+return\(" -- "*.c" "*.cc" "*.h" "*.hh"
+check_braces:
+	$(info doing [$@])
+	$(Q)pymakehelper no_err git grep -P -l '^\{' -- "src/**"
+check_acetmain:
+	$(info doing [$@])
+	$(Q)pymakehelper no_err git grep ACE_TMAIN -- "src/**"
+check_colons:
+	$(info doing [$@])
+	$(Q)pymakehelper no_err git grep " : " -- "src/**"
 .PHONY: check_all 
-check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return scripts/check_have_solutions.py
+check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return check_braces check_acetmain check_colons scripts/check_have_solutions.py
 	$(info doing [$@])
 	$(Q)scripts/check_have_solutions.py
 

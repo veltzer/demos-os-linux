@@ -65,7 +65,7 @@ public:
 		if (new_stream_.close()==-1) {
 			ACE_ERROR((LM_ERROR, "%p\n", "close"));
 		}
-		return(0);
+		return 0;
 	}
 
 // Use the acceptor component peer_acceptor_ to accept the connection

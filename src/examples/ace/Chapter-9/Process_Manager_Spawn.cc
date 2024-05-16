@@ -29,7 +29,7 @@
 
 static const int NCHILDREN=2;
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	if (argc > 1) {
 		// Running as a child.
 		ACE_OS::sleep(10);
@@ -68,5 +68,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 		// children to exit.
 		pm->wait(0);
 	}
-	return(0);
+	return 0;
 }

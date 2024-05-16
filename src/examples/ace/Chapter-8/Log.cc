@@ -17,7 +17,7 @@
  */
 
 #include <firstinclude.h>
-#include <ace/Log_Msg.h>// for ACE_DEBUG(), ACE_LOG_MSG, ACE_MAIN, ACE_TCHAR
+#include <ace/Log_Msg.h>// for ACE_DEBUG(), ACE_LOG_MSG, ACE_TCHAR
 #include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
@@ -28,7 +28,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int, char** argv) {
 	// log to stderr
 	ACE_DEBUG((LM_INFO, ACE_TEXT("use [tail /var/log/syslog] to see next entries\n")));
 	// starting logging to syslog

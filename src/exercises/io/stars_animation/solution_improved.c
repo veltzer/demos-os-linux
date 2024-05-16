@@ -30,7 +30,7 @@ int main(int argc, char** argv, char** envp) {
 	CHECK_INT(scanf("%d", &num), 1);
 	while(true) {
 		int i;
-		for(i=(num-1)*(direction==-1); direction==1 ? i<num-1 : i>=0; i+=direction) {
+		for(i=(num-1)*(direction==-1); direction==1 ? i<num-1:i>=0; i+=direction) {
 			int j;
 			for(j=0; j<num-i-1; j++) {
 				putchar(' ');

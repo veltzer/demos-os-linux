@@ -31,7 +31,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
+int main() {
 	static const ACE_TCHAR options[]=ACE_TEXT(":f:h:");
 	static const ACE_TCHAR cmdline[]=ACE_TEXT("-f /home/managed.cfg -h $HOSTNAME");
 
@@ -66,5 +66,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
 	}
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Config file: %s\n"), config_file));
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Hostname: %s\n"), hostname));
-	return(0);
+	return EXIT_SUCCESS;
 }

@@ -55,7 +55,7 @@ public:
 			MyIndex=1;
 			handle_alert();
 		}
-		return(0);
+		return 0;
 	}
 
 	void handle_alert();
@@ -84,7 +84,7 @@ int DoAccept(long ReceivePort, ACE_SOCK_Stream *peer, ACE_INET_Addr *peer_addr, 
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 	}
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) accept Done %d.\n"), ReceivePort));
-	return(0);
+	return 0;
 }
 
 int ReceiveMessage(ACE_SOCK_Stream *peer) {
@@ -96,14 +96,14 @@ int ReceiveMessage(ACE_SOCK_Stream *peer) {
 	peer->send_n("OK", 3, 0);
 	ACE_OS::sleep(1);
 	peer->close();
-	return(0);
+	return 0;
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	SignalableTask handler;
 	if (argc < 3) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%s: usage: %s Port1 Port2\n"), argv[0], argv[0]));
-		return(1);
+		return 1;
 	}
 	if (argc > 3) {
 		// Running as a child.
@@ -127,7 +127,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 		ACE_OS::sleep(1);
 		if (-1==connector.connect(peer, address_to_listen, &timeout)) {
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%p\n"), ACE_TEXT("(%P|%t) Client %d connect"), MyIndex + 1));
-			return(1);
+			return 1;
 		}
 		sprintf(buffer, "Im a child %d This is My Message.", MyIndex + 1);
 		size_t size=ACE_OS::strlen(buffer);
@@ -173,5 +173,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 		pm->wait(0);
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Parent is terminating.\n")));
 	}
-	return(0);
+	return EXIT_SUCCESS;
 }

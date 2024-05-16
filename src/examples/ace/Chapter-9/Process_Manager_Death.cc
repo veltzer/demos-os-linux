@@ -41,17 +41,17 @@ public:
 		if(++count_==NCHILDREN) {
 			ACE_Reactor::instance()->end_reactor_event_loop();
 		}
-		return(0);
+		return 0;
 	}
 
 private:
 	int count_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	if(argc>1) {
 		// Running as a child.
-		return(0);
+		return 0;
 	}
 	// Instantiate a process manager with space for 10 processes.
 	ACE_Process_Manager pm(10, ACE_Reactor::instance());

@@ -36,8 +36,7 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Module for mb(), rmb(), wmb(), barrier() disassembly");
 
 /* our own functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	mb(); /* comment */
 	rmb();
 	wmb(); /* comment */
@@ -46,8 +45,7 @@ static int __init mod_init(void)
 }
 
 
-static void __exit mod_exit(void)
-{
+static void __exit mod_exit(void) {
 }
 
 /* declaration of init/cleanup functions of this module */

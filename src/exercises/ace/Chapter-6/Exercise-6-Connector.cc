@@ -54,7 +54,7 @@ public:
 		} else {
 			ACE_DEBUG((LM_DEBUG, "(%P|%t) connected to %s\n", remote_addr_.get_host_name()));
 		}
-		return(0);
+		return 0;
 	}
 
 // Close down the connection properly.
@@ -63,7 +63,7 @@ public:
 			ACE_ERROR_RETURN((LM_ERROR, "(%P|%t) %p\n", "close"), -1);
 			return -1;
 		} else {
-			return(0);
+			return 0;
 		}
 	}
 };
@@ -78,17 +78,17 @@ int GetMessageType(char *data) {
 	// return message type zero when EOF is reached
 	if (buffer==0) {
 		// Return 0 as message type
-		return(0);
+		return 0;
 	} else {
 		int type;
 		sscanf(buffer, "%d", &type);
 		ACE_OS::sprintf(data, "%s", buffer + 2);
 		// Remove the type from the buffer
-		return(type);
+		return type;
 	}
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main(int argc, char** argv) {
 	int FinalDelay=4;
 	if (argc < 2) {
 		ACE_DEBUG((LM_DEBUG, "%s: usage %s <hostname> <port_number> [Final delay(sec)]\n", argv[0], argv[0]));

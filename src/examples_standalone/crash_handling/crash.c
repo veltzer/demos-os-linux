@@ -200,8 +200,7 @@ retry_write:
 	or clear the flag if value is 0.
 	Return 0 on success, or -1 on error with errno set. */
 
-int set_cloexec_flag (int desc, int value)
-{
+int set_cloexec_flag (int desc, int value) {
 	int oldflags=fcntl(desc, F_GETFD, 0);
 
 	/* If reading the flags failed, return error indication now. */

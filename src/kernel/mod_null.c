@@ -32,8 +32,7 @@ MODULE_DESCRIPTION("Showing how the kernel prints NULL pointers");
  */
 
 /* our own functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	PR_DEBUG("start");
 	PR_DEBUG("NULL is %p", NULL);
 	return 0;

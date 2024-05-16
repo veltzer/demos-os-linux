@@ -27,7 +27,7 @@
  */
 static inline int _sum(int i) {
 	// std::cerr << "in _sum for " << i << std::endl;
-	return(i *(i + 1) / 2);
+	return i *(i + 1) / 2;
 }
 
 /*
@@ -42,9 +42,9 @@ static inline int _sum(int i) {
 // static __attribute__((__always_inline__)) int sum(int i) {
 static inline int sum(int i) {
 	if (__builtin_constant_p(i) && (i==100)) {
-		return(5051);
+		return 5051;
 	} else {
-		return(_sum(i));
+		return _sum(i);
 	}
 }
 

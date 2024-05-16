@@ -36,8 +36,7 @@ typedef struct mymsgbuf {
 	char mtext[MSGSZ];
 } message_buf;
 
-void doParent(int msqid, long myID)
-{
+void doParent(int msqid, long myID) {
 	char SsubscriberID[8];
 	message_buf sbuf;
 	setbuf(stdin, 0);
@@ -53,8 +52,7 @@ void doParent(int msqid, long myID)
 	}
 }
 
-void doChild(int msqid, long myID)
-{
+void doChild(int msqid, long myID) {
 	while(true) {
 		message_buf rbuf;
 		int msgsize=CHECK_NOT_M1(msgrcv(msqid, &rbuf, MSGSZ+sizeof(long), myID, 0));

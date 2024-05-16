@@ -32,7 +32,7 @@
 void *ClientContext::get_attribute(const char *name) {
 	void* value=0;
 	attributeMap_.find(name, value);
-	return(value);
+	return value;
 }
 
 void ClientContext::set_attribute(const char* name, void* value) {
@@ -48,21 +48,21 @@ public:
 		this->tss_ctx_->set_attribute("thread_id", &tid);
 		while(handle_requests()>0) {
 		}
-		return(0);
+		return 0;
 	}
 	int handle_requests(void) {
 		ACE_thread_t *tid=(ACE_thread_t *)this->tss_ctx_->get_attribute("thread_id");
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Received TSS TID: %u \n"), *tid));
 		// do work.
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Doing some work for thread %t\n")));
-		return(-1);
+		return -1;
 	}
 
 private:
 	ACE_TSS<ClientContext> tss_ctx_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_CommandHandler handler;
 	handler.activate(THR_NEW_LWP | THR_JOINABLE, 5);
 	handler.wait();

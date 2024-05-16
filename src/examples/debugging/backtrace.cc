@@ -155,7 +155,7 @@ int rec_func(unsigned int ncalls) {
 		// print_trace();
 		do_fault();
 	}
-	return(0);
+	return 0;
 }
 // int rec_func(unsigned int ncalls, unsigned int ret) __attribute__((__noinline__));
 

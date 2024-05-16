@@ -56,9 +56,7 @@ static int ioctl_size;
 /*
  * This is the ioctl implementation.
  */
-static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg)
-{
+static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg) {
 	/* int i; */
 	char str[256];
 	void *ptr;

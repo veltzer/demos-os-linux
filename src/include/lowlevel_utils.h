@@ -116,7 +116,7 @@ static inline unsigned long getstackadr() {
 	return 0;
 #else
 	unsigned long val;
-	asm ("movl %%esp, %0" : "=r" (val));
+	asm ("movl %%esp, %0":"=r" (val));
 	return val;
 #endif
 }
@@ -137,7 +137,7 @@ static inline unsigned long getframepointer() {
 	return 0;
 #else
 	unsigned long val;
-	asm ("movl %%ebp, %0" : "=r" (val));
+	asm ("movl %%ebp, %0":"=r" (val));
 	return val;
 #endif
 }
@@ -178,14 +178,14 @@ static inline ticks_t getticks(void) {
 	// asm volatile ("rdtscp":"=a" (a), "=d" (d));
 	// return ((ticks_t)a) | (((ticks_t)d) << 32);
 	asm volatile ("rdtsc":"=a" (t.sval.low), "=d" (t.sval.high));
-	//asm volatile ("rdtscp" : "=a" (t.sval.low), "=d" (t.sval.high));
+	//asm volatile ("rdtscp":"=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;
 #elif __IA64__
 	// https://software.intel.com/en-us/forums/watercooler-catchall/topic/301741
 	#error you are here
 	unsigned long result=0;
 	//asm volatile ("mov %r12,ar.itc");
-	asm volatile ("mov %0=ar.itc" : "=r" (result));
+	asm volatile ("mov %0=ar.itc":"=r" (result));
 	//asm volatile ("mov ar.itc, %r12");
 	return result;
 #else

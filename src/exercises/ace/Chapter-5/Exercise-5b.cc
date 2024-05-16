@@ -51,7 +51,7 @@ Net_Handler::Net_Handler(ACE_SOCK_Stream& s):stream(s) {
 }
 
 ACE_HANDLE Net_Handler::get_handle(void) const {
-	return(this->stream.get_handle());
+	return this->stream.get_handle();
 }
 
 void Net_Handler::terminate() {
@@ -63,7 +63,7 @@ int Net_Handler::handle_input(ACE_HANDLE handle) {
 	char message[BUFSIZ];
 	if (Termination) {
 		ACE_Reactor::end_event_loop();
-		return(-1);
+		return -1;
 	}
 	int result=this->stream.recv(message, sizeof message);
 	if (result > 0) {
@@ -79,21 +79,21 @@ int Net_Handler::handle_input(ACE_HANDLE handle) {
 		}
 		if (!ACE_OS::strcmp(message, "Quit")) {
 			ACE_Reactor::end_event_loop();
-			return(-1);
+			return -1;
 		}
 		ACE_DEBUG((LM_DEBUG, "handle: %d - Remote message: %s\n", handle, message));
 		// Wait to allow kill from other terminal
 		// ACE_OS::sleep(1);
 	} else if (result==0) {
 		ACE_DEBUG((LM_DEBUG, "(1) - Connection closed\n"));
-		return(-1);
+		return -1;
 	} else if (errno==EWOULDBLOCK) {
-		return(0);
+		return 0;
 	} else {
 		ACE_DEBUG((LM_DEBUG, "Problems in receiving data, result=%d", result));
-		return(-1);
+		return -1;
 	}
-	return(0);
+	return 0;
 }
 
 int Net_Handler::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
@@ -101,7 +101,7 @@ int Net_Handler::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 	this->stream.close();
 	delete this;
 	ACE_Reactor::end_event_loop();
-	return(0);
+	return 0;
 }
 
 class Net_Listener:public ACE_Event_Handler {
@@ -132,7 +132,7 @@ Net_Listener::~Net_Listener(void) {
 }
 
 ACE_HANDLE Net_Listener::get_handle(void) const {
-	return(this->acceptor.get_handle());
+	return this->acceptor.get_handle();
 }
 
 int Net_Listener::handle_input(ACE_HANDLE handle) {
@@ -158,14 +158,14 @@ int Net_Listener::handle_input(ACE_HANDLE handle) {
 	Net_Handler *handler;
 	ACE_NEW_RETURN(handler, Net_Handler(stream), -1);
 	Save_handler=handler;
-	return(0);
+	return 0;
 }
 
 int Net_Listener::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 	ACE_DEBUG((LM_DEBUG, "Net_Listener::handle_close handle=%d\n", handle));
 	this->acceptor.close();
 	delete this;
-	return(0);
+	return 0;
 }
 
 class CatchSignal:public ACE_Event_Handler {
@@ -193,11 +193,11 @@ public:
 			// have a pointer we will set a flag
 			Termination=true;
 		}
-		return(0);
+		return 0;
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main() {
 	Net_Listener* listener1=0;
 	Net_Listener* listener2=0;
 	int port=ACE_DEFAULT_SERVER_PORT;
@@ -223,5 +223,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 	listener2->acceptor.close();
 	ACE_OS::sleep(4);
 	ACE_DEBUG((LM_DEBUG, "Program end\n"));
-	return(0);
+	return 0;
 }

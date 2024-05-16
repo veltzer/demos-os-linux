@@ -247,8 +247,7 @@ static int register_signal(int signo, sighandler_t handler) {
 }
 
 /* The main deal */
-void crashd_main(char daemonise_flag, const char * progname, int pfd[])
-{
+void crashd_main(char daemonise_flag, const char * progname, int pfd[]) {
 	int ret, fd;
 	char * p=crash_msg_buf;
 	int remaining_bytes=CRASH_MAX_MSG_SIZE;

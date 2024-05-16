@@ -33,8 +33,7 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Module showing the number of online cpus");
 
 /* our own functions */
-static int __init mod_init(void)
-{
+static int __init mod_init(void) {
 	pr_info("number of online cpus is %d\n", num_online_cpus());
 	return 0;
 }

@@ -34,15 +34,13 @@ static AspellSpeller *speller_g;
 
 /* Help info about the plugin if one were to use gcc's --version --help */
 #ifdef DO_INFO
-static struct plugin_info speller_info =
-{
+static struct plugin_info speller_info = {
 	.version = "42",
 	.help = "Hahahaha yeaaaaa....",
 };
 #endif // DO_INFO
 
-static struct plugin_gcc_version speller_ver =
-{
+static struct plugin_gcc_version speller_ver = {
 	.basever = VER,
 };
 

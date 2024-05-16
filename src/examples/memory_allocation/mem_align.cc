@@ -52,7 +52,7 @@ void *mem_align(unsigned int size) {
 	int ps=getpagesize();
 	void *ptr;
 	CHECK_ZERO(posix_memalign(&ptr, ps, size));
-	return(ptr);
+	return ptr;
 }
 
 /*
@@ -73,7 +73,7 @@ void *malloc_align(unsigned int size) {
 	unsigned long iptr=(unsigned long)ptr;
 
 	iptr=(iptr / ps + 1) * ps;
-	return((void *)iptr);
+	return (void *)iptr;
 }
 
 /*
@@ -92,7 +92,7 @@ void *mmap_alloc(unsigned int size) {
 			-1,	/* we do not have a device or fd to allocate from */
 			0	/* we dont need an offset as we don't have a file and are doing anon */
 			), MAP_FAILED);
-	return(res);
+	return res;
 }
 
 int main(int argc, char** argv, char** envp) {

@@ -27,12 +27,12 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int argc, char** argv) {
 	static const ACE_TCHAR options[]=ACE_TEXT(":f:");
 
 	ACE_Get_Opt cmd_opts(argc, argv, options, 1, 0, ACE_Get_Opt::PERMUTE_ARGS, 1);
 	if (cmd_opts.long_option(ACE_TEXT("config"), 'f', ACE_Get_Opt::ARG_REQUIRED)==-1) {
-		return(-1);
+		return -1;
 	}
 	int option;
 	ACE_TCHAR config_file[MAXPATHLEN];

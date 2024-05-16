@@ -46,7 +46,7 @@ static void* worker(void *arg) {
 	return 0;
 }
 
-int main() {
+int main(int argc, char** argv) {
 	if(argc<2) {
 		ACE_DEBUG((LM_DEBUG, "%s: usage: %s <number of threads>\n", argv[0], argv[0]));
 	}

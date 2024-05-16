@@ -36,9 +36,7 @@ static struct device *my_device;
 /*
  * This is the ioctl implementation.
  */
-static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg)
-{
+static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg) {
 	PR_INFO("start");
 	/* this means we don't support this ioctl */
 	return -ENOTTY;

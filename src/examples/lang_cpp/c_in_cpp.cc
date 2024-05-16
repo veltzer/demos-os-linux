@@ -51,7 +51,7 @@ public:
 
 // this is a function of C++ code linked in C++ style
 int cpp_style_add(int a, int b) {
-	return(a + b);
+	return a + b;
 }
 
 // this is a function of C++ code linked in C style
@@ -62,7 +62,7 @@ extern "C" int c_style_add(int a, int b) {
 
 	obj->a=0;
 	int return_value = a + b + obj->a;
-	return(return_value);
+	return return_value;
 }
 
 int main() {

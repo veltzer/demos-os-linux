@@ -50,7 +50,7 @@ int print_widget (FILE *stream, const struct printf_info *info, const void *cons
 	if (len == -1)
 		return -1;
 	/* Pad to the minimum field width and print to the stream. */
-	len = fprintf (stream, "%*s", (info->left ? -info->width : info->width), buffer);
+	len = fprintf (stream, "%*s", (info->left ? -info->width:info->width), buffer);
 
 	/* Clean up and return. */
 	free (buffer);

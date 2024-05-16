@@ -68,7 +68,7 @@ public:
 
 		// status_update with the controller.
 		this->returnVal_.set(this->controller_.status_update());
-		return(0);
+		return 0;
 	}
 
 private:
@@ -80,7 +80,7 @@ class ExitMethod:public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
-		return(-1);
+		return -1;
 	}
 };
 
@@ -101,12 +101,12 @@ public:
 				break;
 			}
 		}
-		return(0);
+		return 0;
 	}
 
 	int enqueue(ACE_Method_Request *request) {
 		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
-		return(this->activation_queue_.enqueue(request));
+		return this->activation_queue_.enqueue(request);
 	}
 
 private:
@@ -123,7 +123,7 @@ public:
 		this->scheduler_.enqueue(new StatusUpdate(this->controller_, result));
 
 		// Return Future to the client.
-		return(result);
+		return result;
 	}
 
 	// FUZZ: disable check_for_lack_ACE_OS
