@@ -46,7 +46,7 @@ public:
 	};
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		throw MyException("this is a message");
 	} catch(const MyException& e) {

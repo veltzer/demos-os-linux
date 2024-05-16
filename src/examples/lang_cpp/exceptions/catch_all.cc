@@ -26,7 +26,7 @@
  * from the underlying code.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		throw 30;
 	} catch (...) {

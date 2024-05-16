@@ -27,7 +27,7 @@
  * running thread and the program as a whole, throws SIGABRT and dumps a core.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "Starting to run..." << std::endl;
 	throw 20;
 	std::cout << "Where did this go?" << std::endl;

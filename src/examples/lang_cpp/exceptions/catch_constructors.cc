@@ -52,7 +52,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		A a;
 	} catch (int e) {

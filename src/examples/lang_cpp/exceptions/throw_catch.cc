@@ -24,7 +24,7 @@
  * A simple demo of throwing an exception and catching it
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		throw 20;
 	} catch(int e) {

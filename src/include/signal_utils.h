@@ -179,7 +179,7 @@ static inline my_signal_handler signal_register_handler_sigaction(int sig, my_si
  * Helper function for getting out of sigsegv's
  */
 static int signal_jmp_abs;
-static void signal_handler_jmp_abs(int sig, siginfo_t *si, void *uap) {
+static void signal_handler_jmp_abs(int __attribute__((unused)) sig, siginfo_t *si __attribute__((unused)), void *uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
 	ucontext_t *context = (ucontext_t*)uap;
@@ -196,7 +196,7 @@ static inline void signal_segfault_jump_to(void* adr) {
 }
 
 static sigjmp_buf signal_env;
-static void signal_handler_sigjmp(int sig, siginfo_t *si, void *uap) {
+static void signal_handler_sigjmp(int sig, siginfo_t *si __attribute__((unused)), void *uap __attribute__((unused))) {
 	const char* signame=signal_get_by_val(sig);
 	TRACE("start %s", signame);
 	TRACE("end %s", signame);

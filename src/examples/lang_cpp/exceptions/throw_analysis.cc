@@ -40,7 +40,7 @@ static void handler(int sig) {
 	TRACE("in signal handler for signal [%d],[%s]", sig, signal_get_by_val(sig));
 }
 
-static void *worker(void *p) {
+static void *worker(void *p __attribute__((unused))) {
 	unsigned int counter=0;
 	while(true) {
 		TRACE("counter is %d", counter);
