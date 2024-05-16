@@ -32,13 +32,13 @@ public:
 	HA_Device_Repository() : owner_(0) {
 	}
 	int is_free(void) {
-		return(this->owner_==0);
+		return this->owner_==0;
 	}
 	int is_owner(ACE_Task_Base *tb) {
-		return(this->owner_==tb);
+		return this->owner_==tb;
 	}
 	ACE_Task_Base* get_owner(void) {
-		return(this->owner_);
+		return this->owner_;
 	}
 	void set_owner(ACE_Task_Base *owner) {
 		this->owner_=owner;
@@ -78,13 +78,13 @@ int HA_CommandHandler::svc(void) {
 		this->rep_.set_owner(0);
 		this->waitCond_.signal();
 	}
-	return(0);
+	return 0;
 }
 
 int HA_Device_Repository::update_device(int device_id) {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Updating device %d\n"), device_id));
 	ACE_OS::sleep(1);
-	return(0);
+	return 0;
 }
 
 int main() {

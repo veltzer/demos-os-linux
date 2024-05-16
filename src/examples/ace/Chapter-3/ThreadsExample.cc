@@ -39,7 +39,7 @@ static void* worker(void *arg) {
 	ACE_OS::sleep(ACE_OS::rand() % 2);
 // Exiting now
 	ACE_DEBUG((LM_DEBUG, "\t\t Thread (%t) Done! \t The number is now: %d\n", number));
-	return(0);
+	return 0;
 }
 
 /*

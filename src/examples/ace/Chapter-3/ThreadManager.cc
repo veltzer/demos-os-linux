@@ -67,7 +67,7 @@ public:
 		ACE_Thread::exit();
 		// NOT REACHED
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) this will not be printed\n")));
-		return(0);
+		return 0;
 	}
 };
 

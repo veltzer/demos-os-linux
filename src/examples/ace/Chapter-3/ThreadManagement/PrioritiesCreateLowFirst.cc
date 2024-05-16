@@ -46,7 +46,7 @@ public:
 			process_message(mb);
 			mb->release();
 		}
-		return(0);
+		return 0;
 	}
 	void process_message(ACE_Message_Block *) {
 		static int counter=0;

@@ -52,7 +52,7 @@ int HA_Device_Repository::update_device(int /* device_id */) {
 	ACE_NEW_RETURN(object, Object, -1);
 	// Use the object.
 	// ...
-	return(0);
+	return 0;
 }
 
 #if 0

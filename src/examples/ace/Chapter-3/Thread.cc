@@ -43,7 +43,7 @@ static void* worker(void *arg) {
 	// Exiting now
 	ACE_DEBUG((LM_DEBUG, "\t\t Thread (%t) Done! \t The number is now: %d\n", number));
 	// ACE_OS::fflush(stdout);
-	return(0);
+	return 0;
 }
 
 int main() {

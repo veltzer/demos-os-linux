@@ -34,7 +34,7 @@ public:
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up\n")));
 		ACE_Message_Block* mb;
 		if(this->getq(mb)==-1) {
-			return(-1);
+			return -1;
 		}
 		// ... do something with the message.
 		return(0);

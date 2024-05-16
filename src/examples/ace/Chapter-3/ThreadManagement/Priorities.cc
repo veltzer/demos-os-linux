@@ -48,7 +48,7 @@ public:
 			process_message(mb);
 			mb->release();
 		}
-		return(0);
+		return 0;
 	}
 	void process_message(ACE_Message_Block *) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Processing message %C\n"), name_));

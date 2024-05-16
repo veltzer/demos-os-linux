@@ -112,7 +112,7 @@ static void *reader(void *) {
 
 		ACE_Thread::yield();
 	}
-	return(0);
+	return 0;
 }
 
 // Iterate <n_iterations> each time modifying the global data
@@ -140,7 +140,7 @@ static void *writer(void *) {
 
 		ACE_Thread::yield();
 	}
-	return(0);
+	return 0;
 }
 
 int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {

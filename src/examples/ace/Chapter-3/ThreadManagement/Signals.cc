@@ -39,7 +39,7 @@ public:
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) received a %S signal\n"), signum));
 			handle_alert();
 		}
-		return(0);
+		return 0;
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Starting thread\n")));

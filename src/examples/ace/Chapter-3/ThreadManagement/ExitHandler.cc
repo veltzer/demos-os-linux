@@ -45,7 +45,7 @@ public:
 		// Forcefully exit.
 		ACE_Thread::exit();
 		// NOT REACHED
-		return(0);
+		return 0;
 	}
 
 private:

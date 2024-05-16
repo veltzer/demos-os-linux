@@ -62,7 +62,7 @@ Task::~Task(void) {
  */
 int Task::start(int threads) {
 	barrier_=new ACE_Barrier(threads);
-	return(this->activate(THR_NEW_LWP, threads));
+	return this->activate(THR_NEW_LWP, threads);
 }
 
 /*
@@ -71,7 +71,7 @@ int Task::start(int threads) {
  */
 int Task::close(u_long flags) {
 	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task close 0x%x\n", (void *)this));
-	return(inherited::close(flags));
+	return inherited::close(flags);
 }
 
 /*

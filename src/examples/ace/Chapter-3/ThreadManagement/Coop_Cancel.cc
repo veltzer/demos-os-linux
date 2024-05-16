@@ -40,7 +40,7 @@ public:
 		ACE_Thread_Manager *mgr=this->thr_mgr();
 		while(true) {
 			if (mgr->testcancel(mgr->thr_self())) {
-				return(0);
+				return 0;
 			}
 			ACE_Message_Block *mb=0;
 			ACE_Time_Value tv(0, 1000);

@@ -37,7 +37,7 @@ public:
 		ACE_TSS<SecurityContext> secCtx;
 		// Special initialization.
 		add_sec_context_thr(secCtx);
-		return((*func)(arg));
+		return (*func)(arg);
 	}
 	void add_sec_context_thr(ACE_TSS<SecurityContext>& secCtx);
 };
@@ -51,7 +51,7 @@ public:
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up \n")));
 		// Do something.
-		return(0);
+		return 0;
 	}
 };
 

@@ -50,7 +50,7 @@ static void * worker(void *arguments) {
 		// release the mutex
 		arg->mutex.release();
 	}
-	return(0);
+	return 0;
 }
 
 int main() {

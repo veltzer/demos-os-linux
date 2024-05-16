@@ -55,7 +55,7 @@ public:
 		for(int i=0; i < NUM_USES; i++) {
 			this->rep_.update_device(i);
 		}
-		return(0);
+		return 0;
 	}
 
 private:

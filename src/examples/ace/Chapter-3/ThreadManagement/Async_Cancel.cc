@@ -33,14 +33,14 @@ public:
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Starting thread\n")));
 		if (this->set_cancel_mode() < 0) {
-			return(-1);
+			return -1;
 		}
 		while(true) {
 			// Put this thread in a compute loop.. no
 			// cancellation points are available.
 		}
 		// This is only to workaround a warning of the compiler.
-		return(0);
+		return 0;
 	}
 	int set_cancel_mode(void) {
 		cancel_state new_state;
@@ -51,7 +51,7 @@ public:
 		if (ACE_Thread::setcancelstate(new_state, 0)==-1) {
 			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("cancelstate")), -1);
 		}
-		return(0);
+		return 0;
 	}
 };
 

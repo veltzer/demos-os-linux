@@ -82,7 +82,7 @@ int main() {
 		} else {
 			ACE_ERROR((LM_ERROR, "%p\nlog"));
 		}
-		return(101);
+		return 101;
 	}
 	// Listing 4
 

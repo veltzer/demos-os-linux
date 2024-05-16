@@ -45,14 +45,14 @@ public:
 		ACE_DEBUG((LM_DEBUG, "%N - Obtaining a status_update in %t ", "thread of control\n"));
 		// Simulate time to send message and get status.
 		ACE_OS::sleep(2);
-		return(next_result_id());
+		return next_result_id();
 	}
 
 private:
 	int next_result_id(void) {
 		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::next_cmd_id"));
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%N - Entered next_result_id\n")));
-		return(status_result_++);
+		return status_result_++;
 	}
 	int status_result_;
 };
@@ -67,7 +67,7 @@ public:
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%N - Entered call\n")));
 		// status_update with the controller.
 		this->returnVal_.set(this->controller_.status_update());
-		return(0);
+		return 0;
 	}
 
 private:

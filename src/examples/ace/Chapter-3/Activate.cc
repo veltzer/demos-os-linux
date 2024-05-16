@@ -31,7 +31,7 @@ public:
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Handler Thread running\n")));
 		ACE_OS::sleep(4);
-		return(0);
+		return 0;
 	}
 };
 

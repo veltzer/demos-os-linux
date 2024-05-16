@@ -99,7 +99,7 @@ static void *producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	consumer(msg_queue);
 	cout << "Program end. Why we did not get any output ???" << endl;
 	cout << "Hint: what was the 1st line read by the consumer?" << endl;
-	return(0);
+	return 0;
 }
 
 int main() {

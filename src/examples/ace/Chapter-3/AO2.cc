@@ -165,5 +165,5 @@ int main() {
 		results[i].attach(&cb);
 	}
 	ACE_Thread_Manager::instance()->wait();
-	return(0);
+	return 0;
 }
