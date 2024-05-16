@@ -41,7 +41,8 @@ static void *lptr;
  * This is the ioctl implementation.
  */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
-		unsigned long arg) {
+		unsigned long arg)
+{
 	int res;
 	void *p;
 

@@ -420,7 +420,7 @@ check_return:
 	$(Q)pymakehelper no_err git grep -P "\s+return\(" -- "*.c" "*.cc" "*.h" "*.hh"
 check_braces:
 	$(info doing [$@])
-	$(Q)pymakehelper no_err git grep -P -l '^\{' -- "src/**"
+	$(Q)pymakehelper no_err git grep -P -l '^\{' -- "src/{examples,examples_standalone,exercises,exercises_standalone,include,tests}/**"
 check_acetmain:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep ACE_TMAIN -- "src/**"
