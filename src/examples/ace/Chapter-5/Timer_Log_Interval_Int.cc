@@ -85,7 +85,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_DEBUG((LM_INFO, ACE_TEXT("contact me at process %P\n")));
 	TimerHandler* timerHandler=new TimerHandler();
 	int timerId=ACE_Reactor::instance()->schedule_timer(

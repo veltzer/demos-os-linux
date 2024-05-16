@@ -287,7 +287,7 @@ static void test_sys_call_table(int nr)
  *	return 0;
  * }
  *
- * static int syscall_return(int nr,unsigned long f1,unsigned long* f2) {
+ * static int syscall_back(int nr,unsigned long f1,unsigned long* f2) {
  *	unsigned long* syscalltab=get_sys_call_table();
  *	int ret;
  *	ret=set_memory_rw(align_address((unsigned long)syscalltab),1);

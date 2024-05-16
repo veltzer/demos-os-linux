@@ -34,7 +34,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// This sections explains how to create a message block with some data in it
 	// It shows how to use the ACE_NEW_RETURN construct
 	// How to initialize a message block with constant size and how to write

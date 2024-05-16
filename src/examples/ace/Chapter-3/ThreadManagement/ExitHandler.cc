@@ -52,7 +52,7 @@ private:
 	ExitHandler& eh_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ExitHandler eh;
 	HA_CommandHandler handler(eh);
 	handler.activate();
@@ -60,7 +60,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
 	return EXIT_SUCCESS;
 }
 /*
- * int ACE_TMAIN(int argc,ACE_TCHAR** argv,ACE_TCHAR** envp) {
+ * int main() {
  * ExitHandler eh;
  * ACE_Thread_Manager tm;
  * HA_CommandHandler handler(eh);

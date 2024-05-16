@@ -55,7 +55,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_ThreadHook hook;
 	ACE_Thread_Hook::thread_hook(&hook);
 	HA_CommandHandler handler;

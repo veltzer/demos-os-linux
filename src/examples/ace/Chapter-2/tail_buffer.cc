@@ -60,7 +60,7 @@ static void* consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 			break;
 		}
 	}
-	return(0);
+	return 0;
 }
 
 // The producer reads data from the stdin stream, creates a message,
@@ -102,7 +102,7 @@ static void *producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	return(0);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// Create a Message queue. This one is on the stack so we want
 	// to keep ourselves from returning from main...
 	ACE_Message_Queue<ACE_MT_SYNCH> msg_queue(max_queue);

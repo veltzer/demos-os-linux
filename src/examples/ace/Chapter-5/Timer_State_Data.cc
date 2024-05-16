@@ -84,7 +84,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	TemperatureQueryHandler *temperatureMonitor=new TemperatureQueryHandler();
 	ACE_Time_Value initialDelay(3);
 	ACE_Time_Value intervalOne(5);

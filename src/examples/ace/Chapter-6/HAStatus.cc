@@ -288,7 +288,7 @@ int LogSwitcher::handle_exception(ACE_HANDLE) {
 	return(0);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
+int main() {
 	// ACE_INET_Addr port_to_listen("HAStatus");
 	const unsigned int port=8081;
 	ACE_INET_Addr port_to_listen(port);

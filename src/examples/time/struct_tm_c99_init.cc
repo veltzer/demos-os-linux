@@ -42,7 +42,10 @@ int main(int argc, char** argv, char** envp) {
 		.tm_wday=0,
 		.tm_yday=0,
 		.tm_isdst=0,
+		.tm_gmtoff=0,
+		.tm_zone=0,
 	};
-	struct tm tempTm2 __attribute__((unused))={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	// this is illegal
+	//struct tm tempTm2 __attribute__((unused))={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	return EXIT_SUCCESS;
 }

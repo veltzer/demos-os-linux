@@ -112,7 +112,7 @@ int ClientService::handle_close(ACE_HANDLE h, ACE_Reactor_Mask mask) {
 	return(super::handle_close(h, mask));
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_INET_Addr port_to_listen("HAStatus");
 	ClientAcceptor acceptor;
 	if(acceptor.open(port_to_listen, ACE_Reactor::instance(), ACE_NONBLOCK)==-1) {

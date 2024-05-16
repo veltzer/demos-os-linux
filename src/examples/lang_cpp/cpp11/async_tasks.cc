@@ -37,7 +37,7 @@
  * in parallel.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "Main thread id: " << std::this_thread::get_id() << std::endl;
 	std::vector<std::future<void>> futures;
 	const unsigned int task_num=20;

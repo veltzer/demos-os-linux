@@ -46,7 +46,7 @@ static void* worker(void *arg) {
 	return(0);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	if(argc<2) {
 		ACE_DEBUG((LM_DEBUG, "%s: usage: %s <number of threads>\n", argv[0], argv[0]));
 	}

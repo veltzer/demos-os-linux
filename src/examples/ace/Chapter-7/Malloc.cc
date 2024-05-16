@@ -107,7 +107,7 @@ void showRecords(void) {
 }
 
 #ifndef FIXED_ADDRESS
-int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
+int main() {
 	ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE), -1);
 
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Please Note if base address is not the same for every run\n")));
@@ -125,7 +125,7 @@ int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
 }
 
 #else
-int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
+int main(int argc, char** argv) {
 	if (argc > 1) {
 		ACE_MMAP_Memory_Pool_Options options(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::ALWAYS_FIXED);
 

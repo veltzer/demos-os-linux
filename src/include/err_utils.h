@@ -261,7 +261,7 @@ static inline void handle_error(int printBadVal, int badVal, int replace_errno, 
 	// exit(EXIT_FAILURE);
 }
 static inline int check_error(int val, const char* msg, const char* file, const char* function, const int line) __attribute__((noreturn));
-static inline int check_error(int val, const char* msg, const char* file, const char* function, const int line) {
+static inline int check_error(int val __attribute__((unused)), const char* msg, const char* file, const char* function, const int line) {
 	handle_error(0, 0, 0, 0, 1, errno, msg, file, function, line, NULL);
 }
 static inline int check_zero(int val, const char* msg, const char* file, const char* function, const int line, const char* m) {

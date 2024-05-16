@@ -44,7 +44,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	TimerHandler *handler=new TimerHandler(1);
 	TimerHandler *handler2=new TimerHandler(2);
 	ACE_Reactor::instance()->schedule_timer(

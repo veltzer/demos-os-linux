@@ -39,7 +39,7 @@ void foo(void) {
 	ACE_DEBUG((LM_INFO, ACE_TEXT("%IHowdy Pardner\n")));
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_TRACE(ACE_TEXT("main"));
 	ACE_DEBUG((LM_INFO, ACE_TEXT("%IHi Mom\n")));
 	foo();

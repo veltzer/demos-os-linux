@@ -28,7 +28,7 @@
  * http://solarianprogrammer.com/2012/10/17/cpp-11-async-tutorial
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// called_from_async launched in a separate thread if possible
 	std::future<int> result(std::async([](int m, int n) { return m + n;} , 2, 4));
 	std::cout << "Message from main" << std::endl;

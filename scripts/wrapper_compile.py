@@ -129,7 +129,8 @@ def main():
         check_no_output(args, allow_output=allow_output)
     except ValueError:
         # print(f"removing [{target}]")
-        os.unlink(target)
+        if os.path.isfile(target):
+            os.unlink(target)
         raise
 
 

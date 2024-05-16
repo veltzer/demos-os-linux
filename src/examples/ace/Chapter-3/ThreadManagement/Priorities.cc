@@ -71,7 +71,7 @@ private:
 #endif
 #endif
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_CommandHandler hp_handler("HighPriority");
 	hp_handler.activate(THR_NEW_LWP | THR_JOINABLE, 1, 1, ACE_THR_PRI_OTHER_MAX);
 	HA_CommandHandler lp_handler("LowPriority");

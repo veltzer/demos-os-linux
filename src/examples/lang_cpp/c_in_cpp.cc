@@ -65,7 +65,7 @@ extern "C" int c_style_add(int a, int b) {
 	return(return_value);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("These are the symbols without demangling:\n");
 	my_system("nm ./c_in_cpp | grep style_add");
 	printf("These are the symbols with demangling:\n");

@@ -30,7 +30,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	/*
 	 * Here we will use the default ctor and the set()
 	 * method to configure it. After each set() we will

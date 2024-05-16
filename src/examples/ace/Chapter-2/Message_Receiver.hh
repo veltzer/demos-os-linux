@@ -45,7 +45,7 @@ HA_Device_Repository::HA_Device_Repository() {
 }
 
 int HA_Device_Repository::update_device(int, char *) {
-	return(0);
+	return 0;
 }
 
 class HA_CommandHandler : public ACE_Task<ACE_MT_SYNCH> {
@@ -70,7 +70,7 @@ public:
 	virtual int handle_close(ACE_HANDLE=ACE_INVALID_HANDLE, ACE_Reactor_Mask=ACE_Event_Handler::ALL_EVENTS_MASK) {
 		this->peer().close();
 		delete this;
-		return(0);
+		return 0;
 	}
 
 private:

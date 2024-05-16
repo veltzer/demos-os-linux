@@ -32,7 +32,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	const ACE_Time_Value max_interval(60*60);	// 1 hour.
 	// ACE_Time_Value expiration=ACE_OS::gettimeofday();
 	ACE_Time_Value expiration;

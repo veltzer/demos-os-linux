@@ -36,7 +36,7 @@ class Foo {
 		}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Foo f(5);
 	f.print();
 	Foo g(f);

@@ -67,7 +67,7 @@ void SignalableTask::process_message(ACE_Message_Block*) {
 void SignalableTask::handle_alert() {
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	SignalableTask handler;
 	handler.activate(THR_NEW_LWP | THR_JOINABLE, 5);
 	ACE_Sig_Handler sh;

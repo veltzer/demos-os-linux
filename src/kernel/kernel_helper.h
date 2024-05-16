@@ -43,10 +43,10 @@ static inline int memcheck(void *buf, char val, unsigned int size) {
 	for (i=0; i < size; i++) {
 		if(cbuf[i]!=val) {
 			PR_ERROR("value at %u is %c and not %c", i, cbuf[i], val);
-			return(-EFAULT);
+			return -EFAULT;
 		}
 	}
-	return(0);
+	return 0;
 }
 
 #endif // __kernel_helper_h

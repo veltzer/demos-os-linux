@@ -176,7 +176,7 @@ static inline ticks_t getticks(void) {
 	// accurate
 	// OLD CODE:
 	// asm volatile ("rdtscp":"=a" (a), "=d" (d));
-	// return(((ticks_t)a) | (((ticks_t)d) << 32));
+	// return ((ticks_t)a) | (((ticks_t)d) << 32);
 	asm volatile ("rdtsc":"=a" (t.sval.low), "=d" (t.sval.high));
 	//asm volatile ("rdtscp" : "=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;
@@ -214,7 +214,7 @@ static inline unsigned int get_mic_diff(ticks_t t1, ticks_t t2) {
 	CHECK_ASSERT(mpart!=0);
 	// how many micros have passed
 	unsigned long long mdiff=diff / mpart;
-	return(mdiff);
+	return mdiff;
 }
 
 /*

@@ -58,7 +58,7 @@ static inline unsigned long diff_timeval_in_micro(struct timeval *tv1, struct ti
 	}
 	unsigned long diff=(tv2->tv_sec - tv1->tv_sec) * 1000;
 	diff+=(tv2->tv_usec - tv1->tv_usec) / 1000;
-	return(diff);
+	return diff;
 }
 
 static inline void print_timeval(struct timeval *tv, const char *name) {

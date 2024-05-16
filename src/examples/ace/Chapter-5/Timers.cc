@@ -65,7 +65,7 @@ void programMainLoop(void) {
 	ACE_OS::sleep(30);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
+int main() {
 	pid_t timerId=timerTask(3, 5, foo);
 	programMainLoop();
 	ACE_OS::kill(timerId, SIGINT);

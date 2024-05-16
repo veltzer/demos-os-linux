@@ -62,7 +62,7 @@ private:
 	HA_Device_Repository& rep_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_Device_Repository rep;
 	HA_CommandHandler handler1(rep);
 	HA_CommandHandler handler2(rep);

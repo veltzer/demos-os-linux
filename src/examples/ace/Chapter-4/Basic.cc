@@ -29,7 +29,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_INET_Addr srvr(50000, ACE_LOCALHOST);
 	ACE_SOCK_Connector connector;
 	ACE_SOCK_Stream peer;

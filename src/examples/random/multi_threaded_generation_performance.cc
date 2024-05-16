@@ -78,7 +78,7 @@ static void *worker(void *p) {
 	}
 	const unsigned int state_len=32;
 	char state[state_len];
-	struct random_data data={0};
+	struct random_data data;
 	CHECK_NOT_M1(initstate_r(gettid(), state, state_len, &data));
 	while(!stop_random_r) {
 		int32_t result;

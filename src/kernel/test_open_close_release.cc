@@ -93,7 +93,7 @@ pid_t run_in_process(void (*f)(void)) {
 		f();
 		exit(EXIT_SUCCESS);
 	} else {
-		return(pid);
+		return pid;
 	}
 }
 

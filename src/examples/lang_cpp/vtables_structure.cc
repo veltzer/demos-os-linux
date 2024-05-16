@@ -64,7 +64,7 @@ template <class T> void* convert(void (T::*p)()) {
 	return ret;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// first lets see the size of the object (it should be 4
 	// since it is empty and therefore has size 1 but also
 	// has a vtable which overrides the 1 for empty and increases

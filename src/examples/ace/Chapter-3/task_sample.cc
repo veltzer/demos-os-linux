@@ -144,6 +144,6 @@ int Task::svc(void) {
 	return(0);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

@@ -66,7 +66,7 @@ static void print_usage_and_die(void) {
 }
 
 // Parse the command-line arguments and set options.
-static void parse_args(int argc, ACE_TCHAR** argv) {
+int main(int argc, char** argv) {
 	ACE_Get_Opt get_opt(argc, argv, ACE_TEXT("r:w:n:l:"));
 	int c;
 	while((c=get_opt())!=-1) {

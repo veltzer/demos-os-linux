@@ -60,7 +60,7 @@ public: ~B(void) {
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	A* a=new A();
 	a->doit();
 	// this is a problem since the next allocation is on the stack and not

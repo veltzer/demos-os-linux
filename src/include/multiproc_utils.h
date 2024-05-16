@@ -132,7 +132,7 @@ static inline void process_print_name(void) {
 static inline void process_get_name(char* buffer, unsigned int bufsize) {
 	char name[name_size];
 	CHECK_ZERO(prctl(PR_GET_NAME, name));
-	strncpy(buffer, name, name_size);
+	strncpy(buffer, name, bufsize);
 }
 
 /*

@@ -39,7 +39,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	AverageMaker<double> amd;
 	amd.init();
 	amd.addSample(3.5);

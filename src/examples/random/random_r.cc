@@ -42,7 +42,7 @@ int main(int argc, char** argv, char** envp) {
 
 	const unsigned int state_len=32;
 	char state[state_len];
-	struct random_data data={0};
+	struct random_data data;
 	CHECK_NOT_M1(initstate_r(gettid(), state, state_len, &data));
 
 	for(unsigned int i=0; i<num; i++) {

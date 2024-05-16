@@ -27,6 +27,8 @@ DO_CHECK_ALL:=1
 DO_MD_MDL:=1
 # do spell check on all?
 DO_MD_ASPELL:=1
+# do you want to add standard flags?
+DO_ADD_STD:=0
 
 #############
 # variables #
@@ -102,12 +104,25 @@ LDFLAGS:=$(LDFLAGS) -s
 endif # DEBUG
 
 ifeq ($(OPT),1)
+# We use -O2 for various reasons
 CXXFLAGS:=$(CXXFLAGS) -O2
 CFLAGS:=$(CFLAGS) -O2
 endif # OPT
 
-# other interesting flags: -pedantic
-WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-unused-parameter -Wno-missing-field-initializers -Wno-variadic-macros
+ifeq ($(DO_ADD_STD),1)
+# -std=gnu18 is the default for C code when I'm writing these lines
+# I add the flags here so that I will move to a new standrad when I choose
+# and not when the gcc team chooses.
+CFLAGS:=$(CFLAGS) -std=gnu18
+# -std=c++17 is the default for C__ code when I'm writing these lines
+# I add the flags here so that I will move to a new standrad when I choose
+# and not when the gcc team chooses.
+CXXFLAGS:=$(CXXFLAGS) -std=c++17
+endif # DO_ADD_STD
+
+# removed these flags
+# -Wno-unused-parameter -Wno-missing-field-initializers
+WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros
 CXXFLAGS:=$(CXXFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 CFLAGS:=$(CFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 
@@ -400,8 +415,11 @@ check_no_symlinks:
 check_check_header:
 	$(info doing [$@])
 	$(Q)git grep include -- "*.c" "*.cc" "*.h" "*.hh" | grep us_helper | pymakehelper no_err grep CHECK
+check_return:
+	$(info doing [$@])
+	$(Q)git grep "return(" -- "*.c" "*.cc" "*.h" "*.hh"
 .PHONY: check_all 
-check_all: check_ws check_main check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi scripts/check_have_solutions.py
+check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return scripts/check_have_solutions.py
 	$(info doing [$@])
 	$(Q)scripts/check_have_solutions.py
 

@@ -79,14 +79,14 @@
 #define PRINT_SIZEOF(type) printf("size of " stringify(type) " is %zd\n", sizeof(type))
 
 static inline unsigned int get_clk_tck(void) {
-	return(sysconf(_SC_CLK_TCK));
+	return sysconf(_SC_CLK_TCK);
 }
 
 static inline unsigned int min(unsigned int a, unsigned int b) {
 	if (a < b) {
-		return(a);
+		return a;
 	} else {
-		return(b);
+		return b;
 	}
 }
 

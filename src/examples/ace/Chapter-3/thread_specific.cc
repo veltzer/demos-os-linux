@@ -142,7 +142,7 @@ extern "C" void handler(int signum) {
 	ACE_Thread_Manager::instance()->exit(EXIT_SUCCESS);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main(int argc, char** argv) {
 	// The Service_Config must be the first object defined in main...
 	ACE_Service_Config daemon(argv[0]);
 	int threads=argc>1 ? ACE_OS::atoi(argv[1]) : 4;

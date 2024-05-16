@@ -131,7 +131,7 @@ private:
 	HA_ControllerAgent controller_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_ControllerAgentProxy controller;
 	ACE_Future<int> results[10];
 	for(int i=0; i<10; i++) {

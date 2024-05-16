@@ -1,0 +1,5 @@
+This document answers the question which flags should be pass to gcc/g++ in this project.
+
+In general our aim to have as much error flags raised and as little other specific flags raised.
+
+We use -O2 because -O3 was sometimes buggy.

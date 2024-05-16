@@ -30,8 +30,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-// Notice the use of the ACE version of main
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	printf("It seems that printf is working\n");
 	cout << "It seems like C++ streams are working without std:: prefix" << endl;
 	// Notice that ACE_DEBUG takes one argument

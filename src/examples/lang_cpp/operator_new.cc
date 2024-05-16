@@ -96,7 +96,7 @@ typedef struct _myobj {
 	char data[10];
 } myobj;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	myobj *obj1=new myobj;
 
 	delete obj1;

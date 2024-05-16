@@ -56,11 +56,11 @@ public:
 			done=true;
 		}
 		// Keep yourself registered with the Reactor.
-		return(0);
+		return 0;
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("%t: main thread starting\n")));
 	ACE_Reactor reactor;
 	MyTime_Handler *th=new MyTime_Handler;

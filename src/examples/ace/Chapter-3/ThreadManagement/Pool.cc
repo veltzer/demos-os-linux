@@ -41,7 +41,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_CommandHandler handler;
 	// Create 4 threads.
 	handler.activate(THR_NEW_LWP | THR_JOINABLE, 4);

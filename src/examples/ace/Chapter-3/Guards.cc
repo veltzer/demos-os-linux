@@ -86,7 +86,7 @@ int HA_Device_Repository::update_device(int device_id) {
 
 #endif
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_Device_Repository rep;
 	rep.update_device(42);
 	return EXIT_SUCCESS;

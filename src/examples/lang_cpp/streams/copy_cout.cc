@@ -26,7 +26,7 @@ This example shows how to create an ostream object around standard output
 #include <ext/stdio_filebuf.h> // for _gnu_cxx::stdio_filebuf<T>
 #include <unistd.h> // for STDOUT_FILENO
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "Hello, World!" << std::endl;
 	std::cout.flush();
 	__gnu_cxx::stdio_filebuf<char> filebuf(STDOUT_FILENO, std::ios::out);

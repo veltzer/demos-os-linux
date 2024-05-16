@@ -26,7 +26,7 @@
  * Examples of lambdas from C++
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	// create the lambda
 	auto f=[=] { std::cout << "Hello, Lambda" << argv[0] << std::endl; };
 	// now run the lambda

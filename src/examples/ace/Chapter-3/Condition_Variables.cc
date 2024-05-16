@@ -87,7 +87,7 @@ int HA_Device_Repository::update_device(int device_id) {
 	return(0);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	HA_Device_Repository rep;
 	ACE_Thread_Mutex rep_mutex;
 	// FUZZ: disable check_for_lack_ACE_OS

@@ -37,7 +37,7 @@ int get_number(void) {
 	printf("please enter a number> ");
 	char str[256];
 	CHECK_NOT_NULL(fgets(str, 256, stdin));
-	return(atoi(str));
+	return atoi(str);
 }
 
 int show_menu(void) {

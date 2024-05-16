@@ -99,7 +99,7 @@ static inline int pthread_mutex_get_counter(const pthread_mutex_t * mutex) {
  */
 /*
 static inline pid_t gettid(void) {
-	return(syscall(SYS_gettid));
+	return syscall(SYS_gettid);
 }
 */
 

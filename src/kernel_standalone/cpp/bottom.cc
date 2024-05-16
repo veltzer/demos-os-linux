@@ -38,7 +38,7 @@ typedef unsigned long size_t;
 
 /* support code for new and delete */
 void *operator new(size_t x) {
-	return(mymalloc(x));
+	return mymalloc(x);
 }
 
 void operator delete(void *pointer) {
@@ -61,7 +61,7 @@ static A *a;
 int cpp_init() {
 	a=new A();
 
-	return(0);
+	return 0;
 }
 
 void cpp_exit() {

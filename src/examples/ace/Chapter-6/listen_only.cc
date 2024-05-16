@@ -45,7 +45,7 @@ int ClientService::open(void* p) {
 	return(0);
 }
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	typedef ACE_Acceptor<ClientService, ACE_SOCK_ACCEPTOR> ClientAcceptor;
 	// ACE_INET_Addr port_to_listen (50000, ACE_LOCALHOST );
 	ACE_INET_Addr port_to_listen(50000);

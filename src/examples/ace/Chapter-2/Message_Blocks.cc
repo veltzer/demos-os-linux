@@ -30,7 +30,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_Message_Block* mb;
 	ACE_NEW_RETURN(mb, ACE_Message_Block(128), -1);
 	const char *command1="<InitialDataPart>";

@@ -38,7 +38,7 @@ typedef union f4vector {
 } f4vector;
 */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 /*
 	printf("sizeof(v4sf) is %d\n", sizeof(v4sf));
 	printf("sizeof(f4vector) is %d\n", sizeof(f4vector));

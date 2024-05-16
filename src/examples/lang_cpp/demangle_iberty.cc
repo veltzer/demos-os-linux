@@ -63,7 +63,7 @@ static dmgl_val_and_name dmgl_tbl[]={
 	entry(DMGL_STYLE_MASK),
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char* mangled="_ZN1A3addEii";
 	for(unsigned int i=0;i<ARRAY_SIZEOF(dmgl_tbl); i++) {
 		const int val=dmgl_tbl[i].val;

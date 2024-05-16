@@ -34,7 +34,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	// lets open the port...
 	ACE_INET_Addr port_to_listen(50000);
 	// ACE_INET_Addr port_to_listen("HAStatus");

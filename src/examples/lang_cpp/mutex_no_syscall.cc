@@ -27,7 +27,7 @@
  * Compare the output of ltrace and strace to this program to see the difference.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::mutex m;
 	for(int i=0;i<1000000; i++) {
 		m.lock();

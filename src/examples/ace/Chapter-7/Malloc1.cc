@@ -88,7 +88,7 @@ int addRecords() {
 // Backing file where the data is kept.
 #define BACKING_STORE ACE_TEXT("backing.store")
 
-int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
+int main(int argc) {
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Starting Program\n")));
 	ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE), -1);
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("After g_allocator\n")));
@@ -99,5 +99,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR *[]) {
 		g_allocator->sync();
 	}
 	delete g_allocator;
-	return(0);
+	return EXIT_SUCCESS;
 }

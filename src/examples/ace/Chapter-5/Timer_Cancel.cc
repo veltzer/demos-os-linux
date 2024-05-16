@@ -60,7 +60,7 @@ private:
 	int currentInterval_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv, ACE_TCHAR** envp) {
+int main() {
 	ACE_Time_Value initialDelay(3);
 	ACE_Time_Value interval(5);
 	MyTimerHandler *handler=new MyTimerHandler();

@@ -39,7 +39,7 @@ private:
 	std::string data;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::string str = "Hello";
 	std::vector<MyClass> vec;
 

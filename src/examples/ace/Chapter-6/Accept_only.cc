@@ -86,7 +86,7 @@ public:
 	}
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR** argv) {
+int main() {
 	const unsigned int port=8081;
 	ACE_INET_Addr port_to_listen(port);
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connect to me using [telnet localhost:%d]\n"), port));

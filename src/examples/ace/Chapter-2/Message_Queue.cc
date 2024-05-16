@@ -50,14 +50,14 @@ int HA_CommandHandler::svc(void) {
 	}
 	ACE_Reactor::instance()->end_reactor_event_loop();
 
-	return(0);
+	return 0;
 }
 
 ACE_Message_Block *Message_Receiver::shut_down_message(void) {
 	ACE_Message_Block *mb;
 
 	ACE_NEW_RETURN(mb, ACE_Message_Block(0, ACE_Message_Block::MB_HANGUP), 0);
-	return(mb);
+	return mb;
 }
 
 int Message_Receiver::read_header(DeviceCommandHeader *dch) {
@@ -65,14 +65,14 @@ int Message_Receiver::read_header(DeviceCommandHeader *dch) {
 	if(result<=0) {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Recieve Failure")), -1);
 	}
-	return(0);
+	return 0;
 }
 
 int Message_Receiver::copy_payload(ACE_Message_Block *mb, int payload_length) {
 	ssize_t result=this->peer().recv_n(mb->wr_ptr(), payload_length);
 	if(result<=0) {
 		mb->release();
-		return(-1);
+		return -1;
 	}
 	mb->wr_ptr(payload_length);
 	return(0);
@@ -123,7 +123,7 @@ private:
 	HA_CommandHandler *handler_;
 };
 
-int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
+int main() {
 	report_usage(argc, argv);
 
 	u_short port=ACE_OS::atoi(argv[1]);
@@ -145,5 +145,5 @@ int ACE_TMAIN(int argc, ACE_TCHAR *argv[]) {
 	handler.wait();
 	// reap the handler before exiting.
 
-	return(0);
+	return EXIT_SUCCESS;
 }
