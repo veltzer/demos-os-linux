@@ -45,23 +45,23 @@
  */
 
 void FunB() {
-	// ACE_TRACE(ACE_TEXT("FunB"));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("%I DEBUG: pid=%P Line:%l File=%N\n")));
-	// ACE_DEBUG((LM_INFO,ACE_TEXT("%I INFO: pid=%P Line:%l File=%N\n")));
-	// ACE_DEBUG((LM_NOTICE,ACE_TEXT("%I NOTICE: pid=%P Line:%l File=%N\n")));
+	// ACE_TRACE("FunB");
+	ACE_DEBUG((LM_DEBUG, "%I DEBUG: pid=%P Line:%l File=%N\n"));
+	// ACE_DEBUG((LM_INFO, "%I INFO: pid=%P Line:%l File=%N\n"));
+	// ACE_DEBUG((LM_NOTICE, "%I NOTICE: pid=%P Line:%l File=%N\n"));
 }
 
 void FunA() {
-	// ACE_TRACE(ACE_TEXT("FunA"));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("%I DEBUG: pid=%P Line:%l File=%N\n")));
-	// ACE_DEBUG((LM_INFO,ACE_TEXT("%I INFO: pid=%P Line:%l File=%N\n")));
-	// ACE_DEBUG((LM_NOTICE,ACE_TEXT("%I NOTICE: pid=%P Line:%l File=%N\n")));
+	// ACE_TRACE("FunA");
+	ACE_DEBUG((LM_DEBUG, "%I DEBUG: pid=%P Line:%l File=%N\n"));
+	// ACE_DEBUG((LM_INFO, "%I INFO: pid=%P Line:%l File=%N\n"));
+	// ACE_DEBUG((LM_NOTICE, "%I NOTICE: pid=%P Line:%l File=%N\n"));
 	FunB();
 }
 
 int main() {
 	ACE_LOG_MSG->priority_mask(LM_DEBUG | LM_INFO | LM_NOTICE | LM_TRACE, ACE_Log_Msg::PROCESS);
-	ACE_TRACE(ACE_TEXT("main"));
+	ACE_TRACE("main");
 	for(int i=0; i<2; i++) {
 		FunA();
 	}

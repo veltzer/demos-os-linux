@@ -46,16 +46,16 @@ typedef struct {
 static void *consumer(ConsumerData* pdata) {
 	// Keep looping, reading a message out of the queue, until we
 	// timeout or get a message with a length==0, which signals us to quit.
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) consumer %d starting\n"), pdata->id));
+	ACE_DEBUG((LM_DEBUG, "(%t) consumer %d starting\n", pdata->id));
 	printf("my tid is %d\n", gettid());
 	while(true) {
 		ACE_Message_Block *mb;
 		if (pdata->msg_queue->dequeue_head(mb)==-1) {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) %d dequeue_head\n"), pdata->id));
+			ACE_ERROR((LM_ERROR, "(%t) %d dequeue_head\n", pdata->id));
 			break;
 		}
 		if(mb->msg_type()==ACE_Message_Block::MB_HANGUP) {
-			ACE_DEBUG((LM_ERROR, ACE_TEXT("(%t) consumer %d got hangup\n"), pdata->id));
+			ACE_DEBUG((LM_ERROR, "(%t) consumer %d got hangup\n", pdata->id));
 			mb->release();
 			break;
 		} else {
@@ -65,7 +65,7 @@ static void *consumer(ConsumerData* pdata) {
 			mb->release();
 		}
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) consumer %d ending\n"), pdata->id));
+	ACE_DEBUG((LM_DEBUG, "(%t) consumer %d ending\n", pdata->id));
 	return NULL;
 }
 
@@ -81,7 +81,7 @@ typedef struct {
 } ProducerData;
 
 static void *producer(ProducerData* pdata) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) producer starting\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) producer starting\n"));
 	printf("my tid is %d\n", gettid());
 	ACE_Read_Buffer rb(ACE_STDIN);
 	// Keep reading stdin, until we reach EOF.
@@ -105,7 +105,7 @@ static void *producer(ProducerData* pdata) {
 		}
 		// Enqueue the message in priority order.
 		else {
-			ACE_DEBUG((LM_ERROR, ACE_TEXT("(%t) producer sending message %s\n"), buffer));
+			ACE_DEBUG((LM_ERROR, "(%t) producer sending message %s\n", buffer));
 			// Allocate a new message, but have it "borrow" its memory from the buffer.
 			ACE_Message_Block *mb;
 			ACE_NEW_RETURN(mb, ACE_Message_Block(rb.size(), ACE_Message_Block::MB_DATA, 0, buffer), 0);
@@ -151,7 +151,7 @@ static void *producer(ProducerData* pdata) {
 		}
 	}
 	// finished ? then return
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) producer ending\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) producer ending\n"));
 	return NULL;
 }
 
@@ -160,7 +160,7 @@ int main() {
 	// Global thread manager.
 	ACE_Thread_Manager thr_mgr;
 
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main starting\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main starting\n"));
 	// non portable code - watch out!!
 	printf("my tid is %d\n", gettid());
 	ACE_Message_Queue<ACE_MT_SYNCH> msg_queue1;
@@ -186,6 +186,6 @@ int main() {
 	}
 	// Wait for producer and consumers threads to exit.
 	thr_mgr.wait();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main ending\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main ending\n"));
 	return EXIT_SUCCESS;
 }

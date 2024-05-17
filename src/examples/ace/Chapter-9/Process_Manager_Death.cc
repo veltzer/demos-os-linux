@@ -36,8 +36,8 @@ public:
 		ACE_TRACE("DeathHandler::DeathHandler");
 	}
 	virtual int handle_exit(ACE_Process *process) {
-		ACE_TRACE(ACE_TEXT("DeathHandler::handle_exit"));
-		ACE_DEBUG ((LM_DEBUG, ACE_TEXT("Process %d exited with exit code %d\n"), process->getpid(), process->return_value()));
+		ACE_TRACE("DeathHandler::handle_exit");
+		ACE_DEBUG ((LM_DEBUG, "Process %d exited with exit code %d\n", process->getpid(), process->return_value()));
 		if(++count_==NCHILDREN) {
 			ACE_Reactor::instance()->end_reactor_event_loop();
 		}
@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 	DeathHandler handler;
 	// Specify the options for the new processes to be spawned.
 	ACE_Process_Options options;
-	options.command_line(ACE_TEXT("%s a"), argv[0]);
+	options.command_line("%s a", argv[0]);
 	// Spawn two child processes.
 	pid_t pids[NCHILDREN];
 	pm.spawn_n(NCHILDREN, options, pids);

@@ -58,10 +58,10 @@ int main(int argc, char** argv) {
 
 #if !defined(ACE_WIN32)
 		if (WIFSIGNALED(status)!=0) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%d died because of a signal of type %d\n"), pids[0], WTERMSIG(status)));
+			ACE_DEBUG((LM_DEBUG, "%d died because of a signal of type %d\n", pids[0], WTERMSIG(status)));
 		}
 #else
-		ACE_DEBUG ((LM_DEBUG, ACE_TEXT("The process terminated with exit code %d\n"), status));
+		ACE_DEBUG ((LM_DEBUG, "The process terminated with exit code %d\n", status));
 #endif	/*ACE_WIN32*/
 
 		// Wait for all (only one left) of the

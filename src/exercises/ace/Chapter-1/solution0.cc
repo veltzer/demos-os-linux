@@ -34,7 +34,7 @@ int main() {
 	printf("It seems that printf is working\n");
 	cout << "It seems like C++ streams are working without std:: prefix" << endl;
 	// Notice that ACE_DEBUG takes one argument
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("ACE_DEBUG(pid=%P Time:%T)\n")));
-	ACE_ERROR((LM_ERROR, ACE_TEXT("ACE_ERROR(pid=%P File:%N Line:%l Date+Time:%D)\n")));
+	ACE_DEBUG((LM_DEBUG, "ACE_DEBUG(pid=%P Time:%T)\n"));
+	ACE_ERROR((LM_ERROR, "ACE_ERROR(pid=%P File:%N Line:%l Date+Time:%D)\n"));
 	return EXIT_SUCCESS;
 }
