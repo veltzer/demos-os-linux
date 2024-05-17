@@ -81,7 +81,7 @@ void* func(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [filename]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

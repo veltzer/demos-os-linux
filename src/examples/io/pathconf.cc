@@ -29,7 +29,7 @@
 
 #define PRINT_PATHCONF(path, name) printf("pathconf(\"%s\",%s)=%d\n", path, stringify(name), CHECK_NOT_M1(pathconf(path, name)))
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [folder]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;
