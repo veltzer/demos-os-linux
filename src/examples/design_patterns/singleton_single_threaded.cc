@@ -48,6 +48,6 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

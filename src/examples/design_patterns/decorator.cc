@@ -71,7 +71,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Base base;
 	Derived1 derived1(base);
 	Derived2 derived2(derived1);

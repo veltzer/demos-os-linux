@@ -43,7 +43,7 @@ public:
 
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// Use emulated constructor
 	MyClass* obj = MyClass::create();
 	obj->print();

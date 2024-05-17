@@ -668,16 +668,24 @@ $(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
 ###################
 # gathering rules #
 ###################
-.PHONY: all_cc_cpplint
-all_cc_cpplint: $(CC_CPPLINT)
-.PHONY: all_cc_cppcheck
-all_cc_cppcheck: $(CC_CPPCHECK)
-.PHONY: all_c_cppcheck
-all_c_cppcheck: $(C_CPPCHECK)
-.PHONY: all_cc_tidy
-all_cc_tidy: $(CC_TIDY)
-.PHONY: all_c_tidy
-all_c_tidy: $(C_TIDY)
+.PHONY: all_cpplint_c
+all_cpplint_c: $(C_CPPLINT)
+.PHONY: all_cpplint_cc
+all_cpplint_cc: $(CC_CPPLINT)
+.PHONY: all_cpplint
+all_cpplint: $(C_CPPLINT) $(CC_CPPLINT)
+.PHONY: all_cppcheck_c
+all_cppcheck_c: $(C_CPPCHECK)
+.PHONY: all_cppcheck_cc
+all_cppcheck_cc: $(CC_CPPCHECK)
+.PHONY: all_cppcheck
+all_cppcheck: $(C_CPPCHECK) $(CC_CPPCHECK)
+.PHONY: all_tidy_c
+all_tidy_c: $(C_TIDY)
+.PHONY: all_tidy_cc
+all_tidy_cc: $(CC_TIDY)
+.PHONY: all_tidy
+all_tidy: $(C_TIDY) $(CC_TIDY)
 
 ############
 # all deps #

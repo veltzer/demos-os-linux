@@ -27,7 +27,7 @@
  * stolen from the getopt_long documentation.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	int c;
 	int digit_optind=0;
 	while(true) {

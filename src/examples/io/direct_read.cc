@@ -47,12 +47,12 @@
  * - use the BLKSSZGET ioctl(2) (see the code below) to get the block
  * size as well as the fstat(2) that is currently used.
  *
- * REFERENCES:
+ * References:
  * http://www.quora.com/Linux/How-can-I-bypass-the-OS-buffering-during-I-O-in-Linux
  * http://www.quora.com/Why-does-O_DIRECT-require-I-O-to-be-512-byte-aligned
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [use_direct] [use_malloc] [size]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: for one MB use:\n", argv[0]);
