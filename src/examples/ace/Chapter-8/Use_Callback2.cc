@@ -34,6 +34,6 @@ int main() {
 	ACE_LOG_MSG->msg_callback(callback);
 	ACE_TRACE("main");
 	ACE_DEBUG((LM_DEBUG, "%IHi Mom\n"));
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IGoodnight\n")));
+	ACE_DEBUG((LM_INFO, "%IGoodnight\n"));
 	return EXIT_SUCCESS;
 }

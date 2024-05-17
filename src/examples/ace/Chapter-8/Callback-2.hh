@@ -41,13 +41,13 @@ public:
 			<< "\tLength: " << log_record.length()
 			<< endl
 			<< "\tTime_Stamp: "
-			<< ACE_TEXT_ALWAYS_CHAR(ACE_OS::ctime(&epoch))
+			<< ACE_OS::ctime(&epoch)
 			<< endl
 			<< "\tPid: " << log_record.pid()
 			<< endl;
 		ACE_CString data(">> ");
 
-		data+=ACE_TEXT_ALWAYS_CHAR(log_record.msg_data());
+		data+=log_record.msg_data();
 		cerr << "\tMsgData: " << data.c_str() << endl;
 	}
 };

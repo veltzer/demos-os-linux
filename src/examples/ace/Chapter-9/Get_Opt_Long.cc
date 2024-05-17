@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 	}
 	int option;
 	char config_file[MAXPATHLEN];
-	ACE_OS_String::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
+	ACE_OS_String::strcpy(config_file, "HAStatus.conf");
 	while((option=cmd_opts())!=EOF) {
 		switch (option) {
 		case 'f':
@@ -44,14 +44,14 @@ int main(int argc, char** argv) {
 			break;
 
 		case ':':
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("-%c requires an argument\n"), cmd_opts.opt_opt()), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "-%c requires an argument\n", cmd_opts.opt_opt()), -1);
 			break;
 
 		default:
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("Parse error.\n")), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "Parse error.\n"), -1);
 			break;
 		}
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Config file is %s\n"), config_file));
+	ACE_DEBUG((LM_DEBUG, "Config file is %s\n", config_file));
 	return EXIT_SUCCESS;
 }

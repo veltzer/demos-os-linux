@@ -33,26 +33,26 @@ int main(int argc, char** argv) {
 	static const char* options=":f:";
 	ACE_Get_Opt cmd_opts(argc, argv, options);
 	cmd_opts.long_option("cool_option");
-	cmd_opts.long_option(ACE_TEXT("the_answer"), 42);
+	cmd_opts.long_option("the_answer", 42);
 	int option;
 	char config_file[MAXPATHLEN];
-	ACE_OS_String::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
+	ACE_OS_String::strcpy(config_file, "HAStatus.conf");
 	while((option=cmd_opts())!=EOF) {
 		switch (option) {
 		case 'f':
 			ACE_OS_String::strncpy(config_file, cmd_opts.opt_arg(), MAXPATHLEN);
 			break;
 		case 0:
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("Yes, very cool.\n")));
+			ACE_DEBUG((LM_DEBUG, "Yes, very cool.\n"));
 			break;
 		case 42:
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("the_answer is 42\n")));
+			ACE_DEBUG((LM_DEBUG, "the_answer is 42\n"));
 			break;
 		case ':':
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("-%c requires an argument\n"), cmd_opts.opt_opt()), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "-%c requires an argument\n", cmd_opts.opt_opt()), -1);
 			break;
 		default:
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("Parse error.\n")), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "Parse error.\n"), -1);
 			break;
 		}
 	}

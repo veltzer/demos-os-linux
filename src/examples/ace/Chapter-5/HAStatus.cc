@@ -159,7 +159,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 	while(0<=this->output_queue_.dequeue_head(mb, &nowait)) {
 		ssize_t send_cnt=this->sock_.send(mb->rd_ptr(), mb->length());
 		if(send_cnt==-1) {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")));
+			ACE_ERROR((LM_ERROR, "(%P|%t) %p\n", "send"));
 		} else {
 			mb->rd_ptr(static_cast<size_t>(send_cnt));
 		}
@@ -224,14 +224,14 @@ LogSwitcher::LogSwitcher(int on_sig, int off_sig):on_sig_(on_sig), off_sig_(off_
 	sigs.sig_add(on_sig);
 	sigs.sig_add(off_sig);
 	ACE_Reactor::instance()->register_handler(sigs, this);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("After register_handler\n")));
+	ACE_DEBUG((LM_DEBUG, "After register_handler\n"));
 }
 
 int LogSwitcher::handle_signal(int signum, siginfo_t *, ucontext_t *) {
 	if((signum==this->on_sig_) || (signum==this->off_sig_)) {
 		this->on_off_=signum==this->on_sig_;
 		ACE_Reactor::instance()->notify(this);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("After notify\n")));
+		ACE_DEBUG((LM_DEBUG, "After notify\n"));
 	}
 	return 0;
 }

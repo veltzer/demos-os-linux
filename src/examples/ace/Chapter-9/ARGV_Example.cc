@@ -33,7 +33,7 @@
 
 int main() {
 	static const char* options=":f:h:";
-	static const char* cmdline=ACE_TEXT("-f /home/managed.cfg -h $HOSTNAME");
+	static const char* cmdline="-f /home/managed.cfg -h $HOSTNAME";
 
 	ACE_ARGV cmdline_args(cmdline);
 	ACE_Get_Opt cmd_opts(cmdline_args.argc(), cmdline_args.argv(), options, 0);
@@ -43,8 +43,8 @@ int main() {
 	char config_file[MAXPATHLEN];
 	char hostname[MAXHOSTNAMELEN];
 
-	ACE_OS_String::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
-	ACE_OS_String::strcpy(hostname, ACE_TEXT("not set"));
+	ACE_OS_String::strcpy(config_file, "HAStatus.conf");
+	ACE_OS_String::strcpy(hostname, "not set");
 	while((option=cmd_opts())!=EOF) {
 		switch (option) {
 		case 'f':
@@ -56,15 +56,15 @@ int main() {
 			break;
 
 		case ':':
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("-%c requires an argument\n"), cmd_opts.opt_opt()), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "-%c requires an argument\n", cmd_opts.opt_opt()), -1);
 			break;
 
 		default:
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("Parse error.\n")), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "Parse error.\n"), -1);
 			break;
 		}
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Config file: %s\n"), config_file));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Hostname: %s\n"), hostname));
+	ACE_DEBUG((LM_DEBUG, "Config file: %s\n", config_file));
+	ACE_DEBUG((LM_DEBUG, "Hostname: %s\n", hostname));
 	return EXIT_SUCCESS;
 }
