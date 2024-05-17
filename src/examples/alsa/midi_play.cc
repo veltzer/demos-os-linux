@@ -214,7 +214,7 @@ void parse_sequence() {
 	CHECK_ZERO_ERRNO(fclose(f));
 }
 
-void sigterm_exit(int sig) {
+void sigterm_exit(int sig __attribute__((unused))) {
 	clear_queue();
 	// I removed this sleep...
 	// CHECK_ZERO(sleep(2));
@@ -223,7 +223,7 @@ void sigterm_exit(int sig) {
 	exit(EXIT_SUCCESS);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if (argc !=3) {
 		fprintf(stderr, "%s: %s <beats per minute> <sequence file>\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example 60 file.seq\n", argv[0]);
@@ -257,4 +257,5 @@ int main(int argc, char** argv, char** envp) {
 			}
 		}
 	}
+	return EXIT_SUCCESS;
 }

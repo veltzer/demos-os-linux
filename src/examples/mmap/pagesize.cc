@@ -28,7 +28,7 @@
  * Note that you can see all this info from the command line using 'getconf -a | grep PAGE'
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("getpagesize() is %d\n", getpagesize());
 	printf("sysconf(_SC_PAGESIZE) is %d\n", CHECK_NOT_M1(sysconf(_SC_PAGESIZE)));
 	printf("sysconf(_SC_PAGE_SIZE) is %d\n", CHECK_NOT_M1(sysconf(_SC_PAGE_SIZE)));

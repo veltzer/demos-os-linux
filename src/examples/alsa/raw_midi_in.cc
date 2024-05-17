@@ -79,7 +79,7 @@
 #include <stdio.h>	// for fprintf(3), stderr, printf(3), fflush(3)
 #include <err_utils.h>	// for CHECK_NOT_NEGATIVE(3)
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [portname]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s hw:3,0,0\n", argv[0], argv[0]);
