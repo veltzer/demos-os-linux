@@ -79,7 +79,7 @@ static void *consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	// Keep looping, reading a message out of the queue, until we
 	// timeout or get a message with a length==0, which signals us to quit.
 
-	// ACE_DEBUG ((LM_DEBUG , ACE_TEXT ("consumer: thread=%t Line:%l\n")));
+	// ACE_DEBUG ((LM_DEBUG , "consumer: thread=%t Line:%l\n"));
 	// ACE_OS::sleep (1);
 	// Read ONLY one message and return !!!
 	ACE_Message_Block *mb;
@@ -113,7 +113,7 @@ static void *consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 static void *producer(void*) {
 	MyTime_Handler *th=new MyTime_Handler;
 
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("producer: thread=%t Line:%l\n")));
+	ACE_DEBUG((LM_DEBUG, "producer: thread=%t Line:%l\n"));
 	ACE_Read_Buffer rb(ACE_STDIN);
 	// Keep reading stdin, until we reach EOF.
 	while(true) {
@@ -198,13 +198,13 @@ static void *producer(void*) {
 		}
 	}
 	// finished ? then return
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("end of producer: thread=%t Line:%l\n")));
+	ACE_DEBUG((LM_DEBUG, "end of producer: thread=%t Line:%l\n"));
 	return 0;
 }
 
 int main() {
 	// Spawn off one thread that copies stdin to stdout in order of the size of each line.
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("main: thread=%t Line:%l\n")));
+	ACE_DEBUG((LM_DEBUG, "main: thread=%t Line:%l\n"));
 	if (thr_mgr.spawn(ACE_THR_FUNC(producer), (void *)NULL, THR_NEW_LWP | THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn producer"), 1);
 	}
