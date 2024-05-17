@@ -59,14 +59,14 @@ int MakeConnection(ACE_SOCK_Acceptor *acceptor, ACE_INET_Addr *port_to_listen, A
 	ACE_Time_Value timeout(10, 0);
 	if (acceptor->accept(*peer, peer_addr, &timeout, 0)==-1) {
 		if (ACE_OS::last_error()==EINTR) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Interrupted while ") ACE_TEXT("waiting for connection\n")));
+			ACE_DEBUG((LM_DEBUG, "(%P|%t) Interrupted while waiting for connection\n"));
 		} else if (ACE_OS::last_error()==ETIMEDOUT) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while ") ACE_TEXT("waiting for connection\n")));
+			ACE_DEBUG((LM_DEBUG, "(%P|%t) Timeout while waiting for connection\n"));
 		}
 	} else {
 		char peer_name[MAXHOSTNAMELEN];
 		peer_addr->addr_to_string(peer_name, MAXHOSTNAMELEN);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection from %s\n", peer_name));
 	}
 #endif	/* NO_TIMEOUT */
 	return 0;
@@ -82,7 +82,7 @@ int main() {
 	for(int i=0; i<3; i++) {
 		port_to_listen[i]=ACE_INET_Addr(50000 + i, ACE_LOCALHOST);
 		if (acceptor[i].open(port_to_listen[i], 1)==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), 100);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), 100);
 		}
 	}
 	for(int i=0; i<3; i++) {

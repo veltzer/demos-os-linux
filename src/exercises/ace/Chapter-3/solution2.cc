@@ -70,18 +70,18 @@ public:
 	// This method only attempts one increase
 	void attemptIncreaseValue(unsigned int value) {
 		if(debug) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) waiting for lock\n")));
+			ACE_DEBUG((LM_DEBUG, "(%t) waiting for lock\n"));
 		}
 		m.acquire();
 		AttemptCounter++;
 		if(debug) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Trying to update variable modulu=%d value=%d\n"), LockedCounter % num_threads, value));
+			ACE_DEBUG((LM_DEBUG, "(%t) Trying to update variable modulu=%d value=%d\n", LockedCounter % num_threads, value));
 		}
 		while(LockedCounter % num_threads!=value) {
 			cond[value]->wait();
 		}
 		if(debug) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) increasing counter\n")));
+			ACE_DEBUG((LM_DEBUG, "(%t) increasing counter\n"));
 		}
 		LockedCounter++;
 		value++;
@@ -102,7 +102,7 @@ public:
 
 	// The real body of the thread
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) start\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) start\n"));
 		for(unsigned int i=0; i<attempts; i++) {
 			sharedResource.attemptIncreaseValue(value);
 		}
@@ -134,7 +134,7 @@ int main(int argc, char** argv) {
 		handlers[i]->wait();
 	}
 	delete[] handlers;
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) LockedCounter=%u\n"), sharedResource.getLockedCounter()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) GeneralCounter=%u\n"), sharedResource.getAttemptCounter()));
+	ACE_DEBUG((LM_DEBUG, "(%t) LockedCounter=%u\n", sharedResource.getLockedCounter()));
+	ACE_DEBUG((LM_DEBUG, "(%t) GeneralCounter=%u\n", sharedResource.getAttemptCounter()));
 	return EXIT_SUCCESS;
 }

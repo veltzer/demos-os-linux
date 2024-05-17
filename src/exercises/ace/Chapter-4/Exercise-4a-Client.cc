@@ -35,7 +35,7 @@ class SocketHandler:public ACE_Task_Base {
 public:
 	void set_value(int ivalue) {
 		value=ivalue;
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Setting value %d\n"), value));
+		ACE_DEBUG((LM_DEBUG, "(%t) Setting value %d\n", value));
 	}
 	virtual int svc(void) {
 		ACE_INET_Addr addr;
@@ -45,10 +45,10 @@ public:
 		static char buf[64];
 		ACE_Time_Value timeout(10, 0);
 		int i=0;
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) SocketHandler Thread %d running\n"), value));
+		ACE_DEBUG((LM_DEBUG, "(%t) SocketHandler Thread %d running\n", value));
 		addr.set(50000 + value, ACE_LOCALHOST);
 		if(-1==connector.connect(peer, addr, &timeout)) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Client connect")), 1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Client connect"), 1);
 		}
 		while(true) {
 			bc=peer.recv(buf, sizeof(buf));

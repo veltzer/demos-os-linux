@@ -58,11 +58,11 @@ private:
 };
 
 int PrintMessages(SHARED_ALLOC *shared, int index) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("The following records were found in storage %d:\n"), index + 1));
+	ACE_DEBUG((LM_DEBUG, "The following records were found in storage %d:\n", index + 1));
 	MALLOC_LIFO_RECORD record(*shared);
 	for(void *temp=0; record.next(temp)!=0; record.advance()) {
 		Record *record=reinterpret_cast<Record *>(temp);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%C\n"), record->name()));
+		ACE_DEBUG((LM_DEBUG, "%C\n", record->name()));
 	}
 	return 0;
 }
@@ -70,12 +70,12 @@ int PrintMessages(SHARED_ALLOC *shared, int index) {
 int StoreMessages(SHARED_ALLOC* shared, char* buf) {
 	void* memory=shared->malloc(sizeof(Record));
 	if(memory==0) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Unable to malloc")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Unable to malloc"), -1);
 	}
 	// Allocate and place record
 	Record* newRecord=new(memory) Record(shared, buf);
 	if(shared->bind(buf, newRecord)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "bind failed"), -1);
 	}
 	return 0;
 }
@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
 		options[2]=&option2;
 		for(int i=0; i<3; i++) {
 			ACE_NEW_RETURN(shared[i], SHARED_ALLOC(StoreName[i], StoreName[i], options[i]), -1);
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(shared%d) Mapped to base address %@\n"), i, shared[i]->base_addr()));
+			ACE_DEBUG((LM_DEBUG, "(shared%d) Mapped to base address %@\n", i, shared[i]->base_addr()));
 		}
 		for(int i=0; i<3; i++) {
 			PrintMessages(shared[i], i);
@@ -128,15 +128,15 @@ int main(int argc, char** argv) {
 	} else {
 		ACE_MMAP_Memory_Pool_Options option0(0, ACE_MMAP_Memory_Pool_Options::NEVER_FIXED);
 		for(int i=0; i < 3; i++) {
-			// ACE_DEBUG ((LM_DEBUG, ACE_TEXT ("%C\n"), StoreName[i]));
+			// ACE_DEBUG ((LM_DEBUG, "%C\n", StoreName[i]));
 			ACE_NEW_RETURN(shared[i], SHARED_ALLOC(StoreName[i], StoreName[i], &option0), -1);
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(shared%d) Mapped to base address %@\n"), i, shared[i]->base_addr()));
+			ACE_DEBUG((LM_DEBUG, "(shared%d) Mapped to base address %@\n", i, shared[i]->base_addr()));
 		}
 		char buffer[100];
 		int type=1;
 		while(type) {
 			type=GetMessageType(buffer);
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("Buffer: <%C>\n"), buffer));
+			ACE_DEBUG((LM_DEBUG, "Buffer: <%C>\n", buffer));
 			switch (type) {
 			case 0:
 				continue;

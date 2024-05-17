@@ -45,13 +45,13 @@ int ReadMessage(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue);
 class MessageAgent {	// Proxy to the MessageAgent that is on the network.
 public:
 	MessageAgent() {
-		ACE_TRACE(ACE_TEXT("MessageAgent::MessageAgentAgent"));
+		ACE_TRACE("MessageAgent::MessageAgentAgent");
 		status_result_=1;
 	}
 
 	int message_read(void) {
-		ACE_TRACE(ACE_TEXT("MessageAgent::message_read"));
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Message Read ")));
+		ACE_TRACE("MessageAgent::message_read");
+		ACE_DEBUG((LM_DEBUG, "(%t) Message Read "));
 		// Read message from queue
 		ReadMessage(&msg_queue);
 		ACE_OS::sleep(2);
@@ -60,7 +60,7 @@ public:
 
 private:
 	int next_result_id(void) {
-		ACE_TRACE(ACE_TEXT("MessageAgent::next_cmd_id"));
+		ACE_TRACE("MessageAgent::next_cmd_id");
 		return status_result_++;
 	}
 
@@ -71,11 +71,11 @@ class MessageRequest:public ACE_Method_Request {
 public:
 	MessageRequest(MessageAgent & message, ACE_Future<int> &returnVal)
 		: message_(message), returnVal_(returnVal) {
-		ACE_TRACE(ACE_TEXT("MessageRequest::MessageRequest"));
+		ACE_TRACE("MessageRequest::MessageRequest");
 	}
 
 	virtual int call(void) {
-		ACE_TRACE(ACE_TEXT("MessageRequest::call"));
+		ACE_TRACE("MessageRequest::call");
 
 		// message_read with the message.
 		this->returnVal_.set(this->message_.message_read());
@@ -91,7 +91,7 @@ class ExitMethod:public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Finally reached Future call()\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) Finally reached Future call()\n"));
 		return -1;
 	}
 };
@@ -99,12 +99,12 @@ public:
 class Scheduler:public ACE_Task_Base {
 public:
 	Scheduler() {
-		ACE_TRACE(ACE_TEXT("Scheduler::Scheduler"));
+		ACE_TRACE("Scheduler::Scheduler");
 		this->activate();
 	}
 
 	virtual int svc(void) {
-		ACE_TRACE(ACE_TEXT("Scheduler::svc"));
+		ACE_TRACE("Scheduler::svc");
 		while(true) {
 			// Dequeue the next method object
 			std::unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
@@ -117,7 +117,7 @@ public:
 	}
 
 	int enqueue(ACE_Method_Request *request) {
-		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
+		ACE_TRACE("Scheduler::enqueue");
 		return this->activation_queue_.enqueue(request);
 	}
 
@@ -130,7 +130,7 @@ class MessageAgentProxy {
 
 public:
 	ACE_Future<int> status_update(void) {
-		ACE_TRACE(ACE_TEXT("MessageAgentProxy::status_update"));
+		ACE_TRACE("MessageAgentProxy::status_update");
 		ACE_Future<int> result;
 		// Create and enqueue a method request on the scheduler.
 		this->scheduler_.enqueue(new MessageRequest(this->message_, result));
@@ -138,7 +138,7 @@ public:
 		return result;
 	}
 	void exit(void) {
-		ACE_TRACE(ACE_TEXT("MessageAgentProxy::exit"));
+		ACE_TRACE("MessageAgentProxy::exit");
 		this->scheduler_.enqueue(new ExitMethod);
 	}
 
@@ -184,7 +184,7 @@ int GetMessageType(char* data) {
 }
 
 int SendMessage(char* buffer, int type) {
-	// ACE_DEBUG ((LM_DEBUG , ACE_TEXT ("SendMessage Line:%l\n")));
+	// ACE_DEBUG ((LM_DEBUG , "SendMessage Line:%l\n"));
 	ACE_Message_Block *mb;
 	// get message size
 	size_t size=ACE_OS::strlen(buffer);
@@ -269,7 +269,7 @@ int main() {
 		if (!type) {
 			break;
 		}
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Sending message: <%s> (%d)\n"), buffer, type));
+		ACE_DEBUG((LM_DEBUG, "(%t) Sending message: <%s> (%d)\n", buffer, type));
 		// Send the Message
 		SendMessage(buffer, type);
 		// Increment index before being used, therefore we do not need
@@ -279,6 +279,6 @@ int main() {
 		results[i].attach(&cb);
 	}
 	ACE_Thread_Manager::instance()->wait();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Finshed. After waiting for threads\n")));
-	return 0;
+	ACE_DEBUG((LM_DEBUG, "(%t) Finshed. After waiting for threads\n"));
+	return EXIT_SUCCESS;
 }

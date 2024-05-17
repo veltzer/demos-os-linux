@@ -181,12 +181,12 @@ public:
 	virtual ~CatchSignal() {
 	}
 	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
-		ACE_TRACE(ACE_TEXT("CatchSignal::handle_signal"));
+		ACE_TRACE("CatchSignal::handle_signal");
 		// Make sure the right handler was called back.
 		ACE_ASSERT(signum==this->signum);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%S occured. Terminating the program\n"), signum));
+		ACE_DEBUG((LM_DEBUG, "%S occured. Terminating the program\n", signum));
 		if (listener->Save_handler) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("Pointer exists. Terminating the program\n")));
+			ACE_DEBUG((LM_DEBUG, "Pointer exists. Terminating the program\n"));
 			listener->Save_handler->terminate();
 		} else {
 			// Since the Save_handler does not

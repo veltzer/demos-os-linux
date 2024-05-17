@@ -71,23 +71,23 @@ public:
 	// This method only attempts one increase
 	void attemptIncreaseValue(unsigned int value) {
 		if(debug) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) waiting for lock\n")));
+			ACE_DEBUG((LM_DEBUG, "(%t) waiting for lock\n"));
 		}
 		// wait until mutex is acquired
 		mutex.acquire();
 		AttemptCounter++;
 		if(debug) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Trying to update variable modulu=%d value=%d\n"), LockedCounter % num_threads, value));
+			ACE_DEBUG((LM_DEBUG, "(%t) Trying to update variable modulu=%d value=%d\n", LockedCounter % num_threads, value));
 		}
 		if (LockedCounter % num_threads==value) {
 			if(debug) {
-				ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) increasing counter\n")));
+				ACE_DEBUG((LM_DEBUG, "(%t) increasing counter\n"));
 			}
 			LockedCounter++;
 		}
 		mutex.release();
 		if(debug) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) released lock\n")));
+			ACE_DEBUG((LM_DEBUG, "(%t) released lock\n"));
 		}
 		if(yield) {
 			// two alternatives for yielding: the ACE and the native OS one...
@@ -111,7 +111,7 @@ public:
 
 	// The real body of the thread
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) start\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) start\n"));
 		for(unsigned int i=0; i<attempts; i++) {
 			sharedResource.attemptIncreaseValue(value);
 		}
@@ -144,7 +144,7 @@ int main(int argc, char** argv) {
 		handlers[i]->wait();
 	}
 	delete[] handlers;
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) LockedCounter=%d\n"), sharedResource.getLockedCounter()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) AttemptCounter=%d\n"), sharedResource.getAttemptCounter()));
+	ACE_DEBUG((LM_DEBUG, "(%t) LockedCounter=%d\n", sharedResource.getLockedCounter()));
+	ACE_DEBUG((LM_DEBUG, "(%t) AttemptCounter=%d\n", sharedResource.getAttemptCounter()));
 	return EXIT_SUCCESS;
 }
