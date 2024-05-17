@@ -33,7 +33,8 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("show different contexts in the kernel");
 
 /* our own functions */
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	if (in_interrupt())
 		pr_info("in_interrupt is 1\n");
 	else
@@ -42,7 +43,8 @@ static int __init mod_init(void) {
 }
 
 
-static void __exit mod_exit(void) {
+static void __exit mod_exit(void)
+{
 }
 
 /* declaration of init/cleanup functions of this module */

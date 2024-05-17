@@ -59,7 +59,8 @@ static struct completion comp;
 /*
  * This is the ioctl implementation.
  */
-static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg) {
+static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
 	int i;
 
 	PR_DEBUG("start");

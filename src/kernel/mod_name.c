@@ -42,7 +42,8 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("A module showing how to refer to the name of the module you are in");
 
 /* init/exit functions */
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	pr_info("this module is called " KBUILD_MODNAME "\n");
 	pr_info("this module is called %s\n", KBUILD_MODNAME);
 	pr_info("this module is called %s\n", THIS_MODULE->name);

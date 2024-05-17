@@ -53,7 +53,8 @@ static unsigned int size = -1;
 static unsigned long uptr = -1;
 
 /* do we want to use kmalloc or get_free_pages ? */
-static void *alloc_mem(unsigned int size) {
+static void *alloc_mem(unsigned int size)
+{
 	/* kernel address to be returned */
 	void *kaddr;
 	/* order of allocation in case we use get_free_pages */

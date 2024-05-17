@@ -122,7 +122,8 @@ MODULE_PARM_DESC(mylong, "A long integer");
 module_param(mystring, charp, 0000);
 MODULE_PARM_DESC(mystring, "A character string");
 
-static int param_init(void) {
+static int param_init(void)
+{
 	PR_INFO("start");
 	PR_INFO("myshort is a short integer: %hd", myshort);
 	PR_INFO("myint is an integer: %d", myint);

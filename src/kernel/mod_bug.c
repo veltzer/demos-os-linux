@@ -39,14 +39,16 @@ MODULE_DESCRIPTION("Module showing how to use BUG()");
  *	- examin the behaviour in each of these and describe it.
  *	- add open and ioctl support.
  */
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	BUG();
 	BUG_ON(1 != 2);
 	panic("there is nothing I can do");
 	return 0;
 }
 
-static void __exit mod_exit(void) {
+static void __exit mod_exit(void)
+{
 }
 
 module_init(mod_init);

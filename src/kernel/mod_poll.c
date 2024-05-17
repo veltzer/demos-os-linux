@@ -47,7 +47,8 @@ struct polldev {
 /*
  * This is the open implementation
  */
-static int kern_open(struct inode *inode, struct file *filp) {
+static int kern_open(struct inode *inode, struct file *filp)
+{
 	struct polldev *pd;
 
 	PR_INFO("start");

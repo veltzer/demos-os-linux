@@ -29,12 +29,14 @@ MODULE_DESCRIPTION("Module showing how to use BUG()");
 /*
  * This demo shows the use of the 'dump_stack()' function.
  */
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	dump_stack();
 	return 0;
 }
 
-static void __exit mod_exit(void) {
+static void __exit mod_exit(void)
+{
 	dump_stack();
 }
 
