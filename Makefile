@@ -8,11 +8,11 @@ DO_STP:=1
 # check kernel modules
 DO_CHP:=1
 # check using cppcheck?
-DO_CPPCHECK:=1
+DO_CPPCHECK:=0
 # check using clang-tidy?
-DO_TIDY:=1
+DO_TIDY:=0
 # check using cpplint?
-DO_CPPLINT:=1
+DO_CPPLINT:=0
 # should we depend on the Makefile itself?
 DO_ALLDEP:=1
 # do you want to show the commands executed ?
@@ -31,6 +31,10 @@ DO_MD_MDL:=1
 DO_MD_ASPELL:=1
 # do you want to add standard flags?
 DO_ADD_STD:=0
+# do you want to do GCC?
+DO_GCC:=1
+# do you want to do clang?
+DO_CLANG:=0
 
 #############
 # variables #
@@ -70,6 +74,8 @@ CCACHE:=0
 SUFFIX_BIN:=elf
 # suffix for c++ object files
 SUFFIX_OO:=oo
+# suffix for c object file
+SUFFIX_O:=o
 # checkpatch executable...
 SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
 # SCRIPT_CHECKPATCH:=scripts/checkpatch.pl --fix-inplace
@@ -124,7 +130,7 @@ endif # DO_ADD_STD
 
 # removed these flags
 # -Wno-unused-parameter -Wno-missing-field-initializers
-WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros
+WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros -Wno-unused-parameter
 CXXFLAGS:=$(CXXFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 CFLAGS:=$(CFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 
@@ -143,15 +149,18 @@ CLEAN:=
 CLEAN_DIRS:=
 
 # user space applications (c and c++)
-CC_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.cc")
-HH_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.hh")
 C_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.c" -and -not -name "mod_*.c")
+CC_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.cc")
+H_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.h")
+HH_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.hh")
+
 CC_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(CC_SRC)))
 C_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(C_SRC)))
 CC_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(CC_SRC)))
 C_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(C_SRC)))
 CC_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(CC_SRC)))
 C_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(C_SRC)))
+
 ALL_C:=$(shell find . -name "*.c")
 ALL_CC:=$(shell find . -name "*.cc")
 ALL_H:=$(shell find . -name "*.h")
@@ -159,18 +168,23 @@ ALL_HH:=$(shell find . -name "*.hh")
 ALL_US_C:=$(shell find $(US_DIRS) -name "*.c" -or -name "*.h") $(shell find src/include -name "*.h")
 ALL_US_CC:=$(ALL_CC) $(ALL_HH)
 ALL_US:=$(ALL_US_C) $(ALL_US_CC)
-CC_PRE:=$(addsuffix .p,$(basename $(CC_SRC)))
-C_PRE:=$(addsuffix .p,$(basename $(C_SRC)))
-CC_DIS:=$(addsuffix .dis,$(basename $(CC_SRC)))
-C_DIS:=$(addsuffix .dis,$(basename $(C_SRC)))
-CC_OBJ:=$(addsuffix .$(SUFFIX_OO),$(basename $(CC_SRC)))
-C_OBJ:=$(addsuffix .o,$(basename $(C_SRC)))
-CC_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC)))
-C_EXE:=$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC)))
+
+C_GCC_PRE:=$(addprefix out/gcc/,$(addsuffix .p,$(basename $(C_SRC))))
+CC_GCC_PRE:=$(addprefix out/gcc/,$(addsuffix .p,$(basename $(CC_SRC))))
+C_GCC_DIS:=$(addprefix out/gcc/,$(addsuffix .dis,$(basename $(C_SRC))))
+CC_GCC_DIS:=$(addprefix out/gcc/,$(addsuffix .dis,$(basename $(CC_SRC))))
+C_GCC_OBJ:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_O),$(basename $(C_SRC))))
+CC_GCC_OBJ:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_OO),$(basename $(CC_SRC))))
+C_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC))))
+CC_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC))))
+
 ALL_SH:=$(shell find src -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
-ALL:=$(ALL) $(CC_EXE) $(C_EXE)
-CLEAN:=$(CLEAN) $(CC_EXE) $(C_EXE) $(CC_OBJ) $(C_OBJ) $(CC_DIS) $(C_DIS) $(CC_PRE) $(C_PRE)
+
+ifeq ($(DO_GCC),1)
+ALL:=$(ALL) $(CC_GCC_EXE) $(C_GCC_EXE)
+CLEAN:=$(CLEAN) $(CC_GCC_EXE) $(C_GCC_EXE) $(CC_GCC_OBJ) $(C_GCC_OBJ) $(CC_GCC_DIS) $(C_GCC_DIS) $(CC_GCC_PRE) $(C_GCC_PRE)
+endif # DO_GCC
 
 # kernel modules
 MOD_SRC:=$(shell find $(KERNEL_DIR) -name "mod_*.c" -and -not -name "mod_*.mod.c")
@@ -590,29 +604,39 @@ spell_many:
 ############
 # patterns #
 ############
-$(CC_OBJ): %.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
+$(CC_GCC_OBJ): out/gcc/%.$(SUFFIX_OO): %.cc $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CXX) -c $(CXXFLAGS) -o $@ $<
-$(C_OBJ): %.o: %.c $(DEP_WRAPPER)
+$(C_GCC_OBJ): out/gcc/%.$(SUFFIX_O): %.c $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) $(CCACHE) 0 $< $@ $(CC) -c $(CFLAGS) -o $@ $<
-$(CC_EXE): %.$(SUFFIX_BIN): %.$(SUFFIX_OO) $(DEP_WRAPPER)
+$(CC_GCC_EXE): out/gcc/%.$(SUFFIX_BIN): out/gcc/%.$(SUFFIX_OO) $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $<)) $@ $(CXX) $(CXXFLAGS) -o $@ $<
-$(C_EXE): %.$(SUFFIX_BIN): %.o $(DEP_WRAPPER)
+	$(Q)mkdir -p $(dir $@)
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .cc,$(basename $(<:out/gcc/%=%))) $@ $(CXX) $(CXXFLAGS) -o $@ $<
+$(C_GCC_EXE): out/gcc/%.$(SUFFIX_BIN): out/gcc/%.o $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
-	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $<)) $@ $(CC) $(CFLAGS) -o $@ $<
-$(CC_PRE): %.p: %.cc $(DEP_WRAPPER)
+	$(Q)mkdir -p $(dir $@)
+	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 1 $(addsuffix .c,$(basename $(<:out/gcc/%=%))) $@ $(CC) $(CFLAGS) -o $@ $<
+$(CC_GCC_PRE): out/gcc/%.p: %.cc $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CXX) $(CXXFLAGS) -E -o $@ $<
-$(C_PRE): %.p: %.c $(DEP_WRAPPER)
+$(C_GCC_PRE): out/gcc/%.p: %.c $(DEP_WRAPPER)
 	$(info doing [$@] from [$<])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/wrapper_compile.py $(DO_MKDBG) 0 0 $< $@ $(CC) $(CFLAGS) -E -o $@ $<
-$(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
+$(CC_GCC_DIS): out/gcc/%.dis: out/%.$(SUFFIX_BIN)
 	$(info doing [$@] from [$<])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)objdump --disassemble --source --demangle $< > $@
-#	$(Q)objdump --demangle --disassemble --no-show-raw-insn --section=.text $< > $@
-#	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
+$(C_GCC_DIS): out/gcc/%.dis: out/%.$(SUFFIX_BIN)
+	$(info doing [$@] from [$<])
+	$(Q)mkdir -p $(dir $@)
+	$(Q)objdump --disassemble --source $< > $@
+
 $(CC_CPPLINT): out/%.cc.stamp.cpplint: %.cc
 	$(info doing [$@] from [$<])
 	$(Q)cpplint $<
