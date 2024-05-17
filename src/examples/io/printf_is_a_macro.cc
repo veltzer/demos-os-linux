@@ -17,6 +17,7 @@
  */
 
 #include <firstinclude.h>
+#include <multiproc_utils.h> // for my_system()
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
@@ -35,7 +36,8 @@
  * $ nm [this executable] | grep puts
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	printf("Hello, World!\n");
+	my_system("nm -C %s | grep puts", argv[0]);
 	return EXIT_SUCCESS;
 }

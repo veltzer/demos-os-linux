@@ -35,7 +35,7 @@
  * - the O_RDWR for the target file is to enable MAP_SHARED - otherwise mmap fails.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [infile] [outfile]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

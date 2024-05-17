@@ -24,7 +24,7 @@
  * Example of buffering of stdout causing loss of messages...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("stdout data");
 	fprintf(stderr, "stderr data");
 	printf("stdout data2");

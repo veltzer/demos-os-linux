@@ -55,7 +55,7 @@ void copy_file(const char* filein, const char* fileout, const unsigned int bufsi
 	delete[] buf;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [infile] [outfile] [num_pages]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

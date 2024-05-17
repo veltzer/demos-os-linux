@@ -25,7 +25,7 @@
  * This example shows that stdout is buffered.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Hi there");
 	fflush(stdout);
 	sleep(5);
