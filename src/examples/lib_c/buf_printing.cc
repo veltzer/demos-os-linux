@@ -25,7 +25,7 @@
  * This is an example to show how best to print characters on the screen...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(int c=0; c<256; c++) {
 		if (isgraph(c)) {
 			printf("asc %d is %c\n", c, c);

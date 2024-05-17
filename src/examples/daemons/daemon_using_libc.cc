@@ -33,7 +33,7 @@
  * of reaping all processes by that login session. This is fine.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	printf("before daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid());
 	printf("after the console returns the process will continue disconnected\n");
 	printf("from the terminal and will be adopted by pid=1 or some lower reaper\n");

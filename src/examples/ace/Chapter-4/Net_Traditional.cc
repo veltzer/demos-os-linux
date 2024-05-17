@@ -32,7 +32,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct sockaddr_in srvr;
 	memset(&srvr, 0, sizeof(srvr));
 	srvr.sin_family=AF_INET;

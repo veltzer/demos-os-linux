@@ -39,7 +39,7 @@ int atoi(const char* nptr) {
 	return p_atoi(nptr)/2;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("atoi of 45 is %d\n", atoi("45"));
 	return EXIT_SUCCESS;
 }

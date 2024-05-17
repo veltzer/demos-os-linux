@@ -35,15 +35,19 @@ struct wl_shell_surface *shell_surface = NULL;
 struct wl_surface *surface = NULL;
 
 static void registry_global(
-	void *data, struct wl_registry *registry,
+	void *data __attribute__((unused)), struct wl_registry *registry,
 	uint32_t name, const char *interface,
-	uint32_t version) {
+	uint32_t version __attribute__((unused))) {
 	if (strcmp(interface, "wl_shell") == 0) {
 		shell = (struct wl_shell *) wl_registry_bind(registry, name, &wl_shell_interface, 1);
 	}
 }
 
-static void registry_global_remove(void *data, struct wl_registry *registry, uint32_t name) {
+static void registry_global_remove(
+	void *data __attribute__((unused)),
+	struct wl_registry *registry __attribute__((unused)),
+	uint32_t name __attribute__((unused))
+) {
 	// Do nothing
 }
 
@@ -52,7 +56,7 @@ static const struct wl_registry_listener registry_listener = {
 	.global_remove = registry_global_remove,
 };
 
-int main(int argc, char *argv[]) {
+int main() {
 	struct wl_display *display = (struct wl_display*)CHECK_NOT_NULL(wl_display_connect(NULL));
 	struct wl_registry *registry = wl_display_get_registry(display);
 	wl_registry_add_listener(registry, &registry_listener, NULL);

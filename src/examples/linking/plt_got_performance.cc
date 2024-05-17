@@ -109,7 +109,7 @@ void* m_dlsym_stdin(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	typeof(atoi)* p_direct_atoi=&atoi;
 	typeof(atoi)* p_dlsym_atoi=(typeof(atoi)*)dlsym(RTLD_NEXT, "atoi");
 	typeof(printf)* p_direct_printf=&printf;

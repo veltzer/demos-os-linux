@@ -57,7 +57,7 @@ public:
 	}
 
 	// Called when a connection is ready to accept.
-	virtual int handle_input(ACE_HANDLE fd=ACE_INVALID_HANDLE) {
+	virtual int handle_input(ACE_HANDLE fd __attribute__((unused))=ACE_INVALID_HANDLE) {
 		ACE_DEBUG((LM_DEBUG, "(%P|%t) got handle_input\n"));
 		ACE_OS::sleep(1);
 		// this means 'deregister this handling method'
@@ -65,7 +65,7 @@ public:
 	}
 
 	// Called when this handler is removed from the ACE_Reactor.
-	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) {
+	virtual int handle_close(ACE_HANDLE, ACE_Reactor_Mask) {
 		return 0;
 	}
 
@@ -80,7 +80,7 @@ public:
 	}
 
 	// Called when object is signaled by OS.
-	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
+	virtual int handle_signal(int signum __attribute__((unused)), siginfo_t* =0, ucontext_t* =0) {
 		ACE_Reactor::instance()->end_reactor_event_loop();
 		return 0;
 	}

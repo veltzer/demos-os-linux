@@ -44,7 +44,7 @@ inline void do_something_with_constant1(int a) {
 #define do_something_with_constant(a) \
 	(__builtin_constant_p(a) ? 7:ct_assert(0==1))
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// this will do something bad at runtime
 	int x=rand();
 	do_something_with_constant1(x);

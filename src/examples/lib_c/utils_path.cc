@@ -27,7 +27,7 @@
  * This example is taken from 'man 3 confstr'
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	size_t n=CHECK_POSITIVE(confstr(_CS_PATH, NULL, (size_t)0));
 	char *pathbuf=(char*)CHECK_NOT_NULL(malloc(n));
 	CHECK_IN_RANGE(confstr(_CS_PATH, pathbuf, n), 1, n+1);

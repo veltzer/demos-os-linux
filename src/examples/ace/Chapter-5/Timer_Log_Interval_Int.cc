@@ -34,7 +34,10 @@
 
 class TimerHandler:public ACE_Event_Handler {
 public:
-	int handle_timeout(const ACE_Time_Value& current_time, const void* arg) {
+	int handle_timeout(
+		const ACE_Time_Value& current_time __attribute__((unused)),
+		const void* arg __attribute__((unused))
+	) {
 		ACE_DEBUG((LM_INFO, "handle_timeout\n"));
 		return 0;
 	}

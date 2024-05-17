@@ -41,7 +41,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-pie
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	proc_print_mmap_self();
 	return EXIT_SUCCESS;
 }

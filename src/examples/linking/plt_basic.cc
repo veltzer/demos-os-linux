@@ -35,7 +35,7 @@
  * - disassemble the code at the PLT addresses.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	typeof(printf)* p_printf=&printf;
 	typeof(snprintf)* p_snprintf=&snprintf;
 	typeof(atoi)* p_atoi=&atoi;

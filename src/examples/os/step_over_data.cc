@@ -48,7 +48,7 @@ void segv_handler(int sig) {
 	old_handler(sig);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	page_size=CHECK_NOT_M1(sysconf(_SC_PAGESIZE));
 	printf("page size is %d\n", page_size);
 	my_system("pmap %d", getpid());

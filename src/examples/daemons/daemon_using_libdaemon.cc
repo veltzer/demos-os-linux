@@ -42,7 +42,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-ldaemon
  */
 
-int main(int argc, char **argv, char** envp) {
+int main(int argc, char** argv) {
 
 	/* Reset signal handlers */
 	if (daemon_reset_sigs(-1) < 0) {

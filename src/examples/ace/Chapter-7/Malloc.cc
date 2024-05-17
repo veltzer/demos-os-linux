@@ -125,7 +125,7 @@ int main() {
 }
 
 #else
-int main(int argc, char** argv) {
+int main(int argc, char**) {
 	if (argc > 1) {
 		ACE_MMAP_Memory_Pool_Options options(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::ALWAYS_FIXED);
 

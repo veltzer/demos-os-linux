@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-ldl -lm
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	double (*p_func)(double)=(typeof(p_func))dlsym(RTLD_NEXT, argv[1]);
 	printf("p_func is %p\n", (void*)p_func);
 	double val=atof(argv[2]);

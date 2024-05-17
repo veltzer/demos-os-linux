@@ -42,7 +42,7 @@ int myfunc(int lim) {
 	return sum;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sum of square of numbers till 100 is %d\n", myfunc(100));
 	printf("my pid is %d\n", getpid());
 	my_system("pmap %d", getpid());

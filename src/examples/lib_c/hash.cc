@@ -28,7 +28,7 @@
  * man hsearch or info libc under 'hsearch' or 'hash'.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// struct hsearch_data HTAB;
 	// CHECK_NOT_M1(hcreate_r(50,&HTAB));
 	// next function does not return any status...

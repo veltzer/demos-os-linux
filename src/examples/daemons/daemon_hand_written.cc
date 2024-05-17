@@ -70,7 +70,7 @@ void my_daemon() {
 	CHECK_NOT_M1(dup2(0,2));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	printf("before daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid());
 	printf("after the console returns the process will continue disconnected\n");
 	printf("from the terminal as child of pid 1 or some lower reaper\n");

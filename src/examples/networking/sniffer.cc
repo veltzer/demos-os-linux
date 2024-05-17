@@ -36,7 +36,7 @@
  * http://www.tenouk.com/Module42a.html
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// lets check that we are running as root
 	check_root();
 	int fd=CHECK_NOT_M1(socket(PF_INET, SOCK_RAW, IPPROTO_TCP));
