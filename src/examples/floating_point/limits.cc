@@ -29,7 +29,7 @@
  * - are there other values (MINUNSIGNEDINT?!?) in values.h that we can print here?
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("MAXINT is %d\n", MAXINT);
 	printf("MININT is %d\n", MININT);
 	printf("MAXLONG is %ld\n", MAXLONG);

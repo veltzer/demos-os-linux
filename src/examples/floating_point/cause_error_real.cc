@@ -32,7 +32,7 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	volatile float a=40;
 	volatile float b=0;
 	printf("a/b is %f\n", a/b);

@@ -29,7 +29,7 @@
  * EXTRA_COMPILE_FLAGS=-O0 -g3
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int number = 0;
 	printf("number is %d\n", number);
 	int result = __sync_add_and_fetch(&number, 1);

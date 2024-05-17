@@ -189,7 +189,7 @@ static int parse_arguments(int& argc, char** argv, bool& doObserver, int& type, 
 	}
 	return optind;
 }
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	bool doObserver=false;
 	int type=0;	// atomic
 	int attempts=100000;

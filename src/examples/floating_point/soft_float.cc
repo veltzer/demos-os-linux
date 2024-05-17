@@ -35,7 +35,7 @@
 extern "C" double __bid64dq_div(double, double);
 extern "C" float __divtf3(float, float);
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [a] [b]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

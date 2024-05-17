@@ -27,7 +27,7 @@ remains the same...
 #include <stdio.h> // for printf(3)
 #include <stdlib.h> // for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
 	printf("address of main is %p\n", (void*)&main);

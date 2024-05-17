@@ -46,7 +46,7 @@
 // #define DO_PROGRESS
 // #define DO_PRINT
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	unsigned int num_bins=1000;
 	// unsigned long min_range=(unsigned long)MININT;
 	// unsigned long max_range=(unsigned long)MAXINT;

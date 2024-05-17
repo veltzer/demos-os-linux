@@ -29,7 +29,7 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	disassemble_function("do_volatile");
 	disassemble_function("do_regular");
 	disassemble_function("do_atomic");

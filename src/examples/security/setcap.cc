@@ -27,7 +27,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lcap
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_ASSERT(CAP_IS_SUPPORTED(CAP_NET_BIND_SERVICE));
 	cap_t caps=(cap_t)CHECK_NOT_NULL(cap_get_proc());
 	cap_value_t cap_list[1];
