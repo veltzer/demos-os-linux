@@ -31,7 +31,7 @@
  * in which case the child will get adopted.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("%d: this is the parent\n", getpid());
 	pid_t child_pid=CHECK_NOT_M1(fork());
 	if(child_pid) {

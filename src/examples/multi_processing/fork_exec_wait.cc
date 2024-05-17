@@ -35,7 +35,7 @@
 #include <multiproc_utils.h>	// for print_status()
 #include <stdio.h>	// for printf(3)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t pid=CHECK_NOT_M1(fork());
 	if(pid) {
 		// parent

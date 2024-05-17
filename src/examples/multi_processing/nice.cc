@@ -66,7 +66,7 @@ pid_t make_child(int nice_val) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	make_child(1);
 	make_child(2);
 	make_child(3);

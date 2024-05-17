@@ -27,7 +27,7 @@
  * the status code means or as a demo of how to analyze such a code.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [status code]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: 0 - the process ended with success\n", argv[0]);

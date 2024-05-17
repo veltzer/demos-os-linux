@@ -44,7 +44,7 @@
  * - add a fork(2) to this demo and show that parent and child can have different names.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("start");
 	const char* newname="newpname";
 	process_print_name();

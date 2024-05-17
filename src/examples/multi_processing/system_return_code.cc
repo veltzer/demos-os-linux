@@ -25,7 +25,7 @@
  * from system(3)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	print_status(system("/bin/ls /foo"));
 	return EXIT_SUCCESS;
 }

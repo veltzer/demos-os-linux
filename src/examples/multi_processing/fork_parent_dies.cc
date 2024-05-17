@@ -35,7 +35,7 @@
  * run to collect the dead per user on login.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t child_pid=CHECK_NOT_M1(fork());
 	if(child_pid) {
 		printf("%d: this is the parent\n", getpid());

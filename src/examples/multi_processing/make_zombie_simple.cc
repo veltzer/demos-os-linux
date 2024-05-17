@@ -25,7 +25,7 @@
  * This is a really simple example of how to create a zombie.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t child_pid=CHECK_NOT_M1(fork());
 	if (child_pid==0) {
 		// let the child die to become a zombie
