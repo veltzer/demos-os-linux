@@ -58,7 +58,7 @@ int minus1(int x) {
 	//return -1;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("minus1 of 7 is %d\n", minus1(7));
 	return EXIT_SUCCESS;
 }

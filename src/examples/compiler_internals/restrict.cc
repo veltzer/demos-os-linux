@@ -79,7 +79,7 @@ void add_restrict(int* __restrict arr, int num, int* __restrict result) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// prepare a large array
 	const unsigned int array_size=10000000;
 	int* arr=new int[array_size];

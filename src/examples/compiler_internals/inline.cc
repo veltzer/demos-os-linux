@@ -60,7 +60,7 @@ static inline __attribute__((__gnu_inline__)) int add4(int a, int b) {
  * }
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int a=2;
 	int b=2;
 	printf("add1(%d,%d)=%d\n", a, b, add1(a, b));

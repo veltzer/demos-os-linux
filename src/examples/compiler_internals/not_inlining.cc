@@ -58,7 +58,7 @@ void __attribute__((noinline)) empty4() {
 	asm ("");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	disassemble_main();
 	printf("2+2=%d\n", add1(2, 2));
 	printf("2+3=%d\n", add2(2, 3));

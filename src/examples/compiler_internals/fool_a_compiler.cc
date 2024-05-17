@@ -39,7 +39,7 @@
  * against hackers. You can turn that off (look at my interesting command lines).
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char**) {
 	int i;
 	//printf("&i-&argc=%ld\n", &i-&argc); // this is 2 on x64 and 5 and i386
 	// pi points to i but the compiler does not know it...

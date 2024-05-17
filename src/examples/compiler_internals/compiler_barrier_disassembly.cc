@@ -28,7 +28,7 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	asm volatile ("" ::: "memory");
 	disassemble_main();
 	return EXIT_SUCCESS;

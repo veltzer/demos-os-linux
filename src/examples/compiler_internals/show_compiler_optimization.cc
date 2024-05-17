@@ -38,8 +38,8 @@
  * EXTRA_COMPILE_FLAGS=-g3
  * this is to make sure that we compile using gcc 4.4 since newer gcc versions
  * do not do this type of optimization...
- * COMPILE=g++-4.8
- * LINKE=g++-4.8
+ * COMPILE_R=g++-4.8
+ * LINKE_R=g++-4.8
  */
 
 /*
@@ -77,7 +77,7 @@ unsigned int sum_print_opt() {
 	return sum;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	disassemble_function("sum_not_optimized");
 	disassemble_function("sum_optimized");
 	disassemble_function("sum_print_opt");

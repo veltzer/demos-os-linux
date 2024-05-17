@@ -30,7 +30,7 @@ template<class T> class A {
 		int foo(T t) __attribute__((noinline));
 };
 
-template<class T> int A<T>::foo(T t) {
+template<class T> int A<T>::foo(T t __attribute__((unused))) {
 	int sum=0;
 	for(unsigned int i=0;i<100;i++) {
 		sum+=i*i;
@@ -40,7 +40,7 @@ template<class T> int A<T>::foo(T t) {
 
 template class A<int>;
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	//A<int> a;
 	//int sum=a.foo(0);
 	//return sum;

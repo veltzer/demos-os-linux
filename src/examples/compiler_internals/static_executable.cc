@@ -31,7 +31,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-static-libstdc++
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	my_system("ldd %s", argv[0]);
 	return EXIT_SUCCESS;
 }

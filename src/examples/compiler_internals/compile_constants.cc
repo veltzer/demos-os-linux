@@ -48,7 +48,7 @@ static inline int sum(int i) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cerr << "sum for 99 is " << sum(99) << " and should be " << _sum(99) << std::endl;
 	int j=atoi("100");
 	std::cerr << "sum for j=100 and the compiler does not know it is " << sum(j) << " and should be " << _sum(100) << std::endl;

@@ -35,7 +35,7 @@
 const char* str2="what?!? this is a very long sentence";
 const char* str1="this is a very long sentence";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("str1 is %p\n", str1);
 	printf("str2 is %p\n", str2);
 	assert(str1>=str2 && str1<str2+strlen(str2));

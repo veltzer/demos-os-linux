@@ -18,6 +18,7 @@
 
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
  * This example proves that const data segment data is stored in a non write
@@ -26,7 +27,7 @@
 
 const int j=1024;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int* p=(int*)&j;
 	for(int i=0; i<1000; i++) {
 		if(i%10==0) {
@@ -34,5 +35,5 @@ int main(int argc, char** argv, char** envp) {
 		}
 		printf("j is %d\n", *p);
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
