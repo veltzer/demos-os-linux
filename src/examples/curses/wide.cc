@@ -41,7 +41,7 @@ void printErr(void) {
 	printf("ERROR: message was [%s]\n", myMsg);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	setlocale(LC_ALL, "");
 
 	/*

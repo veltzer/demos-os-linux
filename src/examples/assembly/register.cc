@@ -37,7 +37,7 @@ static inline unsigned long getbx() {
 	return val;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("ebx is %lu\n", getbx());
 	return EXIT_SUCCESS;
 }

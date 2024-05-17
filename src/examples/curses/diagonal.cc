@@ -77,7 +77,7 @@ static void demo_old(WINDOW* stdscr) {
 	endwin();
 }
 
-int main(int argc,char** argv,char** envp) {
+int main() {
 	//setlocale(LC_ALL,"");
 	WINDOW* stdscr=stdinit();
 	if(1)

@@ -29,7 +29,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("C/OpenMP demo\n");
 	printf("Number of processors available=%d\n", omp_get_num_procs());
 	printf("Number of threads=%d\n", omp_get_max_threads());

@@ -28,7 +28,7 @@
  * This example investigates process groups.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(setpgrp());
 	printf("%d: this is the parent\n", getpid());
 	pid_t child_pid=CHECK_NOT_M1(fork());

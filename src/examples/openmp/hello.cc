@@ -30,7 +30,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	#pragma omp parallel
 	printf("Hello from thread %d, nthreads %d\n", omp_get_thread_num(), omp_get_num_threads());
 	return EXIT_SUCCESS;

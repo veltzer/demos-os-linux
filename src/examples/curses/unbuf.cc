@@ -32,7 +32,7 @@
  *
  * EXTRA_LINK_FLAGS_AFTER=-lncursesw
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	initscr();
 	cbreak();
 	noecho();
