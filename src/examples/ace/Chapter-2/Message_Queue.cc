@@ -42,9 +42,9 @@ int HA_CommandHandler::svc(void) {
 			/*
 			 * DeviceCommandHeader *dch=(DeviceCommandHeader *)mb->rd_ptr();
 			 * mb->rd_ptr(sizeof(DeviceCommandHeader));
-			 * ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message for device #%d with ") ACE_TEXT("command payload of:\n%s"), dch->deviceId_, mb->rd_ptr())); this->rep_.update_device(dch->deviceId_, mb->rd_ptr());
+			 * ACE_DEBUG((LM_DEBUG, "Message for device #%d with " "command payload of:\n%s", dch->deviceId_, mb->rd_ptr())); this->rep_.update_device(dch->deviceId_, mb->rd_ptr());
 			 */
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("message is %s\n"), mb->rd_ptr()));
+			ACE_DEBUG((LM_DEBUG, "message is %s\n", mb->rd_ptr()));
 			mb->release();
 		}
 	}
@@ -63,7 +63,7 @@ ACE_Message_Block *Message_Receiver::shut_down_message(void) {
 int Message_Receiver::read_header(DeviceCommandHeader *dch) {
 	ssize_t result=this->peer().recv_n(dch, sizeof(DeviceCommandHeader));
 	if(result<=0) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Recieve Failure")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Recieve Failure"), -1);
 	}
 	return 0;
 }
@@ -94,7 +94,7 @@ int Message_Receiver::handle_input(ACE_HANDLE) {
 	mb->copy((const char *)&dch, sizeof dch);
 	// Copy the payload.
 	if (this->copy_payload(mb, dch.length_) < 0) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Recieve Failure")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Recieve Failure"), -1);
 	}
 	// Pass it off to the handler thread.
 	this->handler_->putq(mb);
@@ -103,7 +103,7 @@ int Message_Receiver::handle_input(ACE_HANDLE) {
 
 static void report_usage(int argc, char** argv) {
 	if (argc < 2) {
-		ACE_DEBUG((LM_ERROR, ACE_TEXT("%s: please use me with port\n"), argv[1]));
+		ACE_DEBUG((LM_ERROR, "%s: please use me with port\n", argv[1]));
 		ACE_OS::exit(EXIT_FAILURE);
 	}
 }
@@ -137,7 +137,7 @@ int main(int argc, char** argv) {
 	Acceptor acceptor(&handler);
 	ACE_INET_Addr addr(port);
 	if (acceptor.open(addr)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Failed to open connection")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Failed to open connection"), -1);
 	}
 	ACE_Reactor::instance()->run_reactor_event_loop();
 	// run the reactive event loop

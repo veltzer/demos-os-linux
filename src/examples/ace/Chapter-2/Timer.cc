@@ -61,7 +61,7 @@ public:
 };
 
 int main() {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("%t: main thread starting\n")));
+	ACE_DEBUG((LM_DEBUG, "%t: main thread starting\n"));
 	ACE_Reactor reactor;
 	MyTime_Handler *th=new MyTime_Handler;
 	int timer_id[NUMBER_TIMERS];

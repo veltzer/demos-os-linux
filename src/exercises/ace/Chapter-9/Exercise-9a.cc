@@ -46,12 +46,12 @@ class SignalableTask:public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		if (signum==SIGUSR1) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) received a %S signal\n"), signum));
+			ACE_DEBUG((LM_DEBUG, "(%t) received a %S signal\n", signum));
 			MyIndex=0;
 // handle_alert ();
 		}
 		if (signum==SIGUSR2) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) received a %S signal\n"), signum));
+			ACE_DEBUG((LM_DEBUG, "(%t) received a %S signal\n", signum));
 			MyIndex=1;
 // handle_alert ();
 		}
@@ -70,21 +70,21 @@ int DoAccept(long ReceivePort, ACE_SOCK_Stream *peer, ACE_INET_Addr *peer_addr, 
 	ACE_INET_Addr address_to_listen=ACE_INET_Addr(ReceivePort, ACE_LOCALHOST);
 	// Use the address as well as re-use flag
 	if (acceptor->open(address_to_listen, 1)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), 100);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), 100);
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Trying to accept %d.\n"), ReceivePort));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Trying to accept %d.\n", ReceivePort));
 	if (acceptor->accept(*peer, peer_addr, &timeout, 0)==-1) {
 		if (ACE_OS::last_error()==EINTR) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Interrupted while waiting for connection\n")));
+			ACE_DEBUG((LM_DEBUG, "(%P|%t) Interrupted while waiting for connection\n"));
 		} else if (ACE_OS::last_error()==ETIMEDOUT) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while waiting for connection\n")));
+			ACE_DEBUG((LM_DEBUG, "(%P|%t) Timeout while waiting for connection\n"));
 		}
 	} else {
 		char peer_name[MAXHOSTNAMELEN];
 		peer_addr->addr_to_string(peer_name, MAXHOSTNAMELEN);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection from %s\n", peer_name));
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) accept Done %d.\n"), ReceivePort));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) accept Done %d.\n", ReceivePort));
 	return 0;
 }
 
@@ -113,10 +113,10 @@ int ReceiveMessages(ACE_SOCK_Stream peer[], ACE_SOCK_Acceptor acceptor[]) {
 			for(int i=0; i < socket_fd; i++) {
 				if (FD_ISSET(i, &readset)) {
 					result=peer[count].recv(buffer, sizeof(buffer));
-					ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) R E C E I V I N G: <%s>\n"), buffer));
+					ACE_DEBUG((LM_DEBUG, "(%P|%t) R E C E I V I N G: <%s>\n", buffer));
 					/* This means the other side closed the socket */
 					if (result==0) {
-						ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) result=0 for count: %d\n"), count));
+						ACE_DEBUG((LM_DEBUG, "(%P|%t) result=0 for count: %d\n", count));
 						peer[count].close();
 					} else {
 						peer[count].send_n("OK", 3, 0);
@@ -134,7 +134,7 @@ int ReceiveMessages(ACE_SOCK_Stream peer[], ACE_SOCK_Acceptor acceptor[]) {
 int main(int argc, char** argv) {
 	SignalableTask handler;
 	if (argc < 3) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%s: usage: %s Port1 Port2\n"), argv[0], argv[0]));
+		ACE_DEBUG((LM_DEBUG, "%s: usage: %s Port1 Port2\n", argv[0], argv[0]));
 		return 1;
 	}
 	if (argc > 3) {
@@ -158,19 +158,19 @@ int main(int argc, char** argv) {
 		ACE_INET_Addr address_to_listen=ACE_INET_Addr(ListenPort, ACE_LOCALHOST);
 		ACE_OS::sleep(1);
 		if (-1==connector.connect(peer, address_to_listen, &timeout)) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%p\n"), ACE_TEXT("(%P|%t) Client %d connect"), MyIndex + 1));
+			ACE_DEBUG((LM_DEBUG, "%p\n", "(%P|%t) Client %d connect", MyIndex + 1));
 			return 1;
 		}
 		sprintf(buffer, "I'm Child %d This is My Message.", MyIndex + 1);
 		size_t size=ACE_OS::strlen(buffer);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Child %d sending: <%s>\n"), MyIndex + 1, buffer));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Child %d sending: <%s>\n", MyIndex + 1, buffer));
 		// Wait some time before sending a message
 		ACE_OS::sleep(2);
 		peer.send_n(buffer, size, 0);
 		// Get Acknowledge
 		peer.recv(buffer, sizeof(buffer));
 		peer.close();
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Child %d is terminating.\n"), MyIndex + 1));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Child %d is terminating.\n", MyIndex + 1));
 	} else {
 		// Running as a parent.
 		ACE_Process_Manager *pm=ACE_Process_Manager::instance();
@@ -181,7 +181,7 @@ int main(int argc, char** argv) {
 
 		// Specify the options for the new processes to be spawned.
 		ACE_Process_Options options;
-		options.command_line(ACE_TEXT("%s %s %s Extra"), argv[0], argv[1], argv[2]);
+		options.command_line("%s %s %s Extra", argv[0], argv[1], argv[2]);
 
 		// Spawn two child processes.
 		pid_t pids[NCHILDREN];
@@ -195,14 +195,14 @@ int main(int argc, char** argv) {
 		// Wait for the child we just terminated.
 		long ListenPort1=atoi(argv[1]);
 		long ListenPort2=atoi(argv[2]);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Parent Ports are: %d %d\n"), ListenPort1, ListenPort2));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Parent Ports are: %d %d\n", ListenPort1, ListenPort2));
 		// Do the messaging with 1st Process
 		DoAccept(ListenPort1, &peer[0], &peer_addr[0], &acceptor[0]);
 		DoAccept(ListenPort2, &peer[1], &peer_addr[1], &acceptor[1]);
 		ReceiveMessages(peer, acceptor);
 		// Wait for all the children to exit.
 		pm->wait(0);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Parent is terminating.\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Parent is terminating.\n"));
 	}
 	return EXIT_SUCCESS;
 }

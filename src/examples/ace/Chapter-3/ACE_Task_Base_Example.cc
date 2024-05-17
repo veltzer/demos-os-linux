@@ -51,18 +51,18 @@ public:
 		return val;
 	}
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) thread: starting\n")));
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) thread: ending\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) thread: starting\n"));
+		ACE_DEBUG((LM_DEBUG, "(%t) thread: ending\n"));
 		return 0;
 	}
 };
 
 int main() {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main: starting\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main: starting\n"));
 	MyThread thread(7);
 	thread.activate();
 	thread.wait();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main: res is %d\n"), thread.getVal()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main: ending\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main: res is %d\n", thread.getVal()));
+	ACE_DEBUG((LM_DEBUG, "(%t) main: ending\n"));
 	return EXIT_SUCCESS;
 }

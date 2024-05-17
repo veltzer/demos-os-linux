@@ -53,13 +53,13 @@ int main(int argc, char** argv) {
 			break;
 		}
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("interval=%d max_interval=%d\n"), interval.sec(), max_interval.sec()));
+	ACE_DEBUG((LM_DEBUG, "interval=%d max_interval=%d\n", interval.sec(), max_interval.sec()));
 	if (interval > max_interval) {
 		std::cout << "interval must be less than " << max_interval.sec() << std::endl;
 	} else if (expiration > (ACE_Time_Value::max_time - interval)) {
 		std::cout << "expiration + interval must be less than " << ACE_Time_Value::max_time.sec() << std::endl;
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("interval: %d seconds.\n"), interval.sec()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("expiration after: %d seconds.\n"), expiration.sec() - current_time.sec()));
+	ACE_DEBUG((LM_DEBUG, "interval: %d seconds.\n", interval.sec()));
+	ACE_DEBUG((LM_DEBUG, "expiration after: %d seconds.\n", expiration.sec() - current_time.sec()));
 	return EXIT_SUCCESS;
 }

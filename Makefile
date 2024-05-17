@@ -425,6 +425,7 @@ check_ace:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep ACE_TMAIN -- "src/**"
 	$(Q)pymakehelper no_err git grep ACE_TCHAR -- "src/**"
+	$(Q)pymakehelper no_err git grep ACE_TEXT -- "src/**"
 check_colons:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep " : " -- "src/**"

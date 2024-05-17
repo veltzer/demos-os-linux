@@ -43,7 +43,7 @@ int main() {
 	ACE_OS::sprintf(mb->wr_ptr(), "%s", command2);
 	mb->wr_ptr(ACE_OS::strlen(command2) + 1);
 
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Command Sequence --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Command Sequence --> %C\n", mb->rd_ptr()));
 	mb->rd_ptr(ACE_OS::strlen(mb->rd_ptr()) + 1);
 	mb->release();
 	// Send a hangup notification to the receiver.

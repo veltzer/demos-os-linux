@@ -51,32 +51,32 @@ int main() {
 	mb->wr_ptr(ACE_OS::snprintf(mb->wr_ptr(), size, "%s", data1));
 	mb->wr_ptr(ACE_OS::snprintf(mb->wr_ptr(), size-strlen(data1), "%s", data2));
 	// Lets access the buffer in read only mode
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 	// This is to show that the rd_ptr does not change across calls
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 	// This is to show that we can set the read pointer to some place
 	// and read from there
 	// lets do it using a pointer (absolutely)
 	mb->rd_ptr(mb->rd_ptr() + 6);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 	// lets do it using an integer (relativly)
 	mb->rd_ptr(-2);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 	// again, rd_ptr does not change
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 	// Lets print the messages type. This is the default one
 	// Lets also print some more types to compare
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Messages type is --> %d\n"), mb->msg_type()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("MB_HANGUP is --> %d\n"), ACE_Message_Block::MB_HANGUP));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("MB_ERROR is --> %d\n"), ACE_Message_Block::MB_ERROR));
+	ACE_DEBUG((LM_DEBUG, "Messages type is --> %d\n", mb->msg_type()));
+	ACE_DEBUG((LM_DEBUG, "MB_HANGUP is --> %d\n", ACE_Message_Block::MB_HANGUP));
+	ACE_DEBUG((LM_DEBUG, "MB_ERROR is --> %d\n", ACE_Message_Block::MB_ERROR));
 	// Lets set the message blocks type to something and show it
 	mb->msg_type(7);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Messages type is --> %d\n"), mb->msg_type()));
+	ACE_DEBUG((LM_DEBUG, "Messages type is --> %d\n", mb->msg_type()));
 	// Lets print the message size and the message length
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("size is --> %d\n"), mb->size()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("length is --> %d\n"), mb->length()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("total_size is --> %d\n"), mb->total_size()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("total_length is --> %d\n"), mb->total_length()));
+	ACE_DEBUG((LM_DEBUG, "size is --> %d\n", mb->size()));
+	ACE_DEBUG((LM_DEBUG, "length is --> %d\n", mb->length()));
+	ACE_DEBUG((LM_DEBUG, "total_size is --> %d\n", mb->total_size()));
+	ACE_DEBUG((LM_DEBUG, "total_length is --> %d\n", mb->total_length()));
 	// Lets show how the dump method work (does not do anything by default)
 	mb->dump();
 
@@ -87,7 +87,7 @@ int main() {
 	ACE_NEW_RETURN(mb, ACE_Message_Block(size, ACE_Message_Block::MB_HANGUP), EXIT_FAILURE);
 	// Lets print the Message_Block's types
 	if (mb->msg_type()==ACE_Message_Block::MB_HANGUP) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("We got a hangup message\n")));
+		ACE_DEBUG((LM_DEBUG, "We got a hangup message\n"));
 	}
 	// again, release the mb
 	mb->release();
@@ -95,7 +95,7 @@ int main() {
 	// Send an error notification to the receiver. Notice the type parameter
 	ACE_NEW_RETURN(mb, ACE_Message_Block(size, ACE_Message_Block::MB_ERROR), EXIT_FAILURE);
 	if (mb->msg_type()==ACE_Message_Block::MB_ERROR) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("We got an error message\n")));
+		ACE_DEBUG((LM_DEBUG, "We got an error message\n"));
 	}
 	// again, release the mb
 	mb->release();
@@ -106,42 +106,42 @@ int main() {
 	mb->size(size);
 	mb->wr_ptr(ACE_OS::snprintf(mb->wr_ptr(), size, "%s", data1));
 	// Lets print the message size and the message length
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("size is --> %d\n"), mb->size()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("length is --> %d\n"), mb->length()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("total_size is --> %d\n"), mb->total_size()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("total_length is --> %d\n"), mb->total_length()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "size is --> %d\n", mb->size()));
+	ACE_DEBUG((LM_DEBUG, "length is --> %d\n", mb->length()));
+	ACE_DEBUG((LM_DEBUG, "total_size is --> %d\n", mb->total_size()));
+	ACE_DEBUG((LM_DEBUG, "total_length is --> %d\n", mb->total_length()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 	// Lets re-allocate more space and print again
 	mb->size(size * 2);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("size is --> %d\n"), mb->size()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("length is --> %d\n"), mb->length()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("total_size is --> %d\n"), mb->total_size()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("total_length is --> %d\n"), mb->total_length()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "size is --> %d\n", mb->size()));
+	ACE_DEBUG((LM_DEBUG, "length is --> %d\n", mb->length()));
+	ACE_DEBUG((LM_DEBUG, "total_size is --> %d\n", mb->total_size()));
+	ACE_DEBUG((LM_DEBUG, "total_length is --> %d\n", mb->total_length()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
 
 	// Lets start playing around with reference counting
 	ACE_NEW_RETURN(mb, ACE_Message_Block(size), EXIT_FAILURE);
 	mb->wr_ptr(ACE_OS::snprintf(mb->wr_ptr(), size, "%s", data1));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("reference_count is --> %d\n"), mb->reference_count()));
+	ACE_DEBUG((LM_DEBUG, "reference_count is --> %d\n", mb->reference_count()));
 	ACE_Message_Block* mb2=mb->duplicate();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("reference_count is --> %d\n"), mb->reference_count()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("reference_count is --> %d\n"), mb2->reference_count()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb2->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Read pointer --> %x\n"), mb->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Read pointer --> %x\n"), mb2->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "reference_count is --> %d\n", mb->reference_count()));
+	ACE_DEBUG((LM_DEBUG, "reference_count is --> %d\n", mb2->reference_count()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb2->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Read pointer --> %x\n", mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Read pointer --> %x\n", mb2->rd_ptr()));
 
 	// lets advance one of the read pointers (we can
 	// see that each has it's own read pointer...)
 	mb->rd_ptr(3);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb2->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Read pointer --> %x\n"), mb->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Read pointer --> %x\n"), mb2->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb2->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Read pointer --> %x\n", mb->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Read pointer --> %x\n", mb2->rd_ptr()));
 
 	mb->release();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("reference_count is --> %d\n"), mb2->reference_count()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Message data --> %C\n"), mb2->rd_ptr()));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Read pointer --> %x\n"), mb2->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "reference_count is --> %d\n", mb2->reference_count()));
+	ACE_DEBUG((LM_DEBUG, "Message data --> %C\n", mb2->rd_ptr()));
+	ACE_DEBUG((LM_DEBUG, "Read pointer --> %x\n", mb2->rd_ptr()));
 	return EXIT_SUCCESS;
 }
