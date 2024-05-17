@@ -51,7 +51,7 @@
  * gcore functionality directly from our code.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #ifdef DO_FORK
 	pid_t child_pid=fork();
 	if(child_pid==0) {

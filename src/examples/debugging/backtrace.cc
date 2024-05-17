@@ -159,7 +159,7 @@ int rec_func(unsigned int ncalls) {
 }
 // int rec_func(unsigned int ncalls, unsigned int ret) __attribute__((__noinline__));
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	trace_register();
 	unsigned int num;
 	if(argc>1) {

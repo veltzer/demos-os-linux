@@ -26,7 +26,7 @@
 /*
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(open("/etc/this_file_does_not_exist", O_RDONLY));
 	return EXIT_SUCCESS;
 }

@@ -29,7 +29,7 @@
  * This example also shows how accurate this method of measurement is...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct timeval tv_start, tv_end;
 	CHECK_NOT_M1(gettimeofday(&tv_start, NULL));
 	CHECK_NOT_M1(usleep(50 * 1000));

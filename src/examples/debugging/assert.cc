@@ -38,7 +38,7 @@
 		abort(); \
 	}
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int x=1;
 	// ASSERT(x==2);
 	assert(x==2);

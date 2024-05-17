@@ -24,7 +24,7 @@
  * This example shows one way to implement trace macros.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("This is my trace");
 	return EXIT_SUCCESS;
 }

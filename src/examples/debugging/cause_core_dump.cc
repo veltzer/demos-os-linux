@@ -53,7 +53,7 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// cppcheck-suppress nullPointer
 	*(char *)0=0;
 	return EXIT_SUCCESS;
