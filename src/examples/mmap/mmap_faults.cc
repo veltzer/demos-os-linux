@@ -40,7 +40,7 @@
  */
 const char* file_to_map="/initrd.img.old";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int pagesize=getpagesize();
 	getrusage_show_vmem();
 	int fd=CHECK_NOT_M1(open(file_to_map, O_RDONLY));

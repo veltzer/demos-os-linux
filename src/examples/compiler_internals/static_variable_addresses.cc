@@ -19,6 +19,7 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
 #include <string.h>	// for memcpy(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
 
 int var_global=1972;
 
@@ -29,7 +30,7 @@ void foo(int var_local) {
 	printf("address of global variable is %p\n", (void*)&var_global);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	foo(5);
-	return 0;
+	return EXIT_SUCCESS;
 }

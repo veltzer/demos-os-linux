@@ -29,7 +29,7 @@ This example shows the pmap(1) or /proc/[pid]/maps file changes
 as you mmap more anonymous stuff
 */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int size=getpagesize();
 	pid_t mypid=getpid();
 	while(true) {

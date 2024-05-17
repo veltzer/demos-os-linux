@@ -39,7 +39,7 @@
  */
 const char* file_to_map="/etc/passwd";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int fd=CHECK_NOT_M1(open(file_to_map, O_RDONLY));
 	struct stat stat_buf;
 	CHECK_NOT_M1(fstat(fd, &stat_buf));

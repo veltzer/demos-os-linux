@@ -36,6 +36,6 @@ int* get_address_on_the_stack() {
 	#pragma GCC diagnostic pop
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

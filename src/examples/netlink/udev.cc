@@ -47,7 +47,7 @@
  * - Still need to get this one running.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int netlink_socket=CHECK_NOT_M1(socket(AF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT));
 	const unsigned int SIZE=1024;
 	char buf[SIZE];

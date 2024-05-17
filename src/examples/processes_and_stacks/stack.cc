@@ -61,7 +61,7 @@ void loop(bool mems) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	print_limit();
 	// example of non dumping the stack...
 	loop(false);

@@ -134,7 +134,7 @@ static inline void proc_print_mmap_self_only() {
 /*
  * Print memory stats for the current process
  */
-static inline void proc_print_mem_stats(pid_t pid) {
+static inline void proc_print_mem_stats(pid_t pid __attribute__((unused))) {
 	/*
 	 * TODO
 	proc_t myproc;

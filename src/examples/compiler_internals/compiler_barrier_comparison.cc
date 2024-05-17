@@ -87,7 +87,7 @@ FILE* outfile;
 
 #define TEST(shortname, desc, expected, code) \
 	void test_ ## shortname() __attribute__((noinline)); \
-	void test_ ## shortname(volatile int& val_before, volatile int& val_after, int& dummy) { \
+	void test_ ## shortname(volatile int& val_before, volatile int& val_after) { \
 		int a=0; \
 		int u=0; \
 		const int CORRECT_VAL=2000; \
@@ -268,26 +268,26 @@ TEST(
 	asm volatile("":"=m"(u):"m"(u))
 	);
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	outfile=CHECK_NOT_NULL_FILEP(fopen("/dev/null", "w"));
-	int val_before, val_after, dummy;
-	test_nothing(val_before, val_after, dummy);
-	test_machbar(val_before, val_after, dummy);
-	test_emptasm(val_before, val_after, dummy);
-	test_funccall(val_before, val_after, dummy);
-	test_funccall2(val_before, val_after, dummy);
-	test_fullcompbar(val_before, val_after, dummy);
-	test_singvarbar(val_before, val_after, dummy);
-	test_singvarbar2(val_before, val_after, dummy);
-	test_singvarbar3(val_before, val_after, dummy);
-	test_singvarbar4(val_before, val_after, dummy);
-	test_singvarvol(val_before, val_after, dummy);
-	test_singvarvolright(val_before, val_after, dummy);
-	test_singvarvol2(val_before, val_after, dummy);
-	test_singvarvolright2(val_before, val_after, dummy);
-	test_atomicop(val_before, val_after, dummy);
-	test_atomicop2(val_before, val_after, dummy);
-	test_lkmla(val_before, val_after, dummy);
-	test_lkmlu(val_before, val_after, dummy);
+	int val_before, val_after;
+	test_nothing(val_before, val_after);
+	test_machbar(val_before, val_after);
+	test_emptasm(val_before, val_after);
+	test_funccall(val_before, val_after);
+	test_funccall2(val_before, val_after);
+	test_fullcompbar(val_before, val_after);
+	test_singvarbar(val_before, val_after);
+	test_singvarbar2(val_before, val_after);
+	test_singvarbar3(val_before, val_after);
+	test_singvarbar4(val_before, val_after);
+	test_singvarvol(val_before, val_after);
+	test_singvarvolright(val_before, val_after);
+	test_singvarvol2(val_before, val_after);
+	test_singvarvolright2(val_before, val_after);
+	test_atomicop(val_before, val_after);
+	test_atomicop2(val_before, val_after);
+	test_lkmla(val_before, val_after);
+	test_lkmlu(val_before, val_after);
 	return EXIT_SUCCESS;
 }

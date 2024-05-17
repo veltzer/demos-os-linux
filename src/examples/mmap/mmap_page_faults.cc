@@ -30,7 +30,7 @@
  * memory, we create minor page faults.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned long length = 4*1024*1024*1024L;
 	const int pagesize = getpagesize();
 	// allocate the memory
