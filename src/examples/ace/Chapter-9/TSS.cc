@@ -44,7 +44,7 @@ public:
 	virtual int svc(void) {
 		ACE_thread_t tid=this->thr_mgr()->thr_self();
 		// Set our identifier in TSS.
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Setting TSS TID: %u \n"), tid));
+		ACE_DEBUG((LM_DEBUG, "(%t) Setting TSS TID: %u \n", tid));
 		this->tss_ctx_->set_attribute("thread_id", &tid);
 		while(handle_requests()>0) {
 		}
@@ -52,9 +52,9 @@ public:
 	}
 	int handle_requests(void) {
 		ACE_thread_t *tid=(ACE_thread_t *)this->tss_ctx_->get_attribute("thread_id");
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Received TSS TID: %u \n"), *tid));
+		ACE_DEBUG((LM_DEBUG, "(%t) Received TSS TID: %u \n", *tid));
 		// do work.
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Doing some work for thread %t\n")));
+		ACE_DEBUG((LM_DEBUG, "Doing some work for thread %t\n"));
 		return -1;
 	}
 

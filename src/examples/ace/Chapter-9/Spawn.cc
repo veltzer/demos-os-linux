@@ -48,11 +48,11 @@ public:
 		ACE_Process_Options options;
 		pid_t pid=this->spawn(options);
 		if (pid==ACE_INVALID_PID) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("spawn")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn"), -1);
 		}
 		// Wait forever for my child to exit.
 		if (this->wait()==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("wait")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "wait"), -1);
 		}
 		// Dump whatever happened.
 		this->dumpRun();
@@ -63,14 +63,14 @@ private:
 	int dumpRun(void) {
 		ACE_TRACE("Manager::dumpRun");
 		if (ACE_OS::lseek(this->outputfd_, 0, SEEK_SET)==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("lseek")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "lseek"), -1);
 		}
 		char buf[1024];
 		ssize_t length=0;
 		// Read the contents of the error stream written by the child and print it out.
 		while((length=ACE_OS::read(this->outputfd_, buf, sizeof(buf) - 1)) > 0) {
 			buf[length]=0;
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("%C\n"), buf));
+			ACE_DEBUG((LM_DEBUG, "%C\n", buf));
 		}
 		ACE_OS::close(this->outputfd_);
 		return 0;
@@ -80,7 +80,7 @@ private:
 	int prepare(ACE_Process_Options& options) {
 		ACE_TRACE("Manager::prepare");
 
-		options.command_line(ACE_TEXT("%s 1"), this->programName_);
+		options.command_line("%s 1", this->programName_);
 		if ((this->setStdHandles(options)==-1) || (this->setEnvVariable(options)==-1)) {
 			return -1;
 		}
@@ -102,7 +102,7 @@ private:
 
 	int setEnvVariable(ACE_Process_Options& options) {
 		ACE_TRACE("Manager::setEnvVariables");
-		return options.setenv(ACE_TEXT("PRIVATE_VAR=/that/seems/to/be/it"));
+		return options.setenv("PRIVATE_VAR=/that/seems/to/be/it");
 	}
 
 #if !defined (ACE_LACKS_PWD_FUNCTIONS)
@@ -131,15 +131,15 @@ public:
 	int doWork(void) {
 		ACE_TRACE("Slave::doWork");
 
-		ACE_DEBUG((LM_INFO, ACE_TEXT("(%P) started at %T, parent is %d\n"), ACE_OS::getppid()));
+		ACE_DEBUG((LM_INFO, "(%P) started at %T, parent is %d\n", ACE_OS::getppid()));
 		this->showWho();
-		ACE_DEBUG((LM_INFO, ACE_TEXT("(%P) the private environment is %s\n"), ACE_OS::getenv("PRIVATE_VAR")));
+		ACE_DEBUG((LM_INFO, "(%P) the private environment is %s\n", ACE_OS::getenv("PRIVATE_VAR")));
 
 		char str[128];
-		ACE_OS::sprintf(str, ACE_TEXT("(%d) Enter your command\n"), static_cast<int>(ACE_OS::getpid()));
+		ACE_OS::sprintf(str, "(%d) Enter your command\n", static_cast<int>(ACE_OS::getpid()));
 		ACE_OS::write(ACE_STDOUT, str, ACE_OS::strlen(str));
 		this->readLine(str);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P) Executed: %C\n"), str));
+		ACE_DEBUG((LM_DEBUG, "(%P) Executed: %C\n", str));
 		return 0;
 	}
 
@@ -147,7 +147,7 @@ public:
 		ACE_TRACE("Slave::showWho");
 #if !defined (ACE_LACKS_PWD_FUNCTIONS)
 // passwd *pw=::getpwuid (ACE_OS::geteuid ());
-// ACE_DEBUG ((LM_INFO, ACE_TEXT ("(%P) Running this process as:%s\n"), pw->pw_name));
+// ACE_DEBUG ((LM_INFO, "(%P) Running this process as:%s\n", pw->pw_name));
 #endif
 	}
 

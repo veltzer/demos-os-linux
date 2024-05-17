@@ -37,15 +37,15 @@
 #pragma
 #endif /* DO_PRAGMA */
 void foo(void) {
-	ACE_TRACE(ACE_TEXT("foo"));
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IHowdy Pardner\n")));
+	ACE_TRACE("foo");
+	ACE_DEBUG((LM_INFO, "%IHowdy Pardner\n"));
 }
 
 int main() {
-	ACE_TRACE(ACE_TEXT("main"));
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IHi Mom\n")));
+	ACE_TRACE("main");
+	ACE_DEBUG((LM_INFO, "%IHi Mom\n"));
 	foo();
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IGoodnight\n")));
+	ACE_DEBUG((LM_INFO, "%IGoodnight\n"));
 	foo();
 	return EXIT_SUCCESS;
 }

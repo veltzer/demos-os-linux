@@ -42,12 +42,12 @@ int HA_Status::init(int argc, char** argv) {	// Do ACE_Get_Opt and get conf file
 	static const char* options=":f:";
 
 	ACE_Get_Opt cmd_opts(argc, argv, options);
-	if (cmd_opts.long_option(ACE_TEXT("config"), 'f', ACE_Get_Opt::ARG_REQUIRED)==-1) {
+	if (cmd_opts.long_option("config", 'f', ACE_Get_Opt::ARG_REQUIRED)==-1) {
 		return -1;
 	}
 	int option;
 	char config_file[MAXPATHLEN];
-	ACE_OS::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
+	ACE_OS::strcpy(config_file, "HAStatus.conf");
 	while((option=cmd_opts())!=EOF) {
 		switch (option) {
 		case 'f':
@@ -55,11 +55,11 @@ int HA_Status::init(int argc, char** argv) {	// Do ACE_Get_Opt and get conf file
 			break;
 
 		case ':':
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("-%c requires an argument\n"), cmd_opts.opt_opt()), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "-%c requires an argument\n", cmd_opts.opt_opt()), -1);
 			break;
 
 		default:
-			ACE_ERROR_RETURN ((LM_ERROR, ACE_TEXT("Parse error.\n")), -1);
+			ACE_ERROR_RETURN ((LM_ERROR, "Parse error.\n"), -1);
 			break;
 		}
 	}

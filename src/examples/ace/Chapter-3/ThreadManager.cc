@@ -54,25 +54,25 @@ public:
 		ACE_DEBUG((LM_DEBUG, "(%t) at HA_CommandHandler\n"));
 	}
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) starting up\n"));
 		thr_mgr()->at_exit(eh_);
 		// int *a=new int(val);
 		eh_.setA(val);
 		// Do something.
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) simulating some work\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) simulating some work\n"));
 		sleep(3);
 		// Forcefully exit.
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) finishing thread\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) finishing thread\n"));
 		// notice that we must call ACE_Thread::exit
 		ACE_Thread::exit();
 		// NOT REACHED
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) this will not be printed\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) this will not be printed\n"));
 		return 0;
 	}
 };
 
 int main() {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main: starting up\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main: starting up\n"));
 	// first thread
 	ExitHandler eh;
 	HA_CommandHandler handler(eh, 8);
@@ -83,9 +83,9 @@ int main() {
 	HA_CommandHandler handler2(eh2, 9);
 	handler2.activate();
 
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main: waiting for both threads to finish\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main: waiting for both threads to finish\n"));
 	// wait for both threads to finish...
 	ACE_Thread_Manager::instance()->wait();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) main: that's it folks...\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) main: that's it folks...\n"));
 	return EXIT_SUCCESS;
 }

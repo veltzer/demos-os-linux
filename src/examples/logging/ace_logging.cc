@@ -40,19 +40,19 @@
  */
 
 void bar(void) {
-	ACE_TRACE(ACE_TEXT("bar"));
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IMessage from bar\n")));
+	ACE_TRACE("bar");
+	ACE_DEBUG((LM_INFO, "%IMessage from bar\n"));
 }
 
 void foo(void) {
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IMessage from foo\n")));
+	ACE_DEBUG((LM_INFO, "%IMessage from foo\n"));
 	bar();
 }
 
 int main() {
-	ACE_TRACE(ACE_TEXT("main"));
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IBefore\n")));
+	ACE_TRACE("main");
+	ACE_DEBUG((LM_INFO, "%IBefore\n"));
 	foo();
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IAfter\n")));
+	ACE_DEBUG((LM_INFO, "%IAfter\n"));
 	return EXIT_SUCCESS;
 }

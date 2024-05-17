@@ -31,7 +31,7 @@
 class GResourceUser {
 public:
 	GResourceUser(ACE_Process_Mutex & mutex):gmutex_(mutex) {
-		ACE_TRACE(ACE_TEXT("GResourceUser::GResourceUser"));
+		ACE_TRACE("GResourceUser::GResourceUser");
 	}
 
 	void run(void) {

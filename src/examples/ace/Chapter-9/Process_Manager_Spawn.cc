@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 		// Specify the options for the new processes
 		// to be spawned.
 		ACE_Process_Options options;
-		options.command_line(ACE_TEXT("%s a"), argv[0]);
+		options.command_line("%s a", argv[0]);
 
 		// Spawn two child processes.
 		pid_t pids[NCHILDREN];

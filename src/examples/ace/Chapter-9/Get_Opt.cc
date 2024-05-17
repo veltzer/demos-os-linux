@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 	// Just put some context here so the following compiles and runs.
 	static const char* options=":f:";
 	ACE_Get_Opt cmd_opts(argc, argv, options);
-	cmd_opts.long_option(ACE_TEXT("cool_option"));
+	cmd_opts.long_option("cool_option");
 	cmd_opts.long_option(ACE_TEXT("the_answer"), 42);
 	int option;
 	char config_file[MAXPATHLEN];

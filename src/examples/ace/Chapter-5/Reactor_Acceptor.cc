@@ -84,10 +84,10 @@ int main() {
 	if(acceptor.open(port_to_listen)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), -1);
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) connect to me using 'telnet localhost %d'\n"), port));
+	ACE_DEBUG((LM_DEBUG, "(%t) connect to me using 'telnet localhost %d'\n", port));
 	// main loop on the singleton reactor
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) before event loop\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) before event loop\n"));
 	ACE_Reactor::instance()->run_reactor_event_loop();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) after event loop\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) after event loop\n"));
 	return EXIT_SUCCESS;
 }

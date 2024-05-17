@@ -151,10 +151,10 @@ private:
 		if (connect.connect(stream, addr_)==-1) {
 			ACE_ERROR((LM_ERROR, "(%t) %p Error while connecting\n", "connect"));
 		}
-		const char* sbuf=ACE_TEXT("\011shutdown");
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("shutdown stream handle=%x\n"), stream.get_handle()));
+		const char* sbuf="\011shutdown";
+		ACE_DEBUG((LM_DEBUG, "shutdown stream handle=%x\n", stream.get_handle()));
 		if (stream.send_n(sbuf, (ACE_OS::strlen(sbuf) + 1) * sizeof(char))==-1) {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) %p\n"), ACE_TEXT("send_n")));
+			ACE_ERROR((LM_ERROR, "(%t) %p\n", "send_n"));
 		}
 		stream.close();
 	}
@@ -170,9 +170,9 @@ int main() {
 	ACCEPTOR acceptor;
 	ACE_INET_Addr accept_addr(rendezvous);
 	if(acceptor.open(accept_addr)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("open")), 1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "open"), 1);
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Spawning %d server threads...\n"), svr_thrno));
+	ACE_DEBUG((LM_DEBUG, "(%t) Spawning %d server threads...\n", svr_thrno));
 	ServerTP serverTP;
 	serverTP.activate(THR_NEW_LWP | THR_JOINABLE, svr_thrno);
 	Client client;

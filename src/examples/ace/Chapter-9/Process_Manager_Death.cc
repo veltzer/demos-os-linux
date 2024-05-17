@@ -33,7 +33,7 @@ static const int NCHILDREN=2;
 class DeathHandler:public ACE_Event_Handler {
 public:
 	DeathHandler():count_(0) {
-		ACE_TRACE(ACE_TEXT("DeathHandler::DeathHandler"));
+		ACE_TRACE("DeathHandler::DeathHandler");
 	}
 	virtual int handle_exit(ACE_Process *process) {
 		ACE_TRACE(ACE_TEXT("DeathHandler::handle_exit"));

@@ -143,7 +143,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 	int output_off=this->output_queue_.is_empty();
 	ACE_Time_Value nowait(ACE_OS::gettimeofday());
 	if(this->output_queue_.enqueue_tail(mb, &nowait)==-1) {
-		ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p; discarding data\nenqueue failed")));
+		ACE_ERROR((LM_ERROR, "(%P|%t) %p; discarding data\nenqueue failed"));
 		mb->release();
 		return 0;
 	}

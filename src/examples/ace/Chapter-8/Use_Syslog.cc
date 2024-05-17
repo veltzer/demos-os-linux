@@ -31,7 +31,7 @@
 
 void __attribute__((noinline)) foo(void) {
 	ACE_TRACE("foo");
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IThis is a log test\n")));
+	ACE_DEBUG((LM_INFO, "%IThis is a log test\n"));
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("%I(0)Is this info seen?\n")));
 	ACE_DEBUG((LM_INFO, ACE_TEXT("%I(1)Is this info seen?\n")));
 }

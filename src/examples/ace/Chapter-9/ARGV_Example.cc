@@ -32,7 +32,7 @@
  */
 
 int main() {
-	static const char* options=ACE_TEXT(":f:h:");
+	static const char* options=":f:h:";
 	static const char* cmdline=ACE_TEXT("-f /home/managed.cfg -h $HOSTNAME");
 
 	ACE_ARGV cmdline_args(cmdline);
