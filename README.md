@@ -60,6 +60,7 @@ TLPI (The Linux Programming Interface) of programs he used in his book of the sa
 it here http://man7.org/tlpi/code/.
 * https://github.com/dev-area/linux
 * https://github.com/tsuna/contextswitch
+* https://github.com/gurugio/lowlevelprogramming-university
 
 ## Using it
 * you need python on your machine:
