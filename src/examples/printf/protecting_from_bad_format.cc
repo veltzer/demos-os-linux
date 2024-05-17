@@ -29,7 +29,7 @@
  * argument to printf(3)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char* malicious_string=(char*)CHECK_NOT_NULL(malloc(20));
 	memset(malicious_string, 0, 20);
 	printf(malicious_string, 45);

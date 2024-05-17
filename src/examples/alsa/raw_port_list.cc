@@ -138,7 +138,7 @@ void error(const char *format, ...) {
 }
 
 // is_input -- returns true if specified card/device/sub can output MIDI data.
-int is_input(snd_ctl_t *ctl, int card, int device, int sub) {
+int is_input(snd_ctl_t *ctl, int card __attribute__((unused)), int device, int sub) {
 	snd_rawmidi_info_t *info;
 	int status;
 
@@ -155,7 +155,7 @@ int is_input(snd_ctl_t *ctl, int card, int device, int sub) {
 }
 
 // is_output -- returns true if specified card/device/sub can output MIDI data.
-int is_output(snd_ctl_t *ctl, int card, int device, int sub) {
+int is_output(snd_ctl_t *ctl, int card __attribute__((unused)), int device, int sub) {
 	snd_rawmidi_info_t *info;
 	int status;
 
@@ -315,7 +315,7 @@ void print_card_list(void) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// print_card_list();
 	print_midi_ports();
 	return EXIT_SUCCESS;

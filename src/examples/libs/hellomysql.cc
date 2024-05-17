@@ -32,7 +32,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lmysqlclient
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	MYSQL mysql;
 	MYSQL *ret0=mysql_init(&mysql);
 	if (!ret0) {

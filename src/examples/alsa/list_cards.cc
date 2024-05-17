@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lasound
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int totalCards=0;
 	int cardNum=-1;
 	while(true) {

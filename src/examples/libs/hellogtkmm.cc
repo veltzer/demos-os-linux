@@ -68,7 +68,7 @@ void HelloWorld::on_button_clicked() {
 	app.quit();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	Gtk::Main app(argc, argv);
 	HelloWorld helloworld(app);
 	app.run(helloworld);
