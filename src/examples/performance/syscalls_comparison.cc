@@ -45,7 +45,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-static void* work(void* p) {
+static void* work(void*) {
 	const unsigned int loop=1000000;
 
 	measure m;
@@ -84,7 +84,7 @@ static void* work(void* p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	sched_run_priority(work, NULL, SCHED_FIFO_HIGH_PRIORITY, SCHED_FIFO);
 	return EXIT_SUCCESS;
 }

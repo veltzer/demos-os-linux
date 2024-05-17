@@ -39,7 +39,7 @@
  * and interrupt handler by default */
 const int MY_PRIORITY=49;
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [megs] [intervals]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: megs must be divisible by intervals...\n", argv[0]);

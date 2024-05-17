@@ -38,7 +38,7 @@
  * morph it's own code to show that the sum is there ?
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int sum;
 	sum=0;
 	for(int i=0; i<100; i++) {

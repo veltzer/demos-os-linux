@@ -33,7 +33,7 @@ const char *data[]={
 	"victor", "whisky", "x-ray", "yankee", "zulu"
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	ENTRY e, *ep;
 
 	/* starting with small table, and letting it grow does not work */

@@ -41,7 +41,7 @@
  * - actually measure the time with a performance counter and see it.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int sum=0;
 	for(int i=0; i<100; i++) {
 		sum+=i*i;

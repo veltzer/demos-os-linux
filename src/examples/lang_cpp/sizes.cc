@@ -68,7 +68,7 @@ class C {
 struct empty {
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "sizeof(A) is " << sizeof(A) << std::endl;
 	std::cout << "sizeof(B) is " << sizeof(B) << std::endl;
 	std::cout << "sizeof(C) is " << sizeof(C) << std::endl;

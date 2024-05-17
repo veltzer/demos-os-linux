@@ -47,7 +47,7 @@ void Employee::setSalary(int newsalary) {
 // /////////////////////////////
 // This is in the using part //
 // /////////////////////////////
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Employee e;
 	int* p=(int*)&e;
 	*p=1200;

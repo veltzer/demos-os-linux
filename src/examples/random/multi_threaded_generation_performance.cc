@@ -62,7 +62,7 @@ std::atomic<int> counter_rand_r;
 std::atomic<int> counter_random;
 std::atomic<int> counter_random_r;
 
-static void *worker(void *p) {
+static void *worker(void *) {
 	while(!stop_rand) {
 		rand();
 		counter_rand++;
@@ -88,7 +88,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// no errors from either getpid(2), srand(3), srandom(3)
 	srand(getpid());
 	srandom(getpid());

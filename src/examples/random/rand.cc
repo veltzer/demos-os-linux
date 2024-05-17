@@ -36,7 +36,7 @@
  * - both srandom(3) and srand(3) can be used intechangebly to seed this generator.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=6) {
 		fprintf(stderr, "%s: usage %s [num] [be_thread_safe] [use_srandom] [use_seed] [seed]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: seed=1 is the default seed\n", argv[0]);

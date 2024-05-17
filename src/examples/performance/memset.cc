@@ -44,7 +44,7 @@
  * - find out how wmemset works and discuss it's efficiency.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int size=1000;
 	char* buf=(char*)malloc(size);
 	memset(buf, 0, 8);

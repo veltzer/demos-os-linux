@@ -53,7 +53,7 @@ void printBuffDetails(FILE *s, const char *name) {
 	fflush(stdout);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char *writeFileName="/tmp/newfile.txt";
 	const char *readFileName="/etc/passwd";
 

@@ -63,7 +63,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	float s=A::performance_hog_function_cpu();
 	printf("s is %lf\n", s);
 	return EXIT_SUCCESS;

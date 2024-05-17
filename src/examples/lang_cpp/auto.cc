@@ -26,7 +26,7 @@
  * EXTRA_COMPILE_FLAGS=-std=c++11
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	auto pi=3.14;
 	std::cout << "pi is " << pi << std::endl;
 	return EXIT_SUCCESS;

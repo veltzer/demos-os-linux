@@ -20,7 +20,7 @@
 #include <stdio.h>	// for atoi(3), printf(3)
 #include <stdlib.h>	// for srandom(3), random(3), EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	srandom(atoi(argv[1]));
 	for(int i=0; i<10;i++) {
 		printf("%ld\n", random());

@@ -78,7 +78,7 @@ void do_work_no_if(int* data, unsigned int arraySize, const char* msg) {
 	std::cout << "sum = " << sum << std::endl;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// Generate data
 	const unsigned int arraySize = 32768;
 	int data[arraySize];

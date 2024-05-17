@@ -125,7 +125,7 @@ void* test_imp2(void* p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [loop] [size]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example is 10000 50000\n", argv[0]);

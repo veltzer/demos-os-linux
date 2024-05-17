@@ -29,7 +29,7 @@
  * perf stat -e branch-misses ./src/examples/performance/branch_prediction_mispredict.elf 1|0
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [miss]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

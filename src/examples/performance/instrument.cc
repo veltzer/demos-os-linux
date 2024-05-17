@@ -64,8 +64,8 @@ void long_task(void) {
 	sleep(1);
 }
 
-int main(int argc, char** argv, char** envp) __attribute__((no_instrument_function));
-int main(int argc, char** argv, char** envp) {
+int main() __attribute__((no_instrument_function));
+int main() {
 	long_task();
 	return EXIT_SUCCESS;
 }

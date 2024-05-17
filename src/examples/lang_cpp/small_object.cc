@@ -70,7 +70,7 @@ class IntShort {
 	short s;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "Empty: " << sizeof(Empty) << std::endl;
 	std::cout << "Char: " << sizeof(Char) << std::endl;
 	std::cout << "Short: " << sizeof(Short) << std::endl;

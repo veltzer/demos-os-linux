@@ -61,7 +61,7 @@ int hash_put(const char* key, const char* data) {
 const char* d1_key="mark";
 const char* d1_val="veltzer";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_ZERO(hash_init());
 	printf("after init\n");
 	CHECK_NOT_ZERO(hash_put(d1_key, d1_val));

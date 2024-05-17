@@ -51,7 +51,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	assert(sizeof(A1)+sizeof(nullptr)==sizeof(A2));
 	std::cout << "sizeof(A1) is " << sizeof(A1) << std::endl;
 	std::cout << "sizeof(A2) is " << sizeof(A2) << std::endl;

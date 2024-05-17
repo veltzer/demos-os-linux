@@ -48,12 +48,12 @@
 
 class A {
 public:
-	void thisMethod(int a, int b) {
+	void thisMethod(int, int) {
 		PRINT_BUILTINS();
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Here is a print using the macro:\n");
 	PRINT_BUILTINS();
 	printf("Here is a print using the inline function:\n");

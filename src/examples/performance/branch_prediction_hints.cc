@@ -39,7 +39,7 @@
  *	this is effective.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int x=0;
 	long long sum=0;
 	while(mylikely(x<1000000000)) {

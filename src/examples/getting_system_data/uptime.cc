@@ -50,7 +50,7 @@ void uptime(float *time1, float *time2) {
 	CHECK_NOT_M1(close(d));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	float time1, time2;
 	uptime(&time1, &time2);
 	printf("time1 is %f\n", time1);

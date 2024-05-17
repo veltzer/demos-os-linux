@@ -31,7 +31,7 @@
  * - the only thing you do need to do is to free(3) it after closing the stream.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char* ptr;
 	size_t sizeloc;
 	FILE* fp=CHECK_NOT_NULL_FILEP(open_memstream(&ptr, &sizeloc));

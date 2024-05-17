@@ -42,7 +42,7 @@
  * - eventfd can be multiplexed using select, poll or epoll.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if (argc !=3) {
 		fprintf(stderr, "%s: usage: %s [loop count] [max_rand]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 10000 2\n", argv[0], argv[0]);

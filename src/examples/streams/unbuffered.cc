@@ -30,7 +30,7 @@
  * and then it fgets(3) will work too.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	FILE* fp=CHECK_NOT_NULL_FILEP(fopen("/proc/uptime", "r"));
 	CHECK_NOT_M1(setvbuf(fp, NULL, _IONBF, 0));
 	while(true) {

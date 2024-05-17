@@ -28,7 +28,7 @@
  * - at the end you need to free the memory yourself.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;

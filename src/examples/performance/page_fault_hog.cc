@@ -39,7 +39,7 @@ void minor_fault_hog_function() {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	minor_fault_hog_function();
 	return EXIT_SUCCESS;
 }

@@ -30,7 +30,7 @@
  * although I could find no reference to this in the documentation.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage %s [num]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

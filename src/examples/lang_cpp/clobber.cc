@@ -53,7 +53,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	B b;
 	b.doSomething(7);
 	return EXIT_SUCCESS;

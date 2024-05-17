@@ -66,7 +66,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int size=1024*1024;
 	char* buf1=(char*)malloc(size);
 	char* buf2=(char*)malloc(size);

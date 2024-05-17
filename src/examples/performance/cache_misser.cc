@@ -38,7 +38,7 @@
  * - allocate the memory using mmap(2) and MAP_POPULATE before starting the loop in * order to get number of cache misses lower.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [size] [times] [rand]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: 104857600 100000000 1 - with randon access\n", argv[0]);

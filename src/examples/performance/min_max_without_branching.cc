@@ -57,7 +57,7 @@ int max_b(int a, int b) {
 #define max_b(a,b) ((a) - (((a)-(b)) & ((a)-(b))>>31))
 
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	clock_t start_a=clock();
 	long sum_a=0;
 	for(int i=0;i<10000;i++) {

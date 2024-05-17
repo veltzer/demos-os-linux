@@ -42,7 +42,8 @@ def check_no_output(args, allow_output):
             if out_stdout!="":
                 print("output follows...", file=sys.stderr)
                 print(out_stdout, file=sys.stderr)
-            raise ValueError(f"error in executing [{args}]")
+            sys.exit(1)
+            # raise ValueError(f"error in executing [{args}]")
 
 
 def handle(line, args, string, process, subs, inject=None, shell=False):

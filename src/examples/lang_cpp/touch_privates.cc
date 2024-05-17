@@ -83,7 +83,7 @@ void setSecret(void* a, int val, bool has_virt) {
 	*p=val;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	A a;
 	B b;
 	printf("a.getSecret() is %d\n", a.getSecret());
