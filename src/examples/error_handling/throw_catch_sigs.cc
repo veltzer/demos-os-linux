@@ -117,7 +117,7 @@ static void doBadCode(int i) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// set up the signal handler (only need to do this once)
 	signal_register_handler_signal(SIGFPE, SignalHandler);
 	signal_register_handler_signal(SIGSEGV, SignalHandler);

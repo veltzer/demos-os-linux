@@ -9,8 +9,10 @@ DO_STP:=1
 DO_CHP:=1
 # check using cppcheck?
 DO_CPPCHECK:=1
+# check using clang-tidy?
+DO_TIDY:=1
 # check using cpplint?
-DO_CPPLINT:=0
+DO_CPPLINT:=1
 # should we depend on the Makefile itself?
 DO_ALLDEP:=1
 # do you want to show the commands executed ?
@@ -122,7 +124,7 @@ endif # DO_ADD_STD
 
 # removed these flags
 # -Wno-unused-parameter -Wno-missing-field-initializers
-WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros -Wno-unused-parameter
+WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros
 CXXFLAGS:=$(CXXFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 CFLAGS:=$(CFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 
@@ -146,6 +148,8 @@ HH_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.hh")
 C_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.c" -and -not -name "mod_*.c")
 CC_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(CC_SRC)))
 C_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(C_SRC)))
+CC_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(CC_SRC)))
+C_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(C_SRC)))
 CC_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(CC_SRC)))
 ALL_C:=$(shell find . -name "*.c")
 ALL_CC:=$(shell find . -name "*.cc")
@@ -229,6 +233,11 @@ ifeq ($(DO_CPPCHECK),1)
 ALL+=$(CC_CPPCHECK)
 ALL+=$(C_CPPCHECK)
 endif # DO_CPPCHECK
+
+ifeq ($(DO_TIDY),1)
+ALL+=$(CC_TIDY)
+ALL+=$(C_TIDY)
+endif # DO_TIDY
 
 ifeq ($(DO_CPPLINT),1)
 ALL+=$(CC_CPPLINT)
@@ -602,6 +611,10 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
 	$(Q)objdump --disassemble --source --demangle $< > $@
 #	$(Q)objdump --demangle --disassemble --no-show-raw-insn --section=.text $< > $@
 #	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
+$(CC_CPPLINT): out/%.cc.stamp.cpplint: %.cc
+	$(info doing [$@] from [$<])
+	$(Q)cpplint $<
+	$(Q)pymakehelper touch_mkdir $@
 $(CC_CPPCHECK): out/%.cc.stamp.cppcheck: %.cc
 	$(info doing [$@] from [$<])
 	$(Q)cppcheck --inline-suppr --error-exitcode=1 --quiet -i $(US_INCLUDE) $<
@@ -610,9 +623,13 @@ $(C_CPPCHECK): out/%.c.stamp.cppcheck: %.c
 	$(info doing [$@] from [$<])
 	$(Q)cppcheck --inline-suppr --error-exitcode=1 --quiet -i $(US_INCLUDE) $<
 	$(Q)pymakehelper touch_mkdir $@
-$(CC_CPPLINT): out/%.cc.stamp.cpplint: %.cc
+$(CC_TIDY): out/%.cc.stamp.tidy: %.cc .clang-tidy
 	$(info doing [$@] from [$<])
-	$(Q)cpplint $<
+	$(Q)clang-tidy $< -- -I $(US_INCLUDE)
+	$(Q)pymakehelper touch_mkdir $@
+$(C_TIDY): out/%.c.stamp.tidy: %.c .clang-tidy
+	$(info doing [$@] from [$<])
+	$(Q)clang-tidy $< -- -I $(US_INCLUDE)
 	$(Q)pymakehelper touch_mkdir $@
 
 # rule about how to check kernel source files
@@ -651,12 +668,16 @@ $(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
 ###################
 # gathering rules #
 ###################
+.PHONY: all_cc_cpplint
+all_cc_cpplint: $(CC_CPPLINT)
 .PHONY: all_cc_cppcheck
 all_cc_cppcheck: $(CC_CPPCHECK)
 .PHONY: all_c_cppcheck
 all_c_cppcheck: $(C_CPPCHECK)
-.PHONY: all_cc_cpplint
-all_cc_cpplint: $(CC_CPPLINT)
+.PHONY: all_cc_tidy
+all_cc_tidy: $(CC_TIDY)
+.PHONY: all_c_tidy
+all_c_tidy: $(C_TIDY)
 
 ############
 # all deps #

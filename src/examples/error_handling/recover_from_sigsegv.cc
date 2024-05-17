@@ -49,7 +49,7 @@ static void safe_func(void) {
 	exit(EXIT_SUCCESS);
 }
 
-static void handler_safe(int sig, siginfo_t *si, void *uap) {
+static void handler_safe(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *uap __attribute__((unused))) {
 	TRACE("start");
 	ucontext_t *context = (ucontext_t*)uap;
 	/*
@@ -65,7 +65,7 @@ static void handler_safe(int sig, siginfo_t *si, void *uap) {
 }
 
 static int jmp_rel;
-static void handler_jmp_rel(int sig, siginfo_t *si, void *uap) {
+static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
 	ucontext_t *context = (ucontext_t*)uap;
@@ -81,7 +81,7 @@ static void handler_jmp_rel(int sig, siginfo_t *si, void *uap) {
 }
 
 static int jmp_abs;
-static void handler_jmp_abs(int sig, siginfo_t *si, void *uap) {
+static void handler_jmp_abs(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
 	ucontext_t *context = (ucontext_t*)uap;
@@ -95,13 +95,13 @@ static void handler_jmp_abs(int sig, siginfo_t *si, void *uap) {
 }
 
 static sigjmp_buf env;
-static void handler_sigjmp(int sig, siginfo_t *si, void *uap) {
+static void handler_sigjmp(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *uap __attribute__((unused))) {
 	TRACE("start");
 	TRACE("end");
 	siglongjmp(env, 1);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [type]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: type can be 0-3\n", argv[0]);

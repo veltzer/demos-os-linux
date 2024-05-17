@@ -31,7 +31,7 @@
  * bytes) but the macro is good enough to use in most cases.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("PATH_MAX is %d\n", PATH_MAX);
 	printf("_POSIX_PATH_MAX is %d\n", _POSIX_PATH_MAX);
 	printf("MAXPATHLEN is %d\n", MAXPATHLEN);

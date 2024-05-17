@@ -31,7 +31,7 @@
  * is similar in essence to the example in the stat(2) manual page.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	// command line parsing
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [file]\n", argv[0], argv[0]);

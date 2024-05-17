@@ -52,7 +52,7 @@ void myhandler(int sig) {
 	std::cerr << "in signal handler for signal " << sig << std::endl;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// here is an example of using this construct
 	int fd[2];
 	try {

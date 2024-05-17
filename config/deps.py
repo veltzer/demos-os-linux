@@ -351,6 +351,7 @@ packages=[
     # linters
     "cppcheck",
     "cpplint",
+    "clang-tidy",
 ]
 
 if opt_do_kernel:

@@ -72,7 +72,7 @@ void* func(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=7) {
 		fprintf(stderr, "%s: usage: %s [filename] [bufsize] [count] [binnumber] [binsize] [binmean]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

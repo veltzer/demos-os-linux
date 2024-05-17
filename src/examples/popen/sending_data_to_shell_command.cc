@@ -34,7 +34,7 @@
  * - remember to pclose(3) the FILE stream.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	FILE* input=CHECK_NOT_NULL_FILEP(popen("bc -l", "w"));
 	CHECK_INT(fwrite("2+2\n", 1, 4, input), 4);
 	CHECK_INT(fwrite("3+3\n", 1, 4, input), 4);

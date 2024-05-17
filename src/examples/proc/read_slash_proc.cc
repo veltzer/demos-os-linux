@@ -32,7 +32,7 @@
  * - run this as sudo.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read_size;

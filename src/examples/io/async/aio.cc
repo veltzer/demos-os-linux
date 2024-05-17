@@ -38,7 +38,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lrt
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int BUFSIZE=1024;
 	int fd=CHECK_NOT_M1(open("/etc/passwd", O_RDONLY));
 	/* Allocate a data buffer for the aiocb request */

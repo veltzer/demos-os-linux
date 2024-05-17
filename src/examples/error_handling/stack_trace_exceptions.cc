@@ -108,7 +108,7 @@ void top_func() {
 	mid_func();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		top_func();
 	} catch (TracedException& e) {

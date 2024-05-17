@@ -33,7 +33,7 @@
  * NULL as the pointer to be read to...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int bad_fd=getdtablesize()+1;
 	CHECK_NOT_M1(read(bad_fd, NULL, 0));
 	char buf[5];

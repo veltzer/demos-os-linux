@@ -25,7 +25,7 @@
  * This example simply prints the value of O_RDONLY from 'stdio.h'
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("O_RDONLY is %d\n", O_RDONLY);
 	return EXIT_SUCCESS;
 }

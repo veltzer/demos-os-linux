@@ -29,7 +29,7 @@
  * Note that the program continues to run after error.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	open("thisfiledoesnotexist", O_RDONLY);
 	printf("Hello, World!\n");
 	return EXIT_SUCCESS;

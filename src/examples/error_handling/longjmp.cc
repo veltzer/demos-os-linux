@@ -44,7 +44,7 @@ void func() {
 	fprintf(stderr, "this is the continuation of the function %d\n", counter);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(int c=0; c<10; c++) {
 		int ret;
 		ret=setjmp(env);

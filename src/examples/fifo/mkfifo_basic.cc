@@ -30,7 +30,7 @@
  * This example shows basic usage of mkfifo(2)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char* filename="/tmp/myfifo";
 	CHECK_NOT_M1(mkfifo(filename, 0666));
 	int fd=CHECK_NOT_M1(open(filename, O_RDONLY));

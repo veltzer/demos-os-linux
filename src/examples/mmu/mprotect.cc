@@ -34,7 +34,7 @@
 char mystring[100]="asdkjfhasdfkjhasdfsadfsadfasd";
 const char* myotherstring="Hello, World!";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	fprintf(stderr, "mystring is %p\n", mystring);
 	fprintf(stderr, "myotherstring is %p\n", myotherstring);
 	fprintf(stderr, "mypid is %d\n", getpid());

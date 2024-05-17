@@ -38,7 +38,7 @@
  * run.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [filename] [content]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s /tmp/foo mycontent\n", argv[0], argv[0]);

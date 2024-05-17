@@ -53,7 +53,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Vector<int> v1(100);
 	std::cout << "v1.getSize() is " << v1.getSize() << std::endl;
 	Vector<bool> v2(100);

@@ -56,7 +56,7 @@ public:
 // here is an object that causes infinite recursion in it's destructor...
 class B {
 public: ~B(void) {
-		delete this;
+		delete this; // NOLINT
 	}
 };
 

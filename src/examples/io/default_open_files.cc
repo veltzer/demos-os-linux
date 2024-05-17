@@ -52,7 +52,7 @@ int get_openfds() {
 	return count;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("getdtablesize() returned %d\n", CHECK_NOT_M1(getdtablesize()));
 	printf("sysconf(_SC_OPEN_MAX) returned %d\n", CHECK_NOT_M1(sysconf(_SC_OPEN_MAX)));
 	struct rlimit rlim;

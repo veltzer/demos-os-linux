@@ -28,7 +28,7 @@
  * This example explores sparse files on a UNIX system.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int fd=CHECK_NOT_M1(open("/tmp/sparse_file", O_CREAT | O_RDWR, 0666));
 	CHECK_NOT_M1(lseek(fd, 1000000, SEEK_CUR));
 	const char *buf="hello";

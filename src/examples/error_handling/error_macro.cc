@@ -42,7 +42,7 @@
 
 #define CHK_NOT_M1(a) do { int ret=a; if(ret==-1) { int myerrno=errno; error(EXIT_FAILURE, myerrno, "error %s", "" # a); } } while(0)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHK_NOT_M1(open("thisfiledoesnotexist", O_RDONLY));
 	return EXIT_SUCCESS;
 }

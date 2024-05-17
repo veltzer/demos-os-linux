@@ -24,7 +24,7 @@
  * This demo shows how to print an unsigned long in a big hexa format...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	unsigned long i=0xabcd0123;
 	void* p=(void *)i;
 	char* cp=(char*)i;

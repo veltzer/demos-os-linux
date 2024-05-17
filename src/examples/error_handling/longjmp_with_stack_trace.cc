@@ -110,7 +110,7 @@ void myfunc(int c) {
 	func(c);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(int c=1; c<10; c++) {
 		error_data *p=mac_error_setjmp();
 		if (p==NULL) {

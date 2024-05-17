@@ -35,7 +35,7 @@
  * - pclose(3) the stream.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	FILE* input=CHECK_NOT_NULL_FILEP(popen("ls /etc", "r"));
 	while(!feof(input)) {
 		const unsigned int size=256;

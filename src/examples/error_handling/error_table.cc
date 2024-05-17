@@ -27,7 +27,7 @@
  * See err_utils.h for more details.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	print_error_table();
 	return EXIT_SUCCESS;
 }
