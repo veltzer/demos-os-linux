@@ -72,7 +72,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	A a;
 	a.thisMethod(5, 6);
 	return EXIT_SUCCESS;

@@ -40,7 +40,7 @@
  * manual page and adjusted for the readdir(2) system call.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #ifndef __x86_64__
 	// command line parsing
 	if(argc!=2) {

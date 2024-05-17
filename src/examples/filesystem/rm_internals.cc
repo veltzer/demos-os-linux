@@ -22,7 +22,7 @@
 #include <err_utils.h>	// for CHECK_NOT_NULL()
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	FILE* f=fopen("myfile", "r");
 	while(true) {
 		char buf[1024];

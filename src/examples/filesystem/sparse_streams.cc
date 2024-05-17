@@ -44,7 +44,7 @@ const char *string="hello";
 // this is the name of the file to be used
 const char *fname="/tmp/my.sparse.file";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	FILE* f=CHECK_NOT_NULL_FILEP(fopen(fname, "w"));
 	CHECK_NOT_M1(fseek(f, pos, SEEK_CUR));
 	CHECK_NOT_M1(fwrite(string, strlen(string), 1, f));

@@ -37,7 +37,7 @@
  * - note that the open(2)/close(2) calls do succeed for directories.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	// command line parsing
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [dir]\n", argv[0], argv[0]);
