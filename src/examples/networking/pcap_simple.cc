@@ -35,7 +35,11 @@
 /*
  * This callback is called for every packet
  */
-void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet) {
+void got_packet(
+	u_char *args __attribute__((unused)),
+	const struct pcap_pkthdr *header,
+	const u_char *packet __attribute__((unused)))
+{
 	/* packet counter */
 	static int count=1;
 	printf("Packet number %d recevied on %ld seconds and %ld usec\n", count, header->ts.tv_sec, header->ts.tv_usec);
@@ -43,7 +47,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 	count++;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [device] [filter expression] [numpackets]\n", argv[0], argv[0]);
 		fprintf(stderr, "use 'any' for any device\n");

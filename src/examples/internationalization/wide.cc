@@ -27,7 +27,7 @@
  */
 #define WS(s) L ## s
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	setlocale(LC_ALL, "");
 	wprintf(L"size of char is %d\n", sizeof(char));
 	wprintf(L"size of wchar_t is %d\n", sizeof(wchar_t));

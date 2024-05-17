@@ -43,7 +43,7 @@ void print_trace(bool full) {
 	backtrace_symbols_fd(buffer, nptrs, fileno(stderr));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	print_trace(true);
 	return EXIT_SUCCESS;
 }

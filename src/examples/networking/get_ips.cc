@@ -37,7 +37,7 @@
  * of information about the currently configured interfaces of a machine.
  */
 
-int main(int argc, char **argv, char** envp) {
+int main() {
 	struct ifaddrs *id;
 	CHECK_NOT_M1(getifaddrs(&id));
 	while (id->ifa_next != NULL) {

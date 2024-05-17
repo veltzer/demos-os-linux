@@ -66,7 +66,12 @@ static uint32_t nfqueue_packet_get_hook(struct nfq_data *packet) {
 	return hook;
 }
 
-static int manage_packet(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg, struct nfq_data *nfa, void *data2) {
+static int manage_packet(
+	struct nfq_q_handle *qh,
+	struct nfgenmsg *nfmsg __attribute__((unused)),
+	struct nfq_data *nfa,
+	void *data2 __attribute__((unused))
+) {
 	uint32_t hook = nfqueue_packet_get_hook(nfa);
 	// AODV traffic is handled elsewhere already (by the daemon)
 	uint32_t id = nfqueue_packet_get_id(nfa);
@@ -93,11 +98,15 @@ static int manage_packet(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg, struct
 
 static bool over=false;
 
-static void handler(int sig, siginfo_t *si, void *unused) {
+static void handler(
+	int sig __attribute__((unused)),
+	siginfo_t *si __attribute__((unused)),
+	void *unused __attribute__((unused))
+) {
 	over=true;
 }
 
-int main(int argc, char **argv, char** envp) {
+int main() {
 	// lets check that we are root
 	check_root();
 	signal_register_handler_sigaction(SIGINT, handler, 0);

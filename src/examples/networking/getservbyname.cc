@@ -26,7 +26,7 @@
  * A simple example to demonstrate getservbyname(3)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [service-name] [protocol-name]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

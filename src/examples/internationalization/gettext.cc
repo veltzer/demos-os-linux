@@ -25,7 +25,7 @@
  * This example explores the use of gettext(3)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat"
 	printf(gettext("Operation failed: %m\n"));
