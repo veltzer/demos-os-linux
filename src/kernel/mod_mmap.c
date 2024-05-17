@@ -65,7 +65,8 @@ static void *kaddr;
 /*
  * This is the ioctl implementation.
  */
-static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg) {
+static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
 	char str[256];
 	void *ptr;
 	unsigned int order;

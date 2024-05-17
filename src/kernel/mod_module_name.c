@@ -44,7 +44,8 @@ MODULE_DESCRIPTION("Demo module for testing");
 MODULE_VERSION("1.2.3");
 
 /* our own functions */
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	PR_INFO("start");
 	PR_INFO("name is %s", KBUILD_MODNAME);
 	PR_INFO("name is %s", THIS_MODULE->name);

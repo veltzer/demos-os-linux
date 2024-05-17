@@ -36,7 +36,8 @@ MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("Demo module for testing");
 
 /* our own functions */
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	struct resource *rp;
 
 	PR_INFO("start");

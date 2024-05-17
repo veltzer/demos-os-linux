@@ -46,7 +46,8 @@ static struct device *my_device;
 /*
  * This is the ioctl implementation.
  */
-static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg) {
+static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
 	/* the buffer which will be used for the transaction */
 	buffer b;
 	int err;
@@ -111,7 +112,8 @@ static const struct file_operations my_fops = {
  * See the following code...
  */
 
-static unsigned long long __udivdi3(unsigned long long divided, unsigned long long divisor) {
+static unsigned long long __udivdi3(unsigned long long divided, unsigned long long divisor)
+{
 	unsigned int reminder;
 
 	PR_DEBUG("divided is %llu", divided);
@@ -119,7 +121,8 @@ static unsigned long long __udivdi3(unsigned long long divided, unsigned long lo
 	return div_u64_rem(divided, divisor, &reminder);
 }
 
-static long long __divdi3(long long divided, long long divisor) {
+static long long __divdi3(long long divided, long long divisor)
+{
 	unsigned int reminder;
 
 	PR_DEBUG("divided is %lld", divided);

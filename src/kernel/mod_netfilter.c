@@ -66,7 +66,8 @@ static unsigned int hook_func(
 	void *priv,
 	struct sk_buff *skb,
 	const struct nf_hook_state *state
-) {
+)
+{
 	struct iphdr *ip_header; /* IP header struct */
 	struct udphdr *udp_header; /* UDP header struct */
 	struct icmphdr *icmp_header; /* ICMP Header */

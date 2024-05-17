@@ -47,7 +47,8 @@ MODULE_DESCRIPTION("DMA demo module");
 /* slowly increase the size of the memory we are allocating until we bust... */
 #define DO_INC
 
-static int __init mod_init(void) {
+static int __init mod_init(void)
+{
 	void *vptr;
 	/* unsigned int device_addr; */
 #ifdef DO_LOOP
@@ -114,7 +115,8 @@ static int __init mod_init(void) {
 	return 0;
 }
 
-static void __exit mod_exit(void) {
+static void __exit mod_exit(void)
+{
 	PR_DEBUG("start");
 	PR_DEBUG("end");
 }

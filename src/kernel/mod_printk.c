@@ -38,7 +38,8 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
 MODULE_DESCRIPTION("module for showing logging functions");
 
-void print_error_once_wrapper(void) {
+void print_error_once_wrapper(void)
+{
 	pr_err_once("this is an error that will not be repeated\n");
 }
 

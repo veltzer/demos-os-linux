@@ -42,7 +42,8 @@ static struct device *my_device;
 /*
  * The open implementation. Currently this does nothing
  */
-static int kern_open(struct inode *inode, struct file *filp) {
+static int kern_open(struct inode *inode, struct file *filp)
+{
 	dev_info(my_device, "start");
 	return 0;
 }

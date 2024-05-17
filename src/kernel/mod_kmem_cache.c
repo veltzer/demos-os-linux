@@ -53,7 +53,8 @@ static struct kmem_cache *cache_p;
 static void *p;
 
 /* our own functions */
-static int __init kmem_init(void) {
+static int __init kmem_init(void)
+{
 	PR_INFO("start");
 	cache_p = kmem_cache_create(
 		/*
