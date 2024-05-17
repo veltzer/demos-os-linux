@@ -78,7 +78,7 @@ void mergesort(int* arr, unsigned int size) {
 	delete[] scratch;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int size=100000000;
 	int* arr=new int[size];
 	for(unsigned int i=0; i<size; i++) {

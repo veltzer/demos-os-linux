@@ -29,7 +29,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int size=256;
 	double sinTable[size];
 	#pragma omp parallel for

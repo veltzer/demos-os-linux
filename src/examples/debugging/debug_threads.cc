@@ -50,7 +50,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int num=10;
 	pthread_t threads[num];
 	int ids[num];
