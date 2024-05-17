@@ -31,15 +31,15 @@
 class GResourceUser {
 public:
 	GResourceUser(ACE_Process_Mutex & mutex):gmutex_(mutex) {
-		ACE_TRACE(ACE_TEXT("GResourceUser::GResourceUser"));
+		ACE_TRACE("GResourceUser::GResourceUser");
 	}
 	void run(void) {
-		ACE_TRACE(ACE_TEXT("GResourceUser::run"));
+		ACE_TRACE("GResourceUser::run");
 		int count=0;
 		while(count++<5) {
 			int result=this->gmutex_.acquire();
 			ACE_ASSERT(result==0);
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P| %t) has the mutex (count=%d)\n"), count));
+			ACE_DEBUG((LM_DEBUG, "(%P| %t) has the mutex (count=%d)\n", count));
 			// Access Global resource
 			ACE_OS::sleep(1);
 			result=this->gmutex_.release();
@@ -62,25 +62,25 @@ int main(int argc, char** argv) {
 		GResourceUser acquirer(mutex);
 
 		acquirer.run();
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P| %t) Done (Child).\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P| %t) Done (Child).\n"));
 	} else {
 		// Run as the parent.
 		ACE_Process_Options options;
-		options.command_line(ACE_TEXT("%s a"), argv[0]);
+		options.command_line("%s a", argv[0]);
 		ACE_Process processa, processb;
 
 		pid_t pida=processa.spawn(options);
 		pid_t pidb=processb.spawn(options);
 
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Spawned processes; pids %d:%d\n"), pida, pidb));
+		ACE_DEBUG((LM_DEBUG, "Spawned processes; pids %d:%d\n", pida, pidb));
 		if (processa.wait()==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("processa wait")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "processa wait"), -1);
 		}
 		if (processb.wait()==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("processb wait")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "processb wait"), -1);
 		}
 		// Print Done for the parent only
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P| %t) Done (Parent).\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P| %t) Done (Parent).\n"));
 	}
 	return EXIT_SUCCESS;
 }

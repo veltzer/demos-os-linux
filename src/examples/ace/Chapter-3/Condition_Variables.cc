@@ -65,7 +65,7 @@ private:
 };
 
 int HA_CommandHandler::svc(void) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Handler Thread running\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) Handler Thread running\n"));
 	for(int i=0; i<NUM_USES; i++) {
 		this->mutex_.acquire();
 		while(!this->rep_.is_free()) {
@@ -82,7 +82,7 @@ int HA_CommandHandler::svc(void) {
 }
 
 int HA_Device_Repository::update_device(int device_id) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Updating device %d\n"), device_id));
+	ACE_DEBUG((LM_DEBUG, "(%t) Updating device %d\n", device_id));
 	ACE_OS::sleep(1);
 	return 0;
 }
