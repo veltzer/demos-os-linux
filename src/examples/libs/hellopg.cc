@@ -30,7 +30,7 @@ void exit_nicely(PGconn* conn) {
 	exit(EXIT_FAILURE);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char* pghost="database";
 	const char* pgport=NULL;
 	const char* pgoptions=NULL;

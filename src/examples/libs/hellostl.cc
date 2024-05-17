@@ -25,7 +25,7 @@
  * This program demonstrates the use of STL (Standard Template Library).
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::vector<int> v(3);
 	v[0]=5;
 	v[1]=8;

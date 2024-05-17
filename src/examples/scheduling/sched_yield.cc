@@ -39,7 +39,7 @@
 #include <firstinclude.h>
 #include <sched.h>	// for sched_yield(2)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	while(true) {
 		sched_yield();
 	}

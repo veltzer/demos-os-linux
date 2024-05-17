@@ -29,7 +29,7 @@
  * constants. That is really how it is in the /usr/include/bits/sched.h file.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	sched_print_table();
 	return EXIT_SUCCESS;
 }

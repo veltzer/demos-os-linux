@@ -98,7 +98,7 @@ int drawGLScene() {
 	return true;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		fprintf(stderr, "Video initialization failed: %s\n", SDL_GetError());
 		Quit(1);

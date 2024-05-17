@@ -24,7 +24,7 @@
  * This program demonstrates use of C++ streams
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::cout << "Hello, World!" << std::endl;
 	return EXIT_SUCCESS;
 }

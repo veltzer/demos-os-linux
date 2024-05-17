@@ -54,7 +54,7 @@ static void conn_writecb(struct bufferevent *, void *);
 static void conn_eventcb(struct bufferevent *, short, void *);
 static void signal_cb(evutil_socket_t, short, void *);
 
-int main(int argc, char **argv, char** envp) {
+int main() {
 	struct event_base *base;
 	struct evconnlistener *listener;
 	struct event *signal_event;
@@ -102,7 +102,13 @@ int main(int argc, char **argv, char** envp) {
 	return 0;
 }
 
-static void listener_cb(struct evconnlistener *listener, evutil_socket_t fd, struct sockaddr *sa, int socklen, void *user_data) {
+static void listener_cb(
+		struct evconnlistener *listener __attribute__((unused)),
+		evutil_socket_t fd,
+		struct sockaddr *sa __attribute__((unused)),
+		int socklen __attribute__((unused)),
+		void *user_data)
+{
 	struct event_base *base = (struct event_base*) user_data;
 	struct bufferevent *bev;
 
@@ -118,7 +124,7 @@ static void listener_cb(struct evconnlistener *listener, evutil_socket_t fd, str
 	bufferevent_write(bev, MESSAGE, strlen(MESSAGE));
 }
 
-static void conn_writecb(struct bufferevent *bev, void *user_data) {
+static void conn_writecb(struct bufferevent *bev, void *user_data __attribute__((unused))) {
 	struct evbuffer *output = bufferevent_get_output(bev);
 	if (evbuffer_get_length(output) == 0) {
 		printf("flushed answer\n");
@@ -126,7 +132,7 @@ static void conn_writecb(struct bufferevent *bev, void *user_data) {
 	}
 }
 
-static void conn_eventcb(struct bufferevent *bev, short events, void *user_data) {
+static void conn_eventcb(struct bufferevent *bev __attribute__((unused)), short events, void *user_data __attribute__((unused))) {
 	if (events & BEV_EVENT_EOF) {
 		printf("Connection closed.\n");
 	} else if (events & BEV_EVENT_ERROR) {
@@ -138,7 +144,7 @@ static void conn_eventcb(struct bufferevent *bev, short events, void *user_data)
 	bufferevent_free(bev);
 }
 
-static void signal_cb(evutil_socket_t sig, short events, void *user_data) {
+static void signal_cb(evutil_socket_t sig __attribute__((unused)), short events __attribute__((unused)), void *user_data __attribute__((unused))) {
 	struct event_base *base = (struct event_base*)user_data;
 	struct timeval delay = { 2, 0 };
 	printf("Caught an interrupt signal; exiting cleanly in two seconds.\n");

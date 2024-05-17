@@ -73,7 +73,7 @@ void make_child(const int niceval, int* const prog, int core) {
 	printf("child done with sum %f\n", sum);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc<2 || ((argc-1)%2)!=0) {
 		fprintf(stderr, "%s: usage: %s [niceval core]...\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: forexample: %s 2 0 1 0\n", argv[0], argv[0]);

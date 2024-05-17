@@ -25,7 +25,7 @@
 
 #include <firstinclude.h>
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	while(true) {
 	}
 }

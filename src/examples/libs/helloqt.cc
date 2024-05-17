@@ -36,7 +36,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs Qt5Widgets
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	QApplication app(argc, argv);
 	QPushButton hello("Push me to exit", 0);
 

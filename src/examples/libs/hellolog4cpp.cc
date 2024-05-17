@@ -35,8 +35,8 @@
  * EXTRA_LINK_FLAGS_AFTER=-llog4cpp
  */
 
-int main(int argc, char** argv, char** envp) {
-	log4cpp::SyslogAppender *syslogAppender=new log4cpp::SyslogAppender("syslog", "hellolog4cpp", LOG_USER);
+int main(int, char** argv) {
+	log4cpp::SyslogAppender *syslogAppender=new log4cpp::SyslogAppender("syslog", argv[0], LOG_USER);
 
 	log4cpp::Category& root=log4cpp::Category::getRoot();
 
@@ -47,5 +47,3 @@ int main(int argc, char** argv, char** envp) {
 
 	return EXIT_SUCCESS;
 }
-
-// template char* std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_construct<char const*>(char const*, char const*, std::allocator<char> const&, std::forward_iterator_tag);

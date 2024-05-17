@@ -31,7 +31,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lmysqlpp
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// parameters are: schema, host, user, pass, use exceptions
 	mysqlpp::Connection con("myworld", "localhost", "mark", "", true);
 	mysqlpp::Query query=con.query("select id,name from TbOrganization order by id");

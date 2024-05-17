@@ -33,7 +33,7 @@
  * agree upon.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int proj_id=17;
 	key_t k1=ftok("/tmp/no_such_file", proj_id);
 	printf("key with no file is %d\n", k1);
