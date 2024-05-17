@@ -63,7 +63,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 		return 0;
 	}
 	if((send_cnt==-1) && (ACE_OS::last_error()!=EWOULDBLOCK)) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")), 0);
+		ACE_ERROR_RETURN((LM_ERROR, "(%P|%t) %p\n", "send"), 0);
 	}
 	if(send_cnt==-1) {
 		send_cnt=0;
@@ -75,7 +75,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 	int output_off=this->msg_queue()->is_empty();
 	ACE_Time_Value nowait(ACE_OS::gettimeofday());
 	if(this->putq(mb, &nowait)==-1) {
-		ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p; discarding data\n"), ACE_TEXT("enqueue failed")));
+		ACE_ERROR((LM_ERROR, "(%P|%t) %p; discarding data\n", "enqueue failed"));
 		mb->release();
 		return 0;
 	}
@@ -92,7 +92,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 	while(-1!=this->getq(mb, &nowait)) {
 		ssize_t send_cnt=this->peer().send(mb->rd_ptr(), mb->length());
 		if(send_cnt==-1) {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")));
+			ACE_ERROR((LM_ERROR, "(%P|%t) %p\n", "send"));
 		} else {
 			mb->rd_ptr(static_cast<size_t>(send_cnt));
 		}

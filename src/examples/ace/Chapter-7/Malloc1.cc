@@ -59,11 +59,11 @@ public:
 };
 
 void showRecords() {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("The following records were found:\n")));
+	ACE_DEBUG((LM_DEBUG, "The following records were found:\n"));
 	MALLOC_LIFO_ITERATOR iter(*g_allocator);
 	for(void* temp=0; iter.next(temp)!=0; iter.advance()) {
 		Record *record=reinterpret_cast<Record *>(temp);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Record name: %C|id1:%d|id2:%d\n"), record->name(), record->id1(), record->id2()));
+		ACE_DEBUG((LM_DEBUG, "Record name: %C|id1:%d|id2:%d\n", record->name(), record->id1(), record->id2()));
 	}
 }
 
@@ -73,25 +73,25 @@ int addRecords() {
 		ACE_OS::sprintf(buf, "%s:%d", "Record", i);
 		void *memory=g_allocator->malloc(sizeof(Record));
 		if (memory==0) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Unable to malloc")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Unable to malloc"), -1);
 		}
 		// Allocate and place record
 		Record *newRecord=new(memory) Record(i, i + 1, buf);
 		ACE_UNUSED_ARG(newRecord);
 		if (g_allocator->bind(buf, newRecord)==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "bind failed"), -1);
 		}
 	}
 	return 0;
 }
 
 // Backing file where the data is kept.
-#define BACKING_STORE ACE_TEXT("backing.store")
+#define BACKING_STORE "backing.store"
 
 int main(int argc, char**) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Starting Program\n")));
+	ACE_DEBUG((LM_DEBUG, "Starting Program\n"));
 	ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE), -1);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("After g_allocator\n")));
+	ACE_DEBUG((LM_DEBUG, "After g_allocator\n"));
 	if (argc > 1) {
 		showRecords();
 	} else {

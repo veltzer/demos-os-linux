@@ -55,7 +55,7 @@ private:
 class LF_ThreadPool:public ACE_Task<ACE_MT_SYNCH> {
 public:
 	LF_ThreadPool():shutdown_(0), current_leader_(0) {
-		ACE_TRACE(ACE_TEXT("LF_ThreadPool::TP"));
+		ACE_TRACE("LF_ThreadPool::TP");
 	}
 
 	virtual int svc(void);
@@ -70,12 +70,12 @@ private:
 	int elect_new_leader(void);
 
 	int leader_active(void) {
-		ACE_TRACE(ACE_TEXT("LF_ThreadPool::leader_active"));
+		ACE_TRACE("LF_ThreadPool::leader_active");
 		return this->current_leader_!=0;
 	}
 
 	void leader_active(ACE_thread_t leader) {
-		ACE_TRACE(ACE_TEXT("LF_ThreadPool::leader_active"));
+		ACE_TRACE("LF_ThreadPool::leader_active");
 		this->current_leader_=leader;
 	}
 
@@ -95,7 +95,7 @@ private:
 };
 
 int LF_ThreadPool::svc(void) {
-	ACE_TRACE(ACE_TEXT("LF_ThreadPool::svc"));
+	ACE_TRACE("LF_ThreadPool::svc");
 	while(!done()) {
 		// Block until this thread is the leader.
 		become_leader();
@@ -117,7 +117,7 @@ int LF_ThreadPool::svc(void) {
 }
 
 int LF_ThreadPool::become_leader(void) {
-	ACE_TRACE(ACE_TEXT("LF_ThreadPool::become_leader"));
+	ACE_TRACE("LF_ThreadPool::become_leader");
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, leader_mon, this->leader_lock_, -1);
 	if(leader_active()) {
 		Follower *fw=make_follower();
@@ -127,14 +127,14 @@ int LF_ThreadPool::become_leader(void) {
 		}
 		delete fw;
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Becoming the leader\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) Becoming the leader\n"));
 	// Mark yourself as the active leader.
 	leader_active(ACE_Thread::self());
 	return 0;
 }
 
 Follower *LF_ThreadPool::make_follower(void) {
-	ACE_TRACE(ACE_TEXT("LF_ThreadPool::make_follower"));
+	ACE_TRACE("LF_ThreadPool::make_follower");
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, follower_mon, this->followers_lock_, 0);
 	Follower *fw;
 	ACE_NEW_RETURN(fw, Follower(this->leader_lock_), 0);
@@ -143,7 +143,7 @@ Follower *LF_ThreadPool::make_follower(void) {
 }
 
 int LF_ThreadPool::elect_new_leader(void) {
-	ACE_TRACE(ACE_TEXT("LF_ThreadPool::elect_new_leader"));
+	ACE_TRACE("LF_ThreadPool::elect_new_leader");
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, leader_mon, this->leader_lock_, -1);
 	leader_active(0);
 	// Wake up a follower
@@ -154,22 +154,22 @@ int LF_ThreadPool::elect_new_leader(void) {
 		if(this->followers_.dequeue_head(fw)!=0) {
 			return -1;
 		}
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Resigning and Electing %d\n"), fw->owner()));
+		ACE_DEBUG((LM_DEBUG, "(%t) Resigning and Electing %d\n", fw->owner()));
 		return (fw->signal()==0) ? 0:-1;
 	} else {
-		ACE_DEBUG((LM_ERROR, ACE_TEXT("(%t) Oops no followers left\n")));
+		ACE_DEBUG((LM_ERROR, "(%t) Oops no followers left\n"));
 		return -1;
 	}
 }
 
 void LF_ThreadPool::process_message(ACE_Message_Block *mb) {
-	ACE_TRACE(ACE_TEXT("LF_ThreadPool::process_message"));
+	ACE_TRACE("LF_ThreadPool::process_message");
 	int msgId;
 	ACE_OS::memcpy(&msgId, mb->rd_ptr(), sizeof(int));
 	mb->release();
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Started processing message:%d\n"), msgId));
+	ACE_DEBUG((LM_DEBUG, "(%t) Started processing message:%d\n", msgId));
 	ACE_OS::sleep(1);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Finished processing message:%d\n"), msgId));
+	ACE_DEBUG((LM_DEBUG, "(%t) Finished processing message:%d\n", msgId));
 }
 
 long LF_ThreadPool::LONG_TIME=5L;

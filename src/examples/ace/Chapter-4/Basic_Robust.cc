@@ -67,9 +67,9 @@ int main() {
 	}
 	// Listing 3
 
-	addr.set(ACE_TEXT("HALog"), ACE_LOCALHOST);
+	addr.set("HALog", ACE_LOCALHOST);
 	if (addr.addr_to_string(peerAddress, sizeof(peerAddress), 0)==0) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connecting to %s\n"), peerAddress));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connecting to %s\n", peerAddress));
 	}
 	// Listing 4 code/ch06
 	ACE_SOCK_Connector logConnector;
@@ -109,14 +109,14 @@ int main() {
 		}
 		// Listing 6
 		else {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("send_n")));
+			ACE_ERROR((LM_ERROR, "%p\n", "send_n"));
 		}
 		return 102;
 	}
 	ssize_t bc;
 	ACE_Time_Value recvTimeout(0, 1);
 	if((bc=status.recv(buf, sizeof(buf), &recvTimeout))==-1) {
-		ACE_ERROR((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("recv")));
+		ACE_ERROR((LM_ERROR, "%p\n", "recv"));
 		return 103;
 	}
 	log.send_n(buf, bc);

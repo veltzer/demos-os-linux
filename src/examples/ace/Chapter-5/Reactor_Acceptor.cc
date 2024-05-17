@@ -64,7 +64,7 @@ ACE_HANDLE ClientAcceptor::get_handle(void) const {
 	return this->m_acceptor.get_handle();
 }
 int ClientAcceptor::handle_input(ACE_HANDLE) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) handle_input\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) handle_input\n"));
 	ACE_SOCK_Stream peer;
 	if(this->m_acceptor.accept(peer)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n","Failed to accept client connection"), -1);
@@ -82,7 +82,7 @@ int main() {
 	const unsigned int port=50000;
 	ACE_INET_Addr port_to_listen(port);
 	if(acceptor.open(port_to_listen)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), -1);
 	}
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) connect to me using 'telnet localhost %d'\n"), port));
 	// main loop on the singleton reactor

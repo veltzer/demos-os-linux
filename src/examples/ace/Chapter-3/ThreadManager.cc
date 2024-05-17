@@ -51,7 +51,7 @@ private:
 
 public:
 	HA_CommandHandler(ExitHandler & eh, int ival):eh_(eh), val(ival) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) at HA_CommandHandler\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) at HA_CommandHandler\n"));
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up\n")));

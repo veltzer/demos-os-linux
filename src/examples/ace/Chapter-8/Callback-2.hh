@@ -36,7 +36,7 @@ public:
 		const char* prio_name=ACE_Log_Record::priority_name(prio);
 		const time_t epoch=log_record.time_stamp().sec();
 		cerr	<< "\tType: "
-			<< ACE_TEXT_ALWAYS_CHAR(prio_name)
+			<< prio_name
 			<< endl
 			<< "\tLength: " << log_record.length()
 			<< endl

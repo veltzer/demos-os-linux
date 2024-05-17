@@ -30,12 +30,12 @@
 
 int main(int, char** argv) {
 	// log to stderr
-	ACE_DEBUG((LM_INFO, ACE_TEXT("use [tail /var/log/syslog] to see next entries\n")));
+	ACE_DEBUG((LM_INFO, "use [tail /var/log/syslog] to see next entries\n"));
 	// starting logging to syslog
-	ACE_LOG_MSG->open(argv[0], ACE_Log_Msg::SYSLOG, ACE_TEXT("syslogTest"));
-	ACE_DEBUG((LM_INFO, ACE_TEXT("%IThis is a message to syslog\n")));
+	ACE_LOG_MSG->open(argv[0], ACE_Log_Msg::SYSLOG, "syslogTest");
+	ACE_DEBUG((LM_INFO, "%IThis is a message to syslog\n"));
 	// now back to the command line
 	ACE_LOG_MSG->open(argv[0]);
-	ACE_DEBUG((LM_INFO, ACE_TEXT("argv[0]=%s\n"), argv[0]));
+	ACE_DEBUG((LM_INFO, "argv[0]=%s\n", argv[0]));
 	return EXIT_SUCCESS;
 }

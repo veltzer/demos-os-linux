@@ -84,24 +84,24 @@ int addRecords(void) {
 		ACE_OS::sprintf(buf, "%s:%d", "Record", i);
 		void *memory=g_allocator->malloc(sizeof(Record));
 		if (memory==0) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("Unable to malloc")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Unable to malloc"), -1);
 		}
 		// Allocate and place record
 		Record *newRecord=new(memory) Record(i, i + 1, buf);
 		if (g_allocator->bind(buf, newRecord)==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("bind failed")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "bind failed"), -1);
 		}
 	}
 	return 0;
 }
 
 void showRecords(void) {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("The following records were found:\n")));
+	ACE_DEBUG((LM_DEBUG, "The following records were found:\n"));
 	{
 		MALLOC_LIFO_ITERATOR iter(*g_allocator);
 		for(void* temp=0; iter.next(temp)!=0; iter.advance()) {
 			Record *record=reinterpret_cast<Record*>(temp);
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("Record name: %C|id1:%d|id2:%d\n"), record->name(), record->id1(), record->id2()));
+			ACE_DEBUG((LM_DEBUG, "Record name: %C|id1:%d|id2:%d\n", record->name(), record->id1(), record->id2()));
 		}
 	}
 }
@@ -110,9 +110,9 @@ void showRecords(void) {
 int main() {
 	ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE), -1);
 
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Please Note if base address is not the same for every run\n")));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("This example will fail and crash.\n")));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Mapped to base address %@\n"), g_allocator->base_addr()));
+	ACE_DEBUG((LM_DEBUG, "Please Note if base address is not the same for every run\n"));
+	ACE_DEBUG((LM_DEBUG, "This example will fail and crash.\n"));
+	ACE_DEBUG((LM_DEBUG, "Mapped to base address %@\n", g_allocator->base_addr()));
 	if (argc > 1) {
 		showRecords();
 	} else {
@@ -130,14 +130,14 @@ int main(int argc, char** argv) {
 		ACE_MMAP_Memory_Pool_Options options(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::ALWAYS_FIXED);
 
 		ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE, BACKING_STORE, &options), -1);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Mapped to base address %@\n"), g_allocator->base_addr()));
+		ACE_DEBUG((LM_DEBUG, "Mapped to base address %@\n", g_allocator->base_addr()));
 
 		showRecords();
 	} else {
 		ACE_MMAP_Memory_Pool_Options options(0, ACE_MMAP_Memory_Pool_Options::NEVER_FIXED);
 
 		ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE, BACKING_STORE, &options), -1);
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("Mapped to base address %@\n"), g_allocator->base_addr()));
+		ACE_DEBUG((LM_DEBUG, "Mapped to base address %@\n", g_allocator->base_addr()));
 
 		addRecords();
 	}

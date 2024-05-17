@@ -36,11 +36,11 @@ class HA_ControllerAgent {
 
 public:
 	HA_ControllerAgent() {
-		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::HA_ControllerAgent"));
+		ACE_TRACE("HA_ControllerAgent::HA_ControllerAgent");
 		status_result_=1;
 	}
 	int status_update(void) {
-		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::status_update"));
+		ACE_TRACE("HA_ControllerAgent::status_update");
 		ACE_DEBUG((LM_DEBUG, "Obtaining a status_update in thread of control\n"));
 		// Simulate sending message to controller and getting status.
 		ACE_OS::sleep(2);
@@ -49,7 +49,7 @@ public:
 
 private:
 	int next_result_id(void) {
-		ACE_TRACE(ACE_TEXT("HA_ControllerAgent::next_cmd_id"));
+		ACE_TRACE("HA_ControllerAgent::next_cmd_id");
 		return status_result_++;
 	}
 	int status_result_;
@@ -58,10 +58,10 @@ private:
 class StatusUpdate:public ACE_Method_Request {
 public:
 	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal):controller_(controller), returnVal_(returnVal) {
-		ACE_TRACE(ACE_TEXT("StatusUpdate::StatusUpdate"));
+		ACE_TRACE("StatusUpdate::StatusUpdate");
 	}
 	virtual int call(void) {
-		ACE_TRACE(ACE_TEXT("StatusUpdate::call"));
+		ACE_TRACE("StatusUpdate::call");
 		// status_update with the controller.
 		this->returnVal_.set(this->controller_.status_update());
 		return 0;
@@ -83,11 +83,11 @@ public:
 class Scheduler:public ACE_Task_Base {
 public:
 	Scheduler() {
-		ACE_TRACE(ACE_TEXT("Scheduler::Scheduler"));
+		ACE_TRACE("Scheduler::Scheduler");
 		this->activate();
 	}
 	virtual int svc(void) {
-		ACE_TRACE(ACE_TEXT("Scheduler::svc"));
+		ACE_TRACE("Scheduler::svc");
 		while(true) {
 			// Dequeue the next method object
 			std::unique_ptr<ACE_Method_Request>
@@ -100,7 +100,7 @@ public:
 		return 0;
 	}
 	int enqueue(ACE_Method_Request *request) {
-		ACE_TRACE(ACE_TEXT("Scheduler::enqueue"));
+		ACE_TRACE("Scheduler::enqueue");
 		return this->activation_queue_.enqueue(request);
 	}
 
@@ -113,7 +113,7 @@ class HA_ControllerAgentProxy {
 
 public:
 	ACE_Future<int> status_update(void) {
-		ACE_TRACE(ACE_TEXT("HA_ControllerAgentProxy::status_update"));
+		ACE_TRACE("HA_ControllerAgentProxy::status_update");
 		ACE_Future<int> result;
 		// Create and enqueue a method request on the scheduler.
 		this->scheduler_.enqueue(new StatusUpdate(this->controller_, result));
@@ -123,7 +123,7 @@ public:
 	// FUZZ: disable check_for_lack_ACE_OS
 	void exit(void) {
 		// FUZZ: enable check_for_lack_ACE_OS
-		ACE_TRACE(ACE_TEXT("HA_ControllerAgentProxy::exit"));
+		ACE_TRACE("HA_ControllerAgentProxy::exit");
 		this->scheduler_.enqueue(new ExitMethod);
 	}
 
@@ -139,7 +139,7 @@ public:
 	virtual void update(const ACE_Future<int>& future) {
 		int result=0;
 		((ACE_Future<int>)future).get(result);
-		ACE_DEBUG((LM_INFO, ACE_TEXT("(%t) New Status %d\n"), result));
+		ACE_DEBUG((LM_INFO, "(%t) New Status %d\n", result));
 		if(result==10) {
 			this->proxy_.exit();
 		}

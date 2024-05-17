@@ -131,7 +131,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 		return 0;
 	}
 	if((send_cnt==-1) && (ACE_OS::last_error()!=EWOULDBLOCK)) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")), 0);
+		ACE_ERROR_RETURN((LM_ERROR, "(%P|%t) %p\n", "send"), 0);
 	}
 	if(send_cnt==-1) {
 		send_cnt=0;
