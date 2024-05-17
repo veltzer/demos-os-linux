@@ -122,7 +122,7 @@ endif # DO_ADD_STD
 
 # removed these flags
 # -Wno-unused-parameter -Wno-missing-field-initializers
-WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros
+WARN_FLAGS:=-Wall -Werror -Wextra -pedantic -Wno-variadic-macros -Wno-unused-parameter
 CXXFLAGS:=$(CXXFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 CFLAGS:=$(CFLAGS) $(WARN_FLAGS) -I$(US_INCLUDE)
 

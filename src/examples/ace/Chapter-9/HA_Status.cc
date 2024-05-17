@@ -39,7 +39,7 @@ private:
 };
 
 int HA_Status::init(int argc, char** argv) {	// Do ACE_Get_Opt and get conf file name, read out the sections and print the names.
-	static const char* options=ACE_TEXT":f:";
+	static const char* options=":f:";
 
 	ACE_Get_Opt cmd_opts(argc, argv, options);
 	if (cmd_opts.long_option(ACE_TEXT("config"), 'f', ACE_Get_Opt::ARG_REQUIRED)==-1) {
