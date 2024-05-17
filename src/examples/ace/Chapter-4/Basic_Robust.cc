@@ -49,7 +49,7 @@ int main() {
 	 */
 
 	ACE_INET_Addr addr;
-	ACE_TCHAR peerAddress[64];
+	char peerAddress[64];
 
 	// Listing 2 code/ch06
 	addr.set(ACE_TEXT("HAStatus"), ACE_LOCALHOST);

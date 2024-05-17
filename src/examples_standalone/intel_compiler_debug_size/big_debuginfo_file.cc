@@ -53,7 +53,7 @@ private:
 // Accepting end point. This is actually "localhost:10010", but some
 // platform couldn't resolve the name so we use the IP address
 // directly here.
-static const ACE_TCHAR *rendezvous=ACE_TEXT("127.0.0.1:10010");
+static const char* rendezvous="127.0.0.1:10010";
 
 // Total number of server threads.
 static size_t svr_thrno=5;
@@ -77,10 +77,10 @@ Request_Handler::Request_Handler(ACE_Thread_Manager *thr_mgr):ACE_Svc_Handler<AC
 }
 
 int Request_Handler::handle_input(ACE_HANDLE fd) {
-	ACE_TCHAR buffer[BUFSIZ];
-	ACE_TCHAR len=0;
-	ssize_t result=this->peer().recv(&len, sizeof(ACE_TCHAR));
-	if ((result > 0) && (this->peer().recv_n(buffer, len * sizeof(ACE_TCHAR))==static_cast<ssize_t>(len * sizeof(ACE_TCHAR)))) {
+	char buffer[BUFSIZ];
+	char len=0;
+	ssize_t result=this->peer().recv(&len, sizeof(char));
+	if ((result > 0) && (this->peer().recv_n(buffer, len * sizeof(char))==static_cast<ssize_t>(len * sizeof(char)))) {
 		++this->nr_msgs_rcvd_;
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) svr input; fd: 0x%x; input: %s\n"), fd, buffer));
 		if (ACE_OS::strcmp(buffer, ACE_TEXT("shutdown"))==0) {
@@ -128,8 +128,8 @@ public:
 	}
 	virtual int svc() {
 		ACE_OS::sleep(3);
-		const ACE_TCHAR *msg=ACE_TEXT("Message from Connection worker");
-		ACE_TCHAR buf [BUFSIZ];
+		const char* msg="Message from Connection worker";
+		char buf[BUFSIZ];
 		buf[0]=ACE_OS::strlen(msg) + 1;
 		ACE_OS::strcpy(&buf[1], msg);
 		for(size_t i=0; i<cli_runs; i++) {
@@ -140,11 +140,11 @@ public:
 	}
 
 private:
-	void send_work_to_server(ACE_TCHAR *arg) {
+	void send_work_to_server(char* arg) {
 		ACE_SOCK_Stream stream;
 		ACE_SOCK_Connector connect;
 		ACE_Time_Value delay(0, req_delay);
-		size_t len=*reinterpret_cast<ACE_TCHAR *>(arg);
+		size_t len=*reinterpret_cast<char*>(arg);
 		for(size_t i=0; i<cli_conn_no; i++) {
 			if(connect.connect(stream, addr_) < 0) {
 				ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) %p\n"), ACE_TEXT("connect")));
@@ -152,7 +152,7 @@ private:
 			}
 			for(size_t j=0; j<cli_req_no; j++) {
 				ACE_DEBUG((LM_DEBUG, ACE_TEXT("Sending work to server on handle 0x%x, req %d\n"), stream.get_handle(), j + 1));
-				if (stream.send_n(arg, (len + 1) * sizeof(ACE_TCHAR))==-1) {
+				if (stream.send_n(arg, (len + 1) * sizeof(char))==-1) {
 					ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) %p\n"), ACE_TEXT("send_n")));
 					continue;
 				}
@@ -167,9 +167,9 @@ private:
 		if (connect.connect(stream, addr_)==-1) {
 			ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) %p Error while connecting\n"), ACE_TEXT("connect")));
 		}
-		const ACE_TCHAR *sbuf=ACE_TEXT("\011shutdown");
+		const char* sbuf="\011shutdown";
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("shutdown stream handle=%x\n"), stream.get_handle()));
-		if (stream.send_n(sbuf, (ACE_OS::strlen(sbuf) + 1) * sizeof(ACE_TCHAR))==-1) {
+		if (stream.send_n(sbuf, (ACE_OS::strlen(sbuf) + 1) * sizeof(char))==-1) {
 			ACE_ERROR((LM_ERROR, ACE_TEXT("(%t) %p\n"), ACE_TEXT("send_n")));
 		}
 		stream.close();

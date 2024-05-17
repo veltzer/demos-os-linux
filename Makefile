@@ -421,14 +421,15 @@ check_return:
 check_braces:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -P -l '^\{' -- "src/{examples,examples_standalone,exercises,exercises_standalone,include,tests}/**"
-check_acetmain:
+check_ace:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep ACE_TMAIN -- "src/**"
+	$(Q)pymakehelper no_err git grep ACE_TCHAR -- "src/**"
 check_colons:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep " : " -- "src/**"
 .PHONY: check_all 
-check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return check_braces check_acetmain check_colons scripts/check_have_solutions.py
+check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return check_braces check_ace check_colons scripts/check_have_solutions.py
 	$(info doing [$@])
 	$(Q)scripts/check_have_solutions.py
 

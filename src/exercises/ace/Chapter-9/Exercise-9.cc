@@ -79,7 +79,7 @@ int DoAccept(long ReceivePort, ACE_SOCK_Stream *peer, ACE_INET_Addr *peer_addr, 
 			ACE_DEBUG((LM_DEBUG, "Timeout while waiting for connection"));
 		}
 	} else {
-		ACE_TCHAR peer_name[MAXHOSTNAMELEN];
+		char peer_name[MAXHOSTNAMELEN];
 		peer_addr->addr_to_string(peer_name, MAXHOSTNAMELEN);
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 	}

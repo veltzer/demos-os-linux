@@ -74,7 +74,7 @@ int main() {
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while waiting for connection\n")));
 		}
 	} else {
-		ACE_TCHAR peer_name[MAXHOSTNAMELEN];
+		char peer_name[MAXHOSTNAMELEN];
 		peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN);
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 	}

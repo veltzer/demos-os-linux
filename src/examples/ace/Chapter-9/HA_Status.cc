@@ -32,21 +32,21 @@
 
 class HA_Status:public ACE_Service_Object {
 public:
-	virtual int init(int argc, ACE_TCHAR *argv[]);
+	virtual int init(int argc, char** argv);
 
 private:
 	ACE_INET_Addr listen_addr_;
 };
 
-int HA_Status::init(int argc, ACE_TCHAR *argv[]) {	// Do ACE_Get_Opt and get conf file name, read out the sections and print the names.
-	static const ACE_TCHAR options[]=ACE_TEXT(":f:");
+int HA_Status::init(int argc, char** argv) {	// Do ACE_Get_Opt and get conf file name, read out the sections and print the names.
+	static const char* options=ACE_TEXT":f:";
 
 	ACE_Get_Opt cmd_opts(argc, argv, options);
 	if (cmd_opts.long_option(ACE_TEXT("config"), 'f', ACE_Get_Opt::ARG_REQUIRED)==-1) {
 		return -1;
 	}
 	int option;
-	ACE_TCHAR config_file[MAXPATHLEN];
+	char config_file[MAXPATHLEN];
 	ACE_OS::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
 	while((option=cmd_opts())!=EOF) {
 		switch (option) {

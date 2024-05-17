@@ -32,16 +32,16 @@
  */
 
 int main() {
-	static const ACE_TCHAR options[]=ACE_TEXT(":f:h:");
-	static const ACE_TCHAR cmdline[]=ACE_TEXT("-f /home/managed.cfg -h $HOSTNAME");
+	static const char* options=ACE_TEXT(":f:h:");
+	static const char* cmdline=ACE_TEXT("-f /home/managed.cfg -h $HOSTNAME");
 
 	ACE_ARGV cmdline_args(cmdline);
 	ACE_Get_Opt cmd_opts(cmdline_args.argc(), cmdline_args.argv(), options, 0);
 	// Don't skip any args
 
 	int option;
-	ACE_TCHAR config_file[MAXPATHLEN];
-	ACE_TCHAR hostname[MAXHOSTNAMELEN];
+	char config_file[MAXPATHLEN];
+	char hostname[MAXHOSTNAMELEN];
 
 	ACE_OS_String::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
 	ACE_OS_String::strcpy(hostname, ACE_TEXT("not set"));

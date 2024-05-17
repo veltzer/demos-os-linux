@@ -43,7 +43,7 @@ int main() {
 		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\nacceptor.open")), 100);
 	}
 	// lets print our own connect address...
-	ACE_TCHAR my_name[MAXHOSTNAMELEN];
+	char my_name[MAXHOSTNAMELEN];
 	port_to_listen.addr_to_string(my_name, MAXHOSTNAMELEN);
 	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Listening on %s\n"), my_name));
 	// lets go into the main loop...
@@ -61,7 +61,7 @@ int main() {
 			}
 		} else {
 			// print the address where the connection is from...
-			ACE_TCHAR peer_name[MAXHOSTNAMELEN];
+			char peer_name[MAXHOSTNAMELEN];
 			peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN);
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 			char buffer[4096];

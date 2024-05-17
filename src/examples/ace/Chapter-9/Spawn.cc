@@ -36,7 +36,7 @@
 
 class Manager:public ACE_Process {
 public:
-	Manager(const ACE_TCHAR * program_name) {
+	Manager(const char* program_name) {
 		ACE_TRACE("Manager::Manager");
 		ACE_OS::strcpy(programName_, program_name);
 	}
@@ -119,7 +119,7 @@ private:
 
 private:
 	ACE_HANDLE outputfd_;
-	ACE_TCHAR programName_[256];
+	char programName_[256];
 };
 
 class Slave {
@@ -135,7 +135,7 @@ public:
 		this->showWho();
 		ACE_DEBUG((LM_INFO, ACE_TEXT("(%P) the private environment is %s\n"), ACE_OS::getenv("PRIVATE_VAR")));
 
-		ACE_TCHAR str[128];
+		char str[128];
 		ACE_OS::sprintf(str, ACE_TEXT("(%d) Enter your command\n"), static_cast<int>(ACE_OS::getpid()));
 		ACE_OS::write(ACE_STDOUT, str, ACE_OS::strlen(str));
 		this->readLine(str);
@@ -151,7 +151,7 @@ public:
 #endif
 	}
 
-	ACE_TCHAR *readLine(ACE_TCHAR *str) {
+	char* readLine(char* str) {
 		ACE_TRACE("Slave::readLine");
 
 		int i=0;

@@ -110,7 +110,7 @@ int ClientAcceptor::handle_close(ACE_HANDLE, ACE_Reactor_Mask) {
 }
 
 int ClientService::open(void) {
-	ACE_TCHAR peer_name[MAXHOSTNAMELEN];
+	char peer_name[MAXHOSTNAMELEN];
 	ACE_INET_Addr peer_addr;
 	if((this->sock_.get_remote_addr(peer_addr)==0) && (peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN)==0)) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));

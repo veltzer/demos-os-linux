@@ -39,12 +39,12 @@
 int main(int argc, char** argv) {
 	// Example for a long option without a corresponding short option.
 	// Just put some context here so the following compiles and runs.
-	static const ACE_TCHAR options[]=ACE_TEXT(":f:l:gh");
+	static const char* options[]=":f:l:gh";
 	ACE_Get_Opt cmd_opts(argc, argv, options);
 	cmd_opts.long_option(ACE_TEXT("cool_option"));
 	cmd_opts.long_option(ACE_TEXT("the_answer"), 42);
 	int option;
-	ACE_TCHAR config_file[MAXPATHLEN];
+	char config_file[MAXPATHLEN];
 	ACE_OS_String::strcpy(config_file, ACE_TEXT("HAStatus.conf"));
 	while((option=cmd_opts())!=EOF) {
 		switch (option) {

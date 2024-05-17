@@ -40,7 +40,7 @@ int ClientService::open(void* p) {
 	if(super::open(p)==-1) {
 		return -1;
 	}
-	ACE_TCHAR peer_name[MAXHOSTNAMELEN];
+	char peer_name[MAXHOSTNAMELEN];
 	ACE_INET_Addr peer_addr;
 	if((this->peer().get_remote_addr(peer_addr)==0) && (peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN)==0)) {
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));

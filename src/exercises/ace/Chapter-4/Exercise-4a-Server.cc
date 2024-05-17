@@ -64,7 +64,7 @@ int MakeConnection(ACE_SOCK_Acceptor *acceptor, ACE_INET_Addr *port_to_listen, A
 			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while ") ACE_TEXT("waiting for connection\n")));
 		}
 	} else {
-		ACE_TCHAR peer_name[MAXHOSTNAMELEN];
+		char peer_name[MAXHOSTNAMELEN];
 		peer_addr->addr_to_string(peer_name, MAXHOSTNAMELEN);
 		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
 	}
