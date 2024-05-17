@@ -34,7 +34,7 @@ int main() {
 	ACE_SOCK_Connector connector;
 	ACE_SOCK_Stream peer;
 	if (connector.connect(peer, srvr)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("connect")), 1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "connect"), 1);
 	}
 	char buf[64];
 	peer.send_n("uptime\n", 7);

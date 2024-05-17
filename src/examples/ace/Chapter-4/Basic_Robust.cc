@@ -52,9 +52,9 @@ int main() {
 	char peerAddress[64];
 
 	// Listing 2 code/ch06
-	addr.set(ACE_TEXT("HAStatus"), ACE_LOCALHOST);
+	addr.set("HAStatus", ACE_LOCALHOST);
 	if (addr.addr_to_string(peerAddress, sizeof(peerAddress), 0)==0) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connecting to %s\n"), peerAddress));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connecting to %s\n", peerAddress));
 	}
 	// Listing 2
 
@@ -63,7 +63,7 @@ int main() {
 	ACE_OS::last_error(0);
 	ACE_SOCK_Connector statusConnector(status, addr);
 	if (ACE_OS::last_error()) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("status")), 100);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "status"), 100);
 	}
 	// Listing 3
 

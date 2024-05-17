@@ -48,12 +48,12 @@ int ClientAcceptor::open(const ACE_INET_Addr& listen_addr) {
 	if(this->m_acceptor.open(listen_addr, 1)==-1) {
 		return -1;
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) connected\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) connected\n"));
 	return this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 }
 
 ClientAcceptor::~ClientAcceptor() {
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) destructor\n")));
+	ACE_DEBUG((LM_DEBUG, "(%t) destructor\n"));
 	this->handle_close(ACE_INVALID_HANDLE, 0);
 }
 

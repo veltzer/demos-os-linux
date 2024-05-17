@@ -35,7 +35,7 @@
 class TimerHandler:public ACE_Event_Handler {
 public:
 	int handle_timeout(const ACE_Time_Value& current_time, const void* arg) {
-		ACE_DEBUG((LM_INFO, ACE_TEXT("handle_timeout\n")));
+		ACE_DEBUG((LM_INFO, "handle_timeout\n"));
 		return 0;
 	}
 };
@@ -76,7 +76,7 @@ public:
 		return 0;
 	}
 	int handle_exception(ACE_HANDLE) {
-		ACE_DEBUG((LM_INFO, ACE_TEXT("log reaction\n")));
+		ACE_DEBUG((LM_INFO, "log reaction\n"));
 		if (this->on_off_)
 			ACE_LOG_MSG->clr_flags(ACE_Log_Msg::SILENT);
 		else
@@ -86,7 +86,7 @@ public:
 };
 
 int main() {
-	ACE_DEBUG((LM_INFO, ACE_TEXT("contact me at process %P\n")));
+	ACE_DEBUG((LM_INFO, "contact me at process %P\n"));
 	TimerHandler* timerHandler=new TimerHandler();
 	int timerId=ACE_Reactor::instance()->schedule_timer(
 		timerHandler,

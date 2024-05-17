@@ -40,14 +40,14 @@ int main() {
 	// ACE_INET_Addr port_to_listen("HAStatus");
 	ACE_SOCK_Acceptor acceptor;
 	if(acceptor.open(port_to_listen, 1)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\nacceptor.open")), 100);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\nacceptor.open"), 100);
 	}
 	// lets print our own connect address...
 	char my_name[MAXHOSTNAMELEN];
 	port_to_listen.addr_to_string(my_name, MAXHOSTNAMELEN);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Listening on %s\n"), my_name));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Listening on %s\n", my_name));
 	// lets go into the main loop...
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("Server going into main loop\n")));
+	ACE_DEBUG((LM_DEBUG, "Server going into main loop\n"));
 	while(true) {
 		ACE_SOCK_Stream peer;
 		ACE_INET_Addr peer_addr;
@@ -55,33 +55,33 @@ int main() {
 		if (acceptor.accept(peer, &peer_addr, &timeout, 1)==-1) {
 			// if(acceptor.accept(peer)==-1) {
 			if (ACE_OS::last_error()==EINTR) {
-				ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Interrupted while waiting for connection")));
+				ACE_DEBUG((LM_DEBUG, "(%P|%t) Interrupted while waiting for connection"));
 			} else if (ACE_OS::last_error()==ETIMEDOUT) {
-				ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Timeout while waiting for connection")));
+				ACE_DEBUG((LM_DEBUG, "(%P|%t) Timeout while waiting for connection"));
 			}
 		} else {
 			// print the address where the connection is from...
 			char peer_name[MAXHOSTNAMELEN];
 			peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN);
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
+			ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection from %s\n", peer_name));
 			char buffer[4096];
 			ssize_t bytes_received=peer.recv(buffer, sizeof(buffer));
 			// IMPORTANT NOTICE: do not allow 0 here since it is the end
 			// of file...
 			while(bytes_received>0) {
 				if (peer.send(buffer, bytes_received)==-1) {
-					ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) error in send")));
+					ACE_DEBUG((LM_DEBUG, "(%P|%t) error in send"));
 				}
 				bytes_received=peer.recv(buffer, sizeof(buffer));
 			}
 			// lets show a nice message if we are interrupted while reading...
 			if (bytes_received==-1) {
 				if (ACE_OS::last_error()==EINTR) {
-					ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Interrupted while reading")));
+					ACE_DEBUG((LM_DEBUG, "(%P|%t) Interrupted while reading"));
 				}
 			}
 			peer.close();
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) connection from %s has closed...\n"), peer_name));
+			ACE_DEBUG((LM_DEBUG, "(%P|%t) connection from %s has closed...\n", peer_name));
 		}
 	}
 	ACE_NOTREACHED(return EXIT_SUCCESS);

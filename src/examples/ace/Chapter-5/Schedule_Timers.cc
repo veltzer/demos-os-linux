@@ -38,7 +38,7 @@ class MyTimerHandler:public ACE_Event_Handler {
 public:
 	int handle_timeout(const ACE_Time_Value& current_time, const void* =0) {
 		time_t epoch=((timespec_t)current_time).tv_sec;
-		ACE_DEBUG((LM_INFO, ACE_TEXT("handle_timeout: %s\n"), ACE_OS::ctime(&epoch)));
+		ACE_DEBUG((LM_INFO, "handle_timeout: %s\n", ACE_OS::ctime(&epoch)));
 		return 0;
 	}
 };
@@ -51,10 +51,10 @@ public:
 		counter++;
 		if (signum==SIGINT) {
 			if (counter > 2) {
-				ACE_DEBUG((LM_INFO, ACE_TEXT("Got SIGINIT exiting\n")));
+				ACE_DEBUG((LM_INFO, "Got SIGINIT exiting\n"));
 				ACE_Reactor::instance()->end_reactor_event_loop();
 			} else {
-				ACE_DEBUG((LM_INFO, ACE_TEXT("Got SIGINIT ignoring\n")));
+				ACE_DEBUG((LM_INFO, "Got SIGINIT ignoring\n"));
 			}
 		}
 		return 0;
@@ -73,7 +73,7 @@ int main() {
 	ACE_Reactor::instance()->schedule_timer(timer, 0, initialDelay, interval);
 	SigintHandler *handleExit=new SigintHandler();
 	ACE_Reactor::instance()->register_handler(SIGINT, handleExit);
-	ACE_DEBUG((LM_INFO, ACE_TEXT("Pressing 3 times on ^c will stop execution\n")));
+	ACE_DEBUG((LM_INFO, "Pressing 3 times on ^c will stop execution\n"));
 	ACE_Reactor::instance()->run_reactor_event_loop();
 	return EXIT_SUCCESS;
 }

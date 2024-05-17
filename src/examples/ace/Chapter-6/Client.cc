@@ -47,8 +47,8 @@ int Client::handle_input(ACE_HANDLE) {
 	char buf[64];
 	ssize_t recv_cnt=this->peer().recv(buf, sizeof(buf) - 1);
 	if(recv_cnt > 0) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("YES! GOT DATA!!!")));
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("%.*C"), static_cast<int>(recv_cnt), buf));
+		ACE_DEBUG((LM_DEBUG, "YES! GOT DATA!!!"));
+		ACE_DEBUG((LM_DEBUG, "%.*C", static_cast<int>(recv_cnt), buf));
 		return 0;
 	}
 	if((recv_cnt==0) || (ACE_OS::last_error()!=EWOULDBLOCK)) {
@@ -85,7 +85,7 @@ int Client::handle_output(ACE_HANDLE) {
 	while(-1!=this->getq(mb, &nowait)) {
 		ssize_t send_cnt=this->peer().send(mb->rd_ptr(), mb->length());
 		if(send_cnt==-1) {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")));
+			ACE_ERROR((LM_ERROR, "(%P|%t) %p\n", "send"));
 		} else {
 			mb->rd_ptr(static_cast<size_t>(send_cnt));
 		}
@@ -104,7 +104,7 @@ int Client::handle_output(ACE_HANDLE) {
 }
 
 int main() {
-	// ACE_INET_Addr port_to_connect(ACE_TEXT("HAStatus"), ACE_LOCALHOST);
+	// ACE_INET_Addr port_to_connect("HAStatus", ACE_LOCALHOST);
 	ACE_INET_Addr port_to_connect(8080, ACE_LOCALHOST);
 
 	// Notice using the Connector without
@@ -112,7 +112,7 @@ int main() {
 	Client client;
 	Client *pc=&client;
 	if(connector.connect(pc, port_to_connect)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("connect")), 1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "connect"), 1);
 	}
 	ACE_Reactor::instance()->run_reactor_event_loop();
 	return 0;

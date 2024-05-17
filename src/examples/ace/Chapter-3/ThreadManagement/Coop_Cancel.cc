@@ -34,7 +34,7 @@ class CanceledTask:public ACE_Task<ACE_MT_SYNCH> {
 public:
 
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up \n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) starting up \n"));
 
 		// Cache our ACE_Thread_Manager pointer.
 		ACE_Thread_Manager *mgr=this->thr_mgr();

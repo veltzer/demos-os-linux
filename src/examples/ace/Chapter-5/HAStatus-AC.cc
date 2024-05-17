@@ -43,7 +43,7 @@ int ClientService::open(void* p) {
 	char peer_name[MAXHOSTNAMELEN];
 	ACE_INET_Addr peer_addr;
 	if((this->peer().get_remote_addr(peer_addr)==0) && (peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN)==0)) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection from %s\n", peer_name));
 	}
 	return 0;
 }
@@ -55,7 +55,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 
 	recv_cnt=this->peer().recv(buffer, sizeof(buffer));
 	if(recv_cnt<=0) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection closed\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection closed\n"));
 		return -1;
 	}
 	send_cnt=this->peer().send(buffer, static_cast<size_t>(recv_cnt));

@@ -97,7 +97,7 @@ ClientAcceptor::~ClientAcceptor() {
 
 int ClientAcceptor::open(const ACE_INET_Addr& listen_addr) {
 	if(this->acceptor_.open(listen_addr, 1)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), -1);
 	}
 	return this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 }
@@ -137,7 +137,7 @@ int ClientService::open(void) {
 	char peer_name[MAXHOSTNAMELEN];
 	ACE_INET_Addr peer_addr;
 	if((this->sock_.get_remote_addr(peer_addr)==0) && (peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN)==0)) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection from %s\n", peer_name));
 	}
 	return this->reactor()->register_handler (this, ACE_Event_Handler::READ_MASK);
 }
@@ -150,17 +150,17 @@ int ClientService::handle_input(ACE_HANDLE) {
 	char buffer[INPUT_SIZE];
 	ssize_t recv_cnt, send_cnt;
 	if((recv_cnt=this->sock_.recv(buffer, sizeof(buffer)))<=0) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection closed\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection closed\n"));
 		return -1;
 	}
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) got %.*C from client\n"), static_cast<int>(recv_cnt), buffer));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) got %.*C from client\n", static_cast<int>(recv_cnt), buffer));
 
 	send_cnt=this->sock_.send(buffer, static_cast<size_t>(recv_cnt));
 	if(send_cnt==recv_cnt) {
 		return 0;
 	}
 	if((send_cnt==-1) && (ACE_OS::last_error()!=EWOULDBLOCK)) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")), 0);
+		ACE_ERROR_RETURN((LM_ERROR, "(%P|%t) %p\n", "send"), 0);
 	}
 	if(send_cnt==-1) {
 		send_cnt=0;
@@ -172,7 +172,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 	int output_off=this->output_queue_.is_empty();
 	ACE_Time_Value nowait(ACE_OS::gettimeofday());
 	if(this->output_queue_.enqueue_tail(mb, &nowait)==-1) {
-		ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p; discarding data\n"), ACE_TEXT("enqueue failed")));
+		ACE_ERROR((LM_ERROR, "(%P|%t) %p; discarding data\n", "enqueue failed"));
 		mb->release();
 		return 0;
 	}
@@ -192,7 +192,7 @@ int ClientService::handle_output(ACE_HANDLE) {
 	while(0<=this->output_queue_.dequeue_head (mb, &nowait)) {
 		ssize_t send_cnt=this->sock_.send(mb->rd_ptr(), mb->length());
 		if(send_cnt==-1) {
-			ACE_ERROR((LM_ERROR, ACE_TEXT("(%P|%t) %p\n"), ACE_TEXT("send")));
+			ACE_ERROR((LM_ERROR, "(%P|%t) %p\n", "send"));
 		} else {
 			mb->rd_ptr(static_cast<size_t>(send_cnt));
 		}
@@ -292,7 +292,7 @@ int main() {
 	// ACE_INET_Addr port_to_listen("HAStatus");
 	const unsigned int port=8081;
 	ACE_INET_Addr port_to_listen(port);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connect to me using localhost:%d\n"), port));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Connect to me using localhost:%d\n", port));
 
 	ClientAcceptor acceptor;
 	LogSwitcher logswitcher(SIGUSR1, SIGUSR2);

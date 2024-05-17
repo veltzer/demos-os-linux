@@ -61,7 +61,7 @@ public:
 		TemperatureSensor *sensor=const_cast<TemperatureSensor *>(const_sensor);
 		int queryCount=sensor->querySensor();
 		this->updateAverageTemperature(sensor);
-		ACE_DEBUG((LM_INFO, ACE_TEXT("%s\t%d/%d\t%.2f/%.2f\t%s\n"), sensor->location(), ++this->counter_, queryCount, this->averageTemperature_, sensor->temperature(), ACE_OS::ctime(&epoch)));
+		ACE_DEBUG((LM_INFO, "%s\t%d/%d\t%.2f/%.2f\t%s\n", sensor->location(), ++this->counter_, queryCount, this->averageTemperature_, sensor->temperature(), ACE_OS::ctime(&epoch)));
 		return 0;
 	}
 

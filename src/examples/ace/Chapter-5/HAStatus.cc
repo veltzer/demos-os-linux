@@ -80,7 +80,7 @@ ClientAcceptor::~ClientAcceptor() {
 
 int ClientAcceptor::open(const ACE_INET_Addr& listen_addr) {
 	if(this->acceptor_.open(listen_addr, 1)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), -1);
 	}
 	return this->reactor()->register_handler (this, ACE_Event_Handler::ACCEPT_MASK);
 }
@@ -113,7 +113,7 @@ int ClientService::open(void) {
 	char peer_name[MAXHOSTNAMELEN];
 	ACE_INET_Addr peer_addr;
 	if((this->sock_.get_remote_addr(peer_addr)==0) && (peer_addr.addr_to_string(peer_name, MAXHOSTNAMELEN)==0)) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection from %s\n"), peer_name));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection from %s\n", peer_name));
 	}
 	return this->reactor()->register_handler (this, ACE_Event_Handler::READ_MASK);
 }
@@ -123,7 +123,7 @@ int ClientService::handle_input(ACE_HANDLE) {
 	char buffer[INPUT_SIZE];
 	ssize_t recv_cnt, send_cnt;
 	if((recv_cnt=this->sock_.recv(buffer, sizeof(buffer)))<=0) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connection closed\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Connection closed\n"));
 		return -1;
 	}
 	send_cnt=this->sock_.send(buffer, static_cast<size_t>(recv_cnt));

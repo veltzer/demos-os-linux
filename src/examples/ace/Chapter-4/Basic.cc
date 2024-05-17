@@ -34,7 +34,7 @@ int main() {
 	ACE_SOCK_Connector connector;
 	ACE_SOCK_Stream peer;
 	if(-1==connector.connect(peer, srvr)) {
-		ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("connect")), 1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "connect"), 1);
 	}
 	ssize_t bc;
 	char buf[64];

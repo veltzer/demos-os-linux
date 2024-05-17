@@ -36,13 +36,13 @@ class SignalableTask:public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		if(signum==SIGUSR1) {
-			ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) received a %S signal\n"), signum));
+			ACE_DEBUG((LM_DEBUG, "(%t) received a %S signal\n", signum));
 			handle_alert();
 		}
 		return 0;
 	}
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Starting thread\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) Starting thread\n"));
 		while(true) {
 			ACE_Message_Block *mb=0;
 			ACE_Time_Value tv(0, 1000);

@@ -31,7 +31,7 @@
 class HA_CommandHandler:public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up\n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) starting up\n"));
 		ACE_Message_Block* mb;
 		if(this->getq(mb)==-1) {
 			return -1;

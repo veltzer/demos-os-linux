@@ -33,8 +33,8 @@ private:
 
 protected:
 	virtual void apply() {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) doing exit\n")));
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) a is %d\n"), a));
+		ACE_DEBUG((LM_DEBUG, "(%t) doing exit\n"));
+		ACE_DEBUG((LM_DEBUG, "(%t) a is %d\n", a));
 		// delete a;
 	}
 

@@ -29,7 +29,7 @@
 class ExitHandler:public ACE_At_Thread_Exit {
 public:
 	virtual void apply(void) {
-		ACE_DEBUG((LM_INFO, ACE_TEXT("(%t) is exiting \n")));
+		ACE_DEBUG((LM_INFO, "(%t) is exiting \n"));
 		// Shut down all devices.
 	}
 };
@@ -39,7 +39,7 @@ public:
 	HA_CommandHandler(ExitHandler & eh):eh_(eh) {
 	}
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up \n")));
+		ACE_DEBUG((LM_DEBUG, "(%t) starting up \n"));
 		this->thr_mgr()->at_exit(eh_);
 		// Do something.
 		// Forcefully exit.

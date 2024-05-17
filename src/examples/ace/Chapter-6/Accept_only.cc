@@ -46,7 +46,7 @@ public:
 
 	int open(const ACE_INET_Addr& listen_addr) {
 		if(this->acceptor_.open(listen_addr, 1)==-1) {
-			ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("%p\n"), ACE_TEXT("acceptor.open")), -1);
+			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "acceptor.open"), -1);
 		}
 		return this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 	}
@@ -58,7 +58,7 @@ public:
 
 	// Called when a connection is ready to accept.
 	virtual int handle_input(ACE_HANDLE fd=ACE_INVALID_HANDLE) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) got handle_input\n")));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) got handle_input\n"));
 		ACE_OS::sleep(1);
 		// this means 'deregister this handling method'
 		return -1;
@@ -89,8 +89,8 @@ public:
 int main() {
 	const unsigned int port=8081;
 	ACE_INET_Addr port_to_listen(port);
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Connect to me using [telnet localhost:%d]\n"), port));
-	ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Kill me using [kill -s SIGINT %P]\n"), port));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Connect to me using [telnet localhost:%d]\n", port));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Kill me using [kill -s SIGINT %P]\n", port));
 
 	ClientAcceptor acceptor;
 	acceptor.reactor(ACE_Reactor::instance());

@@ -36,7 +36,7 @@ public:
 	HA_CommandHandler(const char *name):name_(name) {
 	}
 	virtual int svc(void) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) starting up %C\n"), name_));
+		ACE_DEBUG((LM_DEBUG, "(%t) starting up %C\n", name_));
 
 		ACE_OS::sleep(2);
 		ACE_Message_Block* mb=0;
@@ -51,7 +51,7 @@ public:
 		return 0;
 	}
 	void process_message(ACE_Message_Block *) {
-		ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%t) Processing message %C\n"), name_));
+		ACE_DEBUG((LM_DEBUG, "(%t) Processing message %C\n", name_));
 		// Simulate compute bound task.
 		for(int i=0; i<100; i++) {
 			CHECK_ZERO(sleep(1));
