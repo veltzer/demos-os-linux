@@ -151,6 +151,7 @@ C_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(C_SRC)))
 CC_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(CC_SRC)))
 C_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(C_SRC)))
 CC_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(CC_SRC)))
+C_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(C_SRC)))
 ALL_C:=$(shell find . -name "*.c")
 ALL_CC:=$(shell find . -name "*.cc")
 ALL_H:=$(shell find . -name "*.h")
@@ -241,6 +242,7 @@ endif # DO_TIDY
 
 ifeq ($(DO_CPPLINT),1)
 ALL+=$(CC_CPPLINT)
+ALL+=$(C_CPPLINT)
 endif # DO_CPPLINT
 
 #########
@@ -612,6 +614,10 @@ $(CC_DIS) $(C_DIS): %.dis: %.$(SUFFIX_BIN)
 #	$(Q)objdump --demangle --disassemble --no-show-raw-insn --section=.text $< > $@
 #	$(Q)objdump --demangle --source --disassemble --no-show-raw-insn --section=.text $< > $@
 $(CC_CPPLINT): out/%.cc.stamp.cpplint: %.cc
+	$(info doing [$@] from [$<])
+	$(Q)cpplint $<
+	$(Q)pymakehelper touch_mkdir $@
+$(C_CPPLINT): out/%.c.stamp.cpplint: %.c
 	$(info doing [$@] from [$<])
 	$(Q)cpplint $<
 	$(Q)pymakehelper touch_mkdir $@

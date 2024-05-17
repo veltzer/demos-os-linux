@@ -40,7 +40,7 @@
  * may change or the math hardware may work slightly differently.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// example with built in compiler conversions
 	int i1=(1 << 24) +1;	// 2^24+1=16777217
 	// the volatile is neccessary so the compiler will not eliminate the entire code!

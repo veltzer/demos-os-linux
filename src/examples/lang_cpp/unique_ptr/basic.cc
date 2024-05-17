@@ -17,9 +17,9 @@
  */
 
 #include <firstinclude.h>
+#include <stdlib.h>	// for EXIT_SUCCESS
 #include <iostream>	// for std::cout, std::endl
 #include <memory>	// for std::unique_ptr<T>
-#include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
  * This example demonstrates the use of unique_ptr of the standard C++ library.
