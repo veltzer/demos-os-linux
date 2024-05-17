@@ -3,3 +3,4 @@ pymakehelper
 pydmt
 pyclassifiers
 pylint
+cpplint
