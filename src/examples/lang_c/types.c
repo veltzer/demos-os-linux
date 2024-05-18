@@ -25,7 +25,7 @@
  * This shows how to define various long related constants and how to print them.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// this next line will not work (the LL is required...)
 	// unsigned long long l1=214748364899;
 	unsigned long long l1=214748364899LL;

@@ -24,7 +24,7 @@
  * A simple example of using the atoi library function
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char* str="321";
 	printf("the value of the string is %d\n", atoi(str));
 	return 0;
