@@ -34,20 +34,18 @@
 
 // Using functions
 
-/*
- * int min_a(int a, int b) {
- *      return (a < b ? a:b);
- * }
- * int max_a(int a, int b) {
- *      return (a > b ? a:b);
- * }
- * int min_b(int a, int b) {
- *      return b + ((a-b) & (a-b)>>31);
- * }
- * int max_b(int a, int b) {
- *      return b + ((a-b) & (a-b)>>31);
- * }
- */
+int f_min_a(int a, int b) {
+	return (a < b ? a:b);
+}
+int f_max_a(int a, int b) {
+	return (a > b ? a:b);
+}
+int f_min_b(int a, int b) {
+	return b + ((a-b) & (a-b)>>31);
+}
+int f_max_b(int a, int b) {
+	return b + ((a-b) & (a-b)>>31);
+}
 
 // Using macro
 

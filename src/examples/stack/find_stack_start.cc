@@ -24,31 +24,31 @@
 #include <pthread_utils.h>	// for pthread_getstack_pointer()
 
 /*
- *      This program tries to find the start address of your stack segment.
- *      The whole stack segment that is, the one that appears in the output
- *      of pmap(1) or /proc/[pid]/maps.
+ * This program tries to find the start address of your stack segment.
+ * The whole stack segment that is, the one that appears in the output
+ * of pmap(1) or /proc/[pid]/maps.
  *
- *      Why would you want this?
- *      - hacking. Hackers love to find the start of the stack so they can know
- *      where do they want to mess things up or maybe call mprotect(2) on.
- *      - you want to see if you are in an infinite recursion.
+ * Why would you want this?
+ * - hacking. Hackers love to find the start of the stack so they can know
+ * where do they want to mess things up or maybe call mprotect(2) on.
+ * - you want to see if you are in an infinite recursion.
  *
- *      There are many attempts here to find this address but none of them work
- *      due to Address Space Layout Randomization or ASLR which means that the
- *      kernel + the standard C library work together to make addresses change
- *      at each run to make it hard for hackers to find them (and so programmers
- *      find them hard to find also...).
+ * There are many attempts here to find this address but none of them work
+ * due to Address Space Layout Randomization or ASLR which means that the
+ * kernel + the standard C library work together to make addresses change
+ * at each run to make it hard for hackers to find them (and so programmers
+ * find them hard to find also...).
  *
- *      It turns out that the only way I could find the address is to actually
- *      read /proc/[pid]/maps and get it from there...:)
+ * It turns out that the only way I could find the address is to actually
+ * read /proc/[pid]/maps and get it from there...:)
  *
- *      References:
- *      http://en.wikipedia.org/wiki/Address_space_layout_randomization
+ * References:
+ * - http://en.wikipedia.org/wiki/Address_space_layout_randomization
  *
- *      NOTES:
- *      - to turn off kernel randomization of address space layout:
- *      echo 0 > /proc/sys/kernel/randomize_va_space
- *      the ubuntu default for this /proc value is 2.
+ * NOTES:
+ * - to turn off kernel randomization of address space layout:
+ * echo 0 > /proc/sys/kernel/randomize_va_space
+ * the ubuntu default for this /proc value is 2.
  */
 
 const char* rw(bool v) {

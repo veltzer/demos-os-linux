@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 		/*
 		 * sum=0;
 		 * for(unsigned long i=0;i<100000000;i++) {
-		 *      sum+=i*i;
+		 *	sum+=i*i;
 		 * }
 		 * printf("sum is %lu\n", sum);
 		 */

@@ -38,7 +38,7 @@
  */
 
 /*
- *      A function to find the number of *really* open files...
+ * A function to find the number of *really* open files...
  */
 int get_openfds() {
 	int count = 0;

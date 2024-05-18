@@ -50,13 +50,15 @@ int main() {
 	// which is what we want to happen...
 	simple("you must end this with a semi-colon");
 	// this should not print anything and yet it does...
-	if(false)
-#pragma GCC diagnostic push
-			     #pragma GCC diagnostic ignored "-Wmultistatement-macros"
+	if(false) {
+		#pragma GCC diagnostic push
+		#pragma GCC diagnostic ignored "-Wmultistatement-macros"
 		wrong_macro("this should be silent, but it is not");
-#pragma GCC diagnostic pop
-	if(false)
+		#pragma GCC diagnostic pop
+	}
+	if(false) {
 		right_macro("you will never see this, and that is good");
+	}
 	// example of breaking early out of the macro
 	break_macro(1, "this should print twice");
 	break_macro(5, "this should print once");

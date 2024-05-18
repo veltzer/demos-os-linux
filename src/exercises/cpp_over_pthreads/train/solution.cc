@@ -60,11 +60,11 @@ public:
 		pthread_barrier_wait(bar);
 		/*
 		 * for(int i=0;i<counter;i++) {
-		 *      // sleep for a random amount of time, simulating some work done by
-		 *      // this thread
-		 *      //pthread_barrier_wait(bar);
-		 *      //position+=1;
-		 *      //position%=size;
+		 *	//sleep for a random amount of time, simulating some work done by
+		 *	//this thread
+		 *	pthread_barrier_wait(bar);
+		 *	position+=1;
+		 *	position%=size;
 		 * }
 		 */
 	}
