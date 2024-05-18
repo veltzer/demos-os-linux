@@ -49,7 +49,7 @@ inline void register_fd(int realfd, CircularPipe* cp, int epollfd, int op) {
 	CHECK_NOT_M1(epoll_ctl(epollfd, op, realfd, &ev));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=5) {
 		fprintf(stderr, "%s: usage: %s [host] [port] [bufsize] [maxevents]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: for example: %s localhost 8080 4096 100\n", argv[0], argv[0]);

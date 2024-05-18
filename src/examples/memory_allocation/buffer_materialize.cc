@@ -44,9 +44,13 @@ static int clock_type=CLOCK_REALTIME;
 
 static test_type current_test_type=TYPE_NOTSET;
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	printf("starting\n");
 	getrusage_show_vmem();
+	if(argc!=3) {
+		fprintf(stderr, "%s: usage: %s [type] [size]\n", argv[0], argv[0]);
+		exit(EXIT_FAILURE);
+	}
 	current_test_type=(test_type)atoi(argv[1]);
 	// lets allocate a buffer of 1GB
 	const size_t size_to_alloc=(size_t)atoi(argv[2]);

@@ -42,7 +42,7 @@ void FunA() {
 	FunB();
 }
 
-int main(int argc, char** argv) {
+int main(int argc __attribute__((unused)), char** argv) {
 	// Set a value just initializing the while loop. It will terminate when EOF will generate type=0
 	ACE_LOG_MSG->open(argv[0], ACE_Log_Msg::SYSLOG, "ACE-Course");
 	ACE_DEBUG((LM_INFO, "%I a - This was here\n"));

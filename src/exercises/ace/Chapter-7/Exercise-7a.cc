@@ -104,7 +104,7 @@ int GetMessageType(char* data) {
 char *StoreName[3];
 #define Address1 ACE_DEFAULT_BASE_ADDR
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv __attribute__((unused))) {
 	ACE_MMAP_Memory_Pool_Options* options[3];
 	int index;
 	StoreName[0]=(char*)"Exercise_7a-store.0";

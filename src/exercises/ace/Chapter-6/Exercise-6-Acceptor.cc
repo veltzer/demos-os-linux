@@ -93,7 +93,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if (argc < 2) {
 		ACE_ERROR((LM_ERROR, "%s: usage %s <port_num>\n", argv[0], argv[0]));
 		ACE_OS::exit(EXIT_FAILURE);

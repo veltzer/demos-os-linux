@@ -46,7 +46,7 @@ static inline void setup_timer(int timerfd) {
 	CHECK_NOT_M1(timerfd_settime(timerfd, 0, &new_value, NULL));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [host] [port] [maxevents]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

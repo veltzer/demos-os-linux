@@ -42,7 +42,7 @@
  * we crash. This is not really a good idea. See an improvement to this exercise for a better solution.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage: %s [host] [port]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

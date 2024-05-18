@@ -43,7 +43,7 @@ long long dummy_work(int limit) {
 	return count;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	//needs to be adjusted for new API
 	//const unsigned int NUM_EVENTS=2;
 	//int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};

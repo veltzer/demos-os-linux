@@ -38,7 +38,7 @@
  * from the command line with the wrong arguments
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=1 && !(argc==2 && strcmp(argv[1], "secret")==0)) {
 		fprintf(stderr, "%s: usage: %s\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

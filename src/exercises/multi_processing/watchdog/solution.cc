@@ -37,13 +37,13 @@ static int gotusr2=0;
 static int child1pid;
 static int child2pid;
 
-void sigintHandler(int gotsig) {
+void sigintHandler(int sig __attribute__((unused))) {
 	CHECK_NOT_M1(kill(child1pid, SIGKILL));
 	CHECK_NOT_M1(kill(child2pid, SIGKILL));
 	exit(EXIT_SUCCESS);
 }
 
-void sigchildHandler(int gotsig) {
+void sigchildHandler(int sig __attribute__((unused))) {
 	int status;
 	pid_t pid=CHECK_NOT_M1(wait3(&status, WNOHANG, NULL));
 	while(pid>0) {
@@ -55,11 +55,11 @@ void sigchildHandler(int gotsig) {
 	}
 }
 
-void watchsigHandler(int gotsig) {
+void watchsigHandler(int sig) {
 	time_t now=time(NULL);
 	char* stime=ctime(&now);
 	stime[strlen(stime)-1]='\0';
-	switch (gotsig) {
+	switch (sig) {
 	case SIGUSR1:
 		gotusr1=1;
 		printf("%s: TTL from 1\n", stime);
@@ -97,7 +97,7 @@ void startChild2() {
 	}
 }
 
-void timeoutsigHandler(int gotsig) {
+void timeoutsigHandler(int sig __attribute__((unused))) {
 	if(gotusr1==0) {
 		printf("Signal form child 1 ID %d lost. Restarting\n", child1pid);
 		CHECK_NOT_M1(kill(child1pid, SIGKILL));

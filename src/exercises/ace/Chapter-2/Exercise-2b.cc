@@ -51,7 +51,7 @@ static int done=0;	// Termination state of both consumers
 class MyTime_Handler:public ACE_Event_Handler {
 public:
 	// Method which is called back by the Reactor when timeout occurs.
-	virtual int handle_timeout(const ACE_Time_Value& tv, const void *arg) {
+	virtual int handle_timeout(const ACE_Time_Value& tv __attribute__((unused)), const void *arg) {
 		long argument=long(arg);
 		// ACE_DEBUG ((LM_DEBUG, "Timer timed out at %d! arg=%d\n", tv.sec(), argument));
 		// Activate the consumer

@@ -52,7 +52,7 @@ void* worker(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	no_params(argc, argv);
 	sched_run_priority(worker, NULL, SCHED_FIFO_HIGH_PRIORITY, SCHED_FIFO);
 	return EXIT_SUCCESS;

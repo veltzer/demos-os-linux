@@ -112,7 +112,7 @@ void doParent(int semid, struct data * smdata, int myID) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc < 2) {
 		fprintf(stderr, "%s: usage: %s MyID\n", argv[0], argv[0]);
 		exit(errno);

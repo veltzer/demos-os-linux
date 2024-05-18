@@ -31,7 +31,7 @@ extern const char* __progname;
 extern char* program_invocation_short_name;
 extern char* program_invocation_name;
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc __attribute__((unused)), char** argv) {
 	printf("argv[0] is %s\n", argv[0]);
 	printf("__progname is %s\n", __progname);
 	printf("program_invocation_short_name is %s\n", program_invocation_short_name);

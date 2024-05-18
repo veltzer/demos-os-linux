@@ -24,7 +24,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS, EXIT_FAILURE, atoi(3)
 #include <err_utils.h>	// for CHECK_ZERO()
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if (argc < 2) {
 		fprintf(stderr, "%s: usage: %s 1 or 2\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

@@ -59,7 +59,7 @@ class Rectangle {
 			return 2 * (width + height);
 		}
 
-		bool is_intersectiog(const Rectangle& r) {
+		bool is_intersectiog(const Rectangle& r __attribute__((unused))) {
 			// TBD
 			return true;
 		}

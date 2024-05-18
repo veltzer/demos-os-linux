@@ -46,7 +46,12 @@ int GetMessageType(char* data) {
 	}
 }
 
-int MakeConnection(ACE_SOCK_Acceptor *acceptor, ACE_INET_Addr *port_to_listen, ACE_SOCK_Stream *peer, ACE_INET_Addr *peer_addr) {
+int MakeConnection(
+	ACE_SOCK_Acceptor *acceptor,
+	ACE_INET_Addr *port_to_listen __attribute__((unused)),
+	ACE_SOCK_Stream *peer,
+	ACE_INET_Addr *peer_addr __attribute__((unused)))
+{
 	/*
 	 * Basic acceptor usage - No timeout
 	 */

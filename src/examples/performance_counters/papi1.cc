@@ -35,7 +35,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpapi
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [usecs]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example is 1000000 which means 1 second\n", argv[0]);

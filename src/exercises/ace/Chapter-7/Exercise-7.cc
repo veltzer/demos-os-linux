@@ -108,7 +108,7 @@ int GetMessageType(char *data) {
 #define STORE_NAME "Exercise_7.store"
 #define Address ACE_DEFAULT_BASE_ADDR
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv __attribute__((unused))) {
 	if (argc > 1) {
 		// Use an existing file
 		ACE_MMAP_Memory_Pool_Options options(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::FIRSTCALL_FIXED);
