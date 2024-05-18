@@ -44,7 +44,7 @@
 const char* serv_name="http-alt";
 const char* serv_proto="tcp";
 
-void *worker(void* arg) {
+void* worker(void* arg) {
 	int fd=*((int*)arg);
 	TRACE("thread %d starting", gettid());
 	TRACE("thread %d got fd %d", gettid(), fd);

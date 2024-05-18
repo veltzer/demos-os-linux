@@ -82,7 +82,7 @@ void do_vector() {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=6) {
 		std::cerr << argv[0] << ": usage: " << argv[0] << " [list(1) or vector(0)] [size] [postoact] [postoremove] [numtoremove]" << std::endl;
 		std::cerr << argv[0] << ": example: " << argv[0] << " 1 10 5 5 1" << std::endl;

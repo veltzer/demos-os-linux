@@ -49,7 +49,7 @@ static void fork_a_child() {
 	CHECK_NOT_M1(execv(process_to_exec, (char* const*)args));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	fork_a_child();
 	TRACE("parent starts monitoring");
 	while(true) {

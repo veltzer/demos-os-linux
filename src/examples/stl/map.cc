@@ -28,7 +28,7 @@
  * http://www.yolinux.com/TUTORIALS/CppStlMultiMap.html
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::map<int, int> m;
 	m[6]=7;
 	m[5]=3;

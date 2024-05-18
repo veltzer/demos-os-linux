@@ -29,7 +29,7 @@
  * Another note is that malloc, even on a 64bit box, does not allocate more than 4gigs in one allocation.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sizeof(size_t) is [%zd]...\n", sizeof(size_t));
 	unsigned int num_gigs=4;
 	size_t size=num_gigs*1024L*1024L*1024L;

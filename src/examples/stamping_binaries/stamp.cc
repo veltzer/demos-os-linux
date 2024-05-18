@@ -72,7 +72,7 @@ static const char* ATTR id_version="id_version=" __VERSION__;
 
 const char* script="src/examples/stamping_binaries/stamp.gdb";
 
-int main(int argc, char** argv, char** envp) {
+int main(int, char** argv) {
 	printf("date is %s\n", __DATE__);
 	printf("time is %s\n", __TIME__);
 	printf("id_file is %s\n", id_file);

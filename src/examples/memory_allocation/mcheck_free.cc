@@ -56,7 +56,7 @@ void myhandler(enum mcheck_status status) {
 	// abort();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Starting\n");
 	// I am using my own handler but the default one is ok (prints an error
 	// message and aborts).

@@ -81,7 +81,7 @@ static sem_t sem_nonshared;
 static sem_t sem_shared;
 static int semid;
 
-void* work(void* param) {
+void* work(void*) {
 	do_work(&mutex_fast, NULL, -1, "fast mutexes");
 	do_work(&mutex_recursive, NULL, -1, "recursive mutexes");
 	do_work(&mutex_errorcheck, NULL, -1, "error checking mutexes");
@@ -91,7 +91,7 @@ void* work(void* param) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	key_t key=CHECK_NOT_M1(ftok("/etc/passwd", 'x'));
 	semid=CHECK_NOT_M1(semget(key, 1, IPC_CREAT | 0666));
 	CHECK_NOT_M1(semctl(semid, 0, SETVAL, 1));

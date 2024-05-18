@@ -26,6 +26,6 @@
 // disabled this line so that this example will compile...
 //#error "You shall not pass"
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

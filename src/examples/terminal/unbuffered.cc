@@ -62,7 +62,7 @@ void set_noncannon(int desc) {
 	CHECK_NOT_M1(tcsetattr(desc, TCSANOW, &settings));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// lets take the file descriptor number from stdin which is usually
 	// a terminal (unless you redirect it...)
 	int filedes=fileno(stdin);

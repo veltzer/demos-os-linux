@@ -27,7 +27,7 @@
 /*
  * This is a demo of how to use a cpu set
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("number of cpus is %d", CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN)));
 	cpu_set_t cpuset;
 	CPU_ZERO(&cpuset);

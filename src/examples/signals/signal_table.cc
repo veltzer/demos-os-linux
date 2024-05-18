@@ -27,7 +27,7 @@
  * See the signal_utils.h header file for more details.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	signal_print_table();
 	return EXIT_SUCCESS;
 }

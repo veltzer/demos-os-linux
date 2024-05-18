@@ -92,7 +92,7 @@ void parse_args(int argc, char** argv) {
 
 // Iterate <n_iterations> each time checking that nobody modifies the
 // data while we have a read lock.
-static void *reader(void *) {
+static void* reader(void*) {
 	ACE_DEBUG((LM_DEBUG, "(%t) reader starting\n"));
 	for(int iterations=1; iterations<=n_iterations; iterations++) {
 		ACE_Read_Guard<ACE_RW_Mutex> g(rw_mutex);
@@ -117,7 +117,7 @@ static void *reader(void *) {
 
 // Iterate <n_iterations> each time modifying the global data
 // and checking that nobody steps on it while we can write it.
-static void *writer(void *) {
+static void* writer(void*) {
 	ACE_DEBUG((LM_DEBUG, "(%t) writer starting\n"));
 	for(int iterations=1; iterations<=n_iterations; iterations++) {
 		ACE_Write_Guard<ACE_RW_Mutex> g(rw_mutex);

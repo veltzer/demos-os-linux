@@ -48,7 +48,7 @@
  * - https://levelup.gitconnected.com/8-ways-to-measure-execution-time-in-c-c-48634458d0f9
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct timeval tv_start, tv_end;
 	CHECK_NOT_M1(gettimeofday(&tv_start, NULL));
 	clock_t start = clock();

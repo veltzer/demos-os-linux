@@ -40,7 +40,7 @@
  * This is an example of the third option.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const size_t size_to_alloc=1024*1024*1024;
 	const char* desc="gigs";
 	const int max_gigs=50;

@@ -51,7 +51,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// first initialize the lock (no need for sharing between processes which
 	// is the reason for the NULL in the second argument as special mutex
 	// parameters...)

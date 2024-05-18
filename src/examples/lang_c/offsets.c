@@ -40,7 +40,7 @@ typedef struct _mystruct {
 	int field_c;
 } mystruct;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// using our own macro
 	printf("field_a is in offset %zd\n", myoffsetof(mystruct, field_a));
 	printf("field_b is in offset %zd\n", myoffsetof(struct _mystruct, field_b));

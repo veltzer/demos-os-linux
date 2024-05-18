@@ -66,7 +66,7 @@ static void* consumer(ACE_Message_Queue<ACE_MT_SYNCH>* msg_queue) {
 // removed by the consumer thread. A 0-sized message is enqueued when
 // there is no more data to read. The consumer uses this as a flag to
 // know when to exit.
-static void *producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
+static void* producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	ACE_Read_Buffer rb(ACE_STDIN);
 	// Keep reading stdin, until we reach EOF.
 	while(true) {
@@ -102,7 +102,7 @@ static void *producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 int main() {
 	// A synchronized message queue.
 	ACE_Message_Queue<ACE_MT_SYNCH> msg_queue(max_queue);
-	if(thr_mgr.spawn(ACE_THR_FUNC(producer), (void *)&msg_queue, THR_NEW_LWP|THR_DETACHED)==-1) {
+	if(thr_mgr.spawn(ACE_THR_FUNC(producer), (void*)&msg_queue, THR_NEW_LWP|THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn"), 1);
 	}
 	// Wait for producer thread to exit (notice that the consumer runs

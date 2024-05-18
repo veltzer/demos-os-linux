@@ -54,21 +54,21 @@ typedef struct _thread_data {
 	int usleep_interval;
 } thread_data;
 
-static void *shared_worker(void *p) {
+static void* shared_worker(void* p) {
 	thread_data* td=(thread_data*)p;
 	for(unsigned long long i=0; i<td->attempts; i++) {
 		td->shared[td->num]+=1;
 	}
 	return NULL;
 }
-static void *nonshared_worker(void* p) {
+static void* nonshared_worker(void* p) {
 	thread_data* td=(thread_data*)p;
 	for(unsigned long long i=0; i<td->attempts; i++) {
 		td->nonshared[td->num]+=1;
 	}
 	return NULL;
 }
-static void *observer(void *p) {
+static void* observer(void* p) {
 	thread_data* td=(thread_data*)p;
 	INFO("start thread %d, running on core %d", td->num, sched_getcpu());
 	while(true) {
@@ -132,7 +132,7 @@ void* malloc_one_cache_line() {
 	CHECK_ZERO(posix_memalign(&ptr, cache_line_size, cache_line_size));
 	return ptr;
 }
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	bool doObserver=false;
 	int type=0;	// atomic
 	unsigned long long attempts=1000000000;

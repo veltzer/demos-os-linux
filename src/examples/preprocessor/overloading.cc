@@ -31,7 +31,7 @@
 // the following pragma will not help
 //#pragma GCC diagnostic ignored "-Werror"
 #define mymacro() printf("this is the second version of the macro\n")
-int main(int argc, char** argv, char** envp) {
+int main() {
 	mymacro();
 	return EXIT_SUCCESS;
 }

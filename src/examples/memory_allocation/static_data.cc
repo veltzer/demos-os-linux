@@ -40,7 +40,7 @@ int myarray[size]={ 0 };
 // third example
 // int myarray[size]={ 3 };
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	unsigned int sum=0;
 	for(int i=0; i<argc; i++) {
 		sum+=atoi(argv[i]);

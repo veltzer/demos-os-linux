@@ -53,7 +53,7 @@ int system_clone(const char *command) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(system_clone("ls -l"));
 	return EXIT_SUCCESS;
 }

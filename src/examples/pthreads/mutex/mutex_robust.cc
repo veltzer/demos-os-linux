@@ -44,7 +44,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-static void handler(int sig, siginfo_t *si, void *context) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *context __attribute__((unused))) {
 	bool check_again=true;
 	do {
 		int status;
@@ -67,7 +67,7 @@ static void handler(int sig, siginfo_t *si, void *context) {
 	} while(check_again);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// setup shared memory where the futex will be
 	void* shared=CHECK_NOT_VOIDP(mmap(NULL, getpagesize(), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0), MAP_FAILED);
 

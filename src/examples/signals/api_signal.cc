@@ -61,7 +61,7 @@ static void handler(int sig) {
 	fprintf(stderr, "handler: end\n");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// set up the signal handler (only need to do this once)
 	signal_register_handler_signal(SIGUSR1, handler);
 	signal_register_handler_signal(SIGUSR2, handler);

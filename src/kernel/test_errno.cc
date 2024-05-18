@@ -39,7 +39,7 @@
  * - Please recall that errno is a PER THREAD variable.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/drv_errno";
 	// hold results of syscalls and errnos

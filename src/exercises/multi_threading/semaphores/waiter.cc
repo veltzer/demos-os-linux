@@ -31,7 +31,7 @@ void clean(int sig) {
 	over=true;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	signal_register_handler_signal(SIGINT, clean);
 	key_t key=CHECK_NOT_M1(ftok(FTOK_PATHNAME, FTOK_PROJID));
 	int semid=CHECK_NOT_M1(semget(key, NPHIL, IPC_CREAT | 0666));

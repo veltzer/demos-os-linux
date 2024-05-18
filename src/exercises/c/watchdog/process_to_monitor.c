@@ -29,7 +29,7 @@
 #include <err_utils.h>	// for CHECK_NOT_M1()
 #include <trace_utils.h>// for TRACE()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int min_sleep=5;
 	const unsigned int max_sleep=10;
 	srand(getpid());

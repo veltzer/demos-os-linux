@@ -28,7 +28,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
-int Client::open(void *p) {
+int Client::open(void* p) {
 	// Two seconds
 	ACE_Time_Value iter_delay(2);
 	if(super::open(p)==-1) {
@@ -61,7 +61,7 @@ int Client::handle_input(ACE_HANDLE) {
 // Listing 3
 
 // Listing 4 code/ch07
-int Client::handle_timeout(const ACE_Time_Value&, const void *) {
+int Client::handle_timeout(const ACE_Time_Value&, const void*) {
 	if(++this->iterations_>=ITERATIONS) {
 		this->peer().close_writer();
 		return 0;

@@ -26,7 +26,7 @@
  * References:
  * http://sourceforge.net/p/predef/wiki/Home/
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 #ifdef __GNUC__
 	printf("This means we are in GNUC context\n");
 #else

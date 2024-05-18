@@ -49,7 +49,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	boost::scoped_ptr<A> a(new A);
 	a->doit();
 	return EXIT_SUCCESS;

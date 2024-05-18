@@ -35,12 +35,12 @@
 
 volatile bool cont=true;
 
-void sigterm_exit(int sig) {
+void sigterm_exit(int sig __attribute__((unused))) {
 	printf("got signal, signaling to quit\n");
 	cont=false;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// first lets make sure that we exit if we get SIGINT
 	signal_register_handler_signal(SIGINT, sigterm_exit);
 	key_t key=CHECK_NOT_M1(ftok("/etc/passwd", 'x'));

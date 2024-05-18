@@ -31,7 +31,7 @@
  * - alloca rounds stuff up by 8 bytes or some such.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(int i=0; i<10; i++) {
 		char* p=(char*)alloca(10);
 		bzero(p, 10);

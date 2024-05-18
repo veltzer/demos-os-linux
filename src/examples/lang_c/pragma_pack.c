@@ -171,7 +171,7 @@ _Static_assert(__builtin_offsetof(s12, i1)==1, "msg");
 _Static_assert(__builtin_offsetof(s12, c2)==5, "msg");
 _Static_assert(__builtin_offsetof(s12, i2)==8, "msg");
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	PRINT_SIZEOF(s1);
 	PRINT_SIZEOF(s2);
 	PRINT_SIZEOF(s3);

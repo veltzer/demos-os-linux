@@ -34,7 +34,7 @@ struct data {
 	char message[CLIENTMESSAGESIZE];
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	key_t key=CHECK_NOT_M1(ftok("/etc/passwd", 'x'));
 	int semid=CHECK_NOT_M1(semget(key, MAXCLIENTS, IPC_CREAT | 0666));
 	for(int i=0; i<MAXCLIENTS; i++) {

@@ -26,7 +26,7 @@
  * program using the write(2) system call...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(write(1, "Hello, World!\n", 14));
 	return EXIT_SUCCESS;
 }

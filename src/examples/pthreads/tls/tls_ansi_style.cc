@@ -39,7 +39,7 @@ static void* worker(void* arg) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int num=4;
 	pthread_t threads[num];
 	for(unsigned int i=0; i<num; i++) {

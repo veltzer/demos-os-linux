@@ -26,6 +26,6 @@
  * - maybe I should write this app?!?
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

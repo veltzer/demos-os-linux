@@ -39,7 +39,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-static void * thread_func(void *ignored_argument) {
+static void* thread_func(void*) {
 	/* By default threads are cancelleble but their canceltype is PTHREAD_CANCEL_DEFERRED */
 	CHECK_ZERO_ERRNO(pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL));
 	TRACE("at start");
@@ -48,7 +48,7 @@ static void * thread_func(void *ignored_argument) {
 	TRACE("at end");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("PTHREAD_CANCELED is %p", PTHREAD_CANCELED);
 	/* Start a thread and then send it a cancellation request */
 	pthread_t thr;

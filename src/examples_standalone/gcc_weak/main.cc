@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <add.hh>	// for add(U)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("did you know that 2+2=%d\n", add(2,2));
 	return EXIT_SUCCESS;
 }

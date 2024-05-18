@@ -44,7 +44,7 @@ bool stack_is_up_2() {
 }
 
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("stack_is_up is %d\n", stack_is_up());
 	printf("stack_is_up_2 is %d\n", stack_is_up_2());
 	return EXIT_SUCCESS;

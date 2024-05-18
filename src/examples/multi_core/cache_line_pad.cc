@@ -113,7 +113,7 @@ void myfunction(char c, struct bar mybar, char l, struct foo myfoo) {
 }
 #endif	/* __x86_64__ */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("LEVEL2_CACHE_LINESIZE=%d\n", LEVEL2_CACHE_LINESIZE);
 	printf("sizeof(foo)=%zd\n", sizeof(foo));
 	printf("sizeof(bar)=%zd\n", sizeof(bar));

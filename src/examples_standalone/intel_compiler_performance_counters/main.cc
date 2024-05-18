@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS, EXIT_FAILURE
 #include <iostream>	// for std::cout, std::endl
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	/*
 	 * PCM* m=PCM::getInstance();
 	 * // program counters, and on a failure just exit

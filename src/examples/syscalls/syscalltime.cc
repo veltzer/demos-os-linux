@@ -113,7 +113,7 @@ void* func(void* p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	// command line parsing
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [count]\n", argv[0], argv[0]);

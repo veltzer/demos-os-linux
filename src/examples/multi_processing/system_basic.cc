@@ -31,7 +31,7 @@
  * - show more?!?
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(system("ls -l"));
 	return EXIT_SUCCESS;
 }

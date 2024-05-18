@@ -40,7 +40,7 @@
 
 static int myglobalvalue;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int mystackvalue;
 	int* pvar=(int*)CHECK_NOT_VOIDP(mmap(
 		NULL,

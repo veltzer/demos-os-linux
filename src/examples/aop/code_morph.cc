@@ -73,12 +73,12 @@ char* find_cell(void* ptr, char val) {
 /*
  * This is a signal handler to handle the segmentation faults we will generate...
  */
-void segv_handler(int sig) {
+void segv_handler(int sig __attribute__((unused))) {
 	fprintf(stderr, "in segv_handler, changing protection for the page...\n");
 	CHECK_NOT_M1(mprotect(page_adr((void*)function), getpagesize(), PROT_READ|PROT_WRITE|PROT_EXEC));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// call the function to see what it is doing...
 	function();
 	// lets install our own SIGSEGV signal handler so that we won't crash...

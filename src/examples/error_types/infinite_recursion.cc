@@ -72,7 +72,7 @@ static int myfunc(int y, bool end) {
 // this is not required - the double call above solves the smartass compiler problem.
 // int myfunc(int y) __attribute__((noinline));
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	myfunc(0, false);
 	return EXIT_SUCCESS;
 }

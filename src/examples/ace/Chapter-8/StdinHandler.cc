@@ -39,7 +39,7 @@ static int ProducerData=0;
 class Consumer:public MT_Task {
 public:
 	// Initialize Consumer.
-	virtual int open(void *) {
+	virtual int open(void*) {
 		// <activate> is inherited from class Task.
 		return activate(THR_BOUND);
 	}
@@ -59,7 +59,7 @@ public:
 class Producer:public MT_Task {
 public:
 	// Initialize Producer.
-	virtual int open(void *) {
+	virtual int open(void*) {
 		// activate() is inherited from class Task.
 		return activate(THR_BOUND);
 	}

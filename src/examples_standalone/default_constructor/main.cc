@@ -19,6 +19,6 @@
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

@@ -32,7 +32,7 @@
  * sizes to allocate
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/demo";
 	// klog_clear();

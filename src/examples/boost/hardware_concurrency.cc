@@ -30,7 +30,7 @@
  * XTRA_LINK_FLAGS=-lboost_thread -lboost_system
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	size_t n_threads = boost::thread::hardware_concurrency();
 	std::cout << "boost::thread::hardware_concurrency is " << n_threads << std::endl;
 	return EXIT_SUCCESS;

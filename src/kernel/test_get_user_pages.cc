@@ -98,7 +98,7 @@ static void do_test(char *data, unsigned int size, const char *name) {
 
 const int csize=64000;
 static char data_ds[csize];
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file name of the device
 	const char *filename="/dev/demo";
 

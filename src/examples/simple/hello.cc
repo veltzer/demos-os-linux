@@ -24,7 +24,7 @@
  * This is a simple "Hello, World!" application.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Hello, World!\n");
 	return EXIT_SUCCESS;
 }

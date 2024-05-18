@@ -141,7 +141,7 @@ static void *function_wakeup(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char* basename="poll";
 	char filename[256];
 	snprintf(filename, 256, "/dev/mod_%s", basename);

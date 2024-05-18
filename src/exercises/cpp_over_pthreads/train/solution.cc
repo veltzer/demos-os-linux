@@ -93,7 +93,7 @@ class Worker4 {
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pthread_barrier_t bar;
 	unsigned int counter=100;
 	CHECK_ZERO_ERRNO(pthread_barrier_init(&bar, NULL, 4));

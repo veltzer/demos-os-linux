@@ -28,7 +28,7 @@
  * - different clocks have different resolutions.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	clock_print_table();
 	return EXIT_SUCCESS;
 }

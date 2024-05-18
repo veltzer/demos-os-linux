@@ -48,9 +48,9 @@ inline void* align_address(void* addr) {
 	return (void*) (uladdr & ~(ps-1));
 }
 
-void *mem_align(unsigned int size) {
+void* mem_align(unsigned int size) {
 	int ps=getpagesize();
-	void *ptr;
+	void* ptr;
 	CHECK_ZERO(posix_memalign(&ptr, ps, size));
 	return ptr;
 }
@@ -65,7 +65,7 @@ void *mem_align(unsigned int size) {
  * wants the ORIGINAL malloc returned pointer and not the rounded one. This
  * is not demonstrated in this example...
  */
-void *malloc_align(unsigned int size) {
+void* malloc_align(unsigned int size) {
 	int ps=getpagesize();
 	int pages=size / ps + 1;
 	int new_size=pages * ps;
@@ -73,13 +73,13 @@ void *malloc_align(unsigned int size) {
 	unsigned long iptr=(unsigned long)ptr;
 
 	iptr=(iptr / ps + 1) * ps;
-	return (void *)iptr;
+	return (void*)iptr;
 }
 
 /*
  * mmap anonymous allocation function
  */
-void *mmap_alloc(unsigned int size) {
+void* mmap_alloc(unsigned int size) {
 	/* we want anonymous mapping */
 	int flags=MAP_ANONYMOUS;
 	flags|=MAP_PRIVATE;
@@ -95,7 +95,7 @@ void *mmap_alloc(unsigned int size) {
 	return res;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// getpagesize() does not return error codes
 	printf("getpagesize() is %d\n", getpagesize());
 	printf("sysconf(_SC_PAGESIZE) is %d\n", CHECK_NOT_M1(sysconf(_SC_PAGESIZE)));
@@ -103,11 +103,11 @@ int main(int argc, char** argv, char** envp) {
 	const unsigned int size=20200;
 	// getpagesize() does not return error codes
 	int ps=getpagesize();
-	void *pt1=valloc(size);
-	void *pt2=memalign(ps, size);
-	void *pt3=mem_align(size);
-	void *pt4=malloc_align(size);
-	void *pt5=mmap_alloc(size);
+	void* pt1=valloc(size);
+	void* pt2=memalign(ps, size);
+	void* pt3=mem_align(size);
+	void* pt4=malloc_align(size);
+	void* pt5=mmap_alloc(size);
 	memset(pt1, 0, size);
 	memset(pt2, 0, size);
 	memset(pt3, 0, size);

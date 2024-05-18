@@ -30,7 +30,7 @@
  * and lets you change the CPU that it is on.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t pid=getpid();
 	printf("change my cpu using [taskset --cpu-list --pid [list] %d]\n", pid);
 	int cpunum=sched_getcpu();

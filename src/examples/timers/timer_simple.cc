@@ -30,11 +30,11 @@
  * we must link with the 'rt' library to get the time API.
  * EXTRA_LINK_FLAGS_AFTER=-lrt
  */
-void sigusr(int signal) {
+void sigusr(int signal __attribute__((unused))) {
 	return;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	timer_t timerid;
 	struct itimerspec tick={{0, 10*1000}, {0, 10*1000}};
 	struct sigevent sigev;

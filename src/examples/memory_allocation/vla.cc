@@ -66,7 +66,7 @@ void print_stack_adr() {
 	printf("stack location is %p\n", (void*)&a);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	print_stack_adr();
 	int len;
 	printf("Enter the size of the array: ");

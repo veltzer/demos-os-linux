@@ -36,7 +36,7 @@
  * EXTRA_COMPILE_FLAGS=-std=c++11
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::list<int> l;
 	const unsigned int size_of_list=1000000;
 	const unsigned int attempts=1000;

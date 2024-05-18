@@ -29,7 +29,7 @@
  * http://www.boost.org/doc/libs/1_47_0/libs/preprocessor/doc/ref/add.html
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #define A 14
 #define B 26
 	printf("did you know that %d+%d=%d\n", A, B, BOOST_PP_ADD(A, B));

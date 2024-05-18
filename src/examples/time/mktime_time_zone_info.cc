@@ -35,7 +35,7 @@
  * installed on the system.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(unsigned int i=0; i<50; i++) {
 		int year=2000+i;
 		struct tm mytime;

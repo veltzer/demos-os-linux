@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <something.hh>	// for something()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(unsigned long i=0;i<1000000000;i++) {
 		something();
 	}

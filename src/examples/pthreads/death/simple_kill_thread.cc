@@ -69,7 +69,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(int i=0; i<num; i++) {
 		ids[i]=i;
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, ids + i));

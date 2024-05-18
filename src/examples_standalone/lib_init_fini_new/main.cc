@@ -26,7 +26,7 @@ extern int bar(int, int);
 /*
  * This is an empty testing application
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	fprintf(stderr, "2+3 is %d\n", foo(2, 3));
 	fprintf(stderr, "2+3 is %d\n", bar(2, 3));
 	fprintf(stderr, "hello from main");

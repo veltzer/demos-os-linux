@@ -53,7 +53,7 @@ unsigned int num_threads;
 unsigned int num_allocations;
 unsigned int size_to_alloc;
 
-void *worker(void *p) {
+void* worker(void*) {
 	// lets allocate and deallocate memory...
 	// we use alloca(3) for the list of pointers so as not to apply
 	// more pressure on the memory allocating subsystem...
@@ -80,7 +80,7 @@ void print_mallinfo(struct mallinfo* pmallinfo) {
 	fprintf(stderr, "keepcost is [%d]\n", pmallinfo->keepcost);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [num_threads] [num_allocations] [size_to_alloc]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 5 1024 1024\n", argv[0], argv[0]);

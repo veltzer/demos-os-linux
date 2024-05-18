@@ -28,7 +28,7 @@
 #define stringify_1(x) # x
 #define stringify(x) stringify_1(x)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("This is the addition of %s and %s=%s\n",
 		stringify(foo),
 		stringify(bar),

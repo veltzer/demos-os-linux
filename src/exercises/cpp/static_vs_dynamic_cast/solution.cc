@@ -58,7 +58,7 @@ void printArea(Shape* shape) {
 	cout << shape->getArea() << endl;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 
 	Circle circle(5);
 	printArea(&circle);

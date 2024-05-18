@@ -24,7 +24,7 @@ void addone(double* a) {
 	*a+=1.0;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	double g=4.5;
 	printf("the address of g is %p\n", (void*)&g);
 	addone(&g);

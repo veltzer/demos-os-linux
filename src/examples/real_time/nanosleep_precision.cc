@@ -67,7 +67,7 @@
 
 bool use_ticks = false;
 
-void* measure(void* val) {
+void* measure(void*) {
 	int clock_id=CLOCK_REALTIME;
 	const unsigned int repeats=100;
 	for(unsigned int i=100; i<2000; i+=100) {
@@ -107,7 +107,7 @@ void* measure(void* val) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("SCHED_OTHER running\n");
 	sched_run_priority(measure, NULL, 0, SCHED_OTHER);
 	printf("low priority running\n");

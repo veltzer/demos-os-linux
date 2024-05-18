@@ -29,7 +29,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int fd = CHECK_NOT_M1(shm_open("data", O_CREAT | O_RDWR, 0666));
 	CHECK_NOT_M1(ftruncate(fd, sizeof(int)+sizeof(pthread_mutex_t)) == -1);
 	int* data =(int*)CHECK_NOT_VOIDP(mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0), MAP_FAILED);

@@ -50,7 +50,7 @@ void myhandler(enum mcheck_status status) {
 	// abort();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #pragma GCC diagnostic ignored "-Wstringop-overflow"
 	// I am using my own handler but the default one is ok (prints an error
 	// message and aborts).

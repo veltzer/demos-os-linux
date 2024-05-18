@@ -44,7 +44,7 @@ int mypthread_spin_init(mypthread_spinlock_t* lock) {
 	lock->val=0;
 	return 0;
 }
-int mypthread_spin_destroy(mypthread_spinlock_t* lock) {
+int mypthread_spin_destroy(mypthread_spinlock_t* lock __attribute__((unused))) {
 	// do nothing
 	return 0;
 }
@@ -95,7 +95,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int thread_num=cpu_num;
 	pthread_t* threads=(pthread_t*)malloc(thread_num*sizeof(pthread_t));

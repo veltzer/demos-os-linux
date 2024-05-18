@@ -40,7 +40,7 @@
  * is not real time.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=5) {
 		fprintf(stderr, "%s: usage: %s [interval] [priority] [clock] [loop]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 50000 49 CLOCK_REALTIME 10000\n", argv[0], argv[0]);

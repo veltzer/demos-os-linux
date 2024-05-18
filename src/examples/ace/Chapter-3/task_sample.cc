@@ -33,7 +33,7 @@
  * case we get destructed before opened.
  */
 Task::Task(void):barrier_(0) {
-	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task ctor 0x%x\n", (void *)this));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task ctor 0x%x\n", (void*)this));
 }
 
 /*
@@ -47,7 +47,7 @@ Task::Task(void):barrier_(0) {
  * methods.
  */
 Task::~Task(void) {
-	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task dtor 0x%x\n", (void *)this));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task dtor 0x%x\n", (void*)this));
 	ACE_Message_Block *message;
 	this->getq(message);
 	message->release();
@@ -70,7 +70,7 @@ int Task::start(int threads) {
  * in the output.
  */
 int Task::close(u_long flags) {
-	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task close 0x%x\n", (void *)this));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task close 0x%x\n", (void*)this));
 	return inherited::close(flags);
 }
 
@@ -83,7 +83,7 @@ int Task::svc(void) {
 	 * arrives. They will all then be free to begin doing work.
 	 */
 	this->barrier_->wait();
-	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task 0x%x starts in thread %u\n", (void *)this, ACE_Thread::self()));
+	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task 0x%x starts in thread %u\n", (void*)this, ACE_Thread::self()));
 	// Where we getq() the message
 	ACE_Message_Block *message;
 	// What we really put into the queue is a Message_Block, so we'll
@@ -127,7 +127,7 @@ int Task::svc(void) {
 		 */
 		// unit_of_work->who_am_i ();
 		// unit_of_work->what_am_i ();
-		ACE_DEBUG((LM_DEBUG, "(%P|%t) Block 0x%x contains (%s)\n", (void *)message, cp));
+		ACE_DEBUG((LM_DEBUG, "(%P|%t) Block 0x%x contains (%s)\n", (void*)message, cp));
 		/*
 		 * Pretend that the work takes a little time to process. This
 		 * prevents one thread from getting all of the action. In a real

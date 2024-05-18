@@ -109,7 +109,7 @@ private:
 	char* m_data;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	string s1("Hello, ");
 	string s2("world!");
 

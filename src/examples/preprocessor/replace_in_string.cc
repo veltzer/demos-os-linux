@@ -25,7 +25,7 @@
  * in strings or not.
  * The short answer is NO. Preprocessors do not touch strings.
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("linux is cool!\n");
 	printf("linux" "\n");
 	printf("%d is cool!\n", linux);

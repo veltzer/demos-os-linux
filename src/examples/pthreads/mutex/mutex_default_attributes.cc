@@ -37,7 +37,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pthread_mutexattr_t myattr;
 	CHECK_ZERO_ERRNO(pthread_mutexattr_init(&myattr));
 	pthread_print_mutexattr(&myattr);

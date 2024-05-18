@@ -24,7 +24,7 @@
  * This is an example of how to print bold strings to the terminal.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char c=27;
 	char c2='[';
 	char c3='1';

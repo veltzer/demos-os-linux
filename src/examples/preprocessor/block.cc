@@ -29,7 +29,7 @@
 
 #define simple(m) { printf(m "\n"); }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// this is one of the serious problems with a macro in it's
 	// own block: it doesn't require a semi-colon after it and thus does
 	// not look like a function call. Which means that if, in the future,

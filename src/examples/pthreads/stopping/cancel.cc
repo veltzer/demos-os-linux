@@ -34,7 +34,7 @@
  * - show what other functions instead of sleep can be used as cancellation points.
  */
 
-static void * thread_func(void *ignored_argument) {
+static void* thread_func(void*) {
 	/* Disable cancellation for a while, so that we don't
 	 * immediately react to a cancellation request */
 	CHECK_ZERO_ERRNO(pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL));
@@ -49,7 +49,7 @@ static void * thread_func(void *ignored_argument) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	/* Start a thread and then send it a cancellation request */
 	pthread_t thr;
 	CHECK_ZERO_ERRNO(pthread_create(&thr, NULL, &thread_func, NULL));

@@ -37,7 +37,7 @@
 
 static pthread_spinlock_t mylock;
 
-static void *worker(void *p) {
+static void *worker(void*) {
 	for(int i=0; i<10; i++) {
 		// TRACE("before lock");
 		CHECK_ZERO_ERRNO(pthread_spin_lock(&mylock));
@@ -50,7 +50,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("initializing the lock...");
 	CHECK_ZERO_ERRNO(pthread_spin_init(&mylock, PTHREAD_PROCESS_PRIVATE));
 	const unsigned int thread_num=2;

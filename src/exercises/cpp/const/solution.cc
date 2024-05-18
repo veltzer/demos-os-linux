@@ -65,7 +65,7 @@ class Rectangle {
 		}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const Rectangle r(5, 3);
 	std::cout << "Area: " << r.getArea() << std::endl;
 	std::cout << "Width: " << r.getWidth() << std::endl;

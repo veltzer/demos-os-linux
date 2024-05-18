@@ -58,7 +58,7 @@ int Client::handle_input(ACE_HANDLE) {
 	return 0;
 }
 
-int Client::handle_timeout(const ACE_Time_Value&, const void *) {
+int Client::handle_timeout(const ACE_Time_Value&, const void*) {
 	if(++this->iterations_>=ITERATIONS) {
 		this->peer().close_writer();
 		return 0;

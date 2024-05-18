@@ -57,7 +57,7 @@
 
 // signal handling functions
 static bool stop=false;
-static void myhandler(int sig, siginfo_t *si, void *unused) {
+static void myhandler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *unused __attribute__((unused))) {
 	printf("got signal, you probably want me to stop so I'm stopping...\n");
 	stop=true;
 }
@@ -90,7 +90,7 @@ static void print_mask(uint32_t mask) {
 static int max_rec=0;
 static int max_len=0;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	signal_register_handler_sigaction(SIGUSR1, myhandler, SA_RESTART);
 	int fd=CHECK_NOT_M1(inotify_init());
 	uint32_t mask=IN_CREATE | IN_DELETE | IN_MODIFY | IN_MOVED_TO | IN_MOVED_FROM;

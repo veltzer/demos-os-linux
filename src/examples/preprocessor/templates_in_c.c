@@ -40,7 +40,7 @@ make_add(double)
  * }
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	float x=4.5f;
 	float y=3.2f;
 	double dx=4.5f;

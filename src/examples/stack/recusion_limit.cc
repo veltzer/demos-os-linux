@@ -42,7 +42,7 @@ void recurse_onek() {
 	recurse_onek();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	recurse_onek();
 	return EXIT_SUCCESS;
 }

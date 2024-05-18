@@ -56,7 +56,7 @@ void my_func(size_t size) {
 	do_something();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	unsigned int stack_size_to_set=50*1024*1024;
 	struct rlimit rlim;
 	rlim.rlim_max=stack_size_to_set;

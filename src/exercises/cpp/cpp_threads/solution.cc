@@ -74,7 +74,7 @@ protected:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	MyMutex m;
 	ImpThread thr1(10, 1, m);
 	ImpThread thr2(5, 2, m);

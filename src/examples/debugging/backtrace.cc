@@ -107,7 +107,7 @@ static sighandler_t old_handler;
 /*
  * Wrapper for signal handling
  */
-// void print_trace_sighandler(int sig, siginfo_t * siginf, void * context) {
+// void print_trace_sighandler(int sig, siginfo_t * siginf, void* context) {
 void print_trace_sighandler(int sig) {
 	fprintf(stderr, "got sig %d\n", sig);
 	print_trace(true);

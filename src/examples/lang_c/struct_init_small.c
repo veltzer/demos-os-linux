@@ -42,7 +42,7 @@ struct largestruct {
 	int c;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct smallstruct vsmall;
 	// cppcheck-suppress uninitvar
 	// cppcheck-suppress uninitStructMember

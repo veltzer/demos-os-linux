@@ -26,7 +26,7 @@
  * more so...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	/* without continue... */
 	printf("first round...\n");
 	int i;

@@ -50,7 +50,7 @@ static void handler(int sig, siginfo_t *, void *) {
 	TRACE("end");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// make sure we break out on receiving the SIGUSR1 signal...
 	if(actually_break) {
 		signal_register_handler_sigaction(SIGUSR1, handler, 0);

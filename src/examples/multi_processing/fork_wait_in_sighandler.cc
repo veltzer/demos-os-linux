@@ -38,7 +38,7 @@
 #include <stdio.h>	// for printf(3)
 #include <signal_utils.h>	// for signal_register_handler_sigaction()
 
-static void handler(int sig, siginfo_t *si, void *context) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* context __attribute__((unused))) {
 	/*
 	this is not good code (see above comment)
 
@@ -69,7 +69,7 @@ static void handler(int sig, siginfo_t *si, void *context) {
 	} while(check_again);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t pid=CHECK_NOT_M1(fork());
 	if(pid) {
 		// parent

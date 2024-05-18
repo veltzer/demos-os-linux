@@ -51,7 +51,7 @@ static bool do_mlock=false;
 // do you want to touch the memory after getting it ?
 static bool do_touch=false;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	fprintf(stderr, "getpid() is %d\n", getpid());
 	const int size=1024*1024;
 	int flags=MAP_PRIVATE | MAP_ANONYMOUS;

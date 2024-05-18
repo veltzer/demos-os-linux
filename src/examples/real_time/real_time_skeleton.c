@@ -51,7 +51,7 @@ const int MY_PRIORITY=49;
 /* The interval size (50us which is 50000ns in our case) */
 const int interval=50000;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	/* Declare ourself as a real time task */
 	struct sched_param param;
 	param.sched_priority=MY_PRIORITY;

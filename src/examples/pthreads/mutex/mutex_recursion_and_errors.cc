@@ -57,7 +57,7 @@
  *
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("main started\n");
 	// this is the default type of locked (the "FAST" kind...)
 	// pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER;

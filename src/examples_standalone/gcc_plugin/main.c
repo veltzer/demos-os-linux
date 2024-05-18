@@ -24,7 +24,7 @@
  * This is the most basic hello, world program for C
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Hello, Wordl!\n");
 	// you really don't have to return a value from main
 	// and if you forget this the compiler will not scream.

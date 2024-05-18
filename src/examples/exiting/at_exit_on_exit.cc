@@ -58,7 +58,7 @@ void endfunc3(int exit_code, void* ptr) {
 	fprintf(stderr, "ptr is %p\n", ptr);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// lets find out how many atexit functions can we register at a maximum...
 	long val_atexit_max=CHECK_NOT_M1(sysconf(_SC_ATEXIT_MAX));
 	fprintf(stderr, "ATEXIT_MAX is %ld\n", val_atexit_max);

@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-static
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=1) {
 		fprintf(stderr, "%s: usage: %s\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

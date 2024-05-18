@@ -66,7 +66,7 @@ void doChildTwo(int* fd) {
 	CHECK_NOT_M1(execl("/usr/bin/wc", "/usr/bin/wc", "-l", NULL));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int fd[2];
 	CHECK_NOT_M1(pipe(fd));
 	// child one

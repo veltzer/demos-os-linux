@@ -39,7 +39,7 @@ const int max_message_size=256;
 
 struct error_data {
 	int size;
-	void *array[max_stack_frames];
+	void* array[max_stack_frames];
 	char **symbols;
 	char message[max_message_size];
 };

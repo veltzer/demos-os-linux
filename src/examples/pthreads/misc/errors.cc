@@ -33,7 +33,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pthread_t thread=0;
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));
 	return EXIT_SUCCESS;

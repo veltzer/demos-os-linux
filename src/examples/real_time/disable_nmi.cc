@@ -39,7 +39,7 @@ void NMI_set_permissions() {
 	CHECK_NOT_M1(ioperm(0x70, 8, 1));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	NMI_set_permissions();
 	NMI_disable();
 	return EXIT_SUCCESS;

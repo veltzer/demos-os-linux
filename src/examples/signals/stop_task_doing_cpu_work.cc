@@ -31,12 +31,12 @@
  * CPU work
  */
 
-static void handler(int sig) {
+static void handler(int sig __attribute__((unused))) {
 	fprintf(stderr, "Im inside the signal handler\n");
 	exit(EXIT_FAILURE);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// set up the signal handler (only need to do this once)
 	signal_register_handler_signal(SIGUSR1, handler);
 	fprintf(stderr, "signal me with one of the following:\n");

@@ -33,7 +33,7 @@
  * TODO:
  * - call ioctl on the eventfd and get the signal...
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/mod_eventfd";
 

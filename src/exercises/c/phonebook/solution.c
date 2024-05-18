@@ -51,7 +51,7 @@ int show_menu() {
 	return result;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int i;
 	struct phone_entry* phonebook;
 	phonebook=malloc(sizeof(struct phone_entry)*MAX_ENTRIES_IN_PHONEBOOK);

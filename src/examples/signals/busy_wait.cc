@@ -34,7 +34,7 @@ static void handler(int sig) {
 	psignal(sig, "handler");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// set up the signal handler (only need to do this once)
 	signal_register_handler_signal(SIGUSR1, handler);
 	fprintf(stderr, "signal me with one of the following:\n");

@@ -30,7 +30,7 @@
  * a command line utility. (although that chrt has lots of features...)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc<2) {
 		fprintf(stderr, "%s: usage: %s [pid]...\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

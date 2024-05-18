@@ -74,7 +74,7 @@ void* doit(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pthread_t t;
 	CHECK_ZERO_ERRNO(pthread_create(&t, NULL, doit, NULL));
 	CHECK_ZERO_ERRNO(pthread_join(t, NULL));

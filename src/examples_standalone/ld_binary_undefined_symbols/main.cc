@@ -27,7 +27,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lbfd
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	bfd_init();
 	bfd *b=bfd_openr("/bin/ls", NULL);
 	if (!b) {

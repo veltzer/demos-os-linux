@@ -38,7 +38,7 @@ void print_counters(long long* arr, int num) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("starting up...\n");
 	int counters=PAPI_num_hwctrs();
 	printf("PAPI_num_counters() returned %d\n", counters);

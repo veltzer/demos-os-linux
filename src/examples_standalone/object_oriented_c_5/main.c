@@ -21,7 +21,7 @@
 #include <stdlib.h>
 #include <alloca.h>
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	rectangle* r=create_rectangle(5,6);
 	//rectangle* r=create_square(5);
 	CALL_METHOD(r, m_set_width, void, 8);

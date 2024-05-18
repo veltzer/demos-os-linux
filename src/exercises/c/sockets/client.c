@@ -27,7 +27,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_NOT_M1()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int on, got;
 	socklen_t rplyFromAddressLen;
 	struct sockaddr_in braddress, rplyFromAddress, myAddress;

@@ -30,7 +30,7 @@
  * This tests the get_free_pages driver
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/demo";
 	int d=CHECK_NOT_M1(open(filename, O_RDWR));

@@ -40,17 +40,17 @@
 #define __space1
 #define __space2
 #endif	// DO_IT
-void func1(void *__space1 pointer __attribute__((unused))) {
+void func1(void* __space1 pointer __attribute__((unused))) {
 }
 
-void *__space1 malloc1(unsigned int size __attribute__((unused))) {
+void* __space1 malloc1(unsigned int size __attribute__((unused))) {
 	return NULL;
 }
 
-void func2(void *__space2 pointer __attribute__((unused))) {
+void func2(void* __space2 pointer __attribute__((unused))) {
 }
 
-void *__space2 malloc2(unsigned int size __attribute__((unused))) {
+void* __space2 malloc2(unsigned int size __attribute__((unused))) {
 	return NULL;
 }
 

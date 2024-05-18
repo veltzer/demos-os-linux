@@ -31,7 +31,7 @@ float get_average(float* p, int size) {
 	return sum/size;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int size;
 	float* p;
 	int i;

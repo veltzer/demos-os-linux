@@ -32,7 +32,7 @@
  * Note: you can see and set some of the variables via getconf(1)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sysconf(_SC_NPROCESSORS_ONLN)=%d\n", CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN)));
 	printf("sysconf(_SC_NPROCESSORS_CONF)=%d\n", CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_CONF)));
 	printf("get_nprocs_conf()=%d\n", get_nprocs_conf());

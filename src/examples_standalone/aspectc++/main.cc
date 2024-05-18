@@ -19,7 +19,7 @@
 #include "hello.hh"
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	hello();// print "Hello"
 	return EXIT_SUCCESS;
 }

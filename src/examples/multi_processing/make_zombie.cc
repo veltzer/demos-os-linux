@@ -56,7 +56,7 @@ static inline void print_state(pid_t pid) {
 	my_system("cat /proc/%d/status | grep State", pid);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int pipefd_c2p[2];
 	CHECK_ZERO(pipe(pipefd_c2p));
 	int pipefd_p2c[2];

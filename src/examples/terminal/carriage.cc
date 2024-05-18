@@ -38,7 +38,7 @@
  *	richer API but does require some learning.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("stdout, no flush (bad updates)\n");
 	for(unsigned int i=1000; i>0; i--) {
 		printf("i is %10d\r", i);

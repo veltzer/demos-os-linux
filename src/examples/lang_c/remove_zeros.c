@@ -37,7 +37,7 @@ int remove_zeros(int* ar, int size) {
 	return pos;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// read the size of the array from the user...
 	int size;
 	printf("give me the size of the array: ");

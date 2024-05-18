@@ -48,7 +48,7 @@ const bool do_single=false;
 const bool do_stress=true;
 const unsigned int count=10000;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/demo";
 	// user space pointer

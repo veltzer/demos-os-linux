@@ -45,7 +45,7 @@ enum Method {
 	METHOD_MMAP
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int pagenum=100;
 	const unsigned int pagesize=getpagesize();
 	const unsigned int size=pagenum*pagesize;

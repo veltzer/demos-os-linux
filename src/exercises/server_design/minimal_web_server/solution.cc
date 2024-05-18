@@ -46,7 +46,7 @@ const char* my_response=
 "</body>\n"
 "</html>\n";
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// ssize_t datalen;
 	// socklen_t fromaddrlen;
 	// time_t t;

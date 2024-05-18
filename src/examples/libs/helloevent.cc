@@ -49,10 +49,10 @@ static const char MESSAGE[] = "Hello, World!\n";
 
 static const int PORT = 9995;
 
-static void listener_cb(struct evconnlistener *, evutil_socket_t, struct sockaddr *, int socklen, void *);
-static void conn_writecb(struct bufferevent *, void *);
-static void conn_eventcb(struct bufferevent *, short, void *);
-static void signal_cb(evutil_socket_t, short, void *);
+static void listener_cb(struct evconnlistener *, evutil_socket_t, struct sockaddr *, int socklen, void*);
+static void conn_writecb(struct bufferevent *, void*);
+static void conn_eventcb(struct bufferevent *, short, void*);
+static void signal_cb(evutil_socket_t, short, void*);
 
 int main() {
 	struct event_base *base;
@@ -75,7 +75,7 @@ int main() {
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(PORT);
 
-	listener = evconnlistener_new_bind(base, listener_cb, (void *)base,
+	listener = evconnlistener_new_bind(base, listener_cb, (void*)base,
 		LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
 		(struct sockaddr*)&sin,
 		sizeof(sin));
@@ -85,7 +85,7 @@ int main() {
 		return 1;
 	}
 
-	signal_event = evsignal_new(base, SIGINT, signal_cb, (void *)base);
+	signal_event = evsignal_new(base, SIGINT, signal_cb, (void*)base);
 
 	if (!signal_event || event_add(signal_event, NULL)<0) {
 		fprintf(stderr, "Could not create/add a signal event!\n");
@@ -107,7 +107,7 @@ static void listener_cb(
 		evutil_socket_t fd,
 		struct sockaddr *sa __attribute__((unused)),
 		int socklen __attribute__((unused)),
-		void *user_data)
+		void* user_data)
 {
 	struct event_base *base = (struct event_base*) user_data;
 	struct bufferevent *bev;
@@ -124,7 +124,7 @@ static void listener_cb(
 	bufferevent_write(bev, MESSAGE, strlen(MESSAGE));
 }
 
-static void conn_writecb(struct bufferevent *bev, void *user_data __attribute__((unused))) {
+static void conn_writecb(struct bufferevent *bev, void* user_data __attribute__((unused))) {
 	struct evbuffer *output = bufferevent_get_output(bev);
 	if (evbuffer_get_length(output) == 0) {
 		printf("flushed answer\n");
@@ -132,7 +132,7 @@ static void conn_writecb(struct bufferevent *bev, void *user_data __attribute__(
 	}
 }
 
-static void conn_eventcb(struct bufferevent *bev __attribute__((unused)), short events, void *user_data __attribute__((unused))) {
+static void conn_eventcb(struct bufferevent *bev __attribute__((unused)), short events, void* user_data __attribute__((unused))) {
 	if (events & BEV_EVENT_EOF) {
 		printf("Connection closed.\n");
 	} else if (events & BEV_EVENT_ERROR) {
@@ -144,7 +144,7 @@ static void conn_eventcb(struct bufferevent *bev __attribute__((unused)), short 
 	bufferevent_free(bev);
 }
 
-static void signal_cb(evutil_socket_t sig __attribute__((unused)), short events __attribute__((unused)), void *user_data __attribute__((unused))) {
+static void signal_cb(evutil_socket_t sig __attribute__((unused)), short events __attribute__((unused)), void* user_data __attribute__((unused))) {
 	struct event_base *base = (struct event_base*)user_data;
 	struct timeval delay = { 2, 0 };
 	printf("Caught an interrupt signal; exiting cleanly in two seconds.\n");

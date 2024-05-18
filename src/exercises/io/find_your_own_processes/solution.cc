@@ -65,7 +65,7 @@ void scanthedir(const char* dirname) {
 	CHECK_NOT_M1(closedir(sdir));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	scanthedir("/proc");
 	return EXIT_SUCCESS;
 }

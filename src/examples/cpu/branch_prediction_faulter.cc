@@ -22,7 +22,7 @@
 #include <math.h>
 #include <unistd.h>
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int bufsize=1000;
 	int buf[bufsize];
 	for(int i=0;i<bufsize;i++) {

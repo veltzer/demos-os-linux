@@ -41,7 +41,7 @@ void abuse_vector_once() {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		std::cerr << argv[0] << ": usage: " << argv[0] << " [loop] [size] [modulu]" << std::endl;
 		return EXIT_FAILURE;

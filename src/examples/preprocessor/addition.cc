@@ -57,7 +57,7 @@
 #define ADD_10(x) ADD_9(INC(x))
 #define ADD(x, y) ADD_ ## x(y)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("did you know that 2+3=%d\n", ADD(2,3));
 	return EXIT_SUCCESS;
 }

@@ -96,7 +96,7 @@ void sigint(int gotsig) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	sigset_t currentset, settoblock;
 	struct sigaction act;
 	sigemptyset(&settoblock);

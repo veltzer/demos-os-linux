@@ -46,7 +46,7 @@ _Pragma("message \"foo\"")
 
 TODO(Remember to fix this)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 #pragma message "Compiling " __FILE__ " in line " stringify(__LINE__) " in function " quote(__FUNCTION__)
 	return EXIT_SUCCESS;
 }

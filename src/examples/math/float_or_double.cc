@@ -51,7 +51,7 @@ inline some_float add(some_float a, some_float b) {
 	return a+b;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	some_float f1=MC(3.14);
 	some_float f2=MC(3.14);
 	printf(MY_PRINTF_ARG "+" MY_PRINTF_ARG "=" MY_PRINTF_ARG "\n", f1, f2, add(f1, f2));

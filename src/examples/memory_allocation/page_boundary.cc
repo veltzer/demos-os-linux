@@ -33,7 +33,7 @@
  * sending you a SIGSEGV (at least on UNIX).
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(mlockall(MCL_CURRENT|MCL_FUTURE));
 	char* p=(char*)CHECK_NOT_NULL(malloc(20));
 	//CHECK_NOT_M1(mlock(p,128*1024));

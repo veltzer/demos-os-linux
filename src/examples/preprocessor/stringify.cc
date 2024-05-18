@@ -30,7 +30,7 @@
 
 #define FOO BAR
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("quote(5) is %s\n", quote(5));
 	// C/C++ automatically catenates adjacent strings into one large string
 	// cppcheck-suppress unknownMacro

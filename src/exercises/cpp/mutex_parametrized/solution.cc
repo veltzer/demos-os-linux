@@ -52,7 +52,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("initialized the lock...");
 	const unsigned int num=2;
 	pthread_t threads[num];

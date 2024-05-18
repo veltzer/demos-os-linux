@@ -26,7 +26,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lX11
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Display* display = (Display*)CHECK_NOT_NULL(XOpenDisplay(NULL));
 	int screen = DefaultScreen(display);
 	Window window = XCreateSimpleWindow(

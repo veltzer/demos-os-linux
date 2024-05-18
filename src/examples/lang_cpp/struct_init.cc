@@ -30,7 +30,7 @@ struct mystruct {
 	int b;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// this is C99 style. This does not work in g++ by default although it does work in gcc.
 	/*
 	 * struct mystruct v1={ .a=6, .b=7 };

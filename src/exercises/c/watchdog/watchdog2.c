@@ -43,7 +43,7 @@ const char* const args[]={
 static bool fork_again;
 static pid_t child_pid;
 
-static void handler(int sig, siginfo_t *si, void *unused) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *unused __attribute__((unused))) {
 	int status;
 	// WNOHANG is here to make sure that we do not hang. Since this is a SIGCHLD
 	// handler then we can be certain that the first call to waitpid(2) will not
@@ -71,7 +71,7 @@ static void fork_a_child() {
 	CHECK_NOT_M1(execv(process_to_exec, (char* const*)args));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	signal_register_handler_sigaction(SIGCHLD, handler, 0);
 	fork_a_child();
 	TRACE("parent starts monitoring");

@@ -97,7 +97,7 @@ pid_t run_in_process(void (*f)(void)) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Inserting the driver...\n");
 	my_system("sudo rmmod mod_open_close_release");
 	my_system("sudo insmod ./mod_open_close_release.ko");

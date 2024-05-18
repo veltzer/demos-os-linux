@@ -37,7 +37,7 @@
 
 // function declarations:
 void errormessage(const char *format, ...);
-void* midiinfunction(void * arg);
+void* midiinfunction(void* arg);
 
 int main(int argc, char *argv[]) {
 	int status;
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 // This thread function does not end gracefully when the program
 // stops.
 
-void *midiinfunction(void *arg) {
+void* midiinfunction(void* arg) {
 	// this is the parameter passed via last argument of pthread_create():
 	snd_rawmidi_t* midiin=(snd_rawmidi_t*)arg;
 	char buffer[1];

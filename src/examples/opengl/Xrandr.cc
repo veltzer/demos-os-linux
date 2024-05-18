@@ -33,7 +33,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lX11 -lXrandr
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	//
 	// CONNECT TO X-SERVER, GET ROOT WINDOW ID
 	//

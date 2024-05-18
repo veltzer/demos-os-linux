@@ -55,7 +55,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const unsigned int thread_num=cpu_num;
 	pthread_t* threads=new pthread_t[thread_num];

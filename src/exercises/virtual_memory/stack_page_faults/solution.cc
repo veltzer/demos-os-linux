@@ -30,7 +30,7 @@ void myfunc(int arg) {
 	bzero(myarray, arg*sizeof(int));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	myfunc(1024*1024);
 	int size=getpagesize();
 	const int pagesize=getpagesize();

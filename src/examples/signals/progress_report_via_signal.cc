@@ -53,7 +53,7 @@ const int interval=1;
  * enough to use and does not do any memory allocations or the like. write(2)
  * alarm(2) are safe according to the manual.
  */
-static void handler(int sig) {
+static void handler(int sig __attribute__((unused))) {
 	static int times=0;
 	// we have to reschedule the SIGALRM every time since the alarm(2) is a one time deal.
 	CHECK_ZERO(alarm(interval));
@@ -63,7 +63,7 @@ static void handler(int sig) {
 	CHECK_NOT_M1(write(STDERR_FILENO, buf, len));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_SIGT(signal(SIGALRM, handler), SIG_ERR);
 	CHECK_ZERO(alarm(interval));
 	// a very long calculation

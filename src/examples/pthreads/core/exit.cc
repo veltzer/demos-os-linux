@@ -39,7 +39,7 @@ void* PrintHello(void *threadid) {
 	// pthread_exit((void *)taskid);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int NUM_THREADS=8;
 	pthread_t threads[NUM_THREADS];
 	int t[NUM_THREADS];

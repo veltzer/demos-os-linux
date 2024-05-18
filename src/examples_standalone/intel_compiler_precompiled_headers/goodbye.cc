@@ -18,6 +18,6 @@
 
 #include <hello.hh>
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return 0;
 }

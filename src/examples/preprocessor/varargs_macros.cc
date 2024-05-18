@@ -41,7 +41,7 @@
 // this can!
 #define ERROR(fmt, ...) fprintf(stderr, fmt, ##__VA_ARGS__)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("TRACE: without args\n");
 	TRACE("TRACE: with args (%d)\n", 17);
 	INFO("INFO: without args\n");

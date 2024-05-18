@@ -32,7 +32,7 @@
  * server in shm_server.cc.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	key_t key=CHECK_NOT_M1(ftok("/etc/passwd", 'x'));
 	printf("key is %x (you can see it using ipcs(1))\n", key);
 	// remove the old shm, if it exists

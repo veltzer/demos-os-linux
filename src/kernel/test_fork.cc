@@ -42,7 +42,7 @@
  * file systems where on fork(2) you get a different offset and options for parent and child.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char* name="mod_fork";
 	char filename[MAXPATHLEN];
 	snprintf(filename, MAXPATHLEN, "/dev/%s", name);

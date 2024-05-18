@@ -31,7 +31,7 @@
  * http://stackoverflow.com/questions/2100331/c-macro-definition-to-determine-big-endian-or-little-endian-machine
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("__BYTE_ORDER__ is [%s]\n", stringify(__BYTE_ORDER__));
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 	printf("your system is __ORDER_LITTLE_ENDIAN__\n");

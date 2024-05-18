@@ -39,7 +39,7 @@ typedef struct _Widget {
 	const char *name;
 } Widget;
 
-int print_widget (FILE *stream, const struct printf_info *info, const void *const *args) {
+int print_widget (FILE *stream, const struct printf_info *info, const void* const *args) {
 	const Widget *w;
 	char *buffer;
 	int len;

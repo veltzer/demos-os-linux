@@ -42,7 +42,7 @@
  * while [[ true ]]; do ps -C malloc_lazy.exe -o comm,min_flt,rss; sleep 1;done
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int page_number=2000;
 	int page_size=getpagesize();
 	char *p=(char *)malloc(page_size * page_number);

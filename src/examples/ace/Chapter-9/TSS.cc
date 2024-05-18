@@ -29,7 +29,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-void *ClientContext::get_attribute(const char *name) {
+void* ClientContext::get_attribute(const char *name) {
 	void* value=0;
 	attributeMap_.find(name, value);
 	return value;

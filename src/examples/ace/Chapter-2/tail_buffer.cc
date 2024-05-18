@@ -68,7 +68,7 @@ static void* consumer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 // removed by the consumer thread. A 0-sized message is enqueued when
 // there is no more data to read. The consumer uses this as a flag to
 // know when to exit.
-static void *producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
+static void* producer(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue) {
 	ACE_Read_Buffer rb(ACE_STDIN);
 	// Keep reading stdin, until we reach EOF.
 	while(true) {

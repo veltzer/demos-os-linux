@@ -76,7 +76,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc<6) {
 		fprintf(stderr, "%s: usage: %s [mutex] [attempts] [sleep_in] [sleep_out] [core] [core] [...]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: for bad performance:\n", argv[0]);

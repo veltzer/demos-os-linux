@@ -31,7 +31,7 @@
 
 class HA_ThreadHook:public ACE_Thread_Hook {
 public:
-	virtual ACE_THR_FUNC_RETURN start(ACE_THR_FUNC func, void *arg) {
+	virtual ACE_THR_FUNC_RETURN start(ACE_THR_FUNC func, void* arg) {
 		ACE_DEBUG((LM_DEBUG, "(%t) New Thread Spawned\n"));
 		// Create the context on the thread's own stack.
 		ACE_TSS<SecurityContext> secCtx;

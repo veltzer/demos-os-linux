@@ -49,7 +49,7 @@ static void print_current_time() {
 	printf("now: %d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	fprintf(stderr, "signal me with one of the following:\n");
 	fprintf(stderr, "[kill -s SIGUSR1 %d]\n", getpid());
 	signal_register_handler_sigaction(SIGUSR1, handler, SA_RESTART);

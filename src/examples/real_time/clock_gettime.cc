@@ -33,7 +33,7 @@ void print_timespec(const char *msg, struct timespec *ts) {
 	fflush(stdout);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// clockid_t clk_id=CLOCK_REALTIME;
 	clockid_t clk_id=CLOCK_MONOTONIC;
 	struct timespec res;

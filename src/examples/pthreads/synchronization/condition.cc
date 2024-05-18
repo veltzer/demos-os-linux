@@ -93,7 +93,7 @@ static void *functionCount2(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pthread_t thread1, thread2;
 	CHECK_ZERO_ERRNO(pthread_create(&thread1, NULL, &functionCount1, NULL));
 	CHECK_ZERO_ERRNO(pthread_create(&thread2, NULL, &functionCount2, NULL));

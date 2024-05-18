@@ -109,7 +109,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	no_params(argc, argv);
 	const int thread_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));

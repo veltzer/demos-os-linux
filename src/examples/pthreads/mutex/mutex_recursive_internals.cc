@@ -34,7 +34,7 @@
 
 static pthread_mutex_t mylock=PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_ASSERT(pthread_mutex_get_counter(&mylock)==0);
 	CHECK_ZERO_ERRNO(pthread_mutex_lock(&mylock));
 	CHECK_ASSERT(pthread_mutex_get_counter(&mylock)==1);

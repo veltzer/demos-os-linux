@@ -45,7 +45,7 @@
 #define if_based(m) if(1) { printf(m "\n"); } else {}
 #define wrong_if_based(m) if(1) { printf(m "\n"); }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// the next line will not compile if not ended with a semi-colon,
 	// which is what we want to happen...
 	simple("you must end this with a semi-colon");

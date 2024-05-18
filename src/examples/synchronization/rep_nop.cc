@@ -27,7 +27,7 @@ static inline void rep_nop(void) {
 	__asm__ __volatile__ ("rep;nop":::"memory");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// while(true) {
 	// }
 	while(true)

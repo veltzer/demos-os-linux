@@ -45,7 +45,7 @@
  * - do my own ctime_r function which is more like snprintf(3)
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	// command line parsing
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [file]\n", argv[0], argv[0]);

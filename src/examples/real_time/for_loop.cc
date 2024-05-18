@@ -31,7 +31,7 @@
  * EXTRA_COMPILE_FLAGS_AFTER=-O0
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct timespec t_start, t_end;
 	CHECK_NOT_M1(clock_gettime(CLOCK_REALTIME, &t_start));
 	for(int i=0; i<1000000; i++) {

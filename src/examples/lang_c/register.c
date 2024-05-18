@@ -35,7 +35,7 @@
  * than up because of the shorter "compare to zero" at the end of the loop.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	register unsigned int i;
 	for(i=0; i<100; i++) {
 		printf("i is %d\n", i);

@@ -56,6 +56,6 @@ void my_free(void* ptr) {
 	free(ptr);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

@@ -58,7 +58,7 @@ static int size_min;
 static int size_max;
 static int mul;
 
-void *worker(void *p) {
+void* worker(void*) {
 	//int num=*(int *)p;
 	int diff=size_max-size_min;
 	for(int i=0;i<num_iterations;i++) {
@@ -81,7 +81,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=6) {
 		fprintf(stderr, "argc is %d\n", argc);
 		fprintf(stderr, "%s: usage: %s [num_iterations] [num_allocations] [size_min] [size_max] [mul]\n", argv[0], argv[0]);

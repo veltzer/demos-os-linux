@@ -37,7 +37,7 @@
 // count the number of signals we get
 static unsigned int counter=0;
 
-static void handler(int sig, siginfo_t *si, void *unused) {
+static void handler(int sig, siginfo_t *si, void* unused __attribute__((unused))) {
 	printf("sighandler: gettid() is %d\n", gettid());
 	printf("sighandler: counter is %d\n", counter);
 	printf("sighandler: got signal %s\n", strsignal(sig));
@@ -48,7 +48,7 @@ static void handler(int sig, siginfo_t *si, void *unused) {
 	counter++;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t child_pid=CHECK_NOT_M1(fork());
 	if(child_pid!=0) {
 		TRACE("this is the parent");

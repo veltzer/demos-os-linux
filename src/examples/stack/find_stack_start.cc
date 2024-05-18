@@ -63,7 +63,7 @@ void print_entry(const char* msg, void* p, void* right_address) {
 	printf("%-40s [%p] [%s]\n", msg, p, rw(p==right_address));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("%-40s [%d]\n", "stack_vars_direction_up", stack_vars_direction_up());
 	printf("%-40s [%d]\n", "stack_function_direction_up", stack_function_direction_up());
 	printf("\n");

@@ -50,10 +50,10 @@ public:
 		val=ival;
 	}
 
-	void *operator new(size_t size, double) {
+	void* operator new(size_t size, double) {
 		std::cout << "in new operator" << std::endl;
 		std::cout << "size is " << size << std::endl;
-		void *pointer=malloc(size);
+		void* pointer=malloc(size);
 		std::cout << "pointer is " << pointer << std::endl;
 		// next two lines have no effect since the constructor
 		// will be called and will override it
@@ -64,16 +64,16 @@ public:
 
 	// this is for allocating arrays, the size that you get
 	// is SizeOfObject*NumOfObjects...
-	void *operator new[] (const size_t size) {
+	void* operator new[] (const size_t size) {
 		std::cout << "in new[] operator" << std::endl;
 		std::cout << "size is " << size << std::endl;
-		void *pointer=malloc(size);
+		void* pointer=malloc(size);
 		std::cout << "pointer is " << pointer << std::endl;
 		return pointer;
 	}
 
 	// notice that this does NOT get called...
-	void operator delete[] (void *pointer) {
+	void operator delete[] (void* pointer) {
 		std::cout << "in delete[] operator" << std::endl;
 		std::cout << "pointer is " << pointer << std::endl;
 		free(pointer);
@@ -82,13 +82,13 @@ public:
 	void* operator new(size_t size) {
 		std::cout << "in new operator" << std::endl;
 		std::cout << "size is " << size << std::endl;
-		// void *pointer=new char[size];
-		void *pointer=malloc(size);
+		// void* pointer=new char[size];
+		void* pointer=malloc(size);
 		std::cout << "pointer is " << pointer << std::endl;
 		return pointer;
 	}
 
-	void operator delete(void *pointer) {
+	void operator delete(void* pointer) {
 		std::cout << "in delete operator" << std::endl;
 		std::cout << "pointer is " << pointer << std::endl;
 		free(pointer);

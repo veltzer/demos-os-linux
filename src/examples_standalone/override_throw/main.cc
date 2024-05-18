@@ -22,7 +22,7 @@
 class MyException:public std::exception {
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		throw MyException();
 	}catch(MyException e) {

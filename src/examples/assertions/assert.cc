@@ -51,7 +51,7 @@
  * _user_ of the program.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	assert(1==1);
 	printf("in here 1\n");
 #define NDEBUG

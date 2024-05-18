@@ -34,7 +34,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	A a;
 	printf("a.a is %d\n", a.a);
 	printf("a.b is %d\n", a.b);

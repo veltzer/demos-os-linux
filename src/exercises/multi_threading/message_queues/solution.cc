@@ -74,7 +74,7 @@ void DoChild() {
 	exit(EXIT_SUCCESS);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	sigset_t emptymask;
 	sigemptyset(&emptymask);
 	struct sigaction SigAction;

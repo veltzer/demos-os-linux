@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char name[256];
 	CHECK_IN_RANGE(confstr(_CS_GNU_LIBPTHREAD_VERSION, name, sizeof(name)), 1, sizeof(name));
 	printf("confstr(_CS_GNU_LIBPTHREAD_VERSION) returns [%s]\n", name);

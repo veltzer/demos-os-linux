@@ -47,7 +47,7 @@
 // count the number of signals we get
 static unsigned int counter=0;
 
-static void handler(int sig, siginfo_t *si, void *unused) {
+static void handler(int sig, siginfo_t *si, void *unused __attribute__((unused))) {
 	printf("sighandler: gettid() is %d\n", gettid());
 	printf("sighandler: counter is %d\n", counter);
 	printf("sighandler: got signal %s\n", strsignal(sig));
@@ -75,7 +75,7 @@ static void* worker(void* p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int num=2;
 	pthread_t threads[num];
 	int ids[num];

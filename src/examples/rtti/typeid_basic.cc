@@ -35,7 +35,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	A a;
 	B b;
 	std::cout << typeid(a).name() << std::endl;

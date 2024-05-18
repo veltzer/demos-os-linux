@@ -65,7 +65,7 @@ static void run_threads() {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_ZERO_ERRNO(pthread_key_create(&key_myid, id_dealloc));
 	run_threads();
 	CHECK_ZERO_ERRNO(pthread_key_delete(key_myid));

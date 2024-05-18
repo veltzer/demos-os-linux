@@ -21,7 +21,7 @@
 #include <stdbool.h>	// for true
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	long long prev=0;
 	long long ll=0;
 	// the volatile is needed because otherwise gcc will assume that

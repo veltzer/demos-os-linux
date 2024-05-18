@@ -26,7 +26,7 @@
  * to fault, go to the OS, the OS sends a SIGFPE to your program, you can respond
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int i=0;
 	// cppcheck-suppress zerodiv
 	int j=1 / i;

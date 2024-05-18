@@ -30,7 +30,7 @@
  * "find_stack_start" example.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	unsigned long adr_start, adr_end;
 	proc_get_stack_info(&adr_start, &adr_end);
 	printf("before...\n");

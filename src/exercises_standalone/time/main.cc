@@ -20,7 +20,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include "time.hh"
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Time t;
 	t.setTime(14, 56, 32);
 	t.printStd();

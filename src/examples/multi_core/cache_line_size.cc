@@ -30,7 +30,7 @@
  * related and some software. do 'getconf -a' on the cmdline to see them...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sysconf(_SC_LEVEL1_DCACHE_LINESIZE)=%d\n", CHECK_NOT_M1(sysconf(_SC_LEVEL1_DCACHE_LINESIZE)));
 	printf("sysconf(_SC_LEVEL1_ICACHE_LINESIZE)=%d\n", CHECK_NOT_M1(sysconf(_SC_LEVEL1_ICACHE_LINESIZE)));
 	return EXIT_SUCCESS;

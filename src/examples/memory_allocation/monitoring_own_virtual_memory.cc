@@ -48,7 +48,7 @@ void show_vmem() {
 	 */
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// size of each chunk (10M in this example)
 	const size_t chunk_size=10*1024*1024;
 	const unsigned int num_chunks=10;

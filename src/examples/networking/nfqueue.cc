@@ -70,7 +70,7 @@ static int manage_packet(
 	struct nfq_q_handle *qh,
 	struct nfgenmsg *nfmsg __attribute__((unused)),
 	struct nfq_data *nfa,
-	void *data2 __attribute__((unused))
+	void* data2 __attribute__((unused))
 ) {
 	uint32_t hook = nfqueue_packet_get_hook(nfa);
 	// AODV traffic is handled elsewhere already (by the daemon)
@@ -101,7 +101,7 @@ static bool over=false;
 static void handler(
 	int sig __attribute__((unused)),
 	siginfo_t *si __attribute__((unused)),
-	void *unused __attribute__((unused))
+	void* unused __attribute__((unused))
 ) {
 	over=true;
 }

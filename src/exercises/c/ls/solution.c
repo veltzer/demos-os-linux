@@ -47,7 +47,7 @@
 // see 'info ls' for more info...
 const double oldsecs=192*24*60*60;
 
-static int strcmp_wrap(const void* pa, const void* pb, void* extra) {
+static int strcmp_wrap(const void* pa, const void* pb, void* extra __attribute__((unused))) {
 	const char** ppa=(const char**)pa;
 	const char** ppb=(const char**)pb;
 	return strcasecmp(*ppa, *ppb);
@@ -108,7 +108,7 @@ static void filetype(mode_t m, char* p) {
 	p[10]='\0';
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const bool hidedots=true;
 	// lets take the current time
 	time_t now;

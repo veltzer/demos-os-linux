@@ -41,7 +41,7 @@ void manipulate_array(double* ar, int size) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int SIZE=10;
 	double d[10]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	print_array(d, SIZE);

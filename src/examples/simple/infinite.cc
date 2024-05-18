@@ -26,7 +26,7 @@
  * you will see it in a running state.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	while(true) {
 	}
 	return EXIT_SUCCESS;

@@ -23,6 +23,6 @@
  * This is a simple example just for the include...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

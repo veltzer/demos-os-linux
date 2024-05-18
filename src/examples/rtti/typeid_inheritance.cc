@@ -43,7 +43,7 @@ class Employee:public Person {
 	// ... Employee members ...
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Person person;
 	Employee employee;
 	Person* ptr;

@@ -27,7 +27,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ASSERT()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	socklen_t fromaddrlen;
 	struct sockaddr_in fromaddr;
 	// Small fix by RazK: fromaddr initialization

@@ -95,7 +95,7 @@ void runLogger(int* fd) {
 	delete[] buf;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int fd[2];
 	CHECK_NOT_M1(pipe(fd));
 	// child one

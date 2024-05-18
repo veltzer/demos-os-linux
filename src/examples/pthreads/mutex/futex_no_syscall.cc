@@ -61,7 +61,7 @@ static int arr_type[]={
 	PTHREAD_MUTEX_ERRORCHECK_NP
 };
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc>1) {
 		const int size=ARRAY_SIZEOF(arr_type)*ARRAY_SIZEOF(arr_pshared)*ARRAY_SIZEOF(arr_robust);
 		pthread_mutex_t mtxs[size];

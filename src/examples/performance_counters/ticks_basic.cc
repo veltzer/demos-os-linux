@@ -26,7 +26,7 @@
  * Demo of working with my low level getticks(), getrdtsc(), getrdtscp() functions.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	ticks_t t1=getticks();
 	ticks_t t1_rd=getrdtsc();
 	ticks_t t1_p=getrdtscp();

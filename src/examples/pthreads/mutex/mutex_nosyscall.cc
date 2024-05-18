@@ -30,7 +30,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pthread_mutex_t mylock;
 	CHECK_ZERO_ERRNO(pthread_mutex_init(&mylock, NULL));
 	int counter=0;

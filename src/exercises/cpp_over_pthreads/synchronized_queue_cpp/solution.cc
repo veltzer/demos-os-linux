@@ -104,7 +104,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	SynchronizedQueue<unsigned int> queue;
 	const unsigned int count=10000;
 	const unsigned int max_sleep=100;

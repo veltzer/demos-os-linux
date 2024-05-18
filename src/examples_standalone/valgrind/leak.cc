@@ -24,7 +24,7 @@
  * This is a simple "leaky" application to be tested with valgrind's memcheck.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	void* p=malloc(100);
 	// we print the pointer so that the allocation will not be optimized away...
 	printf("got pointer [%p]\n", p);

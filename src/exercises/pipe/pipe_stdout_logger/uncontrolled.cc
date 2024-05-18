@@ -25,7 +25,7 @@
 /*
  * This is an uncontrolled program that we want to arrange logging for...
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	unsigned int counter=0;
 	while(true) {
 		printf("%d: This is yet another log message\n", counter);

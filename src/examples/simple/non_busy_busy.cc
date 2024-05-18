@@ -49,7 +49,7 @@
 
 //int myarray[10000]={1};
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("my pid is [%d]...\n", getpid());
 	printf("signal me using [kill -s SIGUSR1 %d]...\n", getpid());
 	while(true) {

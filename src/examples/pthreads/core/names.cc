@@ -107,7 +107,7 @@ void* worker(void* arg) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(unsigned int i=0;i<ARRAY_SIZEOF(todo);i++) {
 		pthread_t t;
 		thread_data td;

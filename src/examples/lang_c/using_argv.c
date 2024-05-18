@@ -28,7 +28,7 @@
  * implementation and more.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc __attribute__((unused)), char** argv) {
 	if (strcmp(argv[0], "./add")==0) {
 		printf("Im adding");
 	}

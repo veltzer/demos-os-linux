@@ -32,6 +32,6 @@
 #define do_3(a1, a2, a3) \
 
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	return EXIT_SUCCESS;
 }

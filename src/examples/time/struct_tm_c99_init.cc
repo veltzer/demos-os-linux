@@ -31,7 +31,7 @@
 #include <time.h>	// for struct tm
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct tm tempTm __attribute__((unused))={
 		.tm_sec=0,
 		.tm_min=0,

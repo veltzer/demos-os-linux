@@ -88,7 +88,7 @@ void mguess_fini(void) {
 	// do nothing...
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	mguess_init();
 	// lets randomize things a bit so everything will be different on each run...
 	srandom(getpid());

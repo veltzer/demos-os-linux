@@ -50,7 +50,7 @@ void* guess_next_address(void* prev, unsigned int size) {
 	return cprev;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	void* prev=NULL;
 	for(unsigned int sizeToAlloc=1; sizeToAlloc<100; sizeToAlloc++) {
 		void* guess=NULL;

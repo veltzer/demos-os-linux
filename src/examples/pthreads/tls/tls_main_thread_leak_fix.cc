@@ -31,7 +31,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-static void delfunc(int exitstatus, void* ptr) {
+static void delfunc(int exitstatus __attribute__((unused)), void* ptr) {
 	TRACE("releasing the pointer [%p]", ptr);
 	free(ptr);
 }
@@ -71,7 +71,7 @@ static void run_threads() {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_ZERO_ERRNO(pthread_key_create(&key_myid, id_dealloc));
 	int* p=(int*)malloc(sizeof(int));
 	*p=1000;

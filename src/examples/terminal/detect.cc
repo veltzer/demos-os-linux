@@ -37,7 +37,7 @@
  * - You can use the name returned to reopen the terminal after it has been closed. See below.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// lets take the file descriptor number from stdout which is usually
 	// a terminal (unless you redirect it...)
 	int filedes=fileno(stdout);

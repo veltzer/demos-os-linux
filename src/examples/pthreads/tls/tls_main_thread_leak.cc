@@ -46,11 +46,11 @@
 
 static pthread_key_t key_myid;
 
-static void id_dealloc(void* ptr) {
+static void id_dealloc(void*) {
 	abort();
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_ZERO_ERRNO(pthread_key_create(&key_myid, id_dealloc));
 	int* p=(int*)malloc(sizeof(int));
 	*p=1000;

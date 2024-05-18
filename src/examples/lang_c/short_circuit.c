@@ -34,7 +34,7 @@ int always_false() {
 	return 0;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	global=0;
 	if(always_false() && always_false()) {
 		printf("You should not be here...\n");

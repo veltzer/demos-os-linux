@@ -20,7 +20,7 @@
 #include <stdio.h> // for fprintf(3), stderr
 #include <unistd.h> // for sleep(3)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	for(int i=0;i<100;i++) {
 		fprintf(stderr, "i is %d\n", i);
 		sleep(1);

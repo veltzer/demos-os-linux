@@ -59,7 +59,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_ZERO_ERRNO(pthread_barrier_init(&barrier, NULL, num));
 	for(int i=0; i<num; i++) {
 		ids[i]=i;

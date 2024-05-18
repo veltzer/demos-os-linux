@@ -30,7 +30,7 @@
 
 static int number=0;
 static int seed=0;
-static void* worker(void *arg) {
+static void* worker(void* arg) {
 	ACE_UNUSED_ARG(arg);
 	ACE_DEBUG((LM_DEBUG, "Thread (%t) Created to do some work"));
 	::number++;

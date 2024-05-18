@@ -49,7 +49,7 @@
  * and vice-versa.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	pid_t child_pid=CHECK_NOT_M1(fork());
 	int fd=CHECK_NOT_M1(open("/etc/passwd", O_RDONLY));
 	char buf[2];

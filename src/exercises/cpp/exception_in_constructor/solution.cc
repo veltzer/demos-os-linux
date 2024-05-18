@@ -54,7 +54,7 @@ private:
 	FILE* file_handle = nullptr;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	try {
 		Resource file("testfile.dat");
 		char data[100];

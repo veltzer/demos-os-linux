@@ -38,7 +38,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	int num=*(int *)p;
 	printf("starting thread %d\n", num);
 	for(int i=0; i<60; i++) {
@@ -57,7 +57,7 @@ static void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int num=10;
 	pthread_t threads[num];
 	int ids[num];

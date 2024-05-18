@@ -36,7 +36,7 @@ extern char _binary_data_txt_start;
 extern char _binary_data_txt_end;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	char buffer[16384];
 	int fd=CHECK_NOT_M1(open("data.txt", O_RDONLY));
 	char* ptr=buffer;

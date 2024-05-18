@@ -49,7 +49,7 @@ void* doit(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	report();
 	pthread_t t1, t2;
 	CHECK_ZERO_ERRNO(pthread_create(&t1, NULL, doit, NULL));

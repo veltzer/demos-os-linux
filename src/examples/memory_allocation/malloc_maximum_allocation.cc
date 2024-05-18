@@ -29,7 +29,7 @@
  * On 32 bit systems it should be around 2GB.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sizeof(pointer)=%ld (should be 8 on 64 bit and 4 on 32 bit)\n", sizeof(NULL));
 	printf("sizeof(size_t)=%ld (should be 8 on 64 bit and 4 on 32 bit)\n", sizeof(size_t));
 	size_t size_to_alloc=1;

@@ -23,7 +23,7 @@
 /*
  * The most minimal test for kernel space. Does nothing.
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 	DEBUG("hello");
 	return EXIT_SUCCESS;
 }

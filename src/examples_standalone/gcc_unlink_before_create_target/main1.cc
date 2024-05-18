@@ -19,7 +19,7 @@
 #include <stdlib.h> // for EXIT_SUCCESS
 #include <stdio.h> // for printf(3)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Hello, World!\n");
 	return EXIT_SUCCESS;
 }

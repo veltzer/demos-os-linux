@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for rand(3), EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_INT()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int rand_number;
 	int cont=1;
 	while(cont) {

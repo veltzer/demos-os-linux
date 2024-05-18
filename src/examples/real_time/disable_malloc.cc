@@ -75,7 +75,7 @@ void* malloc(size_t size) {
 	return orig_malloc(size);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("Setting up our own malloc...\n");
 	malloc_setup();
 	printf("This allocation should succeed...\n");

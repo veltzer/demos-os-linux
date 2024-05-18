@@ -26,7 +26,7 @@
  * running on...
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sysconf(_SC_LEVEL1_ICACHE_SIZE)=%d\n", CHECK_NOT_M1(sysconf(_SC_LEVEL1_ICACHE_SIZE)));
 	printf("sysconf(_SC_LEVEL1_DCACHE_SIZE)=%d\n", CHECK_NOT_M1(sysconf(_SC_LEVEL1_DCACHE_SIZE)));
 	printf("sysconf(_SC_LEVEL2_CACHE_SIZE)=%d\n", CHECK_NOT_M1(sysconf(_SC_LEVEL2_CACHE_SIZE)));

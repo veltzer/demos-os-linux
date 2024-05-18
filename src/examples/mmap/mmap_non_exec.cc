@@ -43,7 +43,7 @@ int main() {
 	int fd=CHECK_NOT_M1(open(file_to_map, O_RDONLY));
 	struct stat stat_buf;
 	CHECK_NOT_M1(fstat(fd, &stat_buf));
-	void *res=CHECK_NOT_VOIDP(mmap(
+	void* res=CHECK_NOT_VOIDP(mmap(
 			NULL,	/* addr: dont recommend address */
 			stat_buf.st_size,	/* size: the size of the file */
 			PROT_READ | PROT_WRITE | PROT_EXEC,	/* prot: we just want read */

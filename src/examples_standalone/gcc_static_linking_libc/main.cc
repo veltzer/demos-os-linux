@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <math.h>	// for sinf(3)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("did you know that sinf(0.5)=%f\n", sinf(0.5));
 	return EXIT_SUCCESS;
 }

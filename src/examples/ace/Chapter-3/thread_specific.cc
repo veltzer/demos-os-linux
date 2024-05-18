@@ -45,7 +45,7 @@ static ACE_SYNCH_MUTEX printf_lock;
 
 typedef ACE_TSS_Guard<ACE_Thread_Mutex> GUARD;
 
-extern "C" void cleanup(void *ptr) {
+extern "C" void cleanup(void* ptr) {
 	ACE_DEBUG((LM_DEBUG, "(%t) in cleanup, ptr=%x\n", ptr));
 
 	delete reinterpret_cast<char *>(ptr);
@@ -62,7 +62,7 @@ static void* worker(void* c) {
 		ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::keycreate"));
 	}
 	ACE_NEW_RETURN(ip, int, 0);
-	if(ACE_Thread::setspecific(key, (void *)ip)==-1) {
+	if(ACE_Thread::setspecific(key, (void*)ip)==-1) {
 		ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 	}
 	for(intptr_t i=0; i<count; i++) {
@@ -73,14 +73,14 @@ static void* worker(void* c) {
 		ACE_DEBUG((LM_DEBUG, "(%t) in worker 1, key=%d, ip=%x\n", key, ip));
 		{
 			// tmp is workaround for gcc strict aliasing warning.
-			void *tmp=reinterpret_cast<void *>(ip);
+			void* tmp=reinterpret_cast<void*>(ip);
 			if(ACE_Thread::setspecific(key, tmp)==-1) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 			}
 			if(ACE_Thread::getspecific(key, &tmp)==-1) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 			}
-			if(ACE_Thread::setspecific(key, (void *)0)==-1) {
+			if(ACE_Thread::setspecific(key, (void*)0)==-1) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 			}
 		}
@@ -117,14 +117,14 @@ static void* worker(void* c) {
 		ACE_DEBUG((LM_DEBUG, "(%t) in worker 2, key=%d, ip=%x\n", key, ip));
 		{
 			// Tmp is workaround for GCC strict aliasing warning.
-			void *tmp(reinterpret_cast<void *>(ip));
+			void* tmp(reinterpret_cast<void*>(ip));
 			if(ACE_Thread::setspecific(key, tmp)==-1) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 			}
 			if(ACE_Thread::getspecific(key, &tmp)==-1) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 			}
-			if(ACE_Thread::setspecific(key, (void *)0)==-1) {
+			if(ACE_Thread::setspecific(key, (void*)0)==-1) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "ACE_Thread::setspecific"));
 			}
 		}
@@ -150,7 +150,7 @@ int main(int argc, char** argv) {
 	// Register a signal handler.
 	ACE_Sig_Action sa((ACE_SignalHandler)(handler), SIGINT);
 	ACE_UNUSED_ARG(sa);
-	if(ACE_Thread_Manager::instance()->spawn_n(threads, ACE_THR_FUNC(&worker), reinterpret_cast<void *>(count), THR_BOUND | THR_DETACHED)==-1) {
+	if(ACE_Thread_Manager::instance()->spawn_n(threads, ACE_THR_FUNC(&worker), reinterpret_cast<void*>(count), THR_BOUND | THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "ACE_Thread_Manager::spawn_n"), -1);
 	}
 	ACE_Thread_Manager::instance()->wait();

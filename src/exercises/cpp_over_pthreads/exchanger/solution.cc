@@ -120,7 +120,7 @@ public:
 	}
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	srand(0);
 	Exchanger<unsigned int> e;
 	unsigned int max_sleep_time=1000;

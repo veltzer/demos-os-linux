@@ -36,7 +36,7 @@ int handle_error(int ret) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("You will see this once...\n");
 	printf("The parent pid is %d\n", getpid());
 	bool need_to_run_child=true;

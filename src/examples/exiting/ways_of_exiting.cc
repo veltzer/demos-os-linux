@@ -64,7 +64,7 @@ void my_atexit(void) {
 	DEBUG("in here");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_M1(atexit(my_atexit));
 	const unsigned int code=5;
 	A a(5);

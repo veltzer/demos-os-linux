@@ -54,7 +54,7 @@ static unsigned int max_sleep_time;
 static bool child_alive=true;
 static int the_signal=-1;
 
-static void handler(int sig, siginfo_t *si, void *context) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *context __attribute__((unused))) {
 	// printf("started hander\n");
 	if(sig==the_signal) {
 		got_signals++;
@@ -80,7 +80,7 @@ static void handler(int sig, siginfo_t *si, void *context) {
 	// printf("ended hander\n");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [num_signals] [max_sleep_time] [signal_name]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 1000 1000 SIGUSR1\n", argv[0], argv[0]);

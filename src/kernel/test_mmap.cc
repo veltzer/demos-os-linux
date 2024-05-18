@@ -57,7 +57,7 @@ void print_data(void *data, int size) {
 	free(pdata);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/demo";
 	// flags

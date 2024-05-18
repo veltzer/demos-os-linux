@@ -110,7 +110,7 @@ void timeoutsigHandler(int gotsig) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct sigaction sigusr, sigchld, sigalrm, sigint;
 	sigset_t emptyset;
 	sigemptyset(&emptyset);

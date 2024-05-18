@@ -222,7 +222,7 @@ void run(bool doVolatile, void *(*start_routine1)(void *), void *(*start_routine
 	CHECK_ZERO_ERRNO(pthread_join(thread2, NULL));
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s core1 core2 iterations\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: to see reordering use\n", argv[0]);

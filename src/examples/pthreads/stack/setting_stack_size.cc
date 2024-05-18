@@ -56,7 +56,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int num=10;
 	pthread_t threads[num];
 	pthread_attr_t attrs[num];

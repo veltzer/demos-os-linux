@@ -126,7 +126,7 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 
 		offset += bytes_to_read;
 		fi->iovecs[current_block].iov_len = bytes_to_read;
-		void *buf;
+		void* buf;
 		CHECK_ZERO(posix_memalign(&buf, BLOCK_SZ, BLOCK_SZ));
 		fi->iovecs[current_block].iov_base = buf;
 

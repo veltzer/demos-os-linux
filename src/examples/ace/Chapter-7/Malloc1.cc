@@ -71,7 +71,7 @@ int addRecords() {
 	for(int i=0; i<10; i++) {
 		char buf[64];
 		ACE_OS::sprintf(buf, "%s:%d", "Record", i);
-		void *memory=g_allocator->malloc(sizeof(Record));
+		void* memory=g_allocator->malloc(sizeof(Record));
 		if (memory==0) {
 			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Unable to malloc"), -1);
 		}

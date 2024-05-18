@@ -50,7 +50,7 @@ private:
 	Shape shape;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	Circle c;
 	c.draw(); // Calling derived
 	Square s;

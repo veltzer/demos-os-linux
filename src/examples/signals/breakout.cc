@@ -58,7 +58,7 @@ static void SignalHandlerUSR2(int sig, siginfo_t *, void *) {
 	signal_register_handler_sigaction(SIGUSR1, SignalHandlerUSR1, SA_RESTART);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// set up the signal handler (only need to do this once)
 	signal_register_handler_sigaction(SIGUSR1, SignalHandlerUSR1, 0);
 	signal_register_handler_sigaction(SIGUSR2, SignalHandlerUSR2, 0);

@@ -38,7 +38,7 @@ public:
 };
 
 // The starting point for the worker threads
-static void * worker(void *arguments) {
+static void* worker(void* arguments) {
 	Args *arg=(Args*)arguments;
 	for(int i=0; i<arg->iterations; i++) {
 		ACE_DEBUG((LM_DEBUG, "(%t) Trying to get a hold of this iteration\n"));

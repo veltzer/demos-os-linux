@@ -49,7 +49,7 @@ void func() {
 
 const int a=6;
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [type]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: type can be 0-4\n", argv[0]);

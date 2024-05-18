@@ -73,7 +73,7 @@ void* create_threads(void* arg) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	thread_data td;
 	td.highest=1;
 	printf("creating threads hierarchically...\n");

@@ -65,7 +65,7 @@ pthread_barrier_t barrier;
 int counter=0;
 bool ended=false;
 
-void *worker(void *p) {
+void *worker(void *) {
 #ifdef DO_BARRIER
 	// do not CHECK_ZERO_ERRNO() on the line below since pthread_barrier_wait DOES NOT
 	// always return zero (actually, it always returns something else than zero
@@ -111,7 +111,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	TRACE("start");
 	const unsigned int num=2;
 	pthread_t threads[num];

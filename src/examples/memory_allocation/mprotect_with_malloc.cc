@@ -32,7 +32,7 @@
  * find a memory violation.
  */
 
-static void handler(int sig, siginfo_t *si, void *unused) {
+static void handler(int sig, siginfo_t *si, void* unused __attribute__((unused))) {
 	printf("got signal %s\n", strsignal(sig));
 	printf("si is %p\n", (void*)si);
 	printf("Got SIGSEGV at address: 0x%lx\n", (long) si->si_addr);
@@ -76,7 +76,7 @@ int do_read(char* buf) {
 	return sum;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const bool handle_sigv=true;
 	if(handle_sigv) {
 		signal_register_handler_sigaction(SIGSEGV, handler, 0);

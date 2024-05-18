@@ -33,7 +33,7 @@
 
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
-static inline void do_work(int seconds) {
+static inline void do_work(int seconds __attribute__((unused))) {
 	int __attribute__((unused)) i, j;
 	for(int i=0; i<1000000; i++) {
 		for(int j=0; j<1000000; j++) {

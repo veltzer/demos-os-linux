@@ -65,7 +65,7 @@ static void handler(int sig, siginfo_t *si, void *unused) {
 	counter++;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// set up the signal handler (only need to do this once)
 	fprintf(stderr, "started registering signals\n");
 	signal_register_handler_sigaction(SIGUSR1, handler, SA_SIGINFO);

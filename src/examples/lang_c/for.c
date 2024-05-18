@@ -20,7 +20,7 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int j=0;
 	while(j<100) {
 		printf("j is %d\n", j);

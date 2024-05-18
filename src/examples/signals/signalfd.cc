@@ -29,7 +29,7 @@
  * This demo of signalfd was stolen shamelessly from the signalfd(2) manpage.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("send a signal to me using [kill -s SIGINT %d]\n", getpid());
 	printf("signals are [SIGINT, SIGQUIT, SIGUSR1]\n");
 	printf("SIGINT(2): keyboard interrupt, will do nothing\n");

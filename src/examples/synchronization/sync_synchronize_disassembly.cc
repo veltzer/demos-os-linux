@@ -55,7 +55,7 @@ void lock_frenzy() {
 	asm ("sfence");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	disassemble_function("lock_frenzy");
 	return EXIT_SUCCESS;
 }

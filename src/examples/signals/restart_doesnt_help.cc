@@ -33,7 +33,7 @@ static void handler(int sig_num, siginfo_t *, void *) {
 	printf("signal handler is done...\n");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// signal registration
 	struct sigaction sa;
 	sa.sa_flags=SA_RESTART;

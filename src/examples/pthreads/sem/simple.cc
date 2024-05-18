@@ -31,7 +31,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	sem_t sem;
 	printf("Hello, World!\n");
 	CHECK_NOT_M1(sem_init(&sem, 0, 1));

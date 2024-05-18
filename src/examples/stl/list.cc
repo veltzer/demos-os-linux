@@ -29,7 +29,7 @@
  * http://www.yolinux.com/TUTORIALS/LinuxTutorialC++STL.html#LIST
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::list<int> l;
 	std::cout << l.size() << std::endl;
 	l.push_back(0);	// Insert a new element at the end

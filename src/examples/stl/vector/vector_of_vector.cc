@@ -33,7 +33,7 @@
 
 using namespace std;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	vector<vector<int>> v;
 	return EXIT_SUCCESS;
 }

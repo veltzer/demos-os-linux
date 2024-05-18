@@ -23,7 +23,7 @@
 /*
  * This shows how to use the pre-processors relational operators...
  */
-int main(int argc, char** argv, char** envp) {
+int main() {
 #define FOO
 #ifdef FOO
 	printf("#ifdef FOO\n");

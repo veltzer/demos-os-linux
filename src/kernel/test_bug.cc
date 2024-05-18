@@ -31,7 +31,7 @@
  * Notice also that you can still rmmod your module if you had a bug.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/demo";
 	// file descriptor to use

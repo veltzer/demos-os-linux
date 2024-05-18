@@ -22,7 +22,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_INT(), CHECK_NOT_M1()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int num;
 	int direction=1;
 	printf("Give me a number of stars: ");

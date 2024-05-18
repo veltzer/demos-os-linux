@@ -30,7 +30,7 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	double pi=4.0*atan(1.0);
 	// this should be "double complex" but we are in C++ and "complex" is in the
 	// standard C++ library

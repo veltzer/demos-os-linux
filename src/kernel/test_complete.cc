@@ -51,7 +51,7 @@ void *wait_function(void *p) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// file to be used
 	const char *filename="/dev/mod_complete";
 	printf("Inserting the driver...\n");

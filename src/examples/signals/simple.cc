@@ -37,7 +37,7 @@ static void handler(int sig_num) {
 	printf("signal handler is done...\n");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	CHECK_NOT_SIGT(signal(SIGUSR1, handler), SIG_ERR);
 	printf("signal me with [kill -s SIGUSR1 %d]\n", getpid());
 	printf("going to sleep...%d\n", getpid());

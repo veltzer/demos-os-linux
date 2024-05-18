@@ -29,7 +29,7 @@
  * the 'environ' extern variable.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc __attribute__((unused)), char** argv __attribute__((unused)), char** envp) {
 	// print out the entire environment
 	while(*envp!=NULL) {
 		std::cout << *envp << std::endl;

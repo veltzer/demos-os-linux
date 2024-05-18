@@ -118,7 +118,7 @@ int show_menu() {
 	return result;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int i;
 	phone_entry* phonebook;
 	phonebook=malloc(sizeof(phone_entry)*MAX_ENTRIES_IN_PHONEBOOK);

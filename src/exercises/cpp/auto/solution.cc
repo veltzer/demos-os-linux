@@ -21,7 +21,7 @@
 #include <map>
 using namespace std;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	map<string, string> myMap;
 
 	// Populate

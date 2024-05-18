@@ -49,7 +49,7 @@ int main() {
 	printf("size of file is %ld\n", stat_buf.st_size);
 	printf("which means %ld pages\n", stat_buf.st_size/pagesize);
 	const int size=stat_buf.st_size;
-	void *res=CHECK_NOT_VOIDP(mmap(
+	void* res=CHECK_NOT_VOIDP(mmap(
 			NULL,	/* addr: dont recommend address */
 			size,	/* size: the size of the file */
 			PROT_READ,	/* prot: we just want read */

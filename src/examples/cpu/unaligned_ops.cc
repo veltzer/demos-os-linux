@@ -64,7 +64,7 @@ void* func(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const unsigned int size_to_alloc=num_of_ints*sizeof(int)+500;
 	buf=(char*)malloc(size_to_alloc);
 	for(unsigned int i=0; i<size_to_alloc; i++) {

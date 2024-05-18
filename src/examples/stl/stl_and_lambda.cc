@@ -32,7 +32,7 @@ static int a=12;
 static int b=4;
 static int c=7;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	std::vector<int> v;
 	for(int i=0; i<10; i++) {
 		v.push_back(i);

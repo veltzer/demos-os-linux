@@ -23,7 +23,7 @@
 
 #define PRINT(pp_narg) printf("%2d = %s\n", pp_narg, # pp_narg)
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	PRINT(PP_NARG(A));
 	PRINT(PP_NARG(A, B));
 	PRINT(PP_NARG(A, B, C));

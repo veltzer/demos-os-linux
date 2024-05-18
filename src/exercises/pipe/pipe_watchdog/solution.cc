@@ -123,7 +123,7 @@ void sigAlrmHandler(int gotsig) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct sigaction sigusr, sigchld, sigalrm, sigint;
 	sigset_t emptyset;
 	CHECK_NOT_M1(mkfifo(pipe_name, 0666));

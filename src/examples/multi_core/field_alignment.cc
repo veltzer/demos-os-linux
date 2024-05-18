@@ -58,7 +58,7 @@ void myfunction(char c1, int i1, char c2) {
 	CHECK_ASSERT((unsigned long)&c2%4==0);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sizeof(small)=%zd\n", sizeof(small));
 	printf("sizeof(medium)=%zd\n", sizeof(medium));
 	printf("sizeof(medium2)=%zd\n", sizeof(medium2));

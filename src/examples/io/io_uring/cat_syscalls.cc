@@ -122,7 +122,8 @@ int app_setup_uring(struct submitter *s) {
 	struct app_io_sq_ring *sring = &s->sq_ring;
 	struct app_io_cq_ring *cring = &s->cq_ring;
 	struct io_uring_params p;
-	void *sq_ptr, *cq_ptr;
+	void* sq_ptr;
+	void* cq_ptr;
 
 	/*
 	* We need to pass in the io_uring_params structure to the io_uring_setup()
@@ -291,7 +292,7 @@ int submit_to_sq(char *file_path, struct submitter *s) {
 
 		fi->iovecs[current_block].iov_len = bytes_to_read;
 
-		void *buf;
+		void* buf;
 		CHECK_ZERO(posix_memalign(&buf, BLOCK_SZ, BLOCK_SZ));
 		fi->iovecs[current_block].iov_base = buf;
 

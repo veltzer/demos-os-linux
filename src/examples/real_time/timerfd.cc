@@ -87,7 +87,7 @@ void* work(void* data) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if (argc!=7) {
 		fprintf(stderr, "%s: usage: %s [init_sec] [init_nsec] [interval_sec] [interval_nsec] [max_exp] [real_time]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 2 500000000 1 500000000 6 SCHED_FIFO\n", argv[0], argv[0]);

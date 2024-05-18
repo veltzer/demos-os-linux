@@ -44,7 +44,7 @@ char *color_name[] = {
 	[blue]="blue",
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	enum COLOR c = red;
 	printf("c=%s\n", color_name[c]);
 	return EXIT_SUCCESS;

@@ -29,7 +29,7 @@
  * even for small allocations. On 32 bit I remember I got 16 bytes (but I may be wrong).
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	void* p=CHECK_NOT_NULL(malloc(4));
 	printf("malloc_usage_size is %zd\n", malloc_usable_size(p));
 	return EXIT_SUCCESS;
