@@ -32,21 +32,25 @@ void trace(const char *fmt, ...) {
 	va_start(ap, fmt);
 	while(*fmt) {
 		switch (*fmt++) {
-		case 'f':	/* float */
+		/* float */
+		case 'f':
 			f=(double)va_arg(ap, double);
 			printf("float %f\n", f);
 			break;
-		case 's':	/* string */
+		/* string */
+		case 's':
 			s=va_arg(ap, char *);
 			printf("string %s\n", s);
 			break;
-		case 'd':	/* int */
+		/* int */
+		case 'd':
 			d=va_arg(ap, int);
 			printf("int %d\n", d);
 			break;
-		case 'c':	/* char */
-			/* need a cast here since va_arg only
-			 * takes fully promoted types */
+		/* char */
+		/* need a cast here since va_arg only
+		 * takes fully promoted types */
+		case 'c':
 			c=(char)va_arg(ap, int);
 			printf("char %c\n", c);
 			break;
