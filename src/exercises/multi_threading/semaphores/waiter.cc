@@ -27,7 +27,7 @@
 
 static bool over=false;
 
-void clean(int sig) {
+void clean(int sig __attribute__((unused))) {
 	over=true;
 }
 

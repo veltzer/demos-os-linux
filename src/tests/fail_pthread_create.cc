@@ -32,7 +32,7 @@ void* myfunc(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	no_params(argc, argv);
 
 	pthread_attr_t myattr;

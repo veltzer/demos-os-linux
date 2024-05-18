@@ -29,14 +29,14 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-void* PrintHello(void *threadid) {
+void* PrintHello(void* threadid) {
 	int *id_ptr, taskid;
 	id_ptr=(int *) threadid;
 	taskid=*id_ptr;
 	printf("Thread %d says hello\n", taskid);
-	return (void *)((long)taskid*2);
+	return (void*)((long)taskid*2);
 	// another option would be to call
-	// pthread_exit((void *)taskid);
+	// pthread_exit((void*)taskid);
 }
 
 int main() {
@@ -49,7 +49,7 @@ int main() {
 	}
 	// start all threads giving each it's input
 	for(int i=0; i<NUM_THREADS; i++) {
-		CHECK_ZERO_ERRNO(pthread_create(&threads[i], NULL, PrintHello, (void *)(t+i)));
+		CHECK_ZERO_ERRNO(pthread_create(&threads[i], NULL, PrintHello, (void*)(t+i)));
 	}
 	// wait for all threads to finish, order does not matter
 	for(int i=0; i<NUM_THREADS; i++) {

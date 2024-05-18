@@ -65,7 +65,7 @@ static void usageError(const char *progName, const char *msg) {
 	exit(EXIT_FAILURE);
 }
 
-static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *ucontext __attribute__((unused))) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* ucontext __attribute__((unused))) {
 	printf("got event on descriptor %d\n", si->si_fd);
 	printf("got code %d\n", si->si_code);
 }

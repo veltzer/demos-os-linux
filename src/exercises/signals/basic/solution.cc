@@ -71,7 +71,7 @@ void critical2() {
 	CHECK_NOT_M1(write(fdindex, &buffer, sizeof(buffer)));
 }
 
-void sigint(int gotsig) {
+void sigint(int sig __attribute__((unused))) {
 	struct dirent* dircontent;
 	char pathname[MAXPATHLEN];
 	struct stat statbuf;

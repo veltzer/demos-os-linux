@@ -75,7 +75,7 @@ int main() {
 		fprintf(stderr, "no appropriate visual found\n");
 		exit(EXIT_FAILURE);
 	}
-	// printf("tvisual %p selected\n", (void *)vi->visualid); }/* %p creates hexadecimal output like in glxinfo */
+	// printf("tvisual %p selected\n", (void*)vi->visualid); }/* %p creates hexadecimal output like in glxinfo */
 	cmap=XCreateColormap(dpy, root, vi->visual, AllocNone);
 	swa.colormap=cmap;
 	swa.event_mask=ExposureMask | KeyPressMask;

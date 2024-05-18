@@ -47,7 +47,7 @@
 // file descriptor
 int fd;
 
-void *function_empty(void *p) {
+void* function_empty(void*) {
 	bool over=false;
 	int counter=0;
 	int errors=0;
@@ -81,7 +81,7 @@ void *function_empty(void *p) {
 	return NULL;
 }
 
-void *function_short(void *p) {
+void* function_short(void*) {
 	fprintf(stdout, "ss");
 	fflush(stdout);
 	CHECK_NOT_M1(ioctl(fd, IOCTL_RACE_SLEEP_SHORT, NULL));
@@ -90,7 +90,7 @@ void *function_short(void *p) {
 	return NULL;
 }
 
-void *function_long(void *p) {
+void* function_long(void*) {
 	fprintf(stdout, "sl");
 	fflush(stdout);
 	CHECK_NOT_M1(ioctl(fd, IOCTL_RACE_SLEEP_LONG, NULL));
@@ -99,7 +99,7 @@ void *function_long(void *p) {
 	return NULL;
 }
 
-void *function_close(void *p) {
+void* function_close(void*) {
 	CHECK_ZERO(sleep(2));
 	fprintf(stdout, "c");
 	fflush(stdout);

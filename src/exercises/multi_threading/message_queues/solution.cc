@@ -41,7 +41,7 @@ static int childPID;
 static int msqid;
 static struct msqid_ds msgCtlBuf;
 
-void TerminateChild(int gotsig) {
+void TerminateChild(int sig __attribute__((unused))) {
 	CHECK_NOT_M1(kill(childPID, SIGKILL));
 	exit(EXIT_SUCCESS);
 }

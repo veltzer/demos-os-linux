@@ -44,7 +44,7 @@
 // const char* serv_name="http-alt";
 // const char* serv_proto="tcp";
 
-void *worker(void* arg) {
+void* worker(void* arg) {
 	int fd=*((int*)arg);
 	const unsigned int buflen=1024;
 	char buff[buflen];

@@ -27,7 +27,7 @@
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ZERO()
 #include "common.hh"
 
-void activity(int semid, int id, const char* activity) {
+void activity(int semid __attribute__((unused)), int id, const char* activity) {
 	int stime;
 	printf("Philosopher %d is busy %s\n", id, activity);
 	stime=MIN_SLEEP+rand()%(MAX_SLEEP-MIN_SLEEP);
@@ -53,7 +53,7 @@ void forks(int semid, int id, int amount) {
 	printf("Philosopher %d is ending handling forks with amount %d\n", id, amount);
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [0-%d)\n", argv[0], argv[0], NPHIL);
 		exit(EXIT_FAILURE);

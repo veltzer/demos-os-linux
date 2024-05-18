@@ -43,7 +43,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-void *worker(void *p) {
+void* worker(void* p) {
 	int num=*(int *)p;
 	//TRACE("starting thread [%d]", num);
 	int cpunum=CHECK_NOT_M1(sched_getcpu());

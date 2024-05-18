@@ -40,7 +40,7 @@ pthread_t threads[num];
 int ids[num];
 void* rets[num];
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	int num=*(int *)p;
 	if(num==0) {
 		//CHECK_NOT_M1(prctl(PR_SET_NAME,"t1"));

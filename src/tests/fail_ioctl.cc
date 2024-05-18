@@ -26,7 +26,7 @@
  * This is a test to check my own err_utils.hh file.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	no_params(argc, argv);
 	CHECK_NOT_M1(ioctl(5, 7));
 	return EXIT_SUCCESS;

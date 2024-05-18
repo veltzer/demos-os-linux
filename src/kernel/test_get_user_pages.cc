@@ -49,7 +49,7 @@ const bool do_dataseg_test=true;
 const bool do_malloc_test=true;
 const bool do_stacks_test=true;
 
-static void show_data(char *data, unsigned int size) {
+static void show_data(char *data, unsigned int size __attribute__((unused))) {
 	printf("data is [");
 	// int psize=min(size,10);
 // fwrite(data,1,psize,stdout);

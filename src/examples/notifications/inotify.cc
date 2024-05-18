@@ -57,7 +57,7 @@
 
 // signal handling functions
 static bool stop=false;
-static void myhandler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *unused __attribute__((unused))) {
+static void myhandler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* unused __attribute__((unused))) {
 	printf("got signal, you probably want me to stop so I'm stopping...\n");
 	stop=true;
 }

@@ -42,7 +42,7 @@
 
 const char* filename="/tmp/myunixsocket";
 
-void *worker(void* arg) {
+void* worker(void* arg) {
 	int fd=*((int*)arg);
 	TRACE("thread %d starting", gettid());
 	TRACE("thread %d got fd %d", gettid(), fd);

@@ -30,7 +30,7 @@ const int BUFSIZE=1024;
 
 int sigme;
 
-void sigalrmHandler(int gotsig) {
+void sigalrmHandler(int sig __attribute__((unused))) {
 	kill(getppid(), sigme);
 	alarm(2);
 }
@@ -65,7 +65,7 @@ void do2() {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc < 2) {
 		fprintf(stderr, "%s: usage: %s 1 or 2\n", argv[0], argv[0]);
 		exit(EXIT_FAILURE);

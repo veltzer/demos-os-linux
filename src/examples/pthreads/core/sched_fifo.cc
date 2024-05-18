@@ -51,7 +51,7 @@ static pthread_barrier_t mybarrier;
 
 static int min_priority=0;
 
-static void *thread_body(void *arg) {
+static void* thread_body(void* arg) {
 	pid_t tid=gettid();
 	int pri=*(int *)arg;
 	CHECK_NOT_M1(nice(pri));

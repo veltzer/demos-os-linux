@@ -40,14 +40,14 @@ static int child1pid;
 static int child2pid;
 const char* pipe_name="/tmp/np";
 
-void sigIntHandler(int gotsig) {
+void sigIntHandler(int sig __attribute__((unused))) {
 	CHECK_NOT_M1(kill(child1pid, SIGKILL));
 	CHECK_NOT_M1(kill(child2pid, SIGKILL));
 	CHECK_NOT_M1(unlink(pipe_name));
 	exit(EXIT_SUCCESS);
 }
 
-void sigChildHandler(int gotsig) {
+void sigChildHandler(int sig __attribute__((unused))) {
 	pid_t pid;
 	do {
 		int status;
@@ -110,7 +110,7 @@ void startChild2() {
 	}
 }
 
-void sigAlrmHandler(int gotsig) {
+void sigAlrmHandler(int sig __attribute__((unused))) {
 	if(gotusr1==0) {
 		printf("Signal form child 1 ID %d lost. Restarting\n", child1pid);
 		CHECK_NOT_M1(kill(child1pid, SIGKILL));

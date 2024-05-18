@@ -41,7 +41,7 @@ int fd;
 // timeout for threads going to sleep
 const int timeout=10000;
 
-void *wait_function(void *p) {
+void* wait_function(void*) {
 	fprintf(stderr, "wait thread started\n");
 	ticks_t t1=getticks();
 	// wait thread going to sleep

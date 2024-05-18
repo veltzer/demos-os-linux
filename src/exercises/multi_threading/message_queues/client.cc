@@ -61,7 +61,7 @@ void doChild(int msqid, long myID) {
 	}
 }
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	long myID;
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s MirsID\n", argv[0], argv[0]);

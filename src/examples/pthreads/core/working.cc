@@ -32,7 +32,7 @@
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
-void *worker(void *p __attribute__((unused))) {
+void* worker(void* p __attribute__((unused))) {
 	// int num=*(int *)p;
 	// TRACE("starting thread %d", num);
 	// pthread_t t=pthread_self();
