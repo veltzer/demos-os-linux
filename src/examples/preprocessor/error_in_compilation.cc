@@ -24,7 +24,7 @@
  */
 
 // disabled this line so that this example will compile...
-//#error "You shall not pass"
+// #error "You shall not pass"
 
 int main() {
 	return EXIT_SUCCESS;

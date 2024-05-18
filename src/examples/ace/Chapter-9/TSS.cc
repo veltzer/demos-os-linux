@@ -39,7 +39,7 @@ void ClientContext::set_attribute(const char* name, void* value) {
 	attributeMap_.bind(name, value);
 }
 
-class HA_CommandHandler:public ACE_Task<ACE_MT_SYNCH> {
+class HA_CommandHandler: public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int svc(void) {
 		ACE_thread_t tid=this->thr_mgr()->thr_self();

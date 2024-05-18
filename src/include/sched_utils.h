@@ -36,7 +36,7 @@
 /*
  * Print the scheduling info for the current thread or process
  */
-typedef struct _sched_val_and_name {
+typedef struct _sched_val_and_name{
 	int val;
 	const char* name;
 } sched_val_and_name;

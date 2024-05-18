@@ -38,9 +38,9 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class ClientAcceptor:public ACE_Event_Handler {
+class ClientAcceptor: public ACE_Event_Handler {
 public:
-	virtual ~ClientAcceptor() {
+	virtual~ClientAcceptor() {
 		// this->handle_close(ACE_INVALID_HANDLE, 0);
 	}
 
@@ -52,7 +52,7 @@ public:
 	}
 
 	// Get this handler's I/O handle.
-	virtual ACE_HANDLE get_handle(void) const {
+	virtual ACE_HANDLE get_handle(void) const{
 		return this->acceptor_.get_handle();
 	}
 
@@ -73,7 +73,7 @@ protected:
 	ACE_SOCK_Acceptor acceptor_;
 };
 
-class LoopStopper:public ACE_Event_Handler {
+class LoopStopper: public ACE_Event_Handler {
 public:
 	LoopStopper(int signum) {
 		ACE_Reactor::instance()->register_handler(signum, this);

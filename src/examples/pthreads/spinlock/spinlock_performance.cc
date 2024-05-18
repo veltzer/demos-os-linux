@@ -41,7 +41,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef struct _threaddata {
+typedef struct _threaddata{
 	unsigned int mutex;
 	unsigned int attempts;
 	unsigned int sleep_in;

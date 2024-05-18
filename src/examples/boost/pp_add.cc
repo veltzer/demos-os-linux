@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <boost/preprocessor/arithmetic/add.hpp>	// for BOOST_PP_ADD
+#include <boost/preprocessor/arithmetic/add.hpp>// for BOOST_PP_ADD
 
 /*
  * This example shows how to use the boost preprocessor library to add

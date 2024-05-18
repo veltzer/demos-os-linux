@@ -39,7 +39,7 @@ typedef enum {
 	TYPE_NOTSET,
 } test_type;
 
-//static int clock_type=CLOCK_PROCESS_CPUTIME_ID;
+// static int clock_type=CLOCK_PROCESS_CPUTIME_ID;
 static int clock_type=CLOCK_REALTIME;
 
 static test_type current_test_type=TYPE_NOTSET;
@@ -56,8 +56,8 @@ int main(int argc, char** argv) {
 	const size_t size_to_alloc=(size_t)atoi(argv[2]);
 	printf("size_to_alloc is %lu\n", size_to_alloc);
 	const unsigned int number_of_pages_to_touch=100;
-	//memset(buf, 1, size_to_alloc);
-	//madvise(buf, size_to_alloc, MADV_RANDOM);
+	// memset(buf, 1, size_to_alloc);
+	// madvise(buf, size_to_alloc, MADV_RANDOM);
 	printf("before\n");
 	getrusage_show_vmem();
 	struct timespec start;
@@ -68,43 +68,42 @@ int main(int argc, char** argv) {
 	size_t size;
 	unsigned long sum;
 	switch(current_test_type) {
-		case TYPE_MEMSET:
-			buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
-			memset(buf, 0, size_to_alloc);
-			/*
-			sum=0;
-			for(unsigned long i=0;i<100000000;i++) {
-				sum+=i*i;
-			}
-			printf("sum is %lu\n", sum);
-			*/
-			break;
-		case TYPE_MEMSET1:
-			buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
-			memset(buf, 1, size_to_alloc);
-			break;
-		case TYPE_TOUCH:
-			buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
-			vbuf=buf;
-			size=size_to_alloc/4096;
-			sum=0;
-			while(size>0) {
-				*vbuf=0;
-				vbuf+=4096;
-				size--;
-			}
-			printf("sum is %lu\n", sum);
-			break;
-		case TYPE_MLOCKALL:
-			buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
-			CHECK_NOT_M1(mlockall(MCL_CURRENT|MCL_FUTURE));
-			break;
-		case TYPE_NOTSET:
-			fprintf(stderr, "Uh uh!\n");
-			exit(EXIT_FAILURE);
-			break;
+	case TYPE_MEMSET:
+		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		memset(buf, 0, size_to_alloc);
+		/*
+		 * sum=0;
+		 * for(unsigned long i=0;i<100000000;i++) {
+		 *      sum+=i*i;
+		 * }
+		 * printf("sum is %lu\n", sum);
+		 */
+		break;
+	case TYPE_MEMSET1:
+		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		memset(buf, 1, size_to_alloc);
+		break;
+	case TYPE_TOUCH:
+		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		vbuf=buf;
+		size=size_to_alloc/4096;
+		sum=0;
+		while(size>0) {
+			*vbuf=0;
+			vbuf+=4096;
+			size--;
+		}
+		printf("sum is %lu\n", sum);
+		break;
+	case TYPE_MLOCKALL:
+		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		CHECK_NOT_M1(mlockall(MCL_CURRENT|MCL_FUTURE));
+		break;
+	case TYPE_NOTSET:
+		fprintf(stderr, "Uh uh!\n");
+		exit(EXIT_FAILURE);
+		break;
 	}
-
 	struct timespec end;
 	CHECK_NOT_M1(clock_gettime(clock_type, &end));
 	printf("after\n");
@@ -120,7 +119,7 @@ int main(int argc, char** argv) {
 	while(true) {
 		// touch some memory
 		unsigned int pages_to_touch=min(pages, number_of_pages_to_touch);
-		for(unsigned int i=0;i<pages_to_touch;i++) {
+		for(unsigned int i=0; i<pages_to_touch; i++) {
 			*buf=0;
 			buf+=4096;
 		}

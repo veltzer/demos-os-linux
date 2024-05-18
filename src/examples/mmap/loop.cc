@@ -25,9 +25,9 @@
 #include <unistd.h>	// for getpid(2)
 
 /*
-This example shows the pmap(1) or /proc/[pid]/maps file changes
-as you mmap more anonymous stuff
-*/
+ * This example shows the pmap(1) or /proc/[pid]/maps file changes
+ * as you mmap more anonymous stuff
+ */
 
 int main() {
 	int size=getpagesize();
@@ -40,8 +40,8 @@ int main() {
 			MAP_ANONYMOUS|MAP_PRIVATE,
 			-1,
 			0
-		), MAP_FAILED);
-		//my_system("cat /proc/%d/maps", mypid);
+			), MAP_FAILED);
+		// my_system("cat /proc/%d/maps", mypid);
 		my_system("pmap %d", mypid);
 		sleep(1);
 		size*=2;

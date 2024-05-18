@@ -39,7 +39,7 @@
  * then the pages are there.
  */
 
-enum Method {
+enum Method{
 	METHOD_POSIX_MEMALIGN,
 	METHOD_MALLOC,
 	METHOD_MMAP

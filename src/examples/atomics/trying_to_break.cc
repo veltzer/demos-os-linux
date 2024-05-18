@@ -50,7 +50,7 @@
  */
 
 // data to be passed to each thread...
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int num;
 	int attempts;
 	int* value;
@@ -83,7 +83,7 @@ static void* compiler_barrier_worker(void* p) {
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		*(td->value)+=1;
-		asm volatile ("" ::: "memory");
+		asm volatile("" ::: "memory");
 	}
 	TRACE("end thread %d", td->num);
 	return NULL;
@@ -102,7 +102,7 @@ static void* regular_worker(void* p) {
 	// maybe the computer is not good enough for this and instead we get:
 	// AX=*(td->value)
 	// for(int i=0; i<td->attempts; i++) {
-	//	inc AX
+	// inc AX
 	// }
 	// write AX, td->value
 	TRACE("end thread %d", td->num);

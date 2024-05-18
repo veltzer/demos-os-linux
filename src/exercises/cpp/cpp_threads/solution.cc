@@ -36,7 +36,7 @@ void* MyThread::realsvc(void* arg) {
 	return NULL;
 }
 
-MyThread::MyThread():myid(-1) {
+MyThread::MyThread() : myid(-1) {
 }
 
 MyThread::~MyThread() {
@@ -50,14 +50,14 @@ void MyThread::join() {
 	CHECK_ZERO_ERRNO(pthread_join(myid, NULL));
 }
 
-class ImpThread:public MyThread {
+class ImpThread: public MyThread {
 private:
 	int limit;
 	int sleep_time;
 	MyMutex& m;
 
 public:
-	ImpThread(int ilimit, int isleep_time, MyMutex& mm):limit(ilimit), sleep_time(isleep_time), m(mm) {
+	ImpThread(int ilimit, int isleep_time, MyMutex& mm) : limit(ilimit), sleep_time(isleep_time), m(mm) {
 	}
 
 protected:

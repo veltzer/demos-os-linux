@@ -33,13 +33,13 @@
 #define TRACE(fmt, args ...) do { printf(fmt, ## args); } while(0)
 #else
 #define TRACE(fmt, args ...) do { } while(0)
-#endif // DEBUG
+#endif	// DEBUG
 
 #define INFO(...) fprintf(stderr, __VA_ARGS__)
 // this cannot be called without extra arguments
 #define WARNING(fmt, ...) fprintf(stderr, fmt, __VA_ARGS__)
 // this can!
-#define ERROR(fmt, ...) fprintf(stderr, fmt, ##__VA_ARGS__)
+#define ERROR(fmt, ...) fprintf(stderr, fmt, ## __VA_ARGS__)
 
 int main() {
 	TRACE("TRACE: without args\n");
@@ -47,7 +47,7 @@ int main() {
 	INFO("INFO: without args\n");
 	INFO("INFO: with args (%d)\n", 17);
 	// the next line does not compile
-	//WARNING("WARNING: without args\n");
+	// WARNING("WARNING: without args\n");
 	WARNING("WARNING: with args (%d)\n", 17);
 	ERROR("ERROR: without args\n");
 	ERROR("ERROR: with args (%d)\n", 17);

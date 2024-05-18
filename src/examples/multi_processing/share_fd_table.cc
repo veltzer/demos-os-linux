@@ -53,20 +53,20 @@ int main() {
 	pid_t child_pid=CHECK_NOT_M1(fork());
 	int fd=CHECK_NOT_M1(open("/etc/passwd", O_RDONLY));
 	char buf[2];
-	CHECK_NOT_M1(read(fd,&buf,2));
+	CHECK_NOT_M1(read(fd, &buf, 2));
 	const int count=10;
 	if(child_pid) {
 		// the parent
-		for(int i=0;i<count;i++) {
+		for(int i=0; i<count; i++) {
 			char c;
-			CHECK_NOT_M1(read(fd,&c,1));
+			CHECK_NOT_M1(read(fd, &c, 1));
 			off_t position = lseek(fd, 0, SEEK_CUR);
 			printf("parent position %ld\n", position);
 			sleep(1);
 		}
 	} else {
 		// the child
-		for(int i=0;i<count;i++) {
+		for(int i=0; i<count; i++) {
 			off_t position = lseek(fd, 0, SEEK_CUR);
 			printf("child position %ld\n", position);
 			sleep(1);

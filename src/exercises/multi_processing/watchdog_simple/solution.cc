@@ -17,7 +17,7 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h> // for printf(3), fprintf(3), stderr
+#include <stdio.h>	// for printf(3), fprintf(3), stderr
 #include <stdlib.h>	// for EXIT_SUCCESS, exit(3)
 #include <unistd.h>	// for fork(2)
 #include <sys/wait.h>

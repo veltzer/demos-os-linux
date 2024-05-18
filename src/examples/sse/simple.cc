@@ -32,7 +32,7 @@
 
 typedef float v4sf __attribute__((vector_size(16)));
 
-typedef union f4vector {
+typedef union f4vector{
 	v4sf v;
 	float f[4];
 } f4vector;

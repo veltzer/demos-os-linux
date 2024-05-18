@@ -35,7 +35,7 @@ void print_builtins() __attribute__((flatten));
 // void print_builtins() __attribute__((artificial));
 
 #define PRINT_BUILTINS() \
-	printf("__BASE_FILE__ is %s\n", __BASE_FILE__);	\
+	printf("__BASE_FILE__ is %s\n", __BASE_FILE__); \
 	printf("__FILE__ is %s\n", __FILE__); \
 	printf("__LINE__ is %d\n", __LINE__); \
 	printf("__func__ is %s\n", __func__); \

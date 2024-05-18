@@ -40,12 +40,12 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class MyThread:public ACE_Task_Base {
+class MyThread: public ACE_Task_Base {
 private:
 	int val;
 
 public:
-	MyThread(int ival):val(ival) {
+	MyThread(int ival) : val(ival) {
 	}
 	int getVal() {
 		return val;

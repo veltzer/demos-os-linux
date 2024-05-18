@@ -31,7 +31,7 @@
 #include <sys/time.h>	// for gettimeofday(2), struct timeval
 #include <timeval_utils.h>	// for micro_diff()
 
-typedef struct _measure {
+typedef struct _measure{
 	struct timeval t1;
 	struct timeval t2;
 	int attempts;

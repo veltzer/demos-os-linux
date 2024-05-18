@@ -20,7 +20,7 @@
 
 /*
  * A function doing nothing.
-*/
+ */
 
 void something() {
 }

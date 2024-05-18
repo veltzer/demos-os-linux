@@ -28,23 +28,22 @@
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ZERO_ERRNO(), CHECK_NOT_NULL()
 #include <network_utils.h>	// for get_backlog(), print_servent()
 #define DO_DEBUG
-#include <trace_utils.h>	// for DEBUG()
+#include <trace_utils.h>// for DEBUG()
 
 /*
  * This is the most minimal web server you can write using the C language.
  */
 
-
 const char* my_response=
-"HTTP/1.1 200 OK\n"
-"Content-Type: text/html\n"
-"Connection: Closed\n"
-"\n"
-"<html>\n"
-"<body>\n"
-"<h1>Hello, World!</h1>\n"
-"</body>\n"
-"</html>\n";
+	"HTTP/1.1 200 OK\n"
+	"Content-Type: text/html\n"
+	"Connection: Closed\n"
+	"\n"
+	"<html>\n"
+	"<body>\n"
+	"<h1>Hello, World!</h1>\n"
+	"</body>\n"
+	"</html>\n";
 
 int main() {
 	// ssize_t datalen;
@@ -92,7 +91,7 @@ int main() {
 		int fd=CHECK_NOT_M1(accept(sockfd, (struct sockaddr *)&client, &addrlen));
 		DEBUG("accepted fd %d", fd);
 		// send a reply on the file descriptor
-		CHECK_NOT_M1(write(fd,my_response, strlen(my_response)));
+		CHECK_NOT_M1(write(fd, my_response, strlen(my_response)));
 		CHECK_NOT_M1(close(fd));
 		sleep(10);
 	}

@@ -29,7 +29,7 @@
 
 // stolen shamelssly from the gnu C library...
 #ifndef atomic_full_barrier
-# define atomic_full_barrier() asm volatile ("" ::: "memory")
+# define atomic_full_barrier() asm volatile("" ::: "memory")
 #endif
 
 #endif	/* !__atomic_utils_h */

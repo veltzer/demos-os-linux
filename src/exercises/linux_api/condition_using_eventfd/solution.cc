@@ -32,7 +32,7 @@
  */
 
 // this is the spin lock implementation (pthread "like")
-typedef struct _mypthread_rwlock_t {
+typedef struct _mypthread_rwlock_t{
 	mypthread_cond_t mycond_readers;
 	mypthread_cond_t mycond_writers;
 	pthread_mutex_t mymutex;
@@ -116,7 +116,7 @@ int mypthread_rwlock_unlock(mypthread_rwlock_t* lock) {
 
 // testing starts here...
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	unsigned int num;
 	mypthread_rwlock_t* lock;
 	unsigned int max_sleep;

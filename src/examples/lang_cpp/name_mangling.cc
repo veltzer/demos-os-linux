@@ -25,7 +25,7 @@
 #include <iostream>	// for std::cout, std::endl
 #include <multiproc_utils.h>	// for my_system()
 
-class A {
+class A{
 public:
 	void doit();
 };

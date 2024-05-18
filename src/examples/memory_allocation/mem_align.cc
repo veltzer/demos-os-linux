@@ -85,13 +85,13 @@ void* mmap_alloc(unsigned int size) {
 	flags|=MAP_PRIVATE;
 	// flags|=MAP_SHARED;
 	void* res=CHECK_NOT_VOIDP(mmap(
-			NULL,	/* dont recommend address */
-			size,	/* the size we need */
-			PROT_READ | PROT_WRITE,	/* we want read AND write */
-			flags,
-			-1,	/* we do not have a device or fd to allocate from */
-			0	/* we dont need an offset as we don't have a file and are doing anon */
-			), MAP_FAILED);
+		NULL,	/* dont recommend address */
+		size,	/* the size we need */
+		PROT_READ | PROT_WRITE,	/* we want read AND write */
+		flags,
+		-1,	/* we do not have a device or fd to allocate from */
+		0	/* we dont need an offset as we don't have a file and are doing anon */
+		), MAP_FAILED);
 	return res;
 }
 

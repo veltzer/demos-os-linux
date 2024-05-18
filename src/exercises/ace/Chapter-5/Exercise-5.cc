@@ -33,7 +33,7 @@
  * There are other handle_* events that you can implement...
  */
 
-class Net_Handler:public ACE_Event_Handler {
+class Net_Handler: public ACE_Event_Handler {
 protected:
 	ACE_SOCK_Stream stream;
 
@@ -44,7 +44,7 @@ public:
 	virtual ACE_HANDLE get_handle(void) const;
 };
 
-Net_Handler::Net_Handler(ACE_SOCK_Stream& s):stream(s) {
+Net_Handler::Net_Handler(ACE_SOCK_Stream& s) : stream(s) {
 	// set the reactor that we are connected to
 	this->reactor(ACE_Reactor::instance());
 	// register outselves as handlers for that reactor
@@ -53,7 +53,7 @@ Net_Handler::Net_Handler(ACE_SOCK_Stream& s):stream(s) {
 	ACE_UNUSED_ARG(result);
 }
 
-ACE_HANDLE Net_Handler::get_handle(void) const {
+ACE_HANDLE Net_Handler::get_handle(void) const{
 	return this->stream.get_handle();
 }
 
@@ -106,7 +106,7 @@ int Net_Handler::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 	return 0;
 }
 
-class Net_Listener:public ACE_Event_Handler {
+class Net_Listener: public ACE_Event_Handler {
 protected:
 	ACE_SOCK_Acceptor acceptor;
 
@@ -133,7 +133,7 @@ Net_Listener::Net_Listener(int local_address) {
 Net_Listener::~Net_Listener(void) {
 }
 
-ACE_HANDLE Net_Listener::get_handle(void) const {
+ACE_HANDLE Net_Listener::get_handle(void) const{
 	return this->acceptor.get_handle();
 }
 

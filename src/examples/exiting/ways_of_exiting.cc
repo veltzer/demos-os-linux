@@ -45,7 +45,7 @@
  * the program...
  */
 
-class A {
+class A{
 private:
 	int val;
 

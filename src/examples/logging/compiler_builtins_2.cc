@@ -33,7 +33,7 @@
  */
 
 // log levels, ideas copied shamelessly from syslog(3)
-typedef enum _tracelevel {
+typedef enum _tracelevel{
 	LEVEL_DEBUG,
 	LEVEL_INFO,
 	LEVEL_NOTICE,
@@ -65,7 +65,7 @@ inline void my_trace(tracelevel level, const char* file, const char* base_file, 
 // this is a pre-processor varargs type of tracer...
 #define MY_TRACE(level, fmt, args ...) my_trace(level, __FILE__, __BASE_FILE__, __LINE__, __func__, __FUNCTION__, __PRETTY_FUNCTION__, fmt, ## args)
 
-class A {
+class A{
 public:
 	void thisMethod(int a, int b) {
 		MY_TRACE(LEVEL_DEBUG, "did you know that %d+%d=%d?\n", a, b, a+b);

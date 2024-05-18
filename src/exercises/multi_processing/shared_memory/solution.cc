@@ -28,7 +28,7 @@
 const int MAXCLIENTS=10;
 const int CLIENTMESSAGESIZE=4096;
 
-struct data {
+struct data{
 	int readOffset;
 	int writeOffset;
 	char message[CLIENTMESSAGESIZE];

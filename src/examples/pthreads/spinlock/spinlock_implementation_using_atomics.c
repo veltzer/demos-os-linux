@@ -35,7 +35,7 @@
  */
 
 // this is the spin lock implementation (pthread "like")
-typedef struct _mypthread_spinlock_t {
+typedef struct _mypthread_spinlock_t{
 	int val;
 } mypthread_spinlock_t;
 
@@ -61,7 +61,7 @@ int mypthread_spin_lock(mypthread_spinlock_t* lock) {
 }
 int mypthread_spin_unlock(mypthread_spinlock_t* lock) {
 	// Think: why is this needed?
-	//atomic_full_barrier();
+	// atomic_full_barrier();
 	__sync_synchronize();
 	// no need for atomic ops here since we are sure we have the lock
 	// and there is no competition with any other core

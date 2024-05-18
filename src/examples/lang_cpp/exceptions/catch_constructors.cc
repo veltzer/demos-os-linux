@@ -32,7 +32,7 @@
  * http://stackoverflow.com/questions/160147/catching-exceptions-from-a-constructors-initializer-list
  */
 
-class B {
+class B{
 public:
 	B() {
 		std::cerr << "In B constructor" << std::endl;
@@ -40,12 +40,12 @@ public:
 	}
 };
 
-class A {
+class A{
 private:
 	B b;
 
 public:
-	A() try:b() {
+	A() try: b() {
 		std::cerr << "In A constructor - you won't see this..." << std::endl;
 	} catch (int e) {
 		std::cerr << "got the exception in A constructor" << std::endl;

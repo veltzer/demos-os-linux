@@ -33,7 +33,7 @@
  * EXTRA_COMPILE_FLAGS=-std=c++0x
  */
 
-typedef struct _s1 {
+typedef struct _s1{
 	char c1;
 	int i1;
 	char c2;

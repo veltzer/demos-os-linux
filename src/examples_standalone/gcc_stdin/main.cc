@@ -17,7 +17,7 @@
  */
 
 // note this file has no include for <stdio.h>
-#include <stdlib.h> // for EXIT_SUCCESS
+#include <stdlib.h>	// for EXIT_SUCCESS
 
 int main() {
 	printf("Hello, World!\n");

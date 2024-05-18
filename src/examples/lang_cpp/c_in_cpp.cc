@@ -44,7 +44,7 @@
  * TODO:
  * - Move to checking this using #ifdef cplusplus and #error.
  */
-class A {
+class A{
 public:
 	int a;
 };

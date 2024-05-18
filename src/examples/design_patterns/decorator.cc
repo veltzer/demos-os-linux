@@ -24,20 +24,20 @@
  * This example shows the decorator pattern implemented in C++.
  */
 
-class Base {
+class Base{
 public:
 	virtual void act(void) {
 		std::cout << "in Base" << std::endl;
 	}
-	virtual ~Base(void) {
+	virtual~Base(void) {
 	}
 };
-class Derived1:public Base {
+class Derived1: public Base {
 private:
 	Base& base;
 
 public:
-	Derived1(Base& ibase):base(ibase) {
+	Derived1(Base& ibase) : base(ibase) {
 	}
 	virtual void act(void) {
 		base.act();
@@ -45,12 +45,12 @@ public:
 	}
 };
 
-class Derived2:public Base {
+class Derived2: public Base {
 private:
 	Base& base;
 
 public:
-	Derived2(Base& ibase):base(ibase) {
+	Derived2(Base& ibase) : base(ibase) {
 	}
 	virtual void act(void) {
 		base.act();
@@ -58,12 +58,12 @@ public:
 	}
 };
 
-class Derived3:public Base {
+class Derived3: public Base {
 private:
 	Base& base;
 
 public:
-	Derived3(Base& ibase):base(ibase) {
+	Derived3(Base& ibase) : base(ibase) {
 	}
 	virtual void act(void) {
 		base.act();

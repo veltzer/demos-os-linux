@@ -31,12 +31,12 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class TimerHandler:public ACE_Event_Handler {
+class TimerHandler: public ACE_Event_Handler {
 private:
 	int myid;
 
 public:
-	TimerHandler(int imyid):myid(imyid) {
+	TimerHandler(int imyid) : myid(imyid) {
 	}
 	int handle_timeout(const ACE_Time_Value& current_time __attribute__((unused)), const void* arg) {
 		printf("%d in here %p\n", myid, arg);

@@ -31,17 +31,17 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class TemperatureSensor {
+class TemperatureSensor{
 public:
-	TemperatureSensor(const char *location):location_(location), count_(0), temperature_(0.0) {
+	TemperatureSensor(const char *location) : location_(location), count_(0), temperature_(0.0) {
 	}
-	const char *location() const {
+	const char *location() const{
 		return this->location_;
 	}
 	int querySensor(void) {
 		return ++this->count_;
 	}
-	float temperature(void) const {
+	float temperature(void) const{
 		return this->temperature_;
 	}
 
@@ -51,9 +51,9 @@ private:
 	float temperature_;
 };
 
-class TemperatureQueryHandler:public ACE_Event_Handler {
+class TemperatureQueryHandler: public ACE_Event_Handler {
 public:
-	TemperatureQueryHandler():ACE_Event_Handler(), counter_(0), averageTemperature_(0.0) {
+	TemperatureQueryHandler() : ACE_Event_Handler(), counter_(0), averageTemperature_(0.0) {
 	}
 	int handle_timeout(const ACE_Time_Value& current_time, const void* arg) {
 		time_t epoch=((timespec_t)current_time).tv_sec;
@@ -74,7 +74,7 @@ private:
 
 // Create a SIGINT handler so that we can exit
 // the program politely
-class SigintHandler:public ACE_Event_Handler {
+class SigintHandler: public ACE_Event_Handler {
 public:
 	int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		if(signum==SIGINT) {

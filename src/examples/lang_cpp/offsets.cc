@@ -39,42 +39,42 @@
  * method in the parent works when there is multiple inheritance involved...
  */
 
-class NameEmpty {
+class NameEmpty{
 };
-class NameOnechar {
+class NameOnechar{
 	char c;
 };
-class NameTwochar {
+class NameTwochar{
 	char c;
 	char c2;
 };
-class NameOnevirt {
-	virtual void doit(void)=0;
+class NameOnevirt{
+	virtual void doit(void) = 0;
 };
-class NameTwovirt {
-	virtual void doother(void)=0;
-	virtual void dothat(void)=0;
+class NameTwovirt{
+	virtual void doother(void) = 0;
+	virtual void dothat(void) = 0;
 };
-class NameSimpleInherit:public NameOnevirt {
+class NameSimpleInherit: public NameOnevirt {
 };
-class NameSimpleInherit2:public NameTwovirt {
+class NameSimpleInherit2: public NameTwovirt {
 };
-class NameMultInherit:public NameOnevirt, public NameTwovirt {
+class NameMultInherit: public NameOnevirt, public NameTwovirt {
 };
-class NameOneVirtOneField {
+class NameOneVirtOneField{
 public:
-	virtual void doit(void)=0;
+	virtual void doit(void) = 0;
 
 	int x;
 };
-class NameOneVirtTwoField {
+class NameOneVirtTwoField{
 public:
-	virtual void doother(void)=0;
+	virtual void doother(void) = 0;
 
 	int m;
 	int y;
 };
-class NameFMultInherit:public NameOneVirtOneField, public NameOneVirtTwoField {
+class NameFMultInherit: public NameOneVirtOneField, public NameOneVirtTwoField {
 public:
 	int z;
 };

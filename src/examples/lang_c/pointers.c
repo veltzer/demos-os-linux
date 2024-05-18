@@ -28,7 +28,7 @@
 void func(char **p __attribute__((unused))) {
 }
 
-typedef struct _Foobar {
+typedef struct _Foobar{
 	int i;
 	int j;
 } Foobar;

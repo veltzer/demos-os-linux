@@ -44,7 +44,6 @@ int main(int argc, char** argv) {
 	char state[state_len];
 	struct random_data data;
 	CHECK_NOT_M1(initstate_r(gettid(), state, state_len, &data));
-
 	for(unsigned int i=0; i<num; i++) {
 		int32_t result;
 		CHECK_NOT_M1(random_r(&data, &result));

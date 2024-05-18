@@ -137,10 +137,10 @@ static inline void proc_print_mmap_self_only() {
 static inline void proc_print_mem_stats(pid_t pid __attribute__((unused))) {
 	/*
 	 * TODO
-	proc_t myproc;
-	get_proc_stats(pid, &myproc);
-	printf("size is %ld, min_flt is %ld, state is %c\n", myproc.rss, myproc.min_flt, myproc.state);
-	*/
+	 * proc_t myproc;
+	 * get_proc_stats(pid, &myproc);
+	 * printf("size is %ld, min_flt is %ld, state is %c\n", myproc.rss, myproc.min_flt, myproc.state);
+	 */
 }
 
 /*

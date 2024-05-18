@@ -20,8 +20,8 @@
 #define __lowlevel_utils_h
 
 #include <firstinclude.h>
-#include <unistd.h> // for getpagesize(2)
-#include <err_utils.h> // for CHECK_ASSERT()
+#include <unistd.h>	// for getpagesize(2)
+#include <err_utils.h>	// for CHECK_ASSERT()
 #include <cpufreq.h>	// for cpufreq_get_freq_kernel(2)
 #include <stdint.h>	// for uint32_t, uint64_t
 
@@ -116,7 +116,7 @@ static inline unsigned long getstackadr() {
 	return 0;
 #else
 	unsigned long val;
-	asm ("movl %%esp, %0":"=r" (val));
+	asm ("movl %%esp, %0" : "=r" (val));
 	return val;
 #endif
 }
@@ -137,7 +137,7 @@ static inline unsigned long getframepointer() {
 	return 0;
 #else
 	unsigned long val;
-	asm ("movl %%ebp, %0":"=r" (val));
+	asm ("movl %%ebp, %0" : "=r" (val));
 	return val;
 #endif
 }
@@ -151,14 +151,14 @@ static inline unsigned long getframepointer() {
  */
 
 typedef unsigned long ticks_t;
-typedef union __timestamp {
+typedef union __timestamp{
 	struct {
 #if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 		uint32_t high;
 		uint32_t low;
 #elif __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-	uint32_t low;
-	uint32_t high;
+		uint32_t low;
+		uint32_t high;
 #else
 #error "Undetermined endian!"
 #endif
@@ -177,16 +177,16 @@ static inline ticks_t getticks(void) {
 	// OLD CODE:
 	// asm volatile ("rdtscp":"=a" (a), "=d" (d));
 	// return ((ticks_t)a) | (((ticks_t)d) << 32);
-	asm volatile ("rdtsc":"=a" (t.sval.low), "=d" (t.sval.high));
-	//asm volatile ("rdtscp":"=a" (t.sval.low), "=d" (t.sval.high));
+	asm volatile("rdtsc" : "=a" (t.sval.low), "=d" (t.sval.high));
+	// asm volatile ("rdtscp":"=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;
 #elif __IA64__
 	// https://software.intel.com/en-us/forums/watercooler-catchall/topic/301741
 	#error you are here
 	unsigned long result=0;
-	//asm volatile ("mov %r12,ar.itc");
-	asm volatile ("mov %0=ar.itc":"=r" (result));
-	//asm volatile ("mov ar.itc, %r12");
+	// asm volatile ("mov %r12,ar.itc");
+	asm volatile("mov %0=ar.itc" : "=r" (result));
+	// asm volatile ("mov ar.itc, %r12");
 	return result;
 #else
 #error "This platform is not supported"
@@ -225,16 +225,16 @@ static inline unsigned int get_mic_diff(ticks_t t1, ticks_t t2) {
  */
 static inline ticks_t getrdtsc() {
 	timestamp t;
-	asm volatile ("rdtsc":"=a" (t.sval.low), "=d" (t.sval.high));
+	asm volatile("rdtsc" : "=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;
 }
 static inline ticks_t getrdtscp() {
 	timestamp t;
-	asm volatile ("rdtscp":"=a" (t.sval.low), "=d" (t.sval.high));
+	asm volatile("rdtscp" : "=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;
 }
 
-#define fullmb() asm volatile ("":::"memory")
-#define mb(x) asm volatile ("":"=m"(x):"m"(x))
+#define fullmb() asm volatile("" ::: "memory")
+#define mb(x) asm volatile("" : "=m" (x) : "m" (x))
 
 #endif	/* !__lowlevel_utils_h */

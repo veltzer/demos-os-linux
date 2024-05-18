@@ -24,13 +24,13 @@
 #include <iostream>
 #include <stdlib.h>
 
-class MyClass {
+class MyClass{
 private:
 	int x;
 	int y;
 
 public:
-	void print() const {
+	void print() const{
 		std::cout << x << " " << y << std::endl;
 	}
 	// Constructor emulation
@@ -40,7 +40,6 @@ public:
 		obj->y = 0;
 		return obj;
 	}
-
 };
 
 int main() {

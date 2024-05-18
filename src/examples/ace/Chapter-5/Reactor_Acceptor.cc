@@ -31,10 +31,10 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class ClientAcceptor:public ACE_Event_Handler {
+class ClientAcceptor: public ACE_Event_Handler {
 public:
 	int open(const ACE_INET_Addr& listen_addr);
-	virtual ~ClientAcceptor();
+	virtual~ClientAcceptor();
 
 	virtual ACE_HANDLE get_handle(void) const;
 
@@ -60,14 +60,14 @@ ClientAcceptor::~ClientAcceptor() {
 // this is the 'magic' method, it is the way by which the reactor
 // is "connected" to the socket that the acceptor gets from the operating
 // system when calling 'socket(2)'...
-ACE_HANDLE ClientAcceptor::get_handle(void) const {
+ACE_HANDLE ClientAcceptor::get_handle(void) const{
 	return this->m_acceptor.get_handle();
 }
 int ClientAcceptor::handle_input(ACE_HANDLE) {
 	ACE_DEBUG((LM_DEBUG, "(%t) handle_input\n"));
 	ACE_SOCK_Stream peer;
 	if(this->m_acceptor.accept(peer)==-1) {
-		ACE_ERROR_RETURN((LM_ERROR, "%p\n","Failed to accept client connection"), -1);
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Failed to accept client connection"), -1);
 	}
 	peer.close();
 	return 0;

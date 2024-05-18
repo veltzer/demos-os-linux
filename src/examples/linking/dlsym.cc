@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-ldl
  */
 
-int (*p_atoi)(const char* nptr);
+int(*p_atoi)(const char* nptr);
 
 void setup() __attribute__((constructor));
 void setup() {

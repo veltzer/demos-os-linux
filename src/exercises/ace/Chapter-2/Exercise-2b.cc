@@ -48,7 +48,7 @@ ACE_Reactor reactor;	// Reactor
 
 static int done=0;	// Termination state of both consumers
 
-class MyTime_Handler:public ACE_Event_Handler {
+class MyTime_Handler: public ACE_Event_Handler {
 public:
 	// Method which is called back by the Reactor when timeout occurs.
 	virtual int handle_timeout(const ACE_Time_Value& tv __attribute__((unused)), const void *arg) {

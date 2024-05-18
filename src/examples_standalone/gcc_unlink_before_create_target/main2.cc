@@ -16,8 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h> // for EXIT_SUCCESS
-#include <stdio.h> // for printf(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <stdio.h>	// for printf(3)
 
 int main() {
 	printf("Goodbye!\n");

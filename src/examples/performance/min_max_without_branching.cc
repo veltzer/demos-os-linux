@@ -35,42 +35,41 @@
 // Using functions
 
 /*
-int min_a(int a, int b) {
-	return (a < b ? a:b);
-}
-int max_a(int a, int b) {
-	return (a > b ? a:b);
-}
-int min_b(int a, int b) {
-	return b + ((a-b) & (a-b)>>31);
-}
-int max_b(int a, int b) {
-	return b + ((a-b) & (a-b)>>31);
-}
-*/
+ * int min_a(int a, int b) {
+ *      return (a < b ? a:b);
+ * }
+ * int max_a(int a, int b) {
+ *      return (a > b ? a:b);
+ * }
+ * int min_b(int a, int b) {
+ *      return b + ((a-b) & (a-b)>>31);
+ * }
+ * int max_b(int a, int b) {
+ *      return b + ((a-b) & (a-b)>>31);
+ * }
+ */
 
 // Using macro
 
-#define min_a(a,b) ((a) < (b) ? (a):(b))
-#define max_a(a,b) ((a) > (b) ? (a):(b))
-#define min_b(a,b) ((b) + (((a)-(b)) & ((a)-(b))>>31))
-#define max_b(a,b) ((a) - (((a)-(b)) & ((a)-(b))>>31))
-
+#define min_a(a, b) ((a) < (b) ? (a):(b))
+#define max_a(a, b) ((a) > (b) ? (a):(b))
+#define min_b(a, b) ((b) + (((a)-(b)) & ((a)-(b))>>31))
+#define max_b(a, b) ((a) - (((a)-(b)) & ((a)-(b))>>31))
 
 int main() {
 	clock_t start_a=clock();
 	long sum_a=0;
-	for(int i=0;i<10000;i++) {
-		for(int j=0;j<10000;j++) {
-			sum_a+=min_a(i,j);
+	for(int i=0; i<10000; i++) {
+		for(int j=0; j<10000; j++) {
+			sum_a+=min_a(i, j);
 		}
 	}
 	clock_t end_a=clock();
 	clock_t start_b=clock();
 	long sum_b=0;
-	for(int i=0;i<10000;i++) {
-		for(int j=0;j<10000;j++) {
-			sum_b+=min_b(i,j);
+	for(int i=0; i<10000; i++) {
+		for(int j=0; j<10000; j++) {
+			sum_b+=min_b(i, j);
 		}
 	}
 	clock_t end_b=clock();

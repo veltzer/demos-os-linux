@@ -19,8 +19,8 @@
 #include <firstinclude.h>
 
 /*
-This version is bad on purpose but it is weak.
-*/
+ * This version is bad on purpose but it is weak.
+ */
 
 int add(int a, int b) __attribute__((weak));
 

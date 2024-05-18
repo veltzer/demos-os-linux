@@ -25,10 +25,10 @@
  * Demo the typeid function of C++, with RTTI
  */
 
-class A {
+class A{
 };
 
-class B {
+class B{
 public:
 	virtual void doit() {
 		std::cout << "Hello, World!" << std::endl;

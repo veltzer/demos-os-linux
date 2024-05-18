@@ -41,7 +41,7 @@
 #define simple(m) do { printf(m "\n"); } while(0)
 #define wrong_macro(m) printf(m " part1\n"); printf(m " part2\n")
 #define right_macro(m) do { printf(m " part1\n"); printf(m " part2\n"); } while(0)
-#define break_macro(a,m) do { printf(m "\n"); if(a>4) break; printf(m "\n"); } while(0)
+#define break_macro(a, m) do { printf(m "\n"); if(a>4) break; printf(m "\n"); } while(0)
 #define if_based(m) if(1) { printf(m "\n"); } else {}
 #define wrong_if_based(m) if(1) { printf(m "\n"); }
 
@@ -52,7 +52,7 @@ int main() {
 	// this should not print anything and yet it does...
 	if(false)
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmultistatement-macros"
+			     #pragma GCC diagnostic ignored "-Wmultistatement-macros"
 		wrong_macro("this should be silent, but it is not");
 #pragma GCC diagnostic pop
 	if(false)
@@ -68,7 +68,7 @@ int main() {
 	#pragma GCC diagnostic ignored "-Wdangling-else"
 	if(false)
 		wrong_if_based("this should not print")
-	else
-		printf("this should print, but will not\n");
+		else
+			printf("this should print, but will not\n");
 	return EXIT_SUCCESS;
 }

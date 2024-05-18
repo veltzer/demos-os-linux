@@ -36,14 +36,14 @@ typedef ACE_Malloc_LIFO_Iterator<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex> MALLOC_LI
 #else
 #include <ace/PI_Malloc.h>
 typedef ACE_Malloc_T<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex, ACE_PI_Control_Block>
-ALLOCATOR;
+	ALLOCATOR;
 typedef ACE_Malloc_LIFO_Iterator_T<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex, ACE_PI_Control_Block>
-MALLOC_LIFO_ITERATOR;
+	MALLOC_LIFO_ITERATOR;
 #endif
 
 ALLOCATOR *g_allocator;
 #define BACKING_STORE "backing.store"	// Backing file where the data is kept.
-class Record {
+class Record{
 public:
 	Record(int id1, int id2, char *name)
 		: id1_(id1), id2_(id2), name_(0) {

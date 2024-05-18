@@ -29,7 +29,7 @@
 #undef mymacro
 // if you disable the 'undef' above then the next line will cause a compile time error
 // the following pragma will not help
-//#pragma GCC diagnostic ignored "-Werror"
+// #pragma GCC diagnostic ignored "-Werror"
 #define mymacro() printf("this is the second version of the macro\n")
 int main() {
 	mymacro();

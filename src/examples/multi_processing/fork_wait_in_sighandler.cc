@@ -40,13 +40,13 @@
 
 static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* context __attribute__((unused))) {
 	/*
-	this is not good code (see above comment)
-
-	int status;
-	pid_t child_that_died=CHECK_NOT_M1(wait(&status));
-	printf("child died with pid=%d\n", child_that_died);
-	print_status(status);
-	*/
+	 * this is not good code (see above comment)
+	 *
+	 * int status;
+	 * pid_t child_that_died=CHECK_NOT_M1(wait(&status));
+	 * printf("child died with pid=%d\n", child_that_died);
+	 * print_status(status);
+	 */
 	bool check_again=true;
 	do {
 		int status;

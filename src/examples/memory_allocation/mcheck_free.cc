@@ -30,7 +30,6 @@
  * EXTRA_COMPILE_FLAGS=-Wno-use-after-free
  */
 
-
 void myhandler(enum mcheck_status status) {
 	// inside my handler, careful not to do something complicated here since the system is in a bad state as it is...
 	char state[256];
@@ -92,7 +91,7 @@ int main() {
 	// check the status of our allocated chunk...
 	int status=mprobe(buf);
 	int status2=mprobe(buf2);
-	printf("status is %d\n",status);
-	printf("status is %d\n",status2);
+	printf("status is %d\n", status);
+	printf("status is %d\n", status2);
 	return EXIT_SUCCESS;
 }

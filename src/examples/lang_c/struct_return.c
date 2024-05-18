@@ -24,7 +24,7 @@
  * This is an attempt to return a struct from a function
  */
 
-typedef struct _foo {
+typedef struct _foo{
 	int a;
 	int b;
 } foo;

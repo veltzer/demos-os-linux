@@ -38,7 +38,7 @@ unsigned int attempts;
 // should we write debug messages ?
 bool debug;
 
-class SharedResource {
+class SharedResource{
 private:
 	// This is the ACE mutex that wraps the OS mutex which we will
 	// use to prevent simultaneous access to the resource.
@@ -91,13 +91,13 @@ public:
 	}
 };
 
-class HA_CommandHandler:public ACE_Task_Base {
+class HA_CommandHandler: public ACE_Task_Base {
 private:
 	SharedResource& sharedResource;
 	const unsigned int value;
 
 public:
-	HA_CommandHandler(SharedResource & sharedResource, const unsigned int value):sharedResource(sharedResource), value(value) {
+	HA_CommandHandler(SharedResource & sharedResource, const unsigned int value) : sharedResource(sharedResource), value(value) {
 	}
 
 	// The real body of the thread

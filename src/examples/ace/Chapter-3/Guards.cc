@@ -34,7 +34,7 @@
 // ways to do the same thing. For complete context and explanation, please
 // see APG chapter 12.
 
-class HA_Device_Repository {
+class HA_Device_Repository{
 public:
 	int update_device(int device_id);
 
@@ -42,7 +42,7 @@ private:
 	ACE_Thread_Mutex mutex_;
 };
 
-class Object {
+class Object{
 };
 static Object *object;
 

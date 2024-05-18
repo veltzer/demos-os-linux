@@ -34,7 +34,7 @@
  * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  */
 
-typedef struct _a {
+typedef struct _a{
 	int i;
 	int j;
 	int k;

@@ -49,7 +49,7 @@
  * data for the threads
  */
 const int NUM_OF_SLEEPERS=10;
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int fd[NUM_OF_SLEEPERS];
 	bool over;
 } thread_data;

@@ -34,9 +34,9 @@
  * even a silent bug which is worse at times.
  */
 
-class A {
+class A{
 // private:
-// 	int secret;
+// int secret;
 
 public:
 	A(void) {
@@ -54,9 +54,9 @@ public:
 };
 
 // here is an object that causes infinite recursion in it's destructor...
-class B {
+class B{
 public: ~B(void) {
-		delete this; // NOLINT
+		delete this;	// NOLINT
 	}
 };
 

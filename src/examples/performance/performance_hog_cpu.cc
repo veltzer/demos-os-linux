@@ -41,7 +41,7 @@
  * EXTRA_COMPILE_FLAGS=-g3 -O2
  */
 
-class A {
+class A{
 public:
 	// the function is not inlined on purpose so it would show up in profilers
 	// like 'perf(1)'...

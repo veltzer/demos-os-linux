@@ -62,7 +62,7 @@ void* func(void*) {
 	measure_init(&m, "official compiler barrier (asm volatile (\"\":::\"memory\"))", loop);
 	measure_start(&m);
 	for(int j=0; j<loop; j++) {
-		asm volatile ("" ::: "memory");
+		asm volatile("" ::: "memory");
 	}
 	measure_end(&m);
 	measure_print(&m);

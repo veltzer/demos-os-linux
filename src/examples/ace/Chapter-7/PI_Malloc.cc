@@ -31,12 +31,12 @@
  */
 
 typedef ACE_Malloc_T<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex, ACE_PI_Control_Block>
-ALLOCATOR;
+	ALLOCATOR;
 typedef ACE_Malloc_LIFO_Iterator_T<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex, ACE_PI_Control_Block>
-MALLOC_LIFO_ITERATOR;
+	MALLOC_LIFO_ITERATOR;
 
 ALLOCATOR *g_allocator;
-class Record {
+class Record{
 public:
 	Record(int id1, int id2, char *name)
 		: id1_(id1), id2_(id2) {

@@ -44,18 +44,18 @@ long long dummy_work(int limit) {
 }
 
 int main() {
-	//needs to be adjusted for new API
-	//const unsigned int NUM_EVENTS=2;
-	//int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
-	//long_long values[NUM_EVENTS];
+	// needs to be adjusted for new API
+	// const unsigned int NUM_EVENTS=2;
+	// int Events[NUM_EVENTS]={PAPI_TOT_INS, PAPI_TOT_CYC};
+	// long_long values[NUM_EVENTS];
 	/* Start counting events */
-	//CHECK_INT(PAPI_start_counters(Events, NUM_EVENTS), PAPI_OK);
+	// CHECK_INT(PAPI_start_counters(Events, NUM_EVENTS), PAPI_OK);
 	/* Do some computation here */
 	// CHECK_ZERO(sleep(atoi(argv[1])));
-	//dummy_work(atoi(argv[1]));
+	// dummy_work(atoi(argv[1]));
 	/* Stop counting events */
-	//CHECK_INT(PAPI_stop_counters(values, NUM_EVENTS), PAPI_OK);
-	//printf("value 0 is %lld\n", values[0]);
-	//printf("value 1 is %lld\n", values[1]);
+	// CHECK_INT(PAPI_stop_counters(values, NUM_EVENTS), PAPI_OK);
+	// printf("value 0 is %lld\n", values[0]);
+	// printf("value 1 is %lld\n", values[1]);
 	return EXIT_SUCCESS;
 }

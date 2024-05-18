@@ -27,7 +27,7 @@
  * similar approaches in boost's bind function.
  */
 
-class A {
+class A{
 public:
 	int val;
 	void run() {
@@ -35,7 +35,7 @@ public:
 	}
 };
 
-void apply(A& a, void (A::*method)()) {
+void apply(A& a, void(A::*method)()) {
 	(a.*method)();
 }
 

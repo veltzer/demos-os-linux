@@ -31,41 +31,41 @@
  * byte aligned packing (CharChatInt proves it).
  */
 
-class Empty {
+class Empty{
 };
-class Char {
+class Char{
 	char c;
 };
-class Short {
+class Short{
 	short s;
 };
-class TwoChars {
+class TwoChars{
 	char c1;
 	char c2;
 };
-class CharInt {
+class CharInt{
 	char c;
 	int i;
 };
-class IntChar {
+class IntChar{
 	int i;
 	char c;
 };
-class CharIntChar {
+class CharIntChar{
 	char c1;
 	int i;
 	char c2;
 };
-class CharCharInt {
+class CharCharInt{
 	char c1;
 	char c2;
 	int i;
 };
-class ShortInt {
+class ShortInt{
 	short s;
 	int i;
 };
-class IntShort {
+class IntShort{
 	int i;
 	short s;
 };

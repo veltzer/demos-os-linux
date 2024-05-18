@@ -23,7 +23,7 @@
 #include <unistd.h>	// for usleep(3), sysconf(3)
 #include <cpufreq.h>	// for cpufreq_get_freq_kernel(3), cpufreq_get_freq_hardware(3)
 #include <unistd.h>	// for sleep(3), syscall(2)
-#include <sys/syscall.h>	// for syscall(2)
+#include <sys/syscall.h>// for syscall(2)
 #include <err_utils.h>	// for CHECK_ZERO()
 #include <lowlevel_utils.h>	// for getticks(), get_mic_diff()
 #include <us_helper.h>	// for get_clk_tck(), no_params()
@@ -41,7 +41,7 @@ void* worker(void*) {
 	const unsigned int times=10;
 	unsigned long long previous=getticks();
 	printf("performance counter at start is %llu\n", previous);
-	for(unsigned int i=0;i<times;i++) {
+	for(unsigned int i=0; i<times; i++) {
 		CHECK_ZERO(sleep(1));
 		// now print the performance counter
 		unsigned long long current=getticks();

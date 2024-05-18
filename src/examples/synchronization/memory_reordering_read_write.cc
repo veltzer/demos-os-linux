@@ -48,7 +48,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef struct _threaddata {
+typedef struct _threaddata{
 	sem_t beginSema1;
 	sem_t beginSema2;
 	sem_t endSema;
@@ -72,10 +72,10 @@ typedef struct _threaddata {
 			code_before; \
 			pd->x = 1; \
 			code; \
-			pd->r1 = pd->y;	\
+			pd->r1 = pd->y; \
 			code_after; \
 			/* Notify transaction complete */ \
-			sem_post(&pd->endSema);	\
+			sem_post(&pd->endSema); \
 		} \
 		/* Never returns */ \
 		return NULL; \
@@ -92,10 +92,10 @@ typedef struct _threaddata {
 			code_before; \
 			pd->y = 1; \
 			code; \
-			pd->r2 = pd->x;	\
+			pd->r2 = pd->x; \
 			code_after; \
 			/* Notify transaction complete */ \
-			sem_post(&pd->endSema);	\
+			sem_post(&pd->endSema); \
 		} \
 		/* Never returns */ \
 		return NULL; \
@@ -115,7 +115,7 @@ typedef struct _threaddata {
 			pd->vr1 = pd->vy; \
 			code_after; \
 			/* Notify transaction complete */ \
-			sem_post(&pd->endSema);	\
+			sem_post(&pd->endSema); \
 		} \
 		/* Never returns */ \
 		return NULL; \
@@ -135,7 +135,7 @@ typedef struct _threaddata {
 			pd->vr2 = pd->vx; \
 			code_after; \
 			/* Notify transaction complete */ \
-			sem_post(&pd->endSema);	\
+			sem_post(&pd->endSema); \
 		} \
 		/* Never returns */ \
 		return NULL; \
@@ -145,17 +145,17 @@ typedef struct _threaddata {
 // nothing
 CREATE_FUNCS(nothing, , , );
 // compiler barrier
-CREATE_FUNCS(compiler_barrier, asm volatile ("" ::: "memory"), , );
+CREATE_FUNCS(compiler_barrier, asm volatile("" ::: "memory"), , );
 // sfence (does not work)
-CREATE_FUNCS(sfence, asm volatile ("sfence" ::: "memory"), , );
+CREATE_FUNCS(sfence, asm volatile("sfence" ::: "memory"), , );
 // lfence (does not work)
-CREATE_FUNCS(lfence, asm volatile ("lfence" ::: "memory"), , );
+CREATE_FUNCS(lfence, asm volatile("lfence" ::: "memory"), , );
 // sfence+lfence (does not work)
-CREATE_FUNCS(slfence, asm volatile ("sfence" ::: "memory"); asm volatile ("lfence" ::: "memory"), , );
+CREATE_FUNCS(slfence, asm volatile("sfence" ::: "memory"); asm volatile("lfence" ::: "memory"), , );
 // correct sfence+lfence (does work)
 // CREATE_FUNCS(cslfence, , , );
 // mfence (does work)
-CREATE_FUNCS(mfence, asm volatile ("mfence" ::: "memory"), , );
+CREATE_FUNCS(mfence, asm volatile("mfence" ::: "memory"), , );
 // lock orl using compiler builtin (does work)
 CREATE_FUNCS(sync_synchronize, __sync_synchronize(), , );
 

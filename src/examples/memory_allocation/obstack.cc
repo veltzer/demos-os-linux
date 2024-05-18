@@ -53,7 +53,7 @@
 #define obstack_chunk_free free
 
 void* xmalloc(size_t size) {
-	//register void* value=CHECK_NOT_NULL(malloc(size));
+	// register void* value=CHECK_NOT_NULL(malloc(size));
 	void* value=CHECK_NOT_NULL(malloc(size));
 	return value;
 }

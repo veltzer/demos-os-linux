@@ -30,9 +30,9 @@
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
-class HA_CommandHandler:public ACE_Task<ACE_MT_SYNCH> {
+class HA_CommandHandler: public ACE_Task<ACE_MT_SYNCH> {
 public:
-	HA_CommandHandler(const char* name):name_(name) {
+	HA_CommandHandler(const char* name) : name_(name) {
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, "(%t) starting up %C\n", name_));

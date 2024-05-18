@@ -28,7 +28,7 @@
 
 const int MAXINDEXSIZE=128;
 
-struct index {
+struct index{
 	unsigned int ID;
 	char path[MAXPATHLEN];
 };

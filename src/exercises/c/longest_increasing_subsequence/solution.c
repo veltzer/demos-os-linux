@@ -28,7 +28,7 @@ void maximum_subset(char str[], int index, char curr[], char best[]) {
 	char tmp_curr[MAX_STR_LEN];
 	int tmp_length_of_curr;
 	/* End of the recursion */
-	//printf("called with [%s, %d, %s, %s]\n", str, index, curr, best);
+	// printf("called with [%s, %d, %s, %s]\n", str, index, curr, best);
 	if(str[index]=='\0') {
 		return;
 	}

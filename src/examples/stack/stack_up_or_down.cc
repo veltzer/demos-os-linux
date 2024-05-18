@@ -17,13 +17,13 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h> // for printf(3)
-#include <stdlib.h> // for EXIT_SUCCESS
-#include <stdbool.h> // for bool
+#include <stdio.h>	// for printf(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <stdbool.h>	// for bool
 
 /*
  * This example shows one way to find if the stack goes up or down
-*/
+ */
 
 bool called(int* b) __attribute__((noinline));
 bool called(int* b) {
@@ -42,7 +42,6 @@ bool stack_is_up_2() {
 	int a, b;
 	return &a+1==&b;
 }
-
 
 int main() {
 	printf("stack_is_up is %d\n", stack_is_up());

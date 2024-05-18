@@ -54,7 +54,7 @@ int main() {
 		global_data++;
 		// while(true) {
 		// }
-		//CHECK_ZERO(sleep(10));
+		// CHECK_ZERO(sleep(10));
 		TRACE("child is dying...");
 		_exit(0);
 	} else {

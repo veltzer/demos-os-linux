@@ -30,7 +30,7 @@
  * This Singleton (A) must be fully constructed before the constructor of (B)
  * is called.
  */
-class MySingleton {
+class MySingleton{
 private:
 	// Private Constructor
 	MySingleton();

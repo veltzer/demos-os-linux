@@ -30,7 +30,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class MyTimerHandler:public ACE_Event_Handler {
+class MyTimerHandler: public ACE_Event_Handler {
 public:
 	int handle_timeout(const ACE_Time_Value& current_time, const void* =0) {
 		time_t epoch=((timespec_t)current_time).tv_sec;
@@ -39,9 +39,9 @@ public:
 	}
 };
 
-class SignalHandler:public ACE_Event_Handler {
+class SignalHandler: public ACE_Event_Handler {
 public:
-	SignalHandler(long timerId, int currentInterval):ACE_Event_Handler(), timerId_(timerId), currentInterval_(currentInterval) {
+	SignalHandler(long timerId, int currentInterval) : ACE_Event_Handler(), timerId_(timerId), currentInterval_(currentInterval) {
 	}
 	int handle_signal(int sig, siginfo_t* =0, ucontext_t* =0) {
 		if(sig==SIGINT) {

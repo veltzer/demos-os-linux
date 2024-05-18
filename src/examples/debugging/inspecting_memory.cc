@@ -45,7 +45,7 @@ int main() {
 		char filename[PATH_MAX];
 		snprintf(filename, PATH_MAX, "/proc/%d/mem", child_pid);
 		int fd=CHECK_NOT_M1(open(filename, O_RDONLY));
-		for(int i=0;i<5;i++) {
+		for(int i=0; i<5; i++) {
 			CHECK_NOT_M1(lseek(fd, (unsigned long long)&global, SEEK_SET));
 			int val;
 			CHECK_INT(read(fd, &val, sizeof(int)), sizeof(int));
@@ -56,7 +56,7 @@ int main() {
 		int status;
 		CHECK_NOT_M1(waitpid(child_pid, &status, 0));
 	} else {
-		for(int i=0;i<10;i++) {
+		for(int i=0; i<10; i++) {
 			global++;
 			sleep(1);
 		}

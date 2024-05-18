@@ -21,8 +21,8 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
-This version is ok and is not weak.
-*/
+ * This version is ok and is not weak.
+ */
 
 int add(int a, int b);
 

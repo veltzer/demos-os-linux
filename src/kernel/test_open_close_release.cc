@@ -87,7 +87,7 @@ void do_open_and_segfault(void) {
 	*p=0;
 }
 
-pid_t run_in_process(void (*f)(void)) {
+pid_t run_in_process(void(*f)(void)) {
 	pid_t pid=CHECK_NOT_M1(fork());
 	if (pid==0) {
 		f();

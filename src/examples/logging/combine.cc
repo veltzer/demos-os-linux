@@ -73,7 +73,7 @@ inline void my_trace(int level, const char* file, const int line, const char* fu
 // this is a pre-processor varargs type of tracer...
 #define MY_TRACE(level, fmt, args ...) my_trace(level, __FILE__, __LINE__, __func__, fmt, ## args)
 
-class A {
+class A{
 public:
 	void thisMethod(int a, int b) {
 		MY_TRACE(LOG_DEBUG, "did you know that %d+%d=%d?\n", a, b, a+b);

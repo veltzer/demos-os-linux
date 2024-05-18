@@ -30,4 +30,4 @@
 #include <ace/Svc_Handler.h>
 #include <ace/Reactor_Notification_Strategy.h>
 
-#endif /* __myace_hh */
+#endif	/* __myace_hh */

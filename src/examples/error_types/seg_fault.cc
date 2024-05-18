@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
 		char* f=(char*)func;
 		f++;
 		f++;
-		void (*g)()=(void (*)())f;
+		void(*g)()=(void(*)())f;
 		g();
 	}
 	if(choice==1) {

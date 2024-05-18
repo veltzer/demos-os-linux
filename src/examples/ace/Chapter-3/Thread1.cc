@@ -29,9 +29,9 @@
  */
 
 // Arguments that are to be passed to the worker thread are instances of this class.
-class Args {
+class Args{
 public:
-	Args(int iterations):mutex(), iterations(iterations) {
+	Args(int iterations) : mutex(), iterations(iterations) {
 	}
 	ACE_Thread_Mutex mutex;
 	int iterations;

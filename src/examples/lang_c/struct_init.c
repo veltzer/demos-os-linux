@@ -24,7 +24,7 @@
  * This is an example of initializing a struct in various ways in C...
  */
 
-struct mystruct {
+struct mystruct{
 	int a;
 	int b;
 	int c;

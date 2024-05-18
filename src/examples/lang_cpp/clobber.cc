@@ -26,13 +26,13 @@
  * - local parameters.
  */
 
-class A {
+class A{
 protected:
 	int a;
 	int b;
 };
 
-class B:public A {
+class B: public A {
 public:
 	int c;
 	int b;

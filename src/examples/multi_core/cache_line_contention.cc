@@ -46,7 +46,7 @@
  */
 
 // data to be passed to each thread...
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int num;
 	unsigned long long attempts;
 	int* shared;

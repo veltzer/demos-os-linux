@@ -65,9 +65,9 @@ void make_child(const int niceval, int* const prog, int core) {
 		// this barrier is really necessary. remove it and you wont see
 		// progress at all...
 		// this barrier is too heavy...
-		asm volatile ("" ::: "memory");
+		asm volatile("" ::: "memory");
 		// this one isn't...
-		//asm volatile ("":"=g" (*prog) ::);
+		// asm volatile ("":"=g" (*prog) ::);
 		*prog=*prog+1;
 	}
 	printf("child done with sum %f\n", sum);
@@ -91,13 +91,13 @@ int main(int argc, char** argv) {
 	// we have to set the size otherwise it will not work
 	CHECK_NOT_M1(ftruncate(smfd, map_size));
 	void* ptr=CHECK_NOT_VOIDP(mmap(
-			NULL,	/* addr: dont recommend address */
-			map_size,	/* size: the size of the mapping */
-			PROT_READ|PROT_WRITE,	/* prot: we just want read */
-			MAP_SHARED,	/* flags: PRIVATE or SHARED ** MUST** be specified */
-			smfd,	/* fd: our file descriptor */
-			0	/* offset: from the begining of the file */
-			), MAP_FAILED);
+		NULL,	/* addr: dont recommend address */
+		map_size,	/* size: the size of the mapping */
+		PROT_READ|PROT_WRITE,	/* prot: we just want read */
+		MAP_SHARED,	/* flags: PRIVATE or SHARED ** MUST** be specified */
+		smfd,	/* fd: our file descriptor */
+		0	/* offset: from the begining of the file */
+		), MAP_FAILED);
 	int* iptr=(int*)ptr;
 	// lets fork...
 	const int num_processes=(argc-1)/2;
@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
 		for(int i=0; i<num_processes; i++) {
 			// compiler barrier to make it read the values pointed at by the pointers
 			// again... This seems to work without the barrier but still...
-			asm volatile ("" ::: "memory");
+			asm volatile("" ::: "memory");
 			int val=*(iptr+i);
 			if(i<num_processes-1) {
 				printf("%d, ", val);

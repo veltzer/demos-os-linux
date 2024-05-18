@@ -48,12 +48,12 @@
  * out the gcc documentation and put this in.
  */
 
-struct foo {
-	union _un {
-		struct _pad_struct {
+struct foo{
+	union _un{
+		struct _pad_struct{
 			char irrelevant[LEVEL2_CACHE_LINESIZE];
 		} pad_struct;
-		struct _real {
+		struct _real{
 			char c1;
 			int i1;
 			char c2;
@@ -63,7 +63,7 @@ struct foo {
 static_assert(sizeof(foo)==LEVEL2_CACHE_LINESIZE, "size of foo is wrong");
 
 // this guarantess that the size of the structure will be exactly 64 bytes
-struct bar {
+struct bar{
 	char c1;
 	int i1;
 	char c2;
@@ -71,7 +71,7 @@ struct bar {
 static_assert(sizeof(bar)==LEVEL2_CACHE_LINESIZE, "size of bar is wrong");
 
 // same as before, applied to a Class instead...
-class MyClass {
+class MyClass{
 private:
 	char c1;
 	int i1;
@@ -79,13 +79,12 @@ private:
 } __attribute__((aligned (LEVEL2_CACHE_LINESIZE)));
 static_assert(sizeof(MyClass)==LEVEL2_CACHE_LINESIZE, "size of MyClass is wrong");
 
-
-typedef struct _barestruct {
+typedef struct _barestruct{
 	int field1;
 	char foo;
 } barestruct;
 
-typedef struct _mystruct {
+typedef struct _mystruct{
 	int field1;
 	char foo;
 	char padding[LEVEL2_CACHE_LINESIZE-sizeof(barestruct)];

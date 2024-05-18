@@ -42,7 +42,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-l:libboost_thread.so.1.74.0 -l:libboost_system.so.1.74.0 -lpthread
  */
 
-template <class T> class Exchanger {
+template <class T> class Exchanger{
 private:
 	boost::mutex m;
 	boost::condition_variable cv_main;
@@ -51,7 +51,7 @@ private:
 	enum { EMPTY, FIRST_ARRIVED, SECOND_ARRIVED } state;
 
 public:
-	Exchanger():ptr(0), state(EMPTY) {
+	Exchanger() : ptr(0), state(EMPTY) {
 	}
 
 	void exchange(T &t)
@@ -92,7 +92,7 @@ public:
 	}
 };
 
-class Worker {
+class Worker{
 private:
 	Exchanger<unsigned int>& e;
 	unsigned int max_sleep_time;

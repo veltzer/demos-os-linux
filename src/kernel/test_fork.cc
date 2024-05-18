@@ -57,16 +57,16 @@ int main() {
 	const int count=10;
 	if(pid) {
 		// parent
-		for(int i=0;i<count;i++) {
+		for(int i=0; i<count; i++) {
 			char c;
-			CHECK_NOT_M1(read(fd,&c,1));
+			CHECK_NOT_M1(read(fd, &c, 1));
 			sleep(1);
 		}
 	} else {
 		// child
-		for(int i=0;i<count;i++) {
+		for(int i=0; i<count; i++) {
 			char c;
-			CHECK_NOT_M1(read(fd,&c,1));
+			CHECK_NOT_M1(read(fd, &c, 1));
 			sleep(1);
 		}
 	}

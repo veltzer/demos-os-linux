@@ -22,7 +22,7 @@
 #include <stdio.h>	// for printf(3)
 #include <err_utils.h>	// for CHECK_NOT_M1()
 #include <sys/types.h>	// for getpid(2), getppid(2)
-#include <linux/unistd.h> // for exit_group(2)
+#include <linux/unistd.h>	// for exit_group(2)
 
 /*
  * This example investigates process groups.
@@ -41,9 +41,9 @@ int main() {
 		printf("%d: the parent is dying...\n", getpid());
 		CHECK_NOT_M1(syscall(__NR_exit_group, 0));
 		// does not compile
-		//exit_group(EXIT_SUCCESS);
+		// exit_group(EXIT_SUCCESS);
 	} else {
-		for(int i=0;i<10;i++) {
+		for(int i=0; i<10; i++) {
 			printf("%d: this is the child\n", getpid());
 			printf("%d: getpid()=%d\n", getpid(), getpid());
 			printf("%d: getppid()=%d\n", getpid(), getppid());

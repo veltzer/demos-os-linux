@@ -34,7 +34,7 @@
 #define myoffsetof(structname, fieldname) ((char *)(&(((structname *)0)->fieldname)) - (char *)0)
 
 // our own struct for the demo...
-typedef struct _mystruct {
+typedef struct _mystruct{
 	int field_a;
 	int field_b;
 	int field_c;

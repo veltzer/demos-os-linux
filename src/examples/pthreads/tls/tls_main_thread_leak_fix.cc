@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS, malloc(3), free(3)
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_NOT_NULL(), CHECK_ZERO()
 #include <pthread_utils.h>	// for pthread_main_np()
-#include <trace_utils.h>	// for TRACE()
+#include <trace_utils.h>// for TRACE()
 
 /*
  * This example shows one way to fix the fact that main thread does not release TLS entries.

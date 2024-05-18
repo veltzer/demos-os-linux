@@ -36,7 +36,7 @@
 int main() {
 	CHECK_NOT_M1(mlockall(MCL_CURRENT|MCL_FUTURE));
 	char* p=(char*)CHECK_NOT_NULL(malloc(20));
-	//CHECK_NOT_M1(mlock(p,128*1024));
+	// CHECK_NOT_M1(mlock(p,128*1024));
 	int i=0;
 	while(true) {
 		printf("i is %i, p+i is %p\n", i, p+i);

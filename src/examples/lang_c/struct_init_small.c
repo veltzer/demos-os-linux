@@ -31,12 +31,12 @@
  * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  */
 
-struct smallstruct {
+struct smallstruct{
 	int a;
 	int b;
 };
 
-struct largestruct {
+struct largestruct{
 	int a;
 	int b;
 	int c;

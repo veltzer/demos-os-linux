@@ -22,7 +22,7 @@
 #include <something.hh>	// for something()
 
 int main() {
-	for(unsigned long i=0;i<1000000000;i++) {
+	for(unsigned long i=0; i<1000000000; i++) {
 		something();
 	}
 	return EXIT_SUCCESS;

@@ -36,7 +36,7 @@
  */
 
 // this is the spin lock implementation (pthread "like")
-typedef struct _mypthread_spinlock_t {
+typedef struct _mypthread_spinlock_t{
 	int val;
 } mypthread_spinlock_t;
 

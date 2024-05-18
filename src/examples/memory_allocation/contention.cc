@@ -59,11 +59,11 @@ static int size_max;
 static int mul;
 
 void* worker(void*) {
-	//int num=*(int *)p;
+	// int num=*(int *)p;
 	int diff=size_max-size_min;
-	for(int i=0;i<num_iterations;i++) {
+	for(int i=0; i<num_iterations; i++) {
 		void** buffers=new void*[num_allocations];
-		for(int j=0;j<num_allocations;j++) {
+		for(int j=0; j<num_allocations; j++) {
 			int size_to_alloc;
 			if(diff==0) {
 				size_to_alloc=size_min*mul;
@@ -72,7 +72,7 @@ void* worker(void*) {
 			}
 			buffers[j]=CHECK_NOT_NULL(malloc(size_to_alloc));
 		}
-		for(int j=0;j<num_allocations;j++) {
+		for(int j=0; j<num_allocations; j++) {
 			// free(3) has not return value
 			free(buffers[j]);
 		}
@@ -101,7 +101,6 @@ int main(int argc, char** argv) {
 	pthread_attr_t* attrs=new pthread_attr_t[num_threads];
 	cpu_set_t* cpu_sets=new cpu_set_t[num_threads];
 	int* ids=new int[num_threads];
-
 	for(int i=0; i<num_threads; i++) {
 		ids[i]=i;
 		CPU_ZERO(cpu_sets + i);

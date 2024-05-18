@@ -35,14 +35,14 @@ int func_imp2(int a, int b) {
 // the resolver function must be a C function
 extern "C" {
 static int (*resolve_func ())(int, int){
-		printf("selecting implementation now...\n");
-		srand(getpid());
-		if(rand()%2) {
-			return func_imp1;
-		} else {
-			return func_imp2;
-		}
+	printf("selecting implementation now...\n");
+	srand(getpid());
+	if(rand()%2) {
+		return func_imp1;
+	} else {
+		return func_imp2;
 	}
+}
 }
 
 int func(int, int) __attribute__ ((ifunc ("resolve_func")));

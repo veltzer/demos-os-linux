@@ -40,7 +40,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef struct _shared_data {
+typedef struct _shared_data{
 	unsigned int attempts;
 	unsigned int small;
 	char buffer1[64];
@@ -49,7 +49,7 @@ typedef struct _shared_data {
 	bool running;
 } shared_data;
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int num;
 	shared_data* shared;
 } thread_data;
@@ -75,9 +75,9 @@ static void* worker(void* p) {
 			sd->large=large;
 			mb(sd->large);
 			mb(sd->small);
-			//asm volatile ("sfence" ::: "memory");
-			//__sync_synchronize();
-			//fullmb();
+			// asm volatile ("sfence" ::: "memory");
+			// __sync_synchronize();
+			// fullmb();
 			sd->small=small;
 			attempts++;
 		}

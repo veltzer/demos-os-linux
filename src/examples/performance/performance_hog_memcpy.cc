@@ -52,7 +52,7 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-class A {
+class A{
 public:
 	// the function is not inlined on purpose so it would show up in profilers
 	// use this example to see that the actual memcpy(3) function

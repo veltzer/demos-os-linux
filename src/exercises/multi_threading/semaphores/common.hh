@@ -34,7 +34,7 @@ const int FTOK_PROJID='x';
 // this must be a real filename otherwise ftok(3) will not work...
 const char* FTOK_PATHNAME="/etc/passwd";
 
-union semun {
+union semun{
 	int val;/* value for SETVAL */
 	struct semid_ds *buf;	/* buffer for IPC_STAT, IPC_SET */
 	unsigned short *array;	/* array for GETALL, SETALL */

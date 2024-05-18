@@ -22,7 +22,7 @@
 using namespace std;
 
 // Base class
-class Shape {
+class Shape{
 public:
 	void draw() {
 		cout << "Drawing a shape..." << endl;
@@ -30,7 +30,7 @@ public:
 };
 
 // Inherited class
-class Circle:public Shape {
+class Circle: public Shape {
 public:
 	void draw() {
 		Shape::draw();
@@ -39,7 +39,7 @@ public:
 };
 
 // Composition class
-class Square {
+class Square{
 public:
 	void draw() {
 		shape.draw();
@@ -52,8 +52,8 @@ private:
 
 int main() {
 	Circle c;
-	c.draw(); // Calling derived
+	c.draw();	// Calling derived
 	Square s;
-	s.draw(); // Calls base via composition
+	s.draw();	// Calls base via composition
 	return EXIT_SUCCESS;
 }

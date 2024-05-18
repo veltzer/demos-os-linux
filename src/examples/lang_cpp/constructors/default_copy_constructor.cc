@@ -26,14 +26,16 @@
  * (under certain conditions).
  */
 
-class Foo {
-	private:
-		int a;
-	public:
-		Foo(int ia):a(ia) {}
-		void print() {
-			std::cout << a << std::endl;
-		}
+class Foo{
+private:
+	int a;
+
+public:
+	Foo(int ia) : a(ia) {
+	}
+	void print() {
+		std::cout << a << std::endl;
+	}
 };
 
 int main() {

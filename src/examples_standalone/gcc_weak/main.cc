@@ -22,6 +22,6 @@
 #include <add.hh>	// for add(U)
 
 int main() {
-	printf("did you know that 2+2=%d\n", add(2,2));
+	printf("did you know that 2+2=%d\n", add(2, 2));
 	return EXIT_SUCCESS;
 }

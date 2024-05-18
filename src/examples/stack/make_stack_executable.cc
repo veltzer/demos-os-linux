@@ -17,11 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h> // for printf(3)
-#include <stdlib.h> // for EXIT_SUCCESS
-#include <sys/mman.h> // for mprotect(2), PROT_READ, PROT_WRITE, PROT_EXEC
-#include <err_utils.h> // for CHECK_NOT_M1()
-#include <proc_utils.h> // for proc_get_stack_info(), proc_print_mmap_self()
+#include <stdio.h>	// for printf(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <sys/mman.h>	// for mprotect(2), PROT_READ, PROT_WRITE, PROT_EXEC
+#include <err_utils.h>	// for CHECK_NOT_M1()
+#include <proc_utils.h>	// for proc_get_stack_info(), proc_print_mmap_self()
 
 /*
  * This example shows how to make the stack executable.

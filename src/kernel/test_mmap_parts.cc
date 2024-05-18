@@ -71,13 +71,13 @@ int main() {
 	if (do_mmap_once) {
 		klog_clear();
 		void *p=CHECK_NOT_VOIDP(mmap(
-				NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
-				size,	/* the size we need */
-				PROT_READ | PROT_WRITE,	/* we want read AND write */
-				MAP_SHARED | MAP_POPULATE,	/* we want to shard with kernel and don't want page faults */
-				d,	/* file descriptor */
-				0	/* offset */
-				), MAP_FAILED);
+			NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
+			size,	/* the size we need */
+			PROT_READ | PROT_WRITE,	/* we want read AND write */
+			MAP_SHARED | MAP_POPULATE,	/* we want to shard with kernel and don't want page faults */
+			d,	/* file descriptor */
+			0	/* offset */
+			), MAP_FAILED);
 		printf("the pointer I got is %p\n", p);
 		klog_show();
 		proc_print_mmap("demo");
@@ -132,13 +132,13 @@ int main() {
 		const int number=100000;
 		for (int i=0; i < number; i++) {
 			void *p=CHECK_NOT_VOIDP(mmap(
-					NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
-					size,	/* the size we need */
-					PROT_READ | PROT_WRITE,	/* we want read AND write */
-					MAP_SHARED | MAP_POPULATE,	/* we want to shard with kernel and don't want page faults */
-					d,	/* file descriptor */
-					0	/* offset */
-					), MAP_FAILED);
+				NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
+				size,	/* the size we need */
+				PROT_READ | PROT_WRITE,	/* we want read AND write */
+				MAP_SHARED | MAP_POPULATE,	/* we want to shard with kernel and don't want page faults */
+				d,	/* file descriptor */
+				0	/* offset */
+				), MAP_FAILED);
 			printf("the pointer I got is %p\n", p);
 			memset(p, 0, size);
 			CHECK_NOT_M1(munmap(p, size));

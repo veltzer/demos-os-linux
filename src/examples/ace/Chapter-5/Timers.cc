@@ -30,7 +30,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-typedef void (*timerTask_t)(void);
+typedef void(*timerTask_t)(void);
 
 pid_t timerTask(int initialDelay, int interval, timerTask_t task) {
 	if((initialDelay < 1) && (interval < 1)) {

@@ -34,7 +34,7 @@
 // or union that contains it...
 #define OffsetOf(StructName, FieldName) ((char *)(&(((StructName *)1)->FieldName)) - (char *)1)
 
-typedef union _LARGE_INTEGER {
+typedef union _LARGE_INTEGER{
 	struct {
 		unsigned int LowPart;
 		unsigned int HighPart;

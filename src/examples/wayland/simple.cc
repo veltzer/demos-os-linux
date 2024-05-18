@@ -29,13 +29,11 @@
  * EXTRA_LINK_FLAGS_AFTER=-lwayland-client
  */
 
-
 struct wl_shell *shell = NULL;
 struct wl_shell_surface *shell_surface = NULL;
 struct wl_surface *surface = NULL;
 
-static void registry_global(
-	void* data __attribute__((unused)), struct wl_registry *registry,
+static void registry_global(void* data __attribute__((unused)), struct wl_registry *registry,
 	uint32_t name, const char *interface,
 	uint32_t version __attribute__((unused))) {
 	if (strcmp(interface, "wl_shell") == 0) {
@@ -43,11 +41,9 @@ static void registry_global(
 	}
 }
 
-static void registry_global_remove(
-	void* data __attribute__((unused)),
+static void registry_global_remove(void* data __attribute__((unused)),
 	struct wl_registry *registry __attribute__((unused)),
-	uint32_t name __attribute__((unused))
-) {
+	uint32_t name __attribute__((unused))) {
 	// Do nothing
 }
 

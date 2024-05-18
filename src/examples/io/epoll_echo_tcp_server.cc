@@ -31,7 +31,7 @@
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_IN_RANGE(), CHECK_INT()
 #include <network_utils.h>	// for get_backlog()
 #include <epoll_utils.h>// for print_events()
-//#define DO_DEBUG
+// #define DO_DEBUG
 #include <trace_utils.h>// for DEBUG()
 
 /*

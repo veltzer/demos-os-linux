@@ -98,10 +98,10 @@ static inline int pthread_mutex_get_counter(const pthread_mutex_t * mutex) {
  * getting a thread id via the kernel (glibc doesnt have this)
  */
 /*
-static inline pid_t gettid(void) {
-	return syscall(SYS_gettid);
-}
-*/
+ * static inline pid_t gettid(void) {
+ *      return syscall(SYS_gettid);
+ * }
+ */
 
 /*
  * gettid_cached() implementation to avoid going to the kernel a lot.
@@ -109,7 +109,7 @@ static inline pid_t gettid(void) {
 static pthread_key_t tid_key;
 static bool init_key=false;
 
-typedef struct _cached_tid {
+typedef struct _cached_tid{
 	pid_t val;
 } cached_tid;
 
@@ -167,7 +167,7 @@ static inline void* pthread_get_stack_self() {
 	size_t v;
 	void* stkaddr;
 	CHECK_ZERO_ERRNO(pthread_attr_getstack(&gattr, &stkaddr, &v));
-	//void* endaddr=(void*)((char*)stkaddr+v+2*getpagesize());
+	// void* endaddr=(void*)((char*)stkaddr+v+2*getpagesize());
 	return stkaddr;
 }
 

@@ -21,48 +21,48 @@
 #include <stdlib.h>
 #include <iostream>
 
-class Rectangle {
-	private:
-		double width;
-		double height;
+class Rectangle{
+private:
+	double width;
+	double height;
 
-	public:
-		Rectangle(const double w, const double h):width(w), height(h) {
-			std::cout << getArea() << std::endl;
-		}
+public:
+	Rectangle(const double w, const double h) : width(w), height(h) {
+		std::cout << getArea() << std::endl;
+	}
 
-		double getArea() const {
-			return width * height;
-		}
+	double getArea() const{
+		return width * height;
+	}
 
-		double getWidth() const {
-			return width;
-		}
+	double getWidth() const{
+		return width;
+	}
 
-		double getHeight() const {
-			return height;
-		}
+	double getHeight() const{
+		return height;
+	}
 
-		void setWidth(const double w) {
-			width = w;
-		}
+	void setWidth(const double w) {
+		width = w;
+	}
 
-		void setHeight(const double h) {
-			height = h;
-		}
+	void setHeight(const double h) {
+		height = h;
+	}
 
-		double getDiagonalLength() const {
-			return sqrt(width * width + height * height);
-		}
+	double getDiagonalLength() const{
+		return sqrt(width * width + height * height);
+	}
 
-		double getCircumference() const {
-			return 2 * (width + height);
-		}
+	double getCircumference() const{
+		return 2 * (width + height);
+	}
 
-		bool is_intersectiog(const Rectangle& r __attribute__((unused))) {
-			// TBD
-			return true;
-		}
+	bool is_intersectiog(const Rectangle& r __attribute__((unused))) {
+		// TBD
+		return true;
+	}
 };
 
 int main() {

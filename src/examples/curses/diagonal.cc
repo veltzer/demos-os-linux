@@ -40,10 +40,10 @@ static WINDOW* stdinit() {
 }
 
 static void demo_diagonal(WINDOW* stdscr) {
-	for(int i=0;i<20;i++) {
-		//these are the same
-		//mvaddch(i,i,'a');
-		mvwaddch(stdscr,i,i,'a');
+	for(int i=0; i<20; i++) {
+		// these are the same
+		// mvaddch(i,i,'a');
+		mvwaddch(stdscr, i, i, 'a');
 	}
 	refresh();
 	// wait until key press
@@ -53,7 +53,7 @@ static void demo_diagonal(WINDOW* stdscr) {
 
 static void demo_get_width_height(WINDOW* stdscr) {
 	int nh, nw;
-	getmaxyx(stdscr,nh,nw);
+	getmaxyx(stdscr, nh, nw);
 	endwin();
 	printf("nh is [%d]\n", nh);
 	printf("nw is [%d]\n", nw);
@@ -62,11 +62,11 @@ static void demo_get_width_height(WINDOW* stdscr) {
 static void demo_old(WINDOW* stdscr) {
 	chtype c=0;
 	int nh, nw;
-	getmaxyx(stdscr,nh,nw);
+	getmaxyx(stdscr, nh, nw);
 	while(true) {
-		for(int x=0;x<nw;x++) {
-			for(int y=0;y<nh;y++) {
-				mvwaddch(stdscr,y,x,c);
+		for(int x=0; x<nw; x++) {
+			for(int y=0; y<nh; y++) {
+				mvwaddch(stdscr, y, x, c);
 				c++;
 			}
 		}
@@ -78,7 +78,7 @@ static void demo_old(WINDOW* stdscr) {
 }
 
 int main() {
-	//setlocale(LC_ALL,"");
+	// setlocale(LC_ALL,"");
 	WINDOW* stdscr=stdinit();
 	if(1)
 		demo_diagonal(stdscr);

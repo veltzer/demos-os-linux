@@ -27,7 +27,7 @@
  *	What does this demo do ? try to find out and document it...
  */
 
-class A {
+class A{
 public:
 	static void inner(void) {
 		printf("Hello\n");

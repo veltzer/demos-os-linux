@@ -28,14 +28,14 @@
  * EXTRA_LINK_CMD=wx-config --libs
  */
 
-class MyApp:public wxApp {
+class MyApp: public wxApp {
 	virtual bool OnInit(void);
 
 // virtual int OnRun(void);
 };
 IMPLEMENT_APP(MyApp)
 
-class MyFrame:public wxFrame {
+class MyFrame: public wxFrame {
 public:
 	MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
 	void OnQuit(wxCommandEvent& event);
@@ -60,7 +60,7 @@ bool MyApp::OnInit(void) {
 	return TRUE;
 }
 
-MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size):wxFrame((wxFrame *)NULL, -1, title, pos, size) {
+MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size) : wxFrame((wxFrame *)NULL, -1, title, pos, size) {
 	// create menubar
 	wxMenuBar *menuBar=new wxMenuBar;
 	// create menu

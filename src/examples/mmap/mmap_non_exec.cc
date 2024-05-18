@@ -44,15 +44,15 @@ int main() {
 	struct stat stat_buf;
 	CHECK_NOT_M1(fstat(fd, &stat_buf));
 	void* res=CHECK_NOT_VOIDP(mmap(
-			NULL,	/* addr: dont recommend address */
-			stat_buf.st_size,	/* size: the size of the file */
-			PROT_READ | PROT_WRITE | PROT_EXEC,	/* prot: we just want read */
-			MAP_PRIVATE,	/* flags: PRIVATE or SHARED ** MUST** be specified */
-			//PROT_READ,	/* prot: we just want read */
-			//MAP_SHARED,	/* flags: PRIVATE or SHARED ** MUST** be specified */
-			fd,	/* fd: our file descriptor */
-			0	/* offset: from the begining of the file */
-			), MAP_FAILED);
+		NULL,	/* addr: dont recommend address */
+		stat_buf.st_size,	/* size: the size of the file */
+		PROT_READ | PROT_WRITE | PROT_EXEC,	/* prot: we just want read */
+		MAP_PRIVATE,	/* flags: PRIVATE or SHARED ** MUST** be specified */
+		// PROT_READ,	/* prot: we just want read */
+		// MAP_SHARED,	/* flags: PRIVATE or SHARED ** MUST** be specified */
+		fd,	/* fd: our file descriptor */
+		0	/* offset: from the begining of the file */
+		), MAP_FAILED);
 	// we have the mmap address, we don't need the file anymore...
 	CHECK_NOT_M1(close(fd));
 	proc_print_mmap_self_filter(file_to_map);

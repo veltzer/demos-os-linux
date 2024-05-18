@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
-class HA_CommandHandler:public ACE_Task<ACE_MT_SYNCH> {
+class HA_CommandHandler: public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, "(%t) starting up\n"));

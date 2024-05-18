@@ -21,7 +21,7 @@
 #include <pthread.h>	// for pthread_mutex_init(3), pthread_mutex_lock(3), pthread_mutex_unlock(3), pthread_mutex_destroy(3), pthread_create(3), pthread_join(3)
 #include <trace_utils.h>// for TRACE()
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_ZERO()
-#include <semaphore.h> // for sem_t
+#include <semaphore.h>	// for sem_t
 
 /*
  * check whether sem_* functions are futex based (implemented in user space).

@@ -23,7 +23,7 @@
 #include <sys/mman.h>	// for mmap(2), PROT_READ, PROT_WRITE, MAP_SHARED, MAP_ANONYMOUS, MAP_FAILED
 #include <sys/types.h>	// for wait(2)
 #include <sys/wait.h>	// for wait(2)
-#include <trace_utils.h>	// for TRACE()
+#include <trace_utils.h>// for TRACE()
 
 /*
  * This is an example of how a parent and child process can

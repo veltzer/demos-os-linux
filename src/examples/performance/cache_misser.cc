@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "%s: measure with: perf stat -e cache-misses ./src/examples/performance/cache_misser.elf [size] [times]\n", argv[0]);
 		return EXIT_FAILURE;
 	}
-	//srandom(getpid());
+	// srandom(getpid());
 	unsigned int size=atoi(argv[1]);
 	unsigned int times=atoi(argv[2]);
 	unsigned int random=atoi(argv[3]);

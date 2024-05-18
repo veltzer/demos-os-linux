@@ -39,7 +39,7 @@
  * allocated block of ram)
  */
 
-class A {
+class A{
 public:
 	float val;
 	A(void) {

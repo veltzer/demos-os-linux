@@ -17,15 +17,15 @@
  */
 
 /*
-This example shows that the address of main does not change even
-when address randomization is turned on at the OS level...
-Just run this program many times to see that the address of main
-remains the same...
-*/
+ * This example shows that the address of main does not change even
+ * when address randomization is turned on at the OS level...
+ * Just run this program many times to see that the address of main
+ * remains the same...
+ */
 
 #include <firstinclude.h>
-#include <stdio.h> // for printf(3)
-#include <stdlib.h> // for EXIT_SUCCESS
+#include <stdio.h>	// for printf(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
 
 int main() {
 #pragma GCC diagnostic push

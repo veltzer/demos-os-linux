@@ -42,7 +42,7 @@ static const long max_queue=LONG_MAX;
 ACE_Message_Queue<ACE_MT_SYNCH> msg_queue(max_queue);
 int ReadMessage(ACE_Message_Queue<ACE_MT_SYNCH> *msg_queue);
 
-class MessageAgent {	// Proxy to the MessageAgent that is on the network.
+class MessageAgent{	// Proxy to the MessageAgent that is on the network.
 public:
 	MessageAgent() {
 		ACE_TRACE("MessageAgent::MessageAgentAgent");
@@ -67,7 +67,7 @@ private:
 	int status_result_;
 };
 
-class MessageRequest:public ACE_Method_Request {
+class MessageRequest: public ACE_Method_Request {
 public:
 	MessageRequest(MessageAgent & message, ACE_Future<int> &returnVal)
 		: message_(message), returnVal_(returnVal) {
@@ -87,7 +87,7 @@ private:
 	ACE_Future<int> returnVal_;
 };
 
-class ExitMethod:public ACE_Method_Request {
+class ExitMethod: public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
@@ -96,7 +96,7 @@ public:
 	}
 };
 
-class Scheduler:public ACE_Task_Base {
+class Scheduler: public ACE_Task_Base {
 public:
 	Scheduler() {
 		ACE_TRACE("Scheduler::Scheduler");
@@ -125,7 +125,7 @@ private:
 	ACE_Activation_Queue activation_queue_;
 };
 
-class MessageAgentProxy {
+class MessageAgentProxy{
 	// This acts as a Proxy to the message impl object.
 
 public:
@@ -147,9 +147,9 @@ private:
 	MessageAgent message_;
 };
 
-class CompletionCallBack:public ACE_Future_Observer<int> {
+class CompletionCallBack: public ACE_Future_Observer<int> {
 public:
-	CompletionCallBack(MessageAgentProxy& proxy):proxy_(proxy) {
+	CompletionCallBack(MessageAgentProxy& proxy) : proxy_(proxy) {
 	}
 	virtual void update(const ACE_Future<int>& future) {
 		int result=0;

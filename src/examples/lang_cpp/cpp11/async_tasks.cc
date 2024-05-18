@@ -39,7 +39,7 @@
 
 int main() {
 	std::cout << "Main thread id: " << std::this_thread::get_id() << std::endl;
-	std::vector<std::future<void>> futures;
+	std::vector<std::future<void> > futures;
 	const unsigned int task_num=20;
 	for(unsigned int i = 0; i < task_num; ++i) {
 		futures.push_back(std::async([i] {

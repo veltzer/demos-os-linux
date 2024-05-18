@@ -151,7 +151,7 @@ static inline void no_params(int argc, char** argv) {
  * Type struct old_linux_dirent which is taken from the readdir(2)
  * manpage
  */
-struct old_linux_dirent {
+struct old_linux_dirent{
 	long d_ino;	/* inode number */
 	off_t d_off;	/* offset to this old_linux_dirent */
 	unsigned short d_reclen;/* length of this d_name */
@@ -161,7 +161,7 @@ struct old_linux_dirent {
 /*
  * Type struct linux_dirent which is taken from getdents(2) manpage
  */
-struct linux_dirent {
+struct linux_dirent{
 	unsigned long d_ino;	/* Inode number */
 	unsigned long d_off;	/* Offset to next linux_dirent */
 	unsigned short d_reclen;/* Length of this linux_dirent */

@@ -28,14 +28,13 @@
  * - just one character does NOT pad the size to 4 or something.
  */
 
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-typedef struct _empty {
+typedef struct _empty{
 } empty;
 #pragma GCC diagnostic pop
 
-typedef struct _onechar {
+typedef struct _onechar{
 	char mychar;
 } onechar;
 

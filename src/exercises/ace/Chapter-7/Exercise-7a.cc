@@ -33,10 +33,10 @@
 
 typedef ACE_Malloc_T<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex, ACE_PI_Control_Block> SHARED_ALLOC;
 typedef ACE_Malloc_LIFO_Iterator_T<ACE_MMAP_MEMORY_POOL, ACE_Null_Mutex, ACE_PI_Control_Block>
-MALLOC_LIFO_RECORD;
+	MALLOC_LIFO_RECORD;
 SHARED_ALLOC* shared[3];
 
-class Record {
+class Record{
 public:
 	Record(SHARED_ALLOC* shared, char* name) {
 		size_t len=ACE_OS::strlen(name)+1;

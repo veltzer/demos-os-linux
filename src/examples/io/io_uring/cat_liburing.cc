@@ -34,32 +34,29 @@
  * EXTRA_LINK_FLAGS_AFTER=-luring
  */
 
-
 #define QUEUE_DEPTH 1
 #define BLOCK_SZ 1024
 
-struct file_info {
+struct file_info{
 	off_t file_sz;
-	struct iovec* iovecs; /* Referred by readv/writev */
+	struct iovec* iovecs;	/* Referred by readv/writev */
 };
 
 /*
-* Returns the size of the file whose open file descriptor is passed in.
-* Properly handles regular file and block devices as well. Pretty.
-* */
+ * Returns the size of the file whose open file descriptor is passed in.
+ * Properly handles regular file and block devices as well. Pretty.
+ * */
 
 off_t get_file_size(int fd) {
 	struct stat st;
 
 	CHECK_NOT_M1(fstat(fd, &st));
-
 	if (S_ISBLK(st.st_mode)) {
 		unsigned long long bytes;
 		CHECK_NOT_M1(ioctl(fd, BLKGETSIZE64, &bytes));
 		return bytes;
 	} else if (S_ISREG(st.st_mode))
 		return st.st_size;
-
 	return -1;
 }
 
@@ -90,9 +87,8 @@ int get_completion_and_print(struct io_uring *ring) {
 	struct file_info *fi = (struct file_info*)io_uring_cqe_get_data(cqe);
 	int blocks = (int) fi->file_sz / BLOCK_SZ;
 	if (fi->file_sz % BLOCK_SZ) blocks++;
-	for(int i = 0; i < blocks; i ++)
+	for(int i = 0; i < blocks; i++)
 		output_to_console((char*)(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
-
 	io_uring_cqe_seen(ring, cqe);
 	return 0;
 }
@@ -112,7 +108,6 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 		blocks++;
 	struct file_info *fi = (struct file_info*)CHECK_NOT_NULL(malloc(sizeof(*fi) + (sizeof(struct iovec) * blocks)));
 	// char *buff = (char*)CHECK_NOT_NULL(malloc(file_sz));
-
 	/*
 	 * For each block of the file we need to read, we allocate an iovec struct
 	 * which is indexed into the iovecs array. This array is passed in as part
@@ -123,7 +118,6 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 		off_t bytes_to_read = bytes_remaining;
 		if (bytes_to_read > BLOCK_SZ)
 			bytes_to_read = BLOCK_SZ;
-
 		offset += bytes_to_read;
 		fi->iovecs[current_block].iov_len = bytes_to_read;
 		void* buf;
@@ -149,16 +143,13 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 
 int main(int argc, char *argv[]) {
 	struct io_uring ring;
-
 	if (argc < 2) {
 		fprintf(stderr, "%s: usage: %s [file name] <[file name] ...>\n",
-				argv[0], argv[0]);
+			argv[0], argv[0]);
 		return 1;
 	}
-
 	/* Initialize io_uring */
 	io_uring_queue_init(QUEUE_DEPTH, &ring, 0);
-
 	for(int i = 1; i < argc; i++) {
 		int ret = submit_read_request(argv[i], &ring);
 		if (ret) {
@@ -167,7 +158,6 @@ int main(int argc, char *argv[]) {
 		}
 		get_completion_and_print(&ring);
 	}
-
 	/* Call the clean-up function. */
 	io_uring_queue_exit(&ring);
 	return 0;

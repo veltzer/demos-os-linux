@@ -45,7 +45,7 @@ void operator delete(void *pointer) {
 	myfree(pointer);
 }
 
-class A {
+class A{
 public:
 	int x;
 	A() {

@@ -34,7 +34,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class Manager:public ACE_Process {
+class Manager: public ACE_Process {
 public:
 	Manager(const char* program_name) {
 		ACE_TRACE("Manager::Manager");
@@ -122,7 +122,7 @@ private:
 	char programName_[256];
 };
 
-class Slave {
+class Slave{
 public:
 	Slave() {
 		ACE_TRACE("Slave::Slave");

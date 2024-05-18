@@ -16,12 +16,12 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h> // for EXIT_SUCCESS
-#include <stdio.h> // for fprintf(3), stderr
-#include <unistd.h> // for sleep(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <stdio.h>	// for fprintf(3), stderr
+#include <unistd.h>	// for sleep(3)
 
 int main() {
-	for(int i=0;i<100;i++) {
+	for(int i=0; i<100; i++) {
 		fprintf(stderr, "i is %d\n", i);
 		sleep(1);
 		if(i==5) {

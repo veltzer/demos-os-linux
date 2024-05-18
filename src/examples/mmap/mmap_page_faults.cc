@@ -42,11 +42,11 @@ int main() {
 		MAP_ANONYMOUS|MAP_PRIVATE,
 		-1,
 		0
-	), MAP_FAILED);
+		), MAP_FAILED);
 	// slowly use the memory
 	int counter = 0;
 	while(true) {
-		for(int i=0;i<1000;i++) {
+		for(int i=0; i<1000; i++) {
 			*p=0;
 			p+=pagesize;
 		}

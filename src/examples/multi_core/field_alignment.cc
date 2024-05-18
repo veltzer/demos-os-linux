@@ -35,18 +35,18 @@
  * http://en.wikipedia.org/wiki/Data_structure_alignment
  */
 
-struct small {
+struct small{
 	char c1;
 	char c2;
 };
 
-struct medium {
+struct medium{
 	char c1;
 	int i1;
 	char c2;
 };
 
-struct medium2 {
+struct medium2{
 	char c1;
 	char c2;
 	int i1;

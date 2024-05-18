@@ -30,7 +30,7 @@
 #include <sys/epoll.h>	// for EPOLLIN, EPOLLOUT, EPOLLRDHUP, EPOLLPRI, ...
 #include <stdio.h>	// for snprintf(3)
 
-typedef struct _epoll_val_and_name {
+typedef struct _epoll_val_and_name{
 	unsigned int val;
 	const char* name;
 } epoll_val_and_name;

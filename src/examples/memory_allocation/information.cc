@@ -84,14 +84,13 @@ int main(int argc, char** argv) {
 	if(argc!=4) {
 		fprintf(stderr, "%s: usage: %s [num_threads] [num_allocations] [size_to_alloc]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: example: %s 5 1024 1024\n", argv[0], argv[0]);
-		//fprintf(stderr, "%s: example: %s 5 1024 131072\n", argv[0], argv[0]);
+		// fprintf(stderr, "%s: example: %s 5 1024 131072\n", argv[0], argv[0]);
 		return EXIT_FAILURE;
 	}
 	num_threads=atoi(argv[1]);
 	num_allocations=atoi(argv[2]);
 	size_to_alloc=atoi(argv[3]);
 	pthread_t* threads=new pthread_t[num_threads];
-
 	for(unsigned int i=0; i<num_threads; i++) {
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, NULL));
 	}

@@ -32,14 +32,14 @@
  */
 
 // structs under 4 bytes are tight
-typedef struct _s1 {
+typedef struct _s1{
 	char c1;
 } s1;
 _Static_assert(sizeof(s1)==1, "msg");
 _Static_assert(__builtin_offsetof(s1, c1)==0, "msg");
 
 // and again...
-typedef struct _s2 {
+typedef struct _s2{
 	char c1;
 	char c2;
 } s2;
@@ -49,7 +49,7 @@ _Static_assert(__builtin_offsetof(s2, c2)==1, "msg");
 
 // this one will be 6 bytes because the short will be on a 2 byte boundary
 // and so the first char is padded and so is the second...
-typedef struct _s3 {
+typedef struct _s3{
 	char c1;
 	short s1;
 	char c2;
@@ -61,7 +61,7 @@ _Static_assert(__builtin_offsetof(s3, c2)==4, "msg");
 
 // lets pack it tighter
 #pragma pack(push,1)
-typedef struct _s4 {
+typedef struct _s4{
 	char c1;
 	short s1;
 	char c2;
@@ -73,7 +73,7 @@ _Static_assert(__builtin_offsetof(s4, s1)==1, "msg");
 _Static_assert(__builtin_offsetof(s4, c2)==3, "msg");
 
 // ints will be on their own 4 byte boundary
-typedef struct _s5 {
+typedef struct _s5{
 	char c1;
 	int i1;
 	char c2;
@@ -85,7 +85,7 @@ _Static_assert(__builtin_offsetof(s5, c2)==8, "msg");
 
 // lets pack the most (1)
 #pragma pack(push,1)
-typedef struct _s6 {
+typedef struct _s6{
 	char c1;
 	int i1;
 	char c2;
@@ -98,7 +98,7 @@ _Static_assert(__builtin_offsetof(s6, c2)==5, "msg");
 
 // lets pack it less (2)
 #pragma pack(push,2)
-typedef struct _s7 {
+typedef struct _s7{
 	char c1;
 	int i1;
 	char c2;
@@ -114,7 +114,7 @@ _Static_assert(__builtin_offsetof(s7, c2)==6, "msg");
 // of the alignment but also makes sure that any structure like this passed
 // around by the compiler on the stack or data segment will be on a
 // properly aligned addres.
-typedef struct _s8 {
+typedef struct _s8{
 	char c1;
 	int i1;
 	char c2;
@@ -125,7 +125,7 @@ _Static_assert(__builtin_offsetof(s8, i1)==4, "msg");
 _Static_assert(__builtin_offsetof(s8, c2)==8, "msg");
 
 // another way to say that the structure is packed...
-typedef struct _s9 {
+typedef struct _s9{
 	char c1;
 	int i1;
 	char c2;
@@ -136,7 +136,7 @@ _Static_assert(__builtin_offsetof(s9, i1)==1, "msg");
 _Static_assert(__builtin_offsetof(s9, c2)==5, "msg");
 
 // lets specify alignment of individual fields in our structure
-typedef struct _s10 {
+typedef struct _s10{
 	char c1;
 	int i1 __attribute__ ((aligned (8)));
 	char c2;
@@ -148,7 +148,7 @@ _Static_assert(__builtin_offsetof(s10, c2)==12, "msg");
 
 // this is really unclear and does not match up with gcc
 // documentation (http://gcc.gnu.org/onlinedocs/gcc/Type-Attributes.html)
-typedef struct _s11 {
+typedef struct _s11{
 	short s1;
 	short s2;
 	short s3;
@@ -159,7 +159,7 @@ _Static_assert(__builtin_offsetof(s11, s2)==2, "msg");
 _Static_assert(__builtin_offsetof(s11, s3)==4, "msg");
 
 // you can pack just individual fields
-typedef struct _s12 {
+typedef struct _s12{
 	char c1;
 	int i1 __attribute__ ((packed));
 	char c2;

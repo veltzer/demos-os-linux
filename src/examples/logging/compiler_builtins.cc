@@ -46,7 +46,7 @@
  * which you are compiling.
  */
 
-class A {
+class A{
 public:
 	void thisMethod(int, int) {
 		PRINT_BUILTINS();

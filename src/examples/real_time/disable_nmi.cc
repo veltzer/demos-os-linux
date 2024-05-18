@@ -18,8 +18,8 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <sys/io.h> // for inb(), outb(), ioperm(2)
-#include <err_utils.h> // for CHECK_NOT_M1()
+#include <sys/io.h>	// for inb(), outb(), ioperm(2)
+#include <err_utils.h>	// for CHECK_NOT_M1()
 
 /*
  * This example disables Non-Maskable-Interrupts (NMIs)

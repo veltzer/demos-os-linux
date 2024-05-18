@@ -34,7 +34,7 @@
  */
 
 // This is our timer handler which handles some periodic job in the system
-class MyTimerHandler:public ACE_Event_Handler {
+class MyTimerHandler: public ACE_Event_Handler {
 public:
 	int handle_timeout(const ACE_Time_Value& current_time, const void* =0) {
 		time_t epoch=((timespec_t)current_time).tv_sec;
@@ -44,7 +44,7 @@ public:
 };
 
 // Create a SIGINT handler so that we can exit the program politely
-class SigintHandler:public ACE_Event_Handler {
+class SigintHandler: public ACE_Event_Handler {
 public:
 	int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
 		static int counter=0;

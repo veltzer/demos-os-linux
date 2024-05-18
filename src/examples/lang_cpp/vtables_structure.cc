@@ -36,7 +36,7 @@
  * but rather indirectly.
  */
 
-class A {
+class A{
 public:
 	virtual void vamethod0() {
 	}
@@ -46,7 +46,7 @@ public:
 	}
 };
 
-class B:public A {
+class B: public A {
 public:
 	virtual void vbmethod0() {
 	}
@@ -56,7 +56,7 @@ public:
 
 // this does not work...
 // dumps core?!?
-template <class T> void* convert(void (T::*p)()) {
+template <class T> void* convert(void(T::*p)()) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpmf-conversions"
 	void* ret=(void*)p;

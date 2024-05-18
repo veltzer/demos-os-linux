@@ -55,21 +55,21 @@ int main(int argc, char** argv) {
 		counter++;
 		// this is a compiler barrier that forces the compiler
 		// to actually instantiate a loop here...
-		asm volatile ("" ::: "memory");
+		asm volatile("" ::: "memory");
 	}
 	measure_end(&m);
 	measure_print(&m);
 
 	counter=0;
-	//print the address of counter to force the compiler
-	//to allocate it on the stack
+	// print the address of counter to force the compiler
+	// to allocate it on the stack
 	printf("address of counter is %p\n", (void*)&counter);
 	measure_init(&m, "regular adds (best barrier)", attempts);
 	measure_start(&m);
 	for(int i=0; i<attempts; i++) {
 		counter++;
 		// this is to make the compiler actually do the loop
-		asm volatile ("":"=g" (counter) ::);
+		asm volatile("" : "=g" (counter)::);
 	}
 	measure_end(&m);
 	measure_print(&m);

@@ -47,7 +47,7 @@
  * You can see the size of the data segment by simply looking at the size of executable file.
  */
 
-//int myarray[10000]={1};
+// int myarray[10000]={1};
 
 int main() {
 	printf("my pid is [%d]...\n", getpid());

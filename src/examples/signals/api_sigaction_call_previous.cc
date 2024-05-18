@@ -65,7 +65,7 @@ static void handler(int sig, siginfo_t *si, void* unused) {
 	psiginfo(si, "sighandler");
 	counter++;
 	fprintf(stderr, "sighandler: calling previous\n");
-	//old_action(sig, si, unused);
+	// old_action(sig, si, unused);
 }
 
 int main() {

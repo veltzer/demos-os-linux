@@ -24,7 +24,7 @@
  * the CPU.
  */
 static inline void rep_nop(void) {
-	__asm__ __volatile__ ("rep;nop":::"memory");
+	__asm__ __volatile__("rep;nop" ::: "memory");
 }
 
 int main() {

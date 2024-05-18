@@ -35,7 +35,7 @@ int main() {
 		10, 10, 400, 300, 1,
 		BlackPixel(display, screen),
 		WhitePixel(display, screen)
-	);
+		);
 	XSelectInput(display, window, ExposureMask | KeyPressMask);
 	XMapWindow(display, window);
 	while (true) {

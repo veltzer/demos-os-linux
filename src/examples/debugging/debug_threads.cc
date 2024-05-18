@@ -36,7 +36,7 @@
 
 static void* worker(void* p) {
 	int num=*(int *)p;
-	for(int i=0;i<100;i++) {
+	for(int i=0; i<100; i++) {
 		TRACE("starting thread %d", num);
 		pthread_t t=pthread_self();
 		TRACE("thread %d: pthread_self is %lu", num, t);

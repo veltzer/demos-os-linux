@@ -27,7 +27,7 @@
  * http://www.cprogramming.com/tutorial/template_specialization.html
  */
 
-template<typename T> class Vector {
+template<typename T> class Vector{
 private:
 	unsigned int size;
 

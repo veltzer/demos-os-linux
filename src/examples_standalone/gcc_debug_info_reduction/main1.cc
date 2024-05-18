@@ -35,7 +35,7 @@
  */
 #ifdef DO_PRAGMA
 #pragma
-#endif /* DO_PRAGMA */
+#endif	/* DO_PRAGMA */
 void foo(void) {
 	ACE_TRACE("foo");
 	ACE_DEBUG((LM_INFO, "%IHowdy Pardner\n"));

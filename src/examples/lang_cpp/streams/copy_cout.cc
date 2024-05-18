@@ -17,14 +17,14 @@
  */
 
 /*
-This example shows how to create an ostream object around standard output
-*/
+ * This example shows how to create an ostream object around standard output
+ */
 
 #include <firstinclude.h>
-#include <stdlib.h> // for EXIT_SUCCESS
-#include <unistd.h> // for STDOUT_FILENO
-#include <ext/stdio_filebuf.h> // for _gnu_cxx::stdio_filebuf<T>
-#include <iostream> // for std::cout, std::endl
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <unistd.h>	// for STDOUT_FILENO
+#include <ext/stdio_filebuf.h>	// for _gnu_cxx::stdio_filebuf<T>
+#include <iostream>	// for std::cout, std::endl
 
 int main() {
 	std::cout << "Hello, World!" << std::endl;

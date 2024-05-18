@@ -70,7 +70,6 @@ int main() {
 		fprintf(stderr, "Could not initialize libevent!\n");
 		return 1;
 	}
-
 	memset(&sin, 0, sizeof(sin));
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(PORT);
@@ -79,19 +78,15 @@ int main() {
 		LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
 		(struct sockaddr*)&sin,
 		sizeof(sin));
-
 	if (!listener) {
 		fprintf(stderr, "Could not create a listener!\n");
 		return 1;
 	}
-
 	signal_event = evsignal_new(base, SIGINT, signal_cb, (void*)base);
-
 	if (!signal_event || event_add(signal_event, NULL)<0) {
 		fprintf(stderr, "Could not create/add a signal event!\n");
 		return 1;
 	}
-
 	event_base_dispatch(base);
 
 	evconnlistener_free(listener);
@@ -102,12 +97,11 @@ int main() {
 	return 0;
 }
 
-static void listener_cb(
-		struct evconnlistener *listener __attribute__((unused)),
-		evutil_socket_t fd,
-		struct sockaddr *sa __attribute__((unused)),
-		int socklen __attribute__((unused)),
-		void* user_data)
+static void listener_cb(struct evconnlistener *listener __attribute__((unused)),
+	evutil_socket_t fd,
+	struct sockaddr *sa __attribute__((unused)),
+	int socklen __attribute__((unused)),
+	void* user_data)
 {
 	struct event_base *base = (struct event_base*) user_data;
 	struct bufferevent *bev;
@@ -137,7 +131,7 @@ static void conn_eventcb(struct bufferevent *bev __attribute__((unused)), short 
 		printf("Connection closed.\n");
 	} else if (events & BEV_EVENT_ERROR) {
 		printf("Got an error on the connection: %s\n",
-			strerror(errno));/*XXX win32*/
+			strerror(errno));	/*XXX win32*/
 	}
 	/* None of the other events can happen here, since we haven't enabled
 	 * timeouts */

@@ -36,7 +36,7 @@ int main() {
 	while(true) {
 		const unsigned int SIZE=256;
 		char line[SIZE];
-		//CHECK_NOT_NEGATIVE(fread(line, SIZE, 1, fp));
+		// CHECK_NOT_NEGATIVE(fread(line, SIZE, 1, fp));
 		CHECK_NOT_NULL(fgets(line, SIZE, fp));
 		printf("got value [%s]\n", line);
 		CHECK_ZERO(sleep(1));

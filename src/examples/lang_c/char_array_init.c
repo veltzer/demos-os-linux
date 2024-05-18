@@ -48,7 +48,7 @@ int main() {
 	// so the above is the same as:
 	char bar[50] __attribute__((unused))={ 'f', 'o', 'o' };
 	// by now it should be fairly obvious why the following is legal...
-	struct bullshit {
+	struct bullshit{
 		char str[4];
 		unsigned int num;
 	} test __attribute__((unused))= {"stop", 0xFFFF};	/* 's' 't' 'o' 'p' 0xF */

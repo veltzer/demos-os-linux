@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <boost/thread.hpp>	// for boost::thread
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ASSERT()
-#include <pthread.h> // for pthread_barrier_init()
+#include <pthread.h>	// for pthread_barrier_init()
 
 /*
  * A solution to the train exercise...
@@ -32,59 +32,63 @@
  * EXTRA_LINK_FLAGS_AFTER=-l:libboost_thread.so.1.74.0 -l:libboost_system.so.1.74.0 -lpthread
  */
 
-class Worker1 {
-	private:
+class Worker1{
+private:
 	unsigned int counter;
 	pthread_barrier_t* bar;
-	public:
-	Worker1(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
+
+public:
+	Worker1(unsigned int counter, pthread_barrier_t* bar) : counter(counter), bar(bar) {
 	}
 	void operator()() {
-			// sleep for a random amount of time, simulating some work done by
-			// this thread
-			//pthread_barrier_wait(bar);
-			//position+=1;
-			//position%=size;
+		// sleep for a random amount of time, simulating some work done by
+		// this thread
+		// pthread_barrier_wait(bar);
+		// position+=1;
+		// position%=size;
 	}
 };
-class Worker2 {
-	private:
+class Worker2{
+private:
 	unsigned int counter;
 	pthread_barrier_t* bar;
-	public:
-	Worker2(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
+
+public:
+	Worker2(unsigned int counter, pthread_barrier_t* bar) : counter(counter), bar(bar) {
 	}
 	void operator()() {
 		pthread_barrier_wait(bar);
 		/*
-		for(int i=0;i<counter;i++) {
-			// sleep for a random amount of time, simulating some work done by
-			// this thread
-			//pthread_barrier_wait(bar);
-			//position+=1;
-			//position%=size;
-		}
-		*/
+		 * for(int i=0;i<counter;i++) {
+		 *      // sleep for a random amount of time, simulating some work done by
+		 *      // this thread
+		 *      //pthread_barrier_wait(bar);
+		 *      //position+=1;
+		 *      //position%=size;
+		 * }
+		 */
 	}
 };
-class Worker3 {
-	private:
+class Worker3{
+private:
 	unsigned int counter;
 	pthread_barrier_t* bar;
-	public:
-	Worker3(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
+
+public:
+	Worker3(unsigned int counter, pthread_barrier_t* bar) : counter(counter), bar(bar) {
 	}
 	void operator()() {
 		pthread_barrier_wait(bar);
 		pthread_barrier_wait(bar);
 	}
 };
-class Worker4 {
-	private:
+class Worker4{
+private:
 	unsigned int counter;
 	pthread_barrier_t* bar;
-	public:
-	Worker4(unsigned int counter, pthread_barrier_t* bar):counter(counter), bar(bar) {
+
+public:
+	Worker4(unsigned int counter, pthread_barrier_t* bar) : counter(counter), bar(bar) {
 	}
 	void operator()() {
 		pthread_barrier_wait(bar);

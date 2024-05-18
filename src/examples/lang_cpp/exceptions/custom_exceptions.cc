@@ -26,7 +26,7 @@
  * This is an example of using custom exception types...
  */
 
-class MyException:public std::exception {
+class MyException: public std::exception {
 private:
 	std::string message;
 
@@ -42,7 +42,7 @@ public:
 		std::cout << message << std::endl;
 		return message.c_str();
 	}
-	virtual ~MyException() throw(){
+	virtual~MyException() throw(){
 	};
 };
 

@@ -25,14 +25,14 @@
  * by the compiler.
  */
 
-template<class T> class A {
-	public:
-		int foo(T t) __attribute__((noinline));
+template<class T> class A{
+public:
+	int foo(T t) __attribute__((noinline));
 };
 
 template<class T> int A<T>::foo(T t __attribute__((unused))) {
 	int sum=0;
-	for(unsigned int i=0;i<100;i++) {
+	for(unsigned int i=0; i<100; i++) {
 		sum+=i*i;
 	}
 	return sum;
@@ -41,9 +41,9 @@ template<class T> int A<T>::foo(T t __attribute__((unused))) {
 template class A<int>;
 
 int main(int, char** argv) {
-	//A<int> a;
-	//int sum=a.foo(0);
-	//return sum;
+	// A<int> a;
+	// int sum=a.foo(0);
+	// return sum;
 	my_system("nm %s -C | grep foo", argv[0]);
 	return EXIT_SUCCESS;
 }

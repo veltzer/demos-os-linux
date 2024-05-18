@@ -43,7 +43,7 @@ typedef unsigned long longest_t;
  *
  */
 template<longest_t N>
-class bin {
+class bin{
 public:
 	enum {
 		value = (N % 8) + (bin<N / 8>::value << 1)

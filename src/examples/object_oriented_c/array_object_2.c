@@ -38,9 +38,9 @@ void _check_bounds(void* array, int pos) {
 
 #ifdef DEBUG
 #define CHECK_BOUNDS(array, pos) _check_bounds(array, pos)
-#else // DEBUG
+#else	// DEBUG
 #define CHECK_BOUNDS(array, pos)
-#endif // DEBUG
+#endif	// DEBUG
 
 static inline void* array_construct(int size) {
 	int* p=(int*)CHECK_NOT_NULL(malloc((size+1)*sizeof(int)));
@@ -73,13 +73,13 @@ int main() {
 	const int size=10;
 	int i;
 	void* a=array_construct(size);
-	for(i=0;i<size;i++) {
+	for(i=0; i<size; i++) {
 		printf("element [%d] is [%d]\n", i, array_get_value(a, i));
 	}
-	for(i=0;i<size;i++) {
+	for(i=0; i<size; i++) {
 		array_set_value(a, i, i);
 	}
-	for(i=0;i<size;i++) {
+	for(i=0; i<size; i++) {
 		printf("element [%d] is [%d]\n", i, array_get_value(a, i));
 	}
 	printf("array size is [%d]\n", array_size(a));

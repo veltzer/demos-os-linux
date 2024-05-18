@@ -54,7 +54,7 @@ static void* worker(void* p) {
 		}
 	}
 	if(num==1) {
-		CHECK_NOT_M1(kill(pids[0],SIGKILL));
+		CHECK_NOT_M1(kill(pids[0], SIGKILL));
 	}
 	return NULL;
 }
@@ -77,7 +77,7 @@ int main() {
 			printf("releasing the other threads to run\n");
 			CHECK_ZERO_ERRNO(pthread_barrier_destroy(&barrier));
 		}
-		//pause();
+		// pause();
 	}
 	return EXIT_SUCCESS;
 }

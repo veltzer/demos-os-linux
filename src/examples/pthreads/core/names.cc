@@ -18,7 +18,7 @@
 
 #include <firstinclude.h>
 #include <pthread.h>	// for pthread_create(3), pthread_join(3), pthread_t:struct, pthread_setname_np(3), pthread_getname_np(3)
-	// pthread_mutex_init(3), pthread_mutex_lock(3), pthread_mutex_unlock(3), pthread_mutex_destroy(3)
+// pthread_mutex_init(3), pthread_mutex_lock(3), pthread_mutex_unlock(3), pthread_mutex_destroy(3)
 #include <sys/types.h>	// for getpid(2)
 #include <unistd.h>	// for getpid(2)
 #include <string.h>	// for strncpy(3)
@@ -44,13 +44,13 @@
 
 const int name_length=16;
 
-typedef enum _method {
+typedef enum _method{
 	PRCTL,
 	PTHREAD_SET_NAME,
 	PROC,
 } method;
 
-typedef struct _todo_item {
+typedef struct _todo_item{
 	method m;
 	char name[name_length];
 } todo_item;
@@ -64,7 +64,7 @@ todo_item todo[]={
 	{ PROC, "תהליכון" },
 };
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	pthread_mutex_t start_mutex;
 	pthread_mutex_t end_mutex;
 	char name[name_length];
@@ -82,19 +82,17 @@ void* worker(void* arg) {
 	TRACE("get_thread_name_proc is [%s]", name);
 	CHECK_ZERO_ERRNO(pthread_getname_np(pthread_self(), name, name_length));
 	TRACE("pthread_getname_np is [%s]...\n", name);
-
 	switch(td->m) {
-		case PRCTL:
-			set_thread_name(td->name);
-			break;
-		case PTHREAD_SET_NAME:
-			CHECK_ZERO_ERRNO(pthread_setname_np(pthread_self(), td->name));
-			break;
-		case PROC:
-			set_thread_name_proc(td->name);
-			break;
+	case PRCTL:
+		set_thread_name(td->name);
+		break;
+	case PTHREAD_SET_NAME:
+		CHECK_ZERO_ERRNO(pthread_setname_np(pthread_self(), td->name));
+		break;
+	case PROC:
+		set_thread_name_proc(td->name);
+		break;
 	}
-
 	get_thread_name(name, name_length);
 	TRACE("get_thread_name is [%s]", name);
 	get_thread_name_proc(name, name_length);
@@ -108,7 +106,7 @@ void* worker(void* arg) {
 }
 
 int main() {
-	for(unsigned int i=0;i<ARRAY_SIZEOF(todo);i++) {
+	for(unsigned int i=0; i<ARRAY_SIZEOF(todo); i++) {
 		pthread_t t;
 		thread_data td;
 		strncpy(td.name, todo[i].name, name_length-1);

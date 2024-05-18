@@ -50,11 +50,11 @@
 
 void function(int len) {
 	int array[len];
-	for(int i=0;i<len;i++) {
+	for(int i=0; i<len; i++) {
 		array[i]=i;
 	}
 	int sum=0;
-	for(int i=0;i<len;i++) {
+	for(int i=0; i<len; i++) {
 		sum+=array[i];
 	}
 	printf("sum is %d\n", sum);

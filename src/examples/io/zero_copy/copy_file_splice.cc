@@ -34,7 +34,7 @@
 void copy_file(const char* filein, const char* fileout, const bool setbufsize, const size_t buf_size) {
 	// lets create a pipe
 	const unsigned int splice_flags=SPLICE_F_MOVE | SPLICE_F_MORE;
-	//const unsigned int splice_flags=SPLICE_F_MOVE;
+	// const unsigned int splice_flags=SPLICE_F_MOVE;
 	int pipe_fds[2];
 	CHECK_NOT_M1(pipe(pipe_fds));
 	// lets get the pipe size
@@ -47,7 +47,7 @@ void copy_file(const char* filein, const char* fileout, const bool setbufsize, c
 		size=buf_size;
 	} else {
 		size=INT_MAX;
-		//size=getpagesize();
+		// size=getpagesize();
 	}
 	int fdin=CHECK_NOT_M1(open(filein, O_RDONLY|O_LARGEFILE, 0666));
 	int fdout=CHECK_NOT_M1(open(fileout, O_WRONLY|O_CREAT|O_TRUNC|O_LARGEFILE, 0666));

@@ -50,14 +50,14 @@ int main() {
 	printf("which means %ld pages\n", stat_buf.st_size/pagesize);
 	const int size=stat_buf.st_size;
 	void* res=CHECK_NOT_VOIDP(mmap(
-			NULL,	/* addr: dont recommend address */
-			size,	/* size: the size of the file */
-			PROT_READ,	/* prot: we just want read */
-			// MAP_PRIVATE | MAP_POPULATE, /* flags: PRIVATE or SHARED ** MUST** be specified */
-			MAP_PRIVATE,	/* flags: PRIVATE or SHARED ** MUST** be specified */
-			fd,	/* fd: our file descriptor */
-			0	/* offset: from the begining of the file */
-			), MAP_FAILED);
+		NULL,	/* addr: dont recommend address */
+		size,	/* size: the size of the file */
+		PROT_READ,	/* prot: we just want read */
+		// MAP_PRIVATE | MAP_POPULATE, /* flags: PRIVATE or SHARED ** MUST** be specified */
+		MAP_PRIVATE,	/* flags: PRIVATE or SHARED ** MUST** be specified */
+		fd,	/* fd: our file descriptor */
+		0	/* offset: from the begining of the file */
+		), MAP_FAILED);
 	// we have the mmap address, we don't need the file anymore...
 	CHECK_NOT_M1(close(fd));
 	// lets read the memory...

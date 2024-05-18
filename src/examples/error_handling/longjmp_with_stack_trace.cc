@@ -37,7 +37,7 @@ const int drop_frames_start=3;
 const int drop_frames_end=1;
 const int max_message_size=256;
 
-struct error_data {
+struct error_data{
 	int size;
 	void* array[max_stack_frames];
 	char **symbols;

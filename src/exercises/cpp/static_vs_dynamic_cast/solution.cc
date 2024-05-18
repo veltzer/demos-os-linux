@@ -20,38 +20,53 @@
 #include <stdlib.h>
 using namespace std;
 
-class Shape {
+class Shape{
 public:
-	virtual double getArea() { return 0; }
-	//double getArea() { return 0; }
+	virtual double getArea() {
+		return 0;
+	}
+	// double getArea() { return 0; }
 };
 
-class Circle:public Shape {
+class Circle: public Shape {
 private:
 	double radius;
+
 public:
-	Circle(double radius) { this->radius = radius; }
-	double getArea() override { return 3.14 * radius * radius; }
+	Circle(double radius) {
+		this->radius = radius;
+	}
+	double getArea() override{
+		return 3.14 * radius * radius;
+	}
 };
 
-class Square:public Shape {
+class Square: public Shape {
 private:
 	double side;
+
 public:
-	Square(double side) { this->side = side; }
-	double getArea() override { return side * side; }
+	Square(double side) {
+		this->side = side;
+	}
+	double getArea() override{
+		return side * side;
+	}
 };
 
-class Triangle:public Shape {
+class Triangle: public Shape {
 private:
 	double base;
 	double height;
+
 public:
 	Triangle(double base, double height) {
 		this->base = base;
 		this->height = height;
 	}
-	double getArea() override { return 0.5 * base * height; }
+	double getArea() override{
+		return 0.5 * base * height;
+	}
 };
 
 void printArea(Shape* shape) {
@@ -59,7 +74,6 @@ void printArea(Shape* shape) {
 }
 
 int main() {
-
 	Circle circle(5);
 	printArea(&circle);
 
@@ -76,20 +90,18 @@ int main() {
 	Circle* c1 = static_cast<Circle*>(&shape);
 	cout << c1 << endl;
 	// does not compile
-	//Circle* c2 = static_cast<Circle*>(&square);
-	//cout << c2 << endl;
+	// Circle* c2 = static_cast<Circle*>(&square);
+	// cout << c2 << endl;
 
 	// Dynamic cast
 	// does not compile
-	//Circle* c3 = dynamic_cast<Circle*>(&square); // returns NULL
-	//cout << c3 << endl;
-	Circle* c4 = dynamic_cast<Circle*>(&shape); // returns NULL
-
+	// Circle* c3 = dynamic_cast<Circle*>(&square); // returns NULL
+	// cout << c3 << endl;
+	Circle* c4 = dynamic_cast<Circle*>(&shape);	// returns NULL
 	if(c4 != nullptr) {
 		cout << c4->getArea() << endl;
 	} else {
 		cout << "Null pointer" << endl;
 	}
-
 	return EXIT_SUCCESS;
 }

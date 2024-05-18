@@ -55,7 +55,7 @@ int minus1(int x) {
 	// does not return!
 	// if yoo do not declare the above error function as 'noreturn' then the next
 	// line will be neccessary to avoid compilation errors.
-	//return -1;
+	// return -1;
 }
 
 int main() {

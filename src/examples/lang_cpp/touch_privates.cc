@@ -33,7 +33,7 @@
  * This is supposed to be a class which does not allow access to it's secret private,
  * only through accessors...
  */
-class A {
+class A{
 private:
 	int secret;
 
@@ -51,7 +51,7 @@ public:
 /*
  * A similar class but with virtual methods...
  */
-class B {
+class B{
 private:
 	int secret;
 

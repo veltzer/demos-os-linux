@@ -30,7 +30,7 @@
 const int MSGSZ=1024;
 
 // note we cannot declare msgbuf and get away with it
-typedef struct mymsgbuf {
+typedef struct mymsgbuf{
 	long mtype;
 	long fromID;
 	char mtext[MSGSZ];

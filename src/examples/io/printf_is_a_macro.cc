@@ -17,7 +17,7 @@
  */
 
 #include <firstinclude.h>
-#include <multiproc_utils.h> // for my_system()
+#include <multiproc_utils.h>	// for my_system()
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 

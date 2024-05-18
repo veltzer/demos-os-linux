@@ -29,10 +29,10 @@
 
 void* worker(void* p) {
 	int num=*(int *)p;
-	//TRACE("starting thread [%d]", num);
+	// TRACE("starting thread [%d]", num);
 	int cpunum=CHECK_NOT_M1(sched_getcpu());
 	printf("thread [%d] running on cpu [%d]\n", num, cpunum);
-	//TRACE("ending thread [%d]", num);
+	// TRACE("ending thread [%d]", num);
 	return NULL;
 }
 
@@ -41,7 +41,6 @@ int main() {
 	const int num=cpu_num;
 	pthread_t* threads=new pthread_t[num];
 	int* ids=new int[num];
-
 	for(int i=0; i<num; i++) {
 		ids[i]=i;
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, ids + i));

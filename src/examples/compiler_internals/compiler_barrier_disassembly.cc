@@ -29,7 +29,7 @@
  */
 
 int main() {
-	asm volatile ("" ::: "memory");
+	asm volatile("" ::: "memory");
 	disassemble_main();
 	return EXIT_SUCCESS;
 }

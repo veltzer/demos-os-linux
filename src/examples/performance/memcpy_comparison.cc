@@ -38,7 +38,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef struct _threaddata {
+typedef struct _threaddata{
 	unsigned int loop;
 	size_t size;
 	void* buf1;

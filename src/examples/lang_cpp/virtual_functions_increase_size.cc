@@ -28,22 +28,22 @@
 
 // A1 and A2 are exactly the same except the virtual in A2
 
-class A1 {
+class A1{
 public:
 	std::intptr_t a;
 
-	A1(int val):a(val) {
+	A1(int val) : a(val) {
 	}
 	void dosomething() {
 		std::cout << "Hello from A1" << std::endl;
 	}
 };
 
-class A2 {
+class A2{
 public:
 	std::intptr_t a;
 
-	A2(int val):a(val) {
+	A2(int val) : a(val) {
 	}
 
 	virtual void dosomething() {

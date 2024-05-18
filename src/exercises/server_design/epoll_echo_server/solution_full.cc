@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
 				struct sockaddr_in local;
 				socklen_t addrlen=sizeof(local);
 				int realfd=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, 0));
-				//int realfd=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
+				// int realfd=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
 				CircularPipe* cp=new CircularPipe(bufsize);
 				fdbuffermap[realfd]=cp;
 				register_fd(realfd, cp, epollfd, EPOLL_CTL_ADD);

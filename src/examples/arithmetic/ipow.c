@@ -38,7 +38,7 @@ int64_t ipow(int32_t base, uint8_t exp) {
 		6, 6, 6, 6, 6, 6, 6, 6,
 		6, 6, 6, 6, 6, 6, 6, 6,
 		6, 6, 6, 6, 6, 6, 6, 6,
-		6, 6, 6, 6, 6, 6, 6, 255, // anything past 63 is a guaranteed overflow with base > 1
+		6, 6, 6, 6, 6, 6, 6, 255,	// anything past 63 is a guaranteed overflow with base > 1
 		255, 255, 255, 255, 255, 255, 255, 255,
 		255, 255, 255, 255, 255, 255, 255, 255,
 		255, 255, 255, 255, 255, 255, 255, 255,
@@ -69,15 +69,13 @@ int64_t ipow(int32_t base, uint8_t exp) {
 
 	#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 	switch (highest_bit_set[exp]) {
-	case 255: // we use 255 as an overflow marker and return 0 on overflow/underflow
+	case 255:	// we use 255 as an overflow marker and return 0 on overflow/underflow
 		if (base == 1) {
 			return 1;
 		}
-
 		if (base == -1) {
 			return 1 - 2 * (exp & 1);
 		}
-
 		return 0;
 	case 6:
 		if (exp & 1) result *= base;
@@ -105,7 +103,6 @@ int64_t ipow(int32_t base, uint8_t exp) {
 		return result;
 	}
 }
-
 
 int main(int argc, char** argv) {
 	if(argc!=3) {

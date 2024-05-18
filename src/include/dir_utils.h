@@ -37,7 +37,7 @@
  * List of all directory types
  */
 
-typedef struct _dir_val_and_name {
+typedef struct _dir_val_and_name{
 	int val;
 	const char* name;
 } dir_val_and_name;

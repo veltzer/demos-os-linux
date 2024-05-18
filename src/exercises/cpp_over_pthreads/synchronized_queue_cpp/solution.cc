@@ -31,7 +31,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-template <typename T> class SynchronizedQueue {
+template <typename T> class SynchronizedQueue{
 private:
 	std::list<T> mylist;
 	pthread_mutex_t mymutex;
@@ -75,7 +75,7 @@ public:
 
 // testing code starts here
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	unsigned int num;
 	unsigned int count;
 	unsigned int max_sleep;

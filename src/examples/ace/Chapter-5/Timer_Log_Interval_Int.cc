@@ -32,23 +32,21 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class TimerHandler:public ACE_Event_Handler {
+class TimerHandler: public ACE_Event_Handler {
 public:
-	int handle_timeout(
-		const ACE_Time_Value& current_time __attribute__((unused)),
-		const void* arg __attribute__((unused))
-	) {
+	int handle_timeout(const ACE_Time_Value& current_time __attribute__((unused)),
+		const void* arg __attribute__((unused))) {
 		ACE_DEBUG((LM_INFO, "handle_timeout\n"));
 		return 0;
 	}
 };
 
-class LoopStopper:public ACE_Event_Handler {
+class LoopStopper: public ACE_Event_Handler {
 private:
 	int timerId_;
 
 public:
-	LoopStopper(int signum, int timerId):timerId_(timerId) {
+	LoopStopper(int signum, int timerId) : timerId_(timerId) {
 		ACE_Reactor::instance()->register_handler(signum, this);
 	}
 	int handle_signal(int, siginfo_t *, ucontext_t *) {
@@ -58,14 +56,14 @@ public:
 	}
 };
 
-class LogSwitcher:public ACE_Event_Handler {
+class LogSwitcher: public ACE_Event_Handler {
 private:
 	int on_sig_;	// Signal to turn logging on
 	int off_sig_;	// Signal to turn logging off
 	int on_off_;	// 1==turn on, 0==turn off
 
 public:
-	LogSwitcher(int on_sig, int off_sig):on_sig_(on_sig), off_sig_(off_sig) {
+	LogSwitcher(int on_sig, int off_sig) : on_sig_(on_sig), off_sig_(off_sig) {
 		ACE_Sig_Set sigs;
 		sigs.sig_add (on_sig);
 		sigs.sig_add (off_sig);

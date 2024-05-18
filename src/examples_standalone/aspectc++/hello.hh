@@ -22,8 +22,8 @@
 #include <iostream>	// for std::cout, std::endl
 
 /*
-void hello();
-*/
+ * void hello();
+ */
 void hello(){
 	std::cout << "Hello, World!" << std::endl;
 }

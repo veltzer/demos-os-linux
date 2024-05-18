@@ -30,7 +30,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int num;
 	pthread_barrier_t* barrier;
 	int attempts;

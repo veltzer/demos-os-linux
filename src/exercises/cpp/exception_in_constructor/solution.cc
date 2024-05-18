@@ -23,15 +23,13 @@
 
 using namespace std;
 
-class Resource {
+class Resource{
 public:
 	Resource(const char* filename) {
 		if(!is_valid_file(filename)) {
 			throw invalid_argument("file name is empty or non-existent");
 		}
-
 		file_handle = fopen(filename, "r");
-
 		if(file_handle == nullptr) {
 			throw runtime_error("failed to open file: " + string(strerror(errno)));
 		}
@@ -59,8 +57,7 @@ int main() {
 		Resource file("testfile.dat");
 		char data[100];
 		file.read(data, 100);
-	}
-	catch(const exception& e) {
+	}catch(const exception& e) {
 		cerr << e.what() << endl;
 	}
 }

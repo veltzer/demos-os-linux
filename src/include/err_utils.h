@@ -38,7 +38,7 @@
  * List of all errors (can be found in 'man errno')
  */
 
-typedef struct _err_val_and_name {
+typedef struct _err_val_and_name{
 	int val;
 	const char* name;
 } err_val_and_name;

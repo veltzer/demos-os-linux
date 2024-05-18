@@ -40,24 +40,24 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-typedef struct _struct_empty {
+typedef struct _struct_empty{
 } struct_empty;
 #pragma GCC diagnostic pop
-typedef struct _struct_emptyarray {
+typedef struct _struct_emptyarray{
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
 	char a[0];
 #pragma GCC diagnostic pop
 } struct_emptyarray;
-typedef struct _struct_char {
+typedef struct _struct_char{
 	char c;
 } struct_char;
-typedef struct _struct_charintchar {
+typedef struct _struct_charintchar{
 	char c1;
 	int i;
 	char c2;
 } struct_charintchar;
-typedef struct _struct_char5 {
+typedef struct _struct_char5{
 	char c1;
 	char c2;
 	char c3;
@@ -89,8 +89,8 @@ int main() {
 	float fourfloatarray[]={ 5, 3, 2, 1 };
 	printf("size of fourfloatarray is %zd\n", sizeof(fourfloatarray));
 // this does not compile
-//	float zerofloatarray[]={};
-//	printf("size of zerofloatarray is %zd\n", sizeof(zerofloatarray));
+// float zerofloatarray[]={};
+// printf("size of zerofloatarray is %zd\n", sizeof(zerofloatarray));
 	PRINT_SIZEOF(struct_empty);
 	PRINT_SIZEOF(struct_emptyarray);
 	PRINT_SIZEOF(struct_char);

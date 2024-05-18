@@ -58,11 +58,11 @@ static void* worker(void* p) {
 			sleep(1);
 			i++;
 			if(i==5) {
-				//*(char*)0=0;
-				//CHECK_ZERO_ERRNO(pthread_kill(threads[0], SIGKILL));
+				// *(char*)0=0;
+				// CHECK_ZERO_ERRNO(pthread_kill(threads[0], SIGKILL));
 				CHECK_NOT_M1(tgkill(getpid(), pids[0], SIGKILL));
-				//printf("killing my brother...\n");
-				//CHECK_NOT_M1(kill(pids[0],SIGKILL));
+				// printf("killing my brother...\n");
+				// CHECK_NOT_M1(kill(pids[0],SIGKILL));
 			}
 		}
 	}

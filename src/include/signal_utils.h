@@ -44,7 +44,7 @@
  * [kill -L] or [kill --table] from [/bin/kill] will show them in a nice table.
  */
 
-typedef struct _signal_val_and_name {
+typedef struct _signal_val_and_name{
 	int val;
 	const char* name;
 } signal_val_and_name;
@@ -91,11 +91,11 @@ static signal_val_and_name signal_tbl[]={
 	entry(SIGPOLL),
 	entry(SIGPWR),
 	entry(SIGSYS),
-	//entry(SIGUNUSED),
+	// entry(SIGUNUSED),
 	entry(__SIGRTMIN),
 	entry(__SIGRTMAX),
-	//entry(SIGRTMIN),
-	//entry(SIGRTMAX),
+	// entry(SIGRTMIN),
+	// entry(SIGRTMAX),
 };
 #undef entry
 
@@ -164,7 +164,7 @@ static inline sighandler_t signal_register_handler_signal(int signum, sighandler
 /*
  * easy registration of signals via sigaction(2)
  */
-typedef void (*my_signal_handler)(int, siginfo_t *, void *);
+typedef void(*my_signal_handler)(int, siginfo_t *, void *);
 static inline my_signal_handler signal_register_handler_sigaction(int sig, my_signal_handler handler, int sa_flags) {
 	struct sigaction sa;
 	sa.sa_flags=sa_flags;

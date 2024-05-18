@@ -28,7 +28,6 @@ int main() {
 	myMap["red"] = "rojo";
 	myMap["green"] = "verde";
 	myMap["blue"] = "azul";
-
 	// Iterate and print
 	for(auto it = myMap.begin(); it != myMap.end(); ++it) {
 		cout << it->first << ":" << it->second << '\n';

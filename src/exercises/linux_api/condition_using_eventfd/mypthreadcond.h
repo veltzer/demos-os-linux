@@ -29,7 +29,7 @@
 
 // this is the condition implementation (pthread "like")
 const unsigned int MAX_FD=100;
-typedef struct _mypthread_cond_t {
+typedef struct _mypthread_cond_t{
 	int efd[MAX_FD];
 	bool waiting[MAX_FD];
 } mypthread_cond_t;

@@ -25,7 +25,7 @@
  * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  */
 
-struct mystruct {
+struct mystruct{
 	int a;
 	int b;
 };
@@ -38,7 +38,7 @@ int main() {
 	 * printf("v1.b is %d\n",v1.b);
 	 */
 	// this is the GNU style...
-	struct mystruct v2={ a:8, b:9 };
+	struct mystruct v2={ a : 8, b : 9 };
 	printf("v2.a is %d\n", v2.a);
 	printf("v2.b is %d\n", v2.b);
 	// this will always work

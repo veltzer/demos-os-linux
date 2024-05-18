@@ -36,7 +36,7 @@
 /*
  * A structure containing the clock id and it's name
  */
-typedef struct _clock_val_and_name {
+typedef struct _clock_val_and_name{
 	clockid_t val;
 	const char* name;
 } clock_val_and_name;

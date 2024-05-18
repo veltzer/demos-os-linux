@@ -34,7 +34,7 @@
  * - http://en.cppreference.com/w/cpp/memory/unique_ptr
  */
 
-class A {
+class A{
 public:
 	A() {
 		std::cout << "in constructor" << std::endl;

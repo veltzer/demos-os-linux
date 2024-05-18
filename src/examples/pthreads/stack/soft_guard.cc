@@ -58,7 +58,7 @@ void check_stack() {
 	CHECK_ZERO_ERRNO(pthread_attr_destroy(&at));
 }
 
-typedef struct big_struct {
+typedef struct big_struct{
 	char data[7000000];
 } my_big_struct;
 

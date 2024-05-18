@@ -46,7 +46,7 @@ static void print_current_time(struct timespec* since) {
 	printf("diff: %s\n", buf);
 }
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int init_sec;
 	int init_nsec;
 	int interval_sec;

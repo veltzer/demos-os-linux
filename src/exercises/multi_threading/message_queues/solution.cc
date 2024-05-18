@@ -31,7 +31,7 @@
 const int MSGSZ=128;
 const int MAXQUEUE=32768;
 
-typedef struct mymsgbuf {
+typedef struct mymsgbuf{
 	long mtype;
 	long fromID;
 	char mtext[MSGSZ];

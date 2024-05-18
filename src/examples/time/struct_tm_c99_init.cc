@@ -46,6 +46,6 @@ int main() {
 		.tm_zone=0,
 	};
 	// this is illegal
-	//struct tm tempTm2 __attribute__((unused))={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	// struct tm tempTm2 __attribute__((unused))={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	return EXIT_SUCCESS;
 }

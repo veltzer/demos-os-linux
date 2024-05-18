@@ -72,21 +72,21 @@ int main() {
 	proc_print_mmap(NULL);
 
 	void* data=CHECK_NOT_VOIDP(mmap(
-			NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
-			size,	/* the size we need */
-			PROT_READ | PROT_WRITE,	/* we want read AND write */
-			flags,	/* we don't want page faults */
-			d,	/* file descriptor */
-			offset	/* offset */
-			), MAP_FAILED);
+		NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
+		size,	/* the size we need */
+		PROT_READ | PROT_WRITE,	/* we want read AND write */
+		flags,	/* we don't want page faults */
+		d,	/* file descriptor */
+		offset	/* offset */
+		), MAP_FAILED);
 	void* data2=CHECK_NOT_VOIDP(mmap(
-			NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
-			size,	/* the size we need */
-			PROT_READ | PROT_WRITE,	/* we want read AND write */
-			flags,	/* we don't want page faults */
-			d,	/* file descriptor */
-			offset	/* offset */
-			), MAP_FAILED);
+		NULL,	/* we DO NOT recommend an address - better to let the kernel decide */
+		size,	/* the size we need */
+		PROT_READ | PROT_WRITE,	/* we want read AND write */
+		flags,	/* we don't want page faults */
+		d,	/* file descriptor */
+		offset	/* offset */
+		), MAP_FAILED);
 	fprintf(stderr, "pointer I got is %p\n", data);
 	print_data(data, size);
 	proc_print_mmap("demo");

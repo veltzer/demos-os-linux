@@ -62,7 +62,7 @@ int main(int, char** argv) {
 	// note that the right thing to do it to use syslog(3) instead.
 	FILE* newout;
 	if (myttyname) {
-		newout=CHECK_NOT_NULL_FILEP(fopen(myttyname,"w"));
+		newout=CHECK_NOT_NULL_FILEP(fopen(myttyname, "w"));
 		CHECK_POSITIVE(fprintf(newout, "after daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid()));
 	}
 	// demo of how to use syslog

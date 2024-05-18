@@ -17,8 +17,8 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h> // for printf(3)
-#include <stdlib.h> // for EXIT_SUCCESS
+#include <stdio.h>	// for printf(3)
+#include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
  * This program finds the recusion limit.
@@ -31,12 +31,12 @@
  * whole systems RAM.
  *
  * EXTRA_COMPILE_FLAGS=-Wno-infinite-recursion
-*/
+ */
 
 static int i;
 
 void recurse_onek() {
-	//char __attribute__((unused)) data[1024];
+	// char __attribute__((unused)) data[1024];
 	printf("i is %d\n", i++);
 	recurse_onek();
 	recurse_onek();

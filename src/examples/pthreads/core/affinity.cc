@@ -45,10 +45,10 @@
 
 void* worker(void* p) {
 	int num=*(int *)p;
-	//TRACE("starting thread [%d]", num);
+	// TRACE("starting thread [%d]", num);
 	int cpunum=CHECK_NOT_M1(sched_getcpu());
 	TRACE("thread [%d] running on cpu [%d]", num, cpunum);
-	//TRACE("ending thread [%d]", num);
+	// TRACE("ending thread [%d]", num);
 	return NULL;
 }
 
@@ -59,22 +59,21 @@ int main() {
 	pthread_attr_t* attrs=new pthread_attr_t[num];
 	cpu_set_t* cpu_sets=new cpu_set_t[num];
 	int* ids=new int[num];
-
-	//TRACE("main starting");
+	// TRACE("main starting");
 	for(int i=0; i<num; i++) {
 		ids[i]=i;
 		CPU_ZERO(cpu_sets + i);
 		CPU_SET(i % cpu_num, cpu_sets + i);
-		//cpu_set_print(cpu_sets + i);
+		// cpu_set_print(cpu_sets + i);
 		CHECK_ZERO_ERRNO(pthread_attr_init(attrs + i));
 		CHECK_ZERO_ERRNO(pthread_attr_setaffinity_np(attrs + i, sizeof(cpu_set_t), cpu_sets + i));
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, attrs + i, worker, ids + i));
 	}
-	//TRACE("finished creating threads");
+	// TRACE("finished creating threads");
 	for(int i=0; i<num; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], NULL));
 	}
-	//TRACE("main ended");
+	// TRACE("main ended");
 	delete[] threads;
 	delete[] attrs;
 	delete[] cpu_sets;

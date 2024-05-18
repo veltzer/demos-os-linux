@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 	for(int i=1; i<argc; i++) {
-		struct sched_param sp={sched_priority:0};
+		struct sched_param sp={sched_priority : 0};
 		pid_t pid=atoi(argv[i]);
 		CHECK_NOT_M1(sched_setscheduler(pid, SCHED_OTHER, &sp));
 	}

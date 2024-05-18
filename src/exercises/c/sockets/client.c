@@ -66,7 +66,7 @@ int main() {
 		int nfds=CHECK_NOT_M1(select(rplysock+1, &readfds, NULL, NULL, &timeout));
 		while(nfds>0) {
 			int newsock=CHECK_NOT_M1(accept(rplysock, (struct sockaddr *) &rplyFromAddress,
-					&rplyFromAddressLen));
+				&rplyFromAddressLen));
 			got=CHECK_NOT_M1(read(newsock, ibuffer, sizeof(ibuffer)));
 			while(got>0) {
 				ibuffer[got-1]='\0';	// get rid of '\n'

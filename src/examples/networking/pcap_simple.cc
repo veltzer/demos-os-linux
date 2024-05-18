@@ -35,8 +35,7 @@
 /*
  * This callback is called for every packet
  */
-void got_packet(
-	u_char *args __attribute__((unused)),
+void got_packet(u_char *args __attribute__((unused)),
 	const struct pcap_pkthdr *header,
 	const u_char *packet __attribute__((unused)))
 {

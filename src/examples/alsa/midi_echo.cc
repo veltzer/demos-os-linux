@@ -38,7 +38,7 @@ int getArgsExpected(int midicommand);
 void errormessage(const char *format, ...);
 void echomidi(snd_rawmidi_t* midiin, snd_rawmidi_t* midiout);
 
-// /////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
 	int status;	// for storing error codes

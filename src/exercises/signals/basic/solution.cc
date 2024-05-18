@@ -30,7 +30,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_NOT_NULL()
 
-struct index {
+struct index{
 	unsigned int ID;
 	char path[MAXPATHLEN];
 };

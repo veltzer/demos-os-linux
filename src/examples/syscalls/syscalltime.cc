@@ -47,7 +47,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef enum _measure_type {
+typedef enum _measure_type{
 	MEASURE_GETTIMEOFDAY,
 	MEASURE_SYSCALL_GETPID,
 	MEASURE_GETPID,
@@ -55,7 +55,7 @@ typedef enum _measure_type {
 	MEASURE_EMPTYFUNC,
 } measure_type;
 
-typedef struct _measure_val_and_name {
+typedef struct _measure_val_and_name{
 	measure_type val;
 	const char* name;
 } measure_val_and_name;
@@ -69,7 +69,7 @@ static measure_val_and_name measure_tbl[]={
 	entry(MEASURE_EMPTYFUNC),
 };
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	unsigned int count;
 	measure_type type;
 	const char* name;
@@ -90,22 +90,22 @@ void* func(void* p) {
 	measure_start(&m);
 	for(unsigned int i=0; i<count; i++) {
 		switch(td->type) {
-			case MEASURE_GETTIMEOFDAY:
-				struct timeval t3;
-				gettimeofday(&t3, NULL);
-				break;
-			case MEASURE_SYSCALL_GETPID:
-				syscall(__NR_getpid);
-				break;
-			case MEASURE_GETPID:
-				getpid();
-				break;
-			case MEASURE_GETPPID:
-				getppid();
-				break;
-			case MEASURE_EMPTYFUNC:
-				emptyfunc();
-				break;
+		case MEASURE_GETTIMEOFDAY:
+			struct timeval t3;
+			gettimeofday(&t3, NULL);
+			break;
+		case MEASURE_SYSCALL_GETPID:
+			syscall(__NR_getpid);
+			break;
+		case MEASURE_GETPID:
+			getpid();
+			break;
+		case MEASURE_GETPPID:
+			getppid();
+			break;
+		case MEASURE_EMPTYFUNC:
+			emptyfunc();
+			break;
 		}
 	}
 	measure_end(&m);
@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
 	thread_data td;
 	td.count=atoi(argv[1]);
 	// lets start measuring...
-	for(unsigned int i=0;i<ARRAY_SIZEOF(measure_tbl); i++) {
+	for(unsigned int i=0; i<ARRAY_SIZEOF(measure_tbl); i++) {
 		td.name=measure_tbl[i].name;
 		td.type=measure_tbl[i].val;
 		sched_run_priority(func, &td, SCHED_FIFO_HIGH_PRIORITY, SCHED_FIFO);

@@ -21,34 +21,29 @@
 #include <cstring>
 #include <stdlib.h>
 
-class string {
+class string{
 public:
-	string():m_data(nullptr) {}
+	string() : m_data(nullptr) {
+	}
 
 	string(const char* str)
 	{
-		if (str)
-		{
+		if (str) {
 			size_t str_len = strlen(str);
 			m_data = new char[str_len + 1];
 			strncpy(m_data, str, str_len + 1);
-		}
-		else
-		{
+		}else {
 			m_data = nullptr;
 		}
 	}
 
 	string(const string& other)
 	{
-		if (other.m_data)
-		{
+		if (other.m_data) {
 			size_t other_len = strlen(other.m_data);
 			m_data = new char[other_len + 1];
 			strncpy(m_data, other.m_data, other_len + 1);
-		}
-		else
-		{
+		}else {
 			m_data = nullptr;
 		}
 	}
@@ -61,23 +56,20 @@ public:
 
 	string operator=(const string& other)
 	{
-		if (this != &other)
-		{
+		if (this != &other) {
 			delete[] m_data;
 			size_t other_len = strlen(other.m_data);
 			m_data = new char[other_len + 1];
 
 			strncpy(m_data, other.m_data, other_len + 1);
 		}
-
 		return *this;
 	}
 
 	string operator=(const char* other)
 	{
 		delete[] m_data;
-		if (other)
-		{
+		if (other) {
 			size_t other_len = strlen(other);
 			m_data = new char[other_len + 1];
 
@@ -85,7 +77,6 @@ public:
 		} else {
 			m_data=nullptr;
 		}
-
 		return *this;
 	}
 

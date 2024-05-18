@@ -50,13 +50,13 @@ int main() {
 	const int size=10;
 	int i;
 	void* a=array_construct(size);
-	for(i=0;i<size;i++) {
+	for(i=0; i<size; i++) {
 		printf("element [%d] is [%d]\n", i, array_get_value(a, i));
 	}
-	for(i=0;i<size;i++) {
+	for(i=0; i<size; i++) {
 		array_set_value(a, i, i);
 	}
-	for(i=0;i<size;i++) {
+	for(i=0; i<size; i++) {
 		printf("element [%d] is [%d]\n", i, array_get_value(a, i));
 	}
 	array_destruct(a);

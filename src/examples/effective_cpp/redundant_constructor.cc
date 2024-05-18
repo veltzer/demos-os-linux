@@ -23,7 +23,7 @@
  * This is an example of a redundant constructor.
  */
 
-class B {
+class B{
 private:
 	int t;
 
@@ -36,7 +36,7 @@ public:
 	}
 };
 
-class A {
+class A{
 	B b;
 
 public:

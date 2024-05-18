@@ -42,7 +42,7 @@ int main() {
 		char buf[size];
 		size_t num=fread(buf, 1, size, input);
 		if(num>0) {
-			CHECK_INT(fwrite(buf, 1, num,stdout), num);
+			CHECK_INT(fwrite(buf, 1, num, stdout), num);
 		} else {
 			CHECK_ZERO(ferror(input));
 		}

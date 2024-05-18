@@ -41,7 +41,7 @@
  * - this example is not yet finished and has correctness issues. Fix them.
  */
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	CircularPipe* cp;
 	const char* filein;
 	const char* fileout;

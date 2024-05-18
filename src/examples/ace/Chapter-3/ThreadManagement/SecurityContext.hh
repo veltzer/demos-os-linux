@@ -25,7 +25,7 @@
 
 #include <firstinclude.h>
 
-struct SecurityContext {
+struct SecurityContext{
 	const char *user;
 };
 

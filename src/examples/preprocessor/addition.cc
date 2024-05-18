@@ -58,6 +58,6 @@
 #define ADD(x, y) ADD_ ## x(y)
 
 int main() {
-	printf("did you know that 2+3=%d\n", ADD(2,3));
+	printf("did you know that 2+3=%d\n", ADD(2, 3));
 	return EXIT_SUCCESS;
 }

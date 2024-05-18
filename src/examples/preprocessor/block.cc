@@ -43,7 +43,7 @@ int main() {
 	// the following 'else' will seem un-attached to the compiler.
 	if(false)
 		simple("one")
-	else
-		simple("two");
+		else
+			simple("two");
 	return EXIT_SUCCESS;
 }

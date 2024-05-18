@@ -20,7 +20,7 @@
 #include <stdio.h>	// for printf(3), fprintf(3)
 #include <stdlib.h>	// for srandom(3), EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_NOT_NULL_FILEP()
-#include <lowlevel_utils.h> // for stack_vars_direction_up()
+#include <lowlevel_utils.h>	// for stack_vars_direction_up()
 
 /*
  * This is an example of a compiler barrier
@@ -116,7 +116,7 @@ FILE* outfile;
 		} \
 		/* at this point the compiler emits an instruction to store the \
 		 * register back into the memory address of a */ \
-		*p=CORRECT_VAL;	\
+		*p=CORRECT_VAL; \
 		val_before=a; \
 		code; \
 		val_after=a; \
@@ -133,11 +133,11 @@ FILE* outfile;
 		if(val_after==CORRECT_VAL) { \
 			printf("barrier worked\n"); \
 			if(!expected) \
-				printf("*** NOT AS EXPECTED ***\n"); \
+			printf("*** NOT AS EXPECTED ***\n"); \
 		} else { \
 			printf("barrier did not work\n"); \
 			if(expected) \
-				printf("*** NOT AS EXPECTED ***\n"); \
+			printf("*** NOT AS EXPECTED ***\n"); \
 		} \
 		printf("===========================================\n"); \
 	}
@@ -159,7 +159,7 @@ TEST(
 	"Empty assembly block which works on some compilers but not on others.\n"
 	"On gcc 4.5.2 it did work but newer compilers see that you are not really doing anything in the block.\n",
 	false,
-	asm volatile ("")
+	asm volatile("")
 	);
 TEST(
 	funccall,
@@ -183,33 +183,33 @@ TEST(
 	"Too strong if all you want is to force just one variable to be read from memory instead of register.\n"
 	"The 'volatile' tells the compiler not to reorder around it.\n",
 	true,
-	asm volatile ("" ::: "memory")
+	asm volatile("" ::: "memory")
 	);
 TEST(
 	singvarbar,
 	"A single variable barrier -> this is what you should use instead of volatile\n",
 	true,
-	asm volatile ("":"=g" (a) ::)
+	asm volatile("" : "=g" (a)::)
 	);
 TEST(
 	singvarbar2,
 	"A single variable read.\n"
 	"This tells the compiler that someone read the variable, which means nothing since there is no reason to re-read it.\n",
 	false,
-	asm volatile ("":"=r" (a) ::)
+	asm volatile("" : "=r" (a)::)
 	);
 TEST(
 	singvarbar3,
 	"A single variable barrier on the wrong variable1 (write)\n",
 	false,
-	asm volatile ("":"=g" (u) ::)
+	asm volatile("" : "=g" (u)::)
 	);
 TEST(
 	singvarbar4,
 	"A single variable barrier on the wrong variable1 (read)\n"
 	"This actually worked on some gcc versions because of a bug.\n",
 	false,
-	asm volatile ("":"=r" (u) ::)
+	asm volatile("" : "=r" (u)::)
 	);
 TEST(
 	singvarvol,
@@ -258,14 +258,14 @@ TEST(
 	"A solution suggested on lkml.\n"
 	"this means that someone touched m. This works well.\n",
 	true,
-	asm volatile("":"=m"(a):"m"(a))
+	asm volatile("" : "=m" (a) : "m" (a))
 	);
 TEST(
 	lkmlu,
 	"A solution suggested on lkml.\n"
 	"doing the same on the wrong barrier is wrong.\n",
 	false,
-	asm volatile("":"=m"(u):"m"(u))
+	asm volatile("" : "=m" (u) : "m" (u))
 	);
 
 int main() {

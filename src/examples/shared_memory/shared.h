@@ -21,7 +21,7 @@
 
 /* THIS IS A C FILE, NO C++ here */
 
-typedef struct _shared_data {
+typedef struct _shared_data{
 	pid_t pid;
 	time_t now;
 } shared_data;

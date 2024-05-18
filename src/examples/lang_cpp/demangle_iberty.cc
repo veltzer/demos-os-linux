@@ -37,7 +37,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-liberty
  */
 
-typedef struct _dmgl_val_and_name {
+typedef struct _dmgl_val_and_name{
 	int val;
 	const char* name;
 } dmgl_val_and_name;
@@ -45,7 +45,7 @@ typedef struct _dmgl_val_and_name {
 #define entry(x) { x, # x }
 static dmgl_val_and_name dmgl_tbl[]={
 	entry(DMGL_NO_OPTS),
-	//entry(DMGL_PARAMS),
+	// entry(DMGL_PARAMS),
 	entry(DMGL_ANSI),
 	entry(DMGL_JAVA),
 	entry(DMGL_VERBOSE),
@@ -53,11 +53,11 @@ static dmgl_val_and_name dmgl_tbl[]={
 	entry(DMGL_RET_POSTFIX),
 	entry(DMGL_RET_DROP),
 	entry(DMGL_AUTO),
-	//entry(DMGL_GNU),
-	//entry(DMGL_LUCID),
-	//entry(DMGL_ARM),
-	//entry(DMGL_HP),
-	//entry(DMGL_EDG),
+	// entry(DMGL_GNU),
+	// entry(DMGL_LUCID),
+	// entry(DMGL_ARM),
+	// entry(DMGL_HP),
+	// entry(DMGL_EDG),
 	entry(DMGL_GNU_V3),
 	entry(DMGL_GNAT),
 	entry(DMGL_STYLE_MASK),
@@ -65,7 +65,7 @@ static dmgl_val_and_name dmgl_tbl[]={
 
 int main() {
 	const char* mangled="_ZN1A3addEii";
-	for(unsigned int i=0;i<ARRAY_SIZEOF(dmgl_tbl); i++) {
+	for(unsigned int i=0; i<ARRAY_SIZEOF(dmgl_tbl); i++) {
 		const int val=dmgl_tbl[i].val;
 		const char* name=dmgl_tbl[i].name;
 		char* s=cplus_demangle(mangled, val);

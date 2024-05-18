@@ -66,8 +66,8 @@ void my_daemon() {
 	// according to open(2) spec it will return the lowest
 	// possible file descriptor number (which is 0 in our case)
 	CHECK_ZERO(open("/dev/null", O_RDWR));
-	CHECK_NOT_M1(dup2(0,1));
-	CHECK_NOT_M1(dup2(0,2));
+	CHECK_NOT_M1(dup2(0, 1));
+	CHECK_NOT_M1(dup2(0, 2));
 }
 
 int main(int, char** argv) {
@@ -99,7 +99,7 @@ int main(int, char** argv) {
 	// note that the right thing to do it to use syslog(3) instead.
 	FILE* newout;
 	if (myttyname) {
-		newout=CHECK_NOT_NULL_FILEP(fopen(myttyname,"w"));
+		newout=CHECK_NOT_NULL_FILEP(fopen(myttyname, "w"));
 		CHECK_POSITIVE(fprintf(newout, "after daemon(3), pid is [%d], ppid is [%d]\n", getpid(), getppid()));
 	}
 	// demo of how to use syslog

@@ -67,11 +67,11 @@ void* malloc(size_t size) {
 	}
 	assert(malloc_allowed);
 	/*
-	if(!malloc_allowed) {
-		printf("calling malloc illegali!\n");
-		return NULL;
-	}
-	*/
+	 * if(!malloc_allowed) {
+	 *      printf("calling malloc illegali!\n");
+	 *      return NULL;
+	 * }
+	 */
 	return orig_malloc(size);
 }
 

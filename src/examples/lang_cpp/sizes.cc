@@ -35,7 +35,7 @@
  * of having structs/instances of size 0.
  */
 
-class A {
+class A{
 public:
 	int a;
 	char b;
@@ -47,10 +47,11 @@ public:
 			std::cout << "Hello from A, i is " << i << std::endl;
 		}
 	}
-	virtual ~A() {}
+	virtual~A() {
+	}
 };
 
-class B:public A {
+class B: public A {
 public:
 	int e;
 	char f;
@@ -62,10 +63,10 @@ public:
 };
 #define CppOffsetOf(className, FieldName) ((char *)(&(((className *)1)->FieldName)) - (char *)1)
 
-class C {
+class C{
 };
 
-struct empty {
+struct empty{
 };
 
 int main() {

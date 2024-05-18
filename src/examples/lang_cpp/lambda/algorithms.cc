@@ -31,7 +31,9 @@ int main() {
 	for(int i=0; i<10; i++) {
 		v.push_back(i);
 	}
-	auto f=[] (double x){ return x*x*12+x*4+7; };
+	auto f=[] (double x){
+			return x*x*12+x*4+7;
+		};
 	std::transform(v.begin(), v.end(), v.begin(), f);
 	for(int num: v) {
 		std::cout << num << " ";

@@ -28,16 +28,16 @@
  * http://www.drdobbs.com/the-new-c-x-macros/184401387
  */
 
-enum COLOR {
+enum COLOR{
 	red,
 	green,
 	blue,
 };
 
 /*
-notice we initialize the cells according to the enum
-values thus not assuming anything about enum order.
-*/
+ * notice we initialize the cells according to the enum
+ * values thus not assuming anything about enum order.
+ */
 char *color_name[] = {
 	[red]="red",
 	[green]="green",

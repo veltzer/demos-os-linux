@@ -32,7 +32,7 @@
  * Boring default constructor. Be sure our barrier_ is initialized in
  * case we get destructed before opened.
  */
-Task::Task(void):barrier_(0) {
+Task::Task(void) : barrier_(0) {
 	ACE_DEBUG((LM_DEBUG, "(%P|%t) Task ctor 0x%x\n", (void*)this));
 }
 

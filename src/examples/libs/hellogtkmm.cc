@@ -30,10 +30,10 @@
  * EXTRA_COMPILE_FLAGS=-Wno-deprecated-declarations
  */
 
-class HelloWorld:public Gtk::Window {
+class HelloWorld: public Gtk::Window {
 public:
 	HelloWorld(Gtk::Main&);
-	virtual ~HelloWorld();
+	virtual~HelloWorld();
 
 protected:
 	// Signal handlers:
@@ -44,7 +44,7 @@ protected:
 	Gtk::Main& app;
 };
 
-HelloWorld::HelloWorld(Gtk::Main& iapp):
+HelloWorld::HelloWorld(Gtk::Main& iapp) :
 	m_button("Exit"),
 	app(iapp) {
 	// Sets the border width of the window.

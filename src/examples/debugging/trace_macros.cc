@@ -18,7 +18,7 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <trace_utils.h>	// for TRACE()
+#include <trace_utils.h>// for TRACE()
 
 /*
  * This example shows one way to implement trace macros.

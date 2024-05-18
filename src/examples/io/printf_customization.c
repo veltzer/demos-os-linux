@@ -35,7 +35,7 @@
  * well with printf(3) extensions and so issues warnings about format strings
  * that don't match the arguments sent.
  */
-typedef struct _Widget {
+typedef struct _Widget{
 	const char *name;
 } Widget;
 
@@ -64,7 +64,6 @@ int print_widget_arginfo (const struct printf_info *info __attribute__((unused))
 		argtypes[0] = PA_POINTER;
 	return 1;
 }
-
 
 int main() {
 	/* Make a widget to print. */

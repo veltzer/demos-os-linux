@@ -92,7 +92,7 @@ inline void operator delete(void* p, const long unsigned int type) {
 	free(p);
 }
 
-typedef struct _myobj {
+typedef struct _myobj{
 	char data[10];
 } myobj;
 

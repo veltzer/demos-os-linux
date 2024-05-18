@@ -29,9 +29,9 @@
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
-class Follower {
+class Follower{
 public:
-	Follower(ACE_Thread_Mutex & leader_lock):cond_(leader_lock) {
+	Follower(ACE_Thread_Mutex & leader_lock) : cond_(leader_lock) {
 		owner_=ACE_Thread::self();
 	}
 
@@ -52,9 +52,9 @@ private:
 	ACE_thread_t owner_;
 };
 
-class LF_ThreadPool:public ACE_Task<ACE_MT_SYNCH> {
+class LF_ThreadPool: public ACE_Task<ACE_MT_SYNCH> {
 public:
-	LF_ThreadPool():shutdown_(0), current_leader_(0) {
+	LF_ThreadPool() : shutdown_(0), current_leader_(0) {
 		ACE_TRACE("LF_ThreadPool::TP");
 	}
 

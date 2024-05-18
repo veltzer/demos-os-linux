@@ -27,7 +27,7 @@
  * You can watch this with 'perf top' and enter the function with 's'.
  */
 
-class A {
+class A{
 public:
 	// use this example to see that the actual memcpy(3) function
 	// is tuned to the cpu you are running on...

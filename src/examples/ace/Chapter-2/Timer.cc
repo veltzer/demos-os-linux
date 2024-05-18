@@ -37,7 +37,7 @@ volatile static bool done=false;
 static int count=0;
 static int last_arrived=-1;
 
-class MyTime_Handler:public ACE_Event_Handler {
+class MyTime_Handler: public ACE_Event_Handler {
 public:
 	// Method which is called back by the Reactor when timeout occurs.
 	virtual int handle_timeout(const ACE_Time_Value& tv, const void* arg) {
@@ -68,7 +68,7 @@ int main() {
 	for(long i=0; i < NUMBER_TIMERS; i++) {
 		timer_id[i]=reactor.schedule_timer(
 			th,
-			(const void*)i,// argument sent to handle_timeout()
+			(const void*)i,	// argument sent to handle_timeout()
 			ACE_Time_Value(10 * i + 1)	// set timer to go off with delay
 			);
 	}

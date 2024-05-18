@@ -29,17 +29,17 @@
  */
 
 // empty class - don't touch this.
-class Empty {
+class Empty{
 };
 
-class Person {
+class Person{
 public:
 	// ... Person members ...
-	virtual ~Person() {
+	virtual~Person() {
 	}
 };
 
-class Employee:public Person {
+class Employee: public Person {
 	// ... Employee members ...
 };
 

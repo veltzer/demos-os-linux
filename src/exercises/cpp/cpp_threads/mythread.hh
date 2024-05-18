@@ -34,7 +34,7 @@ public:
 	void join();
 
 protected:
-	virtual void svc()=0;
+	virtual void svc() = 0;
 };
 
 #endif	// __mythread_h

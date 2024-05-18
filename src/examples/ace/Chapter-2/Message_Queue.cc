@@ -108,9 +108,9 @@ static void report_usage(int argc, char** argv) {
 	}
 }
 
-class Acceptor:public ACE_Acceptor<Message_Receiver, ACE_SOCK_ACCEPTOR> {
+class Acceptor: public ACE_Acceptor<Message_Receiver, ACE_SOCK_ACCEPTOR> {
 public:
-	Acceptor(HA_CommandHandler * handler):handler_(handler) {
+	Acceptor(HA_CommandHandler * handler) : handler_(handler) {
 	}
 
 protected:

@@ -27,15 +27,16 @@
  * (under certain conditions).
  */
 
-class Foo {
-	private:
-		int n=0;
-		void* p=NULL;
-	public:
-		void print() {
-			std::cout << "n is " << n << std::endl;
-			std::cout << "p is " << std::hex << std::showbase << p << std::endl;
-		}
+class Foo{
+private:
+	int n=0;
+	void* p=NULL;
+
+public:
+	void print() {
+		std::cout << "n is " << n << std::endl;
+		std::cout << "p is " << std::hex << std::showbase << p << std::endl;
+	}
 };
 
 int main() {

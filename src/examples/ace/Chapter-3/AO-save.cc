@@ -31,7 +31,7 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-class HA_ControllerAgent {
+class HA_ControllerAgent{
 	// Proxy to the HA_Controller that is on the network.
 
 public:
@@ -57,9 +57,9 @@ private:
 	int status_result_;
 };
 
-class StatusUpdate:public ACE_Method_Request {
+class StatusUpdate: public ACE_Method_Request {
 public:
-	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal):controller_(controller), returnVal_(returnVal) {
+	StatusUpdate(HA_ControllerAgent & controller, ACE_Future<int> &returnVal) : controller_(controller), returnVal_(returnVal) {
 		ACE_TRACE("StatusUpdate::StatusUpdate");
 	}
 	virtual int call(void) {
@@ -75,7 +75,7 @@ private:
 	ACE_Future<int> returnVal_;
 };
 
-class ExitMethod:public ACE_Method_Request {
+class ExitMethod: public ACE_Method_Request {
 public:
 	virtual int call(void) {
 		// Cause exit.
@@ -83,7 +83,7 @@ public:
 	}
 };
 
-class Scheduler:public ACE_Task_Base {
+class Scheduler: public ACE_Task_Base {
 public:
 	Scheduler() {
 		ACE_TRACE("Scheduler::Scheduler");
@@ -114,7 +114,7 @@ private:
 	ACE_Activation_Queue activation_queue_;
 };
 
-class HA_ControllerAgentProxy {
+class HA_ControllerAgentProxy{
 	// This acts as a Proxy to the controller impl object.
 
 public:

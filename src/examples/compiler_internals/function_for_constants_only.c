@@ -31,13 +31,13 @@ static inline int _sum(int i) {
 	return i *(i + 1) / 2;
 }
 
-#define sum1(i)	\
+#define sum1(i) \
 	__builtin_choose_expr( \
 	__builtin_constant_p(i), \
 	_sum(i), \
 	(void)0)
 
-#define sum2(i)	\
+#define sum2(i) \
 	(__builtin_constant_p(i) ? _sum(i):0)
 
 /*

@@ -40,7 +40,7 @@
 
 static void handler(int signum, siginfo_t*, void*) {
 	printf("got signal %d...\n", signum);
-	//sleep(2);
+	// sleep(2);
 }
 
 static void print_current_time() {

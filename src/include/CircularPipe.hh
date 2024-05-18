@@ -49,7 +49,7 @@ public:
 		pos_read=0;
 		pos_write=0;
 	}
-	inline ~CircularPipe() {
+	inline~CircularPipe() {
 		free((void*)buf);
 	}
 	/* return the occupied room of a pipe */

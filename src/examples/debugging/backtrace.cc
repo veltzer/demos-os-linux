@@ -101,7 +101,7 @@ void print_trace(bool full) {
 /*
  * static old handler so that we would call the old handling code...
  */
-typedef void (*sighandler_t)(int);
+typedef void(*sighandler_t)(int);
 static sighandler_t old_handler;
 
 /*

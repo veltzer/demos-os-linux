@@ -25,7 +25,7 @@
  * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  */
 
-class A {
+class A{
 public:
 	int a;
 	int b;

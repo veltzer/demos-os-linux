@@ -33,7 +33,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-typedef struct _thread_data {
+typedef struct _thread_data{
 	int num;
 	int level;
 	int highest;
@@ -46,7 +46,6 @@ void* create_threads(void* arg) {
 	int highest=pd->highest;
 	pthread_t* threads=new pthread_t[num];
 	thread_data* td=new thread_data[num];
-
 	if(level>0) {
 		for(int i=0; i<num; i++) {
 			td[i].num=num;

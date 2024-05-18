@@ -37,9 +37,9 @@
  * EXTRA_LINK_FLAGS_AFTER=-lACE -ldl -lrt -lpthread
  */
 
-class ClientAcceptor:public ACE_Event_Handler {
+class ClientAcceptor: public ACE_Event_Handler {
 public:
-	virtual ~ClientAcceptor();
+	virtual~ClientAcceptor();
 
 	// FUZZ: disable check_for_lack_ACE_OS
 	int open(const ACE_INET_Addr& listen_addr);
@@ -47,7 +47,7 @@ public:
 	// FUZZ: enable check_for_lack_ACE_OS
 
 	// Get this handler's I/O handle.
-	virtual ACE_HANDLE get_handle(void) const {
+	virtual ACE_HANDLE get_handle(void) const{
 		return this->acceptor_.get_handle();
 	}
 
@@ -61,7 +61,7 @@ protected:
 	ACE_SOCK_Acceptor acceptor_;
 };
 
-class ClientService:public ACE_Event_Handler {
+class ClientService: public ACE_Event_Handler {
 public:
 	ACE_SOCK_Stream& peer(void) {
 		return this->sock_;
@@ -73,7 +73,7 @@ public:
 	// FUZZ: enable check_for_lack_ACE_OS
 
 	// Get this handler's I/O handle.
-	virtual ACE_HANDLE get_handle(void) const {
+	virtual ACE_HANDLE get_handle(void) const{
 		return this->sock_.get_handle();
 	}
 
@@ -223,7 +223,7 @@ int ClientService::handle_close(ACE_HANDLE, ACE_Reactor_Mask mask) {
 // Listing 10
 
 // Listing 12 code/ch07
-class LoopStopper:public ACE_Event_Handler {
+class LoopStopper: public ACE_Event_Handler {
 public:
 	LoopStopper(int signum);
 
@@ -240,7 +240,7 @@ int LoopStopper::handle_signal(int, siginfo_t *, ucontext_t *) {
 	return 0;
 }
 
-class LogSwitcher:public ACE_Event_Handler {
+class LogSwitcher: public ACE_Event_Handler {
 public:
 	LogSwitcher(int on_sig, int off_sig);
 

@@ -26,7 +26,7 @@ const int MAX_SIZE_OF_NAME=20;
 const int MAX_SIZE_OF_PHONE=20;
 const int MAX_ENTRIES_IN_PHONEBOOK=100;
 
-typedef struct _phone_entry {
+typedef struct _phone_entry{
 	char name[20];
 	char phone[20];
 	int used;
