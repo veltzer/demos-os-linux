@@ -60,7 +60,7 @@ PR_STATIC_ASSERT(1==1);
 _Static_assert(1==1, "fail message");
 STATIC_ASSERT(1==1, fail);
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	COMPILE_TIME_ASSERT(1==1);
 	PR_STATIC_ASSERT(1==1);
 	// this is a built in gcc static assertion, no flags needed

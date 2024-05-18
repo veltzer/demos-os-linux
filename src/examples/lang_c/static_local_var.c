@@ -27,7 +27,7 @@ void printHello() {
 	printf("Hello, World!\n");
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printHello();
 	printHello();
 	printHello();

@@ -45,7 +45,7 @@
  * - You can make read only memory areas be read/write using mprotect(2).
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const char *str1="this is the content of str1";
 	const char *str2="this is the content of str2";
 	const char *str3="this is the content of str3";

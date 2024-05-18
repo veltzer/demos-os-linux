@@ -24,7 +24,7 @@
  * This is an example of the C trinary operator
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int c=1;
 	int d=c==1 ? 4:5;
 	printf("d is %d\n", d);

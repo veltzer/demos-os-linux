@@ -30,7 +30,7 @@ struct mystruct {
 	int c;
 };
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// this is C99 style. It doesn't require any specific flags to gcc these days
 	// fields not initialized will be 0
 	struct mystruct v1={ .a=6, .b=7 };

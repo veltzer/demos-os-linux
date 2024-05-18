@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_INT()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int num;
 	CHECK_INT(scanf("%d", &num), 1);
 	int i=0;

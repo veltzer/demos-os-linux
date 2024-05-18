@@ -65,7 +65,7 @@ typedef struct _struct_char5 {
 	char c5;
 } struct_char5;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	struct utsname buf;
 	CHECK_NOT_M1(uname(&buf));
 	printf("architecture is [%s]\n", buf.machine);

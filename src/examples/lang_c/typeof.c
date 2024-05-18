@@ -33,7 +33,7 @@ static int myfunction(double x) {
 	return (int)x+1;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	/* The next attempt to stringify typeof does not work */
 	/*
 	 * int __attribute__((unused)) c=6;
