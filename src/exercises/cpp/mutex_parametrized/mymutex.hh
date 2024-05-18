@@ -23,12 +23,12 @@
 #include <pthread.h>	// for pthread_mutex_init(3), pthread_mutex_destroy(3), pthread_mutex_lock(3), pthread_mutex_unlock(3)
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO()
 
-class MT_SYNCH {
+class MT_SYNCH{
 };
-class MT_NOSYNCH {
+class MT_NOSYNCH{
 };
 
-template<typename T> class MyMutex {
+template<typename T> class MyMutex{
 };
 
 template<> class MyMutex<MT_SYNCH> {

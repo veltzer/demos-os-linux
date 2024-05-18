@@ -28,7 +28,7 @@
  * Statistics collecting object.
  */
 
-class Stat {
+class Stat{
 private:
 	// these are supplied by the user
 	unsigned int binnum;

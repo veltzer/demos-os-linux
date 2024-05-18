@@ -561,7 +561,8 @@ kernel_makeeasy:
 .PHONY: format_uncrustify
 format_uncrustify:
 	$(info doing [$@])
-	$(Q)uncrustify -c support/uncrustify.cfg --no-backup $(ALL_US)
+	$(Q)uncrustify -c support/uncrustify.cfg --no-backup -l C $(ALL_US_C)
+	$(Q)uncrustify -c support/uncrustify.cfg --no-backup -l CPP $(ALL_US_CC)
 .PHONY: format_astyle
 format_astyle:
 	$(error disabled - use format_uncrustify instead)

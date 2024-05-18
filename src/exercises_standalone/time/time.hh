@@ -21,7 +21,7 @@
 
 #include <firstinclude.h>
 
-class Time {
+class Time{
 public:
 	void setTime(int hours, int minutes, int seconds);
 	void Tick();

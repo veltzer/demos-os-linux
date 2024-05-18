@@ -21,7 +21,7 @@
 
 #include <firstinclude.h>
 
-template<class T> class Foo {
+template<class T> class Foo{
 protected:
 	T t;
 

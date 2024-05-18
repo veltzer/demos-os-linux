@@ -32,7 +32,7 @@ struct DeviceCommandHeader{
 	int deviceId_;
 };
 
-class HA_Device_Repository {
+class HA_Device_Repository{
 public:
 	HA_Device_Repository();
 	int update_device(int device_id, char *commands);

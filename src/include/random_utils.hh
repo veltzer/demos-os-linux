@@ -41,7 +41,7 @@
 #define MT_IA 397
 #define MT_LEN 624
 
-class MersenneTwister {
+class MersenneTwister{
 	unsigned int m_buffer[MT_LEN];
 	int m_index;
 

@@ -22,14 +22,14 @@
 #include <firstinclude.h>
 #include <pthread.h>
 
-class MyThread {
+class MyThread{
 private:
 	pthread_t myid;
 	static void* realsvc(void* arg);
 
 public:
 	MyThread();
-	virtual ~MyThread();
+	virtual~MyThread();
 	void start();
 	void join();
 

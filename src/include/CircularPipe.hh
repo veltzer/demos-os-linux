@@ -35,7 +35,7 @@
 // release the next line if you want to debug the pipe...
 // #define PIPE_DEBUG
 
-class CircularPipe {
+class CircularPipe{
 private:
 	size_t size;
 	char* buf;

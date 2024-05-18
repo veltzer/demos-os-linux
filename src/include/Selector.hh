@@ -28,7 +28,7 @@
  * This is a class that eases the work with the select(2) system call.
  */
 
-class Selector {
+class Selector{
 private:
 	fd_set rfds;
 	fd_set wfds;
