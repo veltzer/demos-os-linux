@@ -31,7 +31,7 @@
 
 static pthread_mutex_t mylock;
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	unsigned int id=*(unsigned int*)p;
 	int counter=0;
 	while(counter<10) {

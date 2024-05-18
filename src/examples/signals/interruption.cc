@@ -45,7 +45,7 @@
 static bool broken=false;
 static bool actually_break=false;
 
-static void handler(int sig, siginfo_t *, void *) {
+static void handler(int sig, siginfo_t *, void*) {
 	TRACE("start: sig is %d", sig);
 	TRACE("end");
 }

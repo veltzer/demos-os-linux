@@ -44,7 +44,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *context __attribute__((unused))) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* context __attribute__((unused))) {
 	bool check_again=true;
 	do {
 		int status;

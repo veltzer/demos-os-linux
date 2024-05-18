@@ -37,7 +37,7 @@
 
 static pthread_spinlock_t mylock;
 
-static void *worker(void*) {
+static void* worker(void*) {
 	for(int i=0; i<10; i++) {
 		// TRACE("before lock");
 		CHECK_ZERO_ERRNO(pthread_spin_lock(&mylock));

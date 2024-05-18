@@ -657,7 +657,7 @@ align_var_def_span                       Number
 
 align_var_def_star_style                 Number
   How to align the star in variable definitions.
-   0=Part of the type     'void *   foo;'
+   0=Part of the type     'void*   foo;'
    1=Part of the variable 'void     *foo;'
    2=Dangling             'void    *foo;'
 

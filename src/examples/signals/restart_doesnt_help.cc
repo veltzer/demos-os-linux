@@ -28,7 +28,7 @@
  * This shows that SA_RESTART doesn't help every system call.
  */
 
-static void handler(int sig_num, siginfo_t *, void *) {
+static void handler(int sig_num, siginfo_t *, void*) {
 	printf("Inside the signal handler %d in process %d\n", sig_num, getpid());
 	printf("signal handler is done...\n");
 }

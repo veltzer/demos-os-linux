@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include "crash.h"
 
-void print_message_function (void *ptr);
+void print_message_function (void* ptr);
 char buf[128];
 
 int main(int argc,char** argv,char** envp) {
@@ -46,8 +46,8 @@ int main(int argc,char** argv,char** envp) {
 	assert(ret==0);
 
 	/* create two threads and let them race */
-	pthread_create (&thread1, NULL, (void *) &print_message_function, NULL);
-	pthread_create (&thread2, NULL, (void *) &print_message_function, NULL);
+	pthread_create (&thread1, NULL, (void*) &print_message_function, NULL);
+	pthread_create (&thread2, NULL, (void*) &print_message_function, NULL);
 	pthread_join (thread2, NULL);
 
 	/* Not reached */
@@ -59,7 +59,7 @@ int main(int argc,char** argv,char** envp) {
 	return 0;
 }
 
-void* kill_malloc(size_t size, const void *caller) {
+void* kill_malloc(size_t size, const void* caller) {
 	printf("Malloc called from %p\n", caller);
 	abort();
 	return NULL;

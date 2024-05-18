@@ -71,7 +71,7 @@ static void* functionCount1(void*) {
 	return NULL;
 }
 
-static void *functionCount2(void*) {
+static void* functionCount2(void*) {
 	while(true) {
 		CHECK_ZERO_ERRNO(pthread_mutex_lock(&condition_mutex));
 		while((count<COUNT_RANGE_MIN || count>COUNT_RANGE_MAX) && !done) {

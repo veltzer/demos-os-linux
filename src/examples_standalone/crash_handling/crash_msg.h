@@ -56,7 +56,7 @@ struct crash_message_struct {
 	/* The signal code from siginfo_t. Provides exception reason */
 	unsigned int signal_code;
 	/* Fault address, if relevant */
-	void * fault_address;
+	void* fault_address;
 	/* The last error as reported via siginfo_t. Seems to be always 0 */
 	unsigned int signal_errno;
 	/* The last error in errno when the exception handler got called. */
@@ -68,7 +68,7 @@ struct crash_message_struct {
 	/* Buffer for assert data */
 	unsigned char assert_buffer[CRASH_ASSERT_BUFFER_SIZE];
 	/* Stack backtrace */
-	void *backtrace[CRASH_MAX_BACKTRACE_DEPTH];
+	void* backtrace[CRASH_MAX_BACKTRACE_DEPTH];
 	/* Place holder for ancillary data, such as symbol trace sent as seperate message */
 	char ancillary_data[0];
 };

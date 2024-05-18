@@ -42,7 +42,7 @@ void* rets[num];
 // the barrier that all threads will wait on...
 pthread_barrier_t barrier;
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	int num=*(int *)p;
 	// fill in my own thread id so that the other threads
 	// may know about me (and so kill me).

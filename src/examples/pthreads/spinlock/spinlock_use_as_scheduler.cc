@@ -35,7 +35,7 @@ const unsigned int loops=3;
 static pthread_spinlock_t lock;
 static unsigned int counter=0;
 
-void *worker(void *p) {
+void* worker(void* p) {
 	const unsigned int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	unsigned int num=*(unsigned int *)p;
 	DEBUG("starting thread %d", num);

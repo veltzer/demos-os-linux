@@ -57,7 +57,7 @@ int main() {
 	TRACE("sending cancellation request");
 	CHECK_ZERO_ERRNO(pthread_cancel(thr));
 	/* Join with thread to see what its exit status was */
-	void *res;
+	void* res;
 	CHECK_ZERO_ERRNO(pthread_join(thr, &res));
 	if (res==PTHREAD_CANCELED)
 		TRACE("thread was canceled");

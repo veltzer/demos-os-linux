@@ -114,10 +114,10 @@ static inline char * code2str(int code, int signal) {
 	return "Unhandled signal handler";
 }
 
-void fault_handler (int signal, siginfo_t * siginfo, void *context) {
+void fault_handler (int signal, siginfo_t * siginfo, void* context) {
 	#define MAX_FRAMES 25
 
-	void * frames[MAX_FRAMES];
+	void* frames[MAX_FRAMES];
 	int num_frames;
 	struct timespec timestamp;
 	char ** symbols;
@@ -172,7 +172,7 @@ void fault_handler (int signal, siginfo_t * siginfo, void *context) {
 
 
 
-void print_message_function (void *ptr);
+void print_message_function (void* ptr);
 unsigned char buf[128];
 
 int main(int argc,char** argv,char** envp) {
@@ -200,8 +200,8 @@ int main(int argc,char** argv,char** envp) {
 	fflush(NULL);
 
 	/* create two threads and let them race */
-	pthread_create (&thread1, NULL, (void *) &print_message_function, NULL);
-	pthread_create (&thread2, NULL, (void *) &print_message_function, NULL);
+	pthread_create (&thread1, NULL, (void*) &print_message_function, NULL);
+	pthread_create (&thread2, NULL, (void*) &print_message_function, NULL);
 	pthread_join (thread2, NULL);
 
 	/* Not reached */
@@ -242,7 +242,7 @@ void die(void) {
 }
 
 /* The test thread function */
-void print_message_function(void *dummy) {
+void print_message_function(void* dummy) {
 	/* Latin: "those who about to die sallute you". */
 	printf ("Morituri te salutant!\n");
 	fflush(NULL);

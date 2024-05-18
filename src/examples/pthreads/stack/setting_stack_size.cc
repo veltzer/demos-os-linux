@@ -47,7 +47,7 @@ void ensure_space(unsigned int size) {
 	// bzero(buf,size);
 }
 
-void *worker(void *p) {
+void* worker(void* p) {
 	int num=*(int *)p;
 	ensure_space((num+1)*100*1024);
 	fprintf(stderr, "starting thread %d\n", num);

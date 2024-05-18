@@ -36,7 +36,7 @@ static void delfunc(int exitstatus __attribute__((unused)), void* ptr) {
 	free(ptr);
 }
 
-static int my_pthread_setspecific(pthread_key_t key, const void *value) {
+static int my_pthread_setspecific(pthread_key_t key, const void* value) {
 	if(pthread_main_np()) {
 		CHECK_ZERO(on_exit(delfunc, (void*)value));
 	}

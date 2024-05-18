@@ -62,7 +62,7 @@ void do_some_random_access() {
 	}
 }
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	thread_data* td=(thread_data*)p;
 	shared_data* sd=td->shared;
 	if(td->num==0) {

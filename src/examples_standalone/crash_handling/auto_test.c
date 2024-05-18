@@ -24,14 +24,14 @@
 #include <string.h>
 #include <stdlib.h> // for EXIT_SUCCESS
 
-void print_message_function(void *ptr);
+void print_message_function(void* ptr);
 
 int main(int argc,char** argv,char** envp) {
 	pthread_t thread1;
 	pthread_t thread2;
 	printf("Starting first run\n");
-	pthread_create(&thread1,NULL,(void *)&print_message_function, NULL);
-	pthread_create(&thread2,NULL,(void *)&print_message_function, NULL);
+	pthread_create(&thread1,NULL,(void*)&print_message_function, NULL);
+	pthread_create(&thread2,NULL,(void*)&print_message_function, NULL);
 	pthread_join (thread2, NULL);
 	/* Not reached */
 	printf("This should never happen!\n");

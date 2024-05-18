@@ -38,7 +38,7 @@ typedef struct _thread_data {
 	int min_sleep_time;
 } thread_data;
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	thread_data* td=(thread_data*)p;
 	INFO("start thread (%d), on cpu %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {

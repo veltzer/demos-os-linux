@@ -54,7 +54,7 @@ static unsigned int max_sleep_time;
 static bool child_alive=true;
 static int the_signal=-1;
 
-static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void *context __attribute__((unused))) {
+static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* context __attribute__((unused))) {
 	// printf("started hander\n");
 	if(sig==the_signal) {
 		got_signals++;

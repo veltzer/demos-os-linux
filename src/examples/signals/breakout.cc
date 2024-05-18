@@ -40,12 +40,12 @@ static int counterUSR1=0;
 static int counterUSR2=0;
 static int flag=0;
 
-static void SignalHandlerUSR1(int sig, siginfo_t *, void *) {
+static void SignalHandlerUSR1(int sig, siginfo_t *, void*) {
 	counterUSR1++;
 	fprintf(stderr, "handler [%s]: %d starting\n", strsignal(sig), counterUSR1);
 }
 
-static void SignalHandlerUSR2(int sig, siginfo_t *, void *) {
+static void SignalHandlerUSR2(int sig, siginfo_t *, void*) {
 	counterUSR2++;
 	fprintf(stderr, "handler [%s]: %d starting\n", strsignal(sig), counterUSR2);
 	// reverse the flag

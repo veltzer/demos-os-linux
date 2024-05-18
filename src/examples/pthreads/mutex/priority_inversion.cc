@@ -31,7 +31,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-void *worker(void *p) {
+void* worker(void* p) {
 	int num=*(int *)p;
 	TRACE("starting thread %d", num);
 	TRACE("ending thread %d", num);

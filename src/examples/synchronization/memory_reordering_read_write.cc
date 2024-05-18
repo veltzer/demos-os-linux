@@ -60,7 +60,7 @@ typedef struct _threaddata {
 } threaddata;
 
 #define CREATE_FUNCS(name, code, code_before, code_after) \
-	void *thread1_ ## name(void *param) { \
+	void* thread1_ ## name(void* param) { \
 		threaddata* pd=(threaddata*)param; \
 		MersenneTwister random(1); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
@@ -80,7 +80,7 @@ typedef struct _threaddata {
 		/* Never returns */ \
 		return NULL; \
 	} \
-	void *thread2_ ## name(void *param) { \
+	void* thread2_ ## name(void* param) { \
 		threaddata* pd=(threaddata*)param; \
 		MersenneTwister random(2); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
@@ -100,7 +100,7 @@ typedef struct _threaddata {
 		/* Never returns */ \
 		return NULL; \
 	} \
-	void *thread1v_ ## name(void *param) { \
+	void* thread1v_ ## name(void* param) { \
 		threaddata* pd=(threaddata*)param; \
 		MersenneTwister random(1); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
@@ -120,7 +120,7 @@ typedef struct _threaddata {
 		/* Never returns */ \
 		return NULL; \
 	} \
-	void *thread2v_ ## name(void *param) { \
+	void* thread2v_ ## name(void* param) { \
 		threaddata* pd=(threaddata*)param; \
 		MersenneTwister random(2); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
@@ -159,7 +159,7 @@ CREATE_FUNCS(mfence, asm volatile ("mfence" ::: "memory"), , );
 // lock orl using compiler builtin (does work)
 CREATE_FUNCS(sync_synchronize, __sync_synchronize(), , );
 
-void run(bool doVolatile, void *(*start_routine1)(void *), void *(*start_routine2)(void *), threaddata* pd, int core1, int core2, const char* test_name) {
+void run(bool doVolatile, void* (*start_routine1)(void*), void* (*start_routine2)(void*), threaddata* pd, int core1, int core2, const char* test_name) {
 	printf("running test [%s], volatile is [%d]...", test_name, doVolatile);
 	fflush(stdout);
 	// Spawn the threads

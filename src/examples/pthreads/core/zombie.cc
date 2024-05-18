@@ -45,7 +45,7 @@
 static pthread_mutex_t mutex_init, mutex_start, mutex_end;
 static pid_t tid;
 
-static void *worker(void *) {
+static void* worker(void*) {
 	TRACE("start");
 	set_thread_name("child");
 	tid=gettid();

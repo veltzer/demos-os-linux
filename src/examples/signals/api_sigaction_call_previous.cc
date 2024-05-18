@@ -56,7 +56,7 @@
 static unsigned int counter;
 static my_signal_handler old_action;
 
-static void handler(int sig, siginfo_t *si, void *unused) {
+static void handler(int sig, siginfo_t *si, void* unused) {
 	fprintf(stderr, "sighandler: counter is %d\n", counter);
 	fprintf(stderr, "sighandler: got signal %s\n", strsignal(sig));
 	signal_print_siginfo(stderr, si);

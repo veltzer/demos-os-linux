@@ -69,7 +69,7 @@ pid_t gettid(void) {
 * distance is the distance is calls from the signal handler
 *
 */
-unsigned int signal_backtrace(void ** array, unsigned int size, ucontext_t * context, unsigned int distance) {
+unsigned int signal_backtrace(void** array, unsigned int size, ucontext_t * context, unsigned int distance) {
 
 	/* WARNING: If you ever remove the inline from the function prototype,
 	* adjust this to match!!!

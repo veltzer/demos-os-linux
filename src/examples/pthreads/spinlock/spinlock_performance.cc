@@ -50,7 +50,7 @@ typedef struct _threaddata {
 	pthread_mutex_t mtx;
 } threaddata;
 
-static void *worker(void *p) {
+static void* worker(void* p) {
 	threaddata* td=(threaddata*)p;
 	measure m;
 	Stat s(40, 100, 40*100/2);
