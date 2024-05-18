@@ -34,7 +34,7 @@
  * http://stackoverflow.com/questions/1608318/is-bool-a-native-c-type
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	printf("sizeof(_Bool) is %zd\n", sizeof(_Bool));
 	printf("sizeof(bool) is %zd\n", sizeof(bool));
 	printf("_Bool is really %s\n", stringify(_Bool));

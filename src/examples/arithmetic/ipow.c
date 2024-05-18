@@ -107,7 +107,7 @@ int64_t ipow(int32_t base, uint8_t exp) {
 }
 
 
-int main(int argc, char** argv, char** envp) {
+int main(int argc, char** argv) {
 	if(argc!=3) {
 		fprintf(stderr, "%s: usage %s [base] [exp]\n", argv[0], argv[0]);
 		return EXIT_FAILURE;

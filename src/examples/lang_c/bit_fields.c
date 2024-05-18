@@ -50,7 +50,7 @@ typedef struct _s2 {
 	unsigned int f4:16;
 } __attribute__ ((__packed__)) s2;
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	unsigned char data[]={0x12, 0x34, 0x56, 0x78};
 	s2* v2=(s2*)data;
 	PRINT_SIZEOF(s1);

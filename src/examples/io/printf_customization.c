@@ -57,7 +57,7 @@ int print_widget (FILE *stream, const struct printf_info *info, const void *cons
 	return len;
 }
 
-int print_widget_arginfo (const struct printf_info *info, size_t n, int *argtypes) {
+int print_widget_arginfo (const struct printf_info *info __attribute__((unused)), size_t n, int *argtypes) {
 	/* We always take exactly one argument and this is a pointer to the
 	 * structure.. */
 	if (n > 0)
@@ -65,7 +65,8 @@ int print_widget_arginfo (const struct printf_info *info, size_t n, int *argtype
 	return 1;
 }
 
-int main(int argc, char** argv, char** envp) {
+
+int main() {
 	/* Make a widget to print. */
 	Widget mywidget;
 	mywidget.name = "mywidget";

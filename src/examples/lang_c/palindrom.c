@@ -22,7 +22,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_NOT_NULL()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	const int STRINGSIZE=30;
 	char mystring[STRINGSIZE];
 	printf("Give me a string to check: ");

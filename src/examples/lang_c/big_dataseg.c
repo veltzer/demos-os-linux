@@ -36,7 +36,8 @@
  */
 
 int myarray[100000]={1, 1};
-int main(int argc, char** argv, char** envp) {
+
+int main() {
 	int i;
 	for(i=0; i<2; i++) {
 		assert(myarray[i]==1);

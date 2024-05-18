@@ -48,7 +48,7 @@ static inline int sum3(int i) {
 	return __builtin_constant_p(i) ? _sum(i):0;
 }
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	// everything is ok for constants
 	printf("sum1 for 100 is %d\n", sum1(100));
 	printf("sum2 for 5 is %d\n", sum2(5));

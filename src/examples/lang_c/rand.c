@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for rand(3), srand(3), EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_INT()
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	int seed;
 	int i;
 	printf("give me a seed: ");

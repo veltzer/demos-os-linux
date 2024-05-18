@@ -27,7 +27,7 @@
  * Note that without this include you will not get bool, true or false.
  */
 
-int main(int argc, char** argv, char** envp) {
+int main() {
 	bool __attribute__((unused)) b1=true;
 	bool __attribute__((unused)) b2=false;
 	int __attribute__((unused)) i1=true;
