@@ -23,6 +23,7 @@
 #include <cpuid.h>
 
 int main() {
+	/*
 	uint64_t random_number;
 
 	// Check if RDRAND is supported
@@ -38,6 +39,6 @@ int main() {
 	}
 
 	printf("Random number: %llu\n", random_number);
-
-	return 0;
+	*/
+	return EXIT_SUCCESS;
 }
