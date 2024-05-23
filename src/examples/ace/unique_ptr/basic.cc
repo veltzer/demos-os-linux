@@ -20,6 +20,7 @@
 #include <ace/Auto_Ptr.h>
 #include <iostream>	// for std::cout, std::endl
 #include <stdlib.h>	// for EXIT_SUCCESS
+#include <memory>
 
 /*
  * This example demonstrates the use of auto_ptr which takes

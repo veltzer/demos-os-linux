@@ -30,6 +30,7 @@
 #include <ace/Synch.h>
 #include <ace/Signal.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
+#include <memory>
 
 /*
  * EXTRA_COMPILE_CMD=pkg-config --cflags ACE

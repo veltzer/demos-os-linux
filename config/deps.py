@@ -17,7 +17,6 @@ opt_do_kernel_tools=False
 
 ver_boost_short = "1.74"
 ver_boost=ver_boost_short+".0"
-ver_urcu = "8"
 ver_unwind = "8"
 
 release=os.uname().release
@@ -43,28 +42,63 @@ if VERSION_ID == "22.04":
     ver_papi = "6.0"
     libevent_ver = "2.1-7"
     ver_wxgtk = "3.0"
-    lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
+    lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
     libncurses_ver="5"
+    ver_urcu = "8"
+    ver_libelf = "1"
+    ver_libdw = "1"
+    ver_libasm = "1"
+    ver_libasound = "2"
+    ver_libopenmpi = "3"
 if VERSION_ID == "22.10":
     ver_papi = "6.0"
     ver_unwind = "-15"
     libevent_ver = "2.1-7a"
     ver_wxgtk = "3.0"
-    lib_wx=f"libwxgtk{ver_wxgtk}-gtk3-dev"
-    libncurses_ver="5"
+    lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
+    libncurses_ver = "5"
+    ver_urcu = "8"
+    ver_libelf = "1"
+    ver_libdw = "1"
+    ver_libasm = "1"
+    ver_libasound = "2"
+    ver_libopenmpi = "3"
 if VERSION_ID == "23.04":
     ver_papi = "7.0"
     libevent_ver = "2.1-7a"
     ver_wxgtk = "3.2"
-    lib_wx=f"libwxgtk{ver_wxgtk}-dev"
-    libncurses_ver="5"
+    lib_wx = f"libwxgtk{ver_wxgtk}-dev"
+    libncurses_ver = "5"
+    ver_urcu = "8"
+    ver_libelf = "1"
+    ver_libdw = "1"
+    ver_libasm = "1"
+    ver_libasound = "2"
+    ver_libopenmpi = "3"
 if VERSION_ID == "23.10":
     ver_papi = "7.0"
     libevent_ver = "2.1-7"
     ver_wxgtk = "3.2"
-    lib_wx=f"libwxgtk{ver_wxgtk}-dev"
-    libncurses_ver="6"
-assert libevent_ver is not None
+    lib_wx = f"libwxgtk{ver_wxgtk}-dev"
+    libncurses_ver = "6"
+    ver_urcu = "8"
+    ver_libelf = "1"
+    ver_libdw = "1"
+    ver_libasm = "1"
+    ver_libasound = "2"
+    ver_libopenmpi = "3"
+if VERSION_ID == "24.04":
+    ver_papi = "7.0"
+    libevent_ver = "2.1-7t64"
+    ver_wxgtk = "3.2-1t"
+    lib_wx = "libwxgtk3.2-dev"
+    libncurses_ver = "6"
+    ver_urcu = "8t64"
+    ver_libelf = "1t64"
+    ver_libdw = "1t64"
+    ver_libasm = "1t64"
+    ver_libasound = "2t64"
+    ver_libopenmpi = "3t64"
 
 packages_kernels=[
 ]
@@ -168,7 +202,6 @@ packages_tools=[
     # "paxctl",
     "execstack",
     "prelink",
-    "dstat",
     "cpuid",
     "sysstat",
     "nmon",
@@ -242,7 +275,6 @@ packages_tools=[
     "watchdog",
     "supervisor",
     "daemontools",
-    "ruby-god",
     #"monit",
 
     # firewalls
@@ -300,7 +332,8 @@ packages=[
     f"libboost-thread{ver_boost}",
     f"libboost-system{ver_boost}",
     "libpcap-dev",
-    "libasound2",
+    # asound lib
+    f"libasound{ver_libasound}",
     "libasound2-dev",
     "libdmalloc5",
     "libdmalloc-dev",
@@ -308,16 +341,19 @@ packages=[
     "libnetfilter-queue1",
     "libnetfilter-queue-dev",
     "libcap-dev", # capability.h
-    f"liburcu{ver_urcu}", # rcu library
-    "liburcu-dev", # rcu library
+    # rcu library
+    f"liburcu{ver_urcu}",
+    "liburcu-dev",
     f"libunwind{ver_unwind}", # unwind library
     "libunwind-setjmp0", # unwind library
     "libunwind-dev", # unwind library
     "libunwind-setjmp0-dev", # unwind library
-    "libelf1", # reading elf files
-    "libdw1",
+    f"libelf{ver_libelf}", # reading elf files
+    # dw lib
+    f"libdw{ver_libdw}",
     "libdw-dev",
-    "libasm1",
+    # asm lib
+    f"libasm{ver_libasm}",
     "libasm-dev",
     "libaspell-dev",
     "libacl1-dev",
@@ -332,7 +368,7 @@ packages=[
     # "libffi7",
     "libffi8",
     "libffi-dev",
-    "libopenmpi3",
+    f"libopenmpi{ver_libopenmpi}",
     "libopenmpi-dev",
     "liburing2",
     "liburing-dev",
