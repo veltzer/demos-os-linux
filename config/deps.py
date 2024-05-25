@@ -35,70 +35,79 @@ if opt_debug:
 if opt_exit:
     sys.exit(0)
 
-libevent_ver = None
+ver_event = None
+ver_ncurses = None
+lib_wx = None
+ver_asound = None
+ver_urcu = None
+ver_elf = None
+ver_dw = None
+ver_asm = None
+ver_papi = None
+ver_openmpi = None
 desktop = platform.freedesktop_os_release()
 VERSION_ID = desktop["VERSION_ID"]
 if VERSION_ID == "22.04":
     ver_papi = "6.0"
-    libevent_ver = "2.1-7"
+    ver_event = "2.1-7"
     ver_wxgtk = "3.0"
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
-    libncurses_ver="5"
+    ver_ncurses = "5"
     ver_urcu = "8"
-    ver_libelf = "1"
-    ver_libdw = "1"
-    ver_libasm = "1"
-    ver_libasound = "2"
-    ver_libopenmpi = "3"
+    ver_elf = "1"
+    ver_dw = "1"
+    ver_asm = "1"
+    ver_asound = "2"
+    ver_openmpi = "3"
 if VERSION_ID == "22.10":
     ver_papi = "6.0"
     ver_unwind = "-15"
-    libevent_ver = "2.1-7a"
+    ver_event = "2.1-7a"
     ver_wxgtk = "3.0"
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
-    libncurses_ver = "5"
+    ver_ncurses = "5"
     ver_urcu = "8"
-    ver_libelf = "1"
-    ver_libdw = "1"
-    ver_libasm = "1"
-    ver_libasound = "2"
-    ver_libopenmpi = "3"
+    ver_elf = "1"
+    ver_dw = "1"
+    ver_asm = "1"
+    ver_asound = "2"
+    ver_openmpi = "3"
 if VERSION_ID == "23.04":
     ver_papi = "7.0"
-    libevent_ver = "2.1-7a"
+    ver_event = "2.1-7a"
     ver_wxgtk = "3.2"
     lib_wx = f"libwxgtk{ver_wxgtk}-dev"
-    libncurses_ver = "5"
+    ver_ncurses = "5"
     ver_urcu = "8"
-    ver_libelf = "1"
-    ver_libdw = "1"
-    ver_libasm = "1"
-    ver_libasound = "2"
-    ver_libopenmpi = "3"
+    ver_elf = "1"
+    ver_dw = "1"
+    ver_asm = "1"
+    ver_asound = "2"
+    ver_openmpi = "3"
 if VERSION_ID == "23.10":
     ver_papi = "7.0"
-    libevent_ver = "2.1-7"
+    ver_event = "2.1-7"
     ver_wxgtk = "3.2"
     lib_wx = f"libwxgtk{ver_wxgtk}-dev"
-    libncurses_ver = "6"
+    ver_ncurses = "6"
     ver_urcu = "8"
-    ver_libelf = "1"
-    ver_libdw = "1"
-    ver_libasm = "1"
-    ver_libasound = "2"
-    ver_libopenmpi = "3"
+    ver_elf = "1"
+    ver_dw = "1"
+    ver_asm = "1"
+    ver_asound = "2"
+    ver_openmpi = "3"
 if VERSION_ID == "24.04":
     ver_papi = "7.0"
-    libevent_ver = "2.1-7t64"
+    ver_event = "2.1-7t64"
     ver_wxgtk = "3.2-1t"
     lib_wx = "libwxgtk3.2-dev"
-    libncurses_ver = "6"
+    ver_ncurses = "6"
     ver_urcu = "8t64"
-    ver_libelf = "1t64"
-    ver_libdw = "1t64"
-    ver_libasm = "1t64"
-    ver_libasound = "2t64"
-    ver_libopenmpi = "3t64"
+    ver_elf = "1t64"
+    ver_dw = "1t64"
+    ver_asm = "1t64"
+    ver_asound = "2t64"
+    ver_openmpi = "3t64"
 
 packages_kernels=[
 ]
@@ -306,12 +315,12 @@ packages=[
     "binutils-dev",
     "libxtables-dev",
     "libevent-dev",
-    f"libevent-{libevent_ver}",
+    f"libevent-{ver_event}",
     "libiberty-dev",
-    f"libncurses{libncurses_ver}",
+    f"libncurses{ver_ncurses}",
     "libncurses-dev",
-    f"libncursesw{libncurses_ver}",
-    # f"libncursesw{libncurses_ver}-dev",
+    f"libncursesw{ver_ncurses}",
+    # f"libncursesw{ver_ncurses}-dev",
     # libprocps is gone
     # "libprocps8",
     # "libprocps-dev",
@@ -333,7 +342,7 @@ packages=[
     f"libboost-system{ver_boost}",
     "libpcap-dev",
     # asound lib
-    f"libasound{ver_libasound}",
+    f"libasound{ver_asound}",
     "libasound2-dev",
     "libdmalloc5",
     "libdmalloc-dev",
@@ -348,12 +357,12 @@ packages=[
     "libunwind-setjmp0", # unwind library
     "libunwind-dev", # unwind library
     "libunwind-setjmp0-dev", # unwind library
-    f"libelf{ver_libelf}", # reading elf files
+    f"libelf{ver_elf}", # reading elf files
     # dw lib
-    f"libdw{ver_libdw}",
+    f"libdw{ver_dw}",
     "libdw-dev",
     # asm lib
-    f"libasm{ver_libasm}",
+    f"libasm{ver_asm}",
     "libasm-dev",
     "libaspell-dev",
     "libacl1-dev",
@@ -368,7 +377,7 @@ packages=[
     # "libffi7",
     "libffi8",
     "libffi-dev",
-    f"libopenmpi{ver_libopenmpi}",
+    f"libopenmpi{ver_openmpi}",
     "libopenmpi-dev",
     "liburing2",
     "liburing-dev",
