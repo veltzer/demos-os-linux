@@ -13,7 +13,7 @@ process statistics:
 	(1) pidstat - Report statistics for Linux tasks.
 	(1) top - display Linux processes
 	(1) htop - interactive process viewer
-	(1) BTOP - Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
+	(1) btop - Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
 	(5) proc - process information pseudo-filesystem
 	(1) ps - report a snapshot of the current processes.
 	(1) pstree - display a tree of processes
