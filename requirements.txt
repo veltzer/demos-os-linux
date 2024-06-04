@@ -2,7 +2,7 @@ alabaster==0.7.16
 astroid==3.2.2
 attrs==23.2.0
 Babel==2.15.0
-certifi==2024.2.2
+certifi==2024.6.2
 charset-normalizer==3.3.2
 cpplint==1.6.1
 dill==0.3.8
@@ -31,7 +31,7 @@ pymakehelper==0.0.28
 pytconf==0.1.14
 PyYAML==6.0.1
 referencing==0.35.1
-requests==2.32.2
+requests==2.32.3
 rpds-py==0.18.1
 smmap==5.0.1
 snowballstemmer==2.2.0
