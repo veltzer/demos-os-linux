@@ -29,7 +29,7 @@ class SensorSystem {
 public:
 	void attach( AlarmListener* al ) { listeners.push_back( al ); }
 	void soundTheAlarm() {
-		for (unsigned int i=0; i < listeners.size(); i++)
+		for(unsigned int i=0; i < listeners.size(); i++)
 			listeners[i]->alarm();
 } };
 /////////////////////////////////////////////////////////////////////

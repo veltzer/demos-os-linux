@@ -68,7 +68,7 @@ private:
 };
 
 void MacroCommand::execute() {
-	for (int i=0; i < _numCommands; i++)
+	for(int i=0; i < _numCommands; i++)
 		_list[i]->execute();
 }
 

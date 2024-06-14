@@ -39,7 +39,7 @@ public:
 	void add( Component* c ) { children.push_back( c ); }
 	void traverse() {
 		cout << value << " ";
-		for (unsigned int i=0; i < children.size(); i++)
+		for(unsigned int i=0; i < children.size(); i++)
 			 children[i]->traverse();
 } };
 

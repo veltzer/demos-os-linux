@@ -78,7 +78,7 @@ Message messageArray[10] = { On,Off,Off,Ack,Ack,Ack,Ack,On,Off,Off };
 
 int main() {
 	FSM fsm;
-	for (int i = 0; i < 10; i++) {
+	for(int i = 0; i < 10; i++) {
 		if (messageArray[i] == On) fsm.on();
 		else if (messageArray[i] == Off) fsm.off();
 		else if (messageArray[i] == Ack) fsm.ack();

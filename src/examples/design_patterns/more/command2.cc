@@ -45,7 +45,7 @@ class MacroCommand : public Command {
 public:
 	void add( Command* cmd ) { list.push_back( cmd ); }
 	/*virtual*/ void execute( int& num ) {
-		for (unsigned int i=0; i < list.size(); i++)
+		for(unsigned int i=0; i < list.size(); i++)
 			list[i]->execute( num );
 	}
 };

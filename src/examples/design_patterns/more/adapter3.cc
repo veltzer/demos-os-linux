@@ -65,9 +65,9 @@ class Pheau { public:
 int main() {
 	ExecuteInterface** objects = initialize();
 
-	for (int i=0; i < 3; i++) objects[i]->execute(); // 3. Client uses the new
+	for(int i=0; i < 3; i++) objects[i]->execute(); // 3. Client uses the new
 																	//	 (polymporphism)
-	for (int i=0; i < 3; i++)
+	for(int i=0; i < 3; i++)
 		delete objects[i];
 	delete objects;
 	return 0;

@@ -52,10 +52,10 @@ Link* Link::bidder = 0;
 
 int main() {
 	Link chain( 1 );
-	for (int i=2; i < 7; i++)
+	for(int i=2; i < 7; i++)
 		chain.addLast( new Link( i ) );
 	srand( time( 0 ) );
-	for (int i=0; i < 10; i++)
+	for(int i=0; i < 10; i++)
 		chain.bid();						 // 3. Client "launches & leaves"
 	return 0;
 }
