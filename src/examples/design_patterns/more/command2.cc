@@ -18,59 +18,93 @@
 
 #include <firstinclude.h>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-class Number { public:
-	void dubble( int& value ) { value *= 2; }
+class Number {
+public:
+	Number( int value ) { _value = _copy = value; }
+	int getValue() { return _value; }
+	void increment() { _copy = _value++; }
+	void decrement() { _copy = _value--; }
+	void restore() { _value = _copy; }
+	void dubble() { _copy = _value; _value = 2 * _value; }
+	void half() { _copy = _value; _value = _value / 2; }
+	void square() { _copy = _value; _value = _value * _value; }
+private:
+	int _value;
+	int _copy;
 };
 
-class Command { public: virtual void execute( int& ) = 0; };
+
+class Command {
+public:
+	virtual void execute() = 0;
+	virtual void add( Command* ) { }
+protected:
+	Command() { }
+};
 
 class SimpleCommand : public Command {
-	typedef void (Number::* Action)(int&);
-	Number* receiver;
-	Action action;
 public:
-	SimpleCommand( Number* rec, Action act ) {
-		receiver = rec;
-		action = act;
-	}
-	/*virtual*/ void execute( int& num ) { (receiver->*action)( num ); }
+	typedef void (Number::* Action)();
+	SimpleCommand( Number* receiver, Action action ) {
+		_receiver = receiver;
+		_action = action; }
+	virtual void execute() { (_receiver->*_action)(); }
+protected:
+	Number* _receiver;
+	Action _action;
 };
 
 class MacroCommand : public Command {
-	vector<Command*> list;
 public:
-	void add( Command* cmd ) { list.push_back( cmd ); }
-	/*virtual*/ void execute( int& num ) {
-		for(unsigned int i=0; i < list.size(); i++)
-			list[i]->execute( num );
-	}
+	MacroCommand() { _numCommands = 0; }
+	void add( Command* cmd ) { _list[_numCommands++] = cmd; }
+	virtual void execute();
+private:
+	Command* _list[10];
+	int _numCommands;
 };
 
+void MacroCommand::execute() {
+	for(int i=0; i < _numCommands; i++)
+		_list[i]->execute();
+}
+
 int main() {
-	Number object;
-	Command* commands[3];
-	commands[0] = new SimpleCommand( &object, &Number::dubble );
+	int i;
+	cout << "Integer: ";
+	cin >> i;
+	Number* object = new Number(i);
 
-	MacroCommand two;
-	two.add( commands[0] );
-	two.add( commands[0] );
-	commands[1] = &two;
+	Command* commands[9];
+	commands[1] = new SimpleCommand( object, &Number::increment );
+	commands[2] = new SimpleCommand( object, &Number::decrement );
+	commands[3] = new SimpleCommand( object, &Number::dubble );
+	commands[4] = new SimpleCommand( object, &Number::half );
+	commands[5] = new SimpleCommand( object, &Number::square );
+	commands[6] = new SimpleCommand( object, &Number::restore );
+	commands[7] = new MacroCommand;
+	commands[7]->add( commands[1] );
+	commands[7]->add( commands[3] );
+	commands[7]->add( commands[5] );
+	commands[8] = new MacroCommand;
+	commands[8]->add( commands[7] );
+	commands[8]->add( commands[7] );
 
-	MacroCommand four;
-	four.add( &two );
-	four.add( &two );
-	commands[2] = &four;
+	cout << "Exit[0], ++[1], --[2], x2[3], Half[4], Square[5], "
+		<< "Undo[6], do3[7] do6[8]: ";
+	cin >> i;
 
-	int num, index;
-	while (true) {
-		cout << "Enter number selection (0=2x 1=4x 2=16x): ";
-		cin >> num >> index;
-		commands[index]->execute( num );
-		cout << "	" << num << '\n';
+	while (i)
+	{
+		commands[i]->execute();
+		cout << " " << object->getValue() << endl;
+		cout << "Exit[0], ++[1], --[2], x2[3], Half[4], Square[5], "
+			<< "Undo[6], do3[7] do6[8]: ";
+		cin >> i;
 	}
 	return 0;
 }
+

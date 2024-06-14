@@ -21,48 +21,54 @@
 
 using namespace std;
 
-typedef int Coordinate;
-typedef int Dimension;
-
-/////////////////////////// Desired interface ///////////////////////////
-class Rectangle {
-public:
-	virtual void draw() = 0;
+class ExecuteInterface { public:						// 1. Specify the new i/f
+	virtual ~ExecuteInterface() { }
+	virtual void execute() = 0;
 };
 
-/////////////////////////// Legacy component ///////////////////////////
-class LegacyRectangle {
+template <class TYPE>									// 2. Design a "wrapper" or
+class ExecuteAdapter : public ExecuteInterface { //	 "adapter" class
 public:
-	LegacyRectangle( Coordinate x1, Coordinate y1,
-			Coordinate x2, Coordinate y2 ) {
-		x1_ = x1; y1_ = y1; x2_ = x2; y2_ = y2;
-		cout << "LegacyRectangle: create. (" << x1_ << "," << y1_
-			<< ") => (" << x2_ << "," << y2_ << ")" << endl; }
-	void oldDraw() {
-		cout << "LegacyRectangle: oldDraw. (" << x1_ << "," << y1_
-			<< ") => (" << x2_ << "," << y2_ << ")" << endl; }
+	ExecuteAdapter( TYPE* o, void (TYPE::*m)() ) { object = o; method =m; }
+	~ExecuteAdapter()									 { delete object; }
+	// 4. The adapter/wrapper "maps" the new to the legacy implementation
+	void execute()				 /* the new */	{ (object->*method)(); }
 private:
-	Coordinate x1_;
-	Coordinate y1_;
-	Coordinate x2_;
-	Coordinate y2_;
+	TYPE* object;											 // ptr-to-object attribute
+	void (TYPE::*method)();	 /* the old */		 // ptr-to-member-function
+};																//	attribute
+
+// The old: three totally incompatible classes	 // no common base class,
+class Fea { public:										 // no hope of polymorphism
+	~Fea()		{ cout << "Fea::dtor" << endl; }
+	void doThis() { cout << "Fea::doThis()" << endl; }
 };
 
-/////////////////////////// Adapter wrapper ///////////////////////////
-class RectangleAdapter : public Rectangle, private LegacyRectangle {
-public:
-	RectangleAdapter( Coordinate x, Coordinate y, Dimension w, Dimension h )
-			: LegacyRectangle( x, y, x+w, y+h ) {
-		cout << "RectangleAdapter: create. (" << x << "," << y
-			<< "), width = " << w << ", height = " << h << endl; }
-	virtual void draw() {
-		cout << "RectangleAdapter: draw." << endl;
-		oldDraw(); }
+class Feye { public:
+	~Feye()		 { cout << "Feye::dtor" << endl; }
+	void doThat() { cout << "Feye::doThat()" << endl; }
 };
 
-int main() {
-	Rectangle* r = new RectangleAdapter( 120, 200, 60, 40 );
-	r->draw();
-	return 0;
+class Pheau { public:
+	~Pheau()			 { cout << "Pheau::dtor" << endl; }
+	void doTheOther() { cout << "Pheau::doTheOther()" << endl; }
+};
+
+/* the new is returned */ ExecuteInterface** initialize() {
+	ExecuteInterface** array = new ExecuteInterface*[3]; /* the old is below */
+	array[0] = new ExecuteAdapter<Fea>(	new Fea(),	&Fea::doThis		 );
+	array[1] = new ExecuteAdapter<Feye>(new Feye(),	 &Feye::doThat		);
+	array[2] = new ExecuteAdapter<Pheau>( new Pheau(),	&Pheau::doTheOther );
+	return array;
 }
 
+int main() {
+	ExecuteInterface** objects = initialize();
+
+	for(int i=0; i < 3; i++) objects[i]->execute(); // 3. Client uses the new
+																	//	 (polymporphism)
+	for(int i=0; i < 3; i++)
+		delete objects[i];
+	delete objects;
+	return 0;
+}
