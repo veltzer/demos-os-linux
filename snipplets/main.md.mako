@@ -44,6 +44,7 @@ ${"##"} Similar projects
 * Michael Kerrisk, the maintainer and author of many of the Linux manual pages has a similar project he calls
 TLPI (The Linux Programming Interface) of programs he used in his book of the same title. You can find
 it here http://man7.org/tlpi/code/.
+* https://github.com/bradfa/tlpi-dist
 * https://github.com/dev-area/linux
 * https://github.com/tsuna/contextswitch
 * https://github.com/gurugio/lowlevelprogramming-university
