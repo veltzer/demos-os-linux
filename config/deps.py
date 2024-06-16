@@ -97,7 +97,7 @@ if VERSION_ID == "23.10":
     ver_asound = "2"
     ver_openmpi = "3"
 if VERSION_ID == "24.04":
-    ver_papi = "7.0"
+    ver_papi = "7.1t64"
     ver_event = "2.1-7t64"
     ver_wxgtk = "3.2-1t"
     lib_wx = "libwxgtk3.2-dev"
