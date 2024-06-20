@@ -4,6 +4,8 @@
 	try to build all (make clean and then make -j 4) and you
 	will see the errors.
 	fix this.
+- currently ccache is not enabled in the main makefile (look for CCACHE).
+	Why? It should be.
 - make the standalone folder examples use ccache too (as derived from
 	the main makefile).
 - make the kernel use ccache too?!?
