@@ -21,7 +21,6 @@
 #include <linux/stat.h> /* for permission bits on module_param */
 #include <linux/fs.h> /* for fops */
 #include <linux/device.h> /* for device_create */
-#include <linux/moduleparam.h> /* for module_param, MODULE_PARM_DESC... */
 #include <linux/init.h> /* for __init, __exit */
 
 MODULE_LICENSE("GPL");
@@ -53,7 +52,8 @@ static ssize_t write_null(struct file *file, const char __user *buf,
 	return count;
 }
 
-/* this is the operations table */
+/* this is the file operations table.
+ * we don't need open and close as we get them for free */
 static const struct file_operations null_fops = {
 	.owner = THIS_MODULE,
 	.write = write_null,
@@ -108,11 +108,9 @@ err_nothing:
 
 static void __exit null_exit(void)
 {
-	pr_info("start\n");
 	device_destroy(my_class, MKDEV(NULL_MAJOR, NULL_MINOR));
 	class_destroy(my_class);
 	unregister_chrdev(NULL_MAJOR, THIS_MODULE->name);
-	pr_info("device unloaded successfuly\n");
 }
 
 module_init(null_init);
