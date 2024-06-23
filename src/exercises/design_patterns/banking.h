@@ -1,6 +1,25 @@
-#pragma once
+/*
+ * This file is part of the demos-linux package.
+ * Copyright (C) 2011-2024 Mark Veltzer <mark.veltzer@gmail.com>
+ *
+ * demos-linux is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * demos-linux is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <firstinclude.h>
 #include <memory>
 #include <iostream>
+
 namespace banking {
 	using namespace std;
 	class IReadOnlyAccount {
@@ -8,24 +27,18 @@ namespace banking {
 		virtual double getBalance() const = 0;
 		virtual ~IReadOnlyAccount() = default;
 	};
-	/// <summary>
-	/// 
-	/// </summary>
 	class IAccount : public IReadOnlyAccount
 	{
 	public:
 		virtual void withdraw(double val) = 0;
 		virtual void deposit(double val) = 0;
 	};
-	/// <summary>
-	/// 
-	/// </summary>
 	class AccountBase : public IAccount
 	{
 	public:
 		AccountBase(double balance = 0) :_balance(balance) {}
 		double getBalance() const override { return _balance; }
-		void withdraw(double val) override { 
+		void withdraw(double val) override {
 			Authenticate();
 			ConnectRemoteDB();
 			if (_balance >= val) {
@@ -46,9 +59,6 @@ namespace banking {
 	private:
 		double _balance;
 	};
-	/// <summary>
-	/// 
-	/// </summary>
 	class CheckingAccount : public AccountBase
 	{
 	public:
@@ -58,9 +68,6 @@ namespace banking {
 	private:
 		double _overdraft;
 	};
-	/// <summary>
-	/// 
-	/// </summary>
 	class SavingAccount : public AccountBase
 	{
 	public:
@@ -70,9 +77,6 @@ namespace banking {
 	private:
 		static double _intRate;
 	};
-	/// <summary>
-	/// 
-	/// </summary>
 	class AccountDecorator : public IAccount
 	{
 	public:
@@ -80,9 +84,6 @@ namespace banking {
 	protected:
 		unique_ptr<IAccount> _account;
 	};
-	/// <summary>
-	/// 
-	/// </summary>
 	class TraceAccount : public AccountDecorator {
 	public:
 		using AccountDecorator::AccountDecorator;
@@ -101,9 +102,6 @@ namespace banking {
 	private:
 
 	};
-	/// <summary>
-	/// /
-	/// </summary>
 	class CommissionAccount : public AccountDecorator {
 	public:
 		CommissionAccount(unique_ptr<IAccount> account,double amount):AccountDecorator(std::move(account)),_amount(amount){}
@@ -120,7 +118,7 @@ namespace banking {
 	private:
 		double _amount;
 	};
-	
+
 
 	class SavingAccountProxy : public IAccount
 	{
@@ -148,12 +146,6 @@ namespace banking {
 		mutable unique_ptr<SavingAccount> _account;
 		double _balance;
 	};
-
-	///
-	/// 
-	/// <summary>
-	/// 
-	/// </summary>
 	class Bank {
 	public:
 		static Bank& instance() {
