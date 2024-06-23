@@ -3,9 +3,6 @@
 Use pieces of code from:
 [link](https://github.com/veltzer/demos-linux/tree/master/src/kernel_standalone/mynull)
 
-The exercise description is here:
-[link](https://github.com/veltzer/demos-linux/tree/master/src/kernel_standalone/mynull/exercise.txt)
-
 Notes
 * Try not to crash your kernel.
 * Show that your driver works.
