@@ -10,7 +10,6 @@ CROSS_COMPILE:=x86_64-linux-gnu-
 # You could also use W=2 and W=3 for more warnings but most kernel headers
 # fail those...
 W?=1
-ifdef CROSS_COMPILE
 .PHONY: modules
 modules:
 	$(MAKE) -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(CURDIR) V=$(V) W=$(W) modules
@@ -18,15 +17,6 @@ modules:
 clean:
 	$(MAKE) -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(CURDIR) V=$(V) clean
 	rm -f *.stamp *.stamp.chp
-else
-.PHONY: modules
-modules:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) W=$(W) modules
-.PHONY: clean
-clean:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) V=$(V) clean
-	rm -f *.stamp *.stamp.chp
-endif
 .PHONY: insmod
 insmod:
 	@sudo insmod ./hello.ko
