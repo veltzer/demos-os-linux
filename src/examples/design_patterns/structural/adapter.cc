@@ -65,4 +65,3 @@ int main() {
 	r->draw();
 	return 0;
 }
-
