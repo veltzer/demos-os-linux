@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __shared_h
-#define __shared_h
+#pragma once
 
 // randomly chosen
 #define DEMO_MAGIC					'd'
@@ -105,5 +104,3 @@ typedef struct _BufferStruct {
 	void* pointer;
 	unsigned int size;
 } BufferStruct;
-
-#endif // __shared_h

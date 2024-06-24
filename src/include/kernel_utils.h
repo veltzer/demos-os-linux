@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __kernel_utils_h
-#define __kernel_utils_h
+#pragma once
 
 /*
  * This is a collection of helper function to help with kernel
@@ -42,5 +41,3 @@ static inline void klog_show_clear(void) {
 	klog_show();
 	klog_clear();
 }
-
-#endif	/* !__kernel_utils_h */

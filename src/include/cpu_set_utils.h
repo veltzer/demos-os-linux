@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __cpu_set_utils_h
-#define __cpu_set_utils_h
+#pragma once
 
 /*
  * This is a collection of helper functions to help you deal with cpu
@@ -57,5 +56,3 @@ static inline void cpu_set_print_file(FILE* pfile, cpu_set_t *p) {
 		}
 	}
 }
-
-#endif	/* !__cpu_set_utils_h */

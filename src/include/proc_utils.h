@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __proc_utils_h
-#define __proc_utils_h
+#pragma once
 
 /*
  * This is a collection of helper function to help with dealing
@@ -231,5 +230,3 @@ void proc_get_stack_info(unsigned long* adr_start, unsigned long* adr_end) {
 	proc_get_self_filter("[stack]", buf, bufsize);
 	CHECK_ASSERT(sscanf(buf, "%lx-%lx ", adr_start, adr_end)==2);
 }
-
-#endif	/* !__proc_utils_h */

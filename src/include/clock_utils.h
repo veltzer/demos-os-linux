@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __clock_utils_h
-#define __clock_utils_h
+#prgama once
 
 /*
  * This is a collection of helper function to help with dealing
@@ -90,4 +89,3 @@ static inline int clock_get_by_name(const char* name) {
 	}
 	CHECK_ERROR("bad clock name");
 }
-#endif	/* !__clock_utils_h */

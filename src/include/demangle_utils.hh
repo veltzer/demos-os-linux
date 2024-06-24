@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __demangle_utils_hh
-#define __demangle_utils_hh
+#pragma once
 
 #include <firstinclude.h>
 #include <cxxabi.h>	// for abi::__cxa_demangle(3)
@@ -78,5 +77,3 @@ static inline void error_demangle(char* symbol,
 		abort();
 	}
 }
-
-#endif	/* !__demangle_utils_hh */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __lowlevel_utils_h
-#define __lowlevel_utils_h
+#pragma once
 
 #include <firstinclude.h>
 #include <unistd.h>	// for getpagesize(2)
@@ -236,5 +235,3 @@ static inline ticks_t getrdtscp() {
 
 #define fullmb() asm volatile("" ::: "memory")
 #define mb(x) asm volatile("" : "=m" (x) : "m" (x))
-
-#endif	/* !__lowlevel_utils_h */

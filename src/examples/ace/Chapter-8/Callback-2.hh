@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef APG_CALLBACK2_H
-#define APG_CALLBACK2_H
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/OS_NS_time.h>
@@ -51,5 +50,3 @@ public:
 		cerr << "\tMsgData: " << data.c_str() << endl;
 	}
 };
-
-#endif	/* APG_CALLBACK2_H */

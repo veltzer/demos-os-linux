@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __Selector_hh
-#define __Selector_hh
+#pragma once
 
 #include <firstinclude.h>
 #include <us_helper.h>	// for my_max()
@@ -60,5 +59,3 @@ public:
 		CHECK_NOT_M1(select(fd_max+1, &rfds, &wfds, NULL, NULL));
 	}
 };
-
-#endif	/* !__Selector_hh */

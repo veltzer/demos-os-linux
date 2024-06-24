@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __Stat_hh
-#define __Stat_hh
+#pragma once
 
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
@@ -137,5 +136,3 @@ public:
 		return maxabs;
 	}
 };
-
-#endif	/* !__Stat_hh */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CLIENTSERVICE_H_
-#define __CLIENTSERVICE_H_
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Synch_Traits.h>
@@ -39,5 +38,3 @@ public:
 	// Called when this handler is removed from the ACE_Reactor.
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
 };
-
-#endif	/* __CLIENTSERVICE_H_ */

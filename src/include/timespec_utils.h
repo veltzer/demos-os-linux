@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __timespec_utils_h
-#define __timespec_utils_h
+#pragma once
 
 /*
  * This file is here to help you deal with the Linux 'struct timespec'
@@ -142,5 +141,3 @@ static inline unsigned long long timespec_to_nanos(const struct timespec* t) {
 static inline unsigned long long timespec_to_micros(const struct timespec* t) {
 	return t->tv_sec*MSEC_PER_SEC+t->tv_nsec/1000;
 }
-
-#endif	/* !__timespec_utils_h */

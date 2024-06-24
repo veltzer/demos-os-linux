@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CircularPipe_hh
-#define __CircularPipe_hh
+#pragma once
 
 #include <firstinclude.h>
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_NOT_NULL()
@@ -115,5 +114,3 @@ public:
 		pos_read%=size;
 	}
 };
-
-#endif	/* !__CircularPipe_hh */

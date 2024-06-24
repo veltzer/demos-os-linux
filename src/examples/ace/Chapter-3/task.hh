@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TASK_H
-#define TASK_H
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Task.h>
@@ -55,5 +54,3 @@ public:
 protected:
 	ACE_Barrier *barrier_;
 };
-
-#endif

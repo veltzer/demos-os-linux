@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __pthread_utils_h
-#define __pthread_utils_h
+#pragma once
 
 /*
  * This is a collection of utils to help you deal with pthread issues.
@@ -243,5 +242,3 @@ static inline void pthread_print_mutexattr(pthread_mutexattr_t* attr) {
 static inline int pthread_main_np(void) {
 	return getpid()==gettid();
 }
-
-#endif	/* !__pthread_utils_h */

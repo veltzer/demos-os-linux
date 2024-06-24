@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __atomic_utils_h
-#define __atomic_utils_h
+#pragma once
 
 /*
  * This file is here to help you with atomic related stuff.
@@ -31,5 +30,3 @@
 #ifndef atomic_full_barrier
 # define atomic_full_barrier() asm volatile("" ::: "memory")
 #endif
-
-#endif	/* !__atomic_utils_h */

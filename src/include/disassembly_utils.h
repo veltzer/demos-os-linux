@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __disassembly_utils
-#define __disassembly_utils
+#pragma once
 
 /*
  * This file provides helper function for disassembly.
@@ -65,5 +64,3 @@ static inline void disassemble_function(const char* function_name) {
 	// the next function
 	my_system("objdump --disassemble --source %s | sed -n '/<.*%s.*>:/,/<.*>:/p\'", myname, function_name);
 }
-
-#endif	/* !__disassembly_utils */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __Client_h
-#define __Client_h
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Synch_Traits.h>
@@ -56,5 +55,3 @@ private:
 	int iterations_;
 	ACE_Reactor_Notification_Strategy notifier_;
 };
-
-#endif	/* __Client_h */

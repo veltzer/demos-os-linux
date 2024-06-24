@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __network_utils_h
-#define __network_utils_h
+#pragma once
 
 /*
  * This file provides some helper functions to help deal with the Linux
@@ -76,5 +75,3 @@ static inline void domain_to_str(int domain, char* buf, unsigned int bufsize) {
 		break;
 	}
 }
-
-#endif	/* !__network_utils_h */

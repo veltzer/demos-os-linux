@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __security_utils
-#define __security_utils
+#pragma once
 
 /*
  * This file provides helper function to deal with security and permission
@@ -35,5 +34,3 @@
 static inline void check_root() {
 	CHECK_MSG_ZERO(geteuid(), "you are not root, maybe you should try sudo(1)?");
 }
-
-#endif	/* !__security_utils */

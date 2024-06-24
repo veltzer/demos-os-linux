@@ -28,10 +28,8 @@
 	* to keep code concise so that it could be shown easily.
 
 - protection of h files:
-	#ifndef _file_name_abs_h
-	#define _file_name_abs_h
-	...
-	#endif /* !_file_name_abs_h */
-	rationale: if it's good enough for GNU it's good enough for me
+	#pragma once
+	rationale: it's shorted than the regular #ifndef, no need for naming convention, faster,
+	and supported by GCC and most other compilers.
 
 - use TODO: instead of FIXME for items to do.

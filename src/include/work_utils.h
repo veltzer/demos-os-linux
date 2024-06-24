@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __work_utils_h
-#define __work_utils_h
+#pragma once
 
 /*
  * This is a collection of helper function to help with working.
@@ -41,5 +40,3 @@ static inline void do_work(int seconds __attribute__((unused))) {
 	}
 }
 #pragma GCC pop_options
-
-#endif	/* !__work_utils_h */

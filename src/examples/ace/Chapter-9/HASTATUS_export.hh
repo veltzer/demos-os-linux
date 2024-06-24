@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HASTATUS_EXPORT_H
-#define HASTATUS_EXPORT_H
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/config-all.h>
@@ -62,5 +61,3 @@
 #else	/* (HASTATUS_NTRACE==1) */
 #define HASTATUS_TRACE(X) ACE_TRACE_IMPL(X)
 #endif	/* (HASTATUS_NTRACE==1) */
-
-#endif	/* HASTATUS_EXPORT_H */

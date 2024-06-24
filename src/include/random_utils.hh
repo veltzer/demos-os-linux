@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __random_utils_hh
-#define __random_utils_hh
+#pragma once
 
 /*
  * This is a collection of utils to help with randomization issues.
@@ -80,5 +79,3 @@ unsigned int MersenneTwister::integer() {
 	r ^= (r >> 18);
 	return r;
 }
-
-#endif	/* !__random_utils_hh */

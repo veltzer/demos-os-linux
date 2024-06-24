@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __sched_utils_h
-#define __sched_utils_h
+#pragma once
 
 /*
  * This is a set of utilities to help you with the linux scheduler.
@@ -149,5 +148,3 @@ static inline void* sched_run_priority(void* (*func)(void*), void* pval, int pri
 	CHECK_ZERO_ERRNO(pthread_join(mythread, &retval));
 	return retval;
 }
-
-#endif	/* !__sched_utils_h */

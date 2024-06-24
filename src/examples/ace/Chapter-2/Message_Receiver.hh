@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __MESSAGE_RECEIVER_H_
-#define __MESSAGE_RECEIVER_H_
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Log_Msg.h>
@@ -80,4 +79,3 @@ private:
 private:
 	HA_CommandHandler *handler_;
 };
-#endif	/* __MESSAGE_RECEIVER_H */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __REQUEST_HANDLER_H_
-#define __REQUEST_HANDLER_H_
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Svc_Handler.h>
@@ -39,5 +38,3 @@ protected:
 private:
 	size_t nr_msgs_rcvd_;
 };
-
-#endif	/* __REQUEST_HANDLER_H_ */

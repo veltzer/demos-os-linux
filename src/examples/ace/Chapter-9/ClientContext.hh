@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CLIENTCONTEXT_H_
-#define __CLIENTCONTEXT_H_
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Hash_Map_Manager.h>
@@ -34,5 +33,3 @@ public:
 private:
 	Map attributeMap_;
 };
-
-#endif	/* __CLIENTCONTEXT_H_ */

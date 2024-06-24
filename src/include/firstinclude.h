@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __firstinclude_h
-#define __firstinclude_h
+#pragma once
 
 /* THIS IS C FILE, NO C++ here */
 
@@ -61,5 +60,3 @@
 #ifndef _DEFAULT_SOURCE
 #define _DEFAULT_SOURCE
 #endif	// _DEFAULT_SOURCE
-
-#endif	/* !__firstinclude_h */

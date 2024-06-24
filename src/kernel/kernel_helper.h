@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __kernel_helper_h
-#define __kernel_helper_h
+#pragma once
 
 // do we want debug information ?!?
 //#define DO_DEBUG
@@ -48,5 +47,3 @@ static inline int memcheck(void *buf, char val, unsigned int size) {
 	}
 	return 0;
 }
-
-#endif // __kernel_helper_h

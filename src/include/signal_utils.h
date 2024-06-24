@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __signal_utils_h
-#define __signal_utils_h
+#pragma once
 
 /*
  * This is a collection of helper function to help with dealing
@@ -207,5 +206,3 @@ static inline int signal_segfault_protect() {
 	signal_register_handler_sigaction(SIGSEGV, signal_handler_sigjmp, 0);
 	return !sigsetjmp(signal_env, 0);
 }
-
-#endif	/* !__signal_utils_h */

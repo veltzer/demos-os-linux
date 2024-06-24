@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef APG_CALLBACK_H
-#define APG_CALLBACK_H
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/streams.h>
@@ -32,5 +31,3 @@ public:
 		log_record.print("", ACE_Log_Msg::VERBOSE, cerr);
 	}
 };
-
-#endif	/* APG_CALLBACK_H */

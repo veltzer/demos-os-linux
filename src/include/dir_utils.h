@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __dir_utils_h
-#define __dir_utils_h
+#pragma once
 
 /*
  * This is a collection of functions to help deal with directory
@@ -95,5 +94,3 @@ static inline void print_dir_table() {
 		printf("i=%d, val=%d, name=%s\n", i, val, name);
 	}
 }
-
-#endif	/* !__dir_utils_h */

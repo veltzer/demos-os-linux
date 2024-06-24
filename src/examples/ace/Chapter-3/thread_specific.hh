@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __THREAD_SPECIFIC_H
-#define __THREAD_SPECIFIC_H
+#pragma once
 
 #include <firstinclude.h>
 #include <ace/Guard_T.h>
@@ -64,5 +63,3 @@ private:
 	// flags_ needs a lock.
 	static ACE_Thread_Mutex lock_;
 };
-
-#endif	/* __THREAD_SPECIFIC_H */

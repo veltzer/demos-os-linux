@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __prog_utils_h
-#define __prog_utils_h
+#pragma once
 
 /*
  * A collection of utilities to help with progress reports.
@@ -53,5 +52,3 @@ static inline void do_prog_finish(void) {
 	printf("\tfinished...\n");
 	fflush(stdout);
 }
-
-#endif	/* !__prog_utils_h */

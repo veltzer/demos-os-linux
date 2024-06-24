@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __timeval_utils_h
-#define __timeval_utils_h
+#pragma once
 
 /*
  * This file is here to help you deal with the Linux 'struct timeval'
@@ -65,5 +64,3 @@ static inline void print_timeval(struct timeval *tv, const char *name) {
 	printf("%s - sec is %lu\n", name, tv->tv_sec);
 	printf("%s - usec is %lu\n", name, tv->tv_usec);
 }
-
-#endif	/* !__timeval_utils_h */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __us_helper_h
-#define __us_helper_h
+#pragma once
 
 /*
  * This is an eclectic collection of helper functions for user space
@@ -193,5 +192,3 @@ static inline void* page_adr(void* adr) {
 	unsigned long iptr=(unsigned long)adr;
 	return (void*)(iptr-iptr%getpagesize());
 }
-
-#endif	/* !__us_helper_h */

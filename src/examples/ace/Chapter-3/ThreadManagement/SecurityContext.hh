@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __SECURITYCONTEXT_H_
-#define __SECURITYCONTEXT_H_
+#pragma once
 
 /*
  * Sample code from The ACE Programmer's Guide,
@@ -28,5 +27,3 @@
 struct SecurityContext{
 	const char *user;
 };
-
-#endif	/* __SECURITYCONTEXT_H_ */

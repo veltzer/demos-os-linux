@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __err_utils_h
-#define __err_utils_h
+#pragma once
 
 /*
  * This is a collection of helpers to help you deal with the Linux
@@ -435,5 +434,3 @@ static inline int check_gezero(int val, const char* msg, const char* file, const
 #define CHECK_POSITIVE(v) check_positive(v, stringify(v), __FILE__, __func__, __LINE__)
 #define CHECK_GEZERO(v) check_gezero(v, stringify(v), __FILE__, __func__, __LINE__)
 #define CHECK_ERROR(m) check_error(0, m, __FILE__, __func__, __LINE__)
-
-#endif	/* !__err_utils_h */

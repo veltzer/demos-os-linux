@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __measure_h
-#define __measure_h
+#pragma once
 
 /*
  * This is a helper file for doing performance measurements using
@@ -60,5 +59,3 @@ static inline void measure_print(measure* m) {
 static inline double measure_micro_diff(measure* m) {
 	return micro_diff(&m->t1, &m->t2);
 }
-
-#endif	/* !__measure_h */

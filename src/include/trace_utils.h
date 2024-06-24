@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __trace_utils_h
-#define __trace_utils_h
+#pragma once
 
 /*
  * This is a collection of helper function to help with tracing
@@ -70,5 +69,3 @@ void debug(bool short_print, const char *file, const char *function, int line, c
 #define WARNING(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
 #define ERROR(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
 #define FATAL(fmt, args ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## args)
-
-#endif	/* !__trace_utils_h */

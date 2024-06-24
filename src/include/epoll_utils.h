@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __epoll_utils_h
-#define __epoll_utils_h
+#pragma once
 
 /*
  * This is a helper file for dealing with the linux epoll(2) API
@@ -62,5 +61,3 @@ static inline void print_events(char* buffer, size_t size, uint32_t events) {
 		}
 	}
 }
-
-#endif	/* !__epoll_utils_h */

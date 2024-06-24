@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __multiproc_utils_h
-#define __multiproc_utils_h
+#pragma once
 
 /*
  * This is a collection of function to help with the linux
@@ -143,5 +142,3 @@ static inline void process_set_name(const char* newname) {
 	strncpy(name, newname, name_size-1);
 	CHECK_ZERO(prctl(PR_SET_NAME, name));
 }
-
-#endif	/* !__multiproc_utils_h */
