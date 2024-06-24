@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __rectangle_h
-#define __rectangle_h
+#pragma once
 
 typedef struct _rectangle {
 	int width;
@@ -29,5 +28,3 @@ int rectangle_get_height(const rectangle * r);
 void rectangle_set_width(rectangle * r, const int width);
 void rectangle_set_height(rectangle * r, const int height);
 int rectangle_area(const rectangle * r);
-
-#endif // __rectangle_h

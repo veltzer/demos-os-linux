@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __myace_hh
-#define __myace_hh
+#pragma once
 
 #include <ace/Synch_Traits.h>
 #include <ace/Null_Condition.h>
@@ -29,5 +28,3 @@
 #include <ace/Connector.h>
 #include <ace/Svc_Handler.h>
 #include <ace/Reactor_Notification_Strategy.h>
-
-#endif	/* __myace_hh */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __Foo_hh
-#define __Foo_hh
+#pragma once
 
 #include <firstinclude.h>
 
@@ -28,5 +27,3 @@ protected:
 public:
 	void setT(T it);
 };
-
-#endif	// __Foo_hh

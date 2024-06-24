@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CRASH_MSG_H_
-#define CRASH_MSG_H_
+#pragma once
 
 #include <firstinclude.h>
 #include <sys/types.h>
@@ -72,5 +71,3 @@ struct crash_message_struct {
 	/* Place holder for ancillary data, such as symbol trace sent as seperate message */
 	char ancillary_data[0];
 };
-
-#endif /* CRASH_MSG_H_*/

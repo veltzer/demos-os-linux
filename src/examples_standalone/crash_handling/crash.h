@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CRASH_H
-#define CRASH_H
+#pragma once
 
 #include <firstinclude.h>
 #include <signal.h>
@@ -46,7 +45,3 @@ int static inline crash_dump_thread(pthread_t thread) {
 	return pthread_kill(thread, SIGUSR1);
 }
 #endif /* USE_THREADS */
-
-
-#endif /* CRASH_H */
-

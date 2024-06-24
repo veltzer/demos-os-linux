@@ -16,11 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __b_h
-#define __b_h
+#pragma once
 
 #include <firstinclude.h>
 
 void func_in_b(void);
-
-#endif // __b_h

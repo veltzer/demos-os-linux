@@ -16,11 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __mis_h
-#define __mis_h
+#pragma once
 
 #include <firstinclude.h>
 
 double wrap_sqrt(double);
-
-#endif // __mis_h

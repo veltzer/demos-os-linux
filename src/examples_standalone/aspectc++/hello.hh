@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __HELLO_HH__
-#define __HELLO_HH__
+#pragma once
 
 #include <iostream>	// for std::cout, std::endl
 
@@ -27,5 +26,3 @@
 void hello(){
 	std::cout << "Hello, World!" << std::endl;
 }
-
-#endif

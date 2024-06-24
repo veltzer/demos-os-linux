@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __rectangle_h
-#define __rectangle_h
+#pragma once
 
 typedef struct _rectangle rectangle;
 
@@ -38,5 +37,3 @@ enum methods {
 };
 
 #define CALL_METHOD(o, m, t, args...) ((((TYPE_OF_METHOD(t)*)(*((void**)o))))[m])(o, ## args)
-
-#endif // __rectangle_h

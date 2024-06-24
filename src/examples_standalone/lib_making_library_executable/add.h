@@ -16,11 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __add_h
-#define __add_h
+#pragma once
 
 #include <firstinclude.h>
 
 int add(int,int);
-
-#endif // __add_h

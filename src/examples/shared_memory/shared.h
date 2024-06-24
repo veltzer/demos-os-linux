@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __shared_h
-#define __shared_h
+#pragma once
 
 /* THIS IS A C FILE, NO C++ here */
 
@@ -25,5 +24,3 @@ typedef struct _shared_data{
 	pid_t pid;
 	time_t now;
 } shared_data;
-
-#endif	/* !__shared_h */

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __compiler_builtins_h
-#define __compiler_builtins_h
+#pragma once
 
 #include <firstinclude.h>
 
@@ -45,5 +44,3 @@ void print_builtins() __attribute__((flatten));
 inline void print_from_header() {
 	PRINT_BUILTINS();
 }
-
-#endif	/* !__compiler_builtins_h */

@@ -16,11 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __sub_h
-#define __sub_h
+#pragma once
 
 #include <firstinclude.h>
 
 int sub(int,int);
-
-#endif // __sub_h

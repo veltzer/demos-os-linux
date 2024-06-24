@@ -16,13 +16,10 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __file_with_weak_symbol_h
-#define __file_with_weak_symbol_h
+#pragma once
 
 #include <firstinclude.h>
 
 void print_mysym();
 void print_details_of_x();
 void touch_x();
-
-#endif // __file_with_weak_symbol_h

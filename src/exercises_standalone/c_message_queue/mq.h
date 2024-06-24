@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __mq_h
-#define __mq_h
+#pragma once
 
 #include <firstinclude.h>
 
@@ -29,5 +28,3 @@ int mq_init(mq* m, const int maxsize);
 int mq_destroy(mq m);
 int mq_put(mq m, void* message);
 void* mq_get(mq m);
-
-#endif // __mq_h

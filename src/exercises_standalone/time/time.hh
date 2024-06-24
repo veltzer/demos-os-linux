@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TIME_H
-#define TIME_H
+#pragma once
 
 #include <firstinclude.h>
 
@@ -39,5 +38,3 @@ public:
 private:
 	int m_hours, m_minutes, m_seconds;
 };
-
-#endif	// TIME_H

@@ -33,30 +33,22 @@
  * DN_* dnotify constants
  * SYS_* syscall constants
  */
-#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
-#endif	// _GNU_SOURCE
 
 /*
  * needed for
  * big files
  */
-#ifndef _LARGEFILE64_SOURCE
 #define _LARGEFILE64_SOURCE
-#endif	// _LARGEFILE64_SOURCE
 
 /*
  * needed for
  * REG_EIP from ucontext.h
  */
-#ifndef __USE_GNU
 #define __USE_GNU
-#endif	// __USE_GNU
 
 /*
  * needed for
  * MAP_ANONYMOUS definition from <sys/mman.h>
  */
-#ifndef _DEFAULT_SOURCE
 #define _DEFAULT_SOURCE
-#endif	// _DEFAULT_SOURCE

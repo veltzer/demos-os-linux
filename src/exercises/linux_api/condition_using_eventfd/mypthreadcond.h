@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __mypthreadcond_h
-#define __mypthreadcond_h
+#pragma once
 
 /* THIS IS A C FILE, NO C++ here */
 
@@ -87,5 +86,3 @@ static inline int mypthread_cond_destroy(mypthread_cond_t *cond) {
 	}
 	return 0;
 }
-
-#endif	/* !__mypthreadcond_h */

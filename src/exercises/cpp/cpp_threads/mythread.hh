@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __mythread_h
-#define __mythread_h
+#pragma once
 
 #include <firstinclude.h>
 #include <pthread.h>
@@ -36,5 +35,3 @@ public:
 protected:
 	virtual void svc() = 0;
 };
-
-#endif	// __mythread_h

@@ -16,8 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __mymutex_h_
-#define __mymutex_h
+#pragma once
 
 #include <firstinclude.h>
 #include <pthread.h>	// for pthread_mutex_init(3), pthread_mutex_destroy(3)
@@ -41,5 +40,3 @@ public:
 		CHECK_ZERO_ERRNO(pthread_mutex_unlock(&mylock));
 	}
 };
-
-#endif	// __mymutex_h
