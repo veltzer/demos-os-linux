@@ -16,7 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#prgama once
+#pragma once
 
 /*
  * This is a collection of helper function to help with dealing

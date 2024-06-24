@@ -33,7 +33,9 @@
  * DN_* dnotify constants
  * SYS_* syscall constants
  */
+#ifndef _GNU_SOURCE
 #define _GNU_SOURCE
+#endif // _GNU_SOURCE
 
 /*
  * needed for
@@ -51,4 +53,6 @@
  * needed for
  * MAP_ANONYMOUS definition from <sys/mman.h>
  */
+#ifndef _DEFAULT_SOURCE
 #define _DEFAULT_SOURCE
+#endif // _DEFAULT_SOURCE
