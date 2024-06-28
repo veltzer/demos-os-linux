@@ -22,17 +22,17 @@
 
 using namespace std;
 
-template <typename TBD>
+template <typename ANYTYPE>
 class POP {			 // Persistent Object Pointer
 	string oid;
-	TBD*	ptr;
+	ANYTYPE*	ptr;
 public:
 	POP( string id ) { oid = id; ptr = 0; }
 	~POP()				{ delete ptr; }
-	TBD* operator->() {
+	ANYTYPE* operator->() {
 		if ( ! ptr)
 			// simulate the persistence mechanism
-			ptr = new TBD( oid );
+			ptr = new ANYTYPE( oid );
 		return ptr;
 	}
 };
