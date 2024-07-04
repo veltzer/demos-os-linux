@@ -31,11 +31,21 @@
  *
  * This is intended for a GNU/linux system.
  *
+ * What are the main points?
+ * * In C the minimum size struct is 0 while in C++ it is 1 because object identify in C++
+ * means that every two object must have different pointers pointing to them.
+ * * A struct must be on an address which is divisible by it's largest inner field.
+ * This is for performance reasons.
+ * * The malloc library makes sure that all allocations are divisible by 16.
+ * * The C/C++ compiler is not allowed to reorder fields within a struct/class.
+ * * In general you can reduce the size of a struct by re-arranging the field order.
+ * The compiler is not allowed to do that.
+ * * Same for arguments to a function since aligment on the stack must have the same considerations
+ * as inside the struct.
+ *
+ *
  * Notes:
  * - bool is just a macro for _Bool as the print clearly shows.
- *
- * TODO:
- * - Show the results inside this source code for 32bit and 64bit linux.
  */
 
 #pragma GCC diagnostic push
