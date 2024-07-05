@@ -17,7 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS, NULL
+#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+
+using namespace std;
 
 /*
  * C++ Singleton
@@ -30,24 +33,30 @@
  * This Singleton (A) must be fully constructed before the constructor of (B)
  * is called.
  */
-class MySingleton{
+class Singleton {
 private:
 	// Private Constructor
-	MySingleton();
+	Singleton() {}
 	// Stop the compiler generating methods of copy the object
-	MySingleton(MySingleton const& copy);	// Not Implemented
-	MySingleton& operator=(MySingleton const& copy);// Not Implemented
+	Singleton(Singleton const& copy);	// Not Implemented
+	Singleton& operator=(Singleton const& copy);// Not Implemented
 
 public:
-	static MySingleton& getInstance() {
+	static Singleton& getInstance() {
 		// The only instance
 		// Guaranteed to be lazy initialized
 		// Guaranteed that it will be destroyed correctly
-		static MySingleton instance;
+		static Singleton instance;
 		return instance;
+	}
+	void print() {
+		cout << "Hello from Singleton" << endl;
 	}
 };
 
+
 int main() {
+	Singleton& s=Singleton::getInstance();
+	s.print();
 	return EXIT_SUCCESS;
 }
