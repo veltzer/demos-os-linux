@@ -181,3 +181,8 @@ iouring:
 ========
 https://github.com/shuveb/loti-examples
 https://unixism.net/loti
+
+Real Time/Low Latency design patterns:
+======================================
+https://github.com/0burak/imperial_hft
+https://hackaday.com/2024/07/13/c-design-patterns-for-low-latency-applications/
