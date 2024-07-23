@@ -21,38 +21,41 @@
 #include <utility>
 #include <vector>
 #include <string>
+#include <cstdlib>
+
+using namespace std;
 
 class MyClass{
 public:
-	MyClass(std::string str) : data(std::move(str)) {
+	MyClass(string str) : data(move(str)) {
 	}
 	MyClass(const MyClass& other) : data(other.data) {
-		std::cout << "Copy constructor called" << std::endl;
+		cout << "Copy constructor called" << endl;
 	}
-	MyClass(MyClass&& other) : data(std::move(other.data)) {
-		std::cout << "Move constructor called" << std::endl;
+	MyClass(MyClass&& other) : data(move(other.data)) {
+		cout << "Move constructor called" << endl;
 	}
 	~MyClass() {
-		std::cout << "Destructor called for: " << data << std::endl;
+		cout << "Destructor called for: " << data << endl;
 	}
 
 private:
-	std::string data;
+	string data;
 };
 
 int main() {
-	std::string str = "Hello";
-	std::vector<MyClass> vec;
+	string str = "Hello";
+	vector<MyClass> vec;
 
 	// Copy construction
 	vec.push_back(MyClass(str));
-	std::cout << "After copy construction" << std::endl;
+	cout << "After copy construction" << endl;
 
 	// Move construction
-	vec.push_back(MyClass(std::move(str)));
-	std::cout << "After move construction" << std::endl;
+	vec.push_back(MyClass(move(str)));
+	cout << "After move construction" << endl;
 
-	std::cout << "Vector size: " << vec.size() << std::endl;
+	cout << "Vector size: " << vec.size() << endl;
 
 	return EXIT_SUCCESS;
 }
