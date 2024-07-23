@@ -17,41 +17,46 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h>	// for printf(3)
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
 
 /*
  * This is an example of initializing a struct in C++...
- * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
+ * XTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
+ * EXTRA_COMPILE_FLAGS_AFTER=-std=gnu++20
  */
 
-struct mystruct{
-	int a;
-	int b;
+struct mystruct {
+	int a=0;
+	int b=1;
 };
 
 int main() {
-	// this is C99 style. This does not work in g++ by default although it does work in gcc.
-	/*
-	 * struct mystruct v1={ .a=6, .b=7 };
-	 * printf("v1.a is %d\n",v1.a);
-	 * printf("v1.b is %d\n",v1.b);
-	 */
+	#pragma GCC diagnostic ignored "-Wpedantic"
+	// Constructor initialization
+	mystruct v1;
+	cout << "v1.a is " << v1.a << endl;
+	cout << "v1.b is " << v1.b << endl;
+	// uniformd initialization, C++11 and later
+	struct mystruct v2 = { 2, 3 };
+	cout << "v2.a is " << v2.a << endl;
+	cout << "v2.b is " << v2.b << endl;
+	// this is C99 style in C++ it is called designated initialization,
+	// Supported since C++ 20 in C++
+	struct mystruct v3={ .a=4, .b=5 };
+	cout << "v3.a is " << v3.a << endl;
+	cout << "v3.b is " << v3.b << endl;
 	// this is the GNU style...
-	struct mystruct v2={ a : 8, b : 9 };
-	printf("v2.a is %d\n", v2.a);
-	printf("v2.b is %d\n", v2.b);
-	// this will always work
-	struct mystruct v3;
-	v3.a=10;
-	v3.b=11;
-	printf("v3.a is %d\n", v3.a);
-	printf("v3.b is %d\n", v3.b);
-	// the C++ style...
-	/*
-	 * struct mystruct v4():a(12),b(13);
-	 * printf("v4.a is %d\n",v4.a);
-	 * printf("v4.b is %d\n",v4.b);
-	 */
+	struct mystruct v4={ a : 6, b : 7 };
+	cout << "v4.a is " << v4.a << endl;
+	cout << "v4.b is " << v4.b << endl;
+	// member by member, this will always work
+	struct mystruct v5;
+	v5.a=8;
+	v5.b=9;
+	cout << "v5.a is " << v5.a << endl;
+	cout << "v5.b is " << v5.b << endl;
 	return EXIT_SUCCESS;
 }
