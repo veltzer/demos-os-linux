@@ -65,6 +65,7 @@ HelloWorld::~HelloWorld() {
 }
 
 void HelloWorld::on_button_clicked() {
+	std::cout << "I was clicked" << std::endl;
 	app.quit();
 }
 
