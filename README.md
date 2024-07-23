@@ -21,7 +21,7 @@ who want to explore the Linux C/C++ API.
 
 ## Number of examples and their selection
 
-Currently there are 1021 examples in this repo.
+Currently there are 1020 examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
