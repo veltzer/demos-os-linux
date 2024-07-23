@@ -21,7 +21,7 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
 #include <unistd.h>	// for STDOUT_FILENO
 #include <ext/stdio_filebuf.h>	// for _gnu_cxx::stdio_filebuf<T>
 #include <iostream>	// for std::cout, std::endl
