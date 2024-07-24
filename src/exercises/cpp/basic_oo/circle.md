@@ -23,4 +23,12 @@ Create a class called circle with three members of type double:
 
 * Add `const` wherever is appropriate.
 
-* Add initialization lists in the constructor.
+## Phase 3
+
+* add a method to circle which find if two circles are concentric.
+
+* add another method to circle to find the overlapping circle of concentric circles.
+
+* use references and const where ever possible.
+
+* add initialization lists in the constructor.
