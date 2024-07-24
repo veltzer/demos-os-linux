@@ -68,8 +68,8 @@ int main() {
 	// first lets see the size of the object (it should be 4
 	// since it is empty and therefore has size 1 but also
 	// has a vtable which overrides the 1 for empty and increases
-	// the size to 4...)
-	assert(sizeof(A)==4);
+	// the size to 8...)
+	assert(sizeof(A)==8);
 	// show that the first pointer in any object is the v table
 	A obj1, obj2;
 	// this is the vtable
@@ -91,7 +91,7 @@ int main() {
 	assert(vAamethod2==va[2]);
 	// show that size of B did not increase because it is a derived
 	// object...
-	assert(sizeof(B)==4);
+	assert(sizeof(B)==8);
 	// show that the vtable of b has same charactersitics as vtable of A...
 	B b;
 	void** vb=*(void***)&b;
