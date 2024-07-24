@@ -28,7 +28,7 @@ class Circle {
 	    y=iy;
 	}
 
-        bool inside(double, double) const;
+        bool inside(const double, const double) const;
 
         friend std::ostream& operator<<(std::ostream& os, const Circle& obj);
 };
