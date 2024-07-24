@@ -5,7 +5,7 @@ using namespace std;
 Circle::Circle(const double iradius, const double ix, const double iy):radius(iradius), x(ix), y(iy) {
 }
 
-bool Circle::inside(const double ix, const double iy) {
+bool Circle::inside(const double ix, const double iy) const {
     double distance2 = (ix-x)*(ix-x) + (iy-y)*(iy-y);
     return distance2 <= radius*radius;
 }
