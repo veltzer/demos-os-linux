@@ -26,7 +26,6 @@ int main() {
     Vector2D v1(1.0, 2.0);
     Vector2D v2(3.0, 4.0);
 
-    //v1.add(v2);
     Vector2D v3 = v1 + v2;
 
     std::cout << "v1 = " << v1 << std::endl;

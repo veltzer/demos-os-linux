@@ -18,3 +18,9 @@ Create a class called circle with three members of type double:
 * Divide the code between `circle.hh` and `circle.cc`
 
 * Demonstrate the use of your class using a `main` function.
+
+## Phase 2
+
+* Add `const` wherever is appropriate.
+
+* Add initialization lists in the constructor.
