@@ -50,7 +50,6 @@ class Triangle: public Shape {
 
 
 int main() {
-	//vector<reference_wrapper<Shape>> v;
 	vector<Shape*> v;
 	while(true) {
 		cout << "1. add rectangle" << endl;
@@ -79,7 +78,6 @@ int main() {
 		}
 	}
 	for (size_t i = 0; i < v.size(); i++) {
-		//v[i].get().print_me();
 		v[i]->print_me();
 	}
 	return EXIT_SUCCESS;
