@@ -28,7 +28,7 @@ class Circle {
 		// getters and setters
 		double get_radius() {
 			return radius;
-		}		
+		}
 		void set_radius(double iradius) {
 			radius = iradius;
 		}

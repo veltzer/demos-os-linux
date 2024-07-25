@@ -29,7 +29,7 @@ class Circle {
 		// getters and setters
 		double get_radius() const {
 			return radius;
-		}		
+		}
 		void set_radius(const double iradius) {
 			radius = iradius;
 		}
