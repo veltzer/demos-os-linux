@@ -95,7 +95,7 @@ int main() {
 				break;
 		}
 	}
-	for (size_t i = 0; i < v.size(); i++) {
+	for(size_t i = 0; i < v.size(); i++) {
 		v[i].get().print_me();
 	}
 	return EXIT_SUCCESS;
