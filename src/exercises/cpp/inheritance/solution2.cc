@@ -50,8 +50,7 @@ class Triangle: public Shape {
 
 
 int main() {
-	//vector<reference_wrapper<Shape>> v;
-	vector<Shape*> v;
+	vector<reference_wrapper<Shape>> v;
 	while(true) {
 		cout << "1. add rectangle" << endl;
 		cout << "2. add circle" << endl;
@@ -66,21 +65,20 @@ int main() {
 		switch(choice) {
 			case 1:
 				cin >> a >> b;
-				v.push_back(new Rectangle(a, b));
+				v.push_back(*new Rectangle(a, b));
 				break;
 			case 2:
 				cin >> r >> x >> y;
-				v.push_back(new Circle(r, x, y));
+				v.push_back(*new Circle(r, x, y));
 				break;
 			case 3:
 				cin >> a >> b >> c;
-				v.push_back(new Triangle(a, b, c));
+				v.push_back(*new Triangle(a, b, c));
 				break;
 		}
 	}
 	for (size_t i = 0; i < v.size(); i++) {
-		//v[i].get().print_me();
-		v[i]->print_me();
+		v[i].get().print_me();
 	}
 	return EXIT_SUCCESS;
 }
