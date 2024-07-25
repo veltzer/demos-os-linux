@@ -5,4 +5,12 @@
 * Add a static method `get_instance` to get your instance.
 * Make your `get_instance` lazy.
 * Use a static member to store the instance.
-* Bonus: Try to take care of thread safety and avoid race conditions.
+* Use a pointer to store the instance and not a reference.
+
+## Stage 2
+
+* Use reference and not a pointer.
+
+## Stage 3
+
+* make sure your solution can be used in a multi-threaded context.
