@@ -1,13 +1,11 @@
 # Inheritance exercise
 
-* Create the following class hierarchy:
+* Create the following class hierarchy: Shape -> [Circle, Rectangle, Triangle]
 
-	Shape -> [Circle, Rectangle, Triangle]
-
-	For simplicity:
-	Circle -> radius
-	Rectangle -> a, b
-	Triangle -> a, b, c
+* For simplicity members can be:
+    * Circle -> radius
+    * Rectangle -> a, b
+    * Triangle -> a, b, c
 
 * Allow the user to create any shapes he/she wants.
 * After the user is done, run over all shapes and "draw" them.
