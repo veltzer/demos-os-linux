@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include "singleton_3.hh"
 
 Singleton* Singleton::instance=nullptr;
