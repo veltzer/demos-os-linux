@@ -18,6 +18,7 @@
 
 #include <firstinclude.h>
 #include "singleton.hh"
+#include <cassert>
 
 Singleton* Singleton::instance=nullptr;
 
@@ -31,4 +32,7 @@ Singleton* Singleton::get_instance() {
 }
 
 int main() {
+	Singleton* s1=Singleton::get_instance();
+	Singleton* s2=Singleton::get_instance();
+	assert(s1 == s2);
 }
