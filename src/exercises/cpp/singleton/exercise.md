@@ -14,3 +14,7 @@
 ## Stage 3
 
 * make sure your solution can be used in a multi-threaded context.
+
+## Stage 4
+
+* Delete the copy constructor and operator= so that the user will not be able to make a copy of your singleton.

@@ -21,11 +21,11 @@
 
 Singleton* Singleton::instance=nullptr;
 
-Singleton::Singleton(double ia, double ib):a(ia), b(ib) {}
+Singleton::Singleton() {}
 
 Singleton* Singleton::get_instance() {
 	if(instance==nullptr) {
-		instance=new Singleton(4,5);
+		instance=new Singleton();
 	}
 	return instance;
 }

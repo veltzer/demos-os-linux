@@ -16,16 +16,13 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
 #include <firstinclude.h>
-#include <mutex>
-using namespace std;
+#pragma once
 
 class Singleton {
 	private:
 		Singleton();
 		static Singleton* instance;
-		static mutex m;
 	public:
 		static Singleton& get_instance();
 };
