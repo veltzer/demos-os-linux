@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <list>	// for std::list<T>, std::list<T>::iterator
-#include <vector>	// for std::list<T>, std::list<T>::iterator
-#include <stdlib.h>	// for EXIT_SUCCESS, EXIT_FAILURE;
+#include <iostream>	// for cout, endl
+#include <list>	// for list<T>, list<T>::iterator
+#include <vector>	// for list<T>, list<T>::iterator
+#include <cstdlib>	// for EXIT_SUCCESS, EXIT_FAILURE;
+
+using namespace std;
 
 /*
  * This example shows that doing modification on an STL data structure while
@@ -43,14 +45,14 @@
  * may yield totally different outcomes.
  */
 
-static int listorvector, size, postoact, postoremove, numtoremove;
+static int listorvector, array_size, postoact, postoremove, numtoremove;
 
 void do_list() {
-	std::list<int> l;
-	for(int i=0; i<size; i++) {
+	list<int> l;
+	for(int i=0; i<array_size; i++) {
 		l.push_back(i);
 	}
-	std::list<int>::iterator i;
+	list<int>::iterator i;
 	int counter=0;
 	for(i=l.begin(); i!=l.end(); i++) {
 		if(counter==postoact) {
@@ -58,17 +60,17 @@ void do_list() {
 				l.remove(postoremove+j);
 			}
 		}
-		std::cout << "visiting " << *i << std::endl;
+		cout << "visiting " << *i << endl;
 		counter++;
 	}
 }
 
 void do_vector() {
-	std::vector<int> l;
-	for(int i=0; i<size; i++) {
+	vector<int> l;
+	for(int i=0; i<array_size; i++) {
 		l.push_back(i);
 	}
-	std::vector<int>::iterator i;
+	vector<int>::iterator i;
 	int counter=0;
 	for(i=l.begin(); i!=l.end(); i++) {
 		if(counter==postoact) {
@@ -77,19 +79,19 @@ void do_vector() {
 			}
 		}
 		// cppcheck-suppress invalidContainer
-		std::cout << "visiting " << *i << std::endl;
+		cout << "visiting " << *i << endl;
 		counter++;
 	}
 }
 
 int main(int argc, char** argv) {
 	if(argc!=6) {
-		std::cerr << argv[0] << ": usage: " << argv[0] << " [list(1) or vector(0)] [size] [postoact] [postoremove] [numtoremove]" << std::endl;
-		std::cerr << argv[0] << ": example: " << argv[0] << " 1 10 5 5 1" << std::endl;
+		cerr << argv[0] << ": usage: " << argv[0] << " [list(1) or vector(0)] [array_size] [postoact] [postoremove] [numtoremove]" << endl;
+		cerr << argv[0] << ": example: " << argv[0] << " 1 10 5 5 1" << endl;
 		return EXIT_FAILURE;
 	}
 	listorvector=atoi(argv[1]);
-	size=atoi(argv[2]);
+	array_size=atoi(argv[2]);
 	postoact=atoi(argv[3]);
 	postoremove=atoi(argv[4]);
 	numtoremove=atoi(argv[5]);

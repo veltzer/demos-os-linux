@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <list>	// for std::list<T>, std::list<T>::iterator
-#include <vector>	// for std::list<T>, std::list<T>::iterator
-#include <stdlib.h>	// for EXIT_SUCCESS, EXIT_FAILURE;
+#include <iostream>	// for cout, endl
+#include <list>	// for list<T>, list<T>::iterator
+#include <vector>	// for list<T>, list<T>::iterator
+#include <cstdlib>	// for EXIT_SUCCESS, EXIT_FAILURE;
+
+using namespace std;
 
 /*
  * This example explores the performance of vector with regard
@@ -29,11 +31,11 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-static int loop, size, modulu;
+static int loop, array_size, modulu;
 
 void abuse_vector_once() {
-	std::vector<int> v;
-	for(int i=0; i<size; i++) {
+	vector<int> v;
+	for(int i=0; i<array_size; i++) {
 		v.push_back(i);
 		if(i%modulu==0) {
 			void* p __attribute__((unused))=malloc(2);
@@ -43,11 +45,11 @@ void abuse_vector_once() {
 
 int main(int argc, char** argv) {
 	if(argc!=4) {
-		std::cerr << argv[0] << ": usage: " << argv[0] << " [loop] [size] [modulu]" << std::endl;
+		cerr << argv[0] << ": usage: " << argv[0] << " [loop] [array_size] [modulu]" << endl;
 		return EXIT_FAILURE;
 	}
 	loop=atoi(argv[1]);
-	size=atoi(argv[2]);
+	array_size=atoi(argv[2]);
 	modulu=atoi(argv[3]);
 	for(int i=0; i<loop; i++) {
 		abuse_vector_once();

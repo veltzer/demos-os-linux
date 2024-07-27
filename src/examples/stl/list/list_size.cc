@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <list>	// for std::list<T>, std::list<T>::iterator
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <list>	// for list<T>, list<T>::iterator
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <measure.h>	// for measure, measure_init(), measure_start(), measure_end(), measure_print()
+
+using namespace std;
 
 /*
  * Example showing that list.size() in STL is O(N)!
@@ -37,12 +39,12 @@
  */
 
 int main() {
-	std::list<int> l;
+	list<int> l;
 	const unsigned int size_of_list=1000000;
 	const unsigned int attempts=1000;
 	for(unsigned int i = 0; i < size_of_list; i++)
 		l.push_back (i);
-	std::cout << "size of list is " << size_of_list << std::endl;
+	cout << "size of list is " << size_of_list << endl;
 	measure m;
 	measure_init(&m, "one l.size()", attempts);
 	measure_start(&m);

@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <list>	// for std::list<T>, std::list<T>::iterator
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <list>	// for list<T>, list<T>::iterator
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * Example of using an stl linked list
@@ -30,8 +32,8 @@
  */
 
 int main() {
-	std::list<int> l;
-	std::cout << l.size() << std::endl;
+	list<int> l;
+	cout << l.size() << endl;
 	l.push_back(0);	// Insert a new element at the end
 	l.push_front(0);// Insert a new element at the beginning
 	l.insert(++l.begin(), 2);	// Insert "2" before position of first argument
@@ -41,12 +43,12 @@ int main() {
 
 	int s=l.back();
 	l.pop_back();
-	std::cout << s << std::endl;
+	cout << s << endl;
 
 	// lets iterate and print
-	std::list<int>::iterator i;
+	list<int>::iterator i;
 	for(i=l.begin(); i!=l.end(); i++)
-		std::cout << *i << " ";
-	std::cout << std::endl;
+		cout << *i << " ";
+	cout << endl;
 	return EXIT_SUCCESS;
 }

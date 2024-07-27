@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <vector>	// for vector:object
 #include <algorithm>	// for transform:function
+
+using namespace std;
 
 /*
  * Examples of lambdas from C++0x standard...
@@ -33,33 +35,33 @@ static int b=4;
 static int c=7;
 
 int main() {
-	std::vector<int> v;
+	vector<int> v;
 	for(int i=0; i<10; i++) {
 		v.push_back(i);
 	}
-	std::for_each(
+	for_each(
 		v.begin(),
 		v.end(),
-		[] (int v){
-		std::cout << v << " ";
-	}
-		);
-	std::cout << std::endl;
-	std::transform(
+		[] (int v) {
+			cout << v << " ";
+		}
+	);
+	cout << endl;
+	transform(
 		v.begin(),
 		v.end(),
 		v.begin(),
-		[] (double x){
-		return x*x*a+x*b+c;
-	}
-		);
-	std::for_each(
+		[] (double x) {
+			return x*x*a+x*b+c;
+		}
+	);
+	for_each(
 		v.begin(),
 		v.end(),
-		[] (int v){
-		std::cout << v << " ";
-	}
-		);
-	std::cout << std::endl;
+		[] (int v) {
+			cout << v << " ";
+		}
+	);
+	cout << endl;
 	return EXIT_SUCCESS;
 }

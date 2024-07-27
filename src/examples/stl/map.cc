@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <map>	// for std::map<T1,T2>, std::map<T1,T2>::iterator
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <map>	// for map<T1,T2>, map<T1,T2>::iterator
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * An example of using an STL map.
@@ -29,22 +31,22 @@
  */
 
 int main() {
-	std::map<int, int> m;
+	map<int, int> m;
 	m[6]=7;
 	m[5]=3;
 	m[4]=-14;
 	// lets print the size of the map
-	std::cout << "size of the map is " << m.size() << std::endl;
+	cout << "size of the map is " << m.size() << endl;
 	if(m.find(6)!=m.end()) {
-		std::cout << "6 is in the map" << std::endl;
-		std::cout << "its partner is " << m.find(6)->second << std::endl;
+		cout << "6 is in the map" << endl;
+		cout << "its partner is " << m.find(6)->second << endl;
 	}
-	for(std::map<int, int>::iterator ii=m.begin(); ii!=m.end(); ++ii) {
-		std::cout << (*ii).first << ": " << (*ii).second << std::endl;
+	for(map<int, int>::iterator i=m.begin(); i!=m.end(); i++) {
+		cout << i->first << ": " << i->second << endl;
 	}
 	m.erase(5);
-	for(std::map<int, int>::iterator ii=m.begin(); ii!=m.end(); ++ii) {
-		std::cout << (*ii).first << ": " << (*ii).second << std::endl;
+	for(map<int, int>::iterator i=m.begin(); i!=m.end(); i++) {
+		cout << i->first << ": " << i->second << endl;
 	}
 	return EXIT_SUCCESS;
 }
