@@ -17,8 +17,7 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cerr, std::endl
+#include <cstdlib>	// for EXIT_SUCCESS
 
 /*
  * This example shows how to catch all exceptions of C++.

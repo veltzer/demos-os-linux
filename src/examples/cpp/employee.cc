@@ -17,12 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 
-////////////////////////////
-// This is in the HH file //
-////////////////////////////
+using namespace std;
 
 class Employee{
 private:
@@ -33,11 +31,8 @@ public:
 	void setSalary(int newsalary);
 };
 
-////////////////////////////
-// This is in the CC file //
-////////////////////////////
 void Employee::printSalary() {
-	std::cout << "Hello" << salary << std::endl;
+	cout << "Hello" << salary << endl;
 }
 void Employee::setSalary(int newsalary) {
 	salary=newsalary;
