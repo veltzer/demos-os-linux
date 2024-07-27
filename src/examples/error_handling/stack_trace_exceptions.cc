@@ -18,10 +18,12 @@
 
 #include <firstinclude.h>
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <execinfo.h>
 #include <exception>
-#include <demangle_utils.hh>	// for error_demangle()
+#include <demangle_utils.hh>
+
+using namespace std;
 
 /*
  * This is a C++ example of how to create exceptions which contain a stack trace
@@ -48,7 +50,7 @@
  * - bring back the c++ demangling code (it was removed because it was crashing the app).
  */
 
-class TracedException: public std::exception {
+class TracedException: public exception {
 private:
 	// how many frames to drop from the stack frame
 	// setting this to 0 will show you functions above 'main'
@@ -76,17 +78,17 @@ public:
 	void print() {
 		for(int i=nSize-drop_frames-1; i>=0; i--) {
 			char *symbol=symbols[i];
-			std::cerr
+			cerr
 				<< symbol << ","
-				<< std::endl;
+				<< endl;
 			// char result_name[256];
 			// char result_offset[256];
 			// error_demangle(symbol, result_name, 256, result_offset, 256);
-			// std::cerr
+			// cerr
 			// << symbol << ","
 			// << result_name << ","
 			// << result_offset
-			// << std::endl;
+			// << endl;
 		}
 	}
 };

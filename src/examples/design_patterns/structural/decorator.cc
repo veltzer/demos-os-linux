@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
 
 /*
  * This example shows the decorator pattern implemented in C++.
@@ -27,7 +29,7 @@
 class Base{
 public:
 	virtual void act(void) {
-		std::cout << "in Base" << std::endl;
+		cout << "in Base" << endl;
 	}
 	virtual~Base(void) {
 	}
@@ -41,7 +43,7 @@ public:
 	}
 	virtual void act(void) {
 		base.act();
-		std::cout << "in Derived1" << std::endl;
+		cout << "in Derived1" << endl;
 	}
 };
 
@@ -54,7 +56,7 @@ public:
 	}
 	virtual void act(void) {
 		base.act();
-		std::cout << "in Derived2" << std::endl;
+		cout << "in Derived2" << endl;
 	}
 };
 
@@ -67,7 +69,7 @@ public:
 	}
 	virtual void act(void) {
 		base.act();
-		std::cout << "in Derived3" << std::endl;
+		cout << "in Derived3" << endl;
 	}
 };
 

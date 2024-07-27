@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS, getenv(3)
-#include <string.h>	// for strcmp(3)
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
 
 /*
  * A simple example for using environment variables...
@@ -32,30 +34,30 @@
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)), char** envp) {
 	// print out the entire environment
 	while(*envp!=NULL) {
-		std::cout << *envp << std::endl;
+		cout << *envp << endl;
 		envp++;
 	}
 	// print it again via environ
 	extern char **environ;
 	char** environp=environ;
 	while(*environp!=NULL) {
-		std::cout << *environp << std::endl;
+		cout << *environp << endl;
 		environp++;
 	}
 	const char* varname="WHOWANTSSOUP";
 	char* ptr=getenv(varname);
 	if(ptr==NULL) {
-		std::cout << "Please stand in line (define environment variable WHOWANTSSOUP)" << std::endl;
-		std::cout << "in bash use [export WHOWANTSSOUP=kramer]" << std::endl;
+		cout << "Please stand in line (define environment variable WHOWANTSSOUP)" << endl;
+		cout << "in bash use [export WHOWANTSSOUP=kramer]" << endl;
 	} else {
 		if(strcmp(ptr, "kramer")==0) {
-			std::cout << "Jumbalaya!" << std::endl;
+			cout << "Jumbalaya!" << endl;
 		} else {
 			if(strcmp(ptr, "newman")==0) {
-				std::cout << "No soup for you!" << std::endl;
+				cout << "No soup for you!" << endl;
 			} else {
-				std::cout << "You are not kramer or newman" << std::endl;
-				std::cout << "in bash use [export WHOWANTSSOUP=kramer|newman]" << std::endl;
+				cout << "You are not kramer or newman" << endl;
+				cout << "in bash use [export WHOWANTSSOUP=kramer|newman]" << endl;
 			}
 		}
 	}

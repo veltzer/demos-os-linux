@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
-#include <memory>	// for std::unique_ptr<T>
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <memory>	// for unique_ptr<T>
+
+using namespace std;
 
 /*
  * This example demonstrates the use of unique_ptr of the standard C++ library.
@@ -37,18 +39,18 @@
 class A{
 public:
 	A() {
-		std::cout << "in constructor" << std::endl;
+		cout << "in constructor" << endl;
 	}
 	~A() {
-		std::cout << "in destructor" << std::endl;
+		cout << "in destructor" << endl;
 	}
 	void doit() {
-		std::cout << "in doit" << std::endl;
+		cout << "in doit" << endl;
 	}
 };
 
 int main() {
-	std::unique_ptr<A> a(new A);
+	unique_ptr<A> a(new A);
 	a->doit();
 	return EXIT_SUCCESS;
 }

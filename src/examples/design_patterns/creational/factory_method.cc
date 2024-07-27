@@ -22,7 +22,9 @@
 
 #include <firstinclude.h>
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
+
+using namespace std;
 
 class MyClass{
 private:
@@ -31,7 +33,7 @@ private:
 
 public:
 	void print() const{
-		std::cout << x << " " << y << std::endl;
+		cout << x << " " << y << endl;
 	}
 	// Constructor emulation
 	static MyClass* create() {

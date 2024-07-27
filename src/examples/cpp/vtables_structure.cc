@@ -17,9 +17,8 @@
  */
 
 #include <firstinclude.h>
-// #include <iostream>	// for std::cout, std::endl
-#include <assert.h>	// for assert(3)
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <assert.h>
+#include <cstdlib>
 
 /*
  * This example investigates the structure of vtables in the

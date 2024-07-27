@@ -17,15 +17,17 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
 #include <iostream>
 #include <mutex>
+
+using namespace std;
 
 class Singleton {
 public:
 	static Singleton* getInstance() {
 		if (instance == nullptr) {
-			std::lock_guard<std::mutex> lock(mutex);
+			lock_guard<mutex> lock(mutex);
 			if (instance == nullptr) {
 				instance = new Singleton();
 			}
@@ -34,33 +36,29 @@ public:
 	}
 
 	void someOperation() {
-		std::cout << "Performing some operation in the Singleton." << std::endl;
+		cout << "Performing some operation in the Singleton." << endl;
 	}
 
 private:
 	Singleton() {
-		std::cout << "Singleton constructor called." << std::endl;
+		cout << "Singleton constructor called." << endl;
 	}
 	~Singleton() {
-		std::cout << "Singleton destructor called." << std::endl;
+		cout << "Singleton destructor called." << endl;
 	}
 
 	Singleton(const Singleton&) = delete;
 	Singleton& operator=(const Singleton&) = delete;
 
 	static Singleton* instance;
-	static std::mutex mutex;
 };
 
 Singleton* Singleton::instance = nullptr;
-std::mutex Singleton::mutex;
 
 int main() {
 	Singleton* instance1 = Singleton::getInstance();
 	instance1->someOperation();
-
 	Singleton* instance2 = Singleton::getInstance();
 	instance2->someOperation();
-
 	return EXIT_SUCCESS;
 }

@@ -22,18 +22,20 @@
 
 #include <firstinclude.h>
 #include <cstdlib>
-#include <unistd.h>	// for STDOUT_FILENO
-#include <ext/stdio_filebuf.h>	// for _gnu_cxx::stdio_filebuf<T>
-#include <iostream>	// for std::cout, std::endl
+#include <unistd.h>
+#include <ext/stdio_filebuf.h>
+#include <iostream>
+
+using namespace std;
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
-	std::cout.flush();
-	__gnu_cxx::stdio_filebuf<char> filebuf(STDOUT_FILENO, std::ios::out);
-	std::ostream* os=new std::ostream(&filebuf);
-	*os << "And hello from me too" << std::endl;
+	cout << "Hello, World!" << endl;
+	cout.flush();
+	__gnu_cxx::stdio_filebuf<char> filebuf(STDOUT_FILENO, ios::out);
+	ostream* os=new ostream(&filebuf);
+	*os << "And hello from me too" << endl;
 	os->flush();
 	delete os;
-	std::cout << "Hello, World! (2nd time)" << std::endl;
+	cout << "Hello, World! (2nd time)" << endl;
 	return EXIT_SUCCESS;
 }
