@@ -16,17 +16,19 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>	// for std::exception, std::cout
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+#include <cstdlib>
 
-class MyException: public std::exception {
+using namespace std;
+
+class MyException: public exception {
 };
 
 int main() {
 	try {
 		throw MyException();
 	}catch(MyException e) {
-		std::cout << "in the catch" << std::endl;
+		cout << "in the catch" << endl;
 	}
 	return EXIT_SUCCESS;
 }

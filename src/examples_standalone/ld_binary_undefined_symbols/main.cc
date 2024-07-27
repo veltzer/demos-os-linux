@@ -18,7 +18,9 @@
 
 #include <bfd.h>
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This program demos the libbfd library which enabled you
@@ -31,20 +33,20 @@ int main() {
 	bfd_init();
 	bfd *b=bfd_openr("/bin/ls", NULL);
 	if (!b) {
-		std::cerr << "problem with open\n";
+		cerr << "problem with open" << endl;
 		return EXIT_FAILURE;
 	}
 	bfd_format format=bfd_object;
 	bool ok_format=bfd_check_format(b, format);
 	if (!ok_format) {
-		std::cerr << "problem with bfd_check_format\n";
+		cerr << "problem with bfd_check_format\n";
 		return EXIT_FAILURE;
 	}
 	const char *name=bfd_format_string(format);
-	std::cout << "format is " << name << "\n";
+	cout << "format is " << name << endl;
 	bool res=bfd_close(b);
 	if (!res) {
-		std::cerr << "problem with close\n";
+		cerr << "problem with close" << endl;
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;

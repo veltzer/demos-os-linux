@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
+#include <iostream>	// for cout, endl
 #include <string.h>	// for memcpy(3)
 #include <stdlib.h>	// for malloc(3), exit(3)
 #include <unistd.h>	// for _exit(2)
+
+using namespace std;
 
 /*
  * This is a simple example that spends lots of time in a function.
@@ -55,7 +57,7 @@ public:
 			}
 			A::inner_loop(&sum, i);
 		}
-		std::cout << sum << std::endl;
+		cout << sum << endl;
 	}
 	static void inner_loop(float* sum, int i) __attribute__((noinline)) {
 		for(unsigned int j=0; j<1000000; j++) {

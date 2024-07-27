@@ -1,15 +1,14 @@
-#ifndef __WORLD_AH__
-#define __WORLD_AH__
+#pragma once
 
 #include <iostream>
 
+using namespace std;
+
 aspect World {
 	advice execution("void hello()"):before() {
-		std::cout << "before" << std::endl;
+		cout << "before" << endl;
 	}
 	advice execution("void hello()"):after() {
-		std::cout << "after" << std::endl;
+		cout << "after" << endl;
 	}
 };
-
-#endif

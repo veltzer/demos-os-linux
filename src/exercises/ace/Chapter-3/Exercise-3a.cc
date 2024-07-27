@@ -28,7 +28,9 @@
 #include <ace/Malloc_Base.h>
 #include <ace/Message_Queue.h>
 #include <ace/Read_Buffer.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
@@ -99,7 +101,7 @@ public:
 		while(true) {
 			// Dequeue the next method object
 			ACE_DEBUG((LM_DEBUG, "In Scheduler::svc waiting for dequeue\n"));
-			std::unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
+			unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
 			// Invoke the method request.
 			if(request->call()==-1) {
 				break;

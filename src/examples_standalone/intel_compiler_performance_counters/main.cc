@@ -17,9 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdio.h>	// for printf(3)
-#include <stdlib.h>	// for EXIT_SUCCESS, EXIT_FAILURE
-#include <iostream>	// for std::cout, std::endl
+#include <cstdlib>	// for EXIT_SUCCESS, EXIT_FAILURE
+#include <iostream>
+
+using namespace std;
 
 int main() {
 	/*
@@ -39,10 +40,10 @@ int main() {
 	 * }
 	 * }
 	 * SystemCounterState after_sstate=getSystemCounterState();
-	 * std::cout << "Instructions per clock:" << getIPC(before_sstate,after_sstate)
+	 * cout << "Instructions per clock:" << getIPC(before_sstate,after_sstate)
 	 * << "L3 cache hit ratio:" << getL3CacheHitRatio(before_sstate,after_sstate)
 	 * << "Bytes read:" << getBytesReadFromMC(before_sstate,after_sstate)
-	 * << std::endl;
+	 * << endl;
 	 */
 	return EXIT_SUCCESS;
 }

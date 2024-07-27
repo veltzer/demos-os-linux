@@ -20,7 +20,9 @@
 #include <ace/Log_Msg.h>// for ACE_DEBUG and ACE_ERROR
 #include <ace/OS_NS_stdio.h>	// for the printf function
 #include <ace/streams.h>// for C++ streams interface
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * solution to the first exercise.
@@ -32,7 +34,7 @@
 // Notice the use of the ACE version of main
 int main() {
 	printf("It seems that printf is working\n");
-	cout << "It seems like C++ streams are working without std:: prefix" << endl;
+	cout << "It seems like C++ streams are working without [std] prefix" << endl;
 	// Notice that ACE_DEBUG takes one argument
 	ACE_DEBUG((LM_DEBUG, "ACE_DEBUG(pid=%P Time:%T)\n"));
 	ACE_ERROR((LM_ERROR, "ACE_ERROR(pid=%P File:%N Line:%l Date+Time:%D)\n"));
