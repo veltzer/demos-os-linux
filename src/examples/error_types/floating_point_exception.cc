@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This is a simple example of how to create a simple floating point exception.
@@ -31,6 +33,6 @@ int main() {
 	// cppcheck-suppress zerodiv
 	int j=1 / i;
 
-	std::cout << j << std::endl;
+	cout << j << endl;
 	return EXIT_SUCCESS;
 }

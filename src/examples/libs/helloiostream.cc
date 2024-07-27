@@ -17,14 +17,16 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This program demonstrates use of C++ streams
  */
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	cout << "Hello, World!" << endl;
 	return EXIT_SUCCESS;
 }

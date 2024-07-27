@@ -17,10 +17,13 @@
  */
 
 #include <firstinclude.h>
-#include <gtkmm/main.h>	// for Gtk::Main
-#include <gtkmm/button.h>	// for Gtk::Button
-#include <gtkmm/window.h>	// for Gtk::Window
-#include <iostream>	// for std::cout, std::endl
+#include <gtkmm/main.h>
+#include <gtkmm/button.h>
+#include <gtkmm/window.h>
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * A stolen example from the gtkmm distribution. Slightly modified.
@@ -65,7 +68,7 @@ HelloWorld::~HelloWorld() {
 }
 
 void HelloWorld::on_button_clicked() {
-	std::cout << "I was clicked" << std::endl;
+	cout << "I was clicked" << endl;
 	app.quit();
 }
 

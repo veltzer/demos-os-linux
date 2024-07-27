@@ -17,13 +17,15 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cerr, std::endl
+#include <iostream>	// for cerr, endl
 #include <signal.h>	// for sigemptyset(2), sigaddset(2), sigprocmask(2), raise(3), kill(2)
 #include <stdlib.h>	// for exit(3), EXIT_FAILURE, EXIT_SUCCESS
 #include <sys/types.h>	// for kill(2), getpid(2)
 #include <unistd.h>	// for getpid(2)
 #include <err_utils.h>	// for CHECK_NOT_M1()
 #include <signal_utils.h>	// for signal_register_handler_signal()
+
+using namespace std;
 
 /*
  * This demp demostrates C++ style exception handling in response to OS signals.
@@ -44,7 +46,7 @@
  *	sigset_t old;
  *	CHECK_NOT_M1(sigprocmask(SIG_BLOCK,NULL,&old));
  *	int ret=CHECK_NOT_M1(sigismember(&old,SIGFPE));
- *	std::cerr << "ret is " << ret << std::endl;
+ *	cerr << "ret is " << ret << endl;
  * }
  */
 
@@ -68,7 +70,7 @@ static void SignalHandler(int sig) {
 	// before we throw an exception or do a longjmp we need to unblock
 	// the signal or the kernel will think we are still in the signal handler
 	unblock(sig);
-	throw std::exception();
+	throw exception();
 }
 
 static void doBadCode(int i) {
@@ -79,21 +81,21 @@ static void doBadCode(int i) {
 	 * This is a standard FPE exception
 	 */
 	case 0:
-		std::cerr << "before division by zero" << std::endl;
+		cerr << "before division by zero" << endl;
 		// turning x into float here would not work since it
 		// will not cause an exception
 		x=0;
 		// cppcheck-suppress zerodiv
 		y=1 / x;
-		std::cerr << "y is " << y << std::endl;
-		std::cerr << "this is never reached" << std::endl;
+		cerr << "y is " << y << endl;
+		cerr << "this is never reached" << endl;
 		break;
 
 	/*
 	 * This is a segmentation fault using a straight illegal memory access
 	 */
 	case 1:
-		std::cerr << "Lets access some illegal memory address" << std::endl;
+		cerr << "Lets access some illegal memory address" << endl;
 		p=0;
 		// cppcheck-suppress nullPointer
 		p[0]=0;
@@ -103,7 +105,7 @@ static void doBadCode(int i) {
 	 * This is a floating point exception by using raise(3)
 	 */
 	case 2:
-		std::cerr << "Lets do a simulation of some bad code using raise(3)" << std::endl;
+		cerr << "Lets do a simulation of some bad code using raise(3)" << endl;
 		CHECK_NOT_M1(raise(SIGFPE));
 		break;
 
@@ -111,7 +113,7 @@ static void doBadCode(int i) {
 	 * This is a floating point exception by using kill(2)
 	 */
 	case 3:
-		std::cerr << "Lets do a simulation of some bad code using kill(2)" << std::endl;
+		cerr << "Lets do a simulation of some bad code using kill(2)" << endl;
 		CHECK_NOT_M1(kill(getpid(), SIGFPE));
 		break;
 	}
@@ -122,11 +124,11 @@ int main() {
 	signal_register_handler_signal(SIGFPE, SignalHandler);
 	signal_register_handler_signal(SIGSEGV, SignalHandler);
 	for(int c=0; c<10; c++) {
-		std::cerr << "c is " << c << std::endl;
+		cerr << "c is " << c << endl;
 		try {
 			doBadCode(c % 2);
-		} catch (std::exception& e) {
-			std::cerr << "Got exception, lets continue anyway" << std::endl;
+		} catch (exception& e) {
+			cerr << "Got exception, lets continue anyway" << endl;
 		}
 	}
 	return EXIT_SUCCESS;

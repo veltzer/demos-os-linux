@@ -17,12 +17,14 @@
  */
 
 #include <firstinclude.h>
-#include <exception>	// for std::exception
-#include <iostream>	// for std::cerr
+#include <exception>	// for exception
+#include <iostream>	// for cerr
 #include <signal.h>	// for signal(2)
 #include <unistd.h>	// for pipe(2), syscall(2)
 #include <sys/syscall.h>// for syscall(2)
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This example shows how to eliminate lots of redundant C error checking
@@ -35,7 +37,7 @@
 // this is the non template approach
 int syscall(int val, int err_val) {
 	if(val==err_val) {
-		throw std::exception();
+		throw exception();
 	}
 	return val;
 }
@@ -43,13 +45,13 @@ int syscall(int val, int err_val) {
 // Here is a template that will take care of all our needs
 template<class T> T syscall(T val, T err_val) {
 	if(val==err_val) {
-		throw std::exception();
+		throw exception();
 	}
 	return val;
 }
 
 void myhandler(int sig) {
-	std::cerr << "in signal handler for signal " << sig << std::endl;
+	cerr << "in signal handler for signal " << sig << endl;
 }
 
 int main() {
@@ -58,8 +60,8 @@ int main() {
 	try {
 		syscall(pipe(fd), -1);
 		syscall(signal(SIGPIPE, myhandler), SIG_ERR);
-	} catch (std::exception& e) {
-		std::cerr << "cought exception" << std::endl;
+	} catch (exception& e) {
+		cerr << "cought exception" << endl;
 	}
 	return EXIT_SUCCESS;
 }
