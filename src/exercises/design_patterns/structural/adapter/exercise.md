@@ -15,7 +15,7 @@ class LegacyClass {
 public:
     void oldRequest() {
         // Legacy implementation
-        std::cout << "LegacyClass: Handling old request." << std::endl;
+        cout << "LegacyClass: Handling old request." << endl;
     }
 };
 

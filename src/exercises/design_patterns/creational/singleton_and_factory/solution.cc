@@ -20,7 +20,9 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <stdlib.h>
+#include <cstdlib>
+
+using namespace std;
 
 // Part 1: Singleton Logger
 class Logger {
@@ -35,8 +37,8 @@ public:
 		return instance;
 	}
 
-	void log(const std::string& message) {
-		std::cout << "LOG: " << message << std::endl;
+	void log(const string& message) {
+		cout << "LOG: " << message << endl;
 	}
 };
 
@@ -50,24 +52,24 @@ public:
 class XMLConfigManager : public ConfigurationManager {
 public:
 	void loadConfiguration() override {
-		std::cout << "Loading XML configuration" << std::endl;
+		cout << "Loading XML configuration" << endl;
 	}
 };
 
 class JSONConfigManager : public ConfigurationManager {
 public:
 	void loadConfiguration() override {
-		std::cout << "Loading JSON configuration" << std::endl;
+		cout << "Loading JSON configuration" << endl;
 	}
 };
 
 class ConfigFactory {
 public:
-	static std::unique_ptr<ConfigurationManager> createConfigManager(const std::string& type) {
+	static unique_ptr<ConfigurationManager> createConfigManager(const string& type) {
 		if (type == "XML") {
-			return std::make_unique<XMLConfigManager>();
+			return make_unique<XMLConfigManager>();
 		} else if (type == "JSON") {
-			return std::make_unique<JSONConfigManager>();
+			return make_unique<JSONConfigManager>();
 		}
 		return nullptr;
 	}

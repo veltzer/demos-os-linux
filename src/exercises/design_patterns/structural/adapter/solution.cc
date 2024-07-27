@@ -18,7 +18,9 @@
 
 #include <firstinclude.h>
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
+
+using namespace std;
 
 // Interface for the target class
 class ModernInterface {
@@ -31,7 +33,7 @@ public:
 class LegacyClass {
 public:
 	void oldRequest() {
-		std::cout << "LegacyClass: Handling old request." << std::endl;
+		cout << "LegacyClass: Handling old request." << endl;
 	}
 };
 
@@ -42,7 +44,7 @@ private:
 
 public:
 	void newRequest() override {
-		std::cout << "Adapter: Converting new request to old request." << std::endl;
+		cout << "Adapter: Converting new request to old request." << endl;
 		legacyObject.oldRequest();
 	}
 };
