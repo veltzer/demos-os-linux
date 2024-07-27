@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout
-#include <string>	// for std::string
+#include <iostream>	// for cout
+#include <string>	// for string
 #include <sigc++/sigc++.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This is a demo program for using the sigc++ signaling library
@@ -29,12 +31,12 @@
  * EXTRA_LINK_CMD=pkg-config --libs sigc++-2.0
  */
 
-void on_print(const std::string& str) {
-	std::cout << str;
+void on_print(const string& str) {
+	cout << str;
 }
 
 int main() {
-	sigc::signal<void, const std::string&> signal_print;
+	sigc::signal<void, const string&> signal_print;
 	signal_print.connect(sigc::ptr_fun(&on_print));
 	signal_print.emit("hello world\n");
 	return EXIT_SUCCESS;

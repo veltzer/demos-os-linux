@@ -18,8 +18,10 @@
 
 #include <firstinclude.h>
 #include <mysql/mysql.h>
-#include <iostream>	// for std::cout, std::endl, std::cerr
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This is a demo program for regular C mysql access
@@ -36,25 +38,25 @@ int main() {
 	MYSQL mysql;
 	MYSQL *ret0=mysql_init(&mysql);
 	if (!ret0) {
-		std::cerr << "init failed" << std::endl;
-		std::cerr << mysql_error(&mysql) << std::endl;
+		cerr << "init failed" << endl;
+		cerr << mysql_error(&mysql) << endl;
 		return EXIT_FAILURE;
 	}
-	std::cout << "after init" << std::endl;
+	cout << "after init" << endl;
 	MYSQL *ret1=mysql_real_connect(&mysql, "database", "master", "master", "mysql", 0, NULL, 0);
 	if (!ret1) {
-		std::cerr << "connect failed" << std::endl;
-		std::cerr << mysql_error(&mysql) << std::endl;
+		cerr << "connect failed" << endl;
+		cerr << mysql_error(&mysql) << endl;
 		return EXIT_FAILURE;
 	}
-	std::cout << "after connect" << std::endl;
+	cout << "after connect" << endl;
 	const char *info=mysql_get_server_info(&mysql);
 	if (!info) {
-		std::cerr << "get_server_info failed" << std::endl;
-		std::cerr << mysql_error(&mysql) << std::endl;
+		cerr << "get_server_info failed" << endl;
+		cerr << mysql_error(&mysql) << endl;
 		return EXIT_FAILURE;
 	}
-	std::cout << "info is " << info << std::endl;
+	cout << "info is " << info << endl;
 	mysql_close(&mysql);	// there are no error codes for this one
 	return EXIT_SUCCESS;
 }

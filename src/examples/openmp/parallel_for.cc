@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <cmath>// for std::sin
+#include <cmath>// for sin
 #include <stdio.h>	// for printf(3)
 #include <omp.h>// for #pragma omp parallel for
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * A demo calculating the sin table with openmp.
@@ -35,7 +37,7 @@ int main() {
 	#pragma omp parallel for
 	for(int n=0; n<size; ++n) {
 		printf("thread %d calculating %d\n", omp_get_thread_num(), n);
-		sinTable[n]=std::sin(2 * M_PI * n / size);
+		sinTable[n]=sin(2 * M_PI * n / size);
 	}
 	// the table is now initialized
 	for(int i=0; i<size; i++) {

@@ -18,9 +18,11 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS, rand(3)
-#include <iostream>	// for std::cout, std::endl
-#include <algorithm>	// for std::rand(), std::sort()
+#include <iostream>	// for cout, endl
+#include <algorithm>	// for rand(), sort()
 #include <time.h>	// for clock(3), clock_t:type, CLOCKS_PER_SEC
+
+using namespace std;
 
 /*
  * This is an example which shows a real difference in performance when
@@ -54,9 +56,9 @@ void do_work(int* data, unsigned int arraySize, const char* msg) {
 	clock_t end = clock();
 	double elapsedTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 
-	std::cout << msg << std::endl;
-	std::cout << elapsedTime << std::endl;
-	std::cout << "sum = " << sum << std::endl;
+	cout << msg << endl;
+	cout << elapsedTime << endl;
+	cout << "sum = " << sum << endl;
 }
 
 void do_work_no_if(int* data, unsigned int arraySize, const char* msg) {
@@ -73,9 +75,9 @@ void do_work_no_if(int* data, unsigned int arraySize, const char* msg) {
 	clock_t end = clock();
 	double elapsedTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 
-	std::cout << msg << std::endl;
-	std::cout << elapsedTime << std::endl;
-	std::cout << "sum = " << sum << std::endl;
+	cout << msg << endl;
+	cout << elapsedTime << endl;
+	cout << "sum = " << sum << endl;
 }
 
 int main() {
@@ -83,11 +85,11 @@ int main() {
 	const unsigned int arraySize = 32768;
 	int data[arraySize];
 	for(unsigned c = 0; c < arraySize; ++c)
-		data[c] = std::rand() % 256;
+		data[c] = rand() % 256;
 	// run unsorted and then sorted
 	do_work(data, arraySize, "unsorted with if");
 	do_work_no_if(data, arraySize, "unsorted no if");
-	std::sort(data, data + arraySize);
+	sort(data, data + arraySize);
 	do_work(data, arraySize, "sorted with if");
 	do_work_no_if(data, arraySize, "sorted no if");
 	return EXIT_SUCCESS;

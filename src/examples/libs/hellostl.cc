@@ -17,19 +17,21 @@
  */
 
 #include <firstinclude.h>
-#include <vector>	// for std::vector
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <vector>	// for vector
+#include <iostream>	// for cout, endl
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This program demonstrates the use of STL (Standard Template Library).
  */
 
 int main() {
-	std::vector<int> v(3);
+	vector<int> v(3);
 	v[0]=5;
 	v[1]=8;
 	v[2]=9;
-	std::cout << v[0] << "-" << v[1] << "-" << v[2] << std::endl;
+	cout << v[0] << "-" << v[1] << "-" << v[2] << endl;
 	return EXIT_SUCCESS;
 }

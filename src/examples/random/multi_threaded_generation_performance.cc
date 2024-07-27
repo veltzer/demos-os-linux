@@ -23,8 +23,10 @@
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_NOT_M1()
 #include <sys/types.h>	// for getpid(2)
 #include <unistd.h>	// for getpid(2)
-#include <atomic>	// for std::atomic
+#include <atomic>	// for atomic
 #include <pthread_utils.h>	// for gettid()
+
+using namespace std;
 
 /*
  * This example explores the performance of creating random numbers in a
@@ -57,10 +59,10 @@ static volatile bool stop_rand=false;
 static volatile bool stop_rand_r=false;
 static volatile bool stop_random=false;
 static volatile bool stop_random_r=false;
-std::atomic<int> counter_rand;
-std::atomic<int> counter_rand_r;
-std::atomic<int> counter_random;
-std::atomic<int> counter_random_r;
+atomic<int> counter_rand;
+atomic<int> counter_rand_r;
+atomic<int> counter_random;
+atomic<int> counter_random_r;
 
 static void* worker(void*) {
 	while(!stop_rand) {

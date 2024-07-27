@@ -21,7 +21,7 @@
 // #define NDEBUG
 #include <assert.h>	// for assert(3)
 #include <dlfcn.h>	// for dlsym(3)
-#include <iostream>	// for std::exception
+#include <iostream>	// for exception
 #include <stdlib.h>	// for exit(3), EXIT_FAILURE, EXIT_SUCCESS
 #include <trace_utils.h>// for TRACE()
 

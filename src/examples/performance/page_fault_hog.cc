@@ -17,7 +17,6 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
 #include <sys/mman.h>	// for mmap(2), munmap(2)
 #include <string.h>	// for memset(3)
 #include <err_utils.h>	// for CHECK_NOT_NULL(), CHECK_ZERO()

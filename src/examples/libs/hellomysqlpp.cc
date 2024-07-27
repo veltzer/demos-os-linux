@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::cerr, std::endl
+#include <iostream>	// for cout, cerr, endl
 #include <mysql++.h>	// for mysqlpp::*
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * This is a mysql++ demo program
@@ -37,10 +39,10 @@ int main() {
 	mysqlpp::Query query=con.query("select id,name from TbOrganization order by id");
 	mysqlpp::StoreQueryResult res=query.store();
 	unsigned int j=0;
-	std::cout << "Records Found: " << res.size() << std::endl;
+	cout << "Records Found: " << res.size() << endl;
 	for(mysqlpp::StoreQueryResult::iterator i=res.begin(); i!=res.end(); i++) {
 		mysqlpp::Row row=*i;
-		std::cout << j << ":" << row["name"] << std::endl;
+		cout << j << ":" << row["name"] << endl;
 		j++;
 	}
 	return EXIT_SUCCESS;
