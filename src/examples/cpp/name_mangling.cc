@@ -22,8 +22,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <multiproc_utils.h>	// for my_system()
+#include <iostream>
+#include <cstdlib>
+#include <multiproc_utils.h>
+
+using namespace std;
 
 class A{
 public:
@@ -31,12 +34,12 @@ public:
 };
 
 void A::doit() {
-	std::cout << "Hello, World!" << std::endl;
+	cout << "Hello, World!" << endl;
 }
 
 int main(int, char** argv) {
 	A a;
 	a.doit();
 	my_system("nm -C %s | grep A::", argv[0]);
-	return 0;
+	return EXIT_SUCCESS;
 }
