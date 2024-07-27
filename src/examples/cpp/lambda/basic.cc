@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <vector>	// for std::vector
-#include <algorithm>	// for std::transform
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <vector>	// for vector
+#include <algorithm>	// for transform
+
+using namespace std;
 
 /*
  * Examples of lambdas from C++
@@ -29,8 +31,8 @@
 int main(int, char** argv) {
 	// create the lambda
 	auto f=[=] {
-			std::cout << "Hello, Lambda" << argv[0] << std::endl;
-		};
+		cout << "Hello, Lambda" << argv[0] << endl;
+	};
 	// now run the lambda
 	f();
 	return EXIT_SUCCESS;

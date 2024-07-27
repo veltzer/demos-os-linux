@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <mutex>// for std::mutex
+#include <cstdlib>
+#include <mutex>
+
+using namespace std;
 
 /*
  * This example shows that mutexes in linux, even in C++ are really futexes which means
@@ -28,7 +30,7 @@
  */
 
 int main() {
-	std::mutex m;
+	mutex m;
 	for(int i=0; i<1000000; i++) {
 		m.lock();
 		m.unlock();
