@@ -69,10 +69,10 @@ public:
 
 int main() {
 	const Rectangle r(5, 3);
-	std::cout << "Area: " << r.getArea() << std::endl;
-	std::cout << "Width: " << r.getWidth() << std::endl;
-	std::cout << "Height: " << r.getHeight() << std::endl;
-	std::cout << "Diagonal Length: " << r.getDiagonalLength() << std::endl;
-	std::cout << "Circumference: " << r.getCircumference() << std::endl;
+	cout << "Area: " << r.getArea() << endl;
+	cout << "Width: " << r.getWidth() << endl;
+	cout << "Height: " << r.getHeight() << endl;
+	cout << "Diagonal Length: " << r.getDiagonalLength() << endl;
+	cout << "Circumference: " << r.getCircumference() << endl;
 	return EXIT_SUCCESS;
 }

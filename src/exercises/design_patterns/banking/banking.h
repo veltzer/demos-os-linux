@@ -51,11 +51,11 @@ namespace banking {
 			CloseConnection();
 		}
 		void deposit(double val) override { _balance += val; }
-		void Authenticate() { cout << "Authenticate\n"; }
-		void ConnectRemoteDB() { cout << "ConnectRemoteDB\n"; }
-		void SaveChanges() { cout << "SaveChanges\n"; }
-		void ReportError() { cout << "ReportError\n"; }
-		void CloseConnection() { cout << "CloseConnection\n"; }
+		void Authenticate() { cout << "Authenticate" << endl; }
+		void ConnectRemoteDB() { cout << "ConnectRemoteDB" << endl; }
+		void SaveChanges() { cout << "SaveChanges" << endl; }
+		void ReportError() { cout << "ReportError" << endl; }
+		void CloseConnection() { cout << "CloseConnection" << endl; }
 	private:
 		double _balance;
 	};
@@ -64,7 +64,7 @@ namespace banking {
 	public:
 		CheckingAccount(double balance = 0, double overdraft = 0) :AccountBase(balance), _overdraft(overdraft) {}
 		void withdraw(double val) override { AccountBase::withdraw(val); }
-		~CheckingAccount() { std::cout << "bye checking\n"; }
+		~CheckingAccount() { cout << "bye checking" << endl; }
 	private:
 		double _overdraft;
 	};
@@ -73,14 +73,14 @@ namespace banking {
 	public:
 		using AccountBase::AccountBase;
 		void setInterestRate(double val) { _intRate = val; }
-		~SavingAccount() { std::cout << "bye saving\n"; }
+		~SavingAccount() { cout << "bye saving" << endl; }
 	private:
 		static double _intRate;
 	};
 	class AccountDecorator : public IAccount
 	{
 	public:
-		AccountDecorator(unique_ptr<IAccount> account) :_account(std::move(account)) {}
+		AccountDecorator(unique_ptr<IAccount> account) :_account(move(account)) {}
 	protected:
 		unique_ptr<IAccount> _account;
 	};
@@ -88,15 +88,15 @@ namespace banking {
 	public:
 		using AccountDecorator::AccountDecorator;
 		double getBalance() const override {
-			cout << "get balance called\n";
+			cout << "get balance called" << endl;
 			return _account->getBalance();
 		}
 		void withdraw(double val)override {
-			cout << "withdraw called\n";
+			cout << "withdraw called" << endl;
 			 _account->withdraw(val);
 		}
 		void deposit(double val) override {
-			cout << "deposit called\n";
+			cout << "deposit called" << endl;
 			_account->deposit(val);
 		}
 	private:
@@ -104,7 +104,7 @@ namespace banking {
 	};
 	class CommissionAccount : public AccountDecorator {
 	public:
-		CommissionAccount(unique_ptr<IAccount> account,double amount):AccountDecorator(std::move(account)),_amount(amount){}
+		CommissionAccount(unique_ptr<IAccount> account,double amount):AccountDecorator(move(account)),_amount(amount){}
 		double getBalance() const override {
 			_account->withdraw(_amount);
 			return _account->getBalance();
@@ -140,7 +140,7 @@ namespace banking {
 		void Load() const {
 			if (_account == nullptr) {
 				_account = make_unique<SavingAccount>(_balance);
-				cout << "proxy loading real object\n";
+				cout << "proxy loading real object" << endl;
 			}
 		}
 		mutable unique_ptr<SavingAccount> _account;
@@ -152,19 +152,19 @@ namespace banking {
 			static Bank bank;
 			return bank;
 		}
-		std::unique_ptr<IAccount> createCheckingAccount(double bal, double overdraft)
+		unique_ptr<IAccount> createCheckingAccount(double bal, double overdraft)
 		{
 #ifdef _DEBUG
-			return std::make_unique<TraceAccount>(std::make_unique<CommissionAccount>(std::make_unique<CheckingAccount>(bal, overdraft),10));
+			return make_unique<TraceAccount>(make_unique<CommissionAccount>(make_unique<CheckingAccount>(bal, overdraft),10));
 #else
-			return std::make_unique<CheckingAccount>(bal,overdraft);
+			return make_unique<CheckingAccount>(bal,overdraft);
 #endif
 		}
-		std::unique_ptr<IAccount> createSavingAccount(double bal)
+		unique_ptr<IAccount> createSavingAccount(double bal)
 		{
-			return std::make_unique<SavingAccountProxy>(bal);
+			return make_unique<SavingAccountProxy>(bal);
 		}
-		~Bank() { std::cout << "bye bank\n"; }
+		~Bank() { cout << "bye bank" << endl; }
 	private:
 		Bank() = default;
 		Bank(const Bank&) = delete;

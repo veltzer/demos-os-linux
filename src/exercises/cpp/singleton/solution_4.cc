@@ -41,5 +41,5 @@ Singleton& Singleton::get_instance() {
 int main() {
 	Singleton& s1=Singleton::get_instance();
 	Singleton& s2=Singleton::get_instance();
-	assert(std::addressof(s1) == std::addressof(s2));
+	assert(addressof(s1) == addressof(s2));
 }
