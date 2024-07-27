@@ -84,15 +84,15 @@ int main() {
 		switch(choice) {
 			case 1:
 				cin >> a >> b;
-				v.push_back(*new Rectangle(a, b));
+				v.push_back(ref(*new Rectangle(a, b)));
 				break;
 			case 2:
 				cin >> r >> x >> y;
-				v.push_back(*new Circle(r, x, y));
+				v.push_back(ref(*new Circle(r, x, y)));
 				break;
 			case 3:
 				cin >> a >> b >> c;
-				v.push_back(*new Triangle(a, b, c));
+				v.push_back(ref(*new Triangle(a, b, c)));
 				break;
 		}
 	}
