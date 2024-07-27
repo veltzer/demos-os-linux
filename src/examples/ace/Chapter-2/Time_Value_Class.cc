@@ -20,8 +20,10 @@
 #include <ace/ARGV.h>
 #include <ace/Get_Opt.h>
 #include <ace/ARGV.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * usage example: Time_Value_Class -e 36000 -i 1200
@@ -55,9 +57,9 @@ int main(int argc, char** argv) {
 	}
 	ACE_DEBUG((LM_DEBUG, "interval=%d max_interval=%d\n", interval.sec(), max_interval.sec()));
 	if (interval > max_interval) {
-		std::cout << "interval must be less than " << max_interval.sec() << std::endl;
+		cout << "interval must be less than " << max_interval.sec() << endl;
 	} else if (expiration > (ACE_Time_Value::max_time - interval)) {
-		std::cout << "expiration + interval must be less than " << ACE_Time_Value::max_time.sec() << std::endl;
+		cout << "expiration + interval must be less than " << ACE_Time_Value::max_time.sec() << endl;
 	}
 	ACE_DEBUG((LM_DEBUG, "interval: %d seconds.\n", interval.sec()));
 	ACE_DEBUG((LM_DEBUG, "expiration after: %d seconds.\n", expiration.sec() - current_time.sec()));
