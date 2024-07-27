@@ -20,6 +20,8 @@
 #include <firstinclude.h>
 #include <iostream>
 
+using namespace std;
+
 class Circle {
 	private:
 		double radius, x, y;
@@ -42,5 +44,5 @@ class Circle {
 
 	bool inside(double, double);
 
-	friend std::ostream& operator<<(std::ostream& os, Circle& obj);
+	friend ostream& operator<<(ostream& os, Circle& obj);
 };

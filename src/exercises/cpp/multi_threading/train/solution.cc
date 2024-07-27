@@ -17,11 +17,13 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
+#include <iostream>	// for cout, endl
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <boost/thread.hpp>	// for boost::thread
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ASSERT()
 #include <pthread.h>	// for pthread_barrier_init()
+
+using namespace std;
 
 /*
  * A solution to the train exercise...
@@ -112,7 +114,7 @@ int main() {
 	boost::thread wt3(w3);
 	boost::thread wt4(w4);
 	// print something
-	std::cout << "created the threads doing a join..." << std::endl;
+	cout << "created the threads doing a join..." << endl;
 	// join the threads
 	wt1.join();
 	wt2.join();

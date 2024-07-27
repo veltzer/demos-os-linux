@@ -29,7 +29,7 @@ bool Circle::inside(const double ix, const double iy) const {
 	return distance2 <= radius*radius;
 }
 
-std::ostream& operator<<(std::ostream& os, const Circle& obj) {
+ostream& operator<<(ostream& os, const Circle& obj) {
 	os << "radius is " << obj.get_radius() << endl;
 	os << "x is " << obj.get_x() << endl;
 	os << "y is " << obj.get_y() << endl;

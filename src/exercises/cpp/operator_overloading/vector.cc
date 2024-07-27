@@ -19,6 +19,8 @@
 #include <firstinclude.h>
 #include <iostream>
 
+using namespace std;
+
 class Vector2D {
 	private:
 		double x, y;
@@ -31,11 +33,11 @@ class Vector2D {
 		}
 
 	// For printing the vector
-	friend std::ostream& operator<<(std::ostream& os, const Vector2D& v);
+	friend ostream& operator<<(ostream& os, const Vector2D& v);
 };
 
 // Output stream operator overloading
-std::ostream& operator<<(std::ostream& os, const Vector2D& v) {
+ostream& operator<<(ostream& os, const Vector2D& v) {
 	os << "(" << v.x << ", " << v.y << ")";
 	return os;
 }
@@ -46,9 +48,9 @@ int main() {
 
 	Vector2D v3 = v1 + v2;
 
-	std::cout << "v1 = " << v1 << std::endl;
-	std::cout << "v2 = " << v2 << std::endl;
-	std::cout << "v1 + v2 = " << v3 << std::endl;
+	cout << "v1 = " << v1 << endl;
+	cout << "v2 = " << v2 << endl;
+	cout << "v1 + v2 = " << v3 << endl;
 
 	return 0;
 }

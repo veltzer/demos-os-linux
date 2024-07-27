@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <boost/thread.hpp>	// for boost::thread
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ASSERT()
+
+using namespace std;
 
 /*
  * A solution to the exchanger/randezvous exercise...
@@ -83,7 +85,7 @@ public:
 		case FIRST_ARRIVED:
 			CHECK_ASSERT(ptr!=NULL);
 			state = SECOND_ARRIVED;
-			std::swap(t, *ptr);
+			swap(t, *ptr);
 			cv_main.notify_one();
 			break;
 		default:
@@ -132,7 +134,7 @@ int main() {
 	boost::thread workerThread1(w1);
 	boost::thread workerThread2(w2);
 	// print something
-	std::cout << "created the threads doing a join..." << std::endl;
+	cout << "created the threads doing a join..." << endl;
 	// join the threads
 	workerThread1.join();
 	workerThread2.join();

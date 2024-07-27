@@ -18,8 +18,10 @@
 
 #include <firstinclude.h>
 #include <cmath>
-#include <stdlib.h>
+#include <cstdlib>
 #include <iostream>
+
+using namespace std;
 
 class Rectangle{
 private:
@@ -28,7 +30,7 @@ private:
 
 public:
 	Rectangle(const double w, const double h) : width(w), height(h) {
-		std::cout << getArea() << std::endl;
+		cout << getArea() << endl;
 	}
 
 	double getArea() const{

@@ -18,13 +18,15 @@
 
 #include <firstinclude.h>
 #include <pthread.h>	// for pthread_create(3), pthread_join(3)
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
 #include <unistd.h>	// for sleep(3)
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO()
 #include <pthread_utils.h>	// for gettid()
 #include "mythread.hh"
 #include "mymutex.hh"
+
+using namespace std;
 
 /*
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
@@ -63,14 +65,14 @@ public:
 protected:
 	virtual void svc() {
 		pid_t tid=gettid();
-		std::cout << "thread " << tid << " starting" << std::endl;
+		cout << "thread " << tid << " starting" << endl;
 		for(int i=0; i<limit; i++) {
 			m.lock();
-			std::cout << "Hello from thread " << tid << " num is " << i << std::endl;
+			cout << "Hello from thread " << tid << " num is " << i << endl;
 			m.unlock();
 			CHECK_ZERO(sleep(sleep_time));
 		}
-		std::cout << "thread " << tid << " ending" << std::endl;
+		cout << "thread " << tid << " ending" << endl;
 	}
 };
 

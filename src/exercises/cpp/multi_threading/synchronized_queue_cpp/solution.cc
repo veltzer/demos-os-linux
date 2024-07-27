@@ -21,9 +21,11 @@
 #include <pthread.h>	// for pthread_create(3), pthread_join(3), pthread_spin_init(3), pthread_spin_destroy(3), pthread_spin_lock(3), pthread_spin_unlock(3), pthread_attr_init(3), pthread_attr_setaffinity_np(3)
 #include <unistd.h>	// for sysconf(3), usleep(3)
 #include <sched.h>	// for CPU_ZERO(3), CPU_SET(3)
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <list>	// for std::list<T>
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <list>	// for list<T>
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_NOT_M1()
+
+using namespace std;
 
 /*
  * This is a solution to the synchronized queue exercise.
@@ -33,7 +35,7 @@
 
 template <typename T> class SynchronizedQueue{
 private:
-	std::list<T> mylist;
+	list<T> mylist;
 	pthread_mutex_t mymutex;
 	pthread_cond_t mycond;
 	unsigned int waiters;

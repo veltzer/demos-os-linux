@@ -21,6 +21,8 @@
 #include <firstinclude.h>
 #include <iostream>
 
+using namespace std;
+
 class Circle {
 	private:
 		double radius, x, y;
@@ -49,7 +51,7 @@ class Circle {
 
 	bool inside(const double, const double) const;
 
-	friend std::ostream& operator<<(std::ostream& os, const Circle& obj);
+	friend ostream& operator<<(ostream& os, const Circle& obj);
 
 	bool is_concentric(const Circle& c) const;
 
