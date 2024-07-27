@@ -18,10 +18,12 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
-#include <thread>	// for std::this_thread
-#include <vector>	// for std::vector
-#include <future>	// for std::future
+#include <iostream>	// for cout, endl
+#include <thread>	// for this_thread
+#include <vector>	// for vector
+#include <future>	// for future
+
+using namespace std;
 
 /*
  * This is an example of C++11 async tasks.
@@ -38,13 +40,13 @@
  */
 
 int main() {
-	std::cout << "Main thread id: " << std::this_thread::get_id() << std::endl;
-	std::vector<std::future<void> > futures;
+	cout << "Main thread id: " << this_thread::get_id() << endl;
+	vector<future<void> > futures;
 	const unsigned int task_num=20;
 	for(unsigned int i = 0; i < task_num; ++i) {
-		futures.push_back(std::async([i] {
-			std::this_thread::sleep_for(std::chrono::seconds(1));
-			std::cout << i << ": " << std::this_thread::get_id() << " " << std::endl;
+		futures.push_back(async([i] {
+			this_thread::sleep_for(chrono::seconds(1));
+			cout << i << ": " << this_thread::get_id() << " " << endl;
 		}));
 	}
 	for(auto& fut:futures) {

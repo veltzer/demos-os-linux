@@ -21,6 +21,8 @@
 #include <iostream>	// for cout, endl
 #include <future>	// for future
 
+using namespace std;
+
 /*
  * This example shows that you get a free constructor for any class you write
  * which initializes it's data to 0.
@@ -34,8 +36,8 @@ private:
 
 public:
 	void print() {
-		std::cout << "n is " << n << std::endl;
-		std::cout << "p is " << std::hex << std::showbase << p << std::endl;
+		cout << "n is " << n << endl;
+		cout << "p is " << hex << showbase << p << endl;
 	}
 };
 
