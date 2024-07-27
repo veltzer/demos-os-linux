@@ -17,10 +17,12 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <list>	// for std::list<T>, std::list<T>::iterator
-#include <vector>	// for std::list<T>, std::list<T>::iterator
+#include <iostream>	// for cout, endl
+#include <list>	// for list<T>, list<T>::iterator
+#include <vector>	// for list<T>, list<T>::iterator
 #include <cstdlib>	// for EXIT_SUCCESS, EXIT_FAILURE;
+
+using namespace std;
 
 /*
  * This example shows that >> is no longer identified by the compiler as an operator name.
@@ -30,8 +32,6 @@
  * vector<vector<int> > v;
  * because >> was identified as an operator.
  */
-
-using namespace std;
 
 int main() {
 	vector<vector<int> > v;

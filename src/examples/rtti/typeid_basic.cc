@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
+#include <iostream>	// for cout, endl
 #include <typeinfo>	// for typeid
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * Demo the typeid function of C++, with RTTI
@@ -31,15 +33,15 @@ class A{
 class B{
 public:
 	virtual void doit() {
-		std::cout << "Hello, World!" << std::endl;
+		cout << "Hello, World!" << endl;
 	}
 };
 
 int main() {
 	A a;
 	B b;
-	std::cout << typeid(a).name() << std::endl;
-	std::cout << typeid(b).name() << std::endl;
-	std::cout << typeid(std::cout).name() << std::endl;
+	cout << typeid(a).name() << endl;
+	cout << typeid(b).name() << endl;
+	cout << typeid(cout).name() << endl;
 	return EXIT_SUCCESS;
 }

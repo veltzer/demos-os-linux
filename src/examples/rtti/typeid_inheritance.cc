@@ -17,11 +17,13 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
+#include <iostream>	// for cout, endl
 #include <typeinfo>	// for typeid
-#include <stdlib.h>	// for EXIT_SUCCESS, srandom(3), random(3)
+#include <cstdlib>	// for EXIT_SUCCESS, srandom(3), random(3)
 #include <sys/types.h>	// for getpid(2)
 #include <unistd.h>	// for getpid(2)
+
+using namespace std;
 
 /*
  * This example explores static vs dynamic typeid resolution in C++.
@@ -54,17 +56,17 @@ int main() {
 		ptr=&person;
 	}
 	// lets start by printing the sizes of the classes involved...
-	std::cout << "sizeof(Empty) is " << sizeof(Empty) << std::endl;
-	std::cout << "sizeof(Person) is " << sizeof(Person) << std::endl;
-	std::cout << "sizeof(Employee) is " << sizeof(Employee) << std::endl;
+	cout << "sizeof(Empty) is " << sizeof(Empty) << endl;
+	cout << "sizeof(Person) is " << sizeof(Person) << endl;
+	cout << "sizeof(Employee) is " << sizeof(Employee) << endl;
 	// The string returned by typeid::name() is implementation-defined
 	// Person (statically known at compile-time)
-	std::cout << typeid(person).name() << std::endl;
+	cout << typeid(person).name() << endl;
 	// Employee (statically known at compile-time)
-	std::cout << typeid(employee).name() << std::endl;
+	cout << typeid(employee).name() << endl;
 	// Person * (statically known at compile-time)
-	std::cout << typeid(ptr).name() << std::endl;
+	cout << typeid(ptr).name() << endl;
 	// ?? (looked up dynamically at run-time because it is the dereference of a pointer to a polymorphic class)
-	std::cout << typeid(*ptr).name() << std::endl;
+	cout << typeid(*ptr).name() << endl;
 	return EXIT_SUCCESS;
 }

@@ -18,11 +18,13 @@
 
 #pragma once
 
-#include <iostream>	// for std::cout, std::endl
+#include <iostream>
+
+using namespace std;
 
 /*
  * void hello();
  */
 void hello(){
-	std::cout << "Hello, World!" << std::endl;
+	cout << "Hello, World!" << endl;
 }

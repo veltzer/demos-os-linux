@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+
+using namespace std;
 
 /*
  * This is an example of template specialization.
@@ -55,8 +57,8 @@ public:
 
 int main() {
 	Vector<int> v1(100);
-	std::cout << "v1.getSize() is " << v1.getSize() << std::endl;
+	cout << "v1.getSize() is " << v1.getSize() << endl;
 	Vector<bool> v2(100);
-	std::cout << "v2.getSize() is " << v2.getSize() << std::endl;
+	cout << "v2.getSize() is " << v2.getSize() << endl;
 	return EXIT_SUCCESS;
 }
