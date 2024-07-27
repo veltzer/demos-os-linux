@@ -17,13 +17,15 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <unistd.h>	// for sleep(3)
 #include <trace_utils.h>// for TRACE()
 #include <signal_utils.h>	// for signal_register_handler_signal()
 #include <pthread.h>	// for pthread_t, pthread_create(3), pthread_join(3), pthread_self(3)
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_ZERO()
+
+using namespace std;
 
 /*
  * A simple demo of throwing an exception and not catching it
@@ -57,7 +59,7 @@ int main() {
 	CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, NULL));
 	CHECK_ZERO(sleep(5));
 	throw 20;
-	std::cout << "Where did this go?" << std::endl;
+	cout << "Where did this go?" << endl;
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));
 	return EXIT_SUCCESS;
 }

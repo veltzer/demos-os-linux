@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cerr, std::endl
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cerr, endl
+
+using namespace std;
 
 /*
  * This is an example of catching exceptions from constructors
@@ -35,7 +37,7 @@
 class B{
 public:
 	B() {
-		std::cerr << "In B constructor" << std::endl;
+		cerr << "In B constructor" << endl;
 		throw 20;
 	}
 };
@@ -46,9 +48,9 @@ private:
 
 public:
 	A() try: b() {
-		std::cerr << "In A constructor - you won't see this..." << std::endl;
+		cerr << "In A constructor - you won't see this..." << endl;
 	} catch (int e) {
-		std::cerr << "got the exception in A constructor" << std::endl;
+		cerr << "got the exception in A constructor" << endl;
 	}
 };
 
@@ -56,7 +58,7 @@ int main() {
 	try {
 		A a;
 	} catch (int e) {
-		std::cerr << "got the exception in the caller" << std::endl;
+		cerr << "got the exception in the caller" << endl;
 	}
 	return EXIT_SUCCESS;
 }

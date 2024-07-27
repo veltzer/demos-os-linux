@@ -18,28 +18,30 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cerr, std::endl
-#include <string>	// for std::string
-#include <exception>	// for std::exception
+#include <iostream>	// for cerr, endl
+#include <string>	// for string
+#include <exception>	// for exception
+
+using namespace std;
 
 /*
  * This is an example of using custom exception types...
  */
 
-class MyException: public std::exception {
+class MyException: public exception {
 private:
-	std::string message;
+	string message;
 
 public:
 	MyException(const char* imessage) {
 		message = imessage;
 	}
 	virtual const char* operator()() {
-		std::cout << message << std::endl;
+		cout << message << endl;
 		return message.c_str();
 	}
 	virtual const char* what() const throw(){
-		std::cout << message << std::endl;
+		cout << message << endl;
 		return message.c_str();
 	}
 	virtual~MyException() throw(){
@@ -50,7 +52,7 @@ int main() {
 	try {
 		throw MyException("this is a message");
 	} catch(const MyException& e) {
-		std::cerr << "got the exception " << e.what() << std::endl;
+		cerr << "got the exception " << e.what() << endl;
 	}
 	return EXIT_SUCCESS;
 }
