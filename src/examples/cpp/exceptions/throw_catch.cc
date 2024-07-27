@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cerr, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cerr, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * A simple demo of throwing an exception and catching it
@@ -28,7 +30,7 @@ int main() {
 	try {
 		throw 20;
 	} catch(int e) {
-		std::cerr << "An exception occurred. Exception Nr. " << e << std::endl;
+		cerr << "An exception occurred. Exception Nr. " << e << endl;
 	}
 	return EXIT_SUCCESS;
 }

@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * An example of passing object and method and applying the method
@@ -31,7 +33,7 @@ class A{
 public:
 	int val;
 	void run() {
-		std::cout << val << std::endl;
+		cout << val << endl;
 	}
 };
 

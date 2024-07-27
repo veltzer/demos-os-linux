@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * A simple demo of throwing an exception and not catching it
@@ -28,8 +30,8 @@
  */
 
 int main() {
-	std::cout << "Starting to run..." << std::endl;
+	cout << "Starting to run..." << endl;
 	throw 20;
-	std::cout << "Where did this go?" << std::endl;
+	cout << "Where did this go?" << endl;
 	return EXIT_SUCCESS;
 }

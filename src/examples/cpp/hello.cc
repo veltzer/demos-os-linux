@@ -17,14 +17,16 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * A simple hello world application for C++.
  */
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	cout << "Hello, World!" << endl;
 	return EXIT_SUCCESS;
 }
