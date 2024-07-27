@@ -39,7 +39,7 @@
  * Notes:
  * - We see that if we run the threads and have them do regular +=1 instead of
  * atomic ops we get really bad values for the shared counter.
- * - c++ has std::atomic, look at other examples.
+ * - c++ has atomic, look at other examples.
  * - ACE has wrappers for atomics. Look at ACE examples for more.
  * - We can plainly see that volatile does not guarantee atomicity.
  *

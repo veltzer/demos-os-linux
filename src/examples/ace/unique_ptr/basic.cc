@@ -18,9 +18,11 @@
 
 #include <firstinclude.h>
 #include <ace/Auto_Ptr.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <memory>
+
+using namespace std;
 
 /*
  * This example demonstrates the use of auto_ptr which takes
@@ -37,15 +39,15 @@ private:
 
 public:
 	A(const char *ip) : p(ip) {
-		std::cout << "in constructor of " << p << std::endl;
+		cout << "in constructor of " << p << endl;
 	}
 	~A() {
-		std::cout << "in destructor of " << p << std::endl;
+		cout << "in destructor of " << p << endl;
 	}
 };
 
 int main() {
-	std::unique_ptr<A> a(new A("a"));
+	unique_ptr<A> a(new A("a"));
 	new A("b");
 	return EXIT_SUCCESS;
 }

@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <boost/smart_ptr.hpp>	// for boost::scoped_ptr<T>()
+
+using namespace std;
 
 /*
  * An example to show boost smart pointers.
@@ -39,13 +41,13 @@
 class A{
 public:
 	A() {
-		std::cout << "in constructor" << std::endl;
+		cout << "in constructor" << endl;
 	}
 	~A() {
-		std::cout << "in destructor" << std::endl;
+		cout << "in destructor" << endl;
 	}
 	void doit() {
-		std::cout << "doing something" << std::endl;
+		cout << "doing something" << endl;
 	}
 };
 

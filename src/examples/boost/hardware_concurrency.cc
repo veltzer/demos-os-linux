@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <boost/thread.hpp>	// for boost::thread::hardware_concurrency()
+
+using namespace std;
 
 /*
  * A simple boost threads app
@@ -32,6 +34,6 @@
 
 int main() {
 	size_t n_threads = boost::thread::hardware_concurrency();
-	std::cout << "boost::thread::hardware_concurrency is " << n_threads << std::endl;
+	cout << "boost::thread::hardware_concurrency is " << n_threads << endl;
 	return EXIT_SUCCESS;
 }

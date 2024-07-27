@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for atoi(3)
-#include <iostream>	// for std::cerr, std::endl
+#include <cstdlib>	// for atoi(3)
+#include <iostream>	// for cerr, endl
+
+using namespace std;
 
 /*
  * This example shows how to use compile time constants which
@@ -26,7 +28,7 @@
  * still present one API.
  */
 static inline int _sum(int i) {
-	// std::cerr << "in _sum for " << i << std::endl;
+	// cerr << "in _sum for " << i << endl;
 	return i *(i + 1) / 2;
 }
 
@@ -49,12 +51,12 @@ static inline int sum(int i) {
 }
 
 int main() {
-	std::cerr << "sum for 99 is " << sum(99) << " and should be " << _sum(99) << std::endl;
+	cerr << "sum for 99 is " << sum(99) << " and should be " << _sum(99) << endl;
 	int j=atoi("100");
-	std::cerr << "sum for j=100 and the compiler does not know it is " << sum(j) << " and should be " << _sum(100) << std::endl;
-	std::cerr << "sum for 100 is " << sum(100) << " and should be 5051 (this is the important example!)" << std::endl;
+	cerr << "sum for j=100 and the compiler does not know it is " << sum(j) << " and should be " << _sum(100) << endl;
+	cerr << "sum for 100 is " << sum(100) << " and should be 5051 (this is the important example!)" << endl;
 	int x=100;
-	std::cerr << "sum for x=100 and the compiler knows it is " << sum(x) << " and should be 5051 (this is the important example!)" << std::endl;
-	std::cerr << "sum for 101 is " << sum(101) << " and should be " << _sum(101) << std::endl;
+	cerr << "sum for x=100 and the compiler knows it is " << sum(x) << " and should be 5051 (this is the important example!)" << endl;
+	cerr << "sum for 101 is " << sum(101) << " and should be " << _sum(101) << endl;
 	return EXIT_SUCCESS;
 }

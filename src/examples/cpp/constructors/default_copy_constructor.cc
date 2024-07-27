@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
-#include <future>	// for std::future
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <future>	// for future
+
+using namespace std;
 
 /*
  * This example shows that you get a free copy constructor for any class you write
@@ -34,7 +36,7 @@ public:
 	Foo(int ia) : a(ia) {
 	}
 	void print() {
-		std::cout << a << std::endl;
+		cout << a << endl;
 	}
 };
 

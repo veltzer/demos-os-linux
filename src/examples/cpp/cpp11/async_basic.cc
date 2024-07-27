@@ -17,9 +17,11 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
-#include <future>	// for std::future
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <future>	// for future
+
+using namespace std;
 
 /*
  * This is a basic example of C++11 async tasks.
@@ -30,11 +32,11 @@
 
 int main() {
 	// called_from_async launched in a separate thread if possible
-	std::future<int> result(std::async([](int m, int n) {
+	future<int> result(async([](int m, int n) {
 		return m + n;
 		}, 2, 4));
-	std::cout << "Message from main" << std::endl;
+	cout << "Message from main" << endl;
 	// retrive and print the value stored in the future
-	std::cout << result.get() << std::endl;
+	cout << result.get() << endl;
 	return EXIT_SUCCESS;
 }

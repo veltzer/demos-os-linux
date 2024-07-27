@@ -17,9 +17,9 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
-#include <future>	// for std::future
+#include <cstdlib>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <future>	// for future
 
 /*
  * This example shows that you get a free constructor for any class you write

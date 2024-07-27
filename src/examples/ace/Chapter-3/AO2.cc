@@ -24,6 +24,9 @@
 #include <ace/Task.h>
 #include <ace/Future.h>
 #include <ace/Auto_Ptr.h>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
@@ -95,7 +98,7 @@ public:
 		ACE_TRACE("Scheduler::svc");
 		while(true) {
 			// Dequeue the next method object
-			std::unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
+			unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
 			// Invoke the method request.
 			if(request->call()==-1) {
 				break;
@@ -165,5 +168,5 @@ int main() {
 		results[i].attach(&cb);
 	}
 	ACE_Thread_Manager::instance()->wait();
-	return 0;
+	return EXIT_SUCCESS;
 }

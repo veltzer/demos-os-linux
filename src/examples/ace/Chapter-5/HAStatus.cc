@@ -28,8 +28,10 @@
 #include <ace/SOCK_Stream.h>
 #include <ace/Synch.h>
 #include <ace/Signal.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>	// for EXIT_SUCCESS
 #include <memory>
+
+using namespace std;
 
 /*
  * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
@@ -89,7 +91,7 @@ int ClientAcceptor::open(const ACE_INET_Addr& listen_addr) {
 int ClientAcceptor::handle_input(ACE_HANDLE) {
 	ClientService* client;
 	ACE_NEW_RETURN(client, ClientService, -1);
-	std::unique_ptr<ClientService> p(client);
+	unique_ptr<ClientService> p(client);
 	if(this->acceptor_.accept(client->peer())==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Failed to accept "), -1);
 	}

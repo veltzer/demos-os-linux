@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * Example of auto from the c++ standard.
@@ -28,6 +30,6 @@
 
 int main() {
 	auto pi=3.14;
-	std::cout << "pi is " << pi << std::endl;
+	cout << "pi is " << pi << endl;
 	return EXIT_SUCCESS;
 }

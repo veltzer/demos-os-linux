@@ -24,7 +24,9 @@
 #include <ace/Task.h>
 #include <ace/Future.h>
 #include <ace/Auto_Ptr.h>
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
@@ -96,7 +98,7 @@ public:
 		while(true) {
 			// Dequeue the next method object
 			ACE_DEBUG((LM_DEBUG, "%N - In Scheduler::svc waiting for queue data dequeue\n"));
-			std::unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
+			unique_ptr<ACE_Method_Request> request(this->activation_queue_.dequeue());
 			// Invoke the method request.
 			if(request->call()==-1) {
 				break;
