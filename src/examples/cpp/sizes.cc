@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * This example investigates the sizeof() of C++ object.
@@ -44,7 +46,7 @@ public:
 
 	void dosomething() {
 		for(int i=0; i<4; i++) {
-			std::cout << "Hello from A, i is " << i << std::endl;
+			cout << "Hello from A, i is " << i << endl;
 		}
 	}
 	virtual~A() {
@@ -57,7 +59,7 @@ public:
 	char f;
 	void dosomething() {
 		for(int i=0; i<4; i++) {
-			std::cout << "Hello from B, i is " << i << std::endl;
+			cout << "Hello from B, i is " << i << endl;
 		}
 	}
 };
@@ -70,16 +72,16 @@ struct empty{
 };
 
 int main() {
-	std::cout << "sizeof(A) is " << sizeof(A) << std::endl;
-	std::cout << "sizeof(B) is " << sizeof(B) << std::endl;
-	std::cout << "sizeof(C) is " << sizeof(C) << std::endl;
-	std::cout << "sizeof(struct empty) is " << sizeof(struct empty) << std::endl;
-	// std::cout << "__builtin_offsetof(e,B) " << __builtin_offsetof(e,B) << std::endl;
-	std::cout << "CppOffsetOf(B,e) " << CppOffsetOf(B, e) << std::endl;
-	std::cout << "CppOffsetOf(A,a) " << CppOffsetOf(A, a) << std::endl;
-	std::cout << "CppOffsetOf(A,b) " << CppOffsetOf(A, b) << std::endl;
-	std::cout << "CppOffsetOf(A,c) " << CppOffsetOf(A, c) << std::endl;
-	std::cout << "CppOffsetOf(A,d) " << CppOffsetOf(A, d) << std::endl;
+	cout << "sizeof(A) is " << sizeof(A) << endl;
+	cout << "sizeof(B) is " << sizeof(B) << endl;
+	cout << "sizeof(C) is " << sizeof(C) << endl;
+	cout << "sizeof(struct empty) is " << sizeof(struct empty) << endl;
+	// cout << "__builtin_offsetof(e,B) " << __builtin_offsetof(e,B) << endl;
+	cout << "CppOffsetOf(B,e) " << CppOffsetOf(B, e) << endl;
+	cout << "CppOffsetOf(A,a) " << CppOffsetOf(A, a) << endl;
+	cout << "CppOffsetOf(A,b) " << CppOffsetOf(A, b) << endl;
+	cout << "CppOffsetOf(A,c) " << CppOffsetOf(A, c) << endl;
+	cout << "CppOffsetOf(A,d) " << CppOffsetOf(A, d) << endl;
 
 	A* a=new A();
 	a->dosomething();

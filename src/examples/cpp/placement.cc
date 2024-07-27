@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <stdlib.h>	// for malloc(3), free(3), EXIT_SUCCESS
-#include <iostream>	// for std::cout, std::endl
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
 
 /*
  * This example shows how to use the C++ operator new placement
@@ -51,10 +53,10 @@ public:
 	}
 
 	void* operator new(size_t size, double) {
-		std::cout << "in new operator" << std::endl;
-		std::cout << "size is " << size << std::endl;
+		cout << "in new operator" << endl;
+		cout << "size is " << size << endl;
 		void* pointer=malloc(size);
-		std::cout << "pointer is " << pointer << std::endl;
+		cout << "pointer is " << pointer << endl;
 		// next two lines have no effect since the constructor
 		// will be called and will override it
 		// A *p=(A *)pointer;
@@ -65,55 +67,55 @@ public:
 	// this is for allocating arrays, the size that you get
 	// is SizeOfObject*NumOfObjects...
 	void* operator new[] (const size_t size) {
-		std::cout << "in new[] operator" << std::endl;
-		std::cout << "size is " << size << std::endl;
+		cout << "in new[] operator" << endl;
+		cout << "size is " << size << endl;
 		void* pointer=malloc(size);
-		std::cout << "pointer is " << pointer << std::endl;
+		cout << "pointer is " << pointer << endl;
 		return pointer;
 	}
 
 	// notice that this does NOT get called...
 	void operator delete[] (void* pointer) {
-		std::cout << "in delete[] operator" << std::endl;
-		std::cout << "pointer is " << pointer << std::endl;
+		cout << "in delete[] operator" << endl;
+		cout << "pointer is " << pointer << endl;
 		free(pointer);
 	}
 
 	void* operator new(size_t size) {
-		std::cout << "in new operator" << std::endl;
-		std::cout << "size is " << size << std::endl;
+		cout << "in new operator" << endl;
+		cout << "size is " << size << endl;
 		// void* pointer=new char[size];
 		void* pointer=malloc(size);
-		std::cout << "pointer is " << pointer << std::endl;
+		cout << "pointer is " << pointer << endl;
 		return pointer;
 	}
 
 	void operator delete(void* pointer) {
-		std::cout << "in delete operator" << std::endl;
-		std::cout << "pointer is " << pointer << std::endl;
+		cout << "in delete operator" << endl;
+		cout << "pointer is " << pointer << endl;
 		free(pointer);
 	}
 };
 
 int main() {
-	std::cout << "heap no arguments example" << std::endl;
+	cout << "heap no arguments example" << endl;
 	A* a=new A();
 
-	std::cout << "a->val is " << a->val << std::endl;
+	cout << "a->val is " << a->val << endl;
 #pragma GCC diagnostic ignored "-Wmismatched-new-delete"
 	delete a;
 
-	std::cout << "heap arguments example" << std::endl;
+	cout << "heap arguments example" << endl;
 	A* b=new(5.5)A();
-	std::cout << "b->val is " << b->val << std::endl;
+	cout << "b->val is " << b->val << endl;
 #pragma GCC diagnostic ignored "-Wmismatched-new-delete"
 	delete b;
 
-	std::cout << "many heap no arguments example" << std::endl;
+	cout << "many heap no arguments example" << endl;
 	const unsigned int num_objs=5;
 	A* e=new A[num_objs];
 	for(unsigned int i=0; i<num_objs; i++) {
-		std::cout << i << " " << "e->val is " << e[i].val << std::endl;
+		cout << i << " " << "e->val is " << e[i].val << endl;
 	}
 	delete[] e;
 
@@ -123,13 +125,13 @@ int main() {
 	// could you write a C++ object which can be used ONLY on the stack
 	// or conversly ONLY on the heap using this property ?!?
 
-	std::cout << "stack no arguments example" << std::endl;
+	cout << "stack no arguments example" << endl;
 	A c;
-	std::cout << "c.val is " << c.val << std::endl;
+	cout << "c.val is " << c.val << endl;
 
-	std::cout << "stack arguments example" << std::endl;
+	cout << "stack arguments example" << endl;
 	A d(6.7);
 
-	std::cout << "d.val is " << d.val << std::endl;
+	cout << "d.val is " << d.val << endl;
 	return EXIT_SUCCESS;
 }

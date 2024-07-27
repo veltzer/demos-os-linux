@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 /*
  * Demo that shows sizes of very small objects in C++
@@ -71,15 +73,15 @@ class IntShort{
 };
 
 int main() {
-	std::cout << "Empty: " << sizeof(Empty) << std::endl;
-	std::cout << "Char: " << sizeof(Char) << std::endl;
-	std::cout << "Short: " << sizeof(Short) << std::endl;
-	std::cout << "TwoChars: " << sizeof(TwoChars) << std::endl;
-	std::cout << "CharInt: " << sizeof(CharInt) << std::endl;
-	std::cout << "IntChar: " << sizeof(IntChar) << std::endl;
-	std::cout << "CharIntChar: " << sizeof(CharIntChar) << std::endl;
-	std::cout << "CharCharInt: " << sizeof(CharCharInt) << std::endl;
-	std::cout << "ShortInt: " << sizeof(ShortInt) << std::endl;
-	std::cout << "IntShort: " << sizeof(IntShort) << std::endl;
+	cout << "Empty: " << sizeof(Empty) << endl;
+	cout << "Char: " << sizeof(Char) << endl;
+	cout << "Short: " << sizeof(Short) << endl;
+	cout << "TwoChars: " << sizeof(TwoChars) << endl;
+	cout << "CharInt: " << sizeof(CharInt) << endl;
+	cout << "IntChar: " << sizeof(IntChar) << endl;
+	cout << "CharIntChar: " << sizeof(CharIntChar) << endl;
+	cout << "CharCharInt: " << sizeof(CharCharInt) << endl;
+	cout << "ShortInt: " << sizeof(ShortInt) << endl;
+	cout << "IntShort: " << sizeof(IntShort) << endl;
 	return EXIT_SUCCESS;
 }

@@ -17,8 +17,10 @@
  */
 
 #include <firstinclude.h>
-#include <iostream>	// for std::cout, std::endl
-#include <stdlib.h>	// for EXIT_SUCCESS
+#include <iostream>	// for cout, endl
+#include <cstdlib>	// for EXIT_SUCCESS
+
+using namespace std;
 
 /*
  * watch these macros and see if you can figure out what they do...
@@ -80,42 +82,42 @@ public:
 };
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	cout << "Hello, World!" << endl;
 	// this will print out 1 just because an object needs to take at least
 	// one byte of ram...
-	std::cout << "sizeof(NameEmpty) is " << sizeof(NameEmpty) << std::endl;
+	cout << "sizeof(NameEmpty) is " << sizeof(NameEmpty) << endl;
 	// this yet again proves the previous point by showing that if we have just
 	// one single character the previous character goes away
-	std::cout << "sizeof(NameOnechar) is " << sizeof(NameOnechar) << std::endl;
+	cout << "sizeof(NameOnechar) is " << sizeof(NameOnechar) << endl;
 	// this shows that two characters are packed (=2)
-	std::cout << "sizeof(NameTwochar) is " << sizeof(NameTwochar) << std::endl;
+	cout << "sizeof(NameTwochar) is " << sizeof(NameTwochar) << endl;
 	// this shows that having virtual functions adds the pointer to the vtable
 	// which is 4 bytes
-	std::cout << "sizeof(NameOnevirt) is " << sizeof(NameOnevirt) << std::endl;
+	cout << "sizeof(NameOnevirt) is " << sizeof(NameOnevirt) << endl;
 	// this shows that having multiple virtual functions does NOT increase the
 	// size of your object (you only hold a pointer to the vtable...)
-	std::cout << "sizeof(NameTwovirt) is " << sizeof(NameTwovirt) << std::endl;
+	cout << "sizeof(NameTwovirt) is " << sizeof(NameTwovirt) << endl;
 	// this shows that even inheritance from a class which has virtual functions
 	// does not add size
-	std::cout << "sizeof(NameSimpleInherit) is " << sizeof(NameSimpleInherit) << std::endl;
+	cout << "sizeof(NameSimpleInherit) is " << sizeof(NameSimpleInherit) << endl;
 	// same for inheriting from a class that has more than one virtual function...
-	std::cout << "sizeof(NameSimpleInherit2) is " << sizeof(NameSimpleInherit2) << std::endl;
+	cout << "sizeof(NameSimpleInherit2) is " << sizeof(NameSimpleInherit2) << endl;
 	// this shows that a derived object from two virtual objects holds TWO virtual table
 	// pointers
-	std::cout << "sizeof(NameMultInherit) is " << sizeof(NameMultInherit) << std::endl;
+	cout << "sizeof(NameMultInherit) is " << sizeof(NameMultInherit) << endl;
 	// this shows the use of the CppOffsetOf macro we defined above and that the first
 	// field comes right after the vtable pointer...
-	std::cout << "CppOffsetOf(NameOneVirtOneField,x) is " << CppOffsetOf(NameOneVirtOneField, x) << std::endl;
+	cout << "CppOffsetOf(NameOneVirtOneField,x) is " << CppOffsetOf(NameOneVirtOneField, x) << endl;
 	// now lets see what happends of we have more than one field...
-	std::cout << "CppOffsetOf(NameOneVirtTwoField,y) is " << CppOffsetOf(NameOneVirtTwoField, y) << std::endl;
+	cout << "CppOffsetOf(NameOneVirtTwoField,y) is " << CppOffsetOf(NameOneVirtTwoField, y) << endl;
 	// the next prints prove that the object is laid out this way: vtable for parent 1, data for
 	// parent 1, vtable for parent 2, data for parent 2, ...
 
-	std::cout << "CppOffsetOf(NameFMultInherit,x) is " << CppOffsetOf(NameFMultInherit, x) << std::endl;
-	std::cout << "CppOffsetOf(NameFMultInherit,m) is " << CppOffsetOf(NameFMultInherit, m) << std::endl;
-	std::cout << "CppOffsetOf(NameFMultInherit,y) is " << CppOffsetOf(NameFMultInherit, y) << std::endl;
-	std::cout << "CppOffsetOf(NameFMultInherit,z) is " << CppOffsetOf(NameFMultInherit, z) << std::endl;
-	std::cout << "CastOffsetOf(NameFMultInherit,NameOneVirtOneField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtOneField) << std::endl;
-	std::cout << "CastOffsetOf(NameFMultInherit,NameOneVirtTwoField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtTwoField) << std::endl;
+	cout << "CppOffsetOf(NameFMultInherit,x) is " << CppOffsetOf(NameFMultInherit, x) << endl;
+	cout << "CppOffsetOf(NameFMultInherit,m) is " << CppOffsetOf(NameFMultInherit, m) << endl;
+	cout << "CppOffsetOf(NameFMultInherit,y) is " << CppOffsetOf(NameFMultInherit, y) << endl;
+	cout << "CppOffsetOf(NameFMultInherit,z) is " << CppOffsetOf(NameFMultInherit, z) << endl;
+	cout << "CastOffsetOf(NameFMultInherit,NameOneVirtOneField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtOneField) << endl;
+	cout << "CastOffsetOf(NameFMultInherit,NameOneVirtTwoField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtTwoField) << endl;
 	return EXIT_SUCCESS;
 }
