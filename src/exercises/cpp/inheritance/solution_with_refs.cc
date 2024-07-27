@@ -17,6 +17,7 @@
  */
 
 #include <firstinclude.h>
+#include <functional>
 #include <iostream>
 #include <cstdlib>
 #include <vector>
