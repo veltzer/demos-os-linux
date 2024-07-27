@@ -440,22 +440,30 @@ check_no_symlinks:
 check_check_header:
 	$(info doing [$@])
 	$(Q)git grep include -- "*.c" "*.cc" "*.h" "*.hh" | grep us_helper | pymakehelper no_err grep CHECK
+.PHONY: check_return
 check_return:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -P "\s+return\(" -- "*.c" "*.cc" "*.h" "*.hh"
+.PHONY: check_braces
 check_braces:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep -P -l '^\{' -- "src/{examples,examples_standalone,exercises,exercises_standalone,include,tests}/**"
+.PHONY: check_ace
 check_ace:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep ACE_TMAIN -- "src/**"
 	$(Q)pymakehelper no_err git grep ACE_TCHAR -- "src/**"
 	$(Q)pymakehelper no_err git grep ACE_TEXT -- "src/**"
+.PHONY: check_colons
 check_colons:
 	$(info doing [$@])
 	$(Q)pymakehelper no_err git grep " : " -- "src/**"
+.PHONY: check_no_std
+check_no_std:
+	$(info doing [$@])
+	$(Q)pymakehelper no_err git grep -l "std::" -- "src/**"
 .PHONY: check_all 
-check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return check_braces check_ace scripts/check_have_solutions.py
+check_all: check_ws check_ace_include check_include check_license check_exit check_firstinclude check_perror check_check check_fixme check_while1 check_usage check_pthread check_usage_2 check_exitzero check_check_header check_for check_semisemi check_return check_braces check_ace scripts/check_have_solutions.py check_no_std
 	$(info doing [$@])
 	$(Q)scripts/check_have_solutions.py
 
