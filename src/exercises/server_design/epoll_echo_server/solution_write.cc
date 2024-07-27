@@ -26,8 +26,10 @@
 #include <unistd.h>	// for read(2), close(2), write(2)
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_IN_RANGE(), CHECK_INT()
 #include <network_utils.h>	// for get_backlog()
-#include <map>	// for std::map<T1,T2>, std::map<T1,T2>::iterator
+#include <map>	// for map<T1,T2>, map<T1,T2>::iterator
 #include <CircularPipe.hh>	// for CircularPipe:Object
+
+using namespace std;
 
 /*
  * This is a solution to the echo server exercise which handles async writes.
@@ -92,7 +94,7 @@ int main(int argc, char** argv) {
 	CHECK_NOT_M1(epoll_ctl(epollfd, EPOLL_CTL_ADD, sockfd, &ev));
 
 	// data structures
-	std::map<int, CircularPipe*> fdbuffermap;
+	map<int, CircularPipe*> fdbuffermap;
 
 	// message to the user
 	printf("contact me at host %s port %d\n", host, port);

@@ -26,8 +26,10 @@
 #include <unistd.h>	// for read(2), close(2), write(2)
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_IN_RANGE(), CHECK_INT()
 #include <network_utils.h>	// for get_backlog()
-#include <map>	// for std::map<T1,T2>, std::map<T1,T2>::iterator
+#include <map>	// for map<T1,T2>, map<T1,T2>::iterator
 #include <sys/timerfd.h>// for timerfd_create(2), timerfd_settime(2), timerfd_gettime(2)
+
+using namespace std;
 
 /*
  * This is a solution to the echo server exercise with timeouts for connections.
@@ -56,8 +58,8 @@ int main(int argc, char** argv) {
 	const unsigned int maxevents=atoi(argv[3]);
 
 	// data structures
-	std::map<int, int> fdmap;
-	std::map<int, int> timermap;
+	map<int, int> fdmap;
+	map<int, int> timermap;
 
 	// lets open the socket
 	int sockfd=CHECK_NOT_M1(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));
