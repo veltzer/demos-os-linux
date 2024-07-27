@@ -6,8 +6,10 @@
 		Stat.hh, Selector.hh etc...
 
 - includes:
-	#include <stdio.h> // for printf(3)
+	#include <stdio.h>
 	* space after the include keyword
+	* do not put // for [symbol] after the include, we can do that automatically later
+	in C++ files using cstdlib, cstdio, ...
 - first include in every file should be:
 	#include <firstinclude.h>
 - return from main:
@@ -16,6 +18,7 @@
 - main prototype:
 	int main(int argc,char** argv,char** envp) {
 	}
+	if it's used.
 - functions and braces open on the same line:
 	int add(int a,int b) {
 		return a+b;
