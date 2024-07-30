@@ -8,7 +8,7 @@ int main() {
 	DIR* p=opendir(".");
 	assert(p!=NULL);
 	struct dirent* current;
-	while(current=readdir(p)) {
+	while((current=readdir(p))) {
 		printf("got file [%s]\n", current->d_name);
 		struct stat statbuf;
 		int res=stat(current->d_name, &statbuf);
