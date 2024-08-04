@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 	long long sum=0;
 	int delay=0;
 	int current_rand;
-	const int LIMIT=10000;
+	const int LIMIT=1;
 	for(unsigned int i=0; i<100000000; i++) {
 		if(miss) {
 			if(delay==0) {
