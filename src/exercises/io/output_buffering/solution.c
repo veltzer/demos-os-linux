@@ -10,7 +10,7 @@ int main() {
 	int number_of_items=fwrite(buf, sizeof(buf), 1, f);
 	assert(number_of_items==1);
 	fflush(f);
-	int y=5/0;
+	//int y=5/0;
 	int ret=fclose(f);
 	assert(ret==0);
 }

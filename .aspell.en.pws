@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1017 
+personal_ws-1.1 en 1020 
 AARRR
 ACLs
 ADPlus
@@ -726,6 +726,7 @@ execve
 extensibility
 facter
 facto
+fclose
 fd
 fdisk
 fds
@@ -733,6 +734,7 @@ fifo
 filesystem
 filesystems
 flinger
+fopen
 foreach
 formatters
 formjacking
@@ -743,6 +745,7 @@ ftrace
 functors
 futex
 futexes
+fwrite
 gRPC
 gcd
 gdb
