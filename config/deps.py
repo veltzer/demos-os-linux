@@ -340,6 +340,7 @@ packages=[
     f"libboost{ver_boost_short}-dev",
     f"libboost-thread{ver_boost}",
     f"libboost-system{ver_boost}",
+    "libboost-all-dev",
     "libpcap-dev",
     # asound lib
     f"libasound{ver_asound}",
