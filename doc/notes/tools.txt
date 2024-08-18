@@ -136,7 +136,7 @@ profilers:
 	(1) valgrind - a suite of tools for debugging and profiling programs
 	(1) google-pprof - manual page for google-pprof (part of gperftools)
 
-core dumps:
+debuggers and core files:
 	(1) CGDB - curses based frontend to GDB
 	(1) eclipse - extensible tool platform and Java IDE
 	(1) xxgdb - X window system interface to the gdb debugger.
@@ -146,6 +146,7 @@ core dumps:
 		comes from the same package as gdb(1) (gdb)
 	(1) gcore - Generate a core file of a running program
 	(1) resolve_stack_dump - resolve numeric stack trace dump to symbols
+	(1) radare2 — Advanced command-line hexadecimal editor, disassembler and debugger
 
 elfs:
 	(1) pahole - Shows and manipulates data structure layout.
