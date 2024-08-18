@@ -148,6 +148,9 @@ debuggers and core files:
 	(1) resolve_stack_dump - resolve numeric stack trace dump to symbols
 	(1) radare2 — Advanced command-line hexadecimal editor, disassembler and debugger
 
+binary patching:
+	(1) Ghidra (not in ubuntu store).
+
 elfs:
 	(1) pahole - Shows and manipulates data structure layout.
 
