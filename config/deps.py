@@ -42,6 +42,7 @@ ver_dw = None
 ver_asm = None
 ver_papi = None
 ver_openmpi = None
+ver_boost_short = None
 desktop = platform.freedesktop_os_release()
 VERSION_ID = desktop["VERSION_ID"]
 if VERSION_ID == "22.04":
