@@ -15,9 +15,6 @@ opt_do_compilers=True
 # do we want kernel related tools?
 opt_do_kernel_tools=False
 
-ver_boost_short = "1.74"
-ver_boost=ver_boost_short+".0"
-ver_unwind = "8"
 
 release=os.uname().release
 short_release=release[:release.rfind("-")]
@@ -59,6 +56,7 @@ if VERSION_ID == "22.04":
     ver_asm = "1"
     ver_asound = "2"
     ver_openmpi = "3"
+    ver_boost_short = "1.74"
 if VERSION_ID == "22.10":
     ver_papi = "6.0"
     ver_unwind = "-15"
@@ -72,6 +70,7 @@ if VERSION_ID == "22.10":
     ver_asm = "1"
     ver_asound = "2"
     ver_openmpi = "3"
+    ver_boost_short = "1.74"
 if VERSION_ID == "23.04":
     ver_papi = "7.0"
     ver_event = "2.1-7a"
@@ -84,6 +83,7 @@ if VERSION_ID == "23.04":
     ver_asm = "1"
     ver_asound = "2"
     ver_openmpi = "3"
+    ver_boost_short = "1.74"
 if VERSION_ID == "23.10":
     ver_papi = "7.0"
     ver_event = "2.1-7"
@@ -96,6 +96,7 @@ if VERSION_ID == "23.10":
     ver_asm = "1"
     ver_asound = "2"
     ver_openmpi = "3"
+    ver_boost_short = "1.74"
 if VERSION_ID == "24.04":
     ver_papi = "7.1t64"
     ver_event = "2.1-7t64"
@@ -108,6 +109,9 @@ if VERSION_ID == "24.04":
     ver_asm = "1t64"
     ver_asound = "2t64"
     ver_openmpi = "3t64"
+    ver_boost_short = "1.83"
+ver_boost=ver_boost_short+".0"
+ver_unwind = "8"
 
 packages_kernels=[
 ]
