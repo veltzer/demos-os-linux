@@ -1,0 +1,7 @@
+
+
+
+	BIOS -> load bootloader and runs it -> booloader loads the kernel and transfers control to it
+
+
+	* runs -> transfers control to
