@@ -48,6 +48,11 @@ it here http://man7.org/tlpi/code/.
 * https://github.com/dev-area/linux
 * https://github.com/tsuna/contextswitch
 * https://github.com/gurugio/lowlevelprogramming-university
+* https://github.com/devendranaga/linux-systems-programming-with-c
+* https://github.com/devendranaga/gists
+* https://github.com/PacktPublishing/Linux-Kernel-Programming
+* https://github.com/beejjorgensen/bgnet
+* https://github.com/yuzhidi/AdvancedLinuxProgramming
 
 ${"##"} Using it
 * you need python on your machine:

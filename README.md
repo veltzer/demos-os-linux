@@ -21,7 +21,7 @@ who want to explore the Linux C/C++ API.
 
 ## Number of examples and their selection
 
-Currently there are 1043 examples in this repo.
+Currently there are 1044 examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
@@ -62,6 +62,11 @@ it here http://man7.org/tlpi/code/.
 * https://github.com/dev-area/linux
 * https://github.com/tsuna/contextswitch
 * https://github.com/gurugio/lowlevelprogramming-university
+* https://github.com/devendranaga/linux-systems-programming-with-c
+* https://github.com/devendranaga/gists
+* https://github.com/PacktPublishing/Linux-Kernel-Programming
+* https://github.com/beejjorgensen/bgnet
+* https://github.com/yuzhidi/AdvancedLinuxProgramming
 
 ## Using it
 * you need python on your machine:
