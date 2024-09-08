@@ -67,6 +67,9 @@ it here http://man7.org/tlpi/code/.
 * https://github.com/PacktPublishing/Linux-Kernel-Programming
 * https://github.com/beejjorgensen/bgnet
 * https://github.com/yuzhidi/AdvancedLinuxProgramming
+* https://github.com/Light-City/CPlusPlusThings
+* https://github.com/AnthonyCalandra/modern-cpp-features
+* https://github.com/angrave/SystemProgramming/wiki
 
 ## Using it
 * you need python on your machine:
