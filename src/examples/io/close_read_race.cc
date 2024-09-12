@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <fcntl.h>
+#include <err_utils.h>
 
 /*
  * This is a standard pthread demo.
@@ -19,7 +20,7 @@
 
 int fd;
 
-static void* closer(void* p) {
+static void* closer(void*) {
 	/* This is the thread that closes the file descritor */
 	sleep(10);
 	int ret=close(3);
@@ -29,13 +30,12 @@ static void* closer(void* p) {
 	return NULL;
 }
 
-static void* reader(void* p) {
+static void* reader(void*) {
 	char buf[10];
 	while(1) {
-		int count=read(3, buf, 10);
-		assert(count!=-1);
-		write(1, "got data!\n", 10);
-		write(1, buf, count);
+		int count=CHECK_NOT_M1(read(3, buf, 10));
+		CHECK_NOT_M1(write(1, "got data!\n", 10));
+		CHECK_NOT_M1(write(1, buf, count));
 	}
 	return NULL;
 }

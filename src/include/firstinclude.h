@@ -41,13 +41,17 @@
  * needed for
  * big files
  */
+#ifndef _LARGEFILE64_SOURCE
 #define _LARGEFILE64_SOURCE
+#endif // _LARGEFILE64_SOURCE
 
 /*
  * needed for
  * REG_EIP from ucontext.h
  */
+#ifndef __USE_GNU
 #define __USE_GNU
+#endif // __USE_GNU
 
 /*
  * needed for
