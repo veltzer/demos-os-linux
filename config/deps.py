@@ -37,6 +37,7 @@ ver_ncurses = None
 lib_wx = None
 ver_asound = None
 ver_urcu = None
+ver_cds = None
 ver_elf = None
 ver_dw = None
 ver_asm = None
@@ -52,6 +53,7 @@ if VERSION_ID == "22.04":
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
     ver_ncurses = "5"
     ver_urcu = "8"
+    ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
@@ -66,6 +68,7 @@ if VERSION_ID == "22.10":
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
     ver_ncurses = "5"
     ver_urcu = "8"
+    ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
@@ -79,6 +82,7 @@ if VERSION_ID == "23.04":
     lib_wx = f"libwxgtk{ver_wxgtk}-dev"
     ver_ncurses = "5"
     ver_urcu = "8"
+    ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
@@ -92,6 +96,7 @@ if VERSION_ID == "23.10":
     lib_wx = f"libwxgtk{ver_wxgtk}-dev"
     ver_ncurses = "6"
     ver_urcu = "8"
+    ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
@@ -105,6 +110,7 @@ if VERSION_ID == "24.04":
     lib_wx = "libwxgtk3.2-dev"
     ver_ncurses = "6"
     ver_urcu = "8t64"
+    ver_cds = "2.3.3t64"
     ver_elf = "1t64"
     ver_dw = "1t64"
     ver_asm = "1t64"
@@ -359,6 +365,8 @@ packages=[
     # rcu library
     f"liburcu{ver_urcu}",
     "liburcu-dev",
+    f"libcds{ver_cds}",
+    "libcds-dev",
     f"libunwind{ver_unwind}", # unwind library
     "libunwind-setjmp0", # unwind library
     "libunwind-dev", # unwind library
