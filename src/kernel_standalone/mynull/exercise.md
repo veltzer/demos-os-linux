@@ -1,4 +1,4 @@
-# Write a `/dev/null` like device driver.
+# Write a `/dev/null` like device driver
 
 Use pieces of code from:
 [link](https://github.com/veltzer/demos-linux/tree/master/src/kernel_standalone/mynull)
