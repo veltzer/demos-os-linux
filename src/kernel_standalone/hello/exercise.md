@@ -17,6 +17,6 @@ https://github.com/veltzer/demos-linux
 the example is in:
 	src/kernel_standalone/hello
 
-In order to succeed in insering this module into the kernel you need to either:
+In order to succeed in inserting this module into the kernel you need to either:
 1. Sign this module properly (current not supported by the current makefile)
 2. Disable the secure boot feature of your system (you can find that in the bios).

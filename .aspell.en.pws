@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1020 
+personal_ws-1.1 en 1030 
 AARRR
 ACLs
 ADPlus
@@ -708,6 +708,7 @@ distutils
 dlopen
 dlsym
 dmalloc
+dmesg
 dojo
 du
 dynamiccast
@@ -743,6 +744,7 @@ fsck
 fstab
 ftrace
 functors
+fuser
 futex
 futexes
 fwrite
@@ -771,6 +773,7 @@ initrd
 inittab
 inlined
 inotify
+insmod
 intel
 interoperable
 interprocess
@@ -789,6 +792,7 @@ jenkins
 journaled
 jprobes
 kdb
+kern
 kernelshark
 kexec
 kgdb
@@ -814,6 +818,7 @@ localhost
 lockdep
 lockless
 loopback
+lsmod
 macOS
 magick
 makefile
@@ -830,6 +835,7 @@ mk
 mkdir
 mmap
 mmiotrace
+modinfo
 mortem
 mprotect
 mq
@@ -879,6 +885,7 @@ prem
 preprocessing
 preprocessor
 printArea
+printk
 proactor
 proc
 profiler
@@ -907,6 +914,7 @@ resolvers
 respawn
 retainment
 rmdir
+rmmod
 rpath
 rpcgen
 rspec
@@ -940,6 +948,7 @@ spinlock
 spinlocks
 splunk
 sqlmap
+src
 staticcast
 strace
 struct
@@ -959,6 +968,7 @@ sysprof
 systemd
 tSNE
 tasklet
+tasklets
 taskset
 tcpdump
 tcsh

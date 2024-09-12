@@ -1,4 +1,4 @@
-The idea of this example is to demonstate the "use count" column in "lsmod".
+The idea of this example is to demonstrate the "use count" column in "lsmod".
 Load this module into the kernel,
 use it more than once
 and then see the output of lsmod.

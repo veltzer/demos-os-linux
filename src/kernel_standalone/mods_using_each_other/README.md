@@ -10,6 +10,6 @@ Things to note
 	application (actually it's the insmod(1) program).
 	That is why mod2's use count is 1.
 - mod1's use count is 1 all the time since mod2 insmod.
-	It does not go up to 1 on each api call rather it stays up all
+	It does not go up to 1 on each API call rather it stays up all
 	the time and you have to actually remove mod2 in order to rmmod
 	mod1.
