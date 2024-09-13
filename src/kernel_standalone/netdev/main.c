@@ -47,8 +47,8 @@ static netdev_tx_t my_netdev_xmit(struct sk_buff *skb, struct net_device *netdev
 
 static const struct net_device_ops my_netdev_ops = {
 	.owner = THIS_MODULE,
-	.ndo_open       = my_netdev_open,
-	.ndo_stop       = my_netdev_stop,
+	.ndo_open = my_netdev_open,
+	.ndo_stop = my_netdev_stop,
 	.ndo_start_xmit = my_netdev_xmit,
 	// ... other operations as needed
 };
@@ -72,8 +72,8 @@ static int __init my_netdev_init(void)
 
 static void __exit my_netdev_exit(void)
 {
-    // Find and unregister the net_device
-    // ...
+	// Find and unregister the net_device
+	// ...
 }
 
 module_init(my_netdev_init);

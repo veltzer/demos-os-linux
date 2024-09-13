@@ -20,7 +20,7 @@ def main():
 
     suffixes=[".c",".cc",".h",".hh",".S"]
     bad_suffixes=[".mod.c"]
-    bad_prefixes=["./.venv"]
+    bad_prefixes=["./.venv/", "./gems/"]
     error=False
     root_folder="."
     checked=0
