@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1031 
+personal_ws-1.1 en 1036 
 AARRR
 ACLs
 ADPlus
@@ -400,6 +400,7 @@ PCA
 PCI
 PCM
 PDF
+PHY
 PLT
 PMD
 POSIX
@@ -695,6 +696,7 @@ defconfigs
 deliverables
 deque
 dereferencing
+deregister
 destructor
 destructors
 dev
@@ -849,6 +851,7 @@ mutex
 mutexes
 muxing
 mv
+mybuffer
 nLSTM
 namespace
 namespaces
@@ -876,6 +879,7 @@ perceptron
 perf
 phonebook
 pid
+pipemeter
 pipenv
 polymorphism
 popd
@@ -1000,6 +1004,7 @@ uniq
 unittest
 unmangled
 uring
+usb
 userspace
 valgrind
 variadic
