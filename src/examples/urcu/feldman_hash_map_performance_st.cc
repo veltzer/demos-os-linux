@@ -30,8 +30,8 @@ using namespace std;
 
 // Define a hash map using Michael's hash map from liburcu
 struct KeyVal {
-    int key;
-    int val;
+	int key;
+	int val;
 };
 
 /*
@@ -39,39 +39,39 @@ struct KeyVal {
  */
 
 int main() {
-    // Initialize liburcu
-    cds::Initialize();
-    {
-        // Create an RCU type
-        typedef cds::urcu::gc< cds::urcu::general_instant<> > rcu_type;
-        // Declare the hash table type
-        typedef cds::container::FeldmanHashMap<rcu_type, int, int> hash_map_type;
+	// Initialize liburcu
+	cds::Initialize();
+	{
+		// Create an RCU type
+		typedef cds::urcu::gc< cds::urcu::general_instant<> > rcu_type;
+		// Declare the hash table type
+		typedef cds::container::FeldmanHashMap<rcu_type, int, int> hash_map_type;
 
-        // Create the hash map
-        hash_map_type hashMap;
+		// Create the hash map
+		hash_map_type hashMap;
 
-        auto start_time = chrono::high_resolution_clock::now();
-        // Insert elements
-        for(int i = 0; i < 1000000; ++i) {
-            hashMap.insert(i, i * 10);
-        }
-        auto end_time = chrono::high_resolution_clock::now();
-        auto duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
-        cout << "URCU hash table insert time: " << duration << "ms" << endl;
+		auto start_time = chrono::high_resolution_clock::now();
+		// Insert elements
+		for(int i = 0; i < 1000000; ++i) {
+			hashMap.insert(i, i * 10);
+		}
+		auto end_time = chrono::high_resolution_clock::now();
+		auto duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
+		cout << "URCU hash table insert time: " << duration << "ms" << endl;
 
-        // Lookup elements
-        start_time = chrono::high_resolution_clock::now();
-        for(int i = 0; i < 1000000; ++i) {
-            auto __attribute__((unused)) it = hashMap.find(i, [](pair<const int, int>&) {
-            // You can process the found value here
-            // For simplicity, we don't need to do anything in this example
-	    });
+		// Lookup elements
+		start_time = chrono::high_resolution_clock::now();
+		for(int i = 0; i < 1000000; ++i) {
+			auto __attribute__((unused)) it = hashMap.find(i, [](pair<const int, int>&) {
+			// You can process the found value here
+			// For simplicity, we don't need to do anything in this example
+		});
 	}
-        end_time = chrono::high_resolution_clock::now();
-        duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
-        cout << "URCU hash table lookup time: " << duration << "ms" << endl;
-    }
-    cds::Terminate();
-    return 0;
+		end_time = chrono::high_resolution_clock::now();
+		duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
+		cout << "URCU hash table lookup time: " << duration << "ms" << endl;
+	}
+	cds::Terminate();
+	return EXIT_SUCCESS;
 }
 

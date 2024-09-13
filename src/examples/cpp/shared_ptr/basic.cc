@@ -45,12 +45,12 @@ int main() {
 		cout << "1. Basic shared_ptr usage:" << endl;
 		auto ptr1 = make_shared<Resource>(42);
 		cout << "Reference count: " << ptr1.use_count() << endl;
-		
+
 		{
 			auto ptr2 = ptr1;
 			cout << "Reference count after shared: " << ptr1.use_count() << endl;
 		}
-		
+
 		cout << "Reference count after ptr2 goes out of scope: " << ptr1.use_count() << endl;
 	}
 	cout << endl;
@@ -70,7 +70,7 @@ int main() {
 		resources.push_back(make_shared<Resource>(1));
 		resources.push_back(make_shared<Resource>(2));
 		resources.push_back(make_shared<Resource>(3));
-		
+
 		for(const auto& res : resources) {
 			cout << "Resource value: " << res->getData() << endl;
 		}

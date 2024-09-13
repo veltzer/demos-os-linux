@@ -28,34 +28,34 @@ unordered_map<int, int> hashMap;
 mutex mapMutex;
 
 void insertElements() {
-    for(int i = 0; i < 1000000; ++i) {
-        lock_guard<mutex> lock(mapMutex);
-        hashMap[i] = i * 10;
-    }
+	for(int i = 0; i < 1000000; ++i) {
+		lock_guard<mutex> lock(mapMutex);
+		hashMap[i] = i * 10;
+	}
 }
 
 void lookupElements() {
-    for(int i = 0; i < 1000000; ++i) {
-        lock_guard<mutex> lock(mapMutex);
-        auto __attribute__((unused)) it = hashMap.find(i);
-    }
+	for(int i = 0; i < 1000000; ++i) {
+		lock_guard<mutex> lock(mapMutex);
+		auto __attribute__((unused)) it = hashMap.find(i);
+	}
 }
 
 int main() {
-    auto start_time = chrono::high_resolution_clock::now();
-    // Insert elements
-    insertElements();
-    auto end_time = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
-    cout << "STL unordered_map insert time: " << duration << "ms" << endl;
+	auto start_time = chrono::high_resolution_clock::now();
+	// Insert elements
+	insertElements();
+	auto end_time = chrono::high_resolution_clock::now();
+	auto duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
+	cout << "STL unordered_map insert time: " << duration << "ms" << endl;
 
-    // Lookup elements
-    start_time = chrono::high_resolution_clock::now();
-    lookupElements();
-    end_time = chrono::high_resolution_clock::now();
-    duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
-    cout << "STL unordered_map lookup time: " << duration << "ms" << endl;
+	// Lookup elements
+	start_time = chrono::high_resolution_clock::now();
+	lookupElements();
+	end_time = chrono::high_resolution_clock::now();
+	duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
+	cout << "STL unordered_map lookup time: " << duration << "ms" << endl;
 
-    return 0;
+	return EXIT_SUCCESS;
 }
 

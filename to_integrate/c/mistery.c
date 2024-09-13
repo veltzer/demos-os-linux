@@ -31,9 +31,9 @@ int main() {
 		int val=array[arr[i]];
 		if(val<=prev) {
 			fprintf(stderr, "Boom!\n");
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		prev=val;
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }

@@ -34,7 +34,7 @@ typedef struct _pthread_mq_t {
 int pthread_mq_init(pthread_mq_t* p, int size) {
 	int res;
 	p->size=size;
-	p->data=(int*)malloc(sizeof(int)*size);	
+	p->data=(int*)malloc(sizeof(int)*size);
 	if(p->data==NULL) return 1;
 	p->min=0;
 	p->max=0;
