@@ -1,6 +1,6 @@
 # this is a minimal makefile for demo purposes, keep it that way...
-obj-m:=skeleton.o
-skeleton-objs:=main.o
+obj-m:=blkdev.o
+blkdev-objs:=main.o
 V?=0
 # You could also use W=2 and W=3 for more warnings but most kernel headers
 # fail those...
