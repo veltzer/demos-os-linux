@@ -16,6 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
+
 int main() {
 	while(1) {
 	}

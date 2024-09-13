@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>

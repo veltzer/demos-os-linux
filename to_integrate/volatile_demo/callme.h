@@ -16,5 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
+
 void callme();
 int get_g();

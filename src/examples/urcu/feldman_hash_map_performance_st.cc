@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <urcu.h>
 #include <urcu/rculist.h>
 #include <cds/urcu/general_instant.h>

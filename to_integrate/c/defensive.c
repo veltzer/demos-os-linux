@@ -16,6 +16,8 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
+
 void calculate_blabla(int* array, int count) {
 #ifdef DEBUG_CALCULATE
 	if(array==NULL) {

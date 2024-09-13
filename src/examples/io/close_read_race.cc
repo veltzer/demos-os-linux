@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <pthread.h>	// for pthread_t, pthread_create(3), pthread_join(3), pthread_self(3)
 #include <unistd.h>	// for sleep(3), getpid(2)
 #include <sys/types.h>	// for getpid(2)
