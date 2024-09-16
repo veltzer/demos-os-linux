@@ -30,10 +30,10 @@
 #include <linux/hdreg.h>
 
 #define MEMBLOCK_MAJOR 240
-#define MEMBLOCK_SIZE (1024 * 1024)  // 1MB
+#define MEMBLOCK_SIZE (1024 * 1024) // 1MB
 
 static int memblock_major = MEMBLOCK_MAJOR;
-static int nsectors = MEMBLOCK_SIZE / 512;  // Using 512 as the sector size
+static int nsectors = MEMBLOCK_SIZE / 512; // Using 512 as the sector size
 
 struct memblock_dev {
 	int size;
@@ -71,14 +71,14 @@ static const struct block_device_operations memblock_ops = {
 };
 
 static void memblock_transfer(struct memblock_dev *dev, sector_t sector,
-							  unsigned int nsect, char *buffer, int write)
+							unsigned int nsect, char *buffer, int write)
 {
 	unsigned long offset = sector * 512;
 	unsigned long nbytes = nsect * 512;
 
 	if ((offset + nbytes) > dev->size) {
 		pr_notice("memblock: Beyond-end %s (%lu %u)\n",
-				  (write ? "write" : "read"), offset, nsect);
+				(write ? "write" : "read"), offset, nsect);
 		return;
 	}
 
@@ -139,7 +139,7 @@ static int __init memblock_init(void)
 	}
 
 	int err = blk_mq_alloc_sq_tag_set(&memblock_device->tag_set, &memblock_mq_ops,
-									  64, BLK_MQ_F_SHOULD_MERGE);
+									64, BLK_MQ_F_SHOULD_MERGE);
 	if (err) {
 		unregister_blkdev(memblock_major, "memblock");
 		vfree(memblock_device->data);

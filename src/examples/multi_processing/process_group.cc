@@ -39,9 +39,8 @@ int main() {
 		printf("%d: getppid()=%d\n", getpid(), getppid());
 		printf("%d: getpgrp()=%d\n", getpid(), getpgrp());
 		printf("%d: the parent is dying...\n", getpid());
-		CHECK_NOT_M1(syscall(__NR_exit_group, 0));
-		// does not compile
-		// exit_group(EXIT_SUCCESS);
+		// exit_group does not have a wrapper in glibc
+		CHECK_NOT_M1(syscall(__NR_exit_group, EXIT_SUCCESS));
 	} else {
 		for(int i=0; i<10; i++) {
 			printf("%d: this is the child\n", getpid());

@@ -21,14 +21,10 @@
 #include <disassembly_utils.h>	// for disassemble_main()
 
 /*
- * This is a demo to show how sync_synchronize() is implemented...
- * You should see the __sync_synchronize which is a machine memory barrier
- * translated to a "lock orl" instruction in assembly which is an instruction
- * to the core you are running on to stop reordering writes and reads
- * and drop all cache assumptions.
- * This is an intel instruction and intel only does read/write reordering.
- * So you should see one instruction in the disassembly of this code.
- * And indeed this is what we see.
+ * This is a demo to show what machine instructions are really when
+ * you emit a memory barrier.
+ * We give several example of memory barriers:
+ * sync_synchronize() - "lock orl"
  *
  * Take note that this is a also a compiler barrier. It prevents the compiler
  * from reordering around this code and carrying assumptions across the barrier.
@@ -42,11 +38,19 @@
  * EXTRA_COMPILE_FLAGS=-g3
  */
 
-// don't put static on the next function or the compiler will
-// just make it go away...
-void lock_frenzy() __attribute__((unused, noinline));
-void lock_frenzy() {
+void gcc_intrinsics() __attribute__((unused, noinline));
+void gcc_intrinsics() {
 	__sync_synchronize();
+	__atomic_thread_fence(__ATOMIC_SEQ_CST);
+	__atomic_thread_fence(__ATOMIC_ACQUIRE);
+	__atomic_thread_fence(__ATOMIC_RELEASE);
+	__atomic_thread_fence(__ATOMIC_ACQ_REL);
+	__atomic_thread_fence(__ATOMIC_CONSUME);
+}
+
+void asm_locks() __attribute__((unused, noinline));
+void asm_locks() {
+	asm ("lock orq $0x0, (%esp)");
 	asm ("lock orl $0x0, (%esp)");
 	asm ("lock addl $0x0, (%esp)");
 	asm ("lock xchg (%esp), %esp");
@@ -56,6 +60,7 @@ void lock_frenzy() {
 }
 
 int main() {
-	disassemble_function("lock_frenzy");
+	disassemble_function("gcc_intrinsics");
+	disassemble_function("asm_locks");
 	return EXIT_SUCCESS;
 }
