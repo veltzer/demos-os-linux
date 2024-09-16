@@ -25,6 +25,7 @@
 #include <string.h>	// for strsignal(3)
 #include <sys/types.h>	// for vfork(2)
 #include <unistd.h>	// for vfork(2)
+#include <assert.h>	// for assert(3)
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ZERO()
 #include <multiproc_utils.h>	// for print_code(), print_status()
 
@@ -47,18 +48,21 @@
 int global_data=42;
 
 int main() {
-	TRACE("this is the parent. global_data is %d", global_data);
+	TRACE("this is the parent before the vfork. global_data is %d", global_data);
 	pid_t child_pid=CHECK_NOT_M1(vfork());
 	if (child_pid==0) {
 		TRACE("this is the child");
 		global_data++;
 		// while(true) {
 		// }
-		// CHECK_ZERO(sleep(10));
+		TRACE("child is going to sleep...");
+		CHECK_ZERO(sleep(10));
 		TRACE("child is dying...");
 		_exit(0);
 	} else {
-		TRACE("this is the parent. global_data is %d", global_data);
+		// the parent only gets to run after the child is either dead or execd
+		TRACE("parent is starting...");
+		assert(global_data==43);
 		siginfo_t info;
 		CHECK_NOT_M1(waitid(P_PID, child_pid, &info, WEXITED));
 		print_code(info.si_code);
