@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1037 
+personal_ws-1.1 en 1046 
 AARRR
 ACLs
 ADPlus
@@ -14,6 +14,7 @@ APM
 ASLR
 ASN
 AVD
+Acceptor
 Accessors
 Ack
 ActiveMQ
@@ -312,6 +313,7 @@ Lex
 Lippman
 Liskov
 Liveness
+LockedCounter
 LogStack
 LogStash
 Logstash
@@ -353,6 +355,7 @@ Munters
 NACLS
 NACLs
 NAND
+NCHILDREN
 NCR
 NDK
 NFS
@@ -492,6 +495,7 @@ SREs
 SSL
 SSO
 SSRF
+STDIN
 STDOUT
 STL
 SUID
@@ -629,6 +633,7 @@ architected
 architecting
 archiver
 args
+argv
 async
 atomics
 autotools
@@ -763,6 +768,7 @@ gitignore
 glibc
 gperf
 hashSetOf
+hostname
 hotplug
 icc
 imagePullPolicy
@@ -827,6 +833,7 @@ makefile
 makefiles
 malloc
 mapOf
+maxsize
 mcheck
 md
 medoids
@@ -838,6 +845,7 @@ mkdir
 mmap
 mmiotrace
 modinfo
+modularity
 mortem
 mprotect
 mq
@@ -879,6 +887,7 @@ perceptron
 perf
 phonebook
 pid
+pids
 pipemeter
 pipenv
 polymorphism

@@ -83,7 +83,7 @@ SCRIPT_CHECKPATCH:=$(KDIR)/scripts/checkpatch.pl
 # would be exported and they are pretty long (for instance the source files list...).
 #export
 
-MD_SRC:=$(shell find src/exercises src/kernel_standalone -type f -and -name "*.md")
+MD_SRC:=$(shell find src -type f -and -name "*.md")
 MD_BAS:=$(basename $(MD_SRC))
 MD_MDL:=$(addprefix out/,$(addsuffix .mdl,$(MD_BAS)))
 MD_ASPELL:=$(addprefix out/,$(addsuffix .aspell,$(MD_BAS)))

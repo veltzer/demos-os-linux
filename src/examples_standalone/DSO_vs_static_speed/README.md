@@ -1,3 +1,5 @@
+# DSO vs static linking speed
+
 The cost of calling a function from a Dynamic Shared Object (DSO) compared to static linking is an important consideration in software design and performance optimization. Let's break this down:
 
 Performance Difference:
