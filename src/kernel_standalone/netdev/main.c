@@ -46,7 +46,7 @@ static netdev_tx_t my_netdev_xmit(struct sk_buff *skb, struct net_device *netdev
 // Other necessary functions (e.g., set_mac_address, ioctl, etc.)
 
 static const struct net_device_ops my_netdev_ops = {
-	.owner = THIS_MODULE,
+	// .owner = THIS_MODULE,
 	.ndo_open = my_netdev_open,
 	.ndo_stop = my_netdev_stop,
 	.ndo_start_xmit = my_netdev_xmit,
