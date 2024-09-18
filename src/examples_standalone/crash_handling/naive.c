@@ -126,27 +126,27 @@ void fault_handler (int signal, siginfo_t * siginfo, void* context) {
 	/* Grab time stamp */
 	clock_gettime(CLOCK_REALTIME, &timestamp);
 
-	fprintf (stderr,
-				"\n********************"
-				"\n* EXCEPTION CAUGHT *"
-				"\n********************\n"
-				"Process ID: %d\n"
-				"Thread ID: %d\n"
-				"Exception: %s\n"
-				"Reason: %s\n"
-				"Fault Address: %p\n"
-				"Signal error: %s\n"
-				"Last error: %s\n"
-				"Time stamp: %s",
-				getpid(),
-				gettid(),
-				strsignal(signal),
-				code2str(siginfo->si_code, signal),
-				siginfo->si_addr,
-				strerror(siginfo->si_errno),
-				strerror(errno),
-				ctime(&timestamp.tv_sec)
-		);
+	fprintf(stderr,
+		"\n********************"
+		"\n* EXCEPTION CAUGHT *"
+		"\n********************\n"
+		"Process ID: %d\n"
+		"Thread ID: %d\n"
+		"Exception: %s\n"
+		"Reason: %s\n"
+		"Fault Address: %p\n"
+		"Signal error: %s\n"
+		"Last error: %s\n"
+		"Time stamp: %s",
+		getpid(),
+		gettid(),
+		strsignal(signal),
+		code2str(siginfo->si_code, signal),
+		siginfo->si_addr,
+		strerror(siginfo->si_errno),
+		strerror(errno),
+		ctime(&timestamp.tv_sec)
+	);
 
 	/* Get the backtrace. */
 	num_frames=backtrace(frames, MAX_FRAMES);
@@ -244,7 +244,7 @@ void die(void) {
 /* The test thread function */
 void print_message_function(void* dummy) {
 	/* Latin: "those who about to die sallute you". */
-	printf ("Morituri te salutant!\n");
+	printf("Morituri te salutant!\n");
 	fflush(NULL);
 
 	/* Call the crasher functions */

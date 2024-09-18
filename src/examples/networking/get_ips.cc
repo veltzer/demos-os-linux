@@ -42,11 +42,11 @@ int main() {
 	CHECK_NOT_M1(getifaddrs(&id));
 	while (id->ifa_next != NULL) {
 		id = id->ifa_next;
-		printf ("interface: %s\n", id->ifa_name);
+		printf("interface: %s\n", id->ifa_name);
 		if (id->ifa_addr != NULL) {
 			char afbuf[256];
 			domain_to_str(id->ifa_addr->sa_family, afbuf, sizeof(afbuf));
-			printf ("\ttype %s\n", afbuf);
+			printf("\ttype %s\n", afbuf);
 			if (id->ifa_addr->sa_family == AF_INET || id->ifa_addr->sa_family == AF_INET6) {
 				void* sin;
 				if (id->ifa_addr->sa_family == AF_INET) {
@@ -56,12 +56,12 @@ int main() {
 				}
 				char buf[256];
 				CHECK_NOT_NULL_CONST(inet_ntop(id->ifa_addr->sa_family, sin, buf, sizeof(buf)));
-				printf ("\t%d ip %s\n", id->ifa_addr->sa_family, buf);
+				printf("\t%d ip %s\n", id->ifa_addr->sa_family, buf);
 			} else {
-				printf ("\tis not AF_INET or AF_INET6\n");
+				printf("\tis not AF_INET or AF_INET6\n");
 			}
 		} else {
-			printf ("\tis without address\n");
+			printf("\tis without address\n");
 		}
 	}
 	return EXIT_SUCCESS;

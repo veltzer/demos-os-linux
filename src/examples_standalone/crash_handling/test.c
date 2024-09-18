@@ -127,7 +127,7 @@ void die(void) {
 /* The test thread function */
 void print_message_function(void *dummy) {
 	/* Latin: "those who about to die sallute you". */
-	printf ("Morituri te salutant!\n");
+	printf("Morituri te salutant!\n");
 	fflush(NULL);
 
 	/* Call the crasher functions */

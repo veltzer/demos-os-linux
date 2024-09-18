@@ -162,7 +162,7 @@ static void handle_crash(void) {
 	assert(sizeof(crash_msg->assert_buffer[0])==sizeof(unsigned char));
 
 
-	fprintf (stderr,
+	fprintf(stderr,
 			"\n********************"
 			"\n* EXCEPTION CAUGHT *"
 			"\n********************\n"

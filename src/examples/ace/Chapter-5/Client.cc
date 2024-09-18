@@ -65,7 +65,7 @@ int Client::handle_timeout(const ACE_Time_Value&, const void*) {
 	}
 	ACE_Message_Block *mb;
 	ACE_NEW_RETURN(mb, ACE_Message_Block(128), -1);
-	int nbytes=ACE_OS::sprintf (mb->wr_ptr(), "Iteration %d\n", this->iterations_);
+	int nbytes=ACE_OS::sprintf(mb->wr_ptr(), "Iteration %d\n", this->iterations_);
 	ACE_ASSERT(nbytes > 0);
 	mb->wr_ptr(static_cast<size_t>(nbytes));
 	this->putq(mb);

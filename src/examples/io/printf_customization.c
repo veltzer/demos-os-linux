@@ -46,11 +46,11 @@ int print_widget (FILE *stream, const struct printf_info *info, const void* cons
 
 	/* Format the output into a string. */
 	w = *((const Widget **) (args[0]));
-	len = asprintf (&buffer, "<Widget %p: %s>", (void*)w, w->name);
+	len = asprintf(&buffer, "<Widget %p: %s>", (void*)w, w->name);
 	if (len == -1)
 		return -1;
 	/* Pad to the minimum field width and print to the stream. */
-	len = fprintf (stream, "%*s", (info->left ? -info->width:info->width), buffer);
+	len = fprintf(stream, "%*s", (info->left ? -info->width:info->width), buffer);
 
 	/* Clean up and return. */
 	free (buffer);
@@ -80,9 +80,9 @@ int main() {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wformat"
 	#pragma GCC diagnostic ignored "-Wformat-extra-args"
-	printf ("|%W|\n", &mywidget);
-	printf ("|%35W|\n", &mywidget);
-	printf ("|%-35W|\n", &mywidget);
+	printf("|%W|\n", &mywidget);
+	printf("|%35W|\n", &mywidget);
+	printf("|%-35W|\n", &mywidget);
 	#pragma GCC diagnostic pop
 	return EXIT_SUCCESS;
 }
