@@ -33,6 +33,7 @@
 
 /*
  * An example of doing ICMP, in this case ping, in user space...
+ * You need to run this application with sudo since it uses raw sockets.
  *
  * References:
  * http://www.tenouk.com/Module43a.html
@@ -47,10 +48,12 @@ int main(int argc, char** argv) {
 	int offset;
 	int num=100;
 	if(argc !=4) {
-		printf("%s: usage: %s [saddress] [dstaddress] [number]\n", argv[0], argv[0]);
-		printf("- saddress is the spoofed source address\n");
-		printf("- dstaddress is the target\n");
-		printf("- number is the number of packets to send, 100 is the default\n");
+		fprintf(stderr, "%s: usage: %s [saddress] [dstaddress] [number]\n", argv[0], argv[0]);
+		fprintf(stderr, "You need to use sudo when running this application since it uses raw networking\n");
+		fprintf(stderr, "Example: sudo %s 10.0.0.1 10.0.0.2 100\n", argv[0]);
+		fprintf(stderr, "* saddress is the spoofed source address\n");
+		fprintf(stderr, "* dstaddress is the target\n");
+		fprintf(stderr, "* number is the number of packets to send, 100 is the default\n");
 		exit(EXIT_FAILURE);
 	}
 	/* Copy the packet number */
@@ -109,7 +112,6 @@ int main(int argc, char** argv) {
 		}
 		/* close socket */
 		CHECK_NOT_M1(close(s));
-		CHECK_NOT_M1(usleep(30000));
 	}
 	return EXIT_SUCCESS;
 }
