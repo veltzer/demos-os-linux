@@ -2,3 +2,6 @@
 - do an example of dladdr usage.
 - do an example of loading two versions of the same library
 	(this one probably needs to be in the standalone section).
+- do an example of ASLR on and off
+- do an example of relocations:
+	objdump -R /lib/x86_64-linux-gnu/libc.so.6 
