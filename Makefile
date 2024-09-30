@@ -144,10 +144,10 @@ CLEAN:=
 CLEAN_DIRS:=
 
 # user space applications (c and c++)
-C_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.c" -and -not -name "mod_*.c")
-CC_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.cc")
-H_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.h")
-HH_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -name "*.hh")
+C_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -type f -and -name "*.c" -and -not -name "mod_*.c")
+CC_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -type f -and -name "*.cc")
+H_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -type f -and -name "*.h")
+HH_SRC:=$(shell find $(US_DIRS) $(KERNEL_DIR) -type f -and -name "*.hh")
 
 C_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(C_SRC)))
 CC_CPPCHECK:=$(addprefix out/, $(addsuffix .stamp.cppcheck, $(CC_SRC)))
@@ -156,11 +156,11 @@ CC_TIDY:=$(addprefix out/, $(addsuffix .stamp.tidy, $(CC_SRC)))
 C_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(C_SRC)))
 CC_CPPLINT:=$(addprefix out/, $(addsuffix .stamp.cpplint, $(CC_SRC)))
 
-ALL_C:=$(shell find . -name "*.c")
-ALL_CC:=$(shell find . -name "*.cc")
-ALL_H:=$(shell find . -name "*.h")
-ALL_HH:=$(shell find . -name "*.hh")
-ALL_US_C:=$(shell find $(US_DIRS) -name "*.c" -or -name "*.h") $(shell find src/include -name "*.h")
+ALL_C:=$(shell find . -type f -and -name "*.c")
+ALL_CC:=$(shell find . -type f -and -name "*.cc")
+ALL_H:=$(shell find . -type f -and -name "*.h")
+ALL_HH:=$(shell find . -type f -and -name "*.hh")
+ALL_US_C:=$(shell find $(US_DIRS) -type f -and \( -name "*.c" -or -name "*.h"\)) $(shell find src/include -type f -and -name "*.h")
 ALL_US_CC:=$(ALL_CC) $(ALL_HH)
 ALL_US:=$(ALL_US_C) $(ALL_US_CC)
 
@@ -173,7 +173,7 @@ CC_GCC_OBJ:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_OO),$(basename $(CC_SRC))
 C_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC))))
 CC_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC))))
 
-ALL_SH:=$(shell find src -name "*.sh")
+ALL_SH:=$(shell find src -type f -and -name "*.sh")
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
 
 ifeq ($(DO_GCC),1)
@@ -182,9 +182,9 @@ CLEAN:=$(CLEAN) $(C_GCC_EXE) $(CC_GCC_EXE) $(C_GCC_OBJ) $(CC_GCC_OBJ) $(C_GCC_DI
 endif # DO_GCC
 
 # kernel modules
-MOD_SRC:=$(shell find $(KERNEL_DIR) -name "mod_*.c" -and -not -name "mod_*.mod.c")
-#MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c")
-MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -name "*.c" -and -not -name "*.mod.c" -and -not -name "user_*.c")
+MOD_SRC:=$(shell find $(KERNEL_DIR) -type f -and -name "mod_*.c" -and -not -name "mod_*.mod.c")
+#MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -type f -and -name "*.c")
+MOD_SA_SRC:=$(shell find $(KERNEL_SA_DIR) -type f -and -name "*.c" -and -not -name "*.mod.c" -and -not -name "user_*.c")
 MOD_BAS:=$(basename $(MOD_SRC))
 MOD_SA_BAS:=$(basename $(MOD_SA_SRC))
 MOD_OBJ:=$(addsuffix .o,$(MOD_BAS))
@@ -201,7 +201,7 @@ CLEAN_DIRS:=$(CLEAN_DIRS) $(KERNEL_DIR)/.tmp_versions
 ALL_PY:=$(shell find . -type f -not -path "./.venv/*" -name "*.py")
 
 # standlone
-MK_SRC:=$(shell find src/examples_standalone src/kernel_standalone -name "Makefile")
+MK_SRC:=$(shell find src/examples_standalone src/kernel_standalone -type f -and -name "Makefile")
 MK_FLD:=$(dir $(MK_SRC))
 MK_STP:=$(addsuffix .stamp,$(MK_SRC))
 
@@ -426,7 +426,7 @@ check_usage_2:
 .PHONY: check_gitignore
 check_gitignore:
 	$(info doing [$@])
-	$(Q)find . -mindepth 2 -and -name ".gitignore"
+	$(Q)find . -mindepth 2 -and -type f -and -name ".gitignore"
 .PHONY: check_exitzero
 check_exitzero:
 	$(info doing [$@])
