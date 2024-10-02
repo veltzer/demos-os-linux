@@ -724,9 +724,9 @@ all_tidy_cc: $(CC_TIDY)
 .PHONY: all_tidy
 all_tidy: $(C_TIDY) $(CC_TIDY)
 
-############
-# all deps #
-############
+##########
+# alldep #
+##########
 ifeq ($(DO_ALLDEP),1)
 .EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
 endif # DO_ALLDEP
