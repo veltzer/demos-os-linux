@@ -160,7 +160,7 @@ ALL_C:=$(shell find . -type f -and -name "*.c")
 ALL_CC:=$(shell find . -type f -and -name "*.cc")
 ALL_H:=$(shell find . -type f -and -name "*.h")
 ALL_HH:=$(shell find . -type f -and -name "*.hh")
-ALL_US_C:=$(shell find $(US_DIRS) -type f -and \( -name "*.c" -or -name "*.h"\)) $(shell find src/include -type f -and -name "*.h")
+ALL_US_C:=$(shell find $(US_DIRS) -type f -and \( -name "*.c" -or -name "*.h" \)) $(shell find src/include -type f -and -name "*.h")
 ALL_US_CC:=$(ALL_CC) $(ALL_HH)
 ALL_US:=$(ALL_US_C) $(ALL_US_CC)
 
@@ -727,7 +727,6 @@ all_tidy: $(C_TIDY) $(CC_TIDY)
 ############
 # all deps #
 ############
-
 ifeq ($(DO_ALLDEP),1)
 .EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
 endif # DO_ALLDEP
