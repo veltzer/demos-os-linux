@@ -36,9 +36,9 @@ DO_GCC:=1
 # do you want to do clang?
 DO_CLANG:=0
 
-#############
-# variables #
-#############
+########
+# code #
+########
 # directories
 US_DIRS:=src/examples src/exercises src/tests
 KERNEL_DIR:=src/kernel
@@ -92,10 +92,6 @@ ifdef GITHUB_WORKFLOW
 DO_STP=0
 DO_CHP=0
 endif # GITHUB_WORKFLOW
-
-########
-# code #
-########
 
 # compilation flags
 CFLAGS:=
@@ -608,6 +604,26 @@ spell_many:
 	$(info doing [$@])
 	$(Q)aspell_many.sh $(MD_SRC)
 
+# gatehring rules
+.PHONY: all_cpplint_c
+all_cpplint_c: $(C_CPPLINT)
+.PHONY: all_cpplint_cc
+all_cpplint_cc: $(CC_CPPLINT)
+.PHONY: all_cpplint
+all_cpplint: $(C_CPPLINT) $(CC_CPPLINT)
+.PHONY: all_cppcheck_c
+all_cppcheck_c: $(C_CPPCHECK)
+.PHONY: all_cppcheck_cc
+all_cppcheck_cc: $(CC_CPPCHECK)
+.PHONY: all_cppcheck
+all_cppcheck: $(C_CPPCHECK) $(CC_CPPCHECK)
+.PHONY: all_tidy_c
+all_tidy_c: $(C_TIDY)
+.PHONY: all_tidy_cc
+all_tidy_cc: $(CC_TIDY)
+.PHONY: all_tidy
+all_tidy: $(C_TIDY) $(CC_TIDY)
+
 ############
 # patterns #
 ############
@@ -700,29 +716,6 @@ $(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
 	$(info doing [$@] from [$<])
 	$(Q)aspell --conf-dir=. --conf=.aspell.conf list < $< | pymakehelper error_on_print sort -u
 	$(Q)pymakehelper touch_mkdir $@
-
-
-###################
-# gathering rules #
-###################
-.PHONY: all_cpplint_c
-all_cpplint_c: $(C_CPPLINT)
-.PHONY: all_cpplint_cc
-all_cpplint_cc: $(CC_CPPLINT)
-.PHONY: all_cpplint
-all_cpplint: $(C_CPPLINT) $(CC_CPPLINT)
-.PHONY: all_cppcheck_c
-all_cppcheck_c: $(C_CPPCHECK)
-.PHONY: all_cppcheck_cc
-all_cppcheck_cc: $(CC_CPPCHECK)
-.PHONY: all_cppcheck
-all_cppcheck: $(C_CPPCHECK) $(CC_CPPCHECK)
-.PHONY: all_tidy_c
-all_tidy_c: $(C_TIDY)
-.PHONY: all_tidy_cc
-all_tidy_cc: $(CC_TIDY)
-.PHONY: all_tidy
-all_tidy: $(C_TIDY) $(CC_TIDY)
 
 ##########
 # alldep #
