@@ -1,1 +1,1 @@
-This is a basic example of using dlopen.
+# A basic example of using `dlopen(3)`
