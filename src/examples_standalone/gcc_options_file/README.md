@@ -1,3 +1,9 @@
+# An example of gcc options file
+
 This example shows how to pass many parameters to gcc via the
-	gcc @file
+
+```shell
+gcc @file
+```
+
 feature.
