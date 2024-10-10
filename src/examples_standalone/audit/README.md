@@ -1,1 +1,1 @@
-This is a demo of using the linux auditing API.
+# Demo of using the linux auditing API
