@@ -1,7 +1,6 @@
-This is a directory exploring system tap.
+# This is an example of how to use system tap
 
-How to install systemtap on ubuntu
-==================================
+## How to install systemtap on ubuntu
 first:
 	apt-get install systemtap
 
