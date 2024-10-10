@@ -1,3 +1,5 @@
+# GCC weak reference
+
 This example shows the weak attribute of gcc and the linker.
 
 The function add is defined twice. Once the right way (not weak)

@@ -1,3 +1,5 @@
+# Library linked with debug info
+
 This examines whether a different shared library (.so) is generated when linking the
 library with a pre-prequisite library in either debug or non debug mode.
 
