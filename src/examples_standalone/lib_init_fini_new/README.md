@@ -1,6 +1,6 @@
-# New library initalisation and cleanup feature
+# New library initialization and cleanup feature
 
-This demostration show that:
+This demonstration show that:
 * any function in a shared object that you want called before an application starts
     to use your shared object can be labeled with `__attribute__(constructor)`.
 * the same goes for finishing `(__attribute__(destructor))`.
@@ -15,9 +15,9 @@ This demostration show that:
     `main()` and so are over before you fork...
     destructors are going to be called once per child ending, unless the child
     end abruptly (not through `exit(3)` but rather by `_exit(2)`, `_Exit(2)` or abnormal
-    termination using singal).
+    termination using signal).
 * what happens when you `clone(2)` ? (the multi-threading case)
-    Nothing. This example demostrates that cloning does not call either constructors
+    Nothing. This example demonstrates that cloning does not call either constructors
     or destructors.
 * what happens when you have more than one library doing such stuff ? where does the order
 of initialization derive from ?

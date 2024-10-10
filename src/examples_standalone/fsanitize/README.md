@@ -1,3 +1,3 @@
 # The GCC `-fsanitize` feature
 
-This example compares a regular program with one copmiled with `-fsanitize=address`
+This example compares a regular program with one compiled with `-fsanitize=address`

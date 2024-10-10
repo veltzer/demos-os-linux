@@ -1,6 +1,6 @@
 # Library initialization and cleanup old API
 
-This demostration show that:
+This demonstration show that:
 * You can write you own init and finish function to be executed when an application starts
     using your dll and when it finishes so.
 * These hooks will only be called once per application and will NOT be called for threads

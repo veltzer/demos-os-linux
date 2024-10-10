@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1046 
+personal_ws-1.1 en 1074 
 AARRR
 ACLs
 ADPlus
@@ -51,6 +51,7 @@ Boltzman
 Bootlin
 Bootloaders
 BroadcastClient
+Bs
 Buildroot
 Burndown
 BusyBox
@@ -385,6 +386,8 @@ ORM
 OSS
 OWASP
 Observability
+Ofast
+Og
 OpenCL
 OpenEmbedded
 OpenGL
@@ -612,6 +615,7 @@ XP
 XSS
 XXE
 Xenomai
+Xlinker
 YAML
 Yaffs
 Yocto
@@ -636,6 +640,7 @@ args
 argv
 async
 atomics
+automagically
 autotools
 awk
 balancer
@@ -651,6 +656,7 @@ bootcamp
 bootloader
 bootloaders
 bootup
+breakpoint
 bruteforce
 bss
 buildhistory
@@ -700,6 +706,7 @@ debuggable
 defconfigs
 deliverables
 deque
+dereference
 dereferencing
 deregister
 destructor
@@ -712,6 +719,7 @@ df
 distro
 distros
 distutils
+dll
 dlopen
 dlsym
 dmalloc
@@ -746,16 +754,19 @@ fopen
 foreach
 formatters
 formjacking
+fprofile
 framebuffer
 fsck
 fstab
 ftrace
+func
 functors
 fuser
 futex
 futexes
 fwrite
 gRPC
+gcc
 gcd
 gdb
 gdbserver
@@ -768,9 +779,12 @@ gitignore
 glibc
 gperf
 hashSetOf
+hh
 hostname
 hotplug
+ia
 icc
+icpc
 imagePullPolicy
 inetd
 init
@@ -782,6 +796,7 @@ inittab
 inlined
 inotify
 insmod
+instantiation
 intel
 interoperable
 interprocess
@@ -815,7 +830,10 @@ lcm
 ld
 ldconfig
 ldd
+liba
+libb
 libc
+libstdc
 libuv
 lifecycle
 listOf
@@ -827,6 +845,7 @@ lockdep
 lockless
 loopback
 lsmod
+ltrace
 macOS
 magick
 makefile
@@ -868,6 +887,7 @@ netstat
 ng
 nginx
 nicbe
+noinhibit
 nostd
 npm
 numpy
@@ -885,6 +905,7 @@ passwd
 pathspec
 perceptron
 perf
+pgo
 phonebook
 pid
 pids
@@ -895,9 +916,12 @@ popd
 portmapper
 pragma
 pre
+precompiled
+preloaded
 prem
 preprocessing
 preprocessor
+prequisite
 printArea
 printk
 proactor
@@ -922,6 +946,7 @@ readv
 realtime
 rebase
 reinterpretcast
+relinking
 repo
 repos
 resolvers
@@ -964,6 +989,7 @@ splunk
 sqlmap
 src
 staticcast
+stdin
 strace
 struct
 stylesheets
@@ -1008,9 +1034,11 @@ typedef
 uboot
 udev
 ui
+unfreed
 unicast
 uniq
 unittest
+unlinks
 unmangled
 unmount
 uring

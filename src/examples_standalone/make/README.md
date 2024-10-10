@@ -1,1 +1,1 @@
-# Simple Makefile examlle
+# Simple Makefile example

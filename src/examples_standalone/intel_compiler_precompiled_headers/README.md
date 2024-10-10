@@ -1,3 +1,3 @@
-This is an example of doing precompiled headers using the intel compiler.
+# Precompiled headers with the Intel compiler
 
-References:
+This is an example of doing precompiled headers using the intel compiler.

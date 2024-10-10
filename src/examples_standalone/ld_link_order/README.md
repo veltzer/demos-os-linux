@@ -8,8 +8,8 @@ main.elf -> liba.so -> libb.so
 
 What are the results?
 * if `liba.so` supplies function `a` and `libb.so` supplies function `b` and `a` needs `b`
-    and you like in the right order (`-la -lb`) then all is ok. even if liba.so does
-    not carry the infomation that it is dependent on `libb.so`.
+    and you like in the right order (`-la -lb`) then all is OK. even if liba.so does
+    not carry the information that it is dependent on `libb.so`.
 * if, in the same case as above, you link in the wrong order (`-lb -la`) you will get
     link errors. Link order matters.
 * to make order not matter you can use grouping.
