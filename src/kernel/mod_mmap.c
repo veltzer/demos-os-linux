@@ -79,41 +79,41 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	void *kernel_addr;
 	unsigned long flags;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	/*
 	 * Exploring VMA issues
 	 */
 	case IOCTL_MMAP_PRINT:
 		ptr = (void *)arg;
-		PR_INFO("ptr is %p", ptr);
+		pr_info("ptr is %p", ptr);
 		vma = find_vma(current->mm, arg);
-		PR_INFO("vma is %p", vma);
+		pr_info("vma is %p", vma);
 		diff = arg - vma->vm_start;
-		PR_INFO("diff is %d", diff);
+		pr_info("diff is %d", diff);
 		private = (unsigned long)vma->vm_private_data;
-		PR_INFO("private (ul) is %lu", private);
-		PR_INFO("private (p) is %p", (void *)private);
+		pr_info("private (ul) is %lu", private);
+		pr_info("private (p) is %p", (void *)private);
 		adjusted = private + diff;
-		PR_INFO("adjusted (ul) is %lu", adjusted);
-		PR_INFO("adjusted (p) is %p", (void *)adjusted);
+		pr_info("adjusted (ul) is %lu", adjusted);
+		pr_info("adjusted (p) is %p", (void *)adjusted);
 		return 0;
 
 	/*
 	 * This is asking the kernel to read the memory
 	 */
 	case IOCTL_MMAP_READ:
-		PR_DEBUG("starting to read");
+		pr_debug("starting to read");
 		memcpy(str, vaddr, 256);
 		str[255] = '\0';
-		PR_DEBUG("data is %s", str);
+		pr_debug("data is %s", str);
 		return 0;
 
 	/*
 	 * This is asking the kernel to write the memory
 	 */
 	case IOCTL_MMAP_WRITE:
-		PR_DEBUG("starting to write");
+		pr_debug("starting to write");
 		memset(vaddr, arg, size);
 		return 0;
 
@@ -122,16 +122,16 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	 * into a kernel space pointer
 	 */
 	case IOCTL_MMAP_WRITE_USER:
-		PR_DEBUG("starting to write using us pointer");
+		pr_debug("starting to write using us pointer");
 		ptr = (void *)arg;
-		PR_DEBUG("ptr is %p", ptr);
+		pr_debug("ptr is %p", ptr);
 		return 0;
 
 	/*
 	 * mmap a region
 	 */
 	case IOCTL_MMAP_MMAP:
-		PR_DEBUG("trying to mmap");
+		pr_debug("trying to mmap");
 		if (do_kmalloc)
 			kaddr = kmalloc(ioctl_size, GFP_KERNEL);
 		else {
@@ -163,23 +163,23 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 		 * vm_mmap does not need the semaphore to be held
 		 * up_write(&mm->mmap_sem);
 		 */
-		PR_DEBUG("kaddr is (p) %p", kaddr);
-		PR_DEBUG("real size is (d) %d", ioctl_size);
-		PR_DEBUG("addr for user space is (lu) %lu / (p) %p", addr, (void *)addr);
+		pr_debug("kaddr is (p) %p", kaddr);
+		pr_debug("real size is (d) %d", ioctl_size);
+		pr_debug("addr for user space is (lu) %lu / (p) %p", addr, (void *)addr);
 		return addr;
 
 	/*
 	 * unmap a region
 	 */
 	case IOCTL_MMAP_UNMAP:
-		PR_DEBUG("trying to unmap");
+		pr_debug("trying to unmap");
 		vma = find_vma(current->mm, addr);
 		kernel_addr = vma->vm_private_data;
 		size = vma->vm_end - vma->vm_start;
-		PR_DEBUG("deduced kernel_addr is %p", kernel_addr);
-		PR_DEBUG("deduced size is (d) %d", size);
-		PR_DEBUG("real size is (d) %d", ioctl_size);
-		PR_DEBUG("real kaddr is (p) %p", kaddr);
+		pr_debug("deduced kernel_addr is %p", kernel_addr);
+		pr_debug("deduced size is (d) %d", size);
+		pr_debug("real size is (d) %d", ioctl_size);
+		pr_debug("real kaddr is (p) %p", kaddr);
 		ret = vm_munmap(addr, ioctl_size);
 		if (do_kmalloc)
 			kfree(kernel_addr);
@@ -193,9 +193,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	 * The size of the region
 	 */
 	case IOCTL_MMAP_SETSIZE:
-		PR_DEBUG("setting the size");
+		pr_debug("setting the size");
 		ioctl_size = arg;
-		PR_DEBUG("size is %d", ioctl_size);
+		pr_debug("size is %d", ioctl_size);
 		return 0;
 	}
 	return -EINVAL;
@@ -206,7 +206,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
  */
 static void kern_vma_open(struct vm_area_struct *vma)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 }
 
 static void kern_vma_close(struct vm_area_struct *vma)
@@ -217,11 +217,11 @@ static void kern_vma_close(struct vm_area_struct *vma)
 	unsigned int size = vma->vm_end - vma->vm_start;
 	void *addr = vma->vm_private_data;
 
-	PR_DEBUG("start");
-	PR_DEBUG("pointer as long is %lu", vma->vm_start);
-	PR_DEBUG("pointer as pointer is %p", (void *)(vma->vm_start));
-	PR_DEBUG("addr is %p", addr);
-	PR_DEBUG("size is %d", size);
+	pr_debug("start");
+	pr_debug("pointer as long is %lu", vma->vm_start);
+	pr_debug("pointer as pointer is %p", (void *)(vma->vm_start));
+	pr_debug("addr is %p", addr);
+	pr_debug("size is %d", size);
 #ifdef DO_FREE
 	if (do_kmalloc)
 		kfree(addr);
@@ -269,9 +269,9 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 	/* for __get_user_pages */
 	int order = 0;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	size = vma->vm_end - vma->vm_start;
-	PR_DEBUG("size is %d", size);
+	pr_debug("size is %d", size);
 
 	/*
 	 * This code uses kmalloc
@@ -299,20 +299,20 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 			order
 		);
 		vaddr = (void *)addr;
-		PR_DEBUG("addr is %lx", addr);
-		PR_DEBUG("order is %d", order);
+		pr_debug("addr is %lx", addr);
+		pr_debug("order is %d", order);
 	}
-	PR_DEBUG("vaddr is %p", vaddr);
+	pr_debug("vaddr is %p", vaddr);
 	/* memset(vaddr,'a',size); */
 	phys = virt_to_phys(vaddr);
 	pg_num = phys >> PAGE_SHIFT;
-	PR_DEBUG("phys is %lx", phys);
-	PR_DEBUG("pg_num is %d", pg_num);
-	/* PR_DEBUG("pp is %p",pp); */
-	/* PR_DEBUG("start_addr is %p",start_addr); */
-	PR_DEBUG("vm_start is %lx", vma->vm_start);
-	PR_DEBUG("vm_end is %lx", vma->vm_end);
-	PR_DEBUG("vm_pgoff is %lx", vma->vm_pgoff);
+	pr_debug("phys is %lx", phys);
+	pr_debug("pg_num is %d", pg_num);
+	/* pr_debug("pp is %p",pp); */
+	/* pr_debug("start_addr is %p",start_addr); */
+	pr_debug("vm_start is %lx", vma->vm_start);
+	pr_debug("vm_end is %lx", vma->vm_end);
+	pr_debug("vm_pgoff is %lx", vma->vm_pgoff);
 	ret = remap_pfn_range(
 		vma,
 		vma->vm_start,
@@ -321,7 +321,7 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 		vma->vm_page_prot
 	);
 	if (ret) {
-		PR_DEBUG("in error path");
+		pr_debug("in error path");
 		if (do_kmalloc)
 			kfree(vaddr);
 		else

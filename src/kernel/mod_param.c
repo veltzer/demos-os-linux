@@ -124,25 +124,25 @@ MODULE_PARM_DESC(mystring, "A character string");
 
 static int param_init(void)
 {
-	PR_INFO("start");
-	PR_INFO("myshort is a short integer: %hd", myshort);
-	PR_INFO("myint is an integer: %d", myint);
-	PR_INFO("mylong is a long integer: %ld", mylong);
-	PR_INFO("mystring is a string: %s", mystring);
-	PR_INFO("You may change some of the values now via /sys and see");
-	PR_INFO("the values changed");
-	PR_INFO("either by catting /sys or unloading the module and");
-	PR_INFO("looking at the unload printout...");
+	pr_info("start");
+	pr_info("myshort is a short integer: %h", myshort);
+	pr_info("myint is an integer: %d", myint);
+	pr_info("mylong is a long integer: %ld", mylong);
+	pr_info("mystring is a string: %s", mystring);
+	pr_info("You may change some of the values now via /sys and see");
+	pr_info("the values changed");
+	pr_info("either by catting /sys or unloading the module and");
+	pr_info("looking at the unload printout...");
 	return 0;
 }
 
 static void param_exit(void)
 {
-	PR_INFO("start");
-	PR_INFO("myshort is a short integer: %hd", myshort);
-	PR_INFO("myint is an integer: %d", myint);
-	PR_INFO("mylong is a long integer: %ld", mylong);
-	PR_INFO("mystring is a string: %s", mystring);
+	pr_info("start");
+	pr_info("myshort is a short integer: %h", myshort);
+	pr_info("myint is an integer: %d", myint);
+	pr_info("mylong is a long integer: %ld", mylong);
+	pr_info("mystring is a string: %s", mystring);
 }
 
 module_init(param_init);

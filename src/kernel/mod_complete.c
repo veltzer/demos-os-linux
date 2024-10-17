@@ -63,7 +63,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 {
 	int i;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	case IOCTL_COMPLETE_INIT:
 		init_completion(&comp);
@@ -80,7 +80,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	case IOCTL_COMPLETE_WAIT_INTERRUPTIBLE_TIMEOUT:
 		i = wait_for_completion_interruptible_timeout(&comp,
 				msecs_to_jiffies(arg));
-		PR_INFO("i is %d", i);
+		pr_info("i is %d", i);
 		return 0;
 	case IOCTL_COMPLETE_COMPLETE:
 		complete(&comp);

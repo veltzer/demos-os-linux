@@ -34,15 +34,15 @@ MODULE_DESCRIPTION("Showing how the kernel prints NULL pointers");
 /* our own functions */
 static int __init mod_init(void)
 {
-	PR_DEBUG("start");
-	PR_DEBUG("NULL is %p", NULL);
+	pr_debug("start");
+	pr_debug("NULL is %p", NULL);
 	return 0;
 }
 
 
 static void __exit mod_exit(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 }
 
 /* declaration of init/cleanup functions of this module */

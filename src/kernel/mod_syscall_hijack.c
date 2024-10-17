@@ -65,10 +65,10 @@ static inline unsigned long align_address(unsigned long addr)
 
 /*
  * static void print_sys_call_nums(void) {
- *	PR_DEBUG("__NR_open is %d",__NR_open);
- *	PR_DEBUG("__NR_close is %d",__NR_close);
- *	PR_DEBUG("__NR_pipe %d",__NR_pipe);
- *	PR_DEBUG("__NR_write %d",__NR_write);
+ *	pr_debug("__NR_open is %d",__NR_open);
+ *	pr_debug("__NR_close is %d",__NR_close);
+ *	pr_debug("__NR_pipe %d",__NR_pipe);
+ *	pr_debug("__NR_write %d",__NR_write);
  * }
  */
 
@@ -235,11 +235,11 @@ static int map_sys_call_table(void)
 	/* const unsigned int num_pages=1; */
 	sys_call_adr = ioremap(start, len);
 	if (IS_ERR(sys_call_adr)) {
-		PR_ERROR("unable to ioremap");
+		pr_err("unable to ioremap");
 		return PTR_ERR(sys_call_adr);
 	}
 	sys_call_adr_precise = sys_call_adr+offset;
-	PR_DEBUG("got precise %p", sys_call_adr_precise);
+	pr_debug("got precise %p", sys_call_adr_precise);
 	return 0;
 }
 
@@ -261,7 +261,7 @@ static void test_sys_call_table(int nr)
 {
 	unsigned long val = get_sys_call_entry(nr);
 
-	PR_DEBUG("val is %lx", val);
+	pr_debug("val is %lx", val);
 	set_sys_call_entry(nr, val);
 }
 
@@ -274,14 +274,14 @@ static void test_sys_call_table(int nr)
  *	int ret;
  *	ret=set_memory_rw(start,num_pages);
  *	if(ret) {
- *		PR_ERROR("unable to set_memory_rw");
+ *		pr_err("unable to set_memory_rw");
  *		return ret;
  *	}
  *	*f2=syscalltab[nr];
  *	syscalltab[nr]=f1;
  *	ret=set_memory_ro(start,num_pages);
  *	if(ret) {
- *		PR_ERROR("unable to set_memory_ro");
+ *		pr_err("unable to set_memory_ro");
  *		return ret;
  *	}
  *	return 0;
@@ -292,13 +292,13 @@ static void test_sys_call_table(int nr)
  *	int ret;
  *	ret=set_memory_rw(align_address((unsigned long)syscalltab),1);
  *	if(ret) {
- *		PR_ERROR("unable to set_memory_rw");
+ *		pr_err("unable to set_memory_rw");
  *		return ret;
  *	}
  *	syscalltab[nr]=*f2;
  *	ret=set_memory_ro(align_address((unsigned long)syscalltab),1);
  *	if(ret) {
- *		PR_ERROR("unable to set_memory_ro");
+ *		pr_err("unable to set_memory_ro");
  *		return ret;
  *	}
  *	return 0;
@@ -313,7 +313,7 @@ static void test_sys_call_table(int nr)
 /*
  * static int (*old_pipe2)(int*,int);
  * asmlinkage static int new_pipe2(int* des,int flags) {
- *	PR_DEBUG("here");
+ *	pr_debug("here");
  *	return old_pipe2(des,flags);
  * }
  */
@@ -323,29 +323,29 @@ static asmlinkage long (*old_close)(unsigned int);
 
 asmlinkage static long new_close(unsigned int val)
 {
-	PR_DEBUG("here");
+	pr_debug("here");
 	called++;
 	return old_close(val);
 }
 
 static int __init mod_init(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 	map_sys_call_table();
 	test_sys_call_table(__NR_close);
 	old_close = (typeof(old_close))get_sys_call_entry(__NR_close);
 	set_sys_call_entry(__NR_close, (unsigned long)new_close);
-	PR_DEBUG("end");
+	pr_debug("end");
 	return 0;
 }
 
 static void __exit mod_exit(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 	set_sys_call_entry(__NR_close, (unsigned long)old_close);
 	unmap_sys_call_table();
-	PR_DEBUG("called is %d", called);
-	PR_DEBUG("end");
+	pr_debug("called is %d", called);
+	pr_debug("end");
 }
 
 module_init(mod_init);

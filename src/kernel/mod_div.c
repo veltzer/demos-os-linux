@@ -52,20 +52,20 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	buffer b;
 	int err;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	case IOCTL_DIV_DOOPS:
 		/* get the data from the user */
 		err = copy_from_user(&b, (void *)arg, sizeof(b));
 		if (err) {
-			PR_ERROR("problem with copy_from_user");
+			pr_err("problem with copy_from_user");
 			return err;
 		}
-		PR_DEBUG("after copy");
-		PR_INFO("b.u1 is %llu", b.u1);
-		PR_INFO("b.u2 is %llu", b.u2);
-		PR_INFO("b.d1 is %lld", b.d1);
-		PR_INFO("b.d2 is %lld", b.d2);
+		pr_debug("after copy");
+		pr_info("b.u1 is %llu", b.u1);
+		pr_info("b.u2 is %llu", b.u2);
+		pr_info("b.d1 is %lld", b.d1);
+		pr_info("b.d2 is %lld", b.d2);
 		b.udiv = b.u1 / b.u2;
 		b.umul = b.u1 * b.u2;
 		b.uadd = b.u1 + b.u2;
@@ -77,7 +77,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 		/* copy the data back to the user */
 		err = copy_to_user((void *)arg, &b, sizeof(b));
 		if (err) {
-			PR_ERROR("problem with copy_to_user");
+			pr_err("problem with copy_to_user");
 			return err;
 		}
 		/* everything is ok */
@@ -116,8 +116,8 @@ static unsigned long long __udivdi3(unsigned long long divided, unsigned long lo
 {
 	unsigned int reminder;
 
-	PR_DEBUG("divided is %llu", divided);
-	PR_DEBUG("divisor is %llu", divisor);
+	pr_debug("divided is %llu", divided);
+	pr_debug("divisor is %llu", divisor);
 	return div_u64_rem(divided, divisor, &reminder);
 }
 
@@ -125,8 +125,8 @@ static long long __divdi3(long long divided, long long divisor)
 {
 	unsigned int reminder;
 
-	PR_DEBUG("divided is %lld", divided);
-	PR_DEBUG("divisor is %lld", divisor);
+	pr_debug("divided is %lld", divided);
+	pr_debug("divisor is %lld", divisor);
 	return div_u64_rem(divided, divisor, &reminder);
 }
 

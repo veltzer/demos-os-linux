@@ -44,7 +44,7 @@ static struct device *my_device;
  */
 static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 	return arg;
 }
 

@@ -46,34 +46,34 @@ static int __init register_dev(void) {
 	my_class = class_create(THIS_MODULE->name);
 	if (IS_ERR(my_class)) {
 		ret=PTR_ERR(my_class);
-		PR_ERROR("cannot class_create");
+		pr_err("cannot class_create");
 		goto goto_nothing;
 	}
-	PR_DEBUG("created the class");
+	pr_debug("created the class");
 	// alloc and zero
 	pdev = kmalloc(sizeof(struct kern_dev), GFP_KERNEL);
 	if (IS_ERR(pdev)) {
-		PR_ERROR("cannot kmalloc");
+		pr_err("cannot kmalloc");
 		ret=PTR_ERR(pdev);
 		goto goto_destroy;
 	}
 	memset(pdev, 0, sizeof(struct kern_dev));
-	PR_DEBUG("set up the structure");
+	pr_debug("set up the structure");
 	if (chrdev_alloc_dynamic) {
 		ret=alloc_chrdev_region(&pdev->first_dev, first_minor, minors_count, THIS_MODULE->name);
 		if(ret) {
-			PR_ERROR("cannot alloc_chrdev_region");
+			pr_err("cannot alloc_chrdev_region");
 			goto goto_dealloc;
 		}
 	} else {
 		pdev->first_dev = MKDEV(kern_major, kern_minor);
 		ret=register_chrdev_region(pdev->first_dev, minors_count, THIS_MODULE->name);
 		if(ret) {
-			PR_ERROR("cannot register_chrdev_region");
+			pr_err("cannot register_chrdev_region");
 			goto goto_dealloc;
 		}
 	}
-	PR_DEBUG("allocated the device");
+	pr_debug("allocated the device");
 	// create the add the sync device
 	cdev_init(&pdev->cdev, &my_fops);
 	pdev->cdev.owner = THIS_MODULE;
@@ -81,10 +81,10 @@ static int __init register_dev(void) {
 	kobject_set_name(&pdev->cdev.kobj, THIS_MODULE->name);
 	ret=cdev_add(&pdev->cdev, pdev->first_dev, minors_count);
 	if(ret) {
-		PR_ERROR("cannot cdev_add");
+		pr_err("cannot cdev_add");
 		goto goto_deregister;
 	}
-	PR_DEBUG("added the device");
+	pr_debug("added the device");
 	// now register it in /dev
 	my_device = device_create(
 		my_class,/* our class */
@@ -95,11 +95,11 @@ static int __init register_dev(void) {
 		THIS_MODULE->name
 	);
 	if (IS_ERR(my_device)) {
-		PR_ERROR("cannot create device");
+		pr_err("cannot create device");
 		ret=PTR_ERR(my_device);
 		goto goto_create_device;
 	}
-	PR_DEBUG("did device_create");
+	pr_debug("did device_create");
 	return(0);
 
 	//goto_all:

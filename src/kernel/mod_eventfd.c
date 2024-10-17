@@ -45,13 +45,13 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	/* struct file to use */
 	struct file *fp;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	case IOCTL_EVENTFD_SIGNAL:
 		fd = (int)arg;
 		fp = eventfd_fget(fd);
 		if (IS_ERR(fp)) {
-			PR_DEBUG("bad file descriptor");
+			pr_debug("bad file descriptor");
 			return PTR_ERR(fp);
 		}
 		/* eventfd_signal(fp,1); */

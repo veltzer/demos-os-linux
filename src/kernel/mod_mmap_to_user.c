@@ -60,7 +60,7 @@ static void *alloc_mem(unsigned int size)
 	/* order of allocation in case we use get_free_pages */
 	int order;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	if (do_kmalloc) {
 		kaddr = kmalloc(size, GFP_KERNEL);
 	} else {
@@ -77,7 +77,7 @@ static void free_mem(void *kptr, unsigned int size)
 	/* order of allocation in case we use get_free_pages */
 	int order;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	if (do_kmalloc) {
 		/* kfree does not return error code */
 		kfree(kptr);
@@ -101,7 +101,7 @@ static unsigned long map_to_user(struct file *filp, void *kptr,
 	void *oldval;
 
 	/* print some debug info... */
-	PR_DEBUG("size is (d) %d", size);
+	pr_debug("size is (d) %d", size);
 
 	/* mm = current->mm; */
 	/* must NOT add MAP_LOCKED to the flags (it causes a hang) */
@@ -128,9 +128,9 @@ static unsigned long map_to_user(struct file *filp, void *kptr,
 	 * up_write(&mm->mmap_sem);
 	 */
 	if (IS_ERR_VALUE(uptr))
-		PR_ERROR("ERROR: problem calling do_mmap_pgoff");
+		pr_err("ERROR: problem calling do_mmap_pgoff");
 	else {
-		PR_DEBUG("addr for user space is (lu) %lu / (p) %p", uptr,
+		pr_debug("addr for user space is (lu) %lu / (p) %p", uptr,
 			(void *)uptr);
 	}
 	return uptr;
@@ -140,7 +140,7 @@ static unsigned long map_to_user(struct file *filp, void *kptr,
  * static int unmap(unsigned long uadr,unsigned int size) {
  *	int res = do_munmap(current->mm,uadr,size);
  *	if(res)
- *		PR_ERROR("PR_ERROR: unable to do_munmap");
+ *		pr_err("PR_ERROR: unable to do_munmap");
  *	return res;
  * }
  */
@@ -156,28 +156,28 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	/* for results from functions */
 	int res;
 
-	PR_DEBUG("start with cmd %d", cmd);
+	pr_debug("start with cmd %d", cmd);
 	switch (cmd) {
 	/*
 	 *	Asking the kernel to mmap into user space.
 	 *	Only argument is size.
 	 */
 	case IOCTL_DEMO_MAP:
-		PR_DEBUG("trying to mmap");
+		pr_debug("trying to mmap");
 		size = arg;
 		kptr = alloc_mem(size);
 		if (kptr == NULL) {
-			PR_ERROR("ERROR: could not allocate memory");
+			pr_err("ERROR: could not allocate memory");
 			return -EFAULT;
 		}
-		PR_DEBUG("After alloc_mem with kptr=%p", kptr);
+		pr_debug("After alloc_mem with kptr=%p", kptr);
 		uptr = map_to_user(filp, kptr, size);
 		if (IS_ERR_VALUE(uptr)) {
-			PR_ERROR("ERROR: quiting on process of mmaping");
+			pr_err("ERROR: quiting on process of mmaping");
 			return -EFAULT;
 		}
-		PR_DEBUG("After map_to_user");
-		PR_DEBUG("Successful exit");
+		pr_debug("After map_to_user");
+		pr_debug("Successful exit");
 		return uptr;
 
 	/*
@@ -185,13 +185,13 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	 *	No arguments are required.
 	 */
 	case IOCTL_DEMO_UNMAP:
-		PR_DEBUG("trying to munmap");
+		pr_debug("trying to munmap");
 		res = vm_munmap(uptr, size);
 		if (res)
 			return res;
-		PR_DEBUG("After unmap");
+		pr_debug("After unmap");
 		free_mem(kptr, size);
-		PR_DEBUG("Successful exit");
+		pr_debug("Successful exit");
 		/* so we won't accidentaly use these pointers */
 		kptr = NULL;
 		size = -1;
@@ -204,7 +204,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	 */
 	case IOCTL_DEMO_WRITE:
 		if (kptr == NULL) {
-			PR_ERROR("ERROR: kptr is NULL?!?");
+			pr_err("ERROR: kptr is NULL?!?");
 			return -EFAULT;
 		}
 		memset(kptr, arg, size);
@@ -216,7 +216,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	 */
 	case IOCTL_DEMO_READ:
 		if (kptr == NULL) {
-			PR_ERROR("ERROR: kptr is NULL?!?");
+			pr_err("ERROR: kptr is NULL?!?");
 			return -EFAULT;
 		}
 		return memcheck(kptr, arg, size);
@@ -227,7 +227,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	 */
 	case IOCTL_DEMO_COPY:
 		if (kptr == NULL) {
-			PR_ERROR("ERROR: kptr is NULL?!?");
+			pr_err("ERROR: kptr is NULL?!?");
 			return -EFAULT;
 		}
 		return copy_to_user((void *)arg, kptr, size);
@@ -241,17 +241,17 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
  */
 static void kern_vma_open(struct vm_area_struct *vma)
 {
-	PR_DEBUG("start");
-	PR_DEBUG("vma->start is %lu , %lx", vma->vm_start, vma->vm_start);
-	PR_DEBUG("vma->end-vma->start is %lu", vma->vm_end - vma->vm_start);
+	pr_debug("start");
+	pr_debug("vma->start is %lu , %lx", vma->vm_start, vma->vm_start);
+	pr_debug("vma->end-vma->start is %lu", vma->vm_end - vma->vm_start);
 }
 
 
 static void kern_vma_close(struct vm_area_struct *vma)
 {
-	PR_DEBUG("start");
-	PR_DEBUG("vma->start is %lu , %lx", vma->vm_start, vma->vm_start);
-	PR_DEBUG("vma->end-vma->start is %lu", vma->vm_end - vma->vm_start);
+	pr_debug("start");
+	pr_debug("vma->start is %lu , %lx", vma->vm_start, vma->vm_start);
+	pr_debug("vma->end-vma->start is %lu", vma->vm_end - vma->vm_start);
 }
 
 /* on error should return VM_FAULT_SIGBUS */
@@ -263,7 +263,7 @@ static vm_fault_t kern_vma_fault(struct vm_fault *vmf)
 	/* offset at which user wants the page... */
 	unsigned long offset;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	/* for old kernels */
 	/* offset = (unsigned long)vmf->virtual_address - vma->vm_start; */
 	/* for new kernels */
@@ -272,7 +272,7 @@ static vm_fault_t kern_vma_fault(struct vm_fault *vmf)
 	kaddr += offset;
 	page = virt_to_page(kaddr);
 	if (page == NULL) {
-		PR_ERROR("couldnt find page");
+		pr_err("couldnt find page");
 		return VM_FAULT_SIGBUS;
 	}
 	get_page(page);
@@ -304,13 +304,13 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 	 *	size=vma->vm_end-vma->vm_start;
 	 *	phys=virt_to_phys(kadr);
 	 *	pg_num=phys >> PAGE_SHIFT;
-	 *	PR_DEBUG("size is %d",size);
-	 *	PR_DEBUG("kadr is %p",kadr);
-	 *	PR_DEBUG("phys is %lx",phys);
-	 *	PR_DEBUG("pg_num is %d",pg_num);
-	 *	PR_DEBUG("vm_start is %lx",vma->vm_start);
-	 *	PR_DEBUG("vm_end is %lx",vma->vm_end);
-	 *	PR_DEBUG("vm_pgoff is %lx",vma->vm_pgoff);
+	 *	pr_debug("size is %d",size);
+	 *	pr_debug("kadr is %p",kadr);
+	 *	pr_debug("phys is %lx",phys);
+	 *	pr_debug("pg_num is %d",pg_num);
+	 *	pr_debug("vm_start is %lx",vma->vm_start);
+	 *	pr_debug("vm_end is %lx",vma->vm_end);
+	 *	pr_debug("vm_pgoff is %lx",vma->vm_pgoff);
 	 *	ret=remap_pfn_range(
 	 *		vma, // into which vma
 	 *		vma->vm_start, // where in the vma
@@ -319,14 +319,14 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 	 *		vma->vm_page_prot // what protection to give
 	 *	);
 	 *	if(ret) {
-	 *		PR_ERROR("ERROR: could not remap_pfn_range");
+	 *		pr_err("ERROR: could not remap_pfn_range");
 	 *		return ret;
 	 *	}
 	 */
 	/* pointer for already allocated memory */
 	void *kadr;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	kadr = filp->private_data;
 	/* does not work on 3.8.0 */
 	/* vma->vm_flags |= VM_RESERVED; */
@@ -334,7 +334,7 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 	vma->vm_private_data = kadr;
 	vma->vm_ops = &kern_vm_ops;
 	kern_vma_open(vma);
-	PR_DEBUG("all ok from mmap. returning");
+	pr_debug("all ok from mmap. returning");
 	return 0;
 }
 

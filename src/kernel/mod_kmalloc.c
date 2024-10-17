@@ -47,7 +47,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	unsigned long size;
 
 	/* int res; */
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	/*
 	 * kmalloc function.
@@ -58,12 +58,12 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		size = arg * PAGE_SIZE;
 		ptr = kmalloc(GFP_KERNEL, size);
 		if (IS_ERR(ptr)) {
-			PR_ERROR("unable to allocate %lu", size);
+			pr_err("unable to allocate %lu", size);
 			return PTR_ERR(ptr);
 		}
 		addr = (unsigned long)ptr;
 		if (addr % PAGE_SIZE != 0) {
-			PR_ERROR("page size issue with addr=%lu", addr);
+			pr_err("page size issue with addr=%lu", addr);
 			return -EFAULT;
 		}
 		addr = -1;
@@ -80,15 +80,15 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		addr = __get_free_pages(GFP_KERNEL, get_order(size));
 		if (addr == 0) {
 			/* if(IS_ERR_VALUE(addr)) { */
-			PR_ERROR("unable to allocate %lu", size);
+			pr_err("unable to allocate %lu", size);
 			return -EFAULT;
 		}
 		if (addr % PAGE_SIZE != 0) {
-			PR_ERROR("page size issue with addr=%lu", addr);
+			pr_err("page size issue with addr=%lu", addr);
 			return -EFAULT;
 		}
 		free_pages(addr, get_order(size));
-		PR_DEBUG("addr is %lx, mod is %ld", addr, addr % PAGE_SIZE);
+		pr_debug("addr is %lx, mod is %ld", addr, addr % PAGE_SIZE);
 		addr = -1;
 		return 0;
 	/*
@@ -99,12 +99,12 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		ptr = dma_alloc_coherent(my_device, size, &dma_handle,
 				GFP_KERNEL);
 		if (IS_ERR(ptr)) {
-			PR_ERROR("unable to allocate %lu", size);
+			pr_err("unable to allocate %lu", size);
 			return PTR_ERR(ptr);
 		}
 		addr = (unsigned long)ptr;
 		if (addr % PAGE_SIZE != 0) {
-			PR_ERROR("page size issue with addr=%lu", addr);
+			pr_err("page size issue with addr=%lu", addr);
 			return -EFAULT;
 		}
 		addr = -1;

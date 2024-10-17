@@ -53,7 +53,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 {
 	unsigned long flags;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	case IOCTL_SPINLOCK_IRQSAVE:
 		/*

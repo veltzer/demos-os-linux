@@ -147,7 +147,7 @@ static int __init memblock_init(void)
 		return err;
 	}
 
-	memblock_device->gd = blk_mq_alloc_disk(&memblock_device->tag_set, memblock_device);
+	memblock_device->gd = blk_mq_alloc_disk(&memblock_device->tag_set, NULL, memblock_device);
 	if (IS_ERR(memblock_device->gd)) {
 		blk_mq_free_tag_set(&memblock_device->tag_set);
 		unregister_blkdev(memblock_major, "memblock");

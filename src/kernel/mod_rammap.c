@@ -41,27 +41,28 @@ static void api_print_addressinfo(void *logical_adr)
 	struct page *page = virt_to_page(logical_adr);
 
 	if (page == NULL) {
-		PR_INFO("unable to translate address %p to page", logical_adr);
+		pr_info("unable to translate address %p to page", logical_adr);
 		return;
 	}
-	PR_INFO(
-	"address %p, page:%p flags:0x%0*lx mapping:%p mapcount:%d count:%d\n",
+	pr_info("address %p, page:%p flags:0x%0*lx mapping:%p count:%d\n",
 		logical_adr,
-		page, (int)(2 * sizeof(unsigned long)),
-		page->flags, page->mapping,
-		page_mapcount(page), page_count(page)
+		page,
+		(int)(2 * sizeof(unsigned long)),
+		page->flags,
+		page->mapping,
+		page_count(page)
 	);
 
-	PR_INFO("PG_lru is %lu", page->flags & (1 << PG_lru));
-	PR_INFO("PG_private is %lu", page->flags & (1 << PG_private));
-	PR_INFO("PG_locked is %lu", page->flags & (1 << PG_locked));
+	pr_info("PG_lru is %lu", page->flags & (1 << PG_lru));
+	pr_info("PG_private is %lu", page->flags & (1 << PG_private));
+	pr_info("PG_locked is %lu", page->flags & (1 << PG_locked));
 	/* Missing in newer kernels and so is remarked... */
-	/* PR_INFO("PG_buddy is %lu", page->flags & (1 << PG_buddy)); */
-	PR_INFO("PG_writeback is %lu", page->flags & (1 << PG_writeback));
-	PR_INFO("PG_slab is %lu", page->flags & (1 << PG_slab));
-	PR_INFO("PG_swapcache is %lu", page->flags & (1 << PG_swapcache));
-	PR_INFO("PG_active is %lu", page->flags & (1 << PG_active));
-	PR_INFO("PG_reserved is %lu", page->flags & (1 << PG_reserved));
+	/* pr_info("PG_buddy is %lu", page->flags & (1 << PG_buddy)); */
+	pr_info("PG_writeback is %lu", page->flags & (1 << PG_writeback));
+	pr_info("PG_slab is %lu", page->flags & (1 << PG_slab));
+	pr_info("PG_swapcache is %lu", page->flags & (1 << PG_swapcache));
+	pr_info("PG_active is %lu", page->flags & (1 << PG_active));
+	pr_info("PG_reserved is %lu", page->flags & (1 << PG_reserved));
 }
 
 static void api_debug_address(unsigned int phys)
@@ -70,21 +71,21 @@ static void api_debug_address(unsigned int phys)
 	void *logical2 = phys_to_virt(phys);
 	unsigned int phys2 = __pa(logical);
 
-	PR_INFO("phys is %u", phys);
-	PR_INFO("logical is %p", logical);
-	PR_INFO("phys2 is %u", phys2);
-	PR_INFO("logical2 is %p", logical2);
+	pr_info("phys is %u", phys);
+	pr_info("logical is %p", logical);
+	pr_info("phys2 is %u", phys2);
+	pr_info("logical2 is %p", logical2);
 	api_print_addressinfo(logical);
 }
 
 static int __init mod_init(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 	api_debug_address(physaddr);
 
 	/*
 	 * if (!request_mem_region(physaddr,size,)) {
-	 *	PR_ERROR("could not get the memory");
+	 *	pr_err("could not get the memory");
 	 *	return 1;
 	 * }
 	 */
@@ -94,11 +95,11 @@ static int __init mod_init(void)
 		release_mem_region(physaddr, size);
 		return PTR_ERR(logical);
 	}
-	PR_INFO("got logical address %p", logical);
+	pr_info("got logical address %p", logical);
 	/*
 	 * memset(logical,0,size);
 	 * logical=5;
-	 * PR_INFO("read %c",*logical);
+	 * pr_info("read %c",*logical);
 	 * logical=phys_to_virt(physaddr);
 	 * for(i=0;i<170*1024*1024;i++)
 	 *	logical[i]=0;
@@ -111,7 +112,7 @@ static int __init mod_init(void)
 
 static void __exit mod_exit(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 	iounmap(logical);
 	release_mem_region(physaddr, size);
 }

@@ -56,9 +56,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	unsigned long j1, j2, jdiff, jmil, jmic;
 	unsigned int freq;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	/* char str[256]; */
-	/* PR_DEBUG(str,"start"); */
+	/* pr_debug(str,"start"); */
 	switch (cmd) {
 	case IOCTL_TIMING_CLOCK:
 		/* first lets get the number of cpus */

@@ -62,7 +62,7 @@ static int __init mod_init(void)
 #ifdef DO_ONE
 	const unsigned int size = 1024 * 1024 * 24;
 #endif /* DO_ONE */
-	PR_DEBUG("start");
+	pr_debug("start");
 #ifdef DO_LOOP
 	for (i = 0; i < 1000; i++) {
 		vptr = dma_alloc_coherent(NULL, size, &device_addr,
@@ -111,14 +111,14 @@ static int __init mod_init(void)
 		size += inc;
 	}
 #endif /* DO_INC */
-	PR_DEBUG("end");
+	pr_debug("end");
 	return 0;
 }
 
 static void __exit mod_exit(void)
 {
-	PR_DEBUG("start");
-	PR_DEBUG("end");
+	pr_debug("start");
+	pr_debug("end");
 }
 
 /* declaration of init/cleanup functions of this module */

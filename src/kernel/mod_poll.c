@@ -51,7 +51,7 @@ static int kern_open(struct inode *inode, struct file *filp)
 {
 	struct polldev *pd;
 
-	PR_INFO("start");
+	pr_info("start");
 	pd = kmalloc(sizeof(struct polldev), GFP_KERNEL);
 	if (IS_ERR(pd))
 		return PTR_ERR(pd);
@@ -68,7 +68,7 @@ static int kern_release(struct inode *inode, struct file *filp)
 {
 	struct polldev *pd;
 
-	PR_INFO("start");
+	pr_info("start");
 	pd = (struct polldev *)(filp->private_data);
 	kfree(pd);
 	return 0;
@@ -84,16 +84,16 @@ static long kern_unlocked_ioctl(struct file *fp, unsigned int cmd,
 	struct polldev *pd;
 
 	pd = (struct polldev *)fp->private_data;
-	PR_INFO("start %p", pd);
+	pr_info("start %p", pd);
 	switch (cmd) {
 	case IOCTL_EPOLL_WAKE:
-		PR_INFO("in WAKE");
+		pr_info("in WAKE");
 		pd->state = POLLIN;
 		wmb(); /* comment */
 		wake_up_all(&pd->wq);
 		return 0;
 	case IOCTL_EPOLL_RESET:
-		PR_INFO("in RESET");
+		pr_info("in RESET");
 		pd->state = 0;
 		wmb(); /* comment */
 		wake_up_all(&pd->wq);
@@ -109,13 +109,13 @@ static unsigned int kern_poll(struct file *fp, poll_table *wait)
 	struct polldev *pd;
 
 	pd = (struct polldev *)fp->private_data;
-	PR_INFO("start %p", pd);
+	pr_info("start %p", pd);
 	poll_wait(fp, &pd->wq, wait);
 	unsigned int mask = pd->state;
 	/* no need to reset the state
 	 * pd->state = 0;
 	 */
-	PR_INFO("return with %u", mask);
+	pr_info("return with %u", mask);
 	return mask;
 }
 

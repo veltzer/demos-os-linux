@@ -54,7 +54,7 @@ static int __init mod_init(void)
 
 static void __exit mod_exit(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 }
 
 

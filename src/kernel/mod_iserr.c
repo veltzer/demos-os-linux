@@ -50,12 +50,12 @@ static int __init mod_init(void)
 		unsigned long ptr = (unsigned long)i;
 		void *p = (void *)i;
 
-		PR_INFO("IS_ERR_VALUE(%lu) is %ld, and PTR_ERR is %ld\n", ptr,
+		pr_info("IS_ERR_VALUE(%lu) is %ld, and PTR_ERR is %ld\n", ptr,
 				IS_ERR_VALUE(ptr), PTR_ERR((void *)ptr));
-		PR_INFO("IS_ERR(%p) is %ld, and PTR_ERR is %ld\n", p,
+		pr_info("IS_ERR(%p) is %ld, and PTR_ERR is %ld\n", p,
 				IS_ERR(p), PTR_ERR(p));
 	}
-	PR_INFO("ERR_PTR(-EIO) is %p", ERR_PTR(-EIO));
+	pr_info("ERR_PTR(-EIO) is %p", ERR_PTR(-EIO));
 	return 0;
 }
 

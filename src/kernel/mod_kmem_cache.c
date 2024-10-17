@@ -55,7 +55,7 @@ static void *p;
 /* our own functions */
 static int __init kmem_init(void)
 {
-	PR_INFO("start");
+	pr_info("start");
 	cache_p = kmem_cache_create(
 		/*
 		 * name of cache (will appear in slabtop(1),
@@ -79,23 +79,23 @@ static int __init kmem_init(void)
 	p = kmem_cache_alloc(cache_p, GFP_KERNEL);
 	if (IS_ERR(p)) {
 		/* there is not too much that we can do here */
-		PR_ERROR("Cannot allocate memory");
+		pr_err("Cannot allocate memory");
 		kmem_cache_destroy(cache_p);
 		return PTR_ERR(p);
 	}
 	/*
 	 * mempool_create(number,mempool_alloc_slab, mempool_free_slab, drbd_request_cache);
 	 */
-	PR_INFO("end");
+	pr_info("end");
 	return 0;
 }
 
 static void __exit kmem_exit(void)
 {
-	PR_INFO("start");
+	pr_info("start");
 	kmem_cache_free(cache_p, p);
 	kmem_cache_destroy(cache_p);
-	PR_INFO("end");
+	pr_info("end");
 }
 
 /* declaration of init/cleanup functions of this module */

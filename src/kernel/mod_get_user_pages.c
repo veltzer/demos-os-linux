@@ -123,7 +123,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	/* the newly created vma */
 	struct vm_area_struct *vma;
 
-	PR_DEBUG("start with ioctl %u", cmd);
+	pr_debug("start with ioctl %u", cmd);
 	switch (cmd) {
 	/*
 	 *	This is asking the kernel to map the memory to kernel space.
@@ -132,37 +132,37 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		/* get the data from the user */
 		res = copy_from_user(&b, (void *)arg, sizeof(b));
 		if (res) {
-			PR_ERROR("problem with copy_from_user");
+			pr_err("problem with copy_from_user");
 			return res;
 		}
-		PR_DEBUG("after copy");
+		pr_debug("after copy");
 		bpointer = (unsigned long)b.pointer;
 		offset = bpointer % PAGE_SIZE;
 		aligned = bpointer - offset;
 		newsize = b.size + offset;
-		PR_DEBUG("bpointer is %x", bpointer);
-		PR_DEBUG("offset is %u", offset);
-		PR_DEBUG("aligned is %x", aligned);
-		PR_DEBUG("newsize is %u", newsize);
+		pr_debug("bpointer is %x", bpointer);
+		pr_debug("offset is %u", offset);
+		pr_debug("aligned is %x", aligned);
+		pr_debug("newsize is %u", newsize);
 
 		/*
 		 * // make sure that the user data is page aligned...
 		 * if(((unsigned int)b.pointer)%PAGE_SIZE!=0) {
-		 *	PR_ERROR("pointer is not page aligned");
+		 *	pr_err("pointer is not page aligned");
 		 *	return -EFAULT;
 		 * }
-		 * PR_DEBUG("after modulu check");
+		 * pr_debug("after modulu check");
 		 */
 		/* find the number of pages */
 		nr_pages = (newsize - 1) / PAGE_SIZE + 1;
-		PR_DEBUG("nr_pages is %d", nr_pages);
+		pr_debug("nr_pages is %d", nr_pages);
 		/* alocate page structures... */
 		pages = kmalloc_array(nr_pages, sizeof(struct page *), GFP_KERNEL);
 		if (IS_ERR(pages)) {
-			PR_ERROR("could not allocate page structs");
+			pr_err("could not allocate page structs");
 			return PTR_ERR(pages);
 		}
-		PR_DEBUG("after pages allocation");
+		pr_debug("after pages allocation");
 		/* get user pages and fault them in */
 		mmap_write_lock(current->mm);
 		/* rw==READ means read from drive, write into memory area */
@@ -176,10 +176,10 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		vma = find_vma(current->mm, bpointer);
 		// vma->vm_flags |= VM_DONTCOPY;
 		mmap_write_unlock(current->mm);
-		PR_DEBUG("after get_user_pages res is %d", res);
+		pr_debug("after get_user_pages res is %d", res);
 		/* Errors and no page mapped should return here */
 		if (res != nr_pages) {
-			PR_ERROR("could not get_user_pages. res was %d", res);
+			pr_err("could not get_user_pages. res was %d", res);
 			kfree(pages);
 			return -EFAULT;
 		}
@@ -190,19 +190,19 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		/* map the pages to kernel space... */
 		vptr = vmap(pages, nr_pages, VM_MAP, PAGE_KERNEL);
 		if (vptr == NULL) {
-			PR_ERROR("could not get_user_pages. res was %d", res);
+			pr_err("could not get_user_pages. res was %d", res);
 			kfree(pages);
 			return -EFAULT;
 		}
 		ptr = vptr + offset;
 		size = b.size;
-		PR_DEBUG("after vmap - vptr is %p", vptr);
+		pr_debug("after vmap - vptr is %p", vptr);
 		/* free the pages */
 		kfree(pages);
 		pages = NULL;
-		PR_DEBUG("after freeing the pages");
+		pr_debug("after freeing the pages");
 		/* were dont! return with success */
-		PR_DEBUG("success - on the way out");
+		pr_debug("success - on the way out");
 		return 0;
 
 	/*
@@ -226,9 +226,9 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	case IOCTL_DEMO_READ:
 		cptr = (char *)ptr;
 		sloop = min_t(unsigned int, size, 10U);
-		PR_DEBUG("sloop is %d", sloop);
+		pr_debug("sloop is %d", sloop);
 		for (i = 0; i < sloop; i++)
-			PR_INFO("value of %d is %c", i, cptr[i]);
+			pr_info("value of %d is %c", i, cptr[i]);
 		return 0;
 	/*
 	 *	This is asking the kernel to write on our data

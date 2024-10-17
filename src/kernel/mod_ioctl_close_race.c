@@ -55,18 +55,18 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	switch (cmd) {
 	case IOCTL_RACE_EMPTY:
 		/* empty ioctl to 'just work'; */
-		/* PR_INFO("end"); */
+		/* pr_info("end"); */
 		return 0;
 	case IOCTL_RACE_SLEEP_SHORT:
 		/* long ioctl to stall for time */
 		msleep_interruptible(10000);
-		PR_INFO("end");
+		pr_info("end");
 		return 0;
 	case IOCTL_RACE_SLEEP_LONG:
 		/* long ioctl to stall for time */
 		/* ssleep(10000); */
 		msleep_interruptible(20000);
-		PR_INFO("end");
+		pr_info("end");
 		return 0;
 	}
 	/* dev_info(my_device, "ioctl end"); */

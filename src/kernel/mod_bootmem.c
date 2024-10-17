@@ -60,7 +60,7 @@ static int __init mod_init(void)
 {
 	void *p;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	/* this will NOT work if your module is dynamic (you must be linked
 	 * into the kernel)
 	 */
@@ -68,16 +68,16 @@ static int __init mod_init(void)
 	/* p = alloc_bootmem(PAGE_SIZE); */
 	p = kmalloc(PAGE_SIZE, GFP_KERNEL);
 	if (IS_ERR(p)) {
-		PR_ERROR("unable to allocate bootmem");
+		pr_err("unable to allocate bootmem");
 		return PTR_ERR(p);
 	}
-	PR_DEBUG("ok");
+	pr_debug("ok");
 	return 0;
 }
 
 static void __exit mod_exit(void)
 {
-	PR_DEBUG("start");
+	pr_debug("start");
 }
 
 /* declaration of init/cleanup functions of this module */

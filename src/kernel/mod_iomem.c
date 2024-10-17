@@ -40,7 +40,7 @@ static int __init mod_init(void)
 {
 	struct resource *rp;
 
-	PR_INFO("start");
+	pr_info("start");
 	rp = iomem_resource.child;
 	while (rp) {
 		pr_info("%0*llx-%0*llx\n",
@@ -55,7 +55,7 @@ static int __init mod_init(void)
 
 static void __exit mod_exit(void)
 {
-	PR_INFO("start");
+	pr_info("start");
 }
 
 

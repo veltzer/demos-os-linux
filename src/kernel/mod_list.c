@@ -46,7 +46,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	int res;
 	void *p;
 
-	PR_DEBUG("start");
+	pr_debug("start");
 	switch (cmd) {
 	case IOCTL_LIST_CREATE:
 		lptr = api_list_create();
@@ -57,14 +57,14 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 	case IOCTL_LIST_ISEMPTY:
 		res = api_list_isempty(lptr);
-		PR_DEBUG("res is %d", res);
+		pr_debug("res is %d", res);
 		return 0;
 	case IOCTL_LIST_ADD:
 		api_list_add(lptr, (void *)arg);
 		return 0;
 	case IOCTL_LIST_DEL:
 		p = api_list_del(lptr);
-		PR_DEBUG("p is %d", (int)p);
+		pr_debug("p is %ld", (int)p);
 		return 0;
 	case IOCTL_LIST_PRINT:
 		api_list_print(lptr);
