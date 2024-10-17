@@ -19,7 +19,6 @@
 #include <firstinclude.h>
 #include <ace/OS_NS_sys_time.h>
 #include <ace/os_include/os_netdb.h>
-#include <ace/Auto_Ptr.h>
 #include <ace/Log_Msg.h>
 #include <ace/INET_Addr.h>
 #include <ace/SOCK_Acceptor.h>

@@ -32,93 +32,137 @@ if opt_debug:
 if opt_exit:
     sys.exit(0)
 
+ver_wxgtk = None
+lib_wx = None
+ver_papi = None
 ver_event = None
 ver_ncurses = None
-lib_wx = None
 ver_asound = None
 ver_urcu = None
 ver_cds = None
 ver_elf = None
 ver_dw = None
 ver_asm = None
-ver_papi = None
 ver_openmpi = None
+ver_unwind = None
 ver_boost_short = None
+ver_boost = None
+
 desktop = platform.freedesktop_os_release()
 VERSION_ID = desktop["VERSION_ID"]
 if VERSION_ID == "22.04":
-    ver_papi = "6.0"
-    ver_event = "2.1-7"
     ver_wxgtk = "3.0"
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
+    ver_papi = "6.0"
+    ver_event = "2.1-7"
     ver_ncurses = "5"
+    ver_asound = "2"
     ver_urcu = "8"
     ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
-    ver_asound = "2"
     ver_openmpi = "3"
+    ver_unwind = "8"
     ver_boost_short = "1.74"
+    ver_boost=ver_boost_short+".0"
 if VERSION_ID == "22.10":
-    ver_papi = "6.0"
-    ver_unwind = "-15"
-    ver_event = "2.1-7a"
     ver_wxgtk = "3.0"
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
+    ver_papi = "6.0"
+    ver_event = "2.1-7a"
     ver_ncurses = "5"
+    ver_asound = "2"
     ver_urcu = "8"
     ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
-    ver_asound = "2"
     ver_openmpi = "3"
+    ver_unwind = "8"
     ver_boost_short = "1.74"
+    ver_boost=ver_boost_short+".0"
 if VERSION_ID == "23.04":
+    ver_wxgtk = "3.2"
+    lib_wx = f"libwxgtk{ver_wxgtk}-dev"
     ver_papi = "7.0"
     ver_event = "2.1-7a"
-    ver_wxgtk = "3.2"
-    lib_wx = f"libwxgtk{ver_wxgtk}-dev"
     ver_ncurses = "5"
+    ver_asound = "2"
     ver_urcu = "8"
     ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
-    ver_asound = "2"
     ver_openmpi = "3"
+    ver_unwind = "8"
     ver_boost_short = "1.74"
+    ver_boost=ver_boost_short+".0"
 if VERSION_ID == "23.10":
+    ver_wxgtk = "3.2"
+    lib_wx = f"libwxgtk{ver_wxgtk}-dev"
     ver_papi = "7.0"
     ver_event = "2.1-7"
-    ver_wxgtk = "3.2"
-    lib_wx = f"libwxgtk{ver_wxgtk}-dev"
     ver_ncurses = "6"
+    ver_asound = "2"
     ver_urcu = "8"
     ver_cds = "???"
     ver_elf = "1"
     ver_dw = "1"
     ver_asm = "1"
-    ver_asound = "2"
     ver_openmpi = "3"
+    ver_unwind = "8"
     ver_boost_short = "1.74"
+    ver_boost=ver_boost_short+".0"
 if VERSION_ID == "24.04":
-    ver_papi = "7.1t64"
-    ver_event = "2.1-7t64"
     ver_wxgtk = "3.2-1t"
     lib_wx = "libwxgtk3.2-dev"
+    ver_papi = "7.1t64"
+    ver_event = "2.1-7t64"
     ver_ncurses = "6"
+    ver_asound = "2t64"
     ver_urcu = "8t64"
     ver_cds = "2.3.3t64"
     ver_elf = "1t64"
     ver_dw = "1t64"
     ver_asm = "1t64"
-    ver_asound = "2t64"
     ver_openmpi = "3t64"
+    ver_unwind = "8"
     ver_boost_short = "1.83"
-ver_boost=ver_boost_short+".0"
-ver_unwind = "8"
+    ver_boost=ver_boost_short+".0"
+if VERSION_ID == "24.10":
+    ver_wxgtk = "3.2-1t"
+    lib_wx = "libwxgtk3.2-dev"
+    ver_papi = "7.1t64"
+    ver_event = "2.1-7t64"
+    ver_ncurses = "6"
+    ver_asound = "2t64"
+    ver_urcu = "8t64"
+    ver_cds = "2.3.3t64"
+    ver_elf = "1t64"
+    ver_dw = "1t64"
+    ver_asm = "1t64"
+    ver_openmpi = "3t64"
+    ver_unwind = "8"
+    ver_boost_short = "1.83"
+    ver_boost=ver_boost_short+".0"
+
+# check that versions were assigned
+assert ver_wxgtk is not None
+assert lib_wx is not None
+assert ver_papi is not None
+assert ver_event is not None
+assert ver_ncurses is not None
+assert ver_asound is not None
+assert ver_urcu is not None
+assert ver_cds is not None
+assert ver_elf is not None
+assert ver_dw is not None
+assert ver_asm is not None
+assert ver_openmpi is not None
+assert ver_unwind is not None
+assert ver_boost is not None
+assert ver_boost_short is not None
 
 packages_kernels=[
 ]
@@ -411,6 +455,9 @@ packages=[
     "cppcheck",
     "cpplint",
     "clang-tidy",
+    # libdialog
+    "libdialog15",
+    "libdialog-dev",
 ]
 
 if opt_do_kernel:

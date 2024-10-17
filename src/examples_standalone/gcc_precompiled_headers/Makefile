@@ -14,6 +14,7 @@ all: pch/myace.hh.gch $(OBJECTS)
 
 pch/myace.hh.gch: include/myace.hh
 	$(info doing [$@])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)g++ -Iinclude $(CFLAGS) $(ACE_FLAGS) -o $@ $<
 
 # rules

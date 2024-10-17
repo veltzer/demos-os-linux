@@ -17,7 +17,6 @@
  */
 
 #include <firstinclude.h>
-#include <ace/Auto_Ptr.h>
 #include <iostream>	// for cout, endl
 #include <cstdlib>	// for EXIT_SUCCESS
 #include <memory>

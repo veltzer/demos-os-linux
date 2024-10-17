@@ -29,7 +29,6 @@
 #include <ace/Method_Request.h>
 #include <ace/Task.h>
 #include <ace/Future.h>
-#include <ace/Auto_Ptr.h>
 
 using namespace std;
 
