@@ -32,6 +32,7 @@ if opt_debug:
 if opt_exit:
     sys.exit(0)
 
+add = []
 ver_wxgtk = None
 lib_wx = None
 ver_papi = None
@@ -66,6 +67,9 @@ if VERSION_ID == "22.04":
     ver_unwind = "8"
     ver_boost_short = "1.74"
     ver_boost=ver_boost_short+".0"
+    add.extend([
+        "dialog",
+    ])
 if VERSION_ID == "22.10":
     ver_wxgtk = "3.0"
     lib_wx = f"libwxgtk{ver_wxgtk}-gtk3-dev"
@@ -82,6 +86,9 @@ if VERSION_ID == "22.10":
     ver_unwind = "8"
     ver_boost_short = "1.74"
     ver_boost=ver_boost_short+".0"
+    add.extend([
+        "dialog",
+    ])
 if VERSION_ID == "23.04":
     ver_wxgtk = "3.2"
     lib_wx = f"libwxgtk{ver_wxgtk}-dev"
@@ -98,6 +105,9 @@ if VERSION_ID == "23.04":
     ver_unwind = "8"
     ver_boost_short = "1.74"
     ver_boost=ver_boost_short+".0"
+    add.extend([
+        "dialog",
+    ])
 if VERSION_ID == "23.10":
     ver_wxgtk = "3.2"
     lib_wx = f"libwxgtk{ver_wxgtk}-dev"
@@ -114,6 +124,9 @@ if VERSION_ID == "23.10":
     ver_unwind = "8"
     ver_boost_short = "1.74"
     ver_boost=ver_boost_short+".0"
+    add.extend([
+        "dialog",
+    ])
 if VERSION_ID == "24.04":
     ver_wxgtk = "3.2-1t"
     lib_wx = "libwxgtk3.2-dev"
@@ -130,6 +143,9 @@ if VERSION_ID == "24.04":
     ver_unwind = "8"
     ver_boost_short = "1.83"
     ver_boost=ver_boost_short+".0"
+    add.extend([
+        "dialog",
+    ])
 if VERSION_ID == "24.10":
     ver_wxgtk = "3.2-1t"
     lib_wx = "libwxgtk3.2-dev"
@@ -146,6 +162,11 @@ if VERSION_ID == "24.10":
     ver_unwind = "8"
     ver_boost_short = "1.83"
     ver_boost=ver_boost_short+".0"
+    add.extend([
+        # libdialog
+        "libdialog15",
+        "libdialog-dev",
+    ])
 
 # check that versions were assigned
 assert ver_wxgtk is not None
@@ -455,10 +476,8 @@ packages=[
     "cppcheck",
     "cpplint",
     "clang-tidy",
-    # libdialog
-    "libdialog15",
-    "libdialog-dev",
 ]
+packages.extend(add)
 
 if opt_do_kernel:
     packages.extend([
