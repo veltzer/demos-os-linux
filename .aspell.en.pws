@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1074 
+personal_ws-1.1 en 1077 
 AARRR
 ACLs
 ADPlus
@@ -14,6 +14,7 @@ APM
 ASLR
 ASN
 AVD
+AVX
 Acceptor
 Accessors
 Ack
@@ -184,6 +185,7 @@ Endedness
 Exchanger
 Extjs
 FFT
+FMA
 FS
 FSx
 Fargate
@@ -426,6 +428,7 @@ Powel
 PowerManager
 Powertools
 Precompiled
+Prefetching
 PresistentVolume
 PrivateLink
 PromQL
