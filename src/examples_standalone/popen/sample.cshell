@@ -4,9 +4,10 @@
 
 int main(int argc,char** argv,char** envp) {
 	unsigned int i;
-	printf("Hey, look at me!, I'm a C script!\n");
-	for(i=0;i<10;i++) {
-		printf("i is now %d\n",i);
+	printf("Hey, look at me!, I'm a C script! Hey I changed this\n");
+	int array[10] = {1,3,5,7,9,11,13,15,17,19};
+	for(i=0;i<8;i++) {
+		printf("i is now %d\n",array[i]);
 	}
 	return(0);
 }
