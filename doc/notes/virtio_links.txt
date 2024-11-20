@@ -1,0 +1,6 @@
+https://www.redhat.com/en/blog/virtqueues-and-virtio-ring-how-data-travels
+https://archive.fosdem.org/2018/schedule/event/virtio/attachments/slides/2167/export/events/attachments/virtio/slides/2167/fosdem_virtio1_1.pdf
+https://archive.fosdem.org/2022/schedule/event/vai_virtualio/attachments/slides/4992/export/events/attachments/vai_virtualio/slides/4992/stefanha_fosdem_2022.pdf
+https://blogs.oracle.com/linux/post/introduction-to-virtio
+https://static.sched.com/hosted_files/kvmforum2019/50/KVMForum_2019_virtio_vsock_Andra_Paraschiv_Stefano_Garzarella_v1.3.pdf?_gl=1*1y3iqqk*_gcl_au*NzI3NDk1MDI1LjE3MzAzMDkyMjY.*FPAU*NzI3NDk1MDI1LjE3MzAzMDkyMjY
+https://docs.oasis-open.org/virtio/virtio/v1.2/cs01/virtio-v1.2-cs01.pdf
