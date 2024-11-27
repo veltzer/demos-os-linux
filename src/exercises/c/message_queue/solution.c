@@ -52,7 +52,7 @@ int pthread_mq_get(pthread_mq_t* mq, int* value) {
 	int res;
 	res = pthread_mutex_lock(&(mq->m));
 	if(res!=0) return res;
-	// while the queue is full go to sleep
+	// while the queue is empty go to sleep
 	while(mq->max==mq->min) {
 		res = pthread_cond_wait(&(mq->cond_empty), &(mq->m));
 		if(res!=0) return res;
