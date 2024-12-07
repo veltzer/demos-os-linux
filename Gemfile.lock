@@ -4,8 +4,8 @@ GEM
     chef-utils (18.5.0)
       concurrent-ruby
     concurrent-ruby (1.3.4)
-    kramdown (2.4.0)
-      rexml
+    kramdown (2.5.1)
+      rexml (>= 3.3.9)
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     mdl (0.13.0)
@@ -17,18 +17,17 @@ GEM
     mixlib-cli (2.1.8)
     mixlib-config (3.0.27)
       tomlrb
-    mixlib-shellout (3.2.8)
+    mixlib-shellout (3.3.4)
       chef-utils
-    rexml (3.3.6)
-      strscan
-    strscan (3.1.0)
+    rexml (3.3.9)
     tomlrb (2.0.3)
 
 PLATFORMS
+  ruby
   x86_64-linux-gnu
 
 DEPENDENCIES
   mdl
 
 BUNDLED WITH
-   2.4.20
+   2.5.11
