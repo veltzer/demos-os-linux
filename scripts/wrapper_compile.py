@@ -46,6 +46,7 @@ def check_no_output(args, allow_output):
             # raise ValueError(f"error in executing [{args}]")
 
 
+# pylint: disable=too-many-positional-arguments
 def handle(line, args, string, process, subs, inject=None, shell=False):
     f=line.find(string)
     if f!=-1:
