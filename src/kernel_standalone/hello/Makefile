@@ -2,9 +2,11 @@
 obj-m:=hello.o
 hello-objs:=main.o
 V?=0
+# on ubuntu must install `linux-headers-generic` for this next line to work
 KDIR?=/lib/modules/$(shell uname -r)/build
 # in an embedded system:
 #KDIR:=[where the system maker gave me kernel headers+makefile or the kernel itself which has a makefile]
+# on ubuntu you must install `gcc-x86-64-linux-gnu` for the next lines to work
 ARCH:=x86_64
 CROSS_COMPILE:=x86_64-linux-gnu-
 # You could also use W=2 and W=3 for more warnings but most kernel headers
