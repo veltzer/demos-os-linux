@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
 	// create the epoll fd
 	// the parameter to epoll_create(2) really doesn't matter
 	// see the documentation for more details
-	int epollfd=CHECK_NOT_M1(epoll_create(1));
+	int epollfd=CHECK_NOT_M1(epoll_create1(0));
 
 	// add the listening socket to it
 	struct epoll_event sockev;
