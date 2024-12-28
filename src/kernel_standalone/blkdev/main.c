@@ -28,6 +28,7 @@
 #include <linux/blkdev.h>
 #include <linux/blk-mq.h>
 #include <linux/hdreg.h>
+#include <linux/version.h>
 
 #define MEMBLOCK_MAJOR 240
 #define MEMBLOCK_SIZE (1024 * 1024) // 1MB
@@ -147,7 +148,11 @@ static int __init memblock_init(void)
 		return err;
 	}
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 11, 0)
+	memblock_device->gd = blk_mq_alloc_disk(&memblock_device->tag_set, NULL, memblock_device);
+#else
 	memblock_device->gd = blk_mq_alloc_disk(&memblock_device->tag_set, NULL);
+#endif
 	if (IS_ERR(memblock_device->gd)) {
 		blk_mq_free_tag_set(&memblock_device->tag_set);
 		unregister_blkdev(memblock_major, "memblock");
