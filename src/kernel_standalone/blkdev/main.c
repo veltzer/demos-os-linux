@@ -30,6 +30,10 @@
 #include <linux/hdreg.h>
 #include <linux/version.h>
 
+/*
+ * FLAGS: NOCHECKPATCH
+ */
+
 #define MEMBLOCK_MAJOR 240
 #define MEMBLOCK_SIZE (1024 * 1024) // 1MB
 

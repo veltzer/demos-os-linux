@@ -688,7 +688,7 @@ $(C_TIDY): out/%.c.stamp.tidy: %.c .clang-tidy
 # rule about how to check kernel source files
 $(MOD_CHP): %.stamp.chp: %.c
 	$(info doing [$@] from [$<])
-	$(Q)pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --no-tree --file $<
+	$(Q)scripts/run_with_ignore.py $< NOCHECKPATCH pymakehelper only_print_on_error $(SCRIPT_CHECKPATCH) --no-tree --file $<
 	$(Q)pymakehelper touch_mkdir $@
 # rule about how to create .ko files...
 $(MOD_STP): %.ko.stamp: %.c

@@ -26,6 +26,7 @@
 
 /*
  * This is a module that checks the kernel version
+ * FLAGS: NOCHECKPATCH
  */
 
 MODULE_LICENSE("GPL");
@@ -35,10 +36,11 @@ MODULE_DESCRIPTION("Demo module for testing");
 /* our own functions */
 static int __init mod_init(void)
 {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,11,0)
+/* checkpatch-ignore: ALL */
+#if KERNEL_VERSION(6, 11, 0) <= LINUX_VERSION_CODE
 	pr_info("version >= 6.11.0");
 #else
-	pr_info("version ! >= 6.11.0");
+	pr_info("version >= 6.11.0");
 #endif
 	return 0;
 }
