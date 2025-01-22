@@ -46,6 +46,16 @@ MODULE_LICENSE("GPL");
 
 static struct nf_hook_ops nfho; /* net filter hook option struct */
 
+int is_localhost(struct iphdr *iph)
+{
+	// Get destination IP in host byte order
+	__be32 dest = ntohl(iph->daddr);
+
+	// Check if it's in 127.0.0.0/8 range
+	// 127.0.0.0/8 in binary starts with 0x7f
+	return (dest >> 24) == 0x7f;
+}
+
 static unsigned int hook_func(
 	void *priv,
 	struct sk_buff *skb,
@@ -58,11 +68,13 @@ static unsigned int hook_func(
 		return NF_ACCEPT;
 	ip_header = ip_hdr(skb);
 	if (ip_header) {
-		pr_info(
-			"Packet intercepted: Source IP = %pI4, Dest IP = %pI4\n",
-			&ip_header->saddr,
-			&ip_header->daddr
-		);
+		if (is_localhost(ip_header)) {
+			pr_info(
+				"Packet intercepted: Source IP = %pI4, Dest IP = %pI4\n",
+				&ip_header->saddr,
+				&ip_header->daddr
+			);
+		}
 	}
 	return NF_ACCEPT;
 }

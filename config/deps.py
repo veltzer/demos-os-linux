@@ -424,9 +424,11 @@ packages=[
     "libdmalloc5",
     "libdmalloc-dev",
     "libcpufreq-dev", # cpufreq.h
+    # netfilter library
     "libnetfilter-queue1",
     "libnetfilter-queue-dev",
-    "libcap-dev", # capability.h
+    # capability.h
+    "libcap-dev",
     # rcu library
     f"liburcu{ver_urcu}",
     "liburcu-dev",
