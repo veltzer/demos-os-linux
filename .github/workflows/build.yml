@@ -11,22 +11,6 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4
-    - name: cache-packages
-      uses: actions/cache@v4
-      with:
-        path: |
-          /var/cache/apt
-          /var/lib/apt/lists
-        key: ${{ matrix.os }}-apt-${{ hashFiles('**/package-list.txt') }}
-        restore-keys: |
-          ${{ matrix.os }}-apt-
-    - name: cache-pip-packages
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pip
-        key: ${{ matrix.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ matrix.os }}-pip-
     - name: python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
