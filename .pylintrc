@@ -218,12 +218,13 @@ attr-naming-style=snake_case
 #attr-rgx=
 
 # Bad variable names which should always be refused, separated by a comma.
-bad-names=foo,
-          bar,
-          baz,
-          toto,
-          tutu,
-          tata
+bad-names=
+	foo,
+	bar,
+	baz,
+	toto,
+	tutu,
+	tata,
 
 # Bad variable names regexes, separated by a comma. If names match any regex,
 # they will always be refused
