@@ -1,3 +1,5 @@
+""" general config """
+
 import datetime
 import subprocess
 import os
