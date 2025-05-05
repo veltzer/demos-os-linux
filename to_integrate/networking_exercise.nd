@@ -1,0 +1,6 @@
+# Networking exercise
+
+Do the following:
+1. Add another virtual network interface to your machine
+2. Create a route to your virtual network interface
+3. Run two apps that communicate vis your new network interface.
