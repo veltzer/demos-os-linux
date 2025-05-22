@@ -5,10 +5,9 @@ This script runs anything for you and ignores the run if the file has a tag
 that you specify.
 
 What is the reason for this script?
-We want the option not to run tidy on files which have:
-        FLAGS: NOTIDY
-in them to enable us to write not-well-structured HTML files
-to demo various things
+We want the option not to run a tool on files which have:
+        FLAGS: NOTOOL
+to enable a certain tool to run on them to demo various things
 """
 
 import sys
