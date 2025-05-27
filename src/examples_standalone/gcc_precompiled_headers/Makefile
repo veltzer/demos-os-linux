@@ -40,6 +40,6 @@ clean:
 
 .PHONY: time
 time: clean
+	time make $(OBJECTS_NOPRECOMP)
 	make pch/myace.hh.gch
 	time make $(OBJECTS_PRECOMP)
-	time make $(OBJECTS_NOPRECOMP)
