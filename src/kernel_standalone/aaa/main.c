@@ -47,14 +47,16 @@ static ssize_t read_aaa(struct file *file, char __user *buf, size_t count,
 		loff_t *ppos)
 {
 	size_t remaining;
-	int ret = access_ok(buf, count);
+	int ret;
+
+	ret = access_ok(buf, count);
 	if (!ret)
 		return -EFAULT;
 
 	remaining = count;
 	while (remaining) {
 		ret = __put_user('a', buf++);
-		if (ret<0)
+		if (ret < 0)
 			return ret;
 		remaining--;
 	}
