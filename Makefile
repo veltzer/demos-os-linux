@@ -699,7 +699,7 @@ $(MOD_STP): %.ko.stamp: %.c
 # shell checking rules
 $(ALL_STAMP): out/%.stamp: % .shellcheckrc
 	$(info doing [$@] from [$<])
-	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$$HOME" $<
+	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$${HOME}" $<
 	$(Q)pymakehelper touch_mkdir $@
 
 # rules about makefiles
