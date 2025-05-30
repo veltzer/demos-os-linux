@@ -1,7 +1,7 @@
 .PHONY: all
-all: main libshared.so
+all: main.elf libshared.so
 
-main: main.c static_lib.c
+main.elf: main.c static_lib.c
 	gcc -O2 -o main main.c static_lib.c -ldl -lrt
 
 libshared.so: shared_lib.c
@@ -9,4 +9,4 @@ libshared.so: shared_lib.c
 
 .PHONY: clean
 clean:
-	-rm -f main libshared.so
+	-rm -f main.elf libshared.so
