@@ -169,7 +169,7 @@ CC_GCC_OBJ:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_OO),$(basename $(CC_SRC))
 C_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC))))
 CC_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC))))
 
-ALL_SH:=$(shell find src -type f -and -name "*.sh")
+ALL_SH:=$(shell find src -type f -and -name "*.sh" 2>/dev/null)
 ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
 
 ifeq ($(DO_GCC),1)
