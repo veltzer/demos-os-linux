@@ -17,3 +17,8 @@ Person* p1=p.get();
 // return to the pool
 p.put(p1)
 ```
+
+Hints:
+* use `sudo apt-get update` to update your system
+* use `sudo apt-get install g++ gcc` to install g++ and gcc
+* use `sudo apt-get install libboost-all-dev` to install boost development files.
