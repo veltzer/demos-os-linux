@@ -8,7 +8,9 @@ private:
     int age_;
 
 public:
-    Person() : name_(""), age_(0) {}
+    Person() : name_(""), age_(0) {
+        std::cout << "Person constructor is called" << std::endl;
+    }
     
     // Getters
     const std::string& getName() const { return name_; }
@@ -24,7 +26,7 @@ public:
 };
 
 int main() {
-    // Create pool of 256 Person objects
+    // Create pool of 32 Person objects
     boost::object_pool<Person> pool;
     
     // Get Person objects from pool
@@ -44,7 +46,7 @@ int main() {
     // Return objects to pool (destroy them)
     pool.destroy(p1);
     pool.destroy(p2);
-    
+ 
     // Get new objects (memory is reused)
     Person* p3 = pool.construct();
     p3->setName("Charlie");
@@ -52,6 +54,5 @@ int main() {
     p3->display();
     
     pool.destroy(p3);
-    
-    return 0;
+    return EXIT_SUCCESS;
 }
