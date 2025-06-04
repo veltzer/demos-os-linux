@@ -6,5 +6,9 @@
 * The server changes the first integer in the 4K block incrementing it all every second.
 * The client reads the first integer in the 4K block so that we could see it being incremented.
 
+Notes:
+* the API for sharing memory is: shmget, shmat, shmctl, ftok....
+* in this exercise you need to write two processes: one server and one client.
+
 Questions:
 * Is the virtual address for the 4K block equal in the client and the server? Print it to find out.
