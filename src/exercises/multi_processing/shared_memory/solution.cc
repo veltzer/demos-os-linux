@@ -24,28 +24,33 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_CHARP(), CHECK_NOT_M1(), CHECK_NOT_VOIDP()
 
+const int PROJID=50;
 #define PROJID 50
 
 int main(int argc, char**) {
-	if(argc>1) {
-		key_t key=CHECK_NOT_M1(ftok("/etc/passwd", PROJID));
+	key_t key=CHECK_NOT_M1(ftok("/etc/passwd", PROJID));
+	if(argc==1) {
+		printf("running server...\n");
 		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), IPC_CREAT | 0666));
 		int* p_int=(int*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
 		printf("the addres of the shared memory is at %p\n", (void*)p_int);
 		for(int i=0;i<100;i++) {
 			*p_int=i;
+			printf("server wrote %d\n", i); 
 			sleep(1);
 		}
 		CHECK_NOT_M1(shmctl(shmid, IPC_RMID, 0));
 	} else {
-		key_t key=CHECK_NOT_M1(ftok("/etc/passwd", PROJID));
-		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), IPC_CREAT | 0666));
+		printf("running client...\n");
+		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), 0));
 		int* p_int=(int*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
+		printf("the addres of the shared memory is at %p\n", (void*)p_int);
 		for(int i=0;i<100;i++) {
 			int data=*p_int;
-			printf("got data %d...\n", data);
+			printf("client got number %d\n", data); 
 			sleep(1);
 		}
+		CHECK_NOT_M1(shmctl(shmid, IPC_RMID, 0));
 	}
 	return EXIT_SUCCESS;
 }
