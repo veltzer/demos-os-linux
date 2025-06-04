@@ -17,40 +17,35 @@
  */
 
 #include <firstinclude.h>
-#include <sys/types.h>	// for ftok(3), semget(2), semctl(2), shmat(2)
-#include <sys/ipc.h>	// for ftok(3), semget(2), semctl(2), shmget(2)
+#include <sys/types.h>	// for ftok(3), shmat(2)
+#include <sys/ipc.h>	// for ftok(3), shmget(2)
 #include <sys/shm.h>	// for shmget(2), shmat(2)
-#include <sys/sem.h>	// for semget(2), semctl(2)
-#include <stdio.h>	// for printf(3), fgets(3)
+#include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_CHARP(), CHECK_NOT_M1(), CHECK_NOT_VOIDP()
 
-const int MAXCLIENTS=10;
-const int CLIENTMESSAGESIZE=4096;
+#define PROJID 50
 
-struct data{
-	int readOffset;
-	int writeOffset;
-	char message[CLIENTMESSAGESIZE];
-};
-
-int main() {
-	key_t key=CHECK_NOT_M1(ftok("/etc/passwd", 'x'));
-	int semid=CHECK_NOT_M1(semget(key, MAXCLIENTS, IPC_CREAT | 0666));
-	for(int i=0; i<MAXCLIENTS; i++) {
-		CHECK_NOT_M1(semctl(semid, i, SETVAL, 0));
+int main(int argc, char**) {
+	if(argc>1) {
+		key_t key=CHECK_NOT_M1(ftok("/etc/passwd", PROJID));
+		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), IPC_CREAT | 0666));
+		int* p_int=(int*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
+		printf("the addres of the shared memory is at %p\n", (void*)p_int);
+		for(int i=0;i<100;i++) {
+			*p_int=i;
+			sleep(1);
+		}
+		CHECK_NOT_M1(shmctl(shmid, IPC_RMID, 0));
+	} else {
+		key_t key=CHECK_NOT_M1(ftok("/etc/passwd", PROJID));
+		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), IPC_CREAT | 0666));
+		int* p_int=(int*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
+		for(int i=0;i<100;i++) {
+			int data=*p_int;
+			printf("got data %d...\n", data);
+			sleep(1);
+		}
 	}
-	printf("asking for %zd bytes\n", sizeof(struct data) * MAXCLIENTS);
-	int shmid=CHECK_NOT_M1(shmget(key, sizeof(struct data) * MAXCLIENTS, IPC_CREAT | 0666));
-	struct data* smdata=(struct data*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
-	for(int i=0; i<MAXCLIENTS; i++) {
-		smdata[i].readOffset=0;
-		smdata[i].writeOffset=0;
-	}
-	printf("Hit <Enter> to finish\n");
-	char ans[10];
-	CHECK_CHARP(fgets(ans, sizeof(ans), stdin), ans);
-	CHECK_NOT_M1(shmctl(shmid, IPC_RMID, 0));
-	CHECK_NOT_M1(semctl(semid, 0, IPC_RMID, 0));
 	return EXIT_SUCCESS;
 }

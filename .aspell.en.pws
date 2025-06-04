@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1080 
+personal_ws-1.1 en 1084 
 AARRR
 ACLs
 ADPlus
@@ -762,6 +762,7 @@ fprofile
 framebuffer
 fsck
 fstab
+ftok
 ftrace
 func
 functors
@@ -984,6 +985,9 @@ setOf
 setuptools
 shader
 shbang
+shmat
+shmctl
+shmget
 siginterrupt
 signalfd
 sigprocmask
