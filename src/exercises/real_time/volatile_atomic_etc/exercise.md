@@ -7,10 +7,10 @@ You want to make the global counter that starts at 0, represents all the pieces 
 
 You can use volatile and atomics.
 
-See what happens when you drop `volatile` and 
+See what happens when you drop `volatile`.
 
 Fix the problem and compare all the solution you can find to this problem in terms of efficiency.
 
 Hints:
 * make sure you compile with optimization (-O2).
-* threads can be created either using the `pthread` api or C++ thread support.
+* threads can be created either using the `pthread` API or C++ thread support.

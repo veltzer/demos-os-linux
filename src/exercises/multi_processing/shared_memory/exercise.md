@@ -1,5 +1,10 @@
 # Shared Memory
 
-* Implement IRC network using shared memory. Every "subscriber" should have a piece of the shared memory assigned to him.
-* Every shared memory piece assigned to a subscriber should have some space reserved to pointers (3 could be enough).
-* Make sure that reader will not read information while modified. (not necessarily by using semaphores or locks)
+* Implement two processes "talking" through shared memory.
+* The first process, let's call it the "server" comes up and defines a piece of shared memory (4K in size).
+* The second process, let's call it the "client" comes up and attaches to the shared memory.
+* The server changes the first integer in the 4K block incrementing it all every second.
+* The client reads the first integer in the 4K block so that we could see it being incremented.
+
+Questions:
+* Is the virtual address for the 4K block equal in the client and the server? Print it to find out.
