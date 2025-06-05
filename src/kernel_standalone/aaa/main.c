@@ -40,6 +40,7 @@ MODULE_DESCRIPTION("A simple implementation for something like /dev/aaa");
 
 /* how many minors do we need ? */
 const int MINOR_COUNT = 1;
+char buf[256]={'a'};
 
 /* these are the actual operations */
 
@@ -51,7 +52,7 @@ static ssize_t read_aaa(struct file *file, char __user *buf, size_t count,
 
 	ret = access_ok(buf, count);
 	if (!ret)
-		return -EFAULT;
+		return ret;
 
 	remaining = count;
 	while (remaining) {
@@ -61,6 +62,19 @@ static ssize_t read_aaa(struct file *file, char __user *buf, size_t count,
 		remaining--;
 	}
 	return count;
+#ifdef ALTERNATE
+	ret = access_ok(buf, count);
+	size_t remaining;
+	remaining = count;
+	while (remaining) {
+		ssize_t current_transfer=min_(remining, 128);
+		ret = __copy_to_user(buf, mybuf, current_transfer)
+		if(ret) {
+			return ret;
+		}
+		remaining -=current_transfer;
+	}
+#endif // ALTERNATE
 }
 
 /* this is the operations table */
