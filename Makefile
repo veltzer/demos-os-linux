@@ -710,8 +710,7 @@ $(MK_STP): %.stamp: %
 $(MD_MDL): out/%.mdl: %.md .mdlrc .mdl.style.rb
 	$(info doing [$@] from [$<])
 	$(Q)GEM_HOME=gems gems/bin/mdl $<
-	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 $(MD_ASPELL): out/%.aspell: %.md .aspell.conf .aspell.en.prepl .aspell.en.pws
 	$(info doing [$@] from [$<])
 	$(Q)aspell --conf-dir=. --conf=.aspell.conf list < $< | pymakehelper error_on_print sort -u
