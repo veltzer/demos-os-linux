@@ -108,7 +108,7 @@ def main():
     subs["target"]=target
     # scan the source code
     allow_output=False
-    with open(source, "r") as stream:
+    with open(source) as stream:
         for line in stream:
             line=line.strip()
             if link:

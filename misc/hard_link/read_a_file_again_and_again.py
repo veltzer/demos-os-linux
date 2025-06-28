@@ -13,7 +13,7 @@ def main():
     filename="/tmp/passwd"
     shutil.copy("/etc/passwd", filename)
     print(f"while I am working please remove [{filename}] and see that I keep working right...")
-    with open(filename, "r") as stream:
+    with open(filename) as stream:
         while True:
             for line in stream:
                 print(line, end="")
