@@ -35,7 +35,7 @@ MUST = [
 ]
 
 
-def is_sublist(list1: List[str], list2: List[str]) -> bool:
+def is_sublist(list1: list[str], list2: list[str]) -> bool:
     """
     Check that one list is a sublist of the other
     """
@@ -53,7 +53,7 @@ def main():
     filename = sys.argv[1]
     headers = []
     title = None
-    with open(filename, "r", encoding="utf-8") as stream:
+    with open(filename, encoding="utf-8") as stream:
         for line in stream:
             line = line.rstrip()
             if line.startswith("## "):

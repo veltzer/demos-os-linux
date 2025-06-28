@@ -50,7 +50,7 @@ for root,dirs,files in os.walk(root_folder):
                 doit=False
         if doit:
             # print(f"examining [{current_file}]")
-            with open(current_file,"r") as stream:
+            with open(current_file) as stream:
                 f=stream.read()
             if f.startswith(lic_old):
                 f=lic_new+f[len(lic_old):]
