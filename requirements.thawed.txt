@@ -1,6 +1,7 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
 cpplint
 mypy
+pyclassifiers
 pycmdtools
 pydmt
 pylint
