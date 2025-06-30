@@ -1,5 +1,9 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
 cpplint
+mypy
+pycmdtools
 pydmt
 pylint
 pymakehelper
+pytest
+ruff
