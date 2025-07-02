@@ -21,6 +21,19 @@
 #include <thread>
 #include <assert.h>
 
+/*
+ * This is a C++ file demonstrating atomic operations with memory barriers. It shows a multithreading example using
+  std::atomic with sequential consistency memory ordering (memory_order_seq_cst) to ensure proper synchronization between
+  threads.
+
+  The code creates three threads:
+  - One writer thread that sets both x and y to true
+  - Two reader threads that wait for different variables and increment a counter z
+
+  The sequential consistency memory ordering ensures that both reader threads will see the writes and increment z, making
+  the assertion z == 2 always pass.
+*/
+
 using namespace std;
 
 atomic<bool> x, y;
