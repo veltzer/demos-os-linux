@@ -18,21 +18,30 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
+#include <atomic>	// for std::atomic_thread_fence, std::memory_order
+#ifdef __STDC_VERSION__
+#if __STDC_VERSION__ >= 201112L && !defined(__STDC_NO_ATOMICS__)
+#include <stdatomic.h>	// for C11 atomic_thread_fence, memory_order_*
+#endif
+#endif
 #include <disassembly_utils.h>	// for disassemble_main()
 
 /*
  * This is a demo to show what machine instructions are really when
  * you emit a memory barrier.
- * We give several example of memory barriers:
- * sync_synchronize() - "lock orl"
  *
- * Take note that this is a also a compiler barrier. It prevents the compiler
- * from reordering around this code and carrying assumptions across the barrier.
+ * Take note that a memory barrier is a also a compiler barrier.
+ * It prevents the compiler from reordering around this code and carrying
+ * assumptions across the barrier.
  * You don't see any assembly emitted for that since a compiler barrier is only
  * a compile time instruction about future code emittion.
  *
- * There are other examples of other ways to achieve memory fences on x86
- * but the differences between all of these various ways are not explained.
+ * The file now includes five types of memory barriers:
+ * 1. GCC intrinsics (__sync_synchronize, __atomic_thread_fence)
+ * 2. Inline assembly (lock instructions, mfence, lfence, sfence)
+ * 3. Additional hardware barriers (CPUID, RDTSCP, CLFLUSH, PAUSE, I/O)
+ * 4. C-style barriers (volatile, compiler barriers, C11 atomics)
+ * 5. C++ standard library (std::atomic_thread_fence with different orderings)
  *
  * this is so disassembly will show interleaved code
  * EXTRA_COMPILE_FLAGS=-g3
@@ -46,6 +55,7 @@ void gcc_intrinsics() {
 	__atomic_thread_fence(__ATOMIC_RELEASE);
 	__atomic_thread_fence(__ATOMIC_ACQ_REL);
 	__atomic_thread_fence(__ATOMIC_CONSUME);
+	__atomic_thread_fence(__ATOMIC_RELAXED);
 }
 
 void asm_locks() __attribute__((unused, noinline));
@@ -59,8 +69,80 @@ void asm_locks() {
 	asm ("sfence");
 }
 
+void additional_hw_barriers() __attribute__((unused, noinline));
+void additional_hw_barriers() {
+	// Serializing instructions (full memory barriers)
+	asm ("cpuid" : : : "eax", "ebx", "ecx", "edx");
+	asm ("rdtscp" : : : "eax", "edx", "ecx");
+	
+	// XCHG with implicit lock (full memory barrier)
+	asm ("xchg %eax, %ebx");
+	
+	// Cache control with memory barrier semantics
+	// Note: these may fault if address is invalid, using register addressing
+	asm ("clflush (%rax)");   // Flush cache line + memory barrier
+	asm ("clwb (%rax)");      // Write-back cache line + ordering
+	
+	// Memory ordering hint for spin loops
+	asm ("pause");
+	
+	// I/O instructions (serialize execution)
+	asm ("outb %%al, $0x80" : : "a"(0));  // I/O write with serialization
+	unsigned char dummy;
+	asm ("inb $0x80, %%al" : "=a"(dummy) : : );  // I/O read with serialization
+	(void)dummy;  // Suppress unused warning
+	
+	// Store fence variations
+	asm ("sfence");           // Store fence (duplicate from above for completeness)
+	
+	// Memory barrier through memory operand constraints
+	int barrier_var = 0;
+	asm ("" : "+m"(barrier_var));  // Memory barrier via operand constraint
+}
+
+void c_style_barriers() __attribute__((unused, noinline));
+void c_style_barriers() {
+	// C-style compiler barriers using volatile
+	volatile int dummy = 0;
+	(void)dummy;  // prevent unused variable warning
+	
+	// GCC-specific compiler barrier (prevents reordering but no hw fence)
+	asm volatile ("" ::: "memory");
+	
+	// C11 atomic thread fence (if available)
+	#ifdef __STDC_VERSION__
+	#if __STDC_VERSION__ >= 201112L && !defined(__STDC_NO_ATOMICS__)
+	atomic_thread_fence(memory_order_seq_cst);
+	atomic_thread_fence(memory_order_acquire);
+	atomic_thread_fence(memory_order_release);
+	atomic_thread_fence(memory_order_acq_rel);
+	atomic_thread_fence(memory_order_consume);
+	atomic_thread_fence(memory_order_relaxed);
+	#endif
+	#endif
+	
+	// Traditional C-style barriers using volatile reads/writes
+	volatile int barrier_var = 0;
+	barrier_var = 1;  // volatile write
+	dummy = barrier_var;  // volatile read
+}
+
+void cpp_std_fences() __attribute__((unused, noinline));
+void cpp_std_fences() {
+	// C++11 standard memory fences with different orderings
+	std::atomic_thread_fence(std::memory_order_seq_cst);
+	std::atomic_thread_fence(std::memory_order_acquire);
+	std::atomic_thread_fence(std::memory_order_release);
+	std::atomic_thread_fence(std::memory_order_acq_rel);
+	std::atomic_thread_fence(std::memory_order_consume);
+	std::atomic_thread_fence(std::memory_order_relaxed);
+}
+
 int main() {
 	disassemble_function("gcc_intrinsics");
 	disassemble_function("asm_locks");
+	disassemble_function("additional_hw_barriers");
+	disassemble_function("c_style_barriers");
+	disassemble_function("cpp_std_fences");
 	return EXIT_SUCCESS;
 }
