@@ -25,7 +25,7 @@ using namespace std;
 /*
  * Example of auto from the c++ standard.
  *
- * EXTRA_COMPILE_FLAGS=-std=c++11
+ * EXTRA_COMPILE_FLAGS=-std=c++20
  */
 
 int main() {

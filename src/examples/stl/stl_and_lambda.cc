@@ -27,7 +27,7 @@ using namespace std;
 /*
  * Examples of lambdas from C++0x standard...
  *
- * EXTRA_COMPILE_FLAGS=-std=c++11
+ * EXTRA_COMPILE_FLAGS=-std=c++20
  */
 
 static int a=12;
