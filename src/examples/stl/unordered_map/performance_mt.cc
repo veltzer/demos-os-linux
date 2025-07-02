@@ -26,6 +26,14 @@
 
 using namespace std;
 
+/*
+ * This example benchmarks the performance of STL unordered_map operations
+ * in a multi-threaded environment. It measures the time taken to insert
+ * and lookup elements using multiple threads working concurrently on the
+ * same hash map. Each thread handles a portion of the total elements,
+ * demonstrating parallel access patterns and mutex contention effects.
+ */
+
 unordered_map<int, int> hashMap;
 mutex mapMutex;
 

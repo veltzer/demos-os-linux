@@ -20,6 +20,14 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
+/*
+ * This example demonstrates basic C++ reference usage and behavior.
+ * It shows how references create aliases to variables, meaning that
+ * modifications to the reference affect the original variable and
+ * vice versa. References must be initialized when declared and
+ * cannot be reassigned to refer to different variables.
+ */
+
 int main() {
 	int i=5;
 	int& ri=i;
