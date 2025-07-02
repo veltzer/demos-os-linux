@@ -63,7 +63,7 @@ inline void my_trace(tracelevel level, const char* file, const char* base_file, 
 
 // now wrap this up to get the right compiler macros...
 // this is a pre-processor varargs type of tracer...
-#define MY_TRACE(level, fmt, args ...) my_trace(level, __FILE__, __BASE_FILE__, __LINE__, __func__, __FUNCTION__, __PRETTY_FUNCTION__, fmt, ## args)
+#define MY_TRACE(level, fmt, ...) my_trace(level, __FILE__, __BASE_FILE__, __LINE__, __func__, __FUNCTION__, __PRETTY_FUNCTION__, fmt, ## __VA_ARGS__)
 
 class A{
 public:

@@ -49,7 +49,7 @@ using namespace std;
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  * for the atomics
- * EXTRA_COMPILE_FLAGS=-std=c++11
+ * EXTRA_COMPILE_FLAGS=-std=c++20
  *
  * TODO:
  * - add drand48(3) functions to the mix.
