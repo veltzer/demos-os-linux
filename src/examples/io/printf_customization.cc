@@ -18,8 +18,8 @@
 
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
+#include <stdlib.h>	// for free(3)
 #include <printf.h>	// for register_printf_function(3), struct printf_info
-#include <stdlib.h>	// for EXIT_SUCCESS
 
 /*
  * This demo shows how to customize printf and is taken directly from the glibc info
@@ -84,5 +84,4 @@ int main() {
 	printf("|%35W|\n", &mywidget);
 	printf("|%-35W|\n", &mywidget);
 	#pragma GCC diagnostic pop
-	return EXIT_SUCCESS;
 }
