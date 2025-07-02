@@ -23,6 +23,14 @@
 
 using namespace std;
 
+/*
+ * This example demonstrates the comprehensive usage of shared_ptr in C++.
+ * It shows basic usage patterns including reference counting, sharing between
+ * objects, passing to functions, using in STL containers, and custom deleters.
+ * The shared_ptr automatically manages memory by tracking references and
+ * deleting the resource when the last shared_ptr is destroyed.
+ */
+
 class Resource {
 public:
 	Resource(int value) : data(value) {
