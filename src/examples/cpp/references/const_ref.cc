@@ -20,6 +20,14 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
+/*
+ * This example demonstrates const references, pointers, and variables in C++.
+ * It shows that when variables, pointers, or references are declared const,
+ * any attempt to modify them will result in compilation errors. The commented
+ * code shows the types of modifications that would fail to compile, illustrating
+ * how const provides compile-time protection against unwanted modifications.
+ */
+
 int main() {
 	// const int i=5;
 	// const int* pi=&i;

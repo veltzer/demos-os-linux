@@ -26,6 +26,13 @@
 
 using namespace std;
 
+/*
+ * This example demonstrates basic multi-threading in C++ using std::thread.
+ * It creates two threads that execute the same function concurrently, each
+ * printing a counter with a unique identifier. The main thread waits for
+ * both worker threads to complete using join(). This shows fundamental
+ * thread creation, execution, and synchronization concepts.
+ */
 
 // A function to be executed in newly created threads
 void task(const string id) {
