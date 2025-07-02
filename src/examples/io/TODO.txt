@@ -6,11 +6,6 @@
 		iotop(1)
 		iostat(1)
 		ionice(1)
-	zero copy:
-		sendfile(2)
-		splice(2)
-		vmsplice(2)
-		tee(2)
 	multiplexing:
 		select(2)
 		poll(2)

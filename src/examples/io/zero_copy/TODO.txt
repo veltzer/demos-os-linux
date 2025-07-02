@@ -1,3 +1,4 @@
 - compare the performance of all of the copy_file implementations
-using some kind of script. draw conclusions.
+	using some kind of script. draw conclusions.
 - do an example of tee using the select(2) system call.
+- do demo of the vmsplice(2) system call
