@@ -3,8 +3,6 @@ do demo that breaks volatile.
 	http://blog.regehr.org/archives/28
 	http://software.intel.com/en-us/blogs/2007/11/30/volatile-almost-useless-for-multi-threaded-programming
 
-- example of event passing between threads (eventfd).
-
 - C++ api of a mutex that has a name. In addition the api can report on
 	all mutexes which are currently taken and by which threads (threads by name
 	that is).
