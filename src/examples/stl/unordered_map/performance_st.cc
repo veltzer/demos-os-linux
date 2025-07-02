@@ -25,6 +25,14 @@
 
 using namespace std;
 
+/*
+ * This example benchmarks the performance of STL unordered_map operations
+ * in a single-threaded environment with mutex protection. It measures the
+ * time taken to insert and lookup one million elements in the hash map.
+ * The mutex ensures thread safety but adds overhead even in single-threaded
+ * execution. This serves as a baseline for comparing multi-threaded performance.
+ */
+
 unordered_map<int, int> hashMap;
 mutex mapMutex;
 

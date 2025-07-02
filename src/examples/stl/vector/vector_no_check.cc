@@ -24,6 +24,11 @@
 using namespace std;
 
 /*
+ * This example demonstrates what happens when you access a vector element
+ * out of bounds using the [] operator. Unlike vector.at(), the [] operator
+ * does not perform bounds checking, leading to undefined behavior when
+ * accessing invalid indices. This program accesses index 7 when the vector
+ * only has 2 elements, which may crash or return garbage data.
  */
 
 int main() {
