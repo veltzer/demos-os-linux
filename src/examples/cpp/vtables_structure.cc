@@ -81,9 +81,9 @@ int main() {
 	void** va=*(void***)&a;
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-	void* vAamethod0=(void*)&A::vamethod0;
-	void* vAamethod1=(void*)&A::vamethod1;
-	void* vAamethod2=(void*)&A::vamethod2;
+	void* vAamethod0=reinterpret_cast<void*>(&B::vamethod0);
+	void* vAamethod1=reinterpret_cast<void*>(&B::vamethod1);
+	void* vAamethod2=reinterpret_cast<void*>(&B::vamethod2);
 #pragma GCC diagnostic pop
 	assert(vAamethod0==va[0]);
 	assert(vAamethod1==va[1]);
@@ -96,11 +96,11 @@ int main() {
 	void** vb=*(void***)&b;
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-	void* vBamethod0=(void*)&B::vamethod0;
-	void* vBamethod1=(void*)&B::vamethod1;
-	void* vBamethod2=(void*)&B::vamethod2;
-	void* vBbmethod0=(void*)&B::vbmethod0;
-	void* vBbmethod1=(void*)&B::vbmethod1;
+	void* vBamethod0=reinterpret_cast<void*>(&B::vamethod0);
+	void* vBamethod1=reinterpret_cast<void*>(&B::vamethod1);
+	void* vBamethod2=reinterpret_cast<void*>(&B::vamethod2);
+	void* vBbmethod0=reinterpret_cast<void*>(&B::vbmethod0);
+	void* vBbmethod1=reinterpret_cast<void*>(&B::vbmethod1);
 #pragma GCC diagnostic pop
 	assert(vBamethod0==vb[0]);
 	assert(vBamethod1==vb[1]);
