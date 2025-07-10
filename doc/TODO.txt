@@ -4,3 +4,10 @@
 - add example for using inline for optimization.
 	Compare the runtime of doing a million method calls when the method is inlined vs not inlined.
 	This will be a method on an object.
+
+- do a few examples of a singleton in C++:
+	with regular race
+	with double check (reordeing race).
+	with no race
+	with std::call_once solution
+	wit Scott Mayer solution
