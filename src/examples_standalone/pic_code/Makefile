@@ -4,13 +4,16 @@ include ../../../Makefile.mk
 all: main.pic.o main.nopic.o
 
 main.pic.o: main.c
-	gcc -c -fPIC -o $@ $<
+	$(info doing [$@])
+	$(Q)gcc -c -fPIC -o $@ $<
 main.nopic.o: main.c
-	gcc -c -fno-pic -o $@ $<
+	$(info doing [$@])
+	$(Q)gcc -c -fno-pic -o $@ $<
 
 .PHONY: clean
 clean:
-	rm -f *.o
+	$(info doing [$@])
+	$(Q)-rm -f *.o
 
 .PHONY: dis
 dis: main.pic.o main.nopic.o
