@@ -160,6 +160,7 @@ disable=
 	too-many-locals,
 	too-many-arguments,
 	too-many-instance-attributes,
+	too-many-positional-arguments,
 	logging-fstring-interpolation,
 	duplicate-code,
 	missing-function-docstring,
