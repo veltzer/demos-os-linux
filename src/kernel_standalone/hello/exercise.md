@@ -31,5 +31,7 @@ In order to succeed in inserting this module into the kernel you need to either:
 * install kernel headers using
 
 ```bash
+sudo apt update
+sudo apt upgrade
 sudo apt install linux-headers-generic
 ```
