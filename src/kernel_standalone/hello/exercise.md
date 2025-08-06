@@ -26,3 +26,10 @@ the example is in: `src/kernel_standalone/hello`
 In order to succeed in inserting this module into the kernel you need to either:
 * Sign this module properly (current not supported by the current makefile)
 * Disable the secure boot feature of your system (you can find that in the bios).
+
+# Hints
+* install kernel headers using
+
+```bash
+sudo apt install linux-headers-generic
+```
