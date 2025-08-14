@@ -17,6 +17,7 @@
  */
 
 #include <firstinclude.h>
+#include <err_utils.h>
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -33,88 +34,67 @@ typedef struct _pthread_mq_t {
 } pthread_mq_t;
 
 int pthread_mq_init(pthread_mq_t* p, int size) {
-	int res;
 	p->size=size;
-	p->data=(int*)malloc(sizeof(int)*size);
-	if(p->data==NULL) return 1;
+	p->data=(int*)CHECK_NOT_NULL(malloc(sizeof(int)*size));
 	p->min=0;
 	p->max=0;
-	res=pthread_mutex_init(&(p->m), NULL);
-	if(res!=0) return res;
-	res=pthread_cond_init(&(p->cond_empty), NULL);
-	if(res!=0) return res;
-	res=pthread_cond_init(&(p->cond_full), NULL);
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mutex_init(&(p->m), NULL));
+	CHECK_ZERO_ERRNO(pthread_cond_init(&(p->cond_empty), NULL));
+	CHECK_ZERO_ERRNO(pthread_cond_init(&(p->cond_full), NULL));
 	return 0;
 }
 
 int pthread_mq_get(pthread_mq_t* mq, int* value) {
-	int res;
-	res = pthread_mutex_lock(&(mq->m));
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mutex_lock(&(mq->m)));
 	// while the queue is empty go to sleep
 	while(mq->max==mq->min) {
-		res = pthread_cond_wait(&(mq->cond_empty), &(mq->m));
-		if(res!=0) return res;
+		CHECK_ZERO_ERRNO(pthread_cond_wait(&(mq->cond_empty), &(mq->m)));
 	}
 	*value=mq->data[mq->min];
 	// if we turned the queue from full -> non full, wake up whoever is waiting
 	if((mq->max+1)%mq->size==mq->min) {
-		res = pthread_cond_broadcast(&(mq->cond_empty));
-		if(res!=0) return res;
+		CHECK_ZERO_ERRNO(pthread_cond_broadcast(&(mq->cond_empty)));
 	}
 	mq->min++;
 	mq->min%=mq->size;
-	res = pthread_mutex_unlock(&(mq->m));
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mutex_unlock(&(mq->m)));
 	return 0;
 }
 
 int pthread_mq_put(pthread_mq_t* mq, int value) {
-	int res;
-	res = pthread_mutex_lock(&(mq->m));
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mutex_lock(&(mq->m)));
 	// while the queue is full go to sleep
 	while((mq->max+1)%mq->size==mq->min) {
-		res = pthread_cond_wait(&(mq->cond_full), &(mq->m));
-		if(res!=0) return res;
+		CHECK_ZERO_ERRNO(pthread_cond_wait(&(mq->cond_full), &(mq->m)));
 	}
 	mq->data[mq->max]=value;
 	// if we turned the queue from empty -> non empty, wake up whoever is waiting
 	if(mq->max==mq->min) {
-		res = pthread_cond_broadcast(&(mq->cond_empty));
-		if(res!=0) return res;
+		CHECK_ZERO_ERRNO(pthread_cond_broadcast(&(mq->cond_empty)));
 	}
 	mq->max++;
 	mq->max%=mq->size;
-	res = pthread_mutex_unlock(&(mq->m));
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mutex_unlock(&(mq->m)));
 	return 0;
 }
 
 int pthread_mq_destroy(pthread_mq_t* p) {
-	int res;
 	free(p->data);
-	res = pthread_mutex_destroy(&(p->m));
-	if(res!=0) return res;
-	res = pthread_cond_destroy(&(p->cond_empty));
-	if(res!=0) return res;
-	res = pthread_cond_destroy(&(p->cond_full));
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mutex_destroy(&(p->m)));
+	CHECK_ZERO_ERRNO(pthread_cond_destroy(&(p->cond_empty)));
+	CHECK_ZERO_ERRNO(pthread_cond_destroy(&(p->cond_full)));
 	return 0;
 }
 
 void* func_producer(void* arg) {
-	int res;
 	pthread_mq_t* mq=(pthread_mq_t*)arg;
 	while(1) {
 		int value;
 		printf("give me a number: ");
 		fflush(stdout);
-		res=scanf("%d", &value);
+		int res=scanf("%d", &value);
 		assert(res==1);
-		res = pthread_mq_put(mq, value);
-		assert(res==0);
+		CHECK_ZERO_ERRNO(pthread_mq_put(mq, value));
 		if(value==666) {
 			break;
 		}
@@ -123,12 +103,10 @@ void* func_producer(void* arg) {
 }
 
 void* func_consumer(void* arg) {
-	int res;
 	pthread_mq_t* mq=(pthread_mq_t*)arg;
 	while(1) {
 		int value;
-		res = pthread_mq_get(mq, &value);
-		assert(res==0);
+		CHECK_ZERO_ERRNO(pthread_mq_get(mq, &value));
 		printf("consumer: got value %d\n", value);
 		if(value==666) {
 			break;
@@ -138,20 +116,13 @@ void* func_consumer(void* arg) {
 }
 
 int main() {
-	int res;
 	pthread_t consumer, producer;
 	pthread_mq_t mq;
-	res=pthread_mq_init(&mq, 10);
-	if(res!=0) return res;
-	res=pthread_create(&producer, NULL, func_producer, &mq);
-	if(res!=0) return res;
-	res=pthread_create(&consumer, NULL, func_consumer, &mq);
-	if(res!=0) return res;
-	res=pthread_join(producer, NULL);
-	if(res!=0) return res;
-	res=pthread_join(consumer, NULL);
-	if(res!=0) return res;
-	res=pthread_mq_destroy(&mq);
-	if(res!=0) return res;
+	CHECK_ZERO_ERRNO(pthread_mq_init(&mq, 10));
+	CHECK_ZERO_ERRNO(pthread_create(&producer, NULL, func_producer, &mq));
+	CHECK_ZERO_ERRNO(pthread_create(&consumer, NULL, func_consumer, &mq));
+	CHECK_ZERO_ERRNO(pthread_join(producer, NULL));
+	CHECK_ZERO_ERRNO(pthread_join(consumer, NULL));
+	CHECK_ZERO_ERRNO(pthread_mq_destroy(&mq));
 	return EXIT_SUCCESS;
 }
