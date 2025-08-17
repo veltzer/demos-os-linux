@@ -45,14 +45,12 @@ static unsigned int counter;
 
 /*
  * proc file callback
- */
 static ssize_t proc_read(struct file *file, char __user *buffer,
 		size_t len, loff_t *offset)
 {
 	char buf[256];
 	int mylen;
 	int ret;
-	/* EOF */
 	if (file->private_data)
 		return 0;
 	mylen = snprintf(buf, 256, "counter=%d\n", counter);
@@ -63,6 +61,7 @@ static ssize_t proc_read(struct file *file, char __user *buffer,
 	*offset += mylen;
 	return mylen;
 }
+*/
 
 /*
  * Interrupt callback
@@ -83,10 +82,12 @@ static irqreturn_t irqcatch_int_handler(int irq, void *dev)
 /*
  * This structure gathers "functions" that manage the /proc file
  */
-static const struct file_operations my_file_ops = {
-	.owner = THIS_MODULE,
-	/* .read = irqcatch_proc_reader, */
-	.read = proc_read,
+static const struct proc_ops my_proc_ops = {
+	/*
+	 * .owner = THIS_MODULE,
+	 * .read = irqcatch_proc_reader,
+	 * .read = proc_read,
+	 */
 };
 
 struct proc_dir_entry *my_entry;
@@ -97,7 +98,7 @@ static int irqcatch_init(void)
 {
 	int ret;
 
-	my_entry = proc_create(proc_filename, 0444, NULL, &my_file_ops);
+	my_entry = proc_create(proc_filename, 0444, NULL, &my_proc_ops);
 	if (IS_ERR(my_entry)) {
 		pr_err("error in create_proc_entry");
 		ret = PTR_ERR(my_entry);

@@ -1,6 +1,7 @@
 # this is a minimal makefile for demo purposes, keep it that way...
-obj-m:=hello.o
-hello-objs:=main.o
+modname:=$(notdir $(CURDIR))
+obj-m:=$(modname).o
+$(modname)-objs:=main.o
 V?=0
 # on ubuntu must install `linux-headers-generic` for this next line to work
 KDIR?=/lib/modules/$(shell uname -r)/build

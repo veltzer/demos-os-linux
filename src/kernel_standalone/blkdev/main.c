@@ -144,7 +144,7 @@ static int __init memblock_init(void)
 	}
 
 	int err = blk_mq_alloc_sq_tag_set(&memblock_device->tag_set, &memblock_mq_ops,
-									64, BLK_MQ_F_SHOULD_MERGE);
+									64, BLK_MQ_F_BLOCKING);
 	if (err) {
 		unregister_blkdev(memblock_major, "memblock");
 		vfree(memblock_device->data);
