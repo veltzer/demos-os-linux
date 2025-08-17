@@ -221,8 +221,8 @@ static const struct file_operations clipboard_fops = {
 	.write = clipboard_write
 };
 
-static const struct file_operations clipboard_proc_ops = {
-	.owner = THIS_MODULE,
+static const struct proc_ops clipboard_proc_ops = {
+/*	.owner = THIS_MODULE, */
 /*	.read = clipboard_proc_reader, */
 };
 
@@ -243,8 +243,7 @@ static int clipboard_init(void)
 	}
 	memset(clipboard, 0, CLIPBOARD_SIZE);
 
-	clipboard_proc_entry = proc_create(proc_filename, 0, NULL,
-			&clipboard_proc_ops);
+	clipboard_proc_entry = proc_create(proc_filename, 0, NULL, &clipboard_proc_ops);
 	if (IS_ERR(clipboard_proc_entry)) {
 		ret = PTR_ERR(clipboard_proc_entry);
 		goto error_after_alloc;

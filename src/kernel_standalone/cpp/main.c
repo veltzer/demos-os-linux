@@ -31,12 +31,13 @@ MODULE_DESCRIPTION("Module written in C++");
 
 static int __init link_init(void)
 {
-	return cpp_init();
+	// return cpp_init();
+	return 0;
 }
 
 static void __exit link_exit(void)
 {
-	cpp_exit();
+	// cpp_exit();
 }
 
 /*
