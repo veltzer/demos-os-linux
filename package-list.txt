@@ -64,7 +64,7 @@ systemtap-sdt-dev
 liburing-dev
 libffi8
 libffi-dev
-libopenmpi3t64
+libopenmpi40
 libopenmpi-dev
 liburing2
 liburing-dev

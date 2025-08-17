@@ -169,6 +169,27 @@ if VERSION_ID == "24.10":
         "libdialog15",
         "libdialog-dev",
     ])
+if VERSION_ID == "25.04":
+    ver_wxgtk = "3.2-1t"
+    lib_wx = "libwxgtk3.2-dev"
+    ver_papi = "7.1t64"
+    ver_event = "2.1-7t64"
+    ver_ncurses = "6"
+    ver_asound = "2t64"
+    ver_urcu = "8t64"
+    ver_cds = "2.3.3t64"
+    ver_elf = "1t64"
+    ver_dw = "1t64"
+    ver_asm = "1t64"
+    ver_openmpi = "40"
+    ver_unwind = "8"
+    ver_boost_short = "1.83"
+    ver_boost=ver_boost_short+".0"
+    add.extend([
+        # libdialog
+        "libdialog15",
+        "libdialog-dev",
+    ])
 
 # check that versions were assigned
 assert ver_wxgtk is not None
