@@ -410,7 +410,7 @@ packages=[
 
     # dialog really has header files and that is why it is here
     "dialog",
-    "gcc-9-plugin-dev",
+    # "gcc-9-plugin-dev",
     "binutils-dev",
     "libxtables-dev",
     "libevent-dev",
