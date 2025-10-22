@@ -135,11 +135,9 @@ cpulimit
 bridge-utils
 iptraf-ng
 numactl
-pstack
 x86info
 lsscsi
 chrpath
-latencytop
 devmem2
 elfutils
 pax-utils
