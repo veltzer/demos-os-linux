@@ -299,11 +299,11 @@ packages_tools=[
     "bridge-utils", # bridging utilities to demo creation of a bridge
     "iptraf-ng",
     "numactl",
-    "pstack",
+    # "pstack", # gone
     "x86info",
     "lsscsi",
     "chrpath",
-    "latencytop",
+    # "latencytop", # gone
     "devmem2",
     "elfutils", # manipulating elf files
     "pax-utils",
