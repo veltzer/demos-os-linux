@@ -154,7 +154,6 @@ smem
 sysbench
 gnome-system-monitor
 xfce4-taskmanager
-mrtg
 isag
 sdparm
 cutils
