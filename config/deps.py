@@ -322,7 +322,7 @@ packages_tools=[
     "sysbench",
     "gnome-system-monitor",
     "xfce4-taskmanager",
-    "mrtg",
+    # "mrtg", # has errors
     "isag",
     "sdparm",
     # "mytop",
