@@ -42,14 +42,14 @@
 int main() {
 	// this is NOT an error since this is just array initialization
 	// (not 0 at the end)
-	char hello[5] __attribute__((unused))="hello";
+	char hello[6] __attribute__((unused))="hello";
 	// this will intialize all 50-3 characters left in the array to 0
 	char foo[50] __attribute__((unused))="foo";
 	// so the above is the same as:
 	char bar[50] __attribute__((unused))={ 'f', 'o', 'o' };
 	// by now it should be fairly obvious why the following is legal...
 	struct bullshit{
-		char str[4];
+		char str[5];
 		unsigned int num;
 	} test __attribute__((unused))= {"stop", 0xFFFF};	/* 's' 't' 'o' 'p' 0xF */
 	return EXIT_SUCCESS;

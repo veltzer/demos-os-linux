@@ -25,9 +25,9 @@ libwxgtk3.2-dev
 libmysql++-dev
 libsdl1.2-dev
 libace-dev
-libboost1.83-dev
-libboost-thread1.83.0
-libboost-system1.83.0
+libboost1.88-dev
+libboost-thread1.88.0
+libboost-system1.88.0
 libboost-all-dev
 libpcap-dev
 libasound2t64
@@ -81,7 +81,6 @@ clang-tidy
 libdialog15
 libdialog-dev
 gcc
-gcc-multilib
 clang
 ruby-bundler
 rbenv
