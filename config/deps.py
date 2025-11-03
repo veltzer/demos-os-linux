@@ -329,8 +329,8 @@ packages_tools=[
     "elfutils", # manipulating elf files
     "pax-utils",
     # "paxctl",
-    "execstack",
-    "prelink",
+    # "execstack", # gone 25.10
+    # "prelink", # gone 25.10
     "cpuid",
     "sysstat",
     "nmon",
@@ -350,7 +350,7 @@ packages_tools=[
     "cutils",
     "hlint",
     "dlint",
-    "oprofile",
+    # "oprofile", # gone, 25.10
     "powertop",
     "rt-tests",
     "procinfo",
