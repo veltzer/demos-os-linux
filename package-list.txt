@@ -140,8 +140,6 @@ chrpath
 devmem2
 elfutils
 pax-utils
-execstack
-prelink
 cpuid
 sysstat
 nmon
@@ -158,7 +156,6 @@ sdparm
 cutils
 hlint
 dlint
-oprofile
 powertop
 rt-tests
 procinfo
