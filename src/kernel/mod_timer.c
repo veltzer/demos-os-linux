@@ -19,7 +19,7 @@
 
 /* #define DEBUG */
 #include <linux/module.h> /* for MODULE_*, module_* */
-#include <linux/timer.h> /* for timer_setup, mod_timer, del_timer */
+#include <linux/timer.h> /* for timer_setup, mod_timer, timer_delete */
 /* #define DO_DEBUG */
 #include "kernel_helper.h" /* our own helper */
 
@@ -60,7 +60,7 @@ static void __exit mod_exit(void)
 {
 	int ret;
 
-	ret = del_timer(&my_timer);
+	ret = timer_delete(&my_timer);
 	if (ret)
 		pr_err("The timer is still in use...\n");
 	pr_info("Timer module uninstalling\n");
