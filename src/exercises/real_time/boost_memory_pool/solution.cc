@@ -20,26 +20,28 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Person {
 private:
-    std::string name_;
+    string name_;
     int age_;
 
 public:
     Person() : name_(""), age_(0) {
-        std::cout << "Person constructor is called" << std::endl;
+        cout << "Person constructor is called" << endl;
     }
 
     // Getters
-    const std::string& getName() const { return name_; }
+    const string& getName() const { return name_; }
     int getAge() const { return age_; }
 
     // Setters
-    void setName(const std::string& name) { name_ = name; }
+    void setName(const string& name) { name_ = name; }
     void setAge(int age) { age_ = age; }
 
     void display() const {
-        std::cout << "Person: " << name_ << ", Age: " << age_ << std::endl;
+        cout << "Person: " << name_ << ", Age: " << age_ << endl;
     }
 };
 

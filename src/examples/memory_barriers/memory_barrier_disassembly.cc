@@ -18,8 +18,10 @@
 
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <atomic>	// for std::atomic_thread_fence, std::memory_order
+#include <atomic>	// for atomic_thread_fence, memory_order
 #include <disassembly_utils.h>	// for disassemble_main()
+
+using namespace std;
 
 /*
  * This is a demo to show what machine instructions are really when
@@ -36,7 +38,7 @@
  * 2. Inline assembly (lock instructions, mfence, lfence, sfence)
  * 3. Additional hardware barriers (CPUID, RDTSCP, CLFLUSH, PAUSE, I/O)
  * 4. C-style barriers (volatile, compiler barriers)
- * 5. C++ standard library (std::atomic_thread_fence with different orderings)
+ * 5. C++ standard library (atomic_thread_fence with different orderings)
  *
  * this is so disassembly will show interleaved code
  * EXTRA_COMPILE_FLAGS=-g3 -std=c++20
@@ -109,12 +111,12 @@ void c_style_barriers() {
 void cpp_std_fences() __attribute__((unused, noinline));
 void cpp_std_fences() {
 	// C++11 standard memory fences with different orderings
-	std::atomic_thread_fence(std::memory_order_seq_cst);
-	std::atomic_thread_fence(std::memory_order_acquire);
-	std::atomic_thread_fence(std::memory_order_release);
-	std::atomic_thread_fence(std::memory_order_acq_rel);
-	std::atomic_thread_fence(std::memory_order_consume);
-	std::atomic_thread_fence(std::memory_order_relaxed);
+	atomic_thread_fence(memory_order_seq_cst);
+	atomic_thread_fence(memory_order_acquire);
+	atomic_thread_fence(memory_order_release);
+	atomic_thread_fence(memory_order_acq_rel);
+	atomic_thread_fence(memory_order_consume);
+	atomic_thread_fence(memory_order_relaxed);
 }
 
 int main() {
