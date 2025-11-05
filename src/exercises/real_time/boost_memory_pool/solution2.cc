@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <boost/pool/pool.hpp>
 #include <iostream>
 #include <string>
@@ -58,7 +59,7 @@ private:
 public:
     PersonPool(size_t count) : memory_pool_(sizeof(Person)) {
         // Pre-allocate all objects
-        for (size_t i = 0; i < count; ++i) {
+        for(size_t i = 0; i < count; ++i) {
             void* mem = memory_pool_.malloc();
             Person* person = new(mem) Person();  // Placement new
             available_.push_back(person);
@@ -68,7 +69,7 @@ public:
     ~PersonPool() {
         lock_guard<mutex> lock(mutex_);
         // Call destructors for all objects
-        for (Person* p : available_) {
+        for(Person* p : available_) {
             p->~Person();
         }
     }
@@ -130,7 +131,7 @@ int main() {
     vector<Person*> persons;
     try {
         // Get all 100 objects
-        for (int i = 0; i < 100; ++i) {
+        for(int i = 0; i < 100; ++i) {
             persons.push_back(pool.get());
         }
         cout << "Successfully got all 100 objects\n";
@@ -145,7 +146,7 @@ int main() {
     }
     
     // Return all objects
-    for (Person* p : persons) {
+    for(Person* p : persons) {
         pool.put(p);
     }
     

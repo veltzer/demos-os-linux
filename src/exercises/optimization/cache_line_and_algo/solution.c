@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -35,7 +36,7 @@ double get_time() {
 // Initialize array with random data
 void init_array(int *arr, size_t size) {
     srand(42); // Fixed seed for reproducible results
-    for (size_t i = 0; i < size; i++) {
+    for(size_t i = 0; i < size; i++) {
         arr[i] = rand() % 1000;
     }
 }
@@ -43,12 +44,12 @@ void init_array(int *arr, size_t size) {
 // Method 1: Process entire array twice (cache-unfriendly)
 void process_cache_unfriendly(int *arr, size_t size) {
     // First pass: add 1 to all elements
-    for (size_t i = 0; i < size; i++) {
+    for(size_t i = 0; i < size; i++) {
         arr[i] += 1;
     }
     
     // Second pass: multiply by 2 if previous element is odd
-    for (size_t i = 1; i < size; i++) {
+    for(size_t i = 1; i < size; i++) {
         if (arr[i-1] % 2 == 1) {
             arr[i] *= 2;
         }
@@ -61,18 +62,18 @@ void process_cache_friendly(int *arr, size_t size) {
     // Typical L3 cache is 8-32MB, we'll use 1MB chunks to be safe
     const size_t chunk_size = 64 * 1024 / sizeof(int); // ~64K integers per chunk
     
-    for (size_t start = 0; start < size; start += chunk_size) {
+    for(size_t start = 0; start < size; start += chunk_size) {
         size_t end = start + chunk_size;
         if (end > size) end = size;
         
         // First operation on this chunk: add 1 to all elements
-        for (size_t i = start; i < end; i++) {
+        for(size_t i = start; i < end; i++) {
             arr[i] += 1;
         }
         
         // Second operation on same chunk: multiply by 2 if previous element is odd
         size_t loop_start = (start == 0) ? 1 : start;
-        for (size_t i = loop_start; i < end; i++) {
+        for(size_t i = loop_start; i < end; i++) {
             if (arr[i-1] % 2 == 1) {
                 arr[i] *= 2;
             }
@@ -82,7 +83,7 @@ void process_cache_friendly(int *arr, size_t size) {
 
 // Function to verify results are identical
 int verify_results(int *arr1, int *arr2, size_t size) {
-    for (size_t i = 0; i < size; i++) {
+    for(size_t i = 0; i < size; i++) {
         if (arr1[i] != arr2[i]) {
             printf("Mismatch at index %zu: %d vs %d\n", i, arr1[i], arr2[i]);
             return 0;

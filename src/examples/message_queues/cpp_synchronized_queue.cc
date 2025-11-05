@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <queue>
 #include <condition_variable>
 #include <thread>
@@ -47,7 +48,7 @@ public:
 };
 
 void producer(ThreadSafeQueue<int>& que, int id) {
-	for (int i = 0; i < 5; ++i) {
+	for(int i = 0; i < 5; ++i) {
 		int value = id * 10 + i;
 		que.push(value);
 		cout << "Producer " << id << " pushed " << value << endl;

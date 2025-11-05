@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -160,10 +161,10 @@ public:
 // =============================================================================
 template<typename CounterType>
 void worker_thread(CounterType& counter, int work_count) {
-    for (int i = 0; i < work_count; ++i) {
+    for(int i = 0; i < work_count; ++i) {
         // Simulate some work
         volatile int dummy = 0;
-        for (int j = 0; j < 100; ++j) {
+        for(int j = 0; j < 100; ++j) {
             dummy += j;  // Prevent optimization
         }
         
@@ -186,13 +187,13 @@ void benchmark_counter(const string& test_name) {
     auto start = chrono::high_resolution_clock::now();
     
     // Create and start threads
-    for (int i = 0; i < NUM_THREADS; ++i) {
+    for(int i = 0; i < NUM_THREADS; ++i) {
         threads.emplace_back(worker_thread<CounterType>, 
                            ref(counter), WORK_PER_THREAD);
     }
     
     // Wait for all threads to complete
-    for (auto& t : threads) {
+    for(auto& t : threads) {
         t.join();
     }
     
@@ -241,7 +242,7 @@ void race_condition_demo(const string& name, int runs = 5) {
     cout << "\n=== Race Condition Demo: " << name << " ===" << endl;
     cout << "Running " << runs << " times to show inconsistent results:" << endl;
     
-    for (int run = 0; run < runs; ++run) {
+    for(int run = 0; run < runs; ++run) {
         CounterType counter;
         vector<thread> threads;
         
@@ -249,12 +250,12 @@ void race_condition_demo(const string& name, int runs = 5) {
         const int demo_work = 10000;
         const int expected = NUM_THREADS * demo_work;
         
-        for (int i = 0; i < NUM_THREADS; ++i) {
+        for(int i = 0; i < NUM_THREADS; ++i) {
             threads.emplace_back(worker_thread<CounterType>, 
                                ref(counter), demo_work);
         }
         
-        for (auto& t : threads) {
+        for(auto& t : threads) {
             t.join();
         }
         
