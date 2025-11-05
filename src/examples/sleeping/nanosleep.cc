@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <errno.h>
+#include <assert.h>
+#include <stdlib.h>
 
 int main() {
     // Define a timespec structure for sleeping
@@ -31,16 +33,7 @@ int main() {
     printf("About to sleep for 10 minutes...\n");
 
     // Perform the nanosleep
-    int result = nanosleep(&ts, NULL);
+    assert_perror(nanosleep(&ts, NULL));
 
-    // Check if sleep was successful
-    if (result == 0) {
-        printf("Slept successfully!\n");
-    } else {
-        // If sleep failed, print error
-        perror("nanosleep failed");
-        return errno;
-    }
-
-    return 0;
+    return EXIT_SUCCESS;
 }
