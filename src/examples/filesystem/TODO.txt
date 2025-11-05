@@ -1,6 +1,4 @@
 - add an example of seek with SEEK_HOLE and SEEK_DATA.
-- add an example of the fiemap system call (look it up online).
-	(only for XFS?!?)
 - do an example that shows that race condition inherent in close(2)
 	calls. It is stated that close(2) can return EINTR but it
 	is not clear if the file descriptor in this case is open
