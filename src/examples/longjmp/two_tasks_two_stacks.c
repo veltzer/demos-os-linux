@@ -16,6 +16,7 @@
  * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <stdio.h>
 #include <setjmp.h> // Include this header
 #include <unistd.h> // For sleep()
