@@ -52,8 +52,7 @@ static int __init mod_init(void)
 
 	pr_info("HR Timer module installing\n");
 	ktime = ktime_set(0, MS_TO_NS(delay_in_ms));
-	hrtimer_init(&hr_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-	hr_timer.function = &my_hrtimer_callback;
+	hrtimer_setup(&hr_timer, &my_hrtimer_callback, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
 	pr_info("Starting timer to fire in %ldms (%ld)\n",
 			delay_in_ms, jiffies);
 	hrtimer_start(&hr_timer, ktime, HRTIMER_MODE_REL);
