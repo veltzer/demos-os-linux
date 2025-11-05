@@ -51,7 +51,7 @@ def main():
                     if first_line=="// SPDX-License-Identifier: GPL-2.0":
                         if rest.startswith(new_lic):
                             continue
-                    print("bad license for",current_file)
+                    print(current_file)
                     error=True
     if error:
         raise ValueError("had errors")

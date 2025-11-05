@@ -36,7 +36,7 @@ int main(int argc, char**) {
 		printf("the addres of the shared memory is at %p\n", (void*)p_int);
 		for(int i=0;i<100;i++) {
 			*p_int=i;
-			printf("server wrote %d\n", i); 
+			printf("server wrote %d\n", i);
 			sleep(1);
 		}
 		CHECK_NOT_M1(shmctl(shmid, IPC_RMID, 0));
@@ -47,7 +47,7 @@ int main(int argc, char**) {
 		printf("the addres of the shared memory is at %p\n", (void*)p_int);
 		for(int i=0;i<100;i++) {
 			int data=*p_int;
-			printf("client got number %d\n", data); 
+			printf("client got number %d\n", data);
 			sleep(1);
 		}
 		CHECK_NOT_M1(shmctl(shmid, IPC_RMID, 0));
