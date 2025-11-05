@@ -23,6 +23,6 @@
 int main() {
 	void (*func_ptr)(int) = _exit;
 	while(1) {
-	    func_ptr(7);  // Might use absolute addressing
+		func_ptr(7); // Might use absolute addressing
 	}
 }
