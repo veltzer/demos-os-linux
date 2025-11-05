@@ -23,7 +23,7 @@
 
 /*
  * This is a C++ file demonstrating atomic operations with memory barriers. It shows a multithreading example using
-  std::atomic with sequential consistency memory ordering (memory_order_seq_cst) to ensure proper synchronization between
+  std atomic with sequential consistency memory ordering (memory_order_seq_cst) to ensure proper synchronization between
   threads.
 
   The code creates three threads:

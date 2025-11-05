@@ -21,6 +21,8 @@
 #include <iostream>
 #include <chrono>
 
+using namespace std;
+
 class PriorityInheritanceMutex {
 private:
     pthread_mutex_t mutex_;
@@ -57,28 +59,28 @@ PriorityInheritanceMutex pi_mutex;
 int shared_data = 0;
 
 void high_priority_task() {
-    std::cout << "High priority task waiting for mutex\n";
+    cout << "High priority task waiting for mutex\n";
     PILockGuard lock(pi_mutex);
-    std::cout << "High priority task acquired mutex\n";
+    cout << "High priority task acquired mutex\n";
     shared_data += 100;
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    this_thread::sleep_for(chrono::milliseconds(10));
 }
 
 void low_priority_task() {
-    std::cout << "Low priority task acquired mutex\n";
+    cout << "Low priority task acquired mutex\n";
     PILockGuard lock(pi_mutex);
     shared_data += 1;
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "Low priority task releasing mutex\n";
+    this_thread::sleep_for(chrono::milliseconds(100));
+    cout << "Low priority task releasing mutex\n";
 }
 
 int main() {
-    std::thread low_thread(low_priority_task);
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    std::thread high_thread(high_priority_task);
+    thread low_thread(low_priority_task);
+    this_thread::sleep_for(chrono::milliseconds(10));
+    thread high_thread(high_priority_task);
     
     low_thread.join();
     high_thread.join();
     
-    std::cout << "Final data: " << shared_data << std::endl;
+    cout << "Final data: " << shared_data << endl;
 }

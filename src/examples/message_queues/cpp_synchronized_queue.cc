@@ -20,35 +20,38 @@
 #include <condition_variable>
 #include <thread>
 #include <iostream>
+#include <mutex>
+
+using namespace std;
 
 template <typename T> class ThreadSafeQueue {
-	std::queue<T > queue;
-	std::mutex mutex;
-	std::condition_variable condition;
+	queue<T> que;
+	mutex mut;
+	condition_variable condition;
 	int waiters=0;
 
 public:
 	void push(T item) {
-		std::lock_guard<std::mutex> lock(mutex);
-		queue.push(item);
+		lock_guard<mutex> lock(mut);
+		que.push(item);
 		condition.notify_one();
 	}
 
 	T pop() {
-		std::unique_lock<std::mutex> lock(mutex);
-		condition.wait(lock, [this]{ return !queue.empty(); });
-		int result = queue.front();
-		queue.pop();
+		unique_lock<mutex> lock(mutex);
+		condition.wait(lock, [this]{ return !que.empty(); });
+		int result = que.front();
+		que.pop();
 		return result;
 	}
 };
 
-void producer(ThreadSafeQueue<int>& queue, int id) {
+void producer(ThreadSafeQueue<int>& que, int id) {
 	for (int i = 0; i < 5; ++i) {
 		int value = id * 10 + i;
-		queue.push(value);
-		std::cout << "Producer " << id << " pushed " << value << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		que.push(value);
+		cout << "Producer " << id << " pushed " << value << endl;
+		this_thread::sleep_for(chrono::milliseconds(100));
 	}
 }
 

@@ -24,6 +24,8 @@
 #include <chrono>
 #include <cassert>
 
+using namespace std;
+
 // Configuration
 constexpr int NUM_THREADS = 4;
 constexpr int WORK_PER_THREAD = 100000;
@@ -71,18 +73,18 @@ public:
 class MutexCounter {
 private:
     int counter;
-    mutable std::mutex mtx;
+    mutable mutex mtx;
     
 public:
     MutexCounter() : counter(0) {}
     
     void increment() {
-        std::lock_guard<std::mutex> lock(mtx);
+        lock_guard<mutex> lock(mtx);
         counter++;
     }
     
     int get() const {
-        std::lock_guard<std::mutex> lock(mtx);
+        lock_guard<mutex> lock(mtx);
         return counter;
     }
     
@@ -94,7 +96,7 @@ public:
 // =============================================================================
 class AtomicCounter {
 private:
-    std::atomic<int> counter;
+    atomic<int> counter;
     
 public:
     AtomicCounter() : counter(0) {}
@@ -116,17 +118,17 @@ public:
 // =============================================================================
 class AtomicRelaxedCounter {
 private:
-    std::atomic<int> counter;
+    atomic<int> counter;
     
 public:
     AtomicRelaxedCounter() : counter(0) {}
     
     void increment() {
-        counter.fetch_add(1, std::memory_order_relaxed);
+        counter.fetch_add(1, memory_order_relaxed);
     }
     
     int get() const {
-        return counter.load(std::memory_order_relaxed);
+        return counter.load(memory_order_relaxed);
     }
     
     const char* name() const { return "Atomic (relaxed ordering)"; }
@@ -137,7 +139,7 @@ public:
 // =============================================================================
 class VolatileAtomicCounter {
 private:
-    volatile std::atomic<int> counter;  // Both volatile AND atomic
+    volatile atomic<int> counter;  // Both volatile AND atomic
     
 public:
     VolatileAtomicCounter() : counter(0) {}
@@ -174,19 +176,19 @@ void worker_thread(CounterType& counter, int work_count) {
 // Benchmark function template
 // =============================================================================
 template<typename CounterType>
-void benchmark_counter(const std::string& test_name) {
-    std::cout << "\n=== " << test_name << " ===" << std::endl;
+void benchmark_counter(const string& test_name) {
+    cout << "\n=== " << test_name << " ===" << endl;
     
     CounterType counter;
-    std::vector<std::thread> threads;
+    vector<thread> threads;
     
     // Start timing
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();
     
     // Create and start threads
     for (int i = 0; i < NUM_THREADS; ++i) {
         threads.emplace_back(worker_thread<CounterType>, 
-                           std::ref(counter), WORK_PER_THREAD);
+                           ref(counter), WORK_PER_THREAD);
     }
     
     // Wait for all threads to complete
@@ -194,54 +196,54 @@ void benchmark_counter(const std::string& test_name) {
         t.join();
     }
     
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    auto end = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
     
     // Results
     int final_count = counter.get();
-    std::cout << "Counter type: " << counter.name() << std::endl;
-    std::cout << "Final count: " << final_count 
-              << " (expected: " << TOTAL_EXPECTED << ")" << std::endl;
-    std::cout << "Time taken: " << duration.count() << " microseconds" << std::endl;
+    cout << "Counter type: " << counter.name() << endl;
+    cout << "Final count: " << final_count 
+              << " (expected: " << TOTAL_EXPECTED << ")" << endl;
+    cout << "Time taken: " << duration.count() << " microseconds" << endl;
     
     if (final_count == TOTAL_EXPECTED) {
-        std::cout << "✅ CORRECT RESULT" << std::endl;
+        cout << "✅ CORRECT RESULT" << endl;
     } else {
-        std::cout << "❌ INCORRECT RESULT (lost " 
-                  << (TOTAL_EXPECTED - final_count) << " increments)" << std::endl;
+        cout << "❌ INCORRECT RESULT (lost " 
+                  << (TOTAL_EXPECTED - final_count) << " increments)" << endl;
     }
     
     double ops_per_second = (double)TOTAL_EXPECTED / (duration.count() / 1000000.0);
-    std::cout << "Performance: " << (int)ops_per_second << " ops/second" << std::endl;
+    cout << "Performance: " << (int)ops_per_second << " ops/second" << endl;
 }
 
 // =============================================================================
 // Assembly inspection helper
 // =============================================================================
 void show_assembly_differences() {
-    std::cout << "\n=== Assembly Analysis ===" << std::endl;
-    std::cout << "To see assembly differences, compile with:" << std::endl;
-    std::cout << "g++ -O2 -S counter_test.cpp" << std::endl;
-    std::cout << "Then examine the assembly for each increment() method" << std::endl;
+    cout << "\n=== Assembly Analysis ===" << endl;
+    cout << "To see assembly differences, compile with:" << endl;
+    cout << "g++ -O2 -S counter_test.cpp" << endl;
+    cout << "Then examine the assembly for each increment() method" << endl;
     
-    std::cout << "\nExpected differences:" << std::endl;
-    std::cout << "- Broken: Simple INC instruction (not thread-safe)" << std::endl;
-    std::cout << "- Volatile: Still INC but prevents caching" << std::endl;
-    std::cout << "- Mutex: CALL to lock/unlock functions" << std::endl;
-    std::cout << "- Atomic: LOCK XADD or similar atomic instruction" << std::endl;
+    cout << "\nExpected differences:" << endl;
+    cout << "- Broken: Simple INC instruction (not thread-safe)" << endl;
+    cout << "- Volatile: Still INC but prevents caching" << endl;
+    cout << "- Mutex: CALL to lock/unlock functions" << endl;
+    cout << "- Atomic: LOCK XADD or similar atomic instruction" << endl;
 }
 
 // =============================================================================
 // Multiple run test to show race condition inconsistency
 // =============================================================================
 template<typename CounterType>
-void race_condition_demo(const std::string& name, int runs = 5) {
-    std::cout << "\n=== Race Condition Demo: " << name << " ===" << std::endl;
-    std::cout << "Running " << runs << " times to show inconsistent results:" << std::endl;
+void race_condition_demo(const string& name, int runs = 5) {
+    cout << "\n=== Race Condition Demo: " << name << " ===" << endl;
+    cout << "Running " << runs << " times to show inconsistent results:" << endl;
     
     for (int run = 0; run < runs; ++run) {
         CounterType counter;
-        std::vector<std::thread> threads;
+        vector<thread> threads;
         
         // Use fewer iterations for faster demo
         const int demo_work = 10000;
@@ -249,7 +251,7 @@ void race_condition_demo(const std::string& name, int runs = 5) {
         
         for (int i = 0; i < NUM_THREADS; ++i) {
             threads.emplace_back(worker_thread<CounterType>, 
-                               std::ref(counter), demo_work);
+                               ref(counter), demo_work);
         }
         
         for (auto& t : threads) {
@@ -257,9 +259,9 @@ void race_condition_demo(const std::string& name, int runs = 5) {
         }
         
         int result = counter.get();
-        std::cout << "Run " << (run + 1) << ": " << result 
+        cout << "Run " << (run + 1) << ": " << result 
                   << " (expected: " << expected 
-                  << ", lost: " << (expected - result) << ")" << std::endl;
+                  << ", lost: " << (expected - result) << ")" << endl;
     }
 }
 
@@ -267,13 +269,13 @@ void race_condition_demo(const std::string& name, int runs = 5) {
 // Main function
 // =============================================================================
 int main() {
-    std::cout << "Thread-Safe Counter Exercise" << std::endl;
-    std::cout << "=============================" << std::endl;
-    std::cout << "Threads: " << NUM_THREADS << std::endl;
-    std::cout << "Work per thread: " << WORK_PER_THREAD << std::endl;
-    std::cout << "Total expected: " << TOTAL_EXPECTED << std::endl;
-    std::cout << "\nCompiled with optimization? " 
-              << (__OPTIMIZE__ ? "YES (-O2)" : "NO (add -O2!)") << std::endl;
+    cout << "Thread-Safe Counter Exercise" << endl;
+    cout << "=============================" << endl;
+    cout << "Threads: " << NUM_THREADS << endl;
+    cout << "Work per thread: " << WORK_PER_THREAD << endl;
+    cout << "Total expected: " << TOTAL_EXPECTED << endl;
+    cout << "\nCompiled with optimization? " 
+              << (__OPTIMIZE__ ? "YES (-O2)" : "NO (add -O2!)") << endl;
     
     // Show the problems first
     race_condition_demo<BrokenCounter>("Broken Counter");
@@ -288,18 +290,18 @@ int main() {
     benchmark_counter<VolatileAtomicCounter>("Volatile + Atomic Counter");
     
     // Analysis
-    std::cout << "\n=== Analysis ===" << std::endl;
-    std::cout << "Performance ranking (fastest to slowest):" << std::endl;
-    std::cout << "1. Atomic (relaxed) - Best performance, correct" << std::endl;
-    std::cout << "2. Atomic (default) - Slightly slower, correct" << std::endl;
-    std::cout << "3. Mutex - Much slower, correct" << std::endl;
-    std::cout << "4. Broken/Volatile - Fast but WRONG results" << std::endl;
+    cout << "\n=== Analysis ===" << endl;
+    cout << "Performance ranking (fastest to slowest):" << endl;
+    cout << "1. Atomic (relaxed) - Best performance, correct" << endl;
+    cout << "2. Atomic (default) - Slightly slower, correct" << endl;
+    cout << "3. Mutex - Much slower, correct" << endl;
+    cout << "4. Broken/Volatile - Fast but WRONG results" << endl;
     
-    std::cout << "\nKey Lessons:" << std::endl;
-    std::cout << "- volatile does NOT provide atomicity" << std::endl;
-    std::cout << "- volatile prevents compiler optimizations but not race conditions" << std::endl;
-    std::cout << "- Atomic operations are usually faster than mutex" << std::endl;
-    std::cout << "- Relaxed memory ordering can improve performance" << std::endl;
+    cout << "\nKey Lessons:" << endl;
+    cout << "- volatile does NOT provide atomicity" << endl;
+    cout << "- volatile prevents compiler optimizations but not race conditions" << endl;
+    cout << "- Atomic operations are usually faster than mutex" << endl;
+    cout << "- Relaxed memory ordering can improve performance" << endl;
     
     show_assembly_differences();
     
