@@ -71,41 +71,41 @@ void additional_hw_barriers() {
 	// Serializing instructions (full memory barriers)
 	asm ("cpuid" : : : "eax", "ebx", "ecx", "edx");
 	asm ("rdtscp" : : : "eax", "edx", "ecx");
-	
+
 	// XCHG with implicit lock (full memory barrier)
 	asm ("xchg %eax, %ebx");
-	
+
 	// Cache control with memory barrier semantics
 	// Using stack pointer for valid address
-	asm ("clflush (%%rsp)" : : : "memory");   // Flush cache line + memory barrier
-	
+	asm ("clflush (%%rsp)" : : : "memory"); // Flush cache line + memory barrier
+
 	// Memory ordering hint for spin loops
 	asm ("pause");
-	
+
 	// I/O instructions (serialize execution)
-	asm ("outb %%al, $0x80" : : "a"(0));  // I/O write with serialization
+	asm ("outb %%al, $0x80" : : "a"(0)); // I/O write with serialization
 	unsigned char dummy;
-	asm ("inb $0x80, %%al" : "=a"(dummy) : : );  // I/O read with serialization
-	(void)dummy;  // Suppress unused warning
-	
+	asm ("inb $0x80, %%al" : "=a"(dummy) : : ); // I/O read with serialization
+	(void)dummy; // Suppress unused warning
+
 	// Memory barrier through memory operand constraints
 	int barrier_var = 0;
-	asm ("" : "+m"(barrier_var) : : "memory");  // Memory barrier via operand constraint
+	asm ("" : "+m"(barrier_var) : : "memory"); // Memory barrier via operand constraint
 }
 
 void c_style_barriers() __attribute__((unused, noinline));
 void c_style_barriers() {
 	// C-style compiler barriers using volatile
 	volatile int dummy = 0;
-	(void)dummy;  // prevent unused variable warning
-	
+	(void)dummy; // prevent unused variable warning
+
 	// GCC-specific compiler barrier (prevents reordering but no hw fence)
 	asm volatile ("" ::: "memory");
-	
+
 	// Traditional C-style barriers using volatile reads/writes
 	volatile int barrier_var = 0;
-	barrier_var = 1;  // volatile write
-	dummy = barrier_var;  // volatile read
+	barrier_var = 1; // volatile write
+	dummy = barrier_var; // volatile read
 }
 
 void cpp_std_fences() __attribute__((unused, noinline));
