@@ -31,6 +31,7 @@
  * ./pthread_cancel_example
  */
 
+#include <firstinclude.h>
 #include <pthread.h>
 #include <assert.h>
 #include <stdio.h>
@@ -89,32 +90,14 @@ void* target_thread_func(void *) {
  * request to the target thread.
  */
 void* canceler_thread_func(void *arg) {
-    // The argument is a pointer to the target thread's ID
-    pthread_t target_tid = *(pthread_t *)arg;
-
-    printf("Canceler thread (TID: %lu): Started.\n", (unsigned long)pthread_self());
-
-    // Wait for 3 seconds to let the target thread run for a bit
-    sleep(3);
-
-    printf("Canceler thread: Sending cancellation request to target thread %lu...\n", (unsigned long)target_tid);
-
-    // Send the cancellation request
-    int s = pthread_cancel(target_tid);
-    if (s != 0) {
-        // pthread functions return the error number directly
-        fprintf(stderr, "Canceler thread: Error in pthread_cancel: %s\n", strerror(s));
-    } else {
-        printf("Canceler thread: Cancellation request sent.\n");
-    }
-
-    return NULL;
+	pthread_t target_tid = *(pthread_t *)arg;
+	printf("Canceler thread (TID: %lu): Started.\n", (unsigned long)pthread_self());
+	sleep(3);
+	printf("Canceler thread: Sending cancellation request to target thread %lu...\n", (unsigned long)target_tid);
+	CHECK_ZERO_ERRNO(pthread_cancel(target_tid));
+	return NULL;
 }
 
-/**
- * @brief Main function
- * Creates and manages the two threads.
- */
 int main() {
 	pthread_t tid_target, tid_canceler;
 	void *res_target;
@@ -122,25 +105,25 @@ int main() {
 	printf("Main (PID: %d): Starting program.\n", getpid());
 	// --- Create the target thread ---
 	printf("Main: Creating target thread...\n");
-	CHECK_ZERO(pthread_create(&tid_target, NULL, target_thread_func, NULL));
+	CHECK_ZERO_ERRNO(pthread_create(&tid_target, NULL, target_thread_func, NULL));
 	printf("Main: Target thread created with TID %lu.\n", (unsigned long)tid_target);
 	// Give the target a moment to start (optional, but good for demo order)
 	sleep(1);
 	// --- Create the canceler thread ---
 	// We pass the target's thread ID as the argument
 	printf("Main: Creating canceler thread...\n");
-	CHECK_ZERO(pthread_create(&tid_canceler, NULL, canceler_thread_func, &tid_target));
+	CHECK_ZERO_ERRNO(pthread_create(&tid_canceler, NULL, canceler_thread_func, &tid_target));
 	printf("Main: Canceler thread created with TID %lu.\n", (unsigned long)tid_canceler);
 	// --- Wait for threads to finish ---
 	// Wait for the canceler thread to finish its job
 	printf("Main: Joining canceler thread...\n");
-	CHECK_ZERO(pthread_join(tid_canceler, &res_canceler));
+	CHECK_ZERO_ERRNO(pthread_join(tid_canceler, &res_canceler));
 	printf("Main: Canceler thread joined.\n");
 	// Wait for the target thread to finish
 	// We expect this to return immediately after the canceler runs,
 	// as the target will have been terminated.
 	printf("Main: Joining target thread...\n");
-	CHECK_ZERO(pthread_join(tid_target, &res_target));
+	CHECK_ZERO_ERRNO(pthread_join(tid_target, &res_target));
 	// --- Check the result ---
 	// When a thread is successfully canceled, pthread_join stores
 	// the special value PTHREAD_CANCELED in its result pointer.
