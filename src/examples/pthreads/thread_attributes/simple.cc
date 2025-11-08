@@ -60,7 +60,7 @@ int main() {
 	for(int i=0; i < num; i++) {
 		CHECK_ZERO_ERRNO(pthread_join(threads[i], rets + i));
 	}
-	while(1) {
+	while(true) {
 		printf("main thread is running...\n");
 		sleep(1);
 	}
