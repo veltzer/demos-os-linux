@@ -29,6 +29,7 @@
  * - show environment variable substitution.
  * - show pipes.
  * - show more?!?
+ * - show that there is an intermediate shell between the parent and the process (ls).
  */
 
 int main() {
