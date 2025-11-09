@@ -25,6 +25,8 @@
  * This executable receives the status code (exit code) of some process and prints
  * an analysis of what the code means. Useful in case where you are not sure what
  * the status code means or as a demo of how to analyze such a code.
+ *
+ * This app produces weird results which seem to be wrong. Fix it.
  */
 
 int main(int argc, char** argv) {
