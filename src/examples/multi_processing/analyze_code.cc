@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
 	if(argc!=2) {
 		fprintf(stderr, "%s: usage: %s [status code]\n", argv[0], argv[0]);
 		fprintf(stderr, "%s: 0 - the process ended with success\n", argv[0]);
-		fprintf(stderr, "%s: n*256 - the process ended with error n\n", argv[0]);
+		fprintf(stderr, "%s: n>=256 - the process ended with error n\n", argv[0]);
 		fprintf(stderr, "%s: n<256 - the process was killed by OS signal n\n", argv[0]);
 		return EXIT_FAILURE;
 	}
