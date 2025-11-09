@@ -52,10 +52,10 @@ static inline void print_status(int status) {
 		TRACE("child exited normally with status %d", WEXITSTATUS(status));
 	}
 	if (WIFSTOPPED(status)) {
-		TRACE("child was stopped with signal %d,%s", WSTOPSIG(status), strsignal(WSTOPSIG(status)));
+		TRACE("child was stopped with signal %d, %s", WSTOPSIG(status), strsignal(WSTOPSIG(status)));
 	}
 	if (WIFSIGNALED(status)) {
-		TRACE("child was signaled with signal %d,%s", WTERMSIG(status), strsignal(WTERMSIG(status)));
+		TRACE("child was signaled with signal %d, %s", WTERMSIG(status), strsignal(WTERMSIG(status)));
 	}
 }
 
