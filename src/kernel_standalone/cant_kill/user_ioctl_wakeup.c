@@ -25,7 +25,7 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	int fd = open("/dev/ioctl", O_RDWR);
+	int fd = open("/dev/cant_kill", O_RDWR);
 
 	assert(fd != -1);
 	int ret = ioctl(fd, IOCTL_WAKEUP);

@@ -28,7 +28,7 @@
 
 int main(int argc, char** argv, char** envp)
 {
-	int fd = CHECK_NOT_M1(open("/dev/ioctl", O_RDWR));
+	int fd = CHECK_NOT_M1(open("/dev/cant_kill", O_RDWR));
 	int ret = ioctl(fd, IOCTL_SLEEP);
 
 	assert(ret != -1);
