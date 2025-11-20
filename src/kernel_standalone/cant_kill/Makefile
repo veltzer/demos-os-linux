@@ -14,7 +14,7 @@ CROSS_COMPILE:=x86_64-linux-gnu-
 # fail those...
 W?=1
 .PHONY: modules
-modules:
+modules: user_ioctl_sleep.elf user_ioctl_wakeup.elf
 	$(MAKE) -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(CURDIR) V=$(V) W=$(W) modules
 .PHONY: clean
 clean:
@@ -29,3 +29,8 @@ rmmod:
 .PHONY: dmesg
 dmesg:
 	@sudo dmesg | tail -10
+
+user_ioctl_sleep.elf: user_ioctl_sleep.c
+	gcc -I ../../include -o $@ $<
+user_ioctl_wakeup.elf: user_ioctl_wakeup.c
+	gcc -I ../../include -o $@ $<
