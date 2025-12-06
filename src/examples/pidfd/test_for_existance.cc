@@ -22,6 +22,7 @@
  */
 
 #include <firstinclude.h>
+#include <err_utils.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -29,14 +30,7 @@
 #include <sys/utsname.h>
 #include <errno.h>
 #include <string.h>
-
-#ifndef PIDFD_THREAD
-#define PIDFD_THREAD 0x1
-#endif
-
-#ifndef SYS_pidfd_open
-#define SYS_pidfd_open 434
-#endif
+#include <linux/pidfd.h>
 
 int main(void)
 {
@@ -47,46 +41,16 @@ int main(void)
 	pid_t self_pid = getpid();
 	printf("PID: %d, TID: %d\n", self_pid, self_tid);
 	printf("Same thread group: %s\n", self_pid == self_tid ? "yes (main thread)" : "no");
-	// Test 1: pidfd_open on process (should work on 5.3+)
-	printf("\nTest 1: pidfd_open(pid, 0) on self...\n");
-	int pidfd = syscall(SYS_pidfd_open, self_pid, 0);
-	if (pidfd >= 0) {
-		printf("SUCCESS: pidfd=%d\n", pidfd);
-		close(pidfd);
-	} else {
-		printf("FAILED: errno=%d (%s)\n", errno, strerror(errno));
-	}
-	// Test 2: pidfd_open with PIDFD_THREAD on main thread (tid == pid)
-	printf("\nTest 2: pidfd_open(tid, PIDFD_THREAD) on main thread...\n");
-	pidfd = syscall(SYS_pidfd_open, self_tid, PIDFD_THREAD);
-	if (pidfd >= 0) {
-		printf("SUCCESS: pidfd=%d\n", pidfd);
-		close(pidfd);
-	} else {
-		printf("FAILED: errno=%d (%s)\n", errno, strerror(errno));
-		if (errno == EINVAL) {
-			printf("EINVAL suggests PIDFD_THREAD not supported (need kernel 6.9+)\n");
-		}
-	}
-	// Test 3: Check /proc for kernel config
-	printf("\nTest 3: Checking kernel config...\n");
-	FILE *f = fopen("/proc/config.gz", "r");
-	if (f) {
-		printf("/proc/config.gz exists (can check CONFIG_* options)\n");
-		fclose(f);
-	} else {
-		f = fopen("/boot/config-current", "r");
-		if (!f) {
-			char path[256];
-			snprintf(path, sizeof(path), "/boot/config-%s", u.release);
-			f = fopen(path, "r");
-		}
-		if (f) {
-			printf("Found kernel config file\n");
-			fclose(f);
-		} else {
-			printf("No kernel config found\n");
-		}
-	}
-	return 0;
+	printf("Test 1: pidfd_open(pid, 0) on self...\n");
+	int pidfd = CHECK_NOT_M1(syscall(SYS_pidfd_open, self_pid, 0));
+	printf("SUCCESS: pidfd=%d\n", pidfd);
+	CHECK_NOT_M1(close(pidfd));
+	printf("Test 2: pidfd_open(tid, PIDFD_THREAD) on main thread...\n");
+	pidfd = CHECK_NOT_M1(syscall(SYS_pidfd_open, self_tid, PIDFD_THREAD));
+	printf("SUCCESS: pidfd=%d\n", pidfd);
+	CHECK_NOT_M1(close(pidfd));
+	printf("Test 3: Checking kernel config...\n");
+	FILE *f = CHECK_NOT_NULL_FILEP(fopen("/proc/config.gz", "r"));
+	CHECK_ZERO_ERRNO(fclose(f));
+	return EXIT_SUCCESS;
 }
