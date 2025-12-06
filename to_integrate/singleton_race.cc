@@ -16,6 +16,7 @@
  * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <firstinclude.h>
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -100,17 +101,17 @@ int main() {
 	std::vector<std::pair<int, void*>> results;
 	std::mutex resultsMutex;
 	// Create and start multiple threads simultaneously
-	for (int i = 0; i < NUM_THREADS; ++i) {
+	for(int i = 0; i < NUM_THREADS; ++i) {
 		threads.emplace_back(createSingleton, i, std::ref(results), std::ref(resultsMutex));
 	}
 	// Wait for all threads to complete
-	for (auto& thread : threads) {
+	for(auto& thread : threads) {
 		thread.join();
 	}
 	// Analyze results
 	std::cout << "\n=== Results ===" << std::endl;
 	std::set<void*> uniqueInstances;
-	for (const auto& result : results) {
+	for(const auto& result : results) {
 		std::cout << "Thread " << result.first << ": Instance at " << result.second << std::endl;
 		uniqueInstances.insert(result.second);
 	}
