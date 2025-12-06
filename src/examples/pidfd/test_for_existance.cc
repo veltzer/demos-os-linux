@@ -45,10 +45,12 @@ int main(void)
 	int pidfd = CHECK_NOT_M1(syscall(SYS_pidfd_open, self_pid, 0));
 	printf("SUCCESS: pidfd=%d\n", pidfd);
 	CHECK_NOT_M1(close(pidfd));
+#ifdef PIDFD_THREAD
 	printf("Test 2: pidfd_open(tid, PIDFD_THREAD) on main thread...\n");
 	pidfd = CHECK_NOT_M1(syscall(SYS_pidfd_open, self_tid, PIDFD_THREAD));
 	printf("SUCCESS: pidfd=%d\n", pidfd);
 	CHECK_NOT_M1(close(pidfd));
+#endif // PIDFD_THREAD
 	printf("Test 3: Checking kernel config...\n");
 	FILE *f = CHECK_NOT_NULL_FILEP(fopen("/proc/config.gz", "r"));
 	CHECK_ZERO_ERRNO(fclose(f));
