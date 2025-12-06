@@ -1,2 +1,2 @@
-https://www.github.com/veltzer/demos-linux
-https://www.github.com/veltzer/slides
+https://www.github.com/veltzer/demos-os-linux
+https://www.github.com/veltzer/teaching-slides

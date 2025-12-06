@@ -1,16 +1,16 @@
-## demos-linux
+## demos-os-linux
 
 version: 0.0.1
 
-description: demos-linux is a project to demo and explore the Linux user space C/C++ API
+description: demos-os-linux is a project to demo and explore the Linux user space C/C++ API
 
-website: https://veltzer.github.io/demos-linux
+website: https://veltzer.github.io/demos-os-linux
 
 ## Build
 
-![build](https://github.com/veltzer/demos-linux/workflows/build/badge.svg)
+![build](https://github.com/veltzer/demos-os-linux/workflows/build/badge.svg)
 
-demos-linux is a project to demo and explore the Linux user space C/C++ API
+demos-os-linux is a project to demo and explore the Linux user space C/C++ API
 
 ## Contact
 
@@ -21,7 +21,7 @@ who want to explore the Linux C/C++ API.
 
 ## Number of examples and their selection
 
-Currently there are 1080 examples in this repo.
+Currently there are 1082 examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
@@ -80,8 +80,8 @@ it here http://man7.org/tlpi/code/.
             `sudo apt-get install python`
         for rpm based distributions (fedora, redhat, centos,...) do:
             `sudo yum install python`
-* clone the examples: `git clone https://github.com/veltzer/demos-linux.git`
-* cd into it: `cd demos-linux`
+* clone the examples: `git clone https://github.com/veltzer/demos-os-linux.git`
+* cd into it: `cd demos-os-linux`
 * install the missing packages and headers needed to compile and run this project `./scripts/ubuntu_install.py`
     Mind you this only works for 15.10 and will install a ton of stuff.
     If you don't want this ton of installations and only want to checkout specific examples

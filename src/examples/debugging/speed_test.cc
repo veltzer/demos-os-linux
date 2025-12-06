@@ -1,19 +1,19 @@
 /*
- * This file is part of the demos-linux package.
+ * This file is part of the demos-os-linux package.
  * Copyright (C) 2011-2025 Mark Veltzer <mark.veltzer@gmail.com>
  *
- * demos-linux is free software: you can redistribute it and/or modify
+ * demos-os-linux is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * demos-linux is distributed in the hope that it will be useful,
+ * demos-os-linux is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with demos-linux. If not, see <http://www.gnu.org/licenses/>.
+ * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <firstinclude.h>
@@ -28,10 +28,10 @@
  * under "hbreak" and show the difference in speed.
  *
  * Compare the following:
- * 1) break /home/mark/git/demos-linux/src/examples/debugging/speed_test.cc:43
+ * 1) break /home/mark/git/demos-os-linux/src/examples/debugging/speed_test.cc:43
  * if sum=8000
- * 2) break /home/mark/git/demos-linux/src/examples/debugging/speed_test.cc:43
- * 3) hbreak /home/mark/git/demos-linux/src/examples/debugging/speed_test.cc:43
+ * 2) break /home/mark/git/demos-os-linux/src/examples/debugging/speed_test.cc:43
+ * 3) hbreak /home/mark/git/demos-os-linux/src/examples/debugging/speed_test.cc:43
  *
  * EXTRA_COMPILE_FLAGS=-g3
  */

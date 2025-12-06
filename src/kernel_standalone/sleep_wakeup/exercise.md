@@ -19,7 +19,7 @@ your 'ioctl' function in the kernel.
 Documentation of how to implement an 'ioctl' operation in your module is in
 the Bootlin slides at slides 224-226 (including).
 
-A basic read or write module is in `https://github.com/veltzer/demos-linux/tree/master/src/kernel_standalone/mynull`
+A basic read or write module is in `https://github.com/veltzer/demos-os-linux/tree/master/src/kernel_standalone/mynull`
 
 Second Phase
 Create two ioctl code numbers:
