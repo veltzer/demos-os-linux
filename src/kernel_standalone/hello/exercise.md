@@ -20,7 +20,7 @@ or
 tail /var/log/kern.log
 ```
 
-`https://github.com/veltzer/demos-linux`
+`https://github.com/veltzer/demos-os-linux`
 the example is in: `src/kernel_standalone/hello`
 
 In order to succeed in inserting this module into the kernel you need to either:

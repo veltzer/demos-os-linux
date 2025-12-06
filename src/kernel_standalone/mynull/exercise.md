@@ -1,7 +1,7 @@
 # Write a `/dev/null` like device driver
 
 Use pieces of code from:
-[link](https://github.com/veltzer/demos-linux/tree/master/src/kernel_standalone/mynull)
+[link](https://github.com/veltzer/demos-os-linux/tree/master/src/kernel_standalone/mynull)
 
 Notes
 * Call your `/dev` file `mynull` in order not to collide with the actual `/dev/null`
