@@ -1,4 +1,22 @@
 /*
+ * This file is part of the demos-os-linux package.
+ * Copyright (C) 2011-2025 Mark Veltzer <mark.veltzer@gmail.com>
+ *
+ * demos-os-linux is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * demos-os-linux is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
  * Monitor thread death via pidfd using pidfd_open with PIDFD_THREAD
  * Requires Linux 6.9+
  *
@@ -44,7 +62,7 @@ static void *worker(void *arg)
 	pthread_barrier_wait(info->barrier);
 
 	printf("[Thread %d] Started (tid=%d), sleeping for %d seconds\n",
-	       info->id, info->tid, info->sleep_time);
+		info->id, info->tid, info->sleep_time);
 
 	sleep(info->sleep_time);
 
@@ -87,7 +105,7 @@ int main(void)
 		CHECK_NOT_M1(epoll_ctl(epfd, EPOLL_CTL_ADD, threads[i].pidfd, &ev));
 	}
 
-	printf("\n[Main] All threads spawned, waiting for exits...\n\n");
+	printf("[Main] All threads spawned, waiting for exits...\n\n");
 
 	while (alive > 0) {
 		struct epoll_event events[NUM_THREADS];
@@ -97,8 +115,8 @@ int main(void)
 			struct thread_info *info = (struct thread_info *)events[i].data.ptr;
 
 			printf("[Main] Detected thread %d (tid=%d) died! "
-			       "(slept %d secs, %d remaining)\n",
-			       info->id, info->tid, info->sleep_time, alive - 1);
+				"(slept %d secs, %d remaining)\n",
+				info->id, info->tid, info->sleep_time, alive - 1);
 
 			CHECK_NOT_M1(close(info->pidfd));
 			CHECK_ZERO_ERRNO(pthread_join(pthreads[info->id], NULL));
@@ -106,7 +124,7 @@ int main(void)
 		}
 	}
 
-	printf("\n[Main] All threads finished!\n");
+	printf("[Main] All threads finished!\n");
 	CHECK_NOT_M1(close(epfd));
 	return EXIT_SUCCESS;
 }

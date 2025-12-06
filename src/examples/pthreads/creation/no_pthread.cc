@@ -1,3 +1,21 @@
+/*
+ * This file is part of the demos-os-linux package.
+ * Copyright (C) 2011-2025 Mark Veltzer <mark.veltzer@gmail.com>
+ *
+ * demos-os-linux is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * demos-os-linux is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <firstinclude.h>
 #include <err_utils.h>
 #include <stdio.h>
@@ -31,13 +49,13 @@
 
 // Minimal TCB structure that glibc expects at %fs:0
 struct minimal_tcb {
-	void *self;              // %fs:0x00 - must point to itself
-	void *dtv;               // %fs:0x08 - dynamic thread vector
-	void *thread_self;       // %fs:0x10
-	int multiple_threads;    // %fs:0x18
-	int gscope_flag;         // %fs:0x1c
-	uintptr_t sysinfo;       // %fs:0x20
-	uintptr_t stack_guard;   // %fs:0x28 - for -fstack-protector
+	void *self; // %fs:0x00 - must point to itself
+	void *dtv; // %fs:0x08 - dynamic thread vector
+	void *thread_self; // %fs:0x10
+	int multiple_threads; // %fs:0x18
+	int gscope_flag; // %fs:0x1c
+	uintptr_t sysinfo; // %fs:0x20
+	uintptr_t stack_guard; // %fs:0x28 - for -fstack-protector
 	uintptr_t pointer_guard; // %fs:0x30
 	char padding[4096 - 64];
 };
@@ -116,7 +134,7 @@ void child_entry(void)
 {
 	raw_syscall3(SYS_write, 1, (long)"[Thread] Setting up TLS...\n", 27);
 	setup_tls(g_stack_guard);
-	
+
 	char buf[64];
 	int len = 0;
 	const char *prefix = "[Thread] Hello! Arg: ";
@@ -124,10 +142,10 @@ void child_entry(void)
 	for (const char *s = g_msg; *s; s++) buf[len++] = *s;
 	buf[len++] = '\n';
 	raw_syscall3(SYS_write, 1, (long)buf, len);
-	
+
 	struct timespec ts = {2, 0};
 	raw_syscall2(SYS_nanosleep, (long)&ts, 0);
-	
+
 	raw_syscall3(SYS_write, 1, (long)"[Thread] Goodbye!\n", 18);
 	raw_syscall1(SYS_exit, 42);
 	__builtin_unreachable();
@@ -140,7 +158,7 @@ int main(void)
 	void *stack;
 
 	stack = mmap(NULL, STACK_SIZE, PROT_READ | PROT_WRITE,
-		     MAP_PRIVATE | MAP_ANONYMOUS | MAP_STACK, -1, 0);
+		MAP_PRIVATE | MAP_ANONYMOUS | MAP_STACK, -1, 0);
 	if (stack == MAP_FAILED) {
 		perror("mmap");
 		return 1;
@@ -153,8 +171,7 @@ int main(void)
 	register void (*entry)(void) asm("r12") = child_entry;
 
 	struct clone_args ca = {};
-	ca.flags = CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND |
-		   CLONE_THREAD | CLONE_SYSVSEM | CLONE_PIDFD;
+	ca.flags = CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND | CLONE_THREAD | CLONE_SYSVSEM | CLONE_PIDFD;
 	ca.pidfd = (uint64_t)(uintptr_t)&pidfd;
 	ca.stack = (uint64_t)(uintptr_t)stack;
 	ca.stack_size = STACK_SIZE;
