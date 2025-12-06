@@ -12,6 +12,7 @@
 #include <poll.h>
 #include <time.h>
 #include <errno.h>
+#include <assert.h>
 
 /*
  * Thread creation and joining without pthreads library.
@@ -151,8 +152,6 @@ int main(void)
 	pid_t tid;
 	register void (*entry)(void) asm("r12") = child_entry;
 
-#ifdef SYS_clone3
-	// Try clone3 first (Linux 5.3+, PIDFD with CLONE_THREAD needs 5.10+)
 	struct clone_args ca = {};
 	ca.flags = CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND |
 		   CLONE_THREAD | CLONE_SYSVSEM | CLONE_PIDFD;
@@ -171,50 +170,15 @@ int main(void)
 		: "a"(SYS_clone3), "D"(&ca), "S"(sizeof(ca))
 		: "rcx", "r11", "memory"
 	);
-
-	if (tid == -ENOSYS || tid == -EINVAL) {
-		// Fallback to clone()
-		pidfd = -1;
-#endif
-		void *stack_top = (char *)stack + STACK_SIZE;
-		unsigned long flags = CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND |
-				      CLONE_THREAD | CLONE_SYSVSEM;
-		register void *r_stack asm("rsi") = stack_top;
-
-		asm volatile(
-			"syscall\n"
-			"test %%rax, %%rax\n"
-			"jnz 1f\n"
-			"call *%%r12\n"
-			"1:\n"
-			: "=a"(tid)
-			: "a"(SYS_clone), "D"(flags), "r"(r_stack), "r"(entry)
-			: "rcx", "r11", "memory"
-		);
-#ifdef SYS_clone3
-	}
-#endif
-
-	if (tid < 0) {
-		fprintf(stderr, "clone failed: %d\n", -tid);
-		return 1;
-	}
-
+	CHECK_NOT_M1(tid);
 	printf("[Main tid=%d] Spawned thread %d\n", gettid(), tid);
 
-	if (pidfd >= 0) {
-		// Wait via pidfd (proper join)
-		struct pollfd pfd = {.fd = pidfd, .events = POLLIN, .revents = 0};
-		CHECK_NOT_M1(poll(&pfd, 1, -1));
-		close(pidfd);
-		printf("[Main] Thread exited (via pidfd).\n");
-	} else {
-		// Fallback: just sleep
-		printf("[Main] No pidfd, sleeping...\n");
-		sleep(4);
-		printf("[Main] Done waiting.\n");
-	}
-
-	munmap(stack, STACK_SIZE);
+	assert(pidfd >= 0);
+	// Wait via pidfd (proper join)
+	struct pollfd pfd = {.fd = pidfd, .events = POLLIN, .revents = 0};
+	CHECK_NOT_M1(poll(&pfd, 1, -1));
+	close(pidfd);
+	printf("[Main] Thread exited (via pidfd).\n");
+	CHECK_NOT_M1(munmap(stack, STACK_SIZE));
 	return EXIT_SUCCESS;
 }
