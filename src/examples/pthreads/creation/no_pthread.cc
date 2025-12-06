@@ -114,7 +114,7 @@ static void setup_tls(uintptr_t stack_guard)
 
 	// Zero manually - memset might use TLS
 	volatile char *p = (volatile char *)tcb;
-	for (size_t i = 0; i < sizeof(*tcb); i++)
+	for(size_t i = 0; i < sizeof(*tcb); i++)
 		p[i] = 0;
 
 	tcb->self = tcb;
@@ -138,8 +138,8 @@ void child_entry(void)
 	char buf[64];
 	int len = 0;
 	const char *prefix = "[Thread] Hello! Arg: ";
-	for (const char *s = prefix; *s; s++) buf[len++] = *s;
-	for (const char *s = g_msg; *s; s++) buf[len++] = *s;
+	for(const char *s = prefix; *s; s++) buf[len++] = *s;
+	for(const char *s = g_msg; *s; s++) buf[len++] = *s;
 	buf[len++] = '\n';
 	raw_syscall3(SYS_write, 1, (long)buf, len);
 
@@ -157,13 +157,8 @@ int main(void)
 	int pidfd = -1;
 	void *stack;
 
-	stack = mmap(NULL, STACK_SIZE, PROT_READ | PROT_WRITE,
-		MAP_PRIVATE | MAP_ANONYMOUS | MAP_STACK, -1, 0);
-	if (stack == MAP_FAILED) {
-		perror("mmap");
-		return 1;
-	}
-
+	stack = (int*)CHECK_NOT_VOIDP(mmap(NULL, STACK_SIZE, PROT_READ | PROT_WRITE,
+		MAP_PRIVATE | MAP_ANONYMOUS | MAP_STACK, -1, 0), MAP_FAILED);
 	g_msg = "no pthreads!";
 	asm volatile("mov %%fs:0x28, %0" : "=r"(g_stack_guard));
 

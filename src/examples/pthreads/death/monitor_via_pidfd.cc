@@ -82,7 +82,7 @@ int main(void)
 	epfd = CHECK_NOT_M1(epoll_create1(0));
 
 	// Spawn threads
-	for (int i = 0; i < NUM_THREADS; i++) {
+	for(int i = 0; i < NUM_THREADS; i++) {
 		threads[i].id = i;
 		threads[i].sleep_time = (rand() % MAX_SLEEP_SECS) + 1;
 		threads[i].tid = 0;
@@ -111,7 +111,7 @@ int main(void)
 		struct epoll_event events[NUM_THREADS];
 		int n = CHECK_NOT_M1(epoll_wait(epfd, events, NUM_THREADS, -1));
 
-		for (int i = 0; i < n; i++) {
+		for(int i = 0; i < n; i++) {
 			struct thread_info *info = (struct thread_info *)events[i].data.ptr;
 
 			printf("[Main] Detected thread %d (tid=%d) died! "
