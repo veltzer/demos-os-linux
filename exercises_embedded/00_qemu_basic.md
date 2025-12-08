@@ -92,10 +92,10 @@ This creates `seed.img` which QEMU will attach as a virtual CD-ROM for cloud-ini
 
 ## Part 4: Obtain UEFI Firmware
 
-ARM64 VMs typically boot via UEFI. Copy the firmware files:
+ARM64 VMs typically boot via UEFI. Copy the firmware files and pad them:
 
 ```bash
-cp /usr/share/qemu-efi-aarch64/QEMU_EFI.fd .
+dd if=/usr/share/qemu-efi-aarch64/QEMU_EFI.fd of=QEMU_EFI.fd conv=notrunc
 ```
 
 Create a writable pflash for UEFI variables:
