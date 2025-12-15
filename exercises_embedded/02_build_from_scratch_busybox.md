@@ -106,7 +106,7 @@ make olddefconfig
 ### 3.3 Build the Kernel
 
 ```bash
-make -j$(nproc) Image
+make -j$(nproc) Image modules dtbs
 ```
 
 The kernel image will be at `arch/arm64/boot/Image`.
@@ -396,7 +396,7 @@ mkfs.ext4 disk.img
 ```bash
 mkdir -p /tmp/arm64-mnt
 sudo mount -o loop disk.img /tmp/arm64-mnt
-sudo cp -a rootfs/* /tmp/arm64-mnt/
+cp -a rootfs/* /tmp/arm64-mnt/
 sudo umount /tmp/arm64-mnt
 ```
 

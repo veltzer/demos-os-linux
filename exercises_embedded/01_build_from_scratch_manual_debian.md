@@ -120,7 +120,7 @@ sudo debootstrap --arch=arm64 --foreign bookworm \
 
 ```bash
 # Copy QEMU static binary for chroot emulation
-sudo cp /usr/bin/qemu-aarch64-static ~/arm64-rootfs/usr/bin/
+cp /usr/bin/qemu-aarch64-static ~/arm64-rootfs/usr/bin/
 ```
 
 ### 4.3 Complete the Bootstrap
@@ -183,7 +183,7 @@ exit
 
 ```bash
 # Copy kernel modules to rootfs
-sudo cp -a ~/linux/../modules_install/lib/modules ~/arm64-rootfs/lib/
+cp -a ~/linux/../modules_install/lib/modules ~/arm64-rootfs/lib/
 ```
 
 ---
@@ -212,7 +212,7 @@ mkdir -p /tmp/arm64-mnt
 sudo mount -o loop ~/arm64-disk.img /tmp/arm64-mnt
 
 # Copy rootfs contents
-sudo cp -a ~/arm64-rootfs/* /tmp/arm64-mnt/
+cp -a ~/arm64-rootfs/* /tmp/arm64-mnt/
 
 # Unmount
 sudo umount /tmp/arm64-mnt
