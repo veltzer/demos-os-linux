@@ -194,7 +194,7 @@ sudo cp -a ~/linux/../modules_install/lib/modules ~/arm64-rootfs/lib/
 
 ```bash
 # Create a 2GB sparse image
-dd if=/dev/zero of=~/arm64-disk.img bs=1M count=2048
+dd if=/dev/zero of=${HOME}/arm64-disk.img bs=1M count=2048
 ```
 
 ### 6.2 Format the Image
@@ -231,7 +231,7 @@ qemu-system-aarch64 \
     -m 2048 \
     -kernel ~/linux/arch/arm64/boot/Image \
     -append "root=/dev/vda rw console=ttyAMA0" \
-    -drive if=virtio,file=~/arm64-disk.img,format=raw \
+    -drive if=virtio,file=${HOME}/arm64-disk.img,format=raw \
     -nographic
 ```
 
@@ -244,7 +244,7 @@ qemu-system-aarch64 \
     -m 2048 \
     -kernel ~/linux/arch/arm64/boot/Image \
     -append "root=/dev/vda rw console=ttyAMA0" \
-    -drive if=virtio,file=~/arm64-disk.img,format=raw \
+    -drive if=virtio,file=${HOME}/arm64-disk.img,format=raw \
     -netdev user,id=net0,hostfwd=tcp::2222-:22 \
     -device virtio-net-pci,netdev=net0 \
     -nographic
@@ -391,8 +391,8 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 # Add to ~/.bashrc for convenience
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
-export KERNEL_SRC=~/linux
-export ROOTFS=~/arm64-rootfs
+export KERNEL_SRC=${HOME}/linux
+export ROOTFS=${HOME}/arm64-rootfs
 ```
 
 ---
