@@ -148,7 +148,7 @@ make -j$(nproc)
 ### 4.4 Install BusyBox to Rootfs
 
 ```bash
-make CONFIG_PREFIX=~/arm64-scratch/rootfs install
+make CONFIG_PREFIX=${HOME}/arm64-scratch/rootfs install
 ```
 
 This creates the basic directory structure with symlinks to BusyBox.
@@ -583,7 +583,7 @@ Save this as `build-arm64.sh`:
 #!/bin/bash
 set -e
 
-WORKDIR=~/arm64-scratch
+WORKDIR=${HOME}/arm64-scratch
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
 
