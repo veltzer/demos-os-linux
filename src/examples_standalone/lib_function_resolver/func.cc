@@ -22,12 +22,12 @@
 #include <sys/types.h>	// for getpid(2)
 #include <unistd.h>	// for getpid(2)
 
-int func_imp1(int a, int b) {
+static int func_imp1(int a, int b) {
 	printf("in func_imp1\n");
 	return a+b;
 }
 
-int func_imp2(int a, int b) {
+static int func_imp2(int a, int b) {
 	printf("in func_imp2\n");
 	return a-b;
 }
