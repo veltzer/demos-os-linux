@@ -34,4 +34,6 @@ int main(int argc, char** argv) {
 	gtk_widget_show(w);
 	gtk_main();
 	return EXIT_SUCCESS;
+pkg-config --libs gtk+-2.0
+pkg-config --cflags gtk+-2.0
 }
