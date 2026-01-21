@@ -13,7 +13,7 @@ Create a class called circle with three members of type double:
 
 * Add a method `bool inside(double x, double y)`
 
-* Add more method as you please
+* Add more methods as you please
 
 * Divide the code between `circle.hh` and `circle.cc`
 
