@@ -17,7 +17,7 @@
  */
 #pragma once
 
-#include <firstinclude.h>
+//#include <firstinclude.h>
 #include <iostream>
 
 using namespace std;
@@ -35,14 +35,20 @@ class Circle {
 		void set_radius(double iradius) {
 			radius = iradius;
 		}
-	double get_x() {
-		return x;
-	}
-	double get_y() {
-		return y;
-	}
+		double get_x() {
+			return x;
+		}
+		double get_y() {
+			return y;
+		}
+		void set_x(double x) {
+			this->x=x;
+		}
+		void set_y(double y) {
+			this->y=y;
+		}
 
-	bool inside(double, double);
+		bool inside(double, double);
 
-	friend ostream& operator<<(ostream& os, Circle& obj);
+		friend ostream& operator<<(ostream& os, Circle& obj);
 };
