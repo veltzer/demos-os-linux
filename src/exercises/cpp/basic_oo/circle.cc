@@ -16,7 +16,7 @@
  * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <firstinclude.h>
+//#include <firstinclude.h>
 #include "circle.hh"
 #include <iostream>
 
@@ -34,11 +34,13 @@ bool Circle::inside(double ix, double iy) {
 }
 
 ostream& operator<<(ostream& os, Circle& obj) {
-	os << "radius is " << obj.get_radius() << endl;
-	os << "x is " << obj.get_x() << endl;
-	os << "y is " << obj.get_y() << endl;
+	os << "radius is " << obj.radius << endl;
+	os << "x is " << obj.x << endl;
+	os << "y is " << obj.y << endl;
 	return os;
 }
 
 int main() {
+	Circle c(5.6,2.4,1.1);
+	cout << "here are the details of the circle " << c << endl;
 }
