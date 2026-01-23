@@ -16,7 +16,7 @@
  * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-//#include <firstinclude.h>
+#include <firstinclude.h>
 #include "circle.hh"
 #include <iostream>
 
