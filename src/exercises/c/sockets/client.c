@@ -1,6 +1,6 @@
 /*
  * This file is part of the demos-os-linux package.
- * Copyright (C) 2011-2025 Mark Veltzer <mark.veltzer@gmail.com>
+ * Copyright (C) 2011-2026 Mark Veltzer <mark.veltzer@gmail.com>
  *
  * demos-os-linux is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
