@@ -21,6 +21,10 @@
 #include <math.h>	// for sin(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
+/*
+ * EXTRA_LINK_FLAGS_AFTER=-lm
+ */
+
 int main() {
 	double x=4.56;
 	printf("sin(%lf)=%lf\n", x, sin(x));
