@@ -36,7 +36,7 @@
  * Currently, in gcc 4.9.1, the first two loops are optimized
  * away and the third isn't.
  *
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 int main() {

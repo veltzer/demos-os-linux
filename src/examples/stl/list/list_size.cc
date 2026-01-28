@@ -35,7 +35,7 @@ using namespace std;
  * References:
  * http://www.linuxprogrammingblog.com/std-list-size-complexity
  *
- * EXTRA_COMPILE_FLAGS=-std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  */
 
 int main() {

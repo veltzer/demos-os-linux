@@ -30,7 +30,7 @@
  * - 'ulimit -s unlimited' seems to offer a stack which can grow up to the
  * whole systems RAM.
  *
- * EXTRA_COMPILE_FLAGS=-Wno-infinite-recursion
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-infinite-recursion
  */
 
 static int i;

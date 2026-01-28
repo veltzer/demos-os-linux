@@ -28,7 +28,7 @@ using namespace std;
  * This example explores the performance of vector with regard
  * to memcpy...
  *
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 static int loop, array_size, modulu;

@@ -35,7 +35,7 @@
  *
  * this is to make sure that source code interleaving in the disassembly works
  * out well...
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  * this is to make sure that we compile using gcc 4.4 since newer gcc versions
  * do not do this type of optimization...
  * COMPILE_R=g++-4.8

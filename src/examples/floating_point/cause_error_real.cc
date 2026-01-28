@@ -29,7 +29,7 @@
  * You can see it in the disassembly...
  *
  * this is so disassembly will show interleaved code
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 int main() {

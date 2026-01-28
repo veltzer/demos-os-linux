@@ -24,7 +24,7 @@
 
 /*
  * This example shows that two constant strings share storage!
- * EXTRA_COMPILE_FLAGS=-fmerge-all-constants
+ * EXTRA_COMPILE_FLAGS_BEFORE=-fmerge-all-constants
  *
  * THIS EXAMPLE DOES NOT WORK
  *

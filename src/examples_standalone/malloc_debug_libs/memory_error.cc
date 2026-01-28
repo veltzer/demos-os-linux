@@ -26,10 +26,10 @@
 /*
  * This test program simply simulates various memory errors
  *
- * IMPORTANT NOTE! EXTRA_COMPILE_FLAGS do not work here (!!!) becuase this is a standalone example
+ * IMPORTANT NOTE! EXTRA_COMPILE_FLAGS_BEFORE do not work here (!!!) becuase this is a standalone example
  * and does not use the python compile script that knows how to extract extra compliation flags from the
  * compilation units themselves.
- * EXTRA_COMPILE_FLAGS=-XXXX DONT USE THIS HERE XXXX-
+ * EXTRA_COMPILE_FLAGS_BEFORE=-XXXX DONT USE THIS HERE XXXX-
  */
 
 int main(int argc, char** argv, char** envp) {

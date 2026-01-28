@@ -28,7 +28,7 @@
  * nm /usr/lib/gcc/i686-linux-gnu/4.8/x32/libgcc.a | grep div
  *
  * this is so disassembly will show interleaved code
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  * EXTRA_LINK_FLAGS_AFTER=-lgcc
  */
 

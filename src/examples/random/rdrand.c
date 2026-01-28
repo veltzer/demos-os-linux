@@ -22,7 +22,7 @@
 
 /*
  * This example shows how to use the gcc _rdrand64_step intrinsic function
- * EXTRA_COMPILE_FLAGS=-m64 -mrdrnd
+ * EXTRA_COMPILE_FLAGS_BEFORE=-m64 -mrdrnd
  *
  * References:
  * - https://stackoverflow.com/questions/31214457/how-to-use-rdrand-intrinsics

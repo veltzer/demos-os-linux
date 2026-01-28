@@ -5,6 +5,6 @@ This HOWTO shows how to do various things in this project
 		EXTRA_COMPILE_FLAGS_AFTER=-O0
 - how to add debug info to a single example ?
 	add a line like:
-		EXTRA_COMPILE_FLAGS=-g3
+		EXTRA_COMPILE_FLAGS_BEFORE=-g3
 - how to see the command lines issued by make ?
 	make DO_MKDBG=1

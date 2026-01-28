@@ -25,7 +25,7 @@
  * It simply uses the compiler barrier a lot and shows the disassembly...
  *
  * this is for the source interleaving below...
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 int main() {

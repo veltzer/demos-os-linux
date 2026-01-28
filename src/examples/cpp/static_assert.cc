@@ -30,7 +30,7 @@
  * Note that the C style static asserts do not work here in C++ (see below...).
  *
  * required for the static_assert below to work...
- * EXTRA_COMPILE_FLAGS=-std=c++0x
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++0x
  */
 
 typedef struct _s1{

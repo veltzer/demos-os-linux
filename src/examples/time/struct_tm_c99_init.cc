@@ -24,7 +24,7 @@
  * than are documented... This is actually a bug I saw happening
  * no a real system.
  *
- * EXTRA_COMPILE_FLAGS=-std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  */
 
 #include <firstinclude.h>

@@ -112,13 +112,15 @@ def main():
         for line in stream:
             line=line.strip()
             if link:
-                handle(line, args, "EXTRA_LINK_CMD=", True, subs, shell=True)
-                handle(line, args, "EXTRA_LINK_FLAGS=", False, subs, inject=1)
+                handle(line, args, "EXTRA_LINK_CMD=", True, subs, shell=False)
+                handle(line, args, "EXTRA_LINK_SHELL=", True, subs, shell=True)
+                handle(line, args, "EXTRA_LINK_FLAGS_BEFORE=", False, subs, inject=1)
                 handle(line, args, "EXTRA_LINK_FLAGS_AFTER=", False, subs)
                 handle_first(line, args, "LINKER=")
             else:
-                handle(line, args, "EXTRA_COMPILE_CMD=", True, subs, shell=True)
-                handle(line, args, "EXTRA_COMPILE_FLAGS=", False, subs, inject=1)
+                handle(line, args, "EXTRA_COMPILE_CMD=", True, subs, shell=False)
+                handle(line, args, "EXTRA_COMPILE_SHELL=", True, subs, shell=True)
+                handle(line, args, "EXTRA_COMPILE_FLAGS_BEFORE=", False, subs, inject=1)
                 handle(line, args, "EXTRA_COMPILE_FLAGS_AFTER=", False, subs)
                 handle_first(line, args, "COMPILER=")
             if "ALLOW_OUTPUT" in line:

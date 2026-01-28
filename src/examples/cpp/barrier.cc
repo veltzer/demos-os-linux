@@ -23,7 +23,7 @@
  * References:
  * - https://en.cppreference.com/w/cpp/atomic/atomic_thread_fence
  *
- * EXTRA_COMPILE_FLAGS=-std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  */
 
 int main() {

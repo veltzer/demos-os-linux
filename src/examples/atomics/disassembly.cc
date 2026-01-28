@@ -26,7 +26,7 @@
  * This next line is to avoid optimization which will make
  * the second loop go away all together...
  * this is not really needed since we use a compiler barrier instead (see below).
- * EXTRA_COMPILE_FLAGS=-O0 -g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-O0 -g3
  */
 
 int main() {

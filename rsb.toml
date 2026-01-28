@@ -19,3 +19,5 @@ restore_method = "hardlink"  # or "copy"
 
 [cc]
 include_paths = ["src/include"]
+cflags = ["-O2", "-Werror", "-Wall"]
+cxxflags = ["-O2", "-Werror", "-Wall"]

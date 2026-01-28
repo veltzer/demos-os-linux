@@ -35,7 +35,7 @@
  * instruction inside the loop.
  *
  * This is for being able to see source code intermingled with assembly code...
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  *
  * TODO:
  * - actually measure the time with a performance counter and see it.

@@ -42,7 +42,7 @@
  * 3. glibc's syscall() wrapper may access TLS - use raw syscall instructions
  * 4. Stack protector reads %fs:0x28 - must disable or set up TLS first
  *
- * EXTRA_COMPILE_FLAGS=-std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  */
 
 #define STACK_SIZE (64 * 1024)

@@ -38,7 +38,7 @@
  * - if you turn off optimisation you should see completely different assembly code.
  *
  * This is to make sure I can see annotations (adding the debug info).
- * EXTRA_COMPILE_FLAGS=-g3 -O2
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3 -O2
  */
 
 class A{

@@ -28,7 +28,7 @@
  * that if you step over data then you will only get seg faulted once you step
  * over the page boundary.
  *
- * EXTRA_COMPILE_FLAGS=-Wno-array-bounds
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-array-bounds
  */
 
 // a must be last...

@@ -25,7 +25,7 @@
  * This is a demo of how to use the setjmp/longjmp in order to simulate exception
  * handling in C code.
  *
- * EXTRA_COMPILE_FLAGS=-Wno-clobbered
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-clobbered
  */
 
 // This buffer saves the context of the jump. We need one for each unique

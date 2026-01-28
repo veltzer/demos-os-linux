@@ -28,7 +28,7 @@
  * The weird this is, if you access the same field twice gcc will 0 it for you
  * (see the last part of this example).
  *
- * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-error=uninitialized -w
  */
 
 struct smallstruct{

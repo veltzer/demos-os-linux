@@ -33,7 +33,7 @@
  * 2) break /home/mark/git/demos-os-linux/src/examples/debugging/speed_test.cc:43
  * 3) hbreak /home/mark/git/demos-os-linux/src/examples/debugging/speed_test.cc:43
  *
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 int main() {

@@ -37,7 +37,7 @@
  * has been a feature of the Linux kernel for some time now, will give you better
  * protection against hackers.
  *
- * EXTRA_COMPILE_FLAGS=-fPIE
+ * EXTRA_COMPILE_FLAGS_BEFORE=-fPIE
  * EXTRA_LINK_FLAGS_AFTER=-pie
  */
 

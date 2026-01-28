@@ -40,7 +40,7 @@
  * Note that "pedantic" gcc mode does not allow the "vla" features and so we need to supply the
  * "-Wno-vla" flag below.
  *
- * EXTRA_COMPILE_FLAGS=-Wno-vla
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-vla
  *
  * References:
  * - https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html

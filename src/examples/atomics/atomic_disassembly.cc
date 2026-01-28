@@ -26,7 +26,7 @@
  * for it (so that you could see the source code interleaved with the
  * assembly).
  *
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 int main() {

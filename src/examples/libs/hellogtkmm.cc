@@ -30,7 +30,7 @@ using namespace std;
  *
  * EXTRA_COMPILE_CMD=pkg-config --cflags gtkmm-2.4 sigc++-2.0
  * EXTRA_LINK_CMD=pkg-config --libs gtkmm-2.4 sigc++-2.0
- * EXTRA_COMPILE_FLAGS=-Wno-deprecated-declarations
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-deprecated-declarations
  */
 
 class HelloWorld: public Gtk::Window {

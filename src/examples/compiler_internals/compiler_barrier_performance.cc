@@ -32,7 +32,7 @@
  * https://blogs.oracle.com/d/entry/compiler_memory_barriers
  *
  * this is for the source interleaving below...
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  * we need threads for the high priority...
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  *

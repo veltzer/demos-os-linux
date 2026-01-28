@@ -29,7 +29,7 @@
  * This is a solution to the spin locks exercise.
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
- * EXTRA_COMPILE_FLAGS=
+ * EXTRA_COMPILE_FLAGS_BEFORE=
  *
  * TODO:
  * - get more ideas from the glibc implementation of spin locks
