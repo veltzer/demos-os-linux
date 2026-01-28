@@ -22,7 +22,7 @@
 
 /*
  * Example showing forgetting the initialization of members
- * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-error=uninitialized -w
  */
 
 class A{

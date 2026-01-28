@@ -23,7 +23,7 @@
  * see this using:
  * make src/examples/sse/simple.dis
  *
- * EXTRA_COMPILE_FLAGS=-mmmx -march=native -g
+ * EXTRA_COMPILE_FLAGS_BEFORE=-mmmx -march=native -g
  */
 
 #include <firstinclude.h>

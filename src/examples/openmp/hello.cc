@@ -26,7 +26,7 @@
  * Notice that openmp automatically adjusts to the number of cores that you have.
  * You can ofcourse, change that (reduce or increase number of threads)
  *
- * EXTRA_COMPILE_FLAGS=-fopenmp
+ * EXTRA_COMPILE_FLAGS_BEFORE=-fopenmp
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
  */
 

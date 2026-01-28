@@ -30,7 +30,7 @@
  * package which has better features.
  *
  * The next is needed for the C99 like struct field initialization syntax below...
- * EXTRA_COMPILE_FLAGS=-std=gnu++11
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=gnu++11
  */
 
 int main(int argc, char** argv) {

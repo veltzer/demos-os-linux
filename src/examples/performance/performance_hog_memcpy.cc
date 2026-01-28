@@ -48,7 +48,7 @@
  * are compiled.
  *
  * This is to make sure I can see annotation.
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 class A{

@@ -50,7 +50,7 @@
  * 50 *(char *)0=0;
  * (gdb)
  *
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 int main() {

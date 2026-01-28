@@ -39,7 +39,7 @@
  * - Since I do not wish to instrument main then I put an attribute on it not to be
  * instrumented.
  *
- * EXTRA_COMPILE_FLAGS=-finstrument-functions -finstrument-functions-exclude-function-list=printf,sleep
+ * EXTRA_COMPILE_FLAGS_BEFORE=-finstrument-functions -finstrument-functions-exclude-function-list=printf,sleep
  * OPTION_WITHOUT_FUNCTION_ATTRIBUTES=-finstrument-functions -finstrument-functions-exclude-function-list=__cyg_profile_func_enter,__cyg_profile_func_exit,printf
  *
  * TODO:

@@ -80,7 +80,7 @@
  * some other mechanism (__attribute__((unused)) ?!?) to force the compiler
  * for forgo warnings on these variables.
  *
- * EXTRA_COMPILE_FLAGS=-O3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-O3
  */
 
 FILE* outfile;

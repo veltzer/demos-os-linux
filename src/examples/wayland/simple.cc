@@ -25,7 +25,7 @@
 /*
  * Simple wayland exapmle
  *
- * EXTRA_COMPILE_FLAGS=-std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  * EXTRA_LINK_FLAGS_AFTER=-lwayland-client
  */
 

@@ -41,7 +41,7 @@ using namespace std;
  * 5. C++ standard library (atomic_thread_fence with different orderings)
  *
  * this is so disassembly will show interleaved code
- * EXTRA_COMPILE_FLAGS=-g3 -std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3 -std=c++20
  */
 
 void gcc_intrinsics() __attribute__((unused, noinline));

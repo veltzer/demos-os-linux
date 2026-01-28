@@ -20,7 +20,7 @@
  * Monitor thread death via pidfd using pidfd_open with PIDFD_THREAD
  * Requires Linux 6.9+
  *
- * EXTRA_COMPILE_FLAGS=-std=c++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  */
 
 #include <firstinclude.h>

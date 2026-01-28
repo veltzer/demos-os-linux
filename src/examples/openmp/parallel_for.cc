@@ -27,7 +27,7 @@ using namespace std;
 /*
  * A demo calculating the sin table with openmp.
  *
- * EXTRA_COMPILE_FLAGS=-fopenmp
+ * EXTRA_COMPILE_FLAGS_BEFORE=-fopenmp
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
  */
 

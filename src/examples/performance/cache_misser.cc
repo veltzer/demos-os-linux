@@ -32,7 +32,7 @@
  * generating.
  * make the value bigger to see more misses...
  *
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  *
  * TODO:
  * - allocate the memory using mmap(2) and MAP_POPULATE before starting the loop in * order to get number of cache misses lower.

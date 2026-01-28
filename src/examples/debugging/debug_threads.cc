@@ -30,7 +30,7 @@
  * and in particular to demo debugging multi threaded applications.
  *
  *
- * EXTRA_COMPILE_FLAGS=-g
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 

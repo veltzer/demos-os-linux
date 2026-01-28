@@ -31,7 +31,7 @@
  * If you state={ .k=9 } (C99 style) then only that field will get the value, others will get 0 (see a5).
  * If you state={ j:10 } (GNU style) then only that field will get the value, others will get 0 (see a6).
  *
- * EXTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-error=uninitialized -w
  */
 
 typedef struct _a{

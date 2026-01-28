@@ -25,7 +25,7 @@
 #include <signal_utils.h>	// for signal_register_handler_signal()
 
 /*
- * EXTRA_COMPILE_FLAGS=-g3
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g3
  */
 
 /*

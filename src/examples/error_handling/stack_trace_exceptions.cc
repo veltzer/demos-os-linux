@@ -43,7 +43,7 @@ using namespace std;
  * work and return symbols to you.
  *
  * EXTRA_LINK_FLAGS_AFTER=-rdynamic
- * EXTRA_COMPILE_FLAGS=-g
+ * EXTRA_COMPILE_FLAGS_BEFORE=-g
  *
  * TODO:
  * - show how to see the two "nameless" stack frames in the middle (they are not currently seen).
