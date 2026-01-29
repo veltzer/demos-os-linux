@@ -11,12 +11,12 @@ restore_method = "hardlink"  # or "copy"
 [completions]
 shells = ["bash"]
 
-[processors]
-enabled = ["template", "lint", "cc"]
+[processor]
+enabled = ["template", "pylint", "cc", "cpplint"]
 
 [processor.template]
 
-[processor.lint]
+[processor.pylint]
 linter = "ruff"
 args = []
 
@@ -26,3 +26,7 @@ include_paths = ["src/include"]
 # cxxflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic", "-std=c++17"]
 cflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
 cxxflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
+
+[processor.cpplint]
+args = ["--error-exitcode=1", "--enable=warning,style,performance,portability", "--check-level=exhaustive",
+	"--suppressions-list=.cppcheck-suppressions" ]
