@@ -12,7 +12,7 @@ restore_method = "hardlink"  # or "copy"
 shells = ["bash"]
 
 [processor]
-enabled = ["template", "pylint", "cc", "cpplint"]
+enabled = ["template", "pylint", "cc", "cpplint", "spellcheck"]
 
 [processor.template]
 
