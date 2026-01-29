@@ -29,8 +29,10 @@
 // ACE_TSS::operator->() are delegated to the appropriate method in
 // the Errno class.
 
-class Errno{
+class Errno {
 public:
+	Errno() {
+	}
 	int error(void) {
 		return this->errno_;
 	}
