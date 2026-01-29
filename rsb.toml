@@ -9,6 +9,9 @@ enabled = ["template", "lint", "cc"]
 linter = "ruff"
 args = []
 
+[graph]
+viewer = "google-chrome"  # Command to open graph files (default: platform-specific)
+
 [template]
 
 [completions]
