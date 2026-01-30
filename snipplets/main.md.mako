@@ -35,7 +35,7 @@ A lot of the code is documented but some of it is not. More documentation would 
 I would give attribution to whomever contributes.
 
 ${"##"} License
-Code is licensed GPL3 and I hold the copyright unless explicity stolen as attributed in the source code.
+Code is licensed GPL3 and I hold the copyright unless explicitly stolen as attributed in the source code.
 I encourage people to use this source code as aid for instructing courses.
 Please give me some credit if you do wind up using this package and consider dropping
 me a note about the fact that you did use the package so I could feel good...
