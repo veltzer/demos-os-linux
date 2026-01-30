@@ -1,29 +1,5 @@
-[build]
-# Number of parallel jobs (1 = sequential, 0 = auto-detect CPU cores)
-parallel = 1
-
-[graph]
-viewer = "google-chrome"  # Command to open graph files (default: platform-specific)
-
-[cache]
-restore_method = "hardlink"  # or "copy"
-
-[completions]
-shells = ["bash"]
-
-[processor]
-enabled = ["template", "pylint", "cc", "cpplint", "spellcheck"]
-
-[processor.template]
-
-[processor.pylint]
-linter = "ruff"
-args = []
-
-[processor.cc]
+[processor.cc_single_file]
 include_paths = ["src/include"]
-# cflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic", "-std=gnu18"]
-# cxxflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic", "-std=c++17"]
 cflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
 cxxflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
 
