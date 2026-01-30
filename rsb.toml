@@ -6,3 +6,6 @@ cxxflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
 [processor.cpplint]
 args = ["--error-exitcode=1", "--enable=warning,style,performance,portability", "--check-level=exhaustive",
 	"--suppressions-list=.cppcheck-suppressions" ]
+
+[processor.spellcheck]
+use_words_file = true
