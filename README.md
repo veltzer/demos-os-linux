@@ -21,7 +21,7 @@ who want to explore the Linux C/C++ API.
 
 ## Number of examples and their selection
 
-Currently there are 1082 examples in this repo.
+Currently there are 1087 examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
@@ -49,7 +49,7 @@ A lot of the code is documented but some of it is not. More documentation would 
 I would give attribution to whomever contributes.
 
 ## License
-Code is licensed GPL3 and I hold the copyright unless explicity stolen as attributed in the source code.
+Code is licensed GPL3 and I hold the copyright unless explicitly stolen as attributed in the source code.
 I encourage people to use this source code as aid for instructing courses.
 Please give me some credit if you do wind up using this package and consider dropping
 me a note about the fact that you did use the package so I could feel good...
@@ -96,4 +96,4 @@ it here http://man7.org/tlpi/code/.
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 
-Mark Veltzer, Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025
+Mark Veltzer, Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
