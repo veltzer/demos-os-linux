@@ -25,3 +25,6 @@ args = [
 
 [processor.spellcheck]
 use_words_file = true
+
+[processor.make]
+exclude_files = ["Makefile"]
