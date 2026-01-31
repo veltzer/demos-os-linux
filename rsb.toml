@@ -1,11 +1,27 @@
 [processor.cc_single_file]
 include_paths = ["src/include"]
-cflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
-cxxflags = ["-O2", "-Wall", "-Werror", "-Wextra", "-pedantic"]
+cflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
+cxxflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
 
 [processor.cpplint]
-args = ["--error-exitcode=1", "--enable=warning,style,performance,portability", "--check-level=exhaustive",
-	"--suppressions-list=.cppcheck-suppressions" ]
+args = [
+	"--error-exitcode=1",
+	"--enable=warning,style,performance,portability",
+	"--check-level=exhaustive",
+	"--suppressions-list=.cppcheck-suppressions",
+]
 
 [processor.spellcheck]
 use_words_file = true
