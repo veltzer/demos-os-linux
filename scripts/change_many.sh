@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-for x in $(find src -name "*.c" -or -name "*.cc")
+find src -name "*.c" -or -name "*.cc" | while IFS= read -r x
 do
 	# echo "doing [$x]"
 	if grep -v main "${x}" | grep argv
