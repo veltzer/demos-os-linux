@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "locked_at": "2026-02-02T15:33:47Z",
+  "tools": {
+    "cppcheck": {
+      "path": "/usr/bin/cppcheck",
+      "version_output": "Cppcheck 2.17.1",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "g++": {
+      "path": "/usr/bin/g++",
+      "version_output": "g++ (Ubuntu 15.2.0-4ubuntu4) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "gcc": {
+      "path": "/usr/bin/gcc",
+      "version_output": "gcc (Ubuntu 15.2.0-4ubuntu4) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "make": {
+      "path": "/usr/bin/make",
+      "version_output": "GNU Make 4.4.1\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "pylint": {
+      "path": "/home/mark/.venv/bin/pylint",
+      "version_output": "pylint 3.3.8\nastroid 3.3.11\nPython 3.13.7 (main, Jan  8 2026, 12:15:45) [GCC 15.2.0]",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "python3": {
+      "path": "/home/mark/.venv/bin/python3",
+      "version_output": "Python 3.13.7",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "ruff": {
+      "path": "/home/mark/.venv/bin/ruff",
+      "version_output": "ruff 0.12.8",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "shellcheck": {
+      "path": "/usr/bin/shellcheck",
+      "version_output": "ShellCheck - shell script analysis tool\nversion: 0.10.0\nlicense: GNU General Public License, version 3\nwebsite: https://www.shellcheck.net",
+      "version_args": [
+        "--version"
+      ]
+    }
+  }
+}
