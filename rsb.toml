@@ -27,4 +27,4 @@ args = [
 use_words_file = true
 
 [processor.make]
-exclude_files = ["Makefile"]
+exclude_paths = ["Makefile"]
