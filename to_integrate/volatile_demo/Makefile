@@ -1,5 +1,5 @@
 main.elf: main.c libcallme.so
-	gcc -I../../src/include -O2 main.c -o main -L. -lcallme
+	gcc -I../../src/include -O2 main.c -o $@ -L. -lcallme
 
 libcallme.so: callme.o
 	gcc -shared -o libcallme.so callme.o
