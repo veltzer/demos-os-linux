@@ -1,6 +1,7 @@
 [processor.cc_single_file]
 scan_dir = "src"
 include_paths = ["src/include"]
+exclude_dirs = ["/kernel/", "/kernel/standalone/", "/examples/standalone/", "/exercises/standalone/"]
 
 [[processor.cc_single_file.compilers]]
 name = "gcc"
@@ -53,4 +54,7 @@ pkg_config = [
 	"gtkmm-2.4",
 	"mysqlclient",
 	"Qt6Widgets",
+]
+include_path_commands = [
+	"bash -c echo $(gcc -print-file-name=plugin)/include",
 ]
