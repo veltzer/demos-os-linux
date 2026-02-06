@@ -19,7 +19,7 @@
 #include "rectangle.h"
 #include <stdlib.h>
 
-rectangle* create_rectangle(const int height, const int width) {
+rectangle* create_rectangle(const int width, const int height) {
 	rectangle* this=(rectangle*)malloc(sizeof(rectangle));
 	this->height=height;
 	this->width=width;

@@ -18,6 +18,7 @@
 
 #include "rectangle.h"
 #include <stdlib.h>
+#include <assert.h>
 
 typedef struct _rectangle {
 	int width;
@@ -28,13 +29,14 @@ int sizeof_rectangle() {
 	return sizeof(rectangle);
 }
 
-rectangle* create_rectangle(const int height, const int width) {
+rectangle* create_rectangle(const int width, const int height) {
 	rectangle* this=(rectangle*)malloc(sizeof(rectangle));
+	assert(this!=NULL);
 	construct_rectangle(this, height, width);
 	return this;
 }
 
-void construct_rectangle(rectangle* this, const int height, const int width) {
+void construct_rectangle(rectangle* this, const int width, const int height) {
 	this->height=height;
 	this->width=width;
 }

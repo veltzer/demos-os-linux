@@ -24,7 +24,7 @@ typedef struct _rectangle {
 	int height;
 } rectangle;
 
-rectangle* create_rectangle(const int height, const int width) {
+rectangle* create_rectangle(const int width, const int height) {
 	rectangle* this=(rectangle*)malloc(sizeof(rectangle));
 	this->height=height;
 	this->width=width;

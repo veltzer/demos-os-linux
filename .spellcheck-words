@@ -197,3 +197,8 @@ Xlinker
 noinhibit
 liba
 libb
+LD
+PRELOAD
+dlopen
+dlsym
+preloaded
