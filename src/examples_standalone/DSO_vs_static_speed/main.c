@@ -38,7 +38,8 @@ int main() {
 	}
 
 	// Get the DSO function
-	dso_function = dlsym(handle, "dso_function");
+	//dso_function = (int (*)(int))dlsym(handle, "dso_function");
+	*(void **)(&dso_function) = dlsym(handle, "dso_function");
 	if (!dso_function) {
 		fprintf(stderr, "Error getting DSO function: %s\n", dlerror());
 		dlclose(handle);
