@@ -10,7 +10,7 @@ functions in the kernel, a 'ioctl'.
 
 Show that you can call this ioctl from userspace.
 
-For this phase, it really doesn't matter what the ioctl actually does.
+For this phase, it really does not matter what the ioctl actually does.
 For instance, you can just print a log message to the kernel log.
 
 Of course, you will need to implement a user space application that calls

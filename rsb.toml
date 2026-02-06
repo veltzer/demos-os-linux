@@ -29,6 +29,7 @@ cc = "clang"
 cxx = "clang++"
 
 [processor.cpplint]
+exclude_dirs = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
 args = [
 	"--error-exitcode=1",
 	"--enable=warning,style,performance,portability",
