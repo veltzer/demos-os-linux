@@ -1,5 +1,6 @@
 [vars]
-kernel_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
+kernel_excludes = ["/kernel/", "/kernel_standalone/"]
+no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
 
 [processor.cc_single_file]
 scan_dir = "src"
@@ -48,7 +49,7 @@ exclude_paths = ["Makefile"]
 exclude_dirs = "${kernel_excludes}"
 
 [analyzer.cpp]
-exclude_dirs = ["/kernel/", "/kernel_standalone/"]
+exclude_dirs = ["{kernel_excludes}"]
 include_paths = [
 	"src/include",
 	"/usr/include/mysql++",
@@ -56,6 +57,7 @@ include_paths = [
 	"/usr/include/wx-3.2",
 	"src/examples_standalone/gcc_precompiled_headers/include",
 	"src/examples_standalone/quoted_includes/folder1",
+	"/usr/lib/gcc/x86_64-linux-gnu/15/plugin/include",
 ]
 pkg_config = [
 	"gtk+-2.0",
