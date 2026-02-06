@@ -45,7 +45,7 @@ exclude_paths = ["Makefile"]
 exclude_dirs = ["/kernel/", "/kernel/standalone/"]
 
 [analyzer.cpp]
-exclude_dirs = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
+exclude_dirs = ["/kernel/", "/kernel_standalone/"]
 include_paths = [
 	"src/include",
 	"/usr/include/mysql++",
