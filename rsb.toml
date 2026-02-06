@@ -1,7 +1,7 @@
 [processor.cc_single_file]
 scan_dir = "src"
 include_paths = ["src/include"]
-exclude_dirs = ["/kernel/", "/kernel/standalone/", "/examples/standalone/", "/exercises/standalone/"]
+exclude_dirs = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
 
 [[processor.cc_single_file.compilers]]
 name = "gcc"
