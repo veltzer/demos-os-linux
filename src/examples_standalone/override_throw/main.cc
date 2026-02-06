@@ -27,7 +27,7 @@ class MyException: public exception {
 int main() {
 	try {
 		throw MyException();
-	}catch(MyException e) {
+	}catch(MyException& e) {
 		cout << "in the catch" << endl;
 	}
 	return EXIT_SUCCESS;
