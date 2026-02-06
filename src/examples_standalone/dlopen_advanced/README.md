@@ -1,6 +1,6 @@
 # An advanced example of `dlopen(3)`
 
-This example shows how to dynamically call a function from a dll which is not known at compile time.
+This example shows how to dynamically call a function from a DSO which is not known at compile time.
 
 This example uses the `dlopen(3)` set of functions.
 
@@ -11,7 +11,7 @@ These set of functions can be used for various purposes:
 Usage example:
 
 ```shell
-./run_func_from_dll /usr/lib/libm.so sin 6.28
+./run_func_from_dso /usr/lib/libm.so sin 6.28
 ```
 
 Notes:
