@@ -429,9 +429,10 @@ packages=[
     "indent", # indent(1) (code formatting)
     "electric-fence",
 
+    # gcc plugins
+    "gcc-15-plugin-dev",
     # dialog really has header files and that is why it is here
     "dialog",
-    # "gcc-9-plugin-dev",
     "binutils-dev",
     "libxtables-dev",
     "libevent-dev",
