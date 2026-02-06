@@ -41,13 +41,17 @@ use_words_file = true
 
 [processor.make]
 exclude_paths = ["Makefile"]
+exclude_dirs = ["/kernel/", "/kernel/standalone/"]
 
 [analyzer.cpp]
+exclude_dirs = ["/kernel/", "/kernel/standalone/"]
 include_paths = [
 	"src/include",
 	"/usr/include/mysql++",
 	"/usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2",
 	"/usr/include/wx-3.2",
+	"src/examples_standalone/gcc_precompiled_headers/include",
+	"src/examples_standalone/quoted_includes/folder1",
 ]
 pkg_config = [
 	"gtk+-2.0",
@@ -56,5 +60,5 @@ pkg_config = [
 	"Qt6Widgets",
 ]
 include_path_commands = [
-	"bash -c echo $(gcc -print-file-name=plugin)/include",
+	"echo $(gcc -print-file-name=plugin)/include",
 ]
