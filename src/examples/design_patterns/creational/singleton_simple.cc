@@ -43,6 +43,7 @@ public:
 	}
 };
 
+Singleton Singleton::instance;
 
 int main() {
 	Singleton& s=Singleton::getInstance();

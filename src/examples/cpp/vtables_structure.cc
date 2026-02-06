@@ -19,6 +19,9 @@
 #include <firstinclude.h>
 #include <assert.h>
 #include <cstdlib>
+#include <cstdint>
+#include <cstddef>
+#include <cstring>
 
 /*
  * This example investigates the structure of vtables in the
@@ -34,6 +37,18 @@
  * The virtual tables are also not directly pointed to by the instances
  * but rather indirectly.
  */
+
+struct MemberFnPtr {
+	void* ptr;
+	ptrdiff_t adj;
+};
+
+template<typename T> void* extract_fn_ptr(T pmf) {
+	static_assert(sizeof(pmf) >= sizeof(void*), "Unexpected PMF size");
+	MemberFnPtr internal;
+	std::memcpy(&internal, &pmf, sizeof(internal));
+	return internal.ptr;
+}
 
 class A{
 public:
@@ -79,12 +94,9 @@ int main() {
 	// of declaration
 	A a;
 	void** va=*(void***)&a;
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-	void* vAamethod0=reinterpret_cast<void*>(&B::vamethod0);
-	void* vAamethod1=reinterpret_cast<void*>(&B::vamethod1);
-	void* vAamethod2=reinterpret_cast<void*>(&B::vamethod2);
-#pragma GCC diagnostic pop
+	void* vAamethod0=extract_fn_ptr(&B::vamethod0);
+	void* vAamethod1=extract_fn_ptr(&B::vamethod1);
+	void* vAamethod2=extract_fn_ptr(&B::vamethod2);
 	assert(vAamethod0==va[0]);
 	assert(vAamethod1==va[1]);
 	assert(vAamethod2==va[2]);
@@ -94,14 +106,11 @@ int main() {
 	// show that the vtable of b has same charactersitics as vtable of A...
 	B b;
 	void** vb=*(void***)&b;
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-	void* vBamethod0=reinterpret_cast<void*>(&B::vamethod0);
-	void* vBamethod1=reinterpret_cast<void*>(&B::vamethod1);
-	void* vBamethod2=reinterpret_cast<void*>(&B::vamethod2);
-	void* vBbmethod0=reinterpret_cast<void*>(&B::vbmethod0);
-	void* vBbmethod1=reinterpret_cast<void*>(&B::vbmethod1);
-#pragma GCC diagnostic pop
+	void* vBamethod0=extract_fn_ptr(&B::vamethod0);
+	void* vBamethod1=extract_fn_ptr(&B::vamethod1);
+	void* vBamethod2=extract_fn_ptr(&B::vamethod2);
+	void* vBbmethod0=extract_fn_ptr(&B::vbmethod0);
+	void* vBbmethod1=extract_fn_ptr(&B::vbmethod1);
 	assert(vBamethod0==vb[0]);
 	assert(vBamethod1==vb[1]);
 	assert(vBamethod2==vb[2]);

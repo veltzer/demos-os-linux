@@ -27,6 +27,7 @@
  *
  * EXTRA_COMPILE_FLAGS_BEFORE=-fopenmp
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
+ * EXCLUDE_PROFILE=clang
  */
 
 int main() {

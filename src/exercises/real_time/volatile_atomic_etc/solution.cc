@@ -25,6 +25,10 @@
 #include <chrono>
 #include <cassert>
 
+/*
+ * EXCLUDE_PROFILE=clang
+ */
+
 using namespace std;
 
 // Configuration

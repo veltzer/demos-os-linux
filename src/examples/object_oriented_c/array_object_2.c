@@ -42,28 +42,28 @@ void _check_bounds(void* array, int pos) {
 #define CHECK_BOUNDS(array, pos)
 #endif	// DEBUG
 
-static inline void* array_construct(int size) {
+void* array_construct(int size) {
 	int* p=(int*)CHECK_NOT_NULL(malloc((size+1)*sizeof(int)));
 	bzero(p, (size+1)*sizeof(int));
 	p[0]=size;
 	return p+1;
 }
 
-inline void array_destruct(void* array) {
+void array_destruct(void* array) {
 	int *p=(int*)array;
 	free(p-1);
 }
 
-inline int array_size(void* array) {
+int array_size(void* array) {
 	return *((int*)array-1);
 }
 
-inline int array_get_value(void* array, int pos) {
+int array_get_value(void* array, int pos) {
 	CHECK_BOUNDS(array, pos);
 	return ((int*)array)[pos];
 }
 
-inline void array_set_value(void* array, int pos, int val) {
+void array_set_value(void* array, int pos, int val) {
 	CHECK_BOUNDS(array, pos);
 #pragma GCC diagnostic ignored "-Warray-bounds"
 	((int*)array)[pos]=val;
