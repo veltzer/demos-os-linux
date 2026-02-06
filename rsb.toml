@@ -1,7 +1,10 @@
+[vars]
+kernel_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
+
 [processor.cc_single_file]
 scan_dir = "src"
 include_paths = ["src/include"]
-exclude_dirs = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
+exclude_dirs = "${kernel_excludes}"
 
 [[processor.cc_single_file.compilers]]
 name = "gcc"
@@ -29,7 +32,7 @@ cc = "clang"
 cxx = "clang++"
 
 [processor.cpplint]
-exclude_dirs = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
+exclude_dirs = "${kernel_excludes}"
 args = [
 	"--error-exitcode=1",
 	"--enable=warning,style,performance,portability",
@@ -42,7 +45,7 @@ use_words_file = true
 
 [processor.make]
 exclude_paths = ["Makefile"]
-exclude_dirs = ["/kernel/", "/kernel/standalone/"]
+exclude_dirs = "${kernel_excludes}"
 
 [analyzer.cpp]
 exclude_dirs = ["/kernel/", "/kernel_standalone/"]
