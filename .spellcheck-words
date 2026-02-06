@@ -202,3 +202,15 @@ PRELOAD
 dlopen
 dlsym
 preloaded
+destructors
+glibc
+DSOs
+func
+ltrace
+dmalloc
+malloc
+unfreed
+libstdc
+SHBANG
+Preprocessor
+icpc
