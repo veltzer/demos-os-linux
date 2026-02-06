@@ -1,5 +1,12 @@
 [processor.cc_single_file]
+scan_dir = "src"
 include_paths = ["src/include"]
+
+[[processor.cc_single_file.compilers]]
+name = "gcc"
+cc = "gcc"
+cxx = "g++"
+output_suffix = ".elf"
 cflags = [
 	"-O2",
 	"-Wall",
@@ -15,6 +22,11 @@ cxxflags = [
 	"-pedantic",
 ]
 
+[[processor.cc_single_file.compilers]]
+name = "clang"
+cc = "clang"
+cxx = "clang++"
+
 [processor.cpplint]
 args = [
 	"--error-exitcode=1",
@@ -28,3 +40,17 @@ use_words_file = true
 
 [processor.make]
 exclude_paths = ["Makefile"]
+
+[analyzer.cpp]
+include_paths = [
+	"src/include",
+	"/usr/include/mysql++",
+	"/usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.2",
+	"/usr/include/wx-3.2",
+]
+pkg_config = [
+	"gtk+-2.0",
+	"gtkmm-2.4",
+	"mysqlclient",
+	"Qt6Widgets",
+]

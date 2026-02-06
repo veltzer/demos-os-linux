@@ -1,7 +1,21 @@
 {
   "version": 1,
-  "locked_at": "2026-02-02T15:33:47Z",
+  "locked_at": "2026-02-04T16:14:14Z",
   "tools": {
+    "clang": {
+      "path": "/usr/bin/clang",
+      "version_output": "Ubuntu clang version 20.1.8 (0ubuntu4)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-20/bin",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "clang++": {
+      "path": "/usr/bin/clang++",
+      "version_output": "Ubuntu clang version 20.1.8 (0ubuntu4)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-20/bin",
+      "version_args": [
+        "--version"
+      ]
+    },
     "cppcheck": {
       "path": "/usr/bin/cppcheck",
       "version_output": "Cppcheck 2.17.1",
