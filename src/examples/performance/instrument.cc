@@ -41,6 +41,7 @@
  *
  * EXTRA_COMPILE_FLAGS_BEFORE=-finstrument-functions -finstrument-functions-exclude-function-list=printf,sleep
  * OPTION_WITHOUT_FUNCTION_ATTRIBUTES=-finstrument-functions -finstrument-functions-exclude-function-list=__cyg_profile_func_enter,__cyg_profile_func_exit,printf
+ * EXCLUDE_PROFILE=clang
  *
  * TODO:
  * - show how to get the arguments to the function which is being instrumented. use the

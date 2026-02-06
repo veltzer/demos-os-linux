@@ -27,6 +27,7 @@
  *
  * EXTRA_COMPILE_FLAGS_BEFORE=-fopenmp
  * EXTRA_LINK_FLAGS_AFTER=-fopenmp
+ * EXCLUDE_PROFILE=clang
  */
 
 void mergesort(int* arr, unsigned int from, unsigned int to, int* scratch) {

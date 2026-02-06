@@ -30,6 +30,7 @@
  * - I cant seem to print the function name from #pragma message
  *
  * EXTRA_COMPILE_FLAGS_BEFORE=-fno-diagnostics-show-caret -ftrack-macro-expansion=0 -fno-diagnostics-show-option
+ * EXCLUDE_PROFILE=clang
  * ALLOW_OUTPUT
  */
 

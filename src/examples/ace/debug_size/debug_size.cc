@@ -45,7 +45,7 @@
 
 /*
  * EXTRA_COMPILE_CMD=pkg-config --cflags ACE
- * EXTRA_COMPILE_FLAGS_BEFORE=-g -femit-struct-debug-baseonly
+ * EXTRA_COMPILE_FLAGS_BEFORE[gcc]=-g -femit-struct-debug-baseonly
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
