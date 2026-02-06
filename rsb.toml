@@ -44,7 +44,7 @@ exclude_paths = ["Makefile"]
 exclude_dirs = ["/kernel/", "/kernel/standalone/"]
 
 [analyzer.cpp]
-exclude_dirs = ["/kernel/", "/kernel/standalone/"]
+exclude_dirs = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
 include_paths = [
 	"src/include",
 	"/usr/include/mysql++",
@@ -60,5 +60,4 @@ pkg_config = [
 	"Qt6Widgets",
 ]
 include_path_commands = [
-	"echo $(gcc -print-file-name=plugin)/include",
 ]
