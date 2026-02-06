@@ -106,7 +106,7 @@ static void spell_check(const_gimple stmt, const_tree str) {
 			return;
 
 		memcpy(buf, data, end - data);
-		buf[end-data] = '\0';
+		//buf[end-data] = '\0';
 		if (!(aspell_speller_check(speller_g, buf, end - data)))
 			warning_at(gimple_location(stmt), 0, "%s (bad spelling)", buf);
 		data = end;
