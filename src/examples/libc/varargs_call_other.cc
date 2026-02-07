@@ -35,6 +35,7 @@
  * - We use the __attribute__ feature to make sure the compiler checks that
  * we are passing the arguments right (gcc feature).
  */
+int trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 int trace(const char *fmt, ...) {
 	extern char *program_invocation_short_name;
 
@@ -46,7 +47,6 @@ int trace(const char *fmt, ...) {
 	return ret;
 }
 
-int trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
 int main() {
 	trace("%s %d %f\n", "Hello", 5, 3.14);

@@ -28,9 +28,24 @@ cxxflags = [
 ]
 
 [[processor.cc_single_file.compilers]]
+enabled = false
 name = "clang"
 cc = "clang"
 cxx = "clang++"
+cflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
+cxxflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
 
 [processor.cppcheck]
 exclude_dirs = "${kernel_excludes}"

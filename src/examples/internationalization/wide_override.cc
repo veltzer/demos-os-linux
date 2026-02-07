@@ -25,6 +25,7 @@
  * for wide strings (overriding the definition of wchar_t).
  */
 
+#undef wchar_t
 #define wchar_t char
 
 int main() {
