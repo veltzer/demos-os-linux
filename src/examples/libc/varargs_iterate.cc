@@ -32,6 +32,9 @@
  * This means that if you want a char, get an int and cast it.
  * Same for float <-> double and the like.
  */
+
+void trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
+
 void trace(const char *fmt, ...) {
 	va_list ap;
 	int d;
@@ -66,8 +69,6 @@ void trace(const char *fmt, ...) {
 	}
 	va_end(ap);
 }
-
-void trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
 int main() {
 	trace("%s %d %f\n", "Hello", 5, 3.14);

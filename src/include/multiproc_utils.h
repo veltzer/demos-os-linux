@@ -84,6 +84,7 @@ static inline void print_code(int code) {
  * - accepts variable argument and does the substitution.
  * - checks for errors on return from system(3)
  */
+static inline void my_system(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 static inline void my_system(const char *fmt, ...) {
 	const unsigned int cmd_size=1024;
 	char str[cmd_size];
@@ -98,7 +99,6 @@ static inline void my_system(const char *fmt, ...) {
 	CHECK_ZERO(system(str));
 }
 
-void my_system(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
 /*
  * Print the process name from /proc

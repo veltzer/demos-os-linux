@@ -27,6 +27,8 @@
 #include <firstinclude.h>
 #include <pthread_utils.h>	// for gettid()
 
+static void debug(bool short_print, const char *file, const char *function, int line, const char *fmt, ...) __attribute__((format(printf, 5, 6)));
+
 static inline void debug(bool short_print, const char *file, const char *function, int line, const char *fmt, ...) {
 	extern char *program_invocation_short_name;
 	const int BUFSIZE=1024;
@@ -44,8 +46,6 @@ static inline void debug(bool short_print, const char *file, const char *functio
 	vfprintf(stderr, str, args);
 	va_end(args);
 }
-
-void debug(bool short_print, const char *file, const char *function, int line, const char *fmt, ...) __attribute__((format(printf, 5, 6)));
 
 /*
  * Semantics of these macros:
