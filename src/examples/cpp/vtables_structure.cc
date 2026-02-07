@@ -36,6 +36,8 @@
  *
  * The virtual tables are also not directly pointed to by the instances
  * but rather indirectly.
+ *
+ * EXCLUDE_PROFILE=clang
  */
 
 struct MemberFnPtr {

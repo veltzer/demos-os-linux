@@ -96,5 +96,6 @@ int main(int argc, char** argv) {
 	printf("max is %llu\n", max);
 	printf("min is %llu\n", min);
 	printf("avg is %llu\n", sum/loop);
+	printf("success is %d\n", success);
 	return EXIT_SUCCESS;
 }
