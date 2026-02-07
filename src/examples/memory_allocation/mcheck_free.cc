@@ -28,6 +28,7 @@
  * some consistency check and you will catch the errors.
  *
  * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-use-after-free
+ * EXCLUDE_PROFILE=clang
  */
 
 void myhandler(enum mcheck_status status) {

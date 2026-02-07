@@ -75,9 +75,9 @@ typedef struct _thread_data{
 	const char* name;
 } thread_data;
 
+void emptyfunc() __attribute__((noinline));
 void emptyfunc() {
 }
-void emptyfunc() __attribute__((noinline));
 
 void* func(void* p) {
 	thread_data* td=(thread_data*)p;

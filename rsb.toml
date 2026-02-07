@@ -5,7 +5,7 @@ no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/"
 [processor.cc_single_file]
 scan_dir = "src"
 include_paths = ["src/include"]
-exclude_dirs = "${kernel_excludes}"
+exclude_dirs = "${no_single_excludes}"
 
 [[processor.cc_single_file.compilers]]
 name = "gcc"

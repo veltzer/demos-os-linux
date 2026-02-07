@@ -26,6 +26,7 @@ using namespace std;
  * This is an example of initializing a struct in C++...
  * XTRA_COMPILE_FLAGS=-Wno-error=uninitialized -w
  * EXTRA_COMPILE_FLAGS_AFTER=-std=gnu++20
+ * EXTRA_COMPILE_FLAGS_BEFORE=-Wno-gnu-designator
  */
 
 struct mystruct {

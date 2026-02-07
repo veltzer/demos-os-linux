@@ -36,6 +36,8 @@
  * http://stackoverflow.com/questions/1067226/c-multi-line-macro-do-while0-vs-scope-block
  * http://stackoverflow.com/questions/10720465/do-while0-vs-if-1-in-macros
  * http://stackoverflow.com/questions/154136/do-while-and-if-else-statements-in-c-c-macros
+ *
+ * EXCLUDE_PROFILE=clang
  */
 
 #define simple(m) do { printf(m "\n"); } while(0)
