@@ -430,7 +430,7 @@ packages=[
     "electric-fence",
 
     # gcc plugins
-    "gcc-15-plugin-dev",
+    # "gcc-15-plugin-dev", # cant install on github
     # dialog really has header files and that is why it is here
     "dialog",
     "binutils-dev",
