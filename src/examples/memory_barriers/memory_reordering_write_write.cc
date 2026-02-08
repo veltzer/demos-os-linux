@@ -23,7 +23,6 @@
 #include <sched.h>	// for cpu_set_t, CPU_ZERO(3), CPU_SET(3), sched_getcpu(3)
 #include <trace_utils.h>// for INFO()
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_ONEOFTWO(), CHECK_NOT_M1()
-#include <us_helper.h>	// for no_params()
 #include <lowlevel_utils.h>	// for mb(), fullmb()
 
 /*
@@ -109,8 +108,7 @@ static void* worker(void* p) {
 	return NULL;
 }
 
-int main(int argc, char** argv) {
-	no_params(argc, argv);
+int main() {
 	const int thread_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	pthread_t* threads=new pthread_t[thread_num];

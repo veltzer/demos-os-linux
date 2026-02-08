@@ -19,15 +19,13 @@
 #include <firstinclude.h>
 #include <sys/ioctl.h>	// for ioctl(2)
 #include <stdlib.h>	// for EXIT_SUCCESS
-#include <us_helper.h>	// for no_params()
 #include <err_utils.h>	// for CHECK_NOT_M1()
 
 /*
  * This is a test to check my own err_utils.hh file.
  */
 
-int main(int argc, char** argv) {
-	no_params(argc, argv);
+int main() {
 	CHECK_NOT_M1(ioctl(5, 7));
 	return EXIT_SUCCESS;
 }

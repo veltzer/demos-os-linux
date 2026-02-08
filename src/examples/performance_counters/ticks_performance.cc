@@ -26,7 +26,7 @@
 #include <sys/syscall.h>// for syscall(2)
 #include <err_utils.h>	// for CHECK_ZERO()
 #include <lowlevel_utils.h>	// for getticks(), get_mic_diff()
-#include <us_helper.h>	// for get_clk_tck(), no_params()
+#include <us_helper.h>	// for get_clk_tck()
 #include <sched_utils.h>// for sched_run_priority(), SCHED_FIFO_HIGH_PRIORITY:const, SCHED_FIFO
 
 /*
@@ -52,8 +52,7 @@ void* worker(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv) {
-	no_params(argc, argv);
+int main() {
 	sched_run_priority(worker, NULL, SCHED_FIFO_HIGH_PRIORITY, SCHED_FIFO);
 	return EXIT_SUCCESS;
 }

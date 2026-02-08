@@ -32,9 +32,7 @@ void* myfunc(void*) {
 	return NULL;
 }
 
-int main(int argc, char** argv) {
-	no_params(argc, argv);
-
+int main() {
 	pthread_attr_t myattr;
 	pthread_attr_init(&myattr);
 	pthread_attr_setinheritsched(&myattr, PTHREAD_EXPLICIT_SCHED);
