@@ -23,6 +23,8 @@
 #include <cstddef>
 #include <cstring>
 
+using namespace std;
+
 /*
  * This example investigates the structure of vtables in the
  * GCC compiler.
@@ -48,7 +50,7 @@ struct MemberFnPtr {
 template<typename T> void* extract_fn_ptr(T pmf) {
 	static_assert(sizeof(pmf) >= sizeof(void*), "Unexpected PMF size");
 	MemberFnPtr internal;
-	std::memcpy(&internal, &pmf, sizeof(internal));
+	memcpy(&internal, &pmf, sizeof(internal));
 	return internal.ptr;
 }
 
