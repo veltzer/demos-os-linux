@@ -27,12 +27,12 @@ using namespace std;
 
 class MyClass{
 public:
-	MyClass(string str) : data(std::move(str)) {
+	MyClass(string str) : data(move(str)) {
 	}
 	MyClass(const MyClass& other) : data(other.data) {
 		cout << "Copy constructor called" << endl;
 	}
-	MyClass(MyClass&& other) : data(std::move(other.data)) {
+	MyClass(MyClass&& other) : data(move(other.data)) {
 		cout << "Move constructor called" << endl;
 	}
 	~MyClass() {
@@ -52,7 +52,7 @@ int main() {
 	cout << "After copy construction" << endl;
 
 	// Move construction
-	vec.push_back(MyClass(std::move(str)));
+	vec.push_back(MyClass(move(str)));
 	cout << "After move construction" << endl;
 
 	cout << "Vector size: " << vec.size() << endl;
