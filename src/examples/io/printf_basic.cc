@@ -38,6 +38,6 @@ int main() {
 	printf("with conversion '%%lX' is %lX\n", (unsigned long)p);
 	int width=5;
 	int num=4;
-	printf("printing with non compile time width %*d\n", width, num);
+	printf("printing with non compile time width '%%*d' %*d\n", width, num);
 	return EXIT_SUCCESS;
 }
