@@ -82,6 +82,3 @@ pkg_config = [
 ]
 include_path_commands = [
 ]
-
-[processor.yamllint]
-enabled = false

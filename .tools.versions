@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "locked_at": "2026-02-14T08:52:05Z",
+  "locked_at": "2026-02-14T09:49:58Z",
   "tools": {
     "cppcheck": {
       "path": "/usr/bin/cppcheck",
@@ -68,6 +68,13 @@
     "taplo": {
       "path": "/home/mark/install/cargo/bin/taplo",
       "version_output": "taplo 0.10.0",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "yamllint": {
+      "path": "/home/mark/.venv/bin/yamllint",
+      "version_output": "yamllint 1.38.0",
       "version_args": [
         "--version"
       ]
