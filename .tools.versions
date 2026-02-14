@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "locked_at": "2026-02-14T07:55:02Z",
+  "locked_at": "2026-02-14T08:52:05Z",
   "tools": {
     "cppcheck": {
       "path": "/usr/bin/cppcheck",
@@ -19,6 +19,13 @@
     "gcc": {
       "path": "/usr/bin/gcc",
       "version_output": "gcc (Ubuntu 15.2.0-4ubuntu4) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "jsonlint": {
+      "path": "/usr/bin/jsonlint",
+      "version_output": "jsonlint (demjson3) version 3.0.5 (2021-09-08)",
       "version_args": [
         "--version"
       ]
@@ -54,6 +61,13 @@
     "shellcheck": {
       "path": "/usr/bin/shellcheck",
       "version_output": "ShellCheck - shell script analysis tool\nversion: 0.10.0\nlicense: GNU General Public License, version 3\nwebsite: https://www.shellcheck.net",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "taplo": {
+      "path": "/home/mark/install/cargo/bin/taplo",
+      "version_output": "taplo 0.10.0",
       "version_args": [
         "--version"
       ]
