@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "locked_at": "2026-02-14T09:49:58Z",
+  "locked_at": "2026-02-17T06:22:45Z",
   "tools": {
     "cppcheck": {
       "path": "/usr/bin/cppcheck",
@@ -23,6 +23,13 @@
         "--version"
       ]
     },
+    "jq": {
+      "path": "/usr/bin/jq",
+      "version_output": "jq-1.8.1",
+      "version_args": [
+        "--version"
+      ]
+    },
     "jsonlint": {
       "path": "/usr/bin/jsonlint",
       "version_output": "jsonlint (demjson3) version 3.0.5 (2021-09-08)",
@@ -40,6 +47,13 @@
     "pylint": {
       "path": "/home/mark/.venv/bin/pylint",
       "version_output": "pylint 3.3.8\nastroid 3.3.11\nPython 3.13.7 (main, Jan 22 2026, 20:15:57) [GCC 15.2.0]",
+      "version_args": [
+        "--version"
+      ]
+    },
+    "pyrefly": {
+      "path": "/home/mark/.venv/bin/pyrefly",
+      "version_output": "pyrefly 0.52.0",
       "version_args": [
         "--version"
       ]
