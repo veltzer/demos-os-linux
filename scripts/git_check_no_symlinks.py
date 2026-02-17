@@ -10,6 +10,7 @@ import os.path
 
 def main():
     with subprocess.Popen(["git","ls-files"], stdout=subprocess.PIPE) as pipe:
+        assert pipe.stdout is not None
         for line in pipe.stdout:
             current=line.decode("utf-8").rstrip()
             if os.path.islink(current):
