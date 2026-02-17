@@ -27,6 +27,30 @@ mutex Singleton::m;
 
 Singleton::Singleton() {}
 
+// this is a bad solution to the problem
+Singleton& Singleton::get_instance() {
+	m.lock();
+	if(instance==nullptr) {
+		instance=new Singleton();
+	}
+	m.unlock();
+	return *instance;
+}
+
+/*
+Singleton& Singleton::get_instance() {
+	if(instance!=nullptr)
+		return *instance;
+	m.lock();
+	if(instance==nullptr) {
+		instance=new Singleton();
+	}
+	m.unlock();
+	return *instance;
+}
+*/
+
+/*
 Singleton& Singleton::get_instance() {
 	if(instance==nullptr) {
 		m.lock();
@@ -37,6 +61,7 @@ Singleton& Singleton::get_instance() {
 	}
 	return *instance;
 }
+*/
 
 int main() {
 	Singleton& s1=Singleton::get_instance();

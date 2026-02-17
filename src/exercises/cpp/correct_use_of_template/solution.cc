@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * This file is part of the demos-os-linux package.
  * Copyright (C) 2011-2026 Mark Veltzer <mark.veltzer@gmail.com>
@@ -118,4 +119,103 @@ int main() {
 	cout << endl;
 
 	return EXIT_SUCCESS;
+=======
+#include <cstddef>
+#include <iostream>
+#include <cstring>
+
+// Generic template sort function using a simple insertion sort algorithm
+// Works for any type that supports comparison operators
+template<typename type>
+void sort(type array[], size_t size) {
+    for (size_t i = 1; i < size; ++i) {
+        type key = array[i];
+        size_t j = i;
+        while (j > 0 && array[j - 1] > key) {
+            array[j] = array[j - 1];
+            --j;
+        }
+        array[j] = key;
+    }
+}
+
+// Answer to the question: Is there any point to doing specialization for this template?
+//
+// Generally NO - specialization is NOT needed because:
+// 1. The generic template works for any type that supports the '>' comparison operator
+// 2. Types like int, double, char, and user-defined types with operator> all work
+// 3. Even C-style strings (char*) can be handled by defining a wrapper or using
+//    std::string which has operator> defined
+//
+// However, specialization COULD be useful in specific cases:
+// - For C-strings (char*) if you want strcmp-based comparison instead of pointer comparison
+// - For types where a more efficient sorting algorithm exists (e.g., radix sort for integers)
+// - For types with special memory considerations
+
+// Example specialization for C-strings (char*) using strcmp
+template<>
+void sort<const char*>(const char* array[], size_t size) {
+    for (size_t i = 1; i < size; ++i) {
+        const char* key = array[i];
+        size_t j = i;
+        while (j > 0 && strcmp(array[j - 1], key) > 0) {
+            array[j] = array[j - 1];
+            --j;
+        }
+        array[j] = key;
+    }
+}
+
+// Helper function to print arrays
+template<typename type>
+void print_array(const type array[], size_t size) {
+    for (size_t i = 0; i < size; ++i) {
+        std::cout << array[i];
+        if (i < size - 1) std::cout << ", ";
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    // Test with integers
+    int int_arr[] = {5, 2, 8, 1, 9, 3};
+    size_t int_size = sizeof(int_arr) / sizeof(int_arr[0]);
+    std::cout << "Integer array before sort: ";
+    print_array(int_arr, int_size);
+    sort(int_arr, int_size);
+    std::cout << "Integer array after sort:  ";
+    print_array(int_arr, int_size);
+    std::cout << std::endl;
+
+    // Test with doubles
+    double double_arr[] = {3.14, 1.41, 2.71, 0.58, 1.73};
+    size_t double_size = sizeof(double_arr) / sizeof(double_arr[0]);
+    std::cout << "Double array before sort: ";
+    print_array(double_arr, double_size);
+    sort(double_arr, double_size);
+    std::cout << "Double array after sort:  ";
+    print_array(double_arr, double_size);
+    std::cout << std::endl;
+
+    // Test with characters
+    char char_arr[] = {'z', 'a', 'm', 'b', 'k'};
+    size_t char_size = sizeof(char_arr) / sizeof(char_arr[0]);
+    std::cout << "Char array before sort: ";
+    print_array(char_arr, char_size);
+    sort(char_arr, char_size);
+    std::cout << "Char array after sort:  ";
+    print_array(char_arr, char_size);
+    std::cout << std::endl;
+
+    // Test with C-strings (uses specialization)
+    const char* str_arr[] = {"banana", "apple", "cherry", "date", "apricot"};
+    size_t str_size = sizeof(str_arr) / sizeof(str_arr[0]);
+    std::cout << "String array before sort: ";
+    print_array(str_arr, str_size);
+    sort(str_arr, str_size);
+    std::cout << "String array after sort:  ";
+    print_array(str_arr, str_size);
+
+    return 0;
+>>>>>>> fa279291 (no commit message given)
 }

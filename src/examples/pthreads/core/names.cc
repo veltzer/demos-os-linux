@@ -100,6 +100,7 @@ void* worker(void* arg) {
 	CHECK_ZERO_ERRNO(pthread_getname_np(pthread_self(), name, name_length));
 	TRACE("pthread_getname_np is [%s]...\n", name);
 
+	sleep(3600);
 	CHECK_ZERO_ERRNO(pthread_mutex_unlock(&(td->start_mutex)));
 	CHECK_ZERO_ERRNO(pthread_mutex_lock(&(td->end_mutex)));
 	return NULL;
