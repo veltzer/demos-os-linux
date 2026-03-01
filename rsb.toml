@@ -94,3 +94,9 @@ enabled = false
 
 [processor.markdownlint]
 enabled = false
+
+[processor.clang_tidy]
+enabled = false
+
+[processor.mdl]
+enabled = false
