@@ -9,5 +9,6 @@ restrict_opt.elf: restrict.c res_opt.o Makefile
 restrict_dbg.elf: restrict.c res_dbg.o Makefile
 	gcc -I ../../src/include --std=c99 -O0 -o $@ restrict.c res_dbg.o
 
+.PHONY: clean
 clean:
-	rm restrict_opt restrict_dbg
+	rm *.elf *.o
