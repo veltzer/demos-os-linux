@@ -1,4 +1,10 @@
-personal_ws-1.1 en 1101
+personal_ws-1.1 en 1109 
+APIs
+BroadcastClient
+CPUs
+DSOs
+DayOfWeek
+LockedCounter
 a's
 aarch
 aarrr
@@ -357,6 +363,7 @@ gdb
 gdbserver
 geospatial
 gerrit
+getArea
 getarea
 getpid
 getters
@@ -734,6 +741,7 @@ preprocessing
 preprocessor
 prequisite
 presistentvolume
+printArea
 printarea
 printk
 privatelink
