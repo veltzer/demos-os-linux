@@ -51,15 +51,15 @@ for root,dirs,files in os.walk(root_folder):
         if doit:
             # print(f"examining [{current_file}]")
             with open(current_file) as stream:
-                f=stream.read()
-            if f.startswith(lic_old):
-                f=lic_new+f[len(lic_old):]
+                content=stream.read()
+            if content.startswith(lic_old):
+                content=lic_new+content[len(lic_old):]
                 with open(current_file,"wb") as out_f:
-                    out_f.write(f.encode("utf-8"))
+                    out_f.write(content.encode("utf-8"))
                     print(f"file [{current_file}] got its license replaced...")
-            if f.startswith(spdx+lic_old):
-                f=spdx+lic_new+f[len(spdx+lic_old):]
+            if content.startswith(spdx+lic_old):
+                content=spdx+lic_new+content[len(spdx+lic_old):]
                 with open(current_file,"wb") as out_f:
-                    out_f.write(f.encode("utf-8"))
+                    out_f.write(content.encode("utf-8"))
                     print(f"file [{current_file}] got its license replaced...")
             # print(f"file [{current_file}] was not replaced")
