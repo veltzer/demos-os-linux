@@ -79,3 +79,9 @@ pkg_config = [
 ]
 include_path_commands = [
 ]
+
+[processor.ascii_check]
+enabled = false
+
+[processor.rumdl]
+enabled = false
