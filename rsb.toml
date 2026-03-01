@@ -85,3 +85,12 @@ enabled = false
 
 [processor.rumdl]
 enabled = false
+
+[processor.a2x]
+enabled = false
+
+[processor.marp]
+enabled = false
+
+[processor.markdownlint]
+enabled = false
