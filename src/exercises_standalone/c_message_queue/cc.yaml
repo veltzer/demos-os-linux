@@ -1,0 +1,8 @@
+cc: gcc
+cflags: [-Wall, -Werror]
+include_dirs: [../../include]
+
+programs:
+  - name: main.elf
+    sources: [mq.c, main.c]
+    ldflags: [-lpthread]
