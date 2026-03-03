@@ -1,6 +1,6 @@
 cc: gcc
 cflags: [-Wall, -Werror]
-include_dirs: [../../include]
+include_dirs: [src/include]
 
 programs:
   - name: main.elf
