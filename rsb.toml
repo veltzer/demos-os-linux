@@ -100,3 +100,9 @@ enabled = false
 
 [processor.mdl]
 enabled = false
+
+[processor.checkpatch]
+enabled = false
+
+[processor.cpplint]
+enabled = false
