@@ -162,5 +162,5 @@ terraform.tfstate.backup
 target/
 project/
 
-# rsb
-/.rsb/
+# rsbuild
+/.rsbuild/
