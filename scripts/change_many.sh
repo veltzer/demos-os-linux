@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 
 find src -name "*.c" -or -name "*.cc" | while IFS= read -r x
 do
