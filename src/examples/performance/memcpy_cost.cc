@@ -37,7 +37,7 @@
 
 /* we use 49 as the PRREMPT_RT use 50 as the priority of kernel tasklets
  * and interrupt handler by default */
-const int MY_PRIORITY=49;
+const int MY_PRIORITY __attribute__((unused))=49;
 
 int main(int argc, char** argv) {
 	if(argc!=3) {

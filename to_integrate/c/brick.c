@@ -20,7 +20,7 @@
 #include <sched.h>
 #include <assert.h>
 
-int main() {
+int main(void) {
 	// first set the scheduling policy of this app to SCHED_FIFO with priority 99
 	struct sched_param s;
 	s.sched_priority=99;

@@ -41,6 +41,8 @@
  * under glibc.
  */
 
+int trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
+
 int trace(const char *fmt, ...) {
 	extern char *program_invocation_short_name;
 
@@ -52,8 +54,6 @@ int trace(const char *fmt, ...) {
 	__builtin_va_end(args);
 	return ret;
 }
-
-int trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
 int main() {
 	printf("sizeof(__builtin_va_list) is [%zd]\n", sizeof(__builtin_va_list));

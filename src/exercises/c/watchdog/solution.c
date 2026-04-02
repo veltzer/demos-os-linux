@@ -38,7 +38,7 @@ const char* const args[]={
 	"src/exercises/watchdog/process_to_monitor.elf"
 };
 
-static void fork_a_child() {
+static void fork_a_child(void) {
 	TRACE("forking a child");
 	pid_t pid=CHECK_NOT_M1(fork());
 	if(pid) {
@@ -49,7 +49,7 @@ static void fork_a_child() {
 	CHECK_NOT_M1(execv(process_to_exec, (char* const*)args));
 }
 
-int main() {
+int main(void) {
 	fork_a_child();
 	TRACE("parent starts monitoring");
 	while(true) {

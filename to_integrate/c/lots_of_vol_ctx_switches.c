@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 #include <unistd.h>
 
-int main() {
+int main(void) {
 	while(1) {
 		usleep(1000000);
 	}

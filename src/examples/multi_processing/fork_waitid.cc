@@ -67,7 +67,7 @@ int main() {
 
 		case 3:
 			// cppcheck-suppress nullPointer
-			*((char *)0)=0;
+			*((volatile char *)0)=0;
 			break;
 		}
 	} else {

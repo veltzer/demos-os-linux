@@ -29,7 +29,7 @@ void print_it(const int* p) {
 	printf("*p=%d\n", *p);
 }
 
-int main() {
+int main(void) {
 	const int a=5;
 	printf("a=%d\n", a);
 	print_it(&a);

@@ -23,7 +23,7 @@
 
 int array[6]={5,3,8,2,9,1};
 
-int main() {
+int main(void) {
 	int arr[6];
 	int vals=scanf("%d %d %d %d %d %d", arr, arr+1, arr+2, arr+3, arr+4, arr+5);
 	assert(vals==6);

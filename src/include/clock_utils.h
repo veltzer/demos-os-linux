@@ -65,7 +65,7 @@ static clock_val_and_name clock_tbl[]={
  * - different clocks show different times.
  * - different clocks have different resolutions.
  */
-static inline void clock_print_table() {
+static inline void clock_print_table(void) {
 	unsigned int i;
 	for(i=0; i<ARRAY_SIZEOF(clock_tbl); i++) {
 		clockid_t clk_id=clock_tbl[i].val;

@@ -35,7 +35,7 @@
 #include <netdb.h>	// for getservbyname(3)
 #include <err_utils.h>	// for CHECK_NOT_M1()
 
-static inline int get_backlog() {
+static inline int get_backlog(void) {
 	// read the data from the /proc/sys/net/core/somaxconn virtual file...
 	const char* filename="/proc/sys/net/core/somaxconn";
 	const unsigned int size=256;

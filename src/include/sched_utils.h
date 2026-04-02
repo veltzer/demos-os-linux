@@ -74,7 +74,7 @@ static inline const char* sched_get_name(int policy) {
 	CHECK_ERROR("bad policy value");
 }
 
-static inline void sched_print_info() {
+static inline void sched_print_info(void) {
 	// 0 means the calling thread, process or process group
 	// int pri=getpriority(PRIO_PROCESS, 0);
 	// printf("getpriority %d\n", tid, pri);
@@ -93,7 +93,7 @@ static inline void sched_print_info() {
 /*
  * print parameters of the scheduling system
  */
-static inline void sched_print_table() {
+static inline void sched_print_table(void) {
 	unsigned int i;
 	for(i=0; i<ARRAY_SIZEOF(sched_tbl); i++) {
 		int val=sched_tbl[i].val;

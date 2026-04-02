@@ -127,6 +127,7 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 		current_block++;
 		bytes_remaining -= bytes_to_read;
 	}
+	(void)offset;
 	fi->file_sz = file_sz;
 
 	/* Get an SQE */

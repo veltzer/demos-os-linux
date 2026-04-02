@@ -21,7 +21,7 @@
 #include "a.h"
 #include "b.h"
 
-void func_in_a() {
+void func_in_a(void) {
 	printf("in func_in_a\n");
 	func_in_b();
 }

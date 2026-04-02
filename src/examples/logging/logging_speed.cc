@@ -70,6 +70,7 @@
 // pthread_mutex_t fastmutex=PTHREAD_MUTEX_INITIALIZER;
 const unsigned int buffer_size=1024;
 char buffer[buffer_size];
+inline void my_syslog(const char* fmt, ...) __attribute__((format(printf, 1, 2)));
 inline void my_syslog(const char* fmt, ...) {
 	// pthread_mutex_lock(&fastmutex);
 	va_list args;
@@ -79,7 +80,6 @@ inline void my_syslog(const char* fmt, ...) {
 	memcpy(buffer, fmt, ret);
 	// pthread_mutex_unlock(&fastmutex);
 }
-inline void my_syslog(const char* fmt, ...) __attribute__((format(printf, 1, 2)));
 
 void* func(void*) {
 	sched_print_info();

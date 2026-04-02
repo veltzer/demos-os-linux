@@ -17,6 +17,9 @@
  */
 
 #include <firstinclude.h>
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wunused-private-field"
+#endif
 #include <iostream>	// for cout, endl
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <boost/thread.hpp>	// for boost::thread

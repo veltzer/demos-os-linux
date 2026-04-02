@@ -44,6 +44,7 @@ typedef enum _tracelevel{
 	LEVEL_EMERG
 } tracelevel;
 
+inline void my_trace(tracelevel level, const char* file, const char* base_file, const int line, const char* func, const char* function, const char* pretty_function, const char* fmt, ...) __attribute__((format(printf, 8, 9)));
 inline void my_trace(tracelevel level, const char* file, const char* base_file, const int line, const char* func, const char* function, const char* pretty_function, const char* fmt, ...) {
 	// the current implemention is quite simplistic...
 	printf("level is %d\n", level);
@@ -59,11 +60,10 @@ inline void my_trace(tracelevel level, const char* file, const char* base_file, 
 	vfprintf(stderr, fmt, args);
 	va_end(args);
 }
-inline void my_trace(tracelevel level, const char* file, const char* base_file, const int line, const char* func, const char* function, const char* pretty_function, const char* fmt, ...) __attribute__((format(printf, 8, 9)));
 
 // now wrap this up to get the right compiler macros...
 // this is a pre-processor varargs type of tracer...
-#define MY_TRACE(level, fmt, ...) my_trace(level, __FILE__, __BASE_FILE__, __LINE__, __func__, __FUNCTION__, __PRETTY_FUNCTION__, fmt, ## __VA_ARGS__)
+#define MY_TRACE(level, ...) my_trace(level, __FILE__, __BASE_FILE__, __LINE__, __func__, __FUNCTION__, __PRETTY_FUNCTION__, __VA_ARGS__)
 
 class A{
 public:

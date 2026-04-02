@@ -30,8 +30,10 @@
 
 #include <firstinclude.h>
 
+#ifndef __clang__
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
+#endif
 static inline void do_work(int seconds __attribute__((unused))) {
 	int __attribute__((unused)) i, j;
 	for(int i=0; i<1000000; i++) {
@@ -39,4 +41,6 @@ static inline void do_work(int seconds __attribute__((unused))) {
 		}
 	}
 }
+#ifndef __clang__
 #pragma GCC pop_options
+#endif

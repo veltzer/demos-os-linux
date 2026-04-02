@@ -46,8 +46,10 @@
  * This is a function which calculates the sum of numbers up to some number
  * but with #pragmas that make sure that the compiler does not optimize anything
  */
+#ifndef __clang__
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
+#endif
 unsigned int sum_not_optimized() __attribute__((noinline));
 unsigned int sum_not_optimized() {
 	unsigned int sum=0;
@@ -56,7 +58,9 @@ unsigned int sum_not_optimized() {
 	}
 	return sum;
 }
+#ifndef __clang__
 #pragma GCC pop_options
+#endif
 
 unsigned int sum_optimized() __attribute__((noinline));
 unsigned int sum_optimized() {

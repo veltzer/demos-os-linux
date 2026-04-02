@@ -36,9 +36,9 @@
  */
 
 int main() {
-	typeof(printf)* p_printf=&printf;
-	typeof(snprintf)* p_snprintf=&snprintf;
-	typeof(atoi)* p_atoi=&atoi;
+	__typeof__(printf)* p_printf=&printf;
+	__typeof__(snprintf)* p_snprintf=&snprintf;
+	__typeof__(atoi)* p_atoi=&atoi;
 	printf("&printf is %p\n", (void*)p_printf);
 	printf("&snprintf is %p\n", (void*)p_snprintf);
 	printf("&atoi is %p\n", (void*)p_atoi);

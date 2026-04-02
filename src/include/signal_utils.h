@@ -127,7 +127,7 @@ static inline const char* signal_get_by_val(int val) {
 /*
  * Print out a table of all signal values, names and descriptions
  */
-static inline void signal_print_table() {
+static inline void signal_print_table(void) {
 	unsigned int i;
 	printf("number of signal values is %zd\n", ARRAY_SIZEOF(signal_tbl));
 	for(i=0; i<ARRAY_SIZEOF(signal_tbl); i++) {
@@ -202,7 +202,7 @@ static void signal_handler_sigjmp(int sig, siginfo_t *si __attribute__((unused))
 	siglongjmp(signal_env, 1);
 }
 
-static inline int signal_segfault_protect() {
+static inline int signal_segfault_protect(void) {
 	signal_register_handler_sigaction(SIGSEGV, signal_handler_sigjmp, 0);
 	return !sigsetjmp(signal_env, 0);
 }

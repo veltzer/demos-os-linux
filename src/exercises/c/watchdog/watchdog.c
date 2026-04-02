@@ -59,7 +59,7 @@ static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__
 	}
 }
 
-static void fork_a_child() {
+static void fork_a_child(void) {
 	TRACE("forking a child");
 	child_pid=CHECK_NOT_M1(fork());
 	if(child_pid) {
@@ -71,7 +71,7 @@ static void fork_a_child() {
 	CHECK_NOT_M1(execv(process_to_exec, (char* const*)args));
 }
 
-int main() {
+int main(void) {
 	signal_register_handler_sigaction(SIGCHLD, handler, 0);
 	fork_a_child();
 	TRACE("parent starts monitoring");

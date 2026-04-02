@@ -17,6 +17,9 @@
  */
 
 #include <firstinclude.h>
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wcast-function-type-mismatch"
+#endif
 #include <wx/wx.h>
 #include <wx/frame.h>
 

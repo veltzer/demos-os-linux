@@ -73,7 +73,7 @@ void task_b(void) {
 }
 
 // The "Scheduler"
-int main() {
+int main(void) {
 	printf("Starting cooperative multitasking...\n");
 
 	// This is the "scheduler" or "trampoline".

@@ -24,7 +24,7 @@
  * This is to test octal use in user space...
  */
 
-int main() {
+int main(void) {
 	int i=0777;
 	printf("i is %d\n", i);
 	return 0;

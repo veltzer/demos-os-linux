@@ -27,4 +27,4 @@
 #include <firstinclude.h>
 
 // stolen shamelssly from the gnu C library...
-#define atomic_full_barrier() asm volatile("" ::: "memory")
+#define atomic_full_barrier() __asm__ volatile("" ::: "memory")

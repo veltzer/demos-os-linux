@@ -205,7 +205,7 @@ static inline const char* error_get_by_val(int val) {
 /*
  * Print out a table of all error values, names and descriptions
  */
-static inline void print_error_table() {
+static inline void print_error_table(void) {
 	unsigned int i;
 	printf("number of error values is %zd\n", ARRAY_SIZEOF(err_tbl));
 	for(i=0; i<ARRAY_SIZEOF(err_tbl); i++) {

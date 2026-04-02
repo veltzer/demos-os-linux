@@ -54,6 +54,6 @@ void* __space2 malloc2(unsigned int size __attribute__((unused))) {
 	return NULL;
 }
 
-int main() {
+int main(void) {
 	return EXIT_SUCCESS;
 }

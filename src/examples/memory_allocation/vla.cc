@@ -48,6 +48,9 @@
  * - https://stackoverflow.com/questions/2863347/declaring-the-array-size-with-a-non-constant-variable
  */
 
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wvla-cxx-extension"
+#endif
 void function(int len) {
 	int array[len];
 	for(int i=0; i<len; i++) {

@@ -83,7 +83,7 @@ void simd_matrix_multiply(float* A, float* B, float* C, int n) {
 	}
 }
 
-static inline double get_time() {
+static inline double get_time(void) {
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return ts.tv_sec + ts.tv_nsec * 1e-9;
@@ -95,7 +95,7 @@ void init_matrix(float* mat, int n) {
 	}
 }
 
-int main() {
+int main(void) {
 	float *A = NULL, *B = NULL, *C_scalar = NULL, *C_simd = NULL;
 	double scalar_time = 0.0, simd_time = 0.0;
 	int ret = 0;

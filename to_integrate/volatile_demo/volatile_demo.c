@@ -22,7 +22,7 @@
 #include "callme.h"
 #include <unistd.h>
 
-int main() {
+int main(void) {
 	long long int volatile sum=0;
 	long long tmp=0;
 	for(long int i=0;i<1000000000;i++) {

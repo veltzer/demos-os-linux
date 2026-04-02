@@ -51,7 +51,9 @@ void myhandler(enum mcheck_status status) {
 }
 
 int main() {
+#ifndef __clang__
 #pragma GCC diagnostic ignored "-Wstringop-overflow"
+#endif
 	// I am using my own handler but the default one is ok (prints an error
 	// message and aborts).
 	// This call is neccessary if you havent linked with -lmcheck or if you really

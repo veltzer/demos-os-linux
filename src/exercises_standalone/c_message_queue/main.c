@@ -60,7 +60,7 @@ void *worker(void *p) {
 	return NULL;
 }
 
-int main() {
+int main(void) {
 	const unsigned int producers=1;
 	const unsigned int consumers=1;
 	const unsigned int thread_num=producers+consumers;

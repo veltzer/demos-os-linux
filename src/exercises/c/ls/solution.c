@@ -108,7 +108,7 @@ static void filetype(mode_t m, char* p) {
 	p[10]='\0';
 }
 
-int main() {
+int main(void) {
 	const bool hidedots=true;
 	// lets take the current time
 	time_t now;

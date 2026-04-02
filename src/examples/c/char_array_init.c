@@ -39,7 +39,7 @@
  * WILL create a compile time error.
  */
 
-int main() {
+int main(void) {
 	// this is NOT an error since this is just array initialization
 	// (not 0 at the end)
 	char hello[6] __attribute__((unused))="hello";

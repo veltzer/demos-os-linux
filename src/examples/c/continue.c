@@ -26,7 +26,7 @@
  * more so...
  */
 
-int main() {
+int main(void) {
 	/* without continue... */
 	printf("first round...\n");
 	int i;

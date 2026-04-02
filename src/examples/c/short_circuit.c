@@ -29,12 +29,12 @@ int global;
 /*
  * This functions always return true but the compiler is too stupid to figure it out...
  */
-int always_false() {
+int always_false(void) {
 	global+=1;
 	return 0;
 }
 
-int main() {
+int main(void) {
 	global=0;
 	if(always_false() && always_false()) {
 		printf("You should not be here...\n");

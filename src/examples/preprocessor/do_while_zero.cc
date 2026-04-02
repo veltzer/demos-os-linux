@@ -54,7 +54,9 @@ int main() {
 	// this should not print anything and yet it does...
 	if(false) {
 		#pragma GCC diagnostic push
+#ifndef __clang__
 		#pragma GCC diagnostic ignored "-Wmultistatement-macros"
+#endif
 		wrong_macro("this should be silent, but it is not");
 		#pragma GCC diagnostic pop
 	}

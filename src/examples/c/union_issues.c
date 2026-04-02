@@ -42,7 +42,7 @@ typedef union _LARGE_INTEGER{
 	long long QuadPart;
 } LARGE_INTEGER;
 
-int main() {
+int main(void) {
 	// this is how you would use such a union...
 	LARGE_INTEGER li;
 	li.LowPart=15;

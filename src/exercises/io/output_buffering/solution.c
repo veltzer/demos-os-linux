@@ -22,7 +22,7 @@
 #include <assert.h>
 #include <unistd.h>
 
-int main() {
+int main(void) {
 	FILE* f=fopen("data.dat", "w");
 	assert(f!=NULL);
 	char buf[100]="this is a buffer";

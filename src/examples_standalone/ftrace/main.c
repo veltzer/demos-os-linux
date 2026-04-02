@@ -23,7 +23,7 @@ int call_func(int a, int b) {
 	return a + b;
 }
 
-int main() {
+int main(void) {
 	int res;
 	res=call_func(1, 1);
 	return EXIT_SUCCESS;

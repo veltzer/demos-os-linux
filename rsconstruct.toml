@@ -1,6 +1,7 @@
 [vars]
 kernel_excludes = ["/kernel/", "/kernel_standalone/"]
 no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
+no_single_excludes_clang = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/", "/openmp/"]
 
 [processor.cc_single_file.gcc]
 scan_dirs = ["src"]
@@ -27,7 +28,17 @@ cxxflags = [
 [processor.cc_single_file.clang]
 scan_dirs = ["src"]
 include_paths = ["src/include"]
-exclude_dirs = "${no_single_excludes}"
+exclude_dirs = "${no_single_excludes_clang}"
+exclude_paths = [
+	"src/examples/compiler_internals/varargs_size.cc",
+	"src/examples/dynamic_linking/dlsym.cc",
+	"src/examples/error_handling/longjmp.cc",
+	"src/examples/error_handling/longjmp_with_stack_trace.cc",
+	"src/examples/internationalization/wide_override.cc",
+	"src/examples/memory_allocation/mcheck_free.cc",
+	"src/examples/performance/instrument.cc",
+	"src/examples/preprocessor/messages_during_compilation.cc",
+]
 cc = "clang"
 cxx = "clang++"
 cflags = [
@@ -54,9 +65,9 @@ args = [
 	"--suppressions-list=.cppcheck-suppressions",
 ]
 
-[processor.make]
-exclude_paths = ["Makefile"]
-exclude_dirs = "${kernel_excludes}"
+# [processor.make]
+# exclude_paths = ["Makefile"]
+# exclude_dirs = "${kernel_excludes}"
 
 [analyzer.cpp]
 exclude_dirs = "${kernel_excludes}"

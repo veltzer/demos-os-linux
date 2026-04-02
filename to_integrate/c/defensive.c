@@ -27,7 +27,7 @@ void calculate_blabla(int* array, int count) {
 }
 
 
-void foo() {
+void foo(void) {
 #ifdef DEBUG_CALCULATE
 	if(array==NULL) {
 		// throw exception or other error behaviour...

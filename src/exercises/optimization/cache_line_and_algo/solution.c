@@ -27,7 +27,7 @@
 #define ARRAY_SIZE (100 * 1024 * 1024 / sizeof(int))
 
 // Function to get high-resolution time
-double get_time() {
+double get_time(void) {
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return ts.tv_sec + ts.tv_nsec / 1e9;
@@ -92,7 +92,7 @@ int verify_results(int *arr1, int *arr2, size_t size) {
 	return 1;
 }
 
-int main() {
+int main(void) {
 	printf("Cache Performance Comparison\n");
 	printf("Array size: %zu integers (%.2f MB)\n\n",
 		ARRAY_SIZE, ARRAY_SIZE * sizeof(int) / (1024.0 * 1024.0));

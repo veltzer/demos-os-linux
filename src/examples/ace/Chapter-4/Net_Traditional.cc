@@ -44,9 +44,10 @@ int main() {
 	char buf[64];
 	memset(buf, 0, sizeof(buf));
 	int res=write(fd, "uptime\n", 7);
-	res++;
+	(void)res;
 	int bc=read(fd, buf, sizeof(buf));
 	res=write(1, buf, bc);
+	(void)res;
 	close(fd);
 	return EXIT_SUCCESS;
 }

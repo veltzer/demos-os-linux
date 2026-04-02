@@ -76,7 +76,9 @@ public:
 // dumps core?!?
 template <class T> void* convert(void(T::*p)()) {
 #pragma GCC diagnostic push
+#ifndef __clang__
 #pragma GCC diagnostic ignored "-Wpmf-conversions"
+#endif
 	void* ret=(void*)p;
 #pragma GCC diagnostic pop
 	return ret;

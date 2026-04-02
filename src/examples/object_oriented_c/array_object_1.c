@@ -46,7 +46,7 @@ void array_set_value(void* array, int pos, int val) {
 	((int*)array)[pos]=val;
 }
 
-int main() {
+int main(void) {
 	const int size=10;
 	int i;
 	void* a=array_construct(size);

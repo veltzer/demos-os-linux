@@ -21,6 +21,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main() {
+int main(void) {
 	printf("Hello, World!\n");
 }

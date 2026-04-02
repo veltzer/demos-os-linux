@@ -30,16 +30,16 @@
 #define DEBUG
 
 #ifdef DEBUG
-#define TRACE(fmt, ...) do { printf(fmt, ## __VA_ARGS__); } while(0)
+#define TRACE(...) do { printf(__VA_ARGS__); } while(0)
 #else
-#define TRACE(fmt, ...) do { } while(0)
+#define TRACE(...) do { } while(0)
 #endif	// DEBUG
 
 #define INFO(...) fprintf(stderr, __VA_ARGS__)
 // this cannot be called without extra arguments
 #define WARNING(fmt, ...) fprintf(stderr, fmt, __VA_ARGS__)
 // this can!
-#define ERROR(fmt, ...) fprintf(stderr, fmt, ## __VA_ARGS__)
+#define ERROR(...) fprintf(stderr, __VA_ARGS__)
 
 int main() {
 	TRACE("TRACE: without args\n");

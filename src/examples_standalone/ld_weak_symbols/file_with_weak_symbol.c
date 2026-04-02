@@ -22,15 +22,15 @@
 int mysym __attribute__ ((weak));
 double x __attribute__ ((weak));
 
-void print_mysym() {
+void print_mysym(void) {
 	printf("mysym is [%d]\n", mysym);
 }
 
-void print_details_of_x() {
+void print_details_of_x(void) {
 	printf("&x is [%p]\n", &x);
 	printf("sizeof(x) is [%zd]\n", sizeof(x));
 }
 
-void touch_x() {
+void touch_x(void) {
 	x=7.2;
 }

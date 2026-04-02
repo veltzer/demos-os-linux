@@ -30,7 +30,7 @@ struct mystruct{
 	int c;
 };
 
-int main() {
+int main(void) {
 	// this is C99 style. It doesn't require any specific flags to gcc these days
 	// fields not initialized will be 0
 	struct mystruct v1={ .a=6, .b=7 };
@@ -41,6 +41,9 @@ int main() {
 	// fields not initialized will be 0
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wgnu-designator"
+#endif
 	struct mystruct v2={ a: 8, b: 9 };
 #pragma GCC diagnostic pop
 	printf("v2.a is %d\n", v2.a);
