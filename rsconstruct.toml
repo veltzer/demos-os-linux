@@ -103,5 +103,36 @@ pkg_config = [
 include_path_commands = [
 ]
 
+# [processor.clang_tidy]
+# scan_dirs = ["src"]
+# compiler_args = ["-Isrc/include"]
+# exclude_dirs = "${no_single_excludes_clang}"
+
+# [processor.cpplint]
+# exclude_dirs = "${kernel_excludes}"
+
+[processor.mdl]
+scan_dirs = ["src"]
+
+[processor.aspell]
+scan_dirs = ["src"]
+
+# [processor.checkpatch]
+# scan_dirs = ["src/kernel"]
+# args = ["--no-tree"]
+
+[processor.rumdl]
+scan_dirs = ["src"]
+
+[processor.taplo]
+[processor.yamllint]
+[processor.mypy]
+[processor.ruff]
 [processor.pylint]
 [processor.shellcheck]
+
+[processor.linux_module]
+scan_dirs = ["src/kernel_standalone"]
+
+[processor.cc]
+scan_dirs = ["src"]
