@@ -169,4 +169,4 @@ namespace banking {
 		Bank() = default;
 		Bank(const Bank&) = delete;
 	};
-}
+}  // namespace banking
