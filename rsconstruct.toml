@@ -1,7 +1,6 @@
 [vars]
 kernel_excludes = ["/kernel/", "/kernel_standalone/"]
 no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
-no_single_excludes_clang = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/", "/openmp/"]
 
 [processor.cc_single_file.gcc]
 scan_dirs = ["src"]
@@ -28,7 +27,7 @@ cxxflags = [
 [processor.cc_single_file.clang]
 scan_dirs = ["src"]
 include_paths = ["src/include"]
-exclude_dirs = "${no_single_excludes_clang}"
+exclude_dirs = "${no_single_excludes}"
 exclude_paths = [
 	"src/examples/compiler_internals/varargs_size.cc",
 	"src/examples/dynamic_linking/dlsym.cc",
