@@ -51,8 +51,7 @@ main.reddeb2.$(SUFFIX_BIN): $(OBJECTS_reddeb2)
 	$(Q)g++ $(REGULAR_FLAG) $(CXXFLAGS) $(ACE_FLAGS) -c -o $@ $<
 %.compressed.o: %.cc
 	$(info doing [$@])
-	$(Q)g++ $(REGULAR_FLAG) $(CXXFLAGS) $(ACE_FLAGS) -c -o $@ $<
-	$(Q)gold -r --compress-debug-sections zlib $@ -o $@
+	$(Q)g++ -gz=zlib $(REGULAR_FLAG) $(CXXFLAGS) $(ACE_FLAGS) -c -o $@ $<
 %.reduced.o: %.cc
 	$(info doing [$@])
 	$(Q)g++ $(REGULAR_FLAG) $(CXXFLAGS) $(ACE_FLAGS) -c -o $@ $<

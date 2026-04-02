@@ -79,9 +79,9 @@ args = [
 	"--suppressions-list=.cppcheck-suppressions",
 ]
 
-# [processor.make]
-# exclude_paths = ["Makefile"]
-# exclude_dirs = "${kernel_excludes}"
+[processor.make]
+exclude_paths = ["Makefile"]
+exclude_dirs = "${kernel_excludes}"
 
 [analyzer.cpp]
 exclude_dirs = "${kernel_excludes}"
