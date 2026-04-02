@@ -102,3 +102,6 @@ pkg_config = [
 ]
 include_path_commands = [
 ]
+
+[processor.pylint]
+[processor.shellcheck]
