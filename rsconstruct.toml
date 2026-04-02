@@ -108,8 +108,14 @@ include_path_commands = [
 # compiler_args = ["-Isrc/include"]
 # exclude_dirs = "${no_single_excludes_clang}"
 
-# [processor.cpplint]
-# exclude_dirs = "${kernel_excludes}"
+# cpplint: Google C++ style checker.
+# By default cpplint looks for CPPLINT.cfg but we use --config to point
+# to .cpplint so the config file doesn't clutter the project root.
+# Filter rules are defined in .cpplint (not here) to keep this file clean.
+[processor.cpplint]
+exclude_dirs = "${kernel_excludes}"
+args = ["--config=.cpplint"]
+extra_inputs = [".cpplint"]
 
 [processor.mdl]
 scan_dirs = ["src"]
@@ -124,19 +130,19 @@ scan_dirs = ["src"]
 [processor.rumdl]
 scan_dirs = ["src"]
 
-[processor.taplo]
-[processor.yamllint]
-[processor.mypy]
-[processor.ruff]
-[processor.script.check_all]
-linter = "python"
-args = ["scripts/check_all.py"]
-
-[processor.pylint]
-[processor.shellcheck]
-
 [processor.linux_module]
 scan_dirs = ["src/kernel_standalone"]
 
 [processor.cc]
 scan_dirs = ["src"]
+
+[processor.script.check_all]
+linter = "scripts/check_all.py"
+
+[processor.taplo]
+[processor.yamllint]
+[processor.mypy]
+[processor.ruff]
+[processor.pylint]
+[processor.shellcheck]
+
