@@ -3,11 +3,11 @@ kernel_excludes = ["/kernel/", "/kernel_standalone/"]
 no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
 
 [processor.cc_single_file]
-scan_dir = "src"
+scan_dirs = ["src"]
 include_paths = ["src/include"]
 exclude_dirs = "${no_single_excludes}"
 
-[[processor.cc_single_file.compilers]]
+[processor.cc_single_file]
 name = "gcc"
 cc = "gcc"
 cxx = "g++"
@@ -27,8 +27,7 @@ cxxflags = [
 	"-pedantic",
 ]
 
-[[processor.cc_single_file.compilers]]
-enabled = false
+[processor.cc_single_file]
 name = "clang"
 cc = "clang"
 cxx = "clang++"
@@ -79,42 +78,3 @@ pkg_config = [
 ]
 include_path_commands = [
 ]
-
-[processor.ascii_check]
-enabled = false
-
-[processor.rumdl]
-enabled = false
-
-[processor.a2x]
-enabled = false
-
-[processor.marp]
-enabled = false
-
-[processor.markdownlint]
-enabled = false
-
-[processor.clang_tidy]
-enabled = false
-
-[processor.mdl]
-enabled = false
-
-[processor.checkpatch]
-enabled = false
-
-[processor.cpplint]
-enabled = false
-
-[processor.slidev]
-enabled = false
-
-[processor.tidy]
-enabled = false
-
-[processor.htmlhint]
-enabled = false
-
-[processor.htmllint]
-enabled = false
