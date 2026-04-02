@@ -1,0 +1,5 @@
+[global]
+disable = ["MD007", "MD022", "MD024", "MD026", "MD031", "MD032", "MD033", "MD034", "MD059", "MD076"]
+
+[MD013]
+line_length = 1000
