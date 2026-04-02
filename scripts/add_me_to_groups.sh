@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 
 # This script adds the current user to all the groups that you need to be
 # a member of in order to run all the demos in this repository.
