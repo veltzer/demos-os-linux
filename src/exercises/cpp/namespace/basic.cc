@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 
 namespace Math {
-	const double PI = 3.14159;
+	const double PI __attribute__((unused)) = 3.14159;
 
 	double square(double x) {
 		return x * x;

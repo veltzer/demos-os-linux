@@ -31,6 +31,6 @@
 /*
  * check that the current process is running as root
  */
-static inline void check_root() {
+static inline void check_root(void) {
 	CHECK_MSG_ZERO(geteuid(), "you are not root, maybe you should try sudo(1)?");
 }

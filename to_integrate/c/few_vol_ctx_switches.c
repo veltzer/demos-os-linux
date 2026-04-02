@@ -18,7 +18,7 @@
 
 #include <firstinclude.h>
 
-int main() {
+int main(void) {
 	while(1) {
 	}
 	return 0;

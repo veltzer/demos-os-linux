@@ -33,7 +33,7 @@ struct index{
 	char path[MAXPATHLEN];
 };
 
-int main() {
+int main(void) {
 	struct index buffer;
 	int bufsize;
 	int currid;

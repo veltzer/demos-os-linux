@@ -66,7 +66,7 @@ namespace banking {
 		void withdraw(double val) override { AccountBase::withdraw(val); }
 		~CheckingAccount() { cout << "bye checking" << endl; }
 	private:
-		double _overdraft;
+		__attribute__((unused)) double _overdraft;
 	};
 	class SavingAccount : public AccountBase
 	{
@@ -80,7 +80,7 @@ namespace banking {
 	class AccountDecorator : public IAccount
 	{
 	public:
-		AccountDecorator(unique_ptr<IAccount> account) :_account(move(account)) {}
+		AccountDecorator(unique_ptr<IAccount> account) :_account(std::move(account)) {}
 	protected:
 		unique_ptr<IAccount> _account;
 	};
@@ -104,7 +104,7 @@ namespace banking {
 	};
 	class CommissionAccount : public AccountDecorator {
 	public:
-		CommissionAccount(unique_ptr<IAccount> account,double amount):AccountDecorator(move(account)),_amount(amount){}
+		CommissionAccount(unique_ptr<IAccount> account,double amount):AccountDecorator(std::move(account)),_amount(amount){}
 		double getBalance() const override {
 			_account->withdraw(_amount);
 			return _account->getBalance();

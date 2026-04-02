@@ -52,7 +52,7 @@
 // cannot be used outside of functions
 #define ct_assert(e) ((void)sizeof(char[1 - 2*!(e)]))
 // another option (can be used outside functions, mesage is not nice)
-#define STATIC_ASSERT(COND, MSG) typedef char static_assertion_ ## MSG[(COND) ? 1:-1]
+#define STATIC_ASSERT(COND, MSG) typedef char static_assertion_ ## MSG[(COND) ? 1:-1] __attribute__((unused))
 // using error (does not work, need to fix it...)
 #define CTC(X) { extern int __attribute__((error("assertion failure: '" # X "' not true"))) compile_time_check(); ((X) ? 0:compile_time_check()), 0; };
 
@@ -60,7 +60,7 @@ PR_STATIC_ASSERT(1==1);
 _Static_assert(1==1, "fail message");
 STATIC_ASSERT(1==1, fail);
 
-int main() {
+int main(void) {
 	COMPILE_TIME_ASSERT(1==1);
 	PR_STATIC_ASSERT(1==1);
 	// this is a built in gcc static assertion, no flags needed

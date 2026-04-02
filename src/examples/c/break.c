@@ -25,7 +25,7 @@
  * to change? Sometimes break is just the right answer.
  */
 
-int main() {
+int main(void) {
 	/* without break */
 	int early_break=0;
 	int i;

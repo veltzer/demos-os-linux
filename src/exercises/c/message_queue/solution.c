@@ -115,7 +115,7 @@ void* func_consumer(void* arg) {
 	return NULL;
 }
 
-int main() {
+int main(void) {
 	pthread_t consumer, producer;
 	pthread_mq_t mq;
 	CHECK_ZERO_ERRNO(pthread_mq_init(&mq, 10));

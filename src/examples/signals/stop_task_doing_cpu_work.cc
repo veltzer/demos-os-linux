@@ -42,7 +42,7 @@ int main() {
 	fprintf(stderr, "signal me with one of the following:\n");
 	fprintf(stderr, "[kill -s SIGUSR1 %d]\n", getpid());
 	// lets not stop working...
-	double sum=0;
+	volatile double sum=0;
 	double n=1;
 	while(true) {
 		sum+=1.0f/(n*n);

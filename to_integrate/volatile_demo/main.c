@@ -22,7 +22,7 @@
 #include "callme.h"
 #include <unistd.h>
 
-int main() {
+int main(void) {
 	for(int i=0;i<100;i++) {
 		callme();
 		sleep(1);

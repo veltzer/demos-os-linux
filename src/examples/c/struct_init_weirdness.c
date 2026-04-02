@@ -40,7 +40,7 @@ typedef struct _a{
 	int k;
 } a;
 
-int main() {
+int main(void) {
 	a a0;
 	a a1={};
 	a a2={0};

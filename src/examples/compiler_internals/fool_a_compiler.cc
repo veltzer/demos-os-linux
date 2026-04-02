@@ -54,6 +54,7 @@ int main(int argc, char**) {
 	for(i=0; i<100; i++) {
 		sum+=i*i*i;
 	}
+	(void)sum;
 	*pi=700;
 	// watch this magic trick! i has two different values...
 	printf("i is %d\n", i);

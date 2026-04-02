@@ -20,6 +20,10 @@
 
 #include <firstinclude.h>
 
+// even this will NOT cause the printing to be of the caller...
+void print_builtins() __attribute__((always_inline));
+void print_builtins() __attribute__((flatten));
+// void print_builtins() __attribute__((artificial));
 inline void print_builtins() {
 	printf("__BASE_FILE__ is %s\n", __BASE_FILE__);
 	printf("__FILE__ is %s\n", __FILE__);
@@ -28,10 +32,6 @@ inline void print_builtins() {
 	printf("__FUNCTION__ is %s\n", __FUNCTION__);
 	printf("__PRETTY_FUNCTION__ is %s\n", __PRETTY_FUNCTION__);
 }
-// even this will NOT cause the printing to be of the caller...
-void print_builtins() __attribute__((always_inline));
-void print_builtins() __attribute__((flatten));
-// void print_builtins() __attribute__((artificial));
 
 #define PRINT_BUILTINS() \
 	printf("__BASE_FILE__ is %s\n", __BASE_FILE__); \

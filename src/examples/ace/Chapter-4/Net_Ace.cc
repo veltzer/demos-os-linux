@@ -40,7 +40,7 @@ int main() {
 	peer.send_n("uptime\n", 7);
 	int bc=peer.recv_n(buf, sizeof(buf));
 	int res=write(1, buf, bc);
-	res++;
+	(void)res;
 	peer.close();
 	return EXIT_SUCCESS;
 }

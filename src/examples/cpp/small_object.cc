@@ -20,6 +20,10 @@
 #include <iostream>
 #include <cstdlib>
 
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wunused-private-field"
+#endif
+
 using namespace std;
 
 /*

@@ -36,7 +36,7 @@
  * on the stack are growing or diminishing with order of declaration
  */
 bool stack_vars_direction_up() __attribute__((noinline));
-bool stack_vars_direction_up() {
+bool stack_vars_direction_up(void) {
 	int a;
 	int u;
 	unsigned long pa=(unsigned long)&a;
@@ -55,7 +55,7 @@ bool stack_vars_direction_up() {
  * with regard to function call.
  */
 unsigned long stack_function_direction_up_inner() __attribute__((noinline));
-unsigned long stack_function_direction_up_inner() {
+unsigned long stack_function_direction_up_inner(void) {
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wreturn-local-addr"
 	int a;
@@ -64,7 +64,7 @@ unsigned long stack_function_direction_up_inner() {
 }
 
 bool stack_function_direction_up() __attribute__((noinline));
-bool stack_function_direction_up() {
+bool stack_function_direction_up(void) {
 	int a;
 	unsigned long pa=(unsigned long)&a;
 	unsigned long adr=stack_function_direction_up_inner();
@@ -110,7 +110,7 @@ static inline void* stack_align_pointer(void* p) {
  * get the stack pointer register
  * on a 32 bit Intel machine this already works. I need to make it work on x64.
  */
-static inline unsigned long getstackadr() {
+static inline unsigned long getstackadr(void) {
 #if __x86_64__
 	return 0;
 #else
@@ -123,7 +123,7 @@ static inline unsigned long getstackadr() {
 /*
  * get the stack pointer as address
  */
-static inline void* getstackpointer() {
+static inline void* getstackpointer(void) {
 	return (void*)getstackadr();
 }
 
@@ -131,7 +131,7 @@ static inline void* getstackpointer() {
  * get the current frame pointer
  * This currently works only on i386
  */
-static inline unsigned long getframepointer() {
+static inline unsigned long getframepointer(void) {
 #if __x86_64__
 	return 0;
 #else
@@ -222,12 +222,12 @@ static inline unsigned int get_mic_diff(ticks_t t1, ticks_t t2) {
  * You know if you have it by seeing it in /proc/cpuinfo.
  * read more about it in the Intel paper about doing micro benchmarks.
  */
-static inline ticks_t getrdtsc() {
+static inline ticks_t getrdtsc(void) {
 	timestamp t;
 	asm volatile("rdtsc" : "=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;
 }
-static inline ticks_t getrdtscp() {
+static inline ticks_t getrdtscp(void) {
 	timestamp t;
 	asm volatile("rdtscp" : "=a" (t.sval.low), "=d" (t.sval.high));
 	return t.cval;

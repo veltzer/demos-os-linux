@@ -35,12 +35,15 @@
 
 static int i;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winfinite-recursion"
 void recurse_onek() {
 	// char __attribute__((unused)) data[1024];
 	printf("i is %d\n", i++);
 	recurse_onek();
 	recurse_onek();
 }
+#pragma GCC diagnostic pop
 
 int main() {
 	recurse_onek();

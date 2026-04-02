@@ -63,7 +63,7 @@ void* m_direct_getpid(void*) {
 
 // this one does dlsym getpid(2)
 void* m_dlsym_getpid(void*) {
-	typeof(getpid)* p_dlsym_getpid=(typeof(getpid)*)dlsym(RTLD_NEXT, "getpid");
+	__typeof__(getpid)* p_dlsym_getpid=(__typeof__(getpid)*)dlsym(RTLD_NEXT, "getpid");
 	measure m;
 	// think! why count+1?
 	measure_init(&m, __FUNCTION__, count+1);
@@ -94,7 +94,7 @@ void* m_direct_stdin(void*) {
 
 // this one does dlsym stdin
 void* m_dlsym_stdin(void*) {
-	typeof(stdin)* p_dlsym_stdin=(typeof(stdin)*)dlsym(RTLD_NEXT, "stdin");
+	__typeof__(stdin)* p_dlsym_stdin=(__typeof__(stdin)*)dlsym(RTLD_NEXT, "stdin");
 	measure m;
 	// think! why count+1?
 	measure_init(&m, __FUNCTION__, count+1);
@@ -110,14 +110,14 @@ void* m_dlsym_stdin(void*) {
 }
 
 int main() {
-	typeof(atoi)* p_direct_atoi=&atoi;
-	typeof(atoi)* p_dlsym_atoi=(typeof(atoi)*)dlsym(RTLD_NEXT, "atoi");
-	typeof(printf)* p_direct_printf=&printf;
-	typeof(printf)* p_dlsym_printf=(typeof(printf)*)dlsym(RTLD_NEXT, "printf");
-	typeof(getpid)* p_direct_getpid=&getpid;
-	typeof(getpid)* p_dlsym_getpid=(typeof(getpid)*)dlsym(RTLD_NEXT, "getpid");
-	typeof(stdin)* p_direct_stdin=&stdin;
-	typeof(stdin)* p_dlsym_stdin=(typeof(stdin)*)dlsym(RTLD_NEXT, "stdin");
+	__typeof__(atoi)* p_direct_atoi=&atoi;
+	__typeof__(atoi)* p_dlsym_atoi=(__typeof__(atoi)*)dlsym(RTLD_NEXT, "atoi");
+	__typeof__(printf)* p_direct_printf=&printf;
+	__typeof__(printf)* p_dlsym_printf=(__typeof__(printf)*)dlsym(RTLD_NEXT, "printf");
+	__typeof__(getpid)* p_direct_getpid=&getpid;
+	__typeof__(getpid)* p_dlsym_getpid=(__typeof__(getpid)*)dlsym(RTLD_NEXT, "getpid");
+	__typeof__(stdin)* p_direct_stdin=&stdin;
+	__typeof__(stdin)* p_dlsym_stdin=(__typeof__(stdin)*)dlsym(RTLD_NEXT, "stdin");
 	printf("p_direct_atoi is %p\n", (void*)p_direct_atoi);
 	printf("p_dlsym_atoi is %p\n", (void*)p_dlsym_atoi);
 	printf("p_direct_printf is %p\n", (void*)p_direct_printf);

@@ -38,7 +38,7 @@ void phone_entry_init(struct phone_entry* pe) {
 
 int over=0;
 
-int show_menu() {
+int show_menu(void) {
 	int result;
 	do {
 		printf("here is your menu....\n");
@@ -51,7 +51,7 @@ int show_menu() {
 	return result;
 }
 
-int main() {
+int main(void) {
 	int i;
 	struct phone_entry* phonebook;
 	phonebook=malloc(sizeof(struct phone_entry)*MAX_ENTRIES_IN_PHONEBOOK);

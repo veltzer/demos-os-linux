@@ -44,50 +44,50 @@
  * being called.
  */
 
-inline void* operator new(const size_t size) {
+void* operator new(const size_t size) {
 	void* p=malloc(size);
 
 	fprintf(stderr, "in operator new with size=%zd,p=%p\n", size, p);
 	return p;
 }
 
-inline void operator delete(void* p) {
+void operator delete(void* p) noexcept {
 	fprintf(stderr, "in operator delete with p=%p\n", p);
 	free(p);
 }
 
-inline void* operator new(const size_t size, const unsigned int type) {
+void* operator new(const size_t size, const unsigned int type) {
 	void* p=malloc(size);
 
 	fprintf(stderr, "in operator new with size=%zd,type=%d,p=%p\n", size, type, p);
 	return p;
 }
 
-inline void* operator new[] (const size_t size) {
+void* operator new[] (const size_t size) {
 	void* p=malloc(size);
 
 	fprintf(stderr, "in operator new[] with size=%zd, p=%p\n", size, p);
 	return p;
 }
 
-inline void operator delete[] (void* p) {
+void operator delete[] (void* p) noexcept {
 	fprintf(stderr, "in operator delete[] with p=%p\n", p);
 	free(p);
 }
 
-inline void* operator new[] (const size_t size, const unsigned int type) {
+void* operator new[] (const size_t size, const unsigned int type) {
 	void* p=malloc(size);
 
 	fprintf(stderr, "in operator new[] with size=%zd,type=%d,p=%p\n", size, type, p);
 	return p;
 }
 
-inline void operator delete[] (void* p, const long unsigned int type) {
+void operator delete[] (void* p, const long unsigned int type) noexcept {
 	fprintf(stderr, "in operator delete[] with p=%p,type=%ld\n", p, type);
 	free(p);
 }
 
-inline void operator delete(void* p, const long unsigned int type) {
+void operator delete(void* p, const long unsigned int type) noexcept {
 	fprintf(stderr, "in operator delete[] with p=%p,type=%ld\n", p, type);
 	free(p);
 }
@@ -96,6 +96,8 @@ typedef struct _myobj{
 	char data[10];
 } myobj;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmismatched-new-delete"
 int main() {
 	myobj *obj1=new myobj;
 
@@ -109,3 +111,4 @@ int main() {
 	delete [] arr2;
 	return EXIT_SUCCESS;
 }
+#pragma GCC diagnostic pop

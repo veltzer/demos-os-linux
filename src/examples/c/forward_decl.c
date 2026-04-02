@@ -26,7 +26,7 @@
 
 double add(double a, double b);
 
-int main() {
+int main(void) {
 	printf("5.2+5.6 is %f\n", add(5.2, 5.6));
 	return EXIT_SUCCESS;
 }

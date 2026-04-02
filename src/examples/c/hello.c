@@ -28,7 +28,7 @@
 // create a compilation error even with all warnings turned
 // on
 // also main DOES NOT have to return int
-int main() {
+int main(void) {
 	printf("Hello, World!\n");
 	// you really don't have to return a value from main
 	// and if you forget this the compiler will not scream.

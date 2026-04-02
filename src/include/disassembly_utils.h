@@ -31,7 +31,7 @@
  * Make sure to compile the code with -g if you want to see the interleaved
  * source code.
  */
-static inline void disassemble_me() {
+static inline void disassemble_me(void) {
 	char myname[1024];
 	get_program_name(myname, sizeof(myname));
 	my_system("objdump --disassemble --source %s", myname);
@@ -42,7 +42,7 @@ static inline void disassemble_me() {
  * Just disassemble the 'main' function.
  * This uses gdb to do the work.
  */
-static inline void disassemble_main() {
+static inline void disassemble_main(void) {
 	char myname[1024];
 	get_program_name(myname, sizeof(myname));
 	my_system("gdb --batch -ex \"disassemble /m main\" %s", myname);

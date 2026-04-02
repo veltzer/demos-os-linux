@@ -29,7 +29,7 @@
 #include <err_utils.h>	// for CHECK_NOT_M1()
 #include <trace_utils.h>// for TRACE()
 
-int main() {
+int main(void) {
 	const unsigned int min_sleep=5;
 	const unsigned int max_sleep=10;
 	srand(getpid());
@@ -39,7 +39,7 @@ int main() {
 	// no return value for abort(3)
 	TRACE("dying");
 	// cppcheck-suppress nullPointer
-	*(char*)0=0;
+	*(volatile char*)0=0;
 	// abort();
 	return EXIT_SUCCESS;
 }

@@ -24,6 +24,7 @@
 /*
  * This example shows how to use the 'va_copy' function.
  */
+void trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 void trace(const char *fmt, ...) {
 	va_list ap;
 	int d;
@@ -58,8 +59,6 @@ void trace(const char *fmt, ...) {
 	}
 	va_end(ap);
 }
-
-void trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
 int main() {
 	printf("sizeof(va_list) is [%zd]\n", sizeof(va_list));

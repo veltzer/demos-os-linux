@@ -25,7 +25,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lm
  */
 
-int main() {
+int main(void) {
 	double x=4.56;
 	printf("sin(%lf)=%lf\n", x, sin(x));
 	return EXIT_SUCCESS;

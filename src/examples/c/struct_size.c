@@ -38,7 +38,7 @@ typedef struct _onechar{
 	char mychar;
 } onechar;
 
-int main() {
+int main(void) {
 	printf("sizeof(empty) is %zd\n", sizeof(empty));
 	printf("sizeof(onechar) is %zd\n", sizeof(onechar));
 	return EXIT_SUCCESS;

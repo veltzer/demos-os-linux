@@ -22,7 +22,7 @@
 #include <unistd.h>
 #include <sys/mman.h>
 
-int main() {
+int main(void) {
 	const char* filename = "/etc/passwd";
 	// evict the file from the cache
 	int fd = open(filename, O_RDONLY);

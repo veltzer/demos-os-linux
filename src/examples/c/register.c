@@ -35,12 +35,12 @@
  * than up because of the shorter "compare to zero" at the end of the loop.
  */
 
-int main() {
+int main(void) {
 	register unsigned int i;
 	for(i=0; i<100; i++) {
 		printf("i is %d\n", i);
 		int reg;
-		asm volatile("movl %%ebx, %0;" : "=r" (reg));
+		__asm__ volatile("movl %%ebx, %0;" : "=r" (reg));
 		printf("reg is %d\n", reg);
 	}
 	return EXIT_SUCCESS;

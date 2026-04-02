@@ -31,23 +31,23 @@
 /*
  * A regular float function...
  */
+float my_float_func(float a, float b) __attribute__((noinline));
 float my_float_func(float a, float b) {
 	// the next line will keep the compiler from optimizing away my function
 	// (damn smartass compiler...)
 	asm ("");
 	return a*b;
 }
-float my_float_func(float a, float b) __attribute__((noinline));
 /*
  * A double precision function...
  */
+double my_double_func(double a, double b) __attribute__((noinline));
 double my_double_func(double a, double b) {
 	// the next line will keep the compiler from optimizing away my function
 	// (damn smartass compiler...)
 	asm ("");
 	return a*b;
 }
-double my_double_func(double a, double b) __attribute__((noinline));
 
 int main(int argc, char** argv) {
 	if(argc!=3) {

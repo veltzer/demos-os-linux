@@ -24,7 +24,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_CHARP(), CHECK_NOT_M1(), CHECK_NOT_VOIDP()
 
-const int PROJID=50;
+const int PROJID __attribute__((unused))=50;
 #define PROJID 50
 
 int main(int argc, char**) {

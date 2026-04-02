@@ -25,6 +25,9 @@
  */
 
 #include <firstinclude.h>
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wc99-extensions"
+#endif
 #include <math.h>	// for atan(3)
 #include <complex.h>	// for cexp(3), creal(3), cimag(3)
 #include <stdio.h>	// for printf(3)

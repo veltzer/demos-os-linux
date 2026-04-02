@@ -71,7 +71,7 @@ void check(const char* val, const char* expected) {
 	}
 }
 
-int main() {
+int main(void) {
 	check("", "");
 	check("a", "a");
 	check("abc", "abc");

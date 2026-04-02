@@ -20,10 +20,10 @@
 
 int g;
 
-void callme() {
+void callme(void) {
 	g++;
 }
 
-int get_g() {
+int get_g(void) {
 	return g;
 }

@@ -32,8 +32,8 @@
  * EXTRA_LINK_CMD=pkg-config --libs ACE
  */
 
-const int SIZE_BUF=128;
-const int NO_ITERATIONS=5;
+const int SIZE_BUF __attribute__((unused))=128;
+const int NO_ITERATIONS __attribute__((unused))=5;
 
 class Client{
 public:

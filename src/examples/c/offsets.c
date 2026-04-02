@@ -31,7 +31,7 @@
  * "struct" prefix to the structure name or drop it.
  */
 
-#define myoffsetof(structname, fieldname) ((char *)(&(((structname *)0)->fieldname)) - (char *)0)
+#define myoffsetof(structname, fieldname) ((size_t)(&(((structname *)0)->fieldname)))
 
 // our own struct for the demo...
 typedef struct _mystruct{
@@ -40,7 +40,7 @@ typedef struct _mystruct{
 	int field_c;
 } mystruct;
 
-int main() {
+int main(void) {
 	// using our own macro
 	printf("field_a is in offset %zd\n", myoffsetof(mystruct, field_a));
 	printf("field_b is in offset %zd\n", myoffsetof(struct _mystruct, field_b));

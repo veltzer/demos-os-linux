@@ -44,7 +44,7 @@ static inline void pthread_getstack(void** stackaddr, size_t* stacksize) {
 /*
  * get the current threds stack address
  */
-static inline void* pthread_getstack_pointer() {
+static inline void* pthread_getstack_pointer(void) {
 	void* stackaddr;
 	size_t stacksize;
 	pthread_getstack(&stackaddr, &stacksize);
@@ -58,7 +58,7 @@ static inline void* pthread_getstack_pointer() {
  * at the stack, find where the stack begins, calculate how much
  * there is to prefault and prefault it
  */
-static inline void pthread_stack_prefault() {
+static inline void pthread_stack_prefault(void) {
 	void* stackaddr;
 	size_t stacksize;
 	pthread_getstack(&stackaddr, &stacksize);
@@ -116,7 +116,7 @@ static inline void gettid_cache_delete(void* ptr) {
 	free(ptr);
 }
 
-static inline pid_t gettid_cached() {
+static inline pid_t gettid_cached(void) {
 	if(myunlikely(init_key==false)) {
 		CHECK_ZERO_ERRNO(pthread_key_create(&tid_key, gettid_cache_delete));
 		init_key=true;
@@ -160,7 +160,7 @@ static inline void get_thread_name(char* buffer, unsigned int bufsize) {
  * Get the current threads stack pointer via pthread_attr_getstack
  */
 
-static inline void* pthread_get_stack_self() {
+static inline void* pthread_get_stack_self(void) {
 	pthread_attr_t gattr;
 	CHECK_ZERO_ERRNO(pthread_getattr_np(pthread_self(), &gattr));
 	size_t v;

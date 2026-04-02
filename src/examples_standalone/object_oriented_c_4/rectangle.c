@@ -25,7 +25,7 @@ typedef struct _rectangle {
 	int height;
 } rectangle;
 
-int sizeof_rectangle() {
+int sizeof_rectangle(void) {
 	return sizeof(rectangle);
 }
 

@@ -59,13 +59,13 @@ static inline void debug(bool short_print, const char *file, const char *functio
  * but that is not a big problem since trying to use a function name outside of any function is
  * suspect at best.
  */
-#define TRACE(fmt, ...) debug(false, __FILE__, __func__, __LINE__, fmt, ## __VA_ARGS__)
+#define TRACE(...) debug(false, __FILE__, __func__, __LINE__, __VA_ARGS__)
 #ifdef DO_DEBUG
-#define DEBUG(fmt, ...) debug(false, __FILE__, __func__, __LINE__, fmt, ## __VA_ARGS__)
+#define DEBUG(...) debug(false, __FILE__, __func__, __LINE__, __VA_ARGS__)
 #else
-#define DEBUG(fmt, ...) do {} while(0)
+#define DEBUG(...) do {} while(0)
 #endif
-#define INFO(fmt, ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## __VA_ARGS__)
-#define WARNING(fmt, ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## __VA_ARGS__)
+#define INFO(...) debug(true, __FILE__, __func__, __LINE__, __VA_ARGS__)
+#define WARNING(...) debug(true, __FILE__, __func__, __LINE__, __VA_ARGS__)
 #define ERROR(fmt, ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## __VA_ARGS__)
 #define FATAL(fmt, ...) debug(true, __FILE__, __func__, __LINE__, fmt, ## __VA_ARGS__)

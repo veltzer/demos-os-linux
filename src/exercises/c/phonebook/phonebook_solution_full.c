@@ -104,7 +104,7 @@ void print_phonebook(phone_entry* phonebook, const int size) {
 
 static int over=0;
 
-int show_menu() {
+int show_menu(void) {
 	int result;
 	do {
 		printf("here is your menu....\n");
@@ -118,7 +118,7 @@ int show_menu() {
 	return result;
 }
 
-int main() {
+int main(void) {
 	int i;
 	phone_entry* phonebook;
 	phonebook=malloc(sizeof(phone_entry)*MAX_ENTRIES_IN_PHONEBOOK);

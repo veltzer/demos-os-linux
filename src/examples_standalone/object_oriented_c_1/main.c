@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(void) {
 	rectangle* r=(rectangle*)malloc(sizeof(rectangle));
 	rectangle_set_width(r,5);
 	rectangle_set_height(r,6);

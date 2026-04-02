@@ -24,7 +24,7 @@
 
 extern int static_function(int x);
 
-int main() {
+int main(void) {
 	void *handle;
 	int (*dso_function)(int);
 	struct timespec start, end;

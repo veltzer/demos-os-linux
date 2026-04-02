@@ -17,6 +17,9 @@
  */
 
 #include <firstinclude.h>
+#ifdef __clang__
+#pragma GCC diagnostic ignored "-Wunused-private-field"
+#endif
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_ASSERT()

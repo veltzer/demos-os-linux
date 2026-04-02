@@ -33,7 +33,7 @@ typedef struct _Foobar{
 	int j;
 } Foobar;
 
-int main() {
+int main(void) {
 	// releasing the next two lines will trigger a compilation error!!!
 	// Foobar* f=(Foobar*)malloc(sizeof(Foobar));
 	// func(&f);

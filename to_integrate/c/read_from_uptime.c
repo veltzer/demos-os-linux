@@ -25,7 +25,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int main() {
+int main(void) {
 	int fd=open("/proc/uptime", O_RDONLY);
 	assert(fd!=-1);
 	while(1) {

@@ -20,6 +20,6 @@
 #include <stdio.h>	// for printf(3)
 #include "b.h"
 
-void func_in_b() {
+void func_in_b(void) {
 	printf("in func_in_b\n");
 }

@@ -39,7 +39,7 @@
  * Function to print the resident memory of the current process as
  * well as the number of minor page faults.
  */
-static inline void getrusage_show_vmem() {
+static inline void getrusage_show_vmem(void) {
 	struct rusage usage;
 	CHECK_NOT_M1(getrusage(RUSAGE_SELF, &usage));
 	printf("usage.ru_maxrss=%lu\n", usage.ru_maxrss);
@@ -61,7 +61,7 @@ static inline void proc_print_mmap(const char *filter) {
 /*
  * Function to print the current processes /proc maps file
  */
-static inline void proc_print_mmap_self() {
+static inline void proc_print_mmap_self(void) {
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
@@ -125,7 +125,7 @@ static inline void proc_print_mmap_self_filter(const char* filter) {
 /*
  * Function to print the current processes /proc maps only for the exe itself
  */
-static inline void proc_print_mmap_self_only() {
+static inline void proc_print_mmap_self_only(void) {
 	extern const char* __progname;
 	proc_print_mmap_self_filter(__progname);
 }
@@ -159,14 +159,14 @@ static inline void my_print_process_name_proc(pid_t pid) {
 /*
  * Print the name of our process via /proc
  */
-static inline void my_print_process_name_proc_self() {
+static inline void my_print_process_name_proc_self(void) {
 	my_system("cat /proc/self/comm");
 }
 
 /*
  * Print the current threads name from /proc
  */
-static inline void print_thread_name_proc() {
+static inline void print_thread_name_proc(void) {
 	my_system("cat /proc/%d/comm", gettid());
 }
 
@@ -204,7 +204,7 @@ static inline void set_thread_name_proc(char* name) {
 /*
  * get the current stack from /proc
  */
-static inline void* proc_get_start_stack() {
+static inline void* proc_get_start_stack(void) {
 	// TODO
 	return (void*)NULL;
 }
@@ -212,7 +212,7 @@ static inline void* proc_get_start_stack() {
 /*
  * get the stack address from /proc/[pid]/maps
  */
-void* proc_get_stack_adr() {
+void* proc_get_stack_adr(void) {
 	const unsigned int bufsize=1024;
 	char buf[bufsize];
 	proc_get_self_filter("[stack]", buf, bufsize);

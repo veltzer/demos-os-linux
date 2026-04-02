@@ -45,12 +45,19 @@ static inline int add1(int a, int b) {
 static __inline__ int add2(int a, int b) {
 	return a+b;
 }
+#ifdef __clang__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wgnu-inline-cpp-without-extern"
+#endif
 static inline __attribute__((gnu_inline)) int add3(int a, int b) {
 	return a+b;
 }
 static inline __attribute__((__gnu_inline__)) int add4(int a, int b) {
 	return a+b;
 }
+#ifdef __clang__
+#pragma GCC diagnostic pop
+#endif
 /*
  * static __attribute__((always_inline)) int add5(int a, int b) {
  * return a+b;

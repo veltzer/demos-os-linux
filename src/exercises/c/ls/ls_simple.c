@@ -23,7 +23,7 @@
 #include <assert.h>
 #include <sys/stat.h>
 
-int main() {
+int main(void) {
 	DIR* p=opendir(".");
 	assert(p!=NULL);
 	struct dirent* current;

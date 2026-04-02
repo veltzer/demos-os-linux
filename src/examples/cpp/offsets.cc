@@ -44,11 +44,11 @@ using namespace std;
 class NameEmpty{
 };
 class NameOnechar{
-	char c;
+	__attribute__((unused)) char c;
 };
 class NameTwochar{
-	char c;
-	char c2;
+	__attribute__((unused)) char c;
+	__attribute__((unused)) char c2;
 };
 class NameOnevirt{
 	virtual void doit(void) = 0;

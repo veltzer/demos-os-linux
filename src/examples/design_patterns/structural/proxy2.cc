@@ -41,9 +41,9 @@ class Person {
 	string name;
 	int	 age;
 public:
-	Person( string n ) { name = n; }
+	Person( string n ) : age(32) { name = n; }
 	string getName()	{ return name; }
-	int	 getAge()	 { return 32; }
+	int	 getAge()	 { return age; }
 };
 
 int main() {

@@ -27,7 +27,7 @@
 int var_data=4;
 const char* buf_data="this is the data buffer";
 
-int main() {
+int main(void) {
 	int var_stack=5;
 	const char* buf_stack="this is a buffer";
 	printf("var_stack is %p\n", (void*)&var_stack);

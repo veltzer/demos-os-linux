@@ -36,13 +36,13 @@ int digit_num(long int l) {
 	return digits;
 }
 
-long int get_number() {
+long int get_number(void) {
 	long int ret;
 	CHECK_INT(scanf("%ld", &ret), 1);
 	return ret;
 }
 
-int main() {
+int main(void) {
 	printf("enter the first number: ");
 	long int num1=get_number();
 	printf("enter the second number: ");

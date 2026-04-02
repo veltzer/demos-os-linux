@@ -32,6 +32,6 @@ int main() {
 	printf("\n");
 	printf("help me user!!!!");
 	// cppcheck-suppress nullPointer
-	*(char*)0=0;
+	*(volatile char*)0=0;
 	return EXIT_SUCCESS;
 }

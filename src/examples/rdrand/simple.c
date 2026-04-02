@@ -22,7 +22,7 @@
 #include <x86intrin.h>
 #include <cpuid.h>
 
-int main() {
+int main(void) {
 	/*
 	uint64_t random_number;
 

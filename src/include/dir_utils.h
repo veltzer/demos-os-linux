@@ -85,7 +85,7 @@ static inline const char* dir_get_by_val(int val) {
 /*
  * Print out a table of all file type values, names and descriptions
  */
-static inline void print_dir_table() {
+static inline void print_dir_table(void) {
 	unsigned int i;
 	printf("number of dir values is %zd\n", ARRAY_SIZEOF(dir_tbl));
 	for(i=0; i<ARRAY_SIZEOF(dir_tbl); i++) {
