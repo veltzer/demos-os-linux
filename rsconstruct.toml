@@ -2,7 +2,7 @@
 kernel_excludes = ["/kernel/", "/kernel_standalone/"]
 no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/", "/exercises_standalone/"]
 
-[processor.cc_single_file]
+[processor.cc_single_file.gcc]
 scan_dirs = ["src"]
 include_paths = ["src/include"]
 exclude_dirs = "${no_single_excludes}"
@@ -24,24 +24,26 @@ cxxflags = [
 	"-pedantic",
 ]
 
-# [processor.cc_single_file]
-# name = "clang"
-# cc = "clang"
-# cxx = "clang++"
-# cflags = [
-# 	"-O2",
-# 	"-Wall",
-# 	"-Werror",
-# 	"-Wextra",
-# 	"-pedantic",
-# ]
-# cxxflags = [
-# 	"-O2",
-# 	"-Wall",
-# 	"-Werror",
-# 	"-Wextra",
-# 	"-pedantic",
-# ]
+[processor.cc_single_file.clang]
+scan_dirs = ["src"]
+include_paths = ["src/include"]
+exclude_dirs = "${no_single_excludes}"
+cc = "clang"
+cxx = "clang++"
+cflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
+cxxflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
 
 [processor.cppcheck]
 exclude_dirs = "${kernel_excludes}"
