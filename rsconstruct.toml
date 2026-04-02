@@ -6,26 +6,23 @@ no_single_excludes = ["/kernel/", "/kernel_standalone/", "/examples_standalone/"
 scan_dirs = ["src"]
 include_paths = ["src/include"]
 exclude_dirs = "${no_single_excludes}"
-
-# [processor.cc_single_file]
-# name = "gcc"
-# cc = "gcc"
-# cxx = "g++"
-# output_suffix = ".elf"
-# cflags = [
-# 	"-O2",
-# 	"-Wall",
-# 	"-Werror",
-# 	"-Wextra",
-# 	"-pedantic",
-# ]
-# cxxflags = [
-# 	"-O2",
-# 	"-Wall",
-# 	"-Werror",
-# 	"-Wextra",
-# 	"-pedantic",
-# ]
+cc = "gcc"
+cxx = "g++"
+output_suffix = ".elf"
+cflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
+cxxflags = [
+	"-O2",
+	"-Wall",
+	"-Werror",
+	"-Wextra",
+	"-pedantic",
+]
 
 # [processor.cc_single_file]
 # name = "clang"
