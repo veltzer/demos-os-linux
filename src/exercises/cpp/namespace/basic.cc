@@ -28,13 +28,13 @@ namespace Math {
 	double cube(double x) {
 		return x * x * x;
 	}
-}  // namespace Math
+} // namespace Math
 
 namespace WrongMath {
 	double square(double x) {
 		return x + x;
 	}
-}  // namespace WrongMath
+} // namespace WrongMath
 
 #include <iostream>
 

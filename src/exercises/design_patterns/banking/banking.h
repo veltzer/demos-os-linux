@@ -20,8 +20,9 @@
 #include <memory>
 #include <iostream>
 
+using namespace std;
+
 namespace banking {
-	using namespace std;
 	class IReadOnlyAccount {
 	public:
 		virtual double getBalance() const = 0;
