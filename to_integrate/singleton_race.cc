@@ -25,6 +25,8 @@
 #include <set>
 #include <mutex>
 
+using namespace std;
+
 class Singleton {
 private:
 	static Singleton* instance;
@@ -33,13 +35,13 @@ private:
 	// Private constructor to prevent direct instantiation
 	Singleton() {
 		// Simulate some initialization work
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		this_thread::sleep_for(chrono::milliseconds(10));
 		// Random value for demonstration
-		std::random_device rd;
-		std::mt19937 gen(rd());
-		std::uniform_int_distribution<> dis(1, 1000);
+		random_device rd;
+		mt19937 gen(rd());
+		uniform_int_distribution<> dis(1, 1000);
 		value = dis(gen);
-		std::cout << "Created instance at address: " << this << " with value: " << value << std::endl;
+		cout << "Created instance at address: " << this << " with value: " << value << endl;
 	}
 
 public:
@@ -49,7 +51,7 @@ public:
 		// Multiple threads can pass this check simultaneously
 		if (instance == nullptr) {
 			// Simulate some work that makes race condition more likely
-			std::this_thread::sleep_for(std::chrono::milliseconds(5));
+			this_thread::sleep_for(chrono::milliseconds(5));
 			// Multiple threads can reach this point and each create an instance
 			instance = new Singleton();
 		}
@@ -82,48 +84,48 @@ instance = new Singleton();
 Singleton* Singleton::instance = nullptr;
 
 // Function to be run by each thread
-void createSingleton(int threadId, std::vector<std::pair<int, void*>>& results, std::mutex& resultsMutex) {
-	std::cout << "Thread " << threadId << " starting..." << std::endl;
+void createSingleton(int threadId, vector<pair<int, void*>>& results, mutex& resultsMutex) {
+	cout << "Thread " << threadId << " starting..." << endl;
 	Singleton* singleton = Singleton::getInstance();
-	std::cout << "Thread " << threadId << " got instance at: " << singleton->getAddress()
-		<< " with value: " << singleton->getValue() << std::endl;
+	cout << "Thread " << threadId << " got instance at: " << singleton->getAddress()
+		<< " with value: " << singleton->getValue() << endl;
 	// Store results thread-safely
-	std::lock_guard<std::mutex> lock(resultsMutex);
+	lock_guard<mutex> lock(resultsMutex);
 	results.push_back({threadId, singleton->getAddress()});
 }
 
 int main() {
-	std::cout << "=== Demonstrating C++ Singleton Race Condition ===\n" << std::endl;
+	cout << "=== Demonstrating C++ Singleton Race Condition ===\n" << endl;
 	// Note: We can't reset the singleton from outside since instance is private
 	// This demonstrates a real-world scenario where the singleton persists
 	const int NUM_THREADS = 5;
-	std::vector<std::thread> threads;
-	std::vector<std::pair<int, void*>> results;
-	std::mutex resultsMutex;
+	vector<thread> threads;
+	vector<pair<int, void*>> results;
+	mutex resultsMutex;
 	// Create and start multiple threads simultaneously
 	for(int i = 0; i < NUM_THREADS; ++i) {
-		threads.emplace_back(createSingleton, i, std::ref(results), std::ref(resultsMutex));
+		threads.emplace_back(createSingleton, i, ref(results), ref(resultsMutex));
 	}
 	// Wait for all threads to complete
 	for(auto& thread : threads) {
 		thread.join();
 	}
 	// Analyze results
-	std::cout << "\n=== Results ===" << std::endl;
-	std::set<void*> uniqueInstances;
+	cout << "\n=== Results ===" << endl;
+	set<void*> uniqueInstances;
 	for(const auto& result : results) {
-		std::cout << "Thread " << result.first << ": Instance at " << result.second << std::endl;
+		cout << "Thread " << result.first << ": Instance at " << result.second << endl;
 		uniqueInstances.insert(result.second);
 	}
-	std::cout << "\nTotal unique instances created: " << uniqueInstances.size() << std::endl;
+	cout << "\nTotal unique instances created: " << uniqueInstances.size() << endl;
 	if (uniqueInstances.size() > 1) {
-		std::cout << "❌ RACE CONDITION DETECTED! Multiple instances were created." << std::endl;
+		cout << "❌ RACE CONDITION DETECTED! Multiple instances were created." << endl;
 	} else {
-		std::cout << "✅ No race condition occurred this time (try running again)." << std::endl;
+		cout << "✅ No race condition occurred this time (try running again)." << endl;
 	}
-	std::cout << "\n" << std::string(50, '=') << std::endl;
-	std::cout << "Run this program multiple times to see the race condition!" << std::endl;
-	std::cout << "The number of instances created may vary between runs." << std::endl;
+	cout << "\n" << string(50, '=') << endl;
+	cout << "Run this program multiple times to see the race condition!" << endl;
+	cout << "The number of instances created may vary between runs." << endl;
 	return 0;
 }
 
@@ -134,11 +136,11 @@ THREAD-SAFE SOLUTIONS:
 class ThreadSafeSingleton {
 private:
 	static ThreadSafeSingleton* instance;
-	static std::mutex mtx;
+	static mutex mtx;
 public:
 	static ThreadSafeSingleton* getInstance() {
 		if (instance == nullptr) {
-			std::lock_guard<std::mutex> lock(mtx);
+			lock_guard<mutex> lock(mtx);
 			if (instance == nullptr) { // Double-check with lock
 				instance = new ThreadSafeSingleton();
 			}
@@ -158,15 +160,15 @@ private:
 	MeyersSingleton() = default;
 };
 
-3. std::once_flag approach:
+3. once_flag approach:
 class OnceFlagSingleton {
 private:
 	static OnceFlagSingleton* instance;
-	static std::once_flag flag;
+	static once_flag flag;
 
 public:
 	static OnceFlagSingleton* getInstance() {
-		std::call_once(flag, []() {
+		call_once(flag, []() {
 			instance = new OnceFlagSingleton();
 		});
 		return instance;

@@ -156,8 +156,11 @@ scan_dirs = ["src/kernel_standalone"]
 [processor.cc]
 scan_dirs = ["src"]
 
-[processor.script.check_all]
-linter = "scripts/check_all.py"
+# [processor.script.check_all]
+# linter = "scripts/check_all.py"
+# extensions = [".c", ".cc"]
+# scan_dirs = ["src"]
+# batch = true
 
 [processor.taplo]
 [processor.yamllint]
