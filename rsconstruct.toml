@@ -16,6 +16,14 @@ no_single_excludes_clang = [
   "/exercises_standalone/",
   "/openmp/"
 ]
+no_single_excludes_clang_tidy = [
+  "/kernel/",
+  "/kernel_standalone/",
+  "/examples_standalone/",
+  "/exercises_standalone/",
+  "/openmp/",
+  "/libs/"
+]
 
 [processor.cc_single_file.gcc]
 scan_dirs = ["src"]
@@ -103,10 +111,22 @@ pkg_config = [
 include_path_commands = [
 ]
 
-# [processor.clang_tidy]
-# scan_dirs = ["src"]
-# compiler_args = ["-Isrc/include"]
-# exclude_dirs = "${no_single_excludes_clang}"
+[processor.clang_tidy]
+scan_dirs = ["src"]
+compiler_args = ["-Isrc/include"]
+exclude_dirs = "${no_single_excludes_clang_tidy}"
+exclude_paths = [
+	"src/examples/compiler_internals/varargs_size.cc",
+	"src/examples/dynamic_linking/dlsym.cc",
+	"src/examples/error_handling/longjmp.cc",
+	"src/examples/error_handling/longjmp_with_stack_trace.cc",
+	"src/examples/internationalization/wide_override.cc",
+	"src/examples/memory_allocation/mcheck_free.cc",
+	"src/examples/performance/instrument.cc",
+	"src/examples/preprocessor/messages_during_compilation.cc",
+	"src/examples/multi_core/cache_line_pad.cc",
+	"src/exercises/real_time/volatile_atomic_etc/solution.cc",
+]
 
 # cpplint: Google C++ style checker.
 # By default cpplint looks for CPPLINT.cfg but we use --config to point

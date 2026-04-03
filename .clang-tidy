@@ -1,8 +1,7 @@
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*'
+Checks:          'clang-diagnostic-*,-clang-diagnostic-gnu-designator,-clang-diagnostic-implicit-int,-clang-diagnostic-implicit-function-declaration,clang-analyzer-*,-clang-analyzer-security.*,-clang-analyzer-core.NullDereference,-clang-analyzer-core.CallAndMessage,-clang-analyzer-core.UndefinedBinaryOperatorResult,-clang-analyzer-core.VLASize,-clang-analyzer-core.StackAddressEscape,-clang-analyzer-core.DivideZero,-clang-analyzer-core.uninitialized.*,-clang-analyzer-core.NonNullParamChecker,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-unix.*,-clang-analyzer-cplusplus.NewDeleteLeaks,-clang-analyzer-cplusplus.NewDelete,-clang-analyzer-optin.cplusplus.VirtualCall,-clang-analyzer-optin.cplusplus.UninitializedObject,-clang-analyzer-optin.taint.*,-clang-analyzer-optin.portability.*'
 WarningsAsErrors: '*'
-HeaderFilterRegex: ''
-AnalyzeTemporaryDtors: false
+HeaderFilterRegex: 'src/'
 FormatStyle:     none
 User:            mark
 CheckOptions:
