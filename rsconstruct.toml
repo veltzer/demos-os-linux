@@ -128,10 +128,6 @@ exclude_paths = [
 	"src/exercises/real_time/volatile_atomic_etc/solution.cc",
 ]
 
-# cpplint: Google C++ style checker.
-# By default cpplint looks for CPPLINT.cfg but we use --config to point
-# to .cpplint so the config file doesn't clutter the project root.
-# Filter rules are defined in .cpplint (not here) to keep this file clean.
 [processor.cpplint]
 exclude_dirs = "${kernel_excludes}"
 args = ["--config=.cpplint"]
