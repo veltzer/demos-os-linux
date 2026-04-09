@@ -88,6 +88,7 @@ args = [
 ]
 
 [processor.make]
+scan_dirs = ["src"]
 exclude_paths = ["Makefile"]
 exclude_dirs = "${kernel_excludes}"
 
@@ -129,6 +130,7 @@ exclude_paths = [
 ]
 
 [processor.cpplint]
+scan_dirs = ["src"]
 exclude_dirs = "${kernel_excludes}"
 args = ["--config=.cpplint"]
 extra_inputs = [".cpplint"]
@@ -136,15 +138,15 @@ extra_inputs = [".cpplint"]
 [processor.mdl]
 scan_dirs = ["src"]
 
-[processor.aspell]
+[processor.rumdl]
+scan_dirs = ["src"]
+
+[processor.zspell]
 scan_dirs = ["src"]
 
 # [processor.checkpatch]
 # scan_dirs = ["src/kernel"]
 # args = ["--no-tree"]
-
-[processor.rumdl]
-scan_dirs = ["src"]
 
 [processor.linux_module]
 scan_dirs = ["src/kernel_standalone"]
@@ -152,16 +154,24 @@ scan_dirs = ["src/kernel_standalone"]
 [processor.cc]
 scan_dirs = ["src"]
 
-# [processor.script.check_all]
-# linter = "scripts/check_all.py"
-# extensions = [".c", ".cc"]
-# scan_dirs = ["src"]
-# batch = true
+[processor.script.check_all]
+command = "scripts/check_all.py"
+extensions = [".c", ".cc"]
+scan_dirs = ["src"]
+batch = true
 
 [processor.taplo]
-[processor.yamllint]
-[processor.mypy]
-[processor.ruff]
-[processor.pylint]
-[processor.shellcheck]
+scan_dirs = [] 
 
+
+[processor.yamllint]
+scan_dirs = []
+
+[processor.mypy]
+scan_dirs = ["config", "script"]
+
+[processor.ruff]
+scan_dirs = ["config", "script"]
+
+[processor.shellcheck]
+scan_dirs = [ "src", "misc", "scripts"]

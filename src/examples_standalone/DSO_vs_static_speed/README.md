@@ -8,7 +8,7 @@ Calling a function from a DSO is generally slower than calling a statically link
 
 Reasons for the Overhead:
 a) Indirection: The main source of overhead comes from the indirection through the Global Offset Table (GOT). When calling a DSO function, the program first looks up the function's address in the GOT, then jumps to that address.
-b) Potential cache misses: If the GOT entry isn't in the CPU cache, there's an additional delay to fetch it from memory.
+b) Potential cache misses: If the GOT entry isnt in the CPU cache, there's an additional delay to fetch it from memory.
 c) Potential page faults: If the DSO isn't loaded into memory, the first call can incur a significant delay due to page faults.
 
 To quantify the difference I wrote this example.

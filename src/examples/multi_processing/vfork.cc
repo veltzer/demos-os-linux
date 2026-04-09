@@ -18,11 +18,9 @@
 
 #include <firstinclude.h>
 #include <unistd.h>	// for fork(2), _exit(2)
-#include <stdio.h>	// for fgets(3)
 #include <sys/types.h>	// for waitid(2)
 #include <sys/wait.h>	// for waitid(2)
 #include <stdlib.h>	// for exit(3), atoi(3), EXIT_SUCCESS, EXIT_FAILURE
-#include <string.h>	// for strsignal(3)
 #include <sys/types.h>	// for vfork(2)
 #include <unistd.h>	// for vfork(2)
 #include <assert.h>	// for assert(3)
@@ -58,7 +56,7 @@ int main() {
 		TRACE("child is going to sleep...");
 		CHECK_ZERO(sleep(10));
 		TRACE("child is dying...");
-		_exit(0);
+		_exit(EXIT_SUCCESS);
 	} else {
 		// the parent only gets to run after the child is either dead or execd
 		TRACE("parent is starting...");
