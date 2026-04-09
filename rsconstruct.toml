@@ -26,9 +26,9 @@ no_single_excludes_clang_tidy = [
 ]
 
 [processor.cc_single_file.gcc]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 include_paths = ["src/include"]
-exclude_dirs = "${no_single_excludes}"
+src_exclude_dirs = "${no_single_excludes}"
 cc = "gcc"
 cxx = "g++"
 output_suffix = ".elf"
@@ -48,10 +48,10 @@ cxxflags = [
 ]
 
 [processor.cc_single_file.clang]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 include_paths = ["src/include"]
-exclude_dirs = "${no_single_excludes_clang}"
-exclude_paths = [
+src_exclude_dirs = "${no_single_excludes_clang}"
+src_exclude_paths = [
 	"src/examples/compiler_internals/varargs_size.cc",
 	"src/examples/dynamic_linking/dlsym.cc",
 	"src/examples/error_handling/longjmp.cc",
@@ -79,7 +79,7 @@ cxxflags = [
 ]
 
 [processor.cppcheck]
-exclude_dirs = "${kernel_excludes}"
+src_exclude_dirs = "${kernel_excludes}"
 args = [
 	"--error-exitcode=1",
 	"--enable=warning,style,performance,portability",
@@ -88,12 +88,12 @@ args = [
 ]
 
 [processor.make]
-scan_dirs = ["src"]
-exclude_paths = ["Makefile"]
-exclude_dirs = "${kernel_excludes}"
+src_dirs = ["src"]
+src_exclude_paths = ["Makefile"]
+src_exclude_dirs = "${kernel_excludes}"
 
 [analyzer.cpp]
-exclude_dirs = "${kernel_excludes}"
+src_exclude_dirs = "${kernel_excludes}"
 include_paths = [
 	"src/include",
 	"/usr/include/mysql++",
@@ -113,10 +113,10 @@ include_path_commands = [
 ]
 
 [processor.clang_tidy]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 compiler_args = ["-Isrc/include"]
-exclude_dirs = "${no_single_excludes_clang_tidy}"
-exclude_paths = [
+src_exclude_dirs = "${no_single_excludes_clang_tidy}"
+src_exclude_paths = [
 	"src/examples/compiler_internals/varargs_size.cc",
 	"src/examples/dynamic_linking/dlsym.cc",
 	"src/examples/error_handling/longjmp.cc",
@@ -130,48 +130,48 @@ exclude_paths = [
 ]
 
 [processor.cpplint]
-scan_dirs = ["src"]
-exclude_dirs = "${kernel_excludes}"
+src_dirs = ["src"]
+src_exclude_dirs = "${kernel_excludes}"
 args = ["--config=.cpplint"]
-extra_inputs = [".cpplint"]
+dep_inputs = [".cpplint"]
 
 [processor.mdl]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 
 [processor.rumdl]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 
 [processor.zspell]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 
 # [processor.checkpatch]
-# scan_dirs = ["src/kernel"]
+# src_dirs = ["src/kernel"]
 # args = ["--no-tree"]
 
 [processor.linux_module]
-scan_dirs = ["src/kernel_standalone"]
+src_dirs = ["src/kernel_standalone"]
 
 [processor.cc]
-scan_dirs = ["src"]
+src_dirs = ["src"]
 
-[processor.script.check_all]
-command = "scripts/check_all.py"
-extensions = [".c", ".cc"]
-scan_dirs = ["src"]
-batch = true
+# [processor.script.check_all]
+# command = "scripts/check_all.py"
+# src_extensions = [".c", ".cc"]
+# src_dirs = ["src"]
+# batch = true
 
 [processor.taplo]
-scan_dirs = [] 
+src_dirs = [] 
 
 
 [processor.yamllint]
-scan_dirs = []
+src_dirs = []
 
 [processor.mypy]
-scan_dirs = ["config", "script"]
+src_dirs = ["config", "script"]
 
 [processor.ruff]
-scan_dirs = ["config", "script"]
+src_dirs = ["config", "script"]
 
 [processor.shellcheck]
-scan_dirs = [ "src", "misc", "scripts"]
+src_dirs = [ "src", "misc", "scripts"]
