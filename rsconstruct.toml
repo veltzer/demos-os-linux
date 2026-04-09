@@ -27,8 +27,8 @@ no_single_excludes_clang_tidy = [
 
 [processor.cc_single_file.gcc]
 src_dirs = ["src"]
-include_paths = ["src/include"]
 src_exclude_dirs = "${no_single_excludes}"
+include_paths = ["src/include"]
 cc = "gcc"
 cxx = "g++"
 output_suffix = ".elf"
@@ -49,7 +49,6 @@ cxxflags = [
 
 [processor.cc_single_file.clang]
 src_dirs = ["src"]
-include_paths = ["src/include"]
 src_exclude_dirs = "${no_single_excludes_clang}"
 src_exclude_paths = [
 	"src/examples/compiler_internals/varargs_size.cc",
@@ -61,6 +60,7 @@ src_exclude_paths = [
 	"src/examples/performance/instrument.cc",
 	"src/examples/preprocessor/messages_during_compilation.cc",
 ]
+include_paths = ["src/include"]
 cc = "clang"
 cxx = "clang++"
 cflags = [
