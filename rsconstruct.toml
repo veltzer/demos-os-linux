@@ -164,7 +164,7 @@ src_dirs = ["src"]
 src_dirs = [] 
 
 
-[processor.yamllint]
+[processor.iyamllint]
 src_dirs = []
 
 [processor.mypy]
