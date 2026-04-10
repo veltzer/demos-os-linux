@@ -186,3 +186,7 @@ Real Time/Low Latency design patterns:
 ======================================
 https://github.com/0burak/imperial_hft
 https://hackaday.com/2024/07/13/c-design-patterns-for-low-latency-applications/
+
+Real good blog
+==============
+https://preshing.com
