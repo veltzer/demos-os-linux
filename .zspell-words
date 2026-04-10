@@ -134,3 +134,6 @@ ve
 wakeup
 wifsignled
 xlinker
+dekker
+preshing
+tso
