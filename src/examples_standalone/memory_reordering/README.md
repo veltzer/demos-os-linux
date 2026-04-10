@@ -7,7 +7,7 @@ Preshing/Dekker-style test.
 
 Two threads each write one variable then read the other's variable:
 
-```
+```txt
 Thread 1:  x = 1;  r1 = y;
 Thread 2:  y = 1;  r2 = x;
 ```
@@ -18,7 +18,7 @@ the store and the subsequent load within each thread, making it happen.
 
 ## Building and running
 
-```
+```bash
 make run
 ```
 
@@ -29,7 +29,7 @@ This builds and runs two variants over 500 000 iterations each:
 
 Typical output on x86-64:
 
-```
+```txt
 === Without barriers ===
 Iterations : 500000
 Reorderings: 964
