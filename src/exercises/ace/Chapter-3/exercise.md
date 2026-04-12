@@ -7,12 +7,12 @@ We will use 3 threads.
 * The initial value of LockedCounter is zero.
 * Use 3 threads each one of them will try to increment the LockedCounter.
 * Each thread will use mutex to prevent other threads from updating or testing
-    this variable at the same time.
+  this variable at the same time.
 * Only if LockedCounter modulus 3 = n (for thread n) then thread n will do
-    the increment.
+  the increment.
 * Each thread should make X attempts (constant) to change the LockedCounter.
 * At the end print the value of LockedCounter as well as the total number of
-    attempts for changing the counter.
+  attempts for changing the counter.
 * What do you deduce from the results of this exercise? (the difference in values between the LockedCounter and the attempts...).
 * Answer the following questions:
     * Are the results good?

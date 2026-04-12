@@ -4,10 +4,10 @@
 * Write init and exit functions.
 * Show that you can insert the module into the kernel and remove it from the kernel
 * Use a sudo user and the commands:
-    `insmod`
-    `rmmod`
-    `lsmod`
-    `modinfo`
+  `insmod`
+  `rmmod`
+  `lsmod`
+  `modinfo`
 use the following commands to view the kernel log:
 
 ```bash
