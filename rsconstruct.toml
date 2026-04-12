@@ -92,7 +92,7 @@ src_dirs = ["src"]
 src_exclude_paths = ["Makefile"]
 src_exclude_dirs = "${kernel_excludes}"
 
-[analyzer.cpp]
+[analyzer.icpp]
 src_exclude_dirs = "${kernel_excludes}"
 include_paths = [
 	"src/include",
@@ -108,8 +108,6 @@ pkg_config = [
 	"gtkmm-2.4",
 	"mysqlclient",
 	"Qt6Widgets",
-]
-include_path_commands = [
 ]
 
 [processor.clang_tidy]
