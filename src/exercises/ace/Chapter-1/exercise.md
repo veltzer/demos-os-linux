@@ -9,14 +9,14 @@ Where do `ACE_DEUBG` and `ACE_ERROR` messages go to ?
 ## Exercise 1
 
 * Write a program that will have two functions Function A and Function B.
-    use a loop counter to call Twice Function A and this function will call Function B.
+  use a loop counter to call Twice Function A and this function will call Function B.
 * Each function will print a message when entered, using the ACE utility.
 * Use the ACE to set and unset this capability.
 * In each function print debugging information using 3 levels:
     * `LM_TRACE`
     * `LM_DEBUG`
     * `LM_INFO`
-    Use the following options in each output line:
+  Use the following options in each output line:
     * Print program pid.
     * Print line number.
     * Print File Name.

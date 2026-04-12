@@ -23,9 +23,9 @@ one of them breaks).
 
 ## Bonus
 * have timeouts for threads.
-    If a thread does not send anything for N seconds - disconnect from it.
+  If a thread does not send anything for N seconds - disconnect from it.
 * handle async write(2) correctly.
-    Do not assume that you can echo back whatever the user send
-    you without blocking, so use epoll for that as well.
+  Do not assume that you can echo back whatever the user send
+  you without blocking, so use epoll for that as well.
 * add a feature that enabled to bring down your server cleanly. Do
-    that via a signalfd and add that to your epoll system.
+  that via a signalfd and add that to your epoll system.

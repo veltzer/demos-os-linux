@@ -8,10 +8,10 @@ undefined symbols.
 you don't get any error from the linker.
 * when you do it with the `--no-undefined` flag you do get an error.
 * when you link with a library that does not satisfy it's dependencies you get an error
-    even if you pass `--no-undefined`
+  even if you pass `--no-undefined`
 * when you link with a library that does satisfy it's own dependencies but which uses some
-    other lib that does not satisfy it's own dependencies then you get no error
-    even if you pass `--no-undefined`
+  other lib that does not satisfy it's own dependencies then you get no error
+  even if you pass `--no-undefined`
 
 ## TODO
 * `--allow-shlib-undefined`

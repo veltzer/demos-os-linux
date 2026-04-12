@@ -7,7 +7,7 @@
 * Run the application and verify that the results are OK.
 
 * Disassemble your program using:
-    `$ objdump --disassemble --source --demangle [binary] > [output]`
+  `$ objdump --disassemble --source --demangle [binary] > [output]`
 
 * Find the loop that calculates the sum of numbers.
 
