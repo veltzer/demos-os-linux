@@ -152,15 +152,15 @@ src_dirs = ["src/kernel_standalone"]
 [processor.cc]
 src_dirs = ["src"]
 
-# [processor.script.check_all]
-# command = "scripts/check_all.py"
-# src_extensions = [".c", ".cc"]
-# src_dirs = ["src"]
-# batch = true
+[processor.script.check_all]
+enabled=false
+command = "scripts/check_all.py"
+src_extensions = [".c", ".cc"]
+src_dirs = ["src"]
+batch = true
 
 [processor.taplo]
 src_dirs = [] 
-
 
 [processor.iyamllint]
 src_dirs = []
