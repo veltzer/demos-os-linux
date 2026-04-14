@@ -25,15 +25,17 @@
 using namespace std;
 
 /*
- * Example showing that list.size() in STL is O(N)!
+ * Example measuring std::list::size() performance.
  *
  * Notes:
- * - there is a claim by one of the participants in the blog that in C++11
- * list.size() is const time. This example is compiled with C++11 support
- * and clearly shows that this is not the case.
+ * - Since C++11, std::list::size() is required to be O(1) (constant time).
+ * - Prior to C++11, some implementations (notably libstdc++) made it O(N)
+ *   as a tradeoff to keep splice() O(1).
+ * - This example can be used to verify the O(1) complexity on a modern libc++.
  *
  * References:
- * http://www.linuxprogrammingblog.com/std-list-size-complexity
+ * - https://en.cppreference.com/w/cpp/container/list/size
+ * - http://www.linuxprogrammingblog.com/std-list-size-complexity
  *
  * EXTRA_COMPILE_FLAGS_BEFORE=-std=c++20
  */

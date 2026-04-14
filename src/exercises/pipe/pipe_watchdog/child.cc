@@ -49,7 +49,7 @@ void do1() {
 		if(errno!=EINTR) {
 			buffer[rcount]='\0';
 			ssize_t ret=write(1, buffer, strlen(buffer));
-			CHECK_ASSERT(ret!=(ssize_t)strlen(buffer));
+			CHECK_ASSERT(ret==(ssize_t)strlen(buffer));
 		}
 	}
 }

@@ -68,8 +68,8 @@ void high_priority_task() {
 }
 
 void low_priority_task() {
-	cout << "Low priority task acquired mutex\n";
 	PILockGuard lock(pi_mutex);
+	cout << "Low priority task acquired mutex\n";
 	shared_data += 1;
 	this_thread::sleep_for(chrono::milliseconds(100));
 	cout << "Low priority task releasing mutex\n";

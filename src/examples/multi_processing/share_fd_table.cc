@@ -50,10 +50,10 @@
  */
 
 int main() {
-	pid_t child_pid=CHECK_NOT_M1(fork());
 	int fd=CHECK_NOT_M1(open("/etc/passwd", O_RDONLY));
 	char buf[2];
 	CHECK_NOT_M1(read(fd, &buf, 2));
+	pid_t child_pid=CHECK_NOT_M1(fork());
 	const int count=10;
 	if(child_pid) {
 		// the parent

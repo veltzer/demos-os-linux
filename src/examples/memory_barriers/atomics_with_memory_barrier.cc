@@ -75,5 +75,7 @@ int main()
 	b.join();
 	c.join();
 
-	assert(z == 2); // This will always pass
+	// With seq_cst, at least one reader will see both writes ordered,
+	// so z >= 1 is guaranteed (but z == 2 is NOT guaranteed).
+	assert(z >= 1);
 }

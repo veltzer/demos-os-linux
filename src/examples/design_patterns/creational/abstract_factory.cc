@@ -99,9 +99,12 @@ int main() {
 	shapes[1] = factory->createStraightInstance();
 	shapes[2] = factory->createCurvedInstance();
 
-	for(int i=0; i < 3; i++)
+	for(int i=0; i < 3; i++) {
 		shapes[i]->draw();
+		delete shapes[i];
+	}
 
+	delete factory;
 	return 0;
 }
 

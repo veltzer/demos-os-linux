@@ -92,9 +92,9 @@ int main() {
 	my_param.sched_priority=min_priority + 3;
 	CHECK_ZERO_ERRNO(pthread_attr_setschedparam(&hp_attr, &my_param));
 	CHECK_ZERO_ERRNO(pthread_barrier_init(&mybarrier, NULL, 1));
-	CHECK_ZERO_ERRNO(pthread_create(&lpt, NULL, thread_body, &lp));
-	CHECK_ZERO_ERRNO(pthread_create(&mpt, NULL, thread_body, &mp));
-	CHECK_ZERO_ERRNO(pthread_create(&hpt, NULL, thread_body, &hp));
+	CHECK_ZERO_ERRNO(pthread_create(&lpt, &lp_attr, thread_body, &lp));
+	CHECK_ZERO_ERRNO(pthread_create(&mpt, &mp_attr, thread_body, &mp));
+	CHECK_ZERO_ERRNO(pthread_create(&hpt, &hp_attr, thread_body, &hp));
 	CHECK_ZERO_ERRNO(pthread_join(hpt, NULL));
 	CHECK_ZERO_ERRNO(pthread_join(mpt, NULL));
 	CHECK_ZERO_ERRNO(pthread_join(lpt, NULL));

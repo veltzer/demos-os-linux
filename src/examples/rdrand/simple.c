@@ -19,26 +19,30 @@
 #include <firstinclude.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <x86intrin.h>
 #include <cpuid.h>
 
-int main(void) {
-	/*
-	uint64_t random_number;
+/*
+ * EXTRA_COMPILE_FLAGS_BEFORE=-m64 -mrdrnd
+ */
 
-	// Check if RDRAND is supported
-	if (!__get_cpuid_count(0x07, 0, NULL, NULL, NULL, NULL) & (1 << 30)) {
+int main(void) {
+	unsigned long long random_number;
+	unsigned int eax, ebx, ecx, edx;
+
+	// Check if RDRAND is supported (CPUID.01H:ECX.RDRAND[bit 30])
+	if (!__get_cpuid(1, &eax, &ebx, &ecx, &edx) || !(ecx & (1u << 30))) {
 		printf("RDRAND instruction is not supported on this CPU.\n");
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	// Generate a random 64-bit number
 	if (_rdrand64_step(&random_number) == 0) {
 		printf("Failed to generate a random number.\n");
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	printf("Random number: %llu\n", random_number);
-	*/
 	return EXIT_SUCCESS;
 }

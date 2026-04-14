@@ -23,19 +23,20 @@
 #include <err_utils.h>	// for CHECK_ZERO()
 #include <signal_utils.h>	// for signal_register_handler_sigaction()
 #include <assert.h>	// for assert(3)
+#include <errno.h>	// for errno, EINTR
+#include <time.h>	// for time(2), localtime(3), struct timespec, nanosleep(2)
 
 /*
- * This is an exapmle of how to restart nanosleep(2) even after system call the correct
- * way.
+ * This is an example of how to restart nanosleep(2) properly after a signal.
  *
- * The exercise is the follwing:
- * Show how you can use the nanosleep(2) system call and restart it properly so that it's
- * semantics will be preserved.
- *
- * The trick is to always sleep the remaining time.
+ * Note: nanosleep(2) is NOT restartable via SA_RESTART - signals always interrupt
+ * it (returning EINTR) even when the handler was registered with SA_RESTART.
+ * The canonical way to "restart" nanosleep is to loop, passing the remaining
+ * time back in, as demonstrated below.
  *
  * References:
  * - https://stackoverflow.com/questions/5198560/using-sleep-and-select-with-signals
+ * - nanosleep(2) man page NOTES section
  */
 
 static void handler(int signum, siginfo_t*, void*) {
@@ -56,8 +57,11 @@ int main() {
 	struct timespec timeout;
 	timeout.tv_sec = 30;
 	timeout.tv_nsec = 0;
+	struct timespec rem;
 	print_current_time();
-	nanosleep(&timeout, NULL);
+	while(nanosleep(&timeout, &rem) == -1 && errno == EINTR) {
+		timeout = rem;
+	}
 	print_current_time();
 	return EXIT_SUCCESS;
 }

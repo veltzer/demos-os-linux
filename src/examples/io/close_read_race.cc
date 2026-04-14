@@ -42,7 +42,7 @@ int fd;
 static void* closer(void*) {
 	/* This is the thread that closes the file descritor */
 	sleep(10);
-	int ret=close(3);
+	int ret=close(fd);
 	assert(ret!=-1);
 	printf("\n\n\n\n\nclose was ok!\n\n\n\n");
 	sleep(3600);
@@ -52,7 +52,7 @@ static void* closer(void*) {
 static void* reader(void*) {
 	char buf[10];
 	while(1) {
-		int count=CHECK_NOT_M1(read(3, buf, 10));
+		int count=CHECK_NOT_M1(read(fd, buf, 10));
 		CHECK_NOT_M1(write(1, "got data!\n", 10));
 		CHECK_NOT_M1(write(1, buf, count));
 	}
@@ -61,11 +61,11 @@ static void* reader(void*) {
 
 int main() {
 	const char* file="/dev/input/mouse5";
-	fd=open(file, O_RDWR);
+	fd=CHECK_NOT_M1(open(file, O_RDWR));
 	pthread_t threads[2];
-	pthread_create(threads, NULL, closer, NULL);
-	pthread_create(threads+1, NULL, reader, NULL);
-	pthread_join(*threads, NULL);
-	pthread_join(threads[1], NULL);
+	CHECK_ZERO_ERRNO(pthread_create(threads, NULL, closer, NULL));
+	CHECK_ZERO_ERRNO(pthread_create(threads+1, NULL, reader, NULL));
+	CHECK_ZERO_ERRNO(pthread_join(*threads, NULL));
+	CHECK_ZERO_ERRNO(pthread_join(threads[1], NULL));
 	return EXIT_SUCCESS;
 }

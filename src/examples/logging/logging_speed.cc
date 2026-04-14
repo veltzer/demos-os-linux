@@ -75,9 +75,8 @@ inline void my_syslog(const char* fmt, ...) {
 	// pthread_mutex_lock(&fastmutex);
 	va_list args;
 	va_start(args, fmt);
-	int ret=vsnprintf(buffer, buffer_size, fmt, args);
+	vsnprintf(buffer, buffer_size, fmt, args);
 	va_end(args);
-	memcpy(buffer, fmt, ret);
 	// pthread_mutex_unlock(&fastmutex);
 }
 

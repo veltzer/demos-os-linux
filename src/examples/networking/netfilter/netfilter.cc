@@ -65,7 +65,7 @@ int main()
 	CHECK_NOT_M1(nfq_bind_pf(h, AF_INET));
 
 	CHECK_NOT_NULL(qh = nfq_create_queue(h, 0, &callback, NULL));
-	CHECK_NOT_M1(nfq_set_mode(qh, NFQNL_COPY_PACKET, 0xffff) < 0);
+	CHECK_NOT_M1(nfq_set_mode(qh, NFQNL_COPY_PACKET, 0xffff));
 	fd = nfq_fd(h);
 
 	while ((rv = recv(fd, buf, sizeof(buf), 0)) && rv >= 0) {

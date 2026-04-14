@@ -51,10 +51,10 @@ public:
 		counter++;
 		if (signum==SIGINT) {
 			if (counter > 2) {
-				ACE_DEBUG((LM_INFO, "Got SIGINIT exiting\n"));
+				ACE_DEBUG((LM_INFO, "Got SIGINT exiting\n"));
 				ACE_Reactor::instance()->end_reactor_event_loop();
 			} else {
-				ACE_DEBUG((LM_INFO, "Got SIGINIT ignoring\n"));
+				ACE_DEBUG((LM_INFO, "Got SIGINT ignoring\n"));
 			}
 		}
 		return 0;

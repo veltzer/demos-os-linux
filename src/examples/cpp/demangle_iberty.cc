@@ -70,6 +70,7 @@ int main() {
 		const char* name=dmgl_tbl[i].name;
 		char* s=cplus_demangle(mangled, val);
 		printf("mangled [%s] and demangled is [%s] ,name is [%s]\n", mangled, s, name);
+		free(s);
 	}
 	return EXIT_SUCCESS;
 }

@@ -74,14 +74,14 @@ static int __init kmem_init(void)
 		 */
 		NULL
 	);
-	if (IS_ERR(cache_p))
-		return PTR_ERR(cache_p);
+	if (!cache_p)
+		return -ENOMEM;
 	p = kmem_cache_alloc(cache_p, GFP_KERNEL);
-	if (IS_ERR(p)) {
+	if (!p) {
 		/* there is not too much that we can do here */
 		pr_err("Cannot allocate memory");
 		kmem_cache_destroy(cache_p);
-		return PTR_ERR(p);
+		return -ENOMEM;
 	}
 	/*
 	 * mempool_create(number,mempool_alloc_slab, mempool_free_slab, drbd_request_cache);

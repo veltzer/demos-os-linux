@@ -21,7 +21,7 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3)
 #include <math.h>	// for floor(3)
-#include <values.h>	// for MINDOUBLE, MAXDOUBLE
+#include <cfloat>	// for DBL_MIN, DBL_MAX
 
 /*
  * Statistics collecting object.
@@ -61,10 +61,10 @@ public:
 		maxbin=imean+ibinsize*double(binnum)/2.0;
 		bin_max=0;
 		bin_min=0;
-		max=MINDOUBLE;
-		min=MAXDOUBLE;
-		maxabs=MINDOUBLE;
-		minabs=MAXDOUBLE;
+		max=DBL_MIN;
+		min=DBL_MAX;
+		maxabs=DBL_MIN;
+		minabs=DBL_MAX;
 		ex=0;
 		ex2=0;
 		counter=0;

@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 			uint64_t u;
 			ssize_t s=read(efd, &u, sizeof(uint64_t));
 			if(s==-1) {
-				CHECK_ASSERT(errno!=-EAGAIN);
+				CHECK_ASSERT(errno==EAGAIN);
 			} else {
 				counter++;
 				sum+=u;

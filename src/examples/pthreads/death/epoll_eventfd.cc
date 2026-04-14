@@ -94,7 +94,7 @@ int main() {
 				// Join the thread to clean up resources
 				CHECK_ZERO_ERRNO(pthread_join(info->thread_id, NULL));
 				// Remove from epoll set and close eventfd
-				CHECK_NOT_ZERO(epoll_ctl(epoll_fd, EPOLL_CTL_DEL, info->event_fd, NULL));
+				CHECK_NOT_M1(epoll_ctl(epoll_fd, EPOLL_CTL_DEL, info->event_fd, NULL));
 				CHECK_NOT_M1(close(info->event_fd));
 				threads_alive--;
 				printf("Master: %d threads still running\n", threads_alive);

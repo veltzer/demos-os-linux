@@ -1,10 +1,17 @@
-personal_ws-1.1 en 1109 
+personal_ws-1.1 en 1122 
 APIs
 BroadcastClient
 CPUs
 DSOs
 DayOfWeek
+Dekker
+ICMP
 LockedCounter
+PIDs
+Preshing
+TSO
+UB
+Wordl
 a's
 aarch
 aarrr
@@ -109,6 +116,7 @@ burndown
 busses
 busybox
 callgrind
+cancelled
 canonicalization
 captcha
 catenating
@@ -179,6 +187,7 @@ cors
 cp
 cpack
 cpio
+cpp
 cpu
 cpus
 creational
@@ -247,6 +256,7 @@ dhcp
 dhruv
 dialout
 dimensionality
+disruptor
 distro
 distros
 distutils
@@ -390,6 +400,7 @@ goodfellow
 gperf
 gpio
 gpl
+gprof
 gpus
 graalvm
 gradle
@@ -688,6 +699,7 @@ orm
 os
 oss
 outputstream
+oversized
 owasp
 ozcode
 paas
@@ -852,6 +864,7 @@ sdlc
 seaborn
 sed
 selinux
+sem
 sendfile
 serializable
 serializers

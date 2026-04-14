@@ -17,6 +17,7 @@
  */
 
 #include <firstinclude.h>
+#include <stdint.h>	// for uintptr_t
 #include <stdlib.h>	// for EXIT_SUCCESS, exit(3), atoi(3)
 #include <stdio.h>	// for printf(3), fprintf(3), stderr
 #include <ucontext.h>	// for ucontext_t:type, REG_EIP
@@ -80,7 +81,7 @@ static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __att
 	TRACE("end");
 }
 
-static int jmp_abs;
+static uintptr_t jmp_abs;
 static void handler_jmp_abs(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
@@ -135,7 +136,7 @@ int main(int argc, char** argv) {
 	if(choice==2) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-		jmp_abs=(unsigned long)&&mylabel;
+		jmp_abs=(uintptr_t)&&mylabel;
 #pragma GCC diagnostic pop
 		signal_register_handler_sigaction(SIGSEGV, handler_jmp_abs, 0);
 		// cppcheck-suppress nullPointer

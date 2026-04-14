@@ -19,6 +19,7 @@
 
 #include <linux/module.h> /* for MODULE_* */
 #include <linux/printk.h> /* for pr_* */
+#include <linux/errno.h> /* for -EINVAL */
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Mark Veltzer");
@@ -27,7 +28,7 @@ MODULE_DESCRIPTION("module with error in the initialisation process");
 /* init/exit functions */
 static int __init mod_init(void)
 {
-	return -1;
+	return -EINVAL;
 }
 
 static void __exit mod_exit(void)

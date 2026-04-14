@@ -69,6 +69,6 @@ int main() {
 																	//	 (polymporphism)
 	for(int i=0; i < 3; i++)
 		delete objects[i];
-	delete objects;
+	delete[] objects;
 	return 0;
 }

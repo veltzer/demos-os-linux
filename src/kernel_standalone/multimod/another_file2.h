@@ -16,7 +16,7 @@
  * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <firstinclude.h>
+#pragma once
 
 void do_something_init(void);
 void do_something_exit(void);

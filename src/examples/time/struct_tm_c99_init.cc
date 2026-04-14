@@ -43,7 +43,7 @@ int main() {
 		.tm_yday=0,
 		.tm_isdst=0,
 		.tm_gmtoff=0,
-		.tm_zone=0,
+		.tm_zone=nullptr,
 	};
 	// this is illegal
 	// struct tm tempTm2 __attribute__((unused))={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

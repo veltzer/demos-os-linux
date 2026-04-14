@@ -32,7 +32,7 @@ int sizeof_rectangle(void) {
 rectangle* create_rectangle(const int width, const int height) {
 	rectangle* this=(rectangle*)malloc(sizeof(rectangle));
 	assert(this!=NULL);
-	construct_rectangle(this, height, width);
+	construct_rectangle(this, width, height);
 	return this;
 }
 

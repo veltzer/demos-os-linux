@@ -27,9 +27,9 @@ int main() {
 	// Define a timespec structure for sleeping
 	struct timespec ts;
 
-	// Set sleep time: 2 seconds and 500 million nanoseconds (2.5 seconds total)
+	// Set sleep time: 10 minutes
 	ts.tv_sec = 600; // 10 minutes
-	ts.tv_nsec = 0; // Nanoseconds (500 million = 0.5 seconds)
+	ts.tv_nsec = 0;
 
 	printf("About to sleep for 10 minutes...\n");
 

@@ -28,7 +28,7 @@
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_ASSERT()
 
 int main(void) {
-	socklen_t fromaddrlen;
+	socklen_t fromaddrlen = sizeof(struct sockaddr_in);
 	struct sockaddr_in fromaddr;
 	// Small fix by RazK: fromaddr initialization
 	bzero(&fromaddr, sizeof(fromaddr));

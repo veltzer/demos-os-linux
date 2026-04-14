@@ -74,5 +74,4 @@ int main() {
 		// lets die
 		return 0;
 	}
-	return EXIT_SUCCESS;
 }

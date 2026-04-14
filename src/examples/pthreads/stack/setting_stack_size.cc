@@ -22,6 +22,7 @@
 #include <pthread.h>	// for pthread_attr_t:struct, pthread_t:struct, pthread_attr_init(3), pthread_attr_setstacksize(3), pthread_create(3), pthread_attr_destroy(3), pthread_join(3)
 #include <unistd.h>	// for sleep(3)
 #include <strings.h>	// for bzero(3)
+#include <alloca.h>	// for alloca(3)
 #include <err_utils.h>	// for CHECK_ZERO_ERRNO(), CHECK_ZERO()
 
 /*
@@ -40,11 +41,9 @@
  */
 
 void ensure_space(unsigned int size) {
-	// two ways of making sure there is enough space on the stack...
-	int dummy;
-	bzero(&dummy-size/2, size/2);
-	// char buf[size];
-	// bzero(buf,size);
+	// prefault stack pages by allocating on the stack and touching them
+	char* buf = (char*)alloca(size);
+	bzero(buf, size);
 }
 
 void* worker(void* p) {

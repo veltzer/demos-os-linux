@@ -39,9 +39,9 @@ public:
 	}
 
 	T pop() {
-		unique_lock<mutex> lock(mutex);
+		unique_lock<mutex> lock(mut);
 		condition.wait(lock, [this]{ return !que.empty(); });
-		int result = que.front();
+		T result = que.front();
 		que.pop();
 		return result;
 	}
@@ -56,5 +56,20 @@ void producer(ThreadSafeQueue<int>& que, int id) {
 	}
 }
 
+void consumer(ThreadSafeQueue<int>& que, int id, int count) {
+	for(int i = 0; i < count; ++i) {
+		int value = que.pop();
+		cout << "Consumer " << id << " popped " << value << endl;
+	}
+}
+
 int main() {
+	ThreadSafeQueue<int> que;
+	thread p1(producer, ref(que), 1);
+	thread p2(producer, ref(que), 2);
+	thread c1(consumer, ref(que), 1, 10);
+	p1.join();
+	p2.join();
+	c1.join();
+	return EXIT_SUCCESS;
 }

@@ -125,7 +125,7 @@ MODULE_PARM_DESC(mystring, "A character string");
 static int param_init(void)
 {
 	pr_info("start");
-	pr_info("myshort is a short integer: %h", myshort);
+	pr_info("myshort is a short integer: %d", myshort);
 	pr_info("myint is an integer: %d", myint);
 	pr_info("mylong is a long integer: %ld", mylong);
 	pr_info("mystring is a string: %s", mystring);
@@ -139,7 +139,7 @@ static int param_init(void)
 static void param_exit(void)
 {
 	pr_info("start");
-	pr_info("myshort is a short integer: %h", myshort);
+	pr_info("myshort is a short integer: %d", myshort);
 	pr_info("myint is an integer: %d", myint);
 	pr_info("mylong is a long integer: %ld", mylong);
 	pr_info("mystring is a string: %s", mystring);

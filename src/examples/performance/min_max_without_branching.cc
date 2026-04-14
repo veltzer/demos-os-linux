@@ -44,7 +44,7 @@ int f_min_b(int a, int b) {
 	return b + ((a-b) & (a-b)>>31);
 }
 int f_max_b(int a, int b) {
-	return b + ((a-b) & (a-b)>>31);
+	return a - ((a-b) & (a-b)>>31);
 }
 
 // Using macro

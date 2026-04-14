@@ -68,8 +68,8 @@ int main() {
 	SignalHandler *mutateTimer=new SignalHandler(timerId, 5);
 	ACE_Reactor::instance()->register_handler(SIGINT, mutateTimer);
 	ACE_Reactor::instance()->register_handler(SIGTSTP, mutateTimer);
-	ACE_DEBUG((LM_INFO, "SIGINIT (^c) - Will increase timeout by a second\n"));
-	ACE_DEBUG((LM_INFO, "SIGSTOP (^z) - Will cancel the timer\n"));
+	ACE_DEBUG((LM_INFO, "SIGINT (^c) - Will increase timeout by a second\n"));
+	ACE_DEBUG((LM_INFO, "SIGTSTP (^z) - Will cancel the timer\n"));
 	ACE_Reactor::instance()->run_reactor_event_loop();
 	return EXIT_SUCCESS;
 }
