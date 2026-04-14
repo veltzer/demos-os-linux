@@ -103,7 +103,7 @@ int Message_Receiver::handle_input(ACE_HANDLE) {
 
 static void report_usage(int argc, char** argv) {
 	if (argc < 2) {
-		ACE_DEBUG((LM_ERROR, "%s: please use me with port\n", argv[1]));
+		ACE_DEBUG((LM_ERROR, "%s: please use me with port\n", argv[0]));
 		ACE_OS::exit(EXIT_FAILURE);
 	}
 }

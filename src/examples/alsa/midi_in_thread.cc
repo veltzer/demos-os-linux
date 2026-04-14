@@ -32,6 +32,7 @@
 #include <alsa/asoundlib.h>	// for alsa interface
 #include <unistd.h>	// for sleep(3)
 #include <stdlib.h>	// for EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h>	// for strerror(3)
 #include <pthread.h>	// for pthread_create(3)
 #include <err_utils.h>	// for CHECK_ZERO()
 
@@ -54,8 +55,8 @@ int main(int argc, char *argv[]) {
 	}
 	// type "man pthread_create" for more information about this function:
 	status=pthread_create(&midiinthread, NULL, midiinfunction, midiin);
-	if (status==-1) {
-		errormessage("Unable to create MIDI input thread.");
+	if (status!=0) {
+		errormessage("Unable to create MIDI input thread: %s", strerror(status));
 		exit(EXIT_FAILURE);
 	}
 	CHECK_ZERO(sleep(60));	// do nothing for a while; thread does all the work.

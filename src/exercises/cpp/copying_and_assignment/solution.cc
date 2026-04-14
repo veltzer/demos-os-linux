@@ -54,7 +54,7 @@ public:
 			delete[] m_data;
 	}
 
-	string operator=(const string& other)
+	string& operator=(const string& other)
 	{
 		if (this != &other) {
 			delete[] m_data;
@@ -66,7 +66,7 @@ public:
 		return *this;
 	}
 
-	string operator=(const char* other)
+	string& operator=(const char* other)
 	{
 		delete[] m_data;
 		if (other) {
@@ -88,7 +88,9 @@ public:
 		strncpy(new_data, m_data, this_len+1);
 		strncat(new_data, os.m_data, this_len + other_len + 1);
 
-		return string(new_data);
+		string result(new_data);
+		delete[] new_data;
+		return result;
 	}
 
 	void print_string()

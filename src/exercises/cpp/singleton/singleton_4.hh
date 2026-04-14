@@ -19,6 +19,7 @@
 #pragma once
 #include <firstinclude.h>
 #include <mutex>
+#include <atomic>
 using namespace std;
 
 class Singleton {
@@ -26,7 +27,7 @@ class Singleton {
 		Singleton();
 		Singleton(const Singleton&) = delete;
 		Singleton& operator=(const Singleton&) = delete;
-		static Singleton* instance;
+		static atomic<Singleton*> instance;
 		static mutex m;
 	public:
 		static Singleton& get_instance();

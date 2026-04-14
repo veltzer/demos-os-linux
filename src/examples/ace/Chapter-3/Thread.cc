@@ -49,6 +49,7 @@ static void* worker(void* arg) {
 int main(int argc, char** argv) {
 	if(argc<2) {
 		ACE_DEBUG((LM_DEBUG, "%s: usage: %s <number of threads>\n", argv[0], argv[0]));
+		return EXIT_FAILURE;
 	}
 	int n_threads=ACE_OS::atoi(argv[1]);
 	// Setup the random number generator

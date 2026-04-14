@@ -107,7 +107,7 @@ void showRecords(void) {
 }
 
 #ifndef FIXED_ADDRESS
-int main() {
+int main(int argc, char**) {
 	ACE_NEW_RETURN(g_allocator, ALLOCATOR(BACKING_STORE), -1);
 
 	ACE_DEBUG((LM_DEBUG, "Please Note if base address is not the same for every run\n"));

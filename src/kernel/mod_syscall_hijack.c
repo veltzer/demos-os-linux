@@ -212,14 +212,19 @@ static inline unsigned long align_address(unsigned long addr)
  * }
  */
 
+static unsigned long sys_call_table_addr;
+module_param(sys_call_table_addr, ulong, 0);
+MODULE_PARM_DESC(sys_call_table_addr,
+	"Address of sys_call_table (from /proc/kallsyms as root)");
+
 static unsigned long *get_sys_call_table(void)
 {
 	/*
-	 * the next address is taken from /proc/kallsyms
-	 * using "cat /proc/kallsyms | grep sys_call_table"
+	 * The sys_call_table address is kernel-build specific.
+	 * Pass it via the sys_call_table_addr module parameter, obtained
+	 * via: sudo cat /proc/kallsyms | grep sys_call_table
 	 */
-	unsigned long *ret = (unsigned long *)0xc0594150;
-	return ret;
+	return (unsigned long *)sys_call_table_addr;
 }
 
 static void *sys_call_adr;
@@ -234,9 +239,9 @@ static int map_sys_call_table(void)
 	unsigned long len = PAGE_SIZE;
 	/* const unsigned int num_pages=1; */
 	sys_call_adr = ioremap(start, len);
-	if (IS_ERR(sys_call_adr)) {
+	if (!sys_call_adr) {
 		pr_err("unable to ioremap");
-		return PTR_ERR(sys_call_adr);
+		return -ENOMEM;
 	}
 	sys_call_adr_precise = sys_call_adr+offset;
 	pr_debug("got precise %p", sys_call_adr_precise);

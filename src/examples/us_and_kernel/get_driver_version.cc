@@ -49,7 +49,7 @@ void get_driver_version(const char *filename) {
 int main() {
 	struct utsname buf;
 	CHECK_NOT_M1(uname(&buf));
-	printf("os verions is %s\n", buf.release);
+	printf("os version is %s\n", buf.release);
 	char filename[256];
 	snprintf(filename, 256, "/lib/modules/%s/kernel/drivers/ata/ahci.ko", buf.release);
 	printf("filename is %s\n", filename);

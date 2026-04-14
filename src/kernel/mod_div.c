@@ -123,11 +123,9 @@ static unsigned long long __udivdi3(unsigned long long divided, unsigned long lo
 
 static long long __divdi3(long long divided, long long divisor)
 {
-	unsigned int reminder;
-
 	pr_debug("divided is %lld", divided);
 	pr_debug("divisor is %lld", divisor);
-	return div_u64_rem(divided, divisor, &reminder);
+	return div64_s64(divided, divisor);
 }
 
 /* disregard the next section. It is documentation for myself since it took

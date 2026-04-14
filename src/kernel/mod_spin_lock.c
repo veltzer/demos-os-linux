@@ -75,8 +75,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		return 0;
 	case IOCTL_SPINLOCK_ALLOCATED:
 		lock_t = kmalloc(sizeof(spinlock_t), GFP_KERNEL);
-		if (IS_ERR(lock_t))
-			return PTR_ERR(lock_t);
+		if (!lock_t)
+			return -ENOMEM;
 		spin_lock_init(lock_t);
 		spin_lock(lock_t);
 		spin_unlock(lock_t);

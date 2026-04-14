@@ -83,7 +83,7 @@ void* worker(void* arg) {
 		myiovec.iov_base=(void*)pp;
 		int todo=bytes;
 		int ret;
-		while((ret=splice(mypipe[0], NULL, fd, NULL, todo, SPLICE_F_MOVE)>0)) {
+		while((ret=splice(mypipe[0], NULL, fd, NULL, todo, SPLICE_F_MOVE))>0) {
 			todo-=ret;
 		}
 		assert(ret==0);

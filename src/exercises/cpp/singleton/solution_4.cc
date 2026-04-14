@@ -21,21 +21,23 @@
 #include <cassert>
 #include <memory>
 
-Singleton* Singleton::instance=nullptr;
+atomic<Singleton*> Singleton::instance{nullptr};
 
 mutex Singleton::m;
 
 Singleton::Singleton() {}
 
 Singleton& Singleton::get_instance() {
-	if(instance==nullptr) {
-		m.lock();
-		if(instance==nullptr) {
-			instance=new Singleton();
+	Singleton* p = instance.load(memory_order_acquire);
+	if(p==nullptr) {
+		lock_guard<mutex> lock(m);
+		p = instance.load(memory_order_relaxed);
+		if(p==nullptr) {
+			p = new Singleton();
+			instance.store(p, memory_order_release);
 		}
-		m.unlock();
 	}
-	return *instance;
+	return *p;
 }
 
 int main() {

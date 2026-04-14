@@ -29,7 +29,7 @@
 
 int main(void) {
 	int on, got;
-	socklen_t rplyFromAddressLen;
+	socklen_t rplyFromAddressLen = sizeof(struct sockaddr_in);
 	struct sockaddr_in braddress, rplyFromAddress, myAddress;
 	char ibuffer[1000], obuffer[1000];
 	struct timeval timeout;

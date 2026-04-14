@@ -62,6 +62,7 @@ extern "C" int c_style_add(int a, int b) {
 
 	obj->a=0;
 	int return_value = a + b + obj->a;
+	delete obj;
 	return return_value;
 }
 

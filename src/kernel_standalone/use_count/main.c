@@ -66,6 +66,8 @@ static int open_zero(struct inode *inode, struct file *file)
 static ssize_t read_zero(struct file *file, char __user *buf, size_t count,
 		loff_t *ppos)
 {
+	if (clear_user(buf, count))
+		return -EFAULT;
 	return count;
 }
 

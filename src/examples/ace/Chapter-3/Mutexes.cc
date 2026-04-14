@@ -36,7 +36,7 @@ public:
 		ACE_DEBUG((LM_DEBUG, "(%t) Updating device %d\n", device_id));
 		ACE_OS::sleep(1);
 		mutex_.release();
-		// Let the other thread to aquire too
+		// Let the other thread to acquire too
 		ACE_OS::sleep(1);
 	}
 

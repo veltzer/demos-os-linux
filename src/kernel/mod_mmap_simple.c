@@ -255,7 +255,7 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 	order = get_order(size);
 	addr = __get_free_pages(GFP_KERNEL, order);
 	kaddr = (void *)addr;
-	phys = virt_to_phys(vaddr);
+	phys = virt_to_phys(kaddr);
 	pg_num = phys >> PAGE_SHIFT;
 	res = remap_pfn_range(
 		/* vma */

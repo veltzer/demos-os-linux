@@ -28,6 +28,10 @@ int main(void) {
 	printf("Give me a string to check: ");
 	CHECK_NOT_NULL(fgets(mystring, STRINGSIZE, stdin));
 	int len=strlen(mystring);
+	// strip trailing newline if present
+	if(len>0 && mystring[len-1]=='\n') {
+		mystring[--len]='\0';
+	}
 	printf("len is %d\n", len);
 	int palindrom=1;
 	int i;

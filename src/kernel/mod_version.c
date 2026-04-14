@@ -40,7 +40,7 @@ static int __init mod_init(void)
 #if KERNEL_VERSION(6, 11, 0) <= LINUX_VERSION_CODE
 	pr_info("version >= 6.11.0");
 #else
-	pr_info("version >= 6.11.0");
+	pr_info("version < 6.11.0");
 #endif
 	return 0;
 }

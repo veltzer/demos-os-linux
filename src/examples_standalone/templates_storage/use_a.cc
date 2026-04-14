@@ -25,6 +25,6 @@ int main() {
 	A<int> a;
 	a.setT(7);
 	// printf("a.t is %d\n",a.t);
-	printf("Hellol, World!\n");
+	printf("Hello, World!\n");
 	return EXIT_SUCCESS;
 }

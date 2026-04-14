@@ -37,11 +37,9 @@ public:
 		message = imessage;
 	}
 	virtual const char* operator()() {
-		cout << message << endl;
 		return message.c_str();
 	}
 	virtual const char* what() const throw(){
-		cout << message << endl;
 		return message.c_str();
 	}
 	virtual~MyException() throw(){

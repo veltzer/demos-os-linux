@@ -63,14 +63,15 @@ static ssize_t read_aaa(struct file *file, char __user *buf, size_t count,
 	}
 	return count;
 #ifdef ALTERNATE
-	ret = access_ok(buf, count);
+	static char kbuf[128] = {'a'};
 	size_t remaining;
 
+	ret = access_ok(buf, count);
 	remaining = count;
 	while (remaining) {
-		ssize_t current_transfer = min(remining, 128);
+		ssize_t current_transfer = min_t(size_t, remaining, 128);
 
-		ret = __copy_to_user(buf, mybuf, current_transfer);
+		ret = __copy_to_user(buf, kbuf, current_transfer);
 		if (ret)
 			return ret;
 		remaining -= current_transfer;

@@ -158,10 +158,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		pr_debug("nr_pages is %d", nr_pages);
 		/* alocate page structures... */
 		pages = kmalloc_array(nr_pages, sizeof(struct page *), GFP_KERNEL);
-		if (IS_ERR(pages)) {
-			pr_err("could not allocate page structs");
-			return PTR_ERR(pages);
-		}
+		if (!pages)
+			return -ENOMEM;
 		pr_debug("after pages allocation");
 		/* get user pages and fault them in */
 		mmap_write_lock(current->mm);
@@ -197,10 +195,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		ptr = vptr + offset;
 		size = b.size;
 		pr_debug("after vmap - vptr is %p", vptr);
-		/* free the pages */
-		kfree(pages);
-		pages = NULL;
-		pr_debug("after freeing the pages");
+		/* keep 'pages' alive; UNMAP needs it to release page references */
+		pr_debug("after vmap; pages array retained for UNMAP");
 		/* were dont! return with success */
 		pr_debug("success - on the way out");
 		return 0;
@@ -212,11 +208,13 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	case IOCTL_DEMO_UNMAP:
 		/* this function does NOT return an error code. Strange...:) */
 		vunmap(vptr);
+		pages_unmap();
+		kfree(pages);
+		pages = NULL;
 		vptr = NULL;
 		ptr = NULL;
 		size = 0;
 		nr_pages = 0;
-		pages_unmap();
 		return 0;
 
 	/*

@@ -104,7 +104,7 @@ int main() {
 		const int size=sizeof(inotify_event)+PATH_MAX+1;
 		// large buffer for testing purposes...
 		// const int size=100000;
-		char* buf[size];
+		char buf[size];
 		int res=read(fd, buf, size);
 		if(res==-1) {
 			int err=errno;

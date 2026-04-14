@@ -67,20 +67,16 @@ static int __init mod_init(void)
 	for (i = 0; i < 1000; i++) {
 		vptr = dma_alloc_coherent(NULL, size, &device_addr,
 				GFP_KERNEL | GFP_DMA);
-		if (IS_ERR(vptr)) {
-			pr_err("ERROR! could not allocate memory");
-			return PTR_ERR(vptr);
-		}
+		if (!vptr)
+			return -ENOMEM;
 		dma_free_coherent(NULL, size, vptr, device_addr);
 	}
 #endif /* DO_LOOP */
 #ifdef DO_ONE
 	vptr = dma_alloc_coherent(NULL, size, &device_addr,
 			GFP_KERNEL | GFP_DMA);
-	if (IS_ERR(vptr)) {
-		pr_err("ERROR! could not allocate memory");
-		return PTR_ERR(vptr);
-	}
+	if (!vptr)
+		return -ENOMEM;
 	pr_info("vptr is %p\n", vptr);
 	pr_info("size is %d\n", size);
 	pr_info("device_addr is %d\n", device_addr);
@@ -96,11 +92,8 @@ static int __init mod_init(void)
 		 * vptr = kmalloc(size,GFP_DMA);
 		 */
 		vptr = kmalloc(size, GFP_KERNEL);
-		if (IS_ERR(vptr)) {
-			pr_err("ERROR! could not allocate memory for size %d",
-				size);
+		if (!vptr)
 			stop = true;
-		}
 		pr_info("vptr is %p\n", vptr);
 		pr_info("size is %d\n", size);
 		/*

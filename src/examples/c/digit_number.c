@@ -22,6 +22,9 @@
 #include <err_utils.h>	// for CHECK_INT()
 
 int digit_num(long int l) {
+	if(l==0) {
+		return 1;
+	}
 	int digits;
 	if(l<0) {
 		digits=1;

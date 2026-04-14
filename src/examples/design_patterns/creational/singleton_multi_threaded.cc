@@ -20,19 +20,23 @@
 #include <cstdlib>
 #include <iostream>
 #include <mutex>
+#include <atomic>
 
 using namespace std;
 
 class Singleton {
 public:
 	static Singleton* getInstance() {
-		if (instance == nullptr) {
-			lock_guard<mutex> lock(mutex);
-			if (instance == nullptr) {
-				instance = new Singleton();
+		Singleton* p = instance.load(memory_order_acquire);
+		if (p == nullptr) {
+			lock_guard<mutex> lock(init_mutex);
+			p = instance.load(memory_order_relaxed);
+			if (p == nullptr) {
+				p = new Singleton();
+				instance.store(p, memory_order_release);
 			}
 		}
-		return instance;
+		return p;
 	}
 
 	void someOperation() {
@@ -50,10 +54,12 @@ private:
 	Singleton(const Singleton&) = delete;
 	Singleton& operator=(const Singleton&) = delete;
 
-	static Singleton* instance;
+	static atomic<Singleton*> instance;
+	static mutex init_mutex;
 };
 
-Singleton* Singleton::instance = nullptr;
+atomic<Singleton*> Singleton::instance{nullptr};
+mutex Singleton::init_mutex;
 
 int main() {
 	Singleton* instance1 = Singleton::getInstance();

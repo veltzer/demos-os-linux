@@ -53,18 +53,19 @@ static const struct net_device_ops my_netdev_ops = {
 	// ... other operations as needed
 };
 
+static struct net_device *my_netdev;
+
 static int __init my_netdev_init(void)
 {
-	struct net_device *netdev;
-
-	netdev = alloc_etherdev(0);
-	if (!netdev)
+	my_netdev = alloc_etherdev(0);
+	if (!my_netdev)
 		return -ENOMEM;
-	netdev->netdev_ops = &my_netdev_ops;
+	my_netdev->netdev_ops = &my_netdev_ops;
 	// Set up other necessary fields in netdev (e.g., name, MAC address, etc.)
 	// ...
-	if (register_netdev(netdev)) {
-		free_netdev(netdev);
+	if (register_netdev(my_netdev)) {
+		free_netdev(my_netdev);
+		my_netdev = NULL;
 		return -ENODEV;
 	}
 	return 0;
@@ -72,8 +73,11 @@ static int __init my_netdev_init(void)
 
 static void __exit my_netdev_exit(void)
 {
-	// Find and unregister the net_device
-	// ...
+	if (my_netdev) {
+		unregister_netdev(my_netdev);
+		free_netdev(my_netdev);
+		my_netdev = NULL;
+	}
 }
 
 module_init(my_netdev_init);

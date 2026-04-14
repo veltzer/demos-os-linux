@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
 	const char* host=argv[1];
 	const unsigned int port=atoi(argv[2]);
 	const unsigned int bufsize=atoi(argv[3]);
-	const unsigned int maxevents=atoi(argv[3]);
+	const unsigned int maxevents=atoi(argv[4]);
 
 	// open the socket
 	int sockfd=CHECK_NOT_M1(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));

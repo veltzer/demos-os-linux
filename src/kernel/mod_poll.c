@@ -53,8 +53,8 @@ static int kern_open(struct inode *inode, struct file *filp)
 
 	pr_info("start");
 	pd = kmalloc(sizeof(struct polldev), GFP_KERNEL);
-	if (IS_ERR(pd))
-		return PTR_ERR(pd);
+	if (!pd)
+		return -ENOMEM;
 	init_waitqueue_head(&pd->wq);
 	pd->state = 0;
 	filp->private_data = pd;

@@ -56,10 +56,10 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	 */
 	case IOCTL_DEMO_KMALLOC:
 		size = arg * PAGE_SIZE;
-		ptr = kmalloc(GFP_KERNEL, size);
-		if (IS_ERR(ptr)) {
+		ptr = kmalloc(size, GFP_KERNEL);
+		if (!ptr) {
 			pr_err("unable to allocate %lu", size);
-			return PTR_ERR(ptr);
+			return -ENOMEM;
 		}
 		addr = (unsigned long)ptr;
 		if (addr % PAGE_SIZE != 0) {

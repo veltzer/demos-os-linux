@@ -35,7 +35,7 @@ int main() {
 	printf("__BYTE_ORDER__ is [%s]\n", stringify(__BYTE_ORDER__));
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 	printf("your system is __ORDER_LITTLE_ENDIAN__\n");
-#elif __BYTE_ORDER__ == __ORDER__BIG_ENDIAN__
+#elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 	printf("your system is __ORDER_BIG_ENDIAN__\n");
 #else
 #error "This is a weird system you have"

@@ -56,7 +56,9 @@ inline void error_create(const char *message) {
 	p->symbols=backtrace_symbols(p->array, p->size);
 	strncpy(p->message, message, max_message_size-1);
 	last_error=p;
-	longjmp(env, (unsigned long)p);
+	// longjmp's second argument is int; pointers may truncate on 64-bit.
+	// Use a non-zero sentinel and retrieve the pointer from last_error.
+	longjmp(env, 1);
 }
 
 inline void error_print(FILE *f, error_data *p) {
@@ -86,16 +88,16 @@ inline void error_free_last() {
 // This function **must** be inlined as if setjmp returns then env will no longer
 // be valid. That's why we don't use it (there is no way to guarantee inlining).
 inline error_data *error_setjmp() {
-	unsigned long ret=setjmp(env);
+	int ret=setjmp(env);
 	if (!ret) {
 		return NULL;
 	} else {
-		return (error_data *)ret;
+		return last_error;
 	}
 }
 
 // here is another idea: why not use a macro instead:
-#define mac_error_setjmp() ((error_data *)(unsigned long)setjmp(env))
+#define mac_error_setjmp() (setjmp(env) ? last_error : NULL)
 
 /* this simulates a function which sometimes encounters errors */
 void func(int counter) {

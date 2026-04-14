@@ -31,7 +31,15 @@ int add(int a,int b) {
 // http://gcc.gnu.org/ml/gcc-help/2003-07/msg00232.html
 
 // this is a must since we need dynamic linking to be able to call printf and the like
+#if defined(__x86_64__)
+const char my_interp[] __attribute__((section(".interp"))) = "/lib64/ld-linux-x86-64.so.2";
+#elif defined(__aarch64__)
+const char my_interp[] __attribute__((section(".interp"))) = "/lib/ld-linux-aarch64.so.1";
+#elif defined(__i386__)
 const char my_interp[] __attribute__((section(".interp"))) = "/lib/ld-linux.so.2";
+#else
+#error "Unsupported architecture - add the correct ld.so path for your target"
+#endif
 
 // our main function should not return as it has noone to return to
 // (remember that libc is not there)
