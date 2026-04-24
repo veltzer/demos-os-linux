@@ -523,6 +523,12 @@ packages=[
     "cppcheck",
     "cpplint",
     "clang-tidy",
+    # X11 and OpenGL headers
+    "libx11-dev",
+    "libxrandr-dev",
+    "libgl-dev",
+    "libglu1-mesa-dev",
+    "libglx-dev",
 ]
 packages.extend(add)
 
