@@ -52,17 +52,17 @@ int main(void) {
 
 	proc_print_mmap_self_only();
 
-	printf("str1 is %p (%s)\n", str1, str1);
-	printf("str2 is %p (%s)\n", str2, str2);
-	printf("str3 is %p (%s)\n", str3, str3);
+	printf("str1 is %p (%s)\n", (const void *)str1, str1);
+	printf("str2 is %p (%s)\n", (const void *)str2, str2);
+	printf("str3 is %p (%s)\n", (const void *)str3, str3);
 
 	// this does NOT generate a compile error!
 	printf("doing assignment of one const char* to another\n");
 	str1=str3;
 
-	printf("str1 is %p (%s)\n", str1, str1);
-	printf("str2 is %p (%s)\n", str2, str2);
-	printf("str3 is %p (%s)\n", str3, str3);
+	printf("str1 is %p (%s)\n", (const void *)str1, str1);
+	printf("str2 is %p (%s)\n", (const void *)str2, str2);
+	printf("str3 is %p (%s)\n", (const void *)str3, str3);
 
 	// next line will cause the following compiled time error:
 	// --- char_pointer.c:15: error: assignment of read-only location ‘*(str1 + 2u)’
@@ -82,8 +82,8 @@ int main(void) {
 	proc_print_mmap_self_only();
 	sprintf(p, "new content ovriding old");
 
-	printf("str1 is %p (%s)\n", str1, str1);
-	printf("str2 is %p (%s)\n", str2, str2);
-	printf("str3 is %p (%s)\n", str3, str3);
+	printf("str1 is %p (%s)\n", (const void *)str1, str1);
+	printf("str2 is %p (%s)\n", (const void *)str2, str2);
+	printf("str3 is %p (%s)\n", (const void *)str3, str3);
 	return EXIT_SUCCESS;
 }
