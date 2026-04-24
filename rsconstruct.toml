@@ -48,6 +48,8 @@ system = [
 	"libffi-dev",
 	"libpopt-dev",
 	"libxtables-dev",
+	"libdmalloc-dev",
+	"electric-fence",
 	"binutils-dev",
 	"systemtap-sdt-dev",
 	# build helpers used by per-example Makefiles
