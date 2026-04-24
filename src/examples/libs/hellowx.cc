@@ -17,7 +17,7 @@
  */
 
 #include <firstinclude.h>
-#ifdef __clang__
+#if defined(__clang__) && __clang_major__ >= 19
 #pragma GCC diagnostic ignored "-Wcast-function-type-mismatch"
 #endif
 #include <wx/wx.h>
