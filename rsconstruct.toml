@@ -1,10 +1,55 @@
 [dependencies]
 system = [
+	# X11 / OpenGL
 	"libx11-dev",
 	"libxrandr-dev",
 	"libgl-dev",
 	"libglu1-mesa-dev",
 	"libglx-dev",
+	# GUI toolkits used by examples
+	"libgtk2.0-dev",
+	"libgtkmm-2.4-dev",
+	"libsigc++-2.0-dev",
+	"libwxgtk3.2-dev",
+	"qt6-base-dev",
+	"qtbase5-dev",
+	"libsdl1.2-dev",
+	"libwayland-dev",
+	# networking / system libs
+	"libace-dev",
+	"libevent-dev",
+	"libnetfilter-queue-dev",
+	"libpcap-dev",
+	# databases
+	"libmysqlclient-dev",
+	"libmysql++-dev",
+	"libpq-dev",
+	# logging / misc
+	"liblog4cpp5-dev",
+	"libdaemon-dev",
+	"libiberty-dev",
+	"libdialog-dev",
+	# system-level
+	"libncurses-dev",
+	"libasound2-dev",
+	"libcap-dev",
+	"liburcu-dev",
+	"libunwind-dev",
+	"libdw-dev",
+	"libelf-dev",
+	"libsystemd-dev",
+	"libcpufreq-dev",
+	"libboost-all-dev",
+	"libpapi-dev",
+	"liburing-dev",
+	"libaspell-dev",
+	"libacl1-dev",
+	"libattr1-dev",
+	"libffi-dev",
+	"libpopt-dev",
+	"libxtables-dev",
+	"binutils-dev",
+	"systemtap-sdt-dev",
 ]
 
 [vars]
