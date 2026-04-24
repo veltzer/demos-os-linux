@@ -57,7 +57,7 @@ unsigned int round_it(unsigned int size) {
 void mguess_allocated(unsigned int size) {
 	unsigned int real=round_it(size);
 	if(debug) {
-		printf("real is %d,diff is %d, p is %p\n", real, real-size, p);
+		printf("real is %d,diff is %d, p is %p\n", real, real-size, (void*)p);
 	}
 	p+=real;
 }

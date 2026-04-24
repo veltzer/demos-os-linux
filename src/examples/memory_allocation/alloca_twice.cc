@@ -35,7 +35,7 @@ int main() {
 	for(int i=0; i<10; i++) {
 		char* p=(char*)alloca(10);
 		bzero(p, 10);
-		printf("p1 is %p\n", p);
+		printf("p1 is %p\n", (void*)p);
 	}
 	return EXIT_SUCCESS;
 }

@@ -31,8 +31,8 @@ int main(void) {
 	int var_stack=5;
 	const char* buf_stack="this is a buffer";
 	printf("var_stack is %p\n", (void*)&var_stack);
-	printf("buf_stack is %p\n", buf_stack);
+	printf("buf_stack is %p\n", (const void*)buf_stack);
 	printf("var_data is %p\n", (void*)&var_data);
-	printf("buf_data is %p\n", buf_data);
+	printf("buf_data is %p\n", (const void*)buf_data);
 	return EXIT_SUCCESS;
 }

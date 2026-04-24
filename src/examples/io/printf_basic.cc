@@ -30,7 +30,7 @@ int main() {
 	char* cp=(char*)i;
 
 	printf("void* printed as '%%p' is %p\n", p);
-	printf("char* (and any other pointer) printed as '%%p' is %p\n", cp);
+	printf("char* (and any other pointer) printed as '%%p' is %p\n", (void*)cp);
 	printf("'%%lx' is %lx\n", i);
 	printf("'%%lX' is %lX\n", i);
 	printf("'%%#lx' is %#lx\n", i);

@@ -39,7 +39,7 @@ int main() {
 	// CHECK_NOT_M1(mlock(p,128*1024));
 	int i=0;
 	while(true) {
-		printf("i is %i, p+i is %p\n", i, p+i);
+		printf("i is %i, p+i is %p\n", i, (void*)(p+i));
 		p[i]=0;
 		i+=1;
 	}

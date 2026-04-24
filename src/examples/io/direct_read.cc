@@ -85,9 +85,9 @@ int main(int argc, char** argv) {
 	}
 	bzero(p, size);
 	if(((unsigned long)p)%block_size!=0) {
-		printf("p (%p) is not a multiple of block_size (%ld) !!!...\n", p, block_size);
+		printf("p (%p) is not a multiple of block_size (%ld) !!!...\n", (void*)p, block_size);
 	} else {
-		printf("p (%p) is a multiple of block_size (%ld)...\n", p, block_size);
+		printf("p (%p) is a multiple of block_size (%ld)...\n", (void*)p, block_size);
 	}
 	CHECK_INT(read(fd, p, size), size);
 	CHECK_NOT_M1(close(fd));
