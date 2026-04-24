@@ -1,3 +1,12 @@
+[dependencies]
+system = [
+	"libx11-dev",
+	"libxrandr-dev",
+	"libgl-dev",
+	"libglu1-mesa-dev",
+	"libglx-dev",
+]
+
 [vars]
 kernel_excludes = [
   "/kernel/",
