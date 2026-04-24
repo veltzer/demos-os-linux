@@ -50,6 +50,13 @@ system = [
 	"libxtables-dev",
 	"binutils-dev",
 	"systemtap-sdt-dev",
+	# build helpers used by per-example Makefiles
+	"uncrustify",
+	"indent",
+	"valgrind",
+]
+pip = [
+	"pymakehelper",
 ]
 
 [vars]
