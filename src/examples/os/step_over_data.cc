@@ -43,7 +43,7 @@ sighandler_t old_handler;
  */
 void segv_handler(int sig) {
 	// printf("in segv handler\n");
-	printf("in segv handler: ptr=%p, offset is %ld\n", ptr, long(ptr)%page_size);
+	printf("in segv handler: ptr=%p, offset is %ld\n", (void*)ptr, long(ptr)%page_size);
 	// call the old handler...
 	old_handler(sig);
 }

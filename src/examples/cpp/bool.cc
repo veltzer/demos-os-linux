@@ -75,7 +75,7 @@ int main() {
 	}
 	char* ptrue=(char*)true;
 	char* pfalse=(char*)false;
-	printf("true cast to char* is %p\n", ptrue);
-	printf("false cast to char* is %p\n", pfalse);
+	printf("true cast to char* is %p\n", (void*)ptrue);
+	printf("false cast to char* is %p\n", (void*)pfalse);
 	return EXIT_SUCCESS;
 }

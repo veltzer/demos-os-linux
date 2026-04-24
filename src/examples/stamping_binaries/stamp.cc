@@ -76,7 +76,7 @@ int main(int, char** argv) {
 	printf("date is %s\n", __DATE__);
 	printf("time is %s\n", __TIME__);
 	printf("id_file is %s\n", id_file);
-	printf("buff is %p\n", buff);
+	printf("buff is %p\n", (void*)buff);
 	printf("address of id_file is %p\n", (void*)&id_file);
 	struct tm tm;
 	CHECK_NOT_NULL(strptime(__DATE__ " " __TIME__, "%b %d %Y %H:%M:%S", &tm));
