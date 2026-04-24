@@ -17,6 +17,7 @@ unassignedVariable
 duplicateExpression
 constParameterPointer
 unusedStructMember
+invalidPrintfArgType_s
 invalidPrintfArgType_sint
 uninitStructMember
 unusedLabel
