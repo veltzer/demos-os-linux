@@ -50,6 +50,7 @@ system = [
 	"libxtables-dev",
 	"libdmalloc-dev",
 	"electric-fence",
+	"libcds-dev",
 	"binutils-dev",
 	"systemtap-sdt-dev",
 	# build helpers used by per-example Makefiles
