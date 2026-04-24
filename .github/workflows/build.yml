@@ -34,6 +34,7 @@ jobs:
         GH_TOKEN: ${{ github.token }}
     - name: install
       run: |
+        sudo apt-get update
         rsconstruct tools install-deps --yes
         rsconstruct tools install --yes
     - name: build
