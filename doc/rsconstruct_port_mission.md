@@ -116,12 +116,12 @@ All convenience targets, none of which rsconstruct should grow. Move to
 `pylint` is redundant unless we keep it for the stricter style checks.
 Decision: drop, unless someone asks for it back.
 
-### 9. Shell-script syntax check
-`$(ALL_STAMP)` rule runs `shellcheck --severity=error --shell=bash` against
-every `*.sh` under `src/`. Rsconstruct has `processor.shellcheck` already
-configured for `["src", "misc", "scripts"]` — verify the flags match
-(`--severity=error`, `--external-sources`, `--source-path="$HOME"`) and remove
-this Makefile rule.
+### 9. Shell-script syntax check — DONE
+~~`$(ALL_STAMP)` rule runs `shellcheck --severity=error --shell=bash` against
+every `*.sh` under `src/`.~~ Ported: `processor.shellcheck` now passes
+`["--severity=error", "--shell=bash"]` and the Makefile rule plus
+`DO_CHECK_SYNTAX` toggle have been deleted. `--external-sources` /
+`--source-path` were dropped — no scripts use `source`/`.` directives.
 
 ### 10. CI-aware behavior
 The Makefile flips `DO_STP=0` / `DO_CHP=0` when `GITHUB_WORKFLOW` is set. In an
