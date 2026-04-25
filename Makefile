@@ -21,8 +21,6 @@ DO_MKDBG?=0
 DO_PYLINT:=1
 # do you want to depend on the wrapper script?
 DO_DEP_WRAPPER:=1
-# do you want to check bash syntax?
-DO_CHECK_SYNTAX:=1
 # do you want to check all?
 DO_CHECK_ALL:=1
 # do you want to run mdl on md files?
@@ -169,9 +167,6 @@ CC_GCC_OBJ:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_OO),$(basename $(CC_SRC))
 C_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(C_SRC))))
 CC_GCC_EXE:=$(addprefix out/gcc/,$(addsuffix .$(SUFFIX_BIN),$(basename $(CC_SRC))))
 
-ALL_SH:=$(shell find src -type f -and -name "*.sh" 2>/dev/null)
-ALL_STAMP:=$(addprefix out/, $(addsuffix .stamp, $(ALL_SH)))
-
 ifeq ($(DO_GCC),1)
 ALL:=$(ALL) $(C_GCC_EXE) $(CC_GCC_EXE)
 CLEAN:=$(CLEAN) $(C_GCC_EXE) $(CC_GCC_EXE) $(C_GCC_OBJ) $(CC_GCC_OBJ) $(C_GCC_DIS) $(CC_GCC_DIS) $(C_GCC_PRE) $(CC_GCC_PRE)
@@ -212,10 +207,6 @@ endif # DO_CHP
 ifeq ($(DO_PYLINT),1)
 ALL:=$(ALL) out/pylint.stamp
 endif # DO_PYLINT
-
-ifeq ($(DO_CHECK_SYNTAX),1)
-ALL:=$(ALL) $(ALL_STAMP)
-endif # DO_CHECK_SYNTAX
 
 ifeq ($(DO_CHECK_ALL),1)
 ALL:=$(ALL) out/check_all.stamp
@@ -335,7 +326,6 @@ debug:
 	$(info ALL_US_CC is $(ALL_US_CC))
 	$(info ALL_US is $(ALL_US))
 	$(info ALL_PY is $(ALL_PY))
-	$(info ALL_SH is $(ALL_SH))
 	$(info MD_SRC is $(MD_SRC))
 	$(info MD_BAS is $(MD_BAS))
 	$(info MD_ASPELL is $(MD_ASPELL))
@@ -695,11 +685,6 @@ $(MOD_STP): %.ko.stamp: %.c
 	$(info doing [$@] from [$<])
 	$(Q)sed "s/MODNAME/$(notdir $(basename $<))/g" src/kernel/Makefile.tmpl > src/kernel/Makefile
 	$(Q)pymakehelper only_print_on_error make -C src/kernel V=$(V) W=$(W) modules
-	$(Q)pymakehelper touch_mkdir $@
-# shell checking rules
-$(ALL_STAMP): out/%.stamp: % .shellcheckrc
-	$(info doing [$@] from [$<])
-	$(Q)shellcheck --severity=error --shell=bash --external-sources --source-path="$${HOME}" $<
 	$(Q)pymakehelper touch_mkdir $@
 
 # rules about makefiles

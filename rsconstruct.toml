@@ -237,3 +237,4 @@ src_dirs = ["config", "script"]
 
 [processor.shellcheck]
 src_dirs = [ "src", "misc", "scripts"]
+args = ["--severity=error", "--shell=bash"]
