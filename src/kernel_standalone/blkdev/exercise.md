@@ -1,19 +1,19 @@
-# Exercise: Building a Linux Kernel Module for a Memory-Based Block Device
+# Exercise: Building a `Linux` Kernel Module for a Memory-Based Block Device
 
-In this exercise, you'll create a simple Linux kernel module that implements a block device using system memory. This type of device is often called a RAM disk.
+In this exercise, you'll create a simple `Linux` kernel module that implements a block device using system memory. This type of device is often called a `RAM` disk.
 
 ## Objectives
 
 * Create a kernel module that registers a block device
 * Implement read and write operations using memory as storage
-* Handle basic I/O requests
-* Learn about Linux kernel module development and block device drivers
+* Handle basic `I/O` requests
+* Learn about `Linux` kernel module development and block device drivers
 
 ## Prerequisites
 
-* A Linux development environment
+* A `Linux` development environment
 * Basic knowledge of C programming
-* Familiarity with Linux kernel concepts
+* Familiarity with `Linux` kernel concepts
 
 ## Steps
 
@@ -166,7 +166,7 @@ MODULE_AUTHOR("Your Name");
 MODULE_DESCRIPTION("A simple memory-based block device");
 ```
 
-### 3. Create a Makefile
+### 3. Create a `Makefile`
 
 Create a `Makefile` in the same directory with the following content:
 
@@ -219,4 +219,4 @@ sudo rmmod memory_block
 
 ## Conclusion
 
-This exercise introduces you to creating a simple block device driver as a Linux kernel module. It demonstrates key concepts such as registering a block device, handling I/O requests, and managing memory for storage. Remember that this is a basic implementation and lacks many features of a production-ready driver, such as proper error handling and optimizations.
+This exercise introduces you to creating a simple block device driver as a `Linux` kernel module. It demonstrates key concepts such as registering a block device, handling `I/O` requests, and managing memory for storage. Remember that this is a basic implementation and lacks many features of a production-ready driver, such as proper error handling and optimizations.

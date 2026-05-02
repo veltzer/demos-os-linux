@@ -12,7 +12,7 @@ Write a class called `Resource` that wraps the acquisition and release of a syst
 
 * The constructor should attempt to acquire the resource. If unsuccessful, it should throw an exception describing the failure that includes the system error code.
 
-* The class should implement RAII by acquiring in its constructor and releasing in its destructor.
+* The class should implement `RAII` by acquiring in its constructor and releasing in its destructor.
 
 * If exceptions are possible when using the resource, carefully consider if those functions need additional try/catch blocks.
 

@@ -117,7 +117,7 @@ _mm_prefetch(&B[k * n + j + 8], _MM_HINT_T0);
 ### Parameter Tuning
 - Matrix size affects overall performance
 - Block size affects cache efficiency
-- Can be tuned for specific CPU architectures
+- Can be tuned for specific `CPU` architectures
 
 ## Compilation
 
@@ -126,7 +126,7 @@ gcc -mavx -march=native -O3 matrix_mult.c -o matrix_mult -lm
 ```
 
 - `-mavx`: Enable AVX instructions
-- `-march=native`: Optimize for local CPU
+- `-march=native`: Optimize for local `CPU`
 - `-O3`: Maximum optimization level
 
 ## Results

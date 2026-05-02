@@ -1,0 +1,6 @@
+bash
+csh
+ksh
+tcsh
+sh
+Zsh

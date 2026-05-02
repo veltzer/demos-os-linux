@@ -1,0 +1,6 @@
+Agile
+Clean
+Lean
+Monolith
+Saga
+Scrum

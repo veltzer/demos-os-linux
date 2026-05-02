@@ -1,0 +1,124 @@
+Ansible
+Argo CD
+Azure DevOps
+CircleCI
+Codefresh
+DataDog
+Docker
+Docker Desktop
+ELK Stack
+Fluentd
+GitHub Actions
+GitLab CI
+Grafana
+Istio
+Jaeger
+Jenkins
+Kibana
+Kubernetes
+Kustomize
+Linkerd
+Logstash
+Logz.io
+Minikube
+Nexus
+OpenShift
+OpenTelemetry
+Podman Compose
+Prometheus
+StepAction
+TaskRun
+TeamCity
+Terraform
+Travis CI
+Zipkin
+ActiveGate
+Ansible Galaxy
+Argo Rollouts
+ArgoCD
+Auto DevOps
+CNCF
+Chaos Mesh
+Chaos Monkey
+Cilium Service Mesh
+ConfigMaps
+Cosign
+Davis AI
+Dependabot
+DevSecOps
+Docker Compose
+DynaKube
+Dynatrace
+Flagger
+Flux
+GitHub Marketplace
+Grafana Loki
+JMX
+JSON6902
+Kustomizations
+Kyverno
+Litmus Chaos
+MSBuild
+MetricsQL
+OPA
+OPA Gatekeeper
+OneAgent
+Operator SDK
+PagerDuty
+PipelineRun
+PipelineRuns
+SLS
+SLSA
+Salt Cloud
+Salt SSH
+SaltStack
+Sealed Secrets
+Smartscape
+SonarQube
+TCO
+Tekton
+Tekton Chains
+Tekton Hub
+Tekton Triggers
+Telegraf
+Test Kitchen
+Testcontainers
+Trivy
+VMAlert
+VictoriaMetrics
+Zabbix
+k6
+Alertmanager
+Argo Workflows
+Berkshelf
+Buildah
+Buildkit
+Buildkite
+Chef Habitat
+Chef Infra
+Clair
+CoreDNS
+Crossplane
+External Secrets Operator
+Falco
+Fluent Bit
+Flux CD
+Flux v2
+HelmChart
+HelmRelease
+HelmRepository
+Kaniko
+Karpenter
+Knative
+Kubeflow Pipelines
+Kustomization
+Notary v2
+Operator Lifecycle Manager
+Rekor
+Skopeo
+StatsD
+Wolfi
+Codecov
+Datadog Agent
+Copilot Workspace
+Claude Code

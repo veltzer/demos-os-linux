@@ -1,15 +1,15 @@
-# Exercise: Building an ARM64 System from Scratch on Ubuntu x86_64
+# Exercise: Building an ARM64 System from Scratch on `Ubuntu` x86_64
 
-This exercise walks through building a complete minimal ARM64 Linux system from source using BusyBox — no pre-built distribution, no debootstrap.
+This exercise walks through building a complete minimal ARM64 `Linux` system from source using `BusyBox` — no pre-built distribution, no debootstrap.
 
 ---
 
 ## Prerequisites
 
-- Ubuntu 20.04+ x86_64 host system
+- `Ubuntu` 20.04+ x86_64 host system
 - At least 10GB free disk space
 - Internet connection
-- sudo privileges
+- `sudo` privileges
 
 ---
 
@@ -18,8 +18,8 @@ This exercise walks through building a complete minimal ARM64 Linux system from 
 We will build:
 
 1. **Cross-compilation toolchain** — compiles ARM64 binaries on x86_64
-2. **Linux kernel** — the ARM64 kernel image
-3. **BusyBox** — provides all userspace utilities in a single binary
+2. **`Linux` kernel** — the ARM64 kernel image
+3. **`BusyBox`** — provides all userspace utilities in a single binary
 4. **Root filesystem** — manually constructed directory structure
 5. **Init system** — simple shell scripts to boot the system
 
@@ -65,7 +65,7 @@ mkdir -p rootfs kernel busybox
 
 ---
 
-## Step 3: Build the Linux Kernel
+## Step 3: Build the `Linux` Kernel
 
 ### 3.1 Download Kernel Source
 
@@ -113,9 +113,9 @@ The kernel image will be at `arch/arm64/boot/Image`.
 
 ---
 
-## Step 4: Build BusyBox
+## Step 4: Build `BusyBox`
 
-### 4.1 Download BusyBox
+### 4.1 Download `BusyBox`
 
 ```bash
 cd ~/arm64-scratch/busybox
@@ -123,7 +123,7 @@ git clone --depth 1 --branch 1_36_stable \
     https://git.busybox.net/busybox .
 ```
 
-### 4.2 Configure BusyBox
+### 4.2 Configure `BusyBox`
 
 ```bash
 export ARCH=arm64
@@ -139,19 +139,19 @@ make defconfig
 # make menuconfig
 ```
 
-### 4.3 Build BusyBox
+### 4.3 Build `BusyBox`
 
 ```bash
 make -j$(nproc)
 ```
 
-### 4.4 Install BusyBox to Rootfs
+### 4.4 Install `BusyBox` to Rootfs
 
 ```bash
 make CONFIG_PREFIX=${HOME}/arm64-scratch/rootfs install
 ```
 
-This creates the basic directory structure with symlinks to BusyBox.
+This creates the basic directory structure with symlinks to `BusyBox`.
 
 ---
 
@@ -173,7 +173,7 @@ sudo mknod -m 666 dev/tty c 5 0
 sudo mknod -m 444 dev/urandom c 1 9
 ```
 
-### 5.2 Create /etc/passwd
+### 5.2 Create `/etc/passwd`
 
 ```bash
 cat > etc/passwd << 'EOF'
@@ -196,7 +196,7 @@ nobody:x:65534:
 EOF
 ```
 
-### 5.4 Create /etc/shadow (optional, for password)
+### 5.4 Create `/etc/shadow` (optional, for password)
 
 ```bash
 # Password is "root" - generated with: openssl passwd -1 root
@@ -206,7 +206,7 @@ EOF
 chmod 600 etc/shadow
 ```
 
-### 5.5 Create /etc/fstab
+### 5.5 Create `/etc/fstab`
 
 ```bash
 cat > etc/fstab << 'EOF'
@@ -225,7 +225,7 @@ EOF
 echo "arm64-busybox" > etc/hostname
 ```
 
-### 5.7 Create /etc/hosts
+### 5.7 Create `/etc/hosts`
 
 ```bash
 cat > etc/hosts << 'EOF'
@@ -340,7 +340,7 @@ chmod +x init
 
 ## Step 6: Create an Initramfs (Option A - Recommended for Testing)
 
-The initramfs is a compressed cpio archive loaded into RAM at boot.
+The `initramfs` is a compressed cpio archive loaded into `RAM` at boot.
 
 ```bash
 cd ~/arm64-scratch/rootfs
@@ -354,7 +354,7 @@ ls -lh ../initramfs.cpio.gz
 
 ---
 
-## Step 7: Boot with QEMU Using Initramfs
+## Step 7: Boot with `QEMU` Using Initramfs
 
 ```bash
 cd ~/arm64-scratch
@@ -369,15 +369,15 @@ qemu-system-aarch64 \
     -nographic
 ```
 
-You should see the kernel boot and drop into a BusyBox shell!
+You should see the kernel boot and drop into a `BusyBox` shell!
 
-Exit QEMU with: `Ctrl+A` then `X`
+Exit `QEMU` with: `Ctrl+A` then `X`
 
 ---
 
 ## Step 8: Create a Persistent Disk Image (Option B)
 
-For a system with persistent storage instead of initramfs:
+For a system with persistent storage instead of `initramfs`:
 
 ### 8.1 Create and Format the Disk Image
 
@@ -452,7 +452,7 @@ ping -c 3 8.8.8.8
 
 ### 9.3 Create a Network Init Script
 
-Add to the rootfs before creating initramfs:
+Add to the rootfs before creating `initramfs`:
 
 ```bash
 cat > ~/arm64-scratch/rootfs/etc/init.d/network << 'EOF'
@@ -550,18 +550,18 @@ chmod +x ~/arm64-scratch/rootfs/usr/bin/sysinfo
 
 - Ensure `/init` or `/sbin/init` exists and is executable
 - Check the `rdinit=` or `init=` kernel parameter
-- Verify BusyBox was compiled with `init` applet enabled
+- Verify `BusyBox` was compiled with `init` applet enabled
 
-### "sh: can't access tty"
+### "`sh`: can't access tty"
 
 - Add `ttyAMA0::respawn:-/bin/sh` to `/etc/inittab`
 - Ensure console device nodes exist
 
-### BusyBox: "not found" or Exec Format Error
+### `BusyBox`: "not found" or Exec Format Error
 
-- Verify you built BusyBox with `CONFIG_STATIC=y`
+- Verify you built `BusyBox` with `CONFIG_STATIC=y`
 - Check you used the correct cross-compiler
-- Verify with: `file rootfs/bin/busybox` — should show "ARM aarch64"
+- Verify with: `file rootfs/bin/busybox` — should show "`ARM` aarch64"
 
 ### Kernel Boots but No Shell
 
@@ -653,19 +653,19 @@ echo "  -append 'console=ttyAMA0' -nographic"
 
 | Component | Source | Output |
 |-----------|--------|--------|
-| Toolchain | apt packages | `aarch64-linux-gnu-gcc` |
+| Toolchain | `apt` packages | `aarch64-linux-gnu-gcc` |
 | Kernel | kernel.org | `arch/arm64/boot/Image` |
-| Userspace | BusyBox | Single static binary |
+| Userspace | `BusyBox` | Single static binary |
 | Rootfs | Hand-crafted | Directory tree |
 | Boot image | cpio + gzip | `initramfs.cpio.gz` |
 
-Total system size: ~10-15MB (kernel + initramfs)
+Total system size: ~10-15MB (kernel + `initramfs`)
 
 ---
 
 ## Next Steps
 
-- Add kernel modules to the initramfs
+- Add kernel modules to the `initramfs`
 - Build a real init system (e.g., OpenRC, runit)
 - Add a C library (musl) and compile custom programs
 - Create an SD card image for real hardware

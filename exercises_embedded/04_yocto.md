@@ -1,10 +1,10 @@
-# Exercise: Building an ARM64 System with the Yocto Project
+# Exercise: Building an ARM64 System with the `Yocto` Project
 
 ## Introduction
 
-In previous exercises, we built ARM64 Linux systems manually with BusyBox and automatically with Buildroot. Now we'll explore the **Yocto Project** — the industry-standard build system for production embedded Linux.
+In previous exercises, we built ARM64 `Linux` systems manually with `BusyBox` and automatically with `Buildroot`. Now we'll explore the **`Yocto` Project** — the industry-standard build system for production embedded `Linux`.
 
-Yocto is more complex than Buildroot, but offers unparalleled flexibility, scalability, and is the choice of major companies (Intel, AMD, NXP, TI, Automotive Grade Linux, etc.) for commercial embedded products.
+`Yocto` is more complex than `Buildroot`, but offers unparalleled flexibility, scalability, and is the choice of major companies (Intel, AMD, NXP, TI, Automotive Grade `Linux`, etc.) for commercial embedded products.
 
 ---
 
@@ -12,24 +12,24 @@ Yocto is more complex than Buildroot, but offers unparalleled flexibility, scala
 
 By the end of this exercise, you will be able to:
 
-1. Understand Yocto Project architecture and terminology
-2. Set up a Yocto build environment
-3. Build a minimal ARM64 image for QEMU
-4. Navigate and understand layers, recipes, and BitBake
+1. Understand `Yocto` Project architecture and terminology
+2. Set up a `Yocto` build environment
+3. Build a minimal ARM64 image for `QEMU`
+4. Navigate and understand layers, recipes, and `BitBake`
 5. Customize images with additional packages
 6. Create custom layers and recipes
 7. Debug common build issues
 
 ---
 
-## What is the Yocto Project?
+## What is the `Yocto` Project?
 
-The Yocto Project is an **open-source collaboration project** that provides:
+The `Yocto` Project is an **open-source collaboration project** that provides:
 
-- **BitBake** — The task execution engine (like make, but for distributions)
-- **OpenEmbedded-Core (OE-Core)** — Core metadata (recipes, classes)
-- **Poky** — Reference distribution combining BitBake + OE-Core
-- **Extensive BSP ecosystem** — Board Support Packages for hundreds of boards
+- **`BitBake`** — The task execution engine (like make, but for distributions)
+- **`OpenEmbedded`-Core (OE-Core)** — Core metadata (recipes, classes)
+- **Poky** — Reference distribution combining `BitBake` + OE-Core
+- **Extensive `BSP` ecosystem** — Board Support Packages for hundreds of boards
 
 ### Key Characteristics
 
@@ -40,18 +40,18 @@ The Yocto Project is an **open-source collaboration project** that provides:
 | **Highly configurable** | Override anything at any level |
 | **Reproducible** | Shared State cache enables binary reproducibility |
 | **Scalable** | Used for tiny IoT devices to automotive systems |
-| **Industry standard** | Backed by Linux Foundation, used by major vendors |
+| **Industry standard** | Backed by `Linux` Foundation, used by major vendors |
 
 ---
 
-## Yocto vs. Buildroot vs. Manual
+## `Yocto` vs. `Buildroot` vs. Manual
 
-| Aspect | Manual | Buildroot | Yocto |
+| Aspect | Manual | `Buildroot` | `Yocto` |
 |--------|--------|-----------|-------|
 | Learning curve | Medium | Low | High |
 | Setup time | Hours | Minutes | Hour+ |
 | Build time | Minutes | 30-60 min | 2-4 hours |
-| Packages | DIY | ~2,500 | ~10,000+ |
+| Packages | DIY | ~2,`500` | ~10,000+ |
 | Customization | Total control | Good | Excellent |
 | Scalability | Poor | Medium | Excellent |
 | Commercial support | None | Limited | Extensive |
@@ -61,20 +61,20 @@ The Yocto Project is an **open-source collaboration project** that provides:
 
 ---
 
-## Yocto Terminology
+## `Yocto` Terminology
 
 Before we begin, let's understand the key terms:
 
 | Term | Definition |
 |------|------------|
 | **Poky** | Reference distribution; starting point for custom distros |
-| **BitBake** | Build engine that parses recipes and executes tasks |
+| **`BitBake`** | Build engine that parses recipes and executes tasks |
 | **Recipe (.bb)** | Instructions to build a single package |
 | **Layer** | Collection of related recipes (starts with `meta-`) |
 | **Image** | Root filesystem specification (special recipe) |
-| **Machine** | Hardware definition (CPU, features, bootloader) |
-| **Distro** | Distribution policy (init system, libc, features) |
-| **BSP** | Board Support Package — machine configs + drivers |
+| **Machine** | Hardware definition (`CPU`, features, bootloader) |
+| **Distro** | Distribution policy (init system, `libc`, features) |
+| **`BSP`** | Board Support Package — machine configs + drivers |
 | **Class (.bbclass)** | Shared build logic inherited by recipes |
 | **Conf files** | Configuration (local.conf, bblayers.conf) |
 | **Sstate** | Shared State cache — binary build artifacts |
@@ -103,11 +103,11 @@ Layers stack on top of each other. Higher layers can override lower layers.
 
 ### System Requirements
 
-- Ubuntu 20.04 or 22.04 LTS (x86_64) — **strongly recommended**
+- `Ubuntu` 20.04 or 22.04 LTS (x86_64) — **strongly recommended**
 - At least **50GB free disk space** (100GB recommended)
-- At least **8GB RAM** (16GB recommended)
+- At least **8GB `RAM`** (16GB recommended)
 - Fast internet connection
-- Multi-core CPU (build is highly parallel)
+- Multi-core `CPU` (build is highly parallel)
 
 ### Install Dependencies
 
@@ -125,7 +125,7 @@ sudo apt install -y \
 sudo locale-gen en_US.UTF-8
 ```
 
-### Verify Git Configuration
+### Verify `Git` Configuration
 
 ```bash
 git config --global user.email "you@example.com"
@@ -147,9 +147,9 @@ cd poky
 ```
 
 **Release branches** (named after releases):
-- `scarthgap` — Yocto 5.0 (2024, LTS)
-- `nanbield` — Yocto 4.3 (2023)
-- `kirkstone` — Yocto 4.0 (2022, LTS)
+- `scarthgap` — `Yocto` 5.0 (2024, LTS)
+- `nanbield` — `Yocto` 4.3 (2023)
+- `kirkstone` — `Yocto` 4.0 (2022, LTS)
 
 ---
 
@@ -212,7 +212,7 @@ source oe-init-build-env build-arm64
 This script:
 1. Creates the `build-arm64/` directory
 2. Sets up environment variables
-3. Adds BitBake to your PATH
+3. Adds `BitBake` to your PATH
 4. Changes to the build directory
 
 You'll see:
@@ -288,7 +288,7 @@ SSTATE_DIR ?= "${TOPDIR}/../sstate-cache"
 
 ---
 
-## Step 5: Configure for ARM64 (QEMU)
+## Step 5: Configure for ARM64 (`QEMU`)
 
 Edit `conf/local.conf` to target ARM64:
 
@@ -334,9 +334,9 @@ find ../meta* -name "*.conf" -path "*/machine/*" | xargs -I{} basename {} .conf
 ```
 
 Common machines:
-- `qemuarm64` — QEMU ARM64 (our target)
-- `qemuarm` — QEMU ARM 32-bit
-- `qemux86-64` — QEMU x86_64
+- `qemuarm64` — `QEMU` ARM64 (our target)
+- `qemuarm` — `QEMU` `ARM` 32-bit
+- `qemux86-64` — `QEMU` x86_64
 - `genericarm64` — Generic ARM64 hardware
 - `beaglebone-yocto` — BeagleBone
 
@@ -355,7 +355,7 @@ Common images:
 | `core-image-base` | Console image with hardware support |
 | `core-image-full-cmdline` | Full command-line tools |
 | `core-image-sato` | Graphical UI image |
-| `core-image-weston` | Wayland/Weston compositor |
+| `core-image-weston` | `Wayland`/Weston compositor |
 
 ---
 
@@ -374,10 +374,10 @@ bitbake core-image-minimal
 
 First build takes **2-4 hours** depending on:
 - Internet speed (downloading sources)
-- CPU cores (parallel compilation)
+- `CPU` cores (parallel compilation)
 - Disk speed (many small files)
 
-BitBake shows progress:
+`BitBake` shows progress:
 
 ```
 Loading cache: 100% |#####################################| Time: 0:00:00
@@ -401,7 +401,7 @@ NOTE: Executing Tasks
 
 ### Monitor Disk Usage
 
-Yocto builds use significant disk space:
+`Yocto` builds use significant disk space:
 
 ```bash
 # In another terminal
@@ -440,9 +440,9 @@ The minimal image is typically 10-20MB.
 
 ---
 
-## Step 9: Boot with QEMU
+## Step 9: Boot with `QEMU`
 
-Yocto provides a convenient wrapper script:
+`Yocto` provides a convenient wrapper script:
 
 ```bash
 # Boot the image
@@ -454,9 +454,9 @@ This automatically:
 - Sets up networking with TAP/TUN
 - Configures serial console
 
-### Manual QEMU Command
+### Manual `QEMU` Command
 
-If `runqemu` has issues, use QEMU directly:
+If `runqemu` has issues, use `QEMU` directly:
 
 ```bash
 qemu-system-aarch64 \
@@ -484,17 +484,17 @@ cat /etc/os-release
 df -h
 ```
 
-### Exit QEMU
+### Exit `QEMU`
 
 Press `Ctrl+A` then `X`
 
 ---
 
-## Step 10: Understanding BitBake
+## Step 10: Understanding `BitBake`
 
-### BitBake Task Execution
+### `BitBake` Task Execution
 
-BitBake breaks each recipe into tasks:
+`BitBake` breaks each recipe into tasks:
 
 ```
 do_fetch      → Download source
@@ -507,7 +507,7 @@ do_package    → Create packages
 do_rootfs     → Assemble root filesystem (images only)
 ```
 
-### Useful BitBake Commands
+### Useful `BitBake` Commands
 
 ```bash
 # Build a specific recipe
@@ -549,7 +549,7 @@ bitbake-layers show-layers
 
 ## Step 11: Examining a Recipe
 
-Let's look at the BusyBox recipe:
+Let's look at the `BusyBox` recipe:
 
 ```bash
 # Find it
@@ -800,7 +800,7 @@ bitbake core-image-minimal
 
 `.bbappend` files modify existing recipes without editing them directly.
 
-### Example: Add a Custom File to BusyBox
+### Example: Add a Custom File to `BusyBox`
 
 ```bash
 mkdir -p ~/yocto-lab/meta-mylayer/recipes-core/busybox
@@ -848,7 +848,7 @@ EXTRA_IMAGE_FEATURES += "package-management"
 PACKAGE_CLASSES = "package_deb"  # or package_rpm, package_ipk
 ```
 
-### Enable SSH Server
+### Enable `SSH` Server
 
 ```bitbake
 # In local.conf or image recipe
@@ -865,15 +865,15 @@ IMAGE_FEATURES += "ssh-server-openssh"
 IMAGE_FEATURES += "tools-sdk tools-debug"
 ```
 
-### Generate SDK
+### Generate `SDK`
 
-Build a complete cross-compilation SDK:
+Build a complete cross-compilation `SDK`:
 
 ```bash
 bitbake core-image-minimal -c populate_sdk
 ```
 
-The SDK installer will be at:
+The `SDK` installer will be at:
 `tmp/deploy/sdk/poky-glibc-x86_64-core-image-minimal-aarch64-qemuarm64-toolchain-*.sh`
 
 ---
@@ -882,7 +882,7 @@ The SDK installer will be at:
 
 ### Exercise 1: Add Packages to Image (20 minutes)
 
-1. Add these packages to your image: `htop`, `nano`, `tree`, `file`
+1. Add these packages to your image: `htop`, `nano`, `tree`, file
 2. Rebuild and boot
 3. Verify the packages are installed
 
@@ -897,13 +897,13 @@ file /bin/busybox
 ### Exercise 2: Create a Custom Recipe (45 minutes)
 
 1. Write a simple C program that prints system information
-2. Create a Yocto recipe to build and install it
+2. Create a `Yocto` recipe to build and install it
 3. Add it to your image
 4. Boot and run it
 
 **Hints:**
 - Use `uname()` syscall for system info
-- Recipe should inherit nothing special (simple Makefile project)
+- Recipe should inherit nothing special (simple `Makefile` project)
 - Install to `/usr/bin`
 
 ### Exercise 3: Create a Custom Image (30 minutes)
@@ -923,12 +923,12 @@ file /bin/busybox
 
 **Hint:** Use `bitbake virtual/kernel -c menuconfig` to explore options.
 
-### Exercise 5: Build the SDK (30 minutes)
+### Exercise 5: Build the `SDK` (30 minutes)
 
-1. Build the SDK: `bitbake core-image-minimal -c populate_sdk`
+1. Build the `SDK`: `bitbake core-image-minimal -c populate_sdk`
 2. Install it on your host
 3. Source the environment script
-4. Cross-compile a program outside of Yocto
+4. Cross-compile a program outside of `Yocto`
 5. Copy it to the target and run it
 
 ---
@@ -997,7 +997,7 @@ runqemu qemuarm64 nographic slirp
 
 ### Layer Incompatibility
 
-Check `LAYERSERIES_COMPAT` in your layer.conf matches your Yocto version:
+Check `LAYERSERIES_COMPAT` in your layer.conf matches your `Yocto` version:
 
 ```bitbake
 # For Yocto 5.0 (scarthgap)
@@ -1074,27 +1074,27 @@ bitbake my-custom-image
 | Clean package | `bitbake <recipe> -c clean` |
 | Deep clean | `bitbake <recipe> -c cleansstate` |
 | Kernel menuconfig | `bitbake virtual/kernel -c menuconfig` |
-| BusyBox menuconfig | `bitbake busybox -c menuconfig` |
+| `BusyBox` menuconfig | `bitbake busybox -c menuconfig` |
 | Show recipe env | `bitbake <recipe> -e \| less` |
 | List layers | `bitbake-layers show-layers` |
 | Add layer | `bitbake-layers add-layer <path>` |
 | Find recipe | `bitbake-layers show-recipes "*name*"` |
 | Create layer | `bitbake-layers create-layer <path>` |
-| Run QEMU | `runqemu qemuarm64 nographic` |
-| Build SDK | `bitbake <image> -c populate_sdk` |
+| Run `QEMU` | `runqemu qemuarm64 nographic` |
+| Build `SDK` | `bitbake <image> -c populate_sdk` |
 
 ---
 
 ## Comparison Summary
 
-| Metric | Manual Build | Buildroot | Yocto |
+| Metric | Manual Build | `Buildroot` | `Yocto` |
 |--------|--------------|-----------|-------|
 | Time to first boot | 2-4 hours | 1 hour | 3-5 hours |
 | Lines of config | 100+ | 10-20 | 20-50 |
 | Learning investment | Days | Hours | Weeks |
 | Production readiness | Low | Medium | High |
 | Team scalability | Poor | Medium | Excellent |
-| Package ecosystem | None | 2,500 | 10,000+ |
+| Package ecosystem | None | 2,`500` | 10,000+ |
 | Commercial support | None | Limited | Extensive |
 | License compliance | Manual | Basic | Comprehensive |
 
@@ -1102,31 +1102,31 @@ bitbake my-custom-image
 
 ## Further Reading
 
-- [Yocto Project Documentation](https://docs.yoctoproject.org/)
-- [Yocto Mega Manual](https://docs.yoctoproject.org/singleindex.html)
-- [BitBake User Manual](https://docs.yoctoproject.org/bitbake/)
-- [Bootlin Yocto Training](https://bootlin.com/doc/training/yocto/)
-- [Yocto Project Wiki](https://wiki.yoctoproject.org/)
+- [`Yocto` Project Documentation](https://docs.yoctoproject.org/)
+- [`Yocto` Mega Manual](https://docs.yoctoproject.org/singleindex.html)
+- [`BitBake` User Manual](https://docs.yoctoproject.org/bitbake/)
+- [Bootlin `Yocto` Training](https://bootlin.com/doc/training/yocto/)
+- [`Yocto` Project Wiki](https://wiki.yoctoproject.org/)
 
 ---
 
 ## Summary
 
-The Yocto Project is powerful but complex. Key takeaways:
+The `Yocto` Project is powerful but complex. Key takeaways:
 
 1. **Everything is a layer** — Modular, stackable configuration
 2. **Everything is a recipe** — Consistent package definition
-3. **BitBake orchestrates** — Parallel, cached, reproducible builds
+3. **`BitBake` orchestrates** — Parallel, cached, reproducible builds
 4. **Never modify upstream** — Use layers and appends
 5. **Sstate is your friend** — Binary caching saves hours
 
-While the learning curve is steep, Yocto provides unmatched flexibility and is the industry standard for production embedded Linux systems.
+While the learning curve is steep, `Yocto` provides unmatched flexibility and is the industry standard for production embedded `Linux` systems.
 
 ---
 
 ## Next Steps
 
-1. Explore BSP layers for real hardware (meta-raspberrypi, meta-ti, etc.)
+1. Explore `BSP` layers for real hardware (meta-raspberrypi, meta-ti, etc.)
 2. Learn about devtool for rapid recipe development
 3. Study AUTOREV and kernel development workflows
 4. Explore toaster (web-based build management)

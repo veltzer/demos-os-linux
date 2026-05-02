@@ -1,15 +1,15 @@
-# Exercise: Building an ARM64 System on Ubuntu x86_64
+# Exercise: Building an ARM64 System on `Ubuntu` x86_64
 
-This exercise walks through setting up a cross-compilation environment and building a minimal ARM64 Linux system from an x86_64 Ubuntu host.
+This exercise walks through setting up a cross-compilation environment and building a minimal ARM64 `Linux` system from an x86_64 `Ubuntu` host.
 
 ---
 
 ## Prerequisites
 
-- Ubuntu 20.04+ x86_64 host system
+- `Ubuntu` 20.04+ x86_64 host system
 - At least 20GB free disk space
 - Internet connection
-- sudo privileges
+- `sudo` privileges
 
 ---
 
@@ -29,13 +29,13 @@ Verify installation:
 aarch64-linux-gnu-gcc --version
 ```
 
-Expected output should show the GCC version targeting `aarch64-linux-gnu`.
+Expected output should show the `GCC` version targeting `aarch64-linux-gnu`.
 
 ---
 
-## Step 2: Install Build Dependencies and QEMU
+## Step 2: Install Build Dependencies and `QEMU`
 
-Install kernel build dependencies and QEMU for testing:
+Install kernel build dependencies and `QEMU` for testing:
 
 ```bash
 sudo apt install -y build-essential libncurses-dev bison flex libssl-dev \
@@ -43,7 +43,7 @@ sudo apt install -y build-essential libncurses-dev bison flex libssl-dev \
     qemu-system-arm qemu-user-static debootstrap
 ```
 
-Verify QEMU installation:
+Verify `QEMU` installation:
 
 ```bash
 qemu-system-aarch64 --version
@@ -51,7 +51,7 @@ qemu-system-aarch64 --version
 
 ---
 
-## Step 3: Build the Linux Kernel for ARM64
+## Step 3: Build the `Linux` Kernel for ARM64
 
 ### 3.1 Clone the Kernel Source
 
@@ -116,7 +116,7 @@ sudo debootstrap --arch=arm64 --foreign bookworm \
     ~/arm64-rootfs http://deb.debian.org/debian
 ```
 
-### 4.2 Set Up QEMU User Emulation
+### 4.2 Set Up `QEMU` User Emulation
 
 ```bash
 # Copy QEMU static binary for chroot emulation
@@ -220,7 +220,7 @@ sudo umount /tmp/arm64-mnt
 
 ---
 
-## Step 7: Boot with QEMU
+## Step 7: Boot with `QEMU`
 
 ### 7.1 Basic Boot Command
 
@@ -250,11 +250,11 @@ qemu-system-aarch64 \
     -nographic
 ```
 
-SSH access: `ssh -p 2222 developer@localhost`
+`SSH` access: `ssh -p 2222 developer@localhost`
 
-### 7.3 Exit QEMU
+### 7.3 Exit `QEMU`
 
-Press `Ctrl+A` then `X` to exit QEMU.
+Press `Ctrl+A` then `X` to exit `QEMU`.
 
 ---
 
@@ -283,9 +283,9 @@ htop
 
 ---
 
-## Alternative: Using Buildroot
+## Alternative: Using `Buildroot`
 
-For a more minimal/embedded system, use Buildroot:
+For a more minimal/embedded system, use `Buildroot`:
 
 ```bash
 # Clone Buildroot
@@ -302,7 +302,7 @@ make qemu_aarch64_virt_defconfig
 make -j$(nproc)
 ```
 
-Boot the Buildroot system:
+Boot the `Buildroot` system:
 
 ```bash
 qemu-system-aarch64 \
@@ -317,7 +317,7 @@ qemu-system-aarch64 \
 
 ---
 
-## Alternative: Using Yocto Project
+## Alternative: Using `Yocto` Project
 
 For production-grade embedded systems:
 
@@ -355,20 +355,20 @@ runqemu qemuarm64 nographic
 
 - Ensure the disk image path is correct
 - Verify the root filesystem was copied correctly
-- Check that ext4 filesystem support is built into the kernel
+- Check that `ext4` filesystem support is built into the kernel
 
 ### Debootstrap Fails
 
 - Ensure `qemu-user-static` is installed and registered with binfmt
 - Try: `sudo update-binfmts --enable qemu-aarch64`
 
-### Slow QEMU Performance
+### Slow `QEMU` Performance
 
-- Enable KVM if available: add `-enable-kvm` (requires ARM64 host or TCG)
+- Enable `KVM` if available: add `-enable-kvm` (requires ARM64 host or TCG)
 - Reduce memory: `-m 512`
-- Use fewer CPU cores in guest
+- Use fewer `CPU` cores in guest
 
-### Network Not Working in QEMU
+### Network Not Working in `QEMU`
 
 Inside the guest:
 
@@ -402,12 +402,12 @@ export ROOTFS=${HOME}/arm64-rootfs
 | Step | Action | Output |
 |------|--------|--------|
 | 1 | Install toolchain | `aarch64-linux-gnu-gcc` |
-| 2 | Install dependencies | QEMU, build tools |
+| 2 | Install dependencies | `QEMU`, build tools |
 | 3 | Build kernel | `arch/arm64/boot/Image` |
 | 4 | Create rootfs | `~/arm64-rootfs/` |
 | 5 | Configure rootfs | Users, networking, services |
 | 6 | Create disk image | `arm64-disk.img` |
-| 7 | Boot with QEMU | Running ARM64 system |
+| 7 | Boot with `QEMU` | Running ARM64 system |
 
 ---
 
@@ -416,5 +416,5 @@ export ROOTFS=${HOME}/arm64-rootfs
 - Deploy to real hardware (e.g., Raspberry Pi 4, SolidRun boards)
 - Add custom kernel modules
 - Build a custom device tree
-- Create a reproducible build with Yocto or Buildroot
-- Set up automated CI/CD for your embedded system
+- Create a reproducible build with `Yocto` or `Buildroot`
+- Set up automated `CI/CD` for your embedded system

@@ -2,21 +2,21 @@
 
 ## How to install systemtap on ubuntu
 first:
-	apt-get install systemtap
+	`apt`-get install systemtap
 
 then:
 	one way:
-		wget http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-3.0.0-16-generic-dbgsym_3.0.0-16.29_i386.ddeb
+		`wget` http://ddebs.ubuntu.com/pool/main/l/linux/linux-image-3.0.0-16-generic-dbgsym_3.0.0-16.29_i386.ddeb
 		install it using dpkg --install.
 
 second way (better):
-	cat > /etc/apt/sources.list.d/ddebs.list << EOF
+	cat > /etc/`apt`/sources.list.d/ddebs.list << EOF
 		deb http://ddebs.ubuntu.com/ quantal main restricted universe multiverse
 		deb http://ddebs.ubuntu.com/ quantal-updates main restricted universe multiverse
 	EOF
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ECDCAD72428D7C01
-	apt-get update
-	apt-get install linux-image-$(uname -r)-dbgsym
+	`apt`-key adv --keyserver keyserver.ubuntu.com --recv-keys ECDCAD72428D7C01
+	`apt`-get update
+	`apt`-get install linux-image-$(uname -r)-dbgsym
 
 	* remark - the current ddebs archive DOES NOT carry a dbgsym kernel package for the -lowlatency
 	kernels. You will have to use a -generic kernel to use systemtap.
@@ -26,7 +26,7 @@ How to run the scripts
 - The scripts here should be run by a member of the 'stapusr' group.
 - Just as yourself to the three groups: 'stapusr', 'stapsys', 'stapdev'
 - They seem to fail in some way when they are not.
-- It does not suffice to add the user to the various '*stap*' groups. Here are my groups and sudo
+- It does not suffice to add the user to the various '*stap*' groups. Here are my groups and `sudo`
 is still required:
 	abel$ groups
 	mark : mark adm dialout cdrom plugdev lpadmin admin sambashare stapdev stapusr stapsys

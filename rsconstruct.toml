@@ -246,10 +246,10 @@ src_dirs = []
 src_dirs = []
 
 [processor.mypy]
-src_dirs = ["config", "script"]
+src_dirs = ["config", "scripts"]
 
 [processor.ruff]
-src_dirs = ["config", "script"]
+src_dirs = ["config", "scripts"]
 
 [processor.shellcheck]
 src_dirs = [ "src", "misc", "scripts"]
@@ -269,3 +269,11 @@ dep_inputs = [
 [analyzer.tera]
 
 [analyzer.python]
+
+[processor.terms]
+src_dirs = [
+  "src",
+  "exercises_embedded",
+  # "doc",
+  "misc"
+]

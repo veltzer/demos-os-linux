@@ -25,5 +25,5 @@ Inside each thread:
 Demonstrate your use and prove (using assertions) that the
 exchange has been made.
 
-* You may use a condition and mutex in your solution (either pthread
-or C++ based).
+* You may use a condition and `mutex` in your solution (either pthread
+or `C++` based).

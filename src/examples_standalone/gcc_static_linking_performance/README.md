@@ -1,4 +1,4 @@
-# GCC static linking performance
+# `GCC` static linking performance
 
 This example tries to answer the question of how much more performance
 you gain when you create a static version of your library and link to
@@ -21,4 +21,4 @@ much less expensive since the architecture has a fast single instruction
 * the extra dereference (the GOT and PLT) which needs to be used to access
 either data or functions in the dynamic link case. This means that the
 cost of calling a function from a dynamic library is similar to the cost
-of calling a virtual method in C++.
+of calling a virtual method in `C++`.

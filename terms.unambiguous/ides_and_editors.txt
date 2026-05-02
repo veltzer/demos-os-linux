@@ -1,0 +1,24 @@
+Android Studio
+CLion
+Codeium
+Emacs
+GoLand
+IntelliJ IDEA
+JetBrains
+PhpStorm
+PyCharm
+RubyMine
+Sublime Text
+Tabnine
+VSCode
+Visual Studio
+Visual Studio Code
+WebStorm
+Xcode
+Chrome DevTools
+GitHub Copilot
+VS Code
+Wind River Workbench
+DBeaver
+HeidiSQL
+Neovim

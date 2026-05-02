@@ -1,4 +1,4 @@
-# Explore how GCC creates target files
+# Explore how `GCC` creates target files
 
 This example shows that gcc unlinks an object file before it creates it.
 You can see this by the fact that the two object files are not identical

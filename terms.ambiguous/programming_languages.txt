@@ -1,0 +1,17 @@
+Ada
+Bash
+C
+Crystal
+Dart
+Elixir
+Go
+Groovy
+Julia
+Lisp
+Mojo
+Nim
+R
+Ruby
+Rust
+Solidity
+Swift

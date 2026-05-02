@@ -1,4 +1,4 @@
-# Library initialization and cleanup old API
+# Library initialization and cleanup old `API`
 
 This demonstration show that:
 * You can write you own init and finish function to be executed when an application starts

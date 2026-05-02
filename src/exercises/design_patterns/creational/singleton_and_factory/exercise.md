@@ -1,4 +1,4 @@
-# C++ Creational Design Patterns Exercise
+# `C++` Creational `Design Patterns` Exercise
 
 ## Objective
 Implement a simple logging system using the Singleton pattern and a configuration manager using the Factory Method pattern.

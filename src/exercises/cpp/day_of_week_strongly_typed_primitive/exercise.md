@@ -3,8 +3,8 @@
 Write a type that you can use for DayOfWeek:
 
 * Values are only 1-7
-* Conversion to int
-* Conversion from int with exception if the value is not in range
+* Conversion to `int`
+* Conversion from `int` with exception if the value is not in range
 * Allow arithmetic on the type
 
 Do that in two ways:

@@ -1,6 +1,6 @@
 # AAA exercise
 
-Create a Linux kernel module that will expose one device file to `/dev`
+Create a `Linux` kernel module that will expose one device file to `/dev`
 named `/dev/aaa`.
 
 The device will only support a read operation.

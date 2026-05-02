@@ -1,4 +1,4 @@
-# GCC weak reference
+# `GCC` weak reference
 
 This example shows the weak attribute of gcc and the linker.
 

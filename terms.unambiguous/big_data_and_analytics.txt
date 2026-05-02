@@ -1,0 +1,65 @@
+Airflow
+Apache Kafka
+Apache Spark
+Dagster
+Flink
+Flume
+Hadoop
+Kafka
+Kafka Streams
+Luigi
+Oozie
+Prefect
+Spark
+Splunk
+Sqoop
+YARN
+Zookeeper
+Airbyte
+Apache Airflow
+Apache Beam
+Apache Druid
+Apache Flink
+Apache Hadoop
+Apache Hive
+Apache NiFi
+Apache Superset
+Auto Loader
+Beam SQL
+CoW
+DataStream API
+Druid SQL
+ELT
+ES|QL
+Elastic Stack
+FlowFile
+FlowFiles
+Great Expectations
+MiNiFi
+MoR
+NiFi
+NiFi Registry
+Performance Schema
+Pig Latin
+Power BI
+SQL Lab
+Spark MLlib
+Spark SQL
+Spark Streaming
+dbt
+dbt Cloud
+Airbyte Cloud
+Data Factory
+Druid Operator
+Flink SQL
+Glue DataBrew
+Glue Studio
+Hudi CLI
+Hudi Flink
+Meltano
+Spark Structured Streaming
+Structured Streaming
+Synapse Link
+HyperLogLog
+Fivetran
+Snowflake Scripting

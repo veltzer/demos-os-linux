@@ -1,4 +1,4 @@
-# Linking statically with libc
+# Linking statically with `libc`
 
 This folder tries to find the various ways with which to link
 statically with the standard C library.
