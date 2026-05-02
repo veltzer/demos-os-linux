@@ -23,7 +23,7 @@
 int main(void) {
 	char* p=(char*)malloc(17);
 	while(1) {
-		printf("trying to access address [%p]\n", p);
+		printf("trying to access address [%p]\n", (void*)p);
 		*p=0;
 		p++;
 	}
