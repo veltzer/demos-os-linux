@@ -52,7 +52,7 @@ static int kern_open(struct inode *inode, struct file *filp)
 	struct polldev *pd;
 
 	pr_info("start");
-	pd = kmalloc(sizeof(struct polldev), GFP_KERNEL);
+	pd = kmalloc_obj(*pd, GFP_KERNEL);
 	if (!pd)
 		return -ENOMEM;
 	init_waitqueue_head(&pd->wq);

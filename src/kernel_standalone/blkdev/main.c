@@ -59,7 +59,7 @@ static void memblock_release(struct gendisk *disk)
 {
 }
 
-static int memblock_getgeo(struct block_device *bdev, struct hd_geometry *geo)
+static int memblock_getgeo(struct gendisk *disk, struct hd_geometry *geo)
 {
 	geo->heads = 1;
 	geo->cylinders = 32;
