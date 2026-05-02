@@ -30,6 +30,6 @@ int main(int argc, char **argv) {
 	int src = 6;
 	int *a, *b;
 	a = b = &src;
-	printf("%d", foo(a, b)); // Prints 4
+	printf("%d", sum(a, b)); // Prints 4
 	return EXIT_SUCCESS;
 }

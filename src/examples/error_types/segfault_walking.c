@@ -19,18 +19,13 @@
 #include <firstinclude.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
 
-int main(int argc, char** argv, char** envp) {
-	char* p=(char*)malloc(1024*1024*1024);
-	int i;
+int main(void) {
+	char* p=(char*)malloc(17);
 	while(1) {
-		printf("touching 20 pages at address [%p]\n", p);
-		for(i=0; i<20; i++) {
-			*p=0;
-			p+=4096;
-		}
-		sleep(1);
+		printf("trying to access address [%p]\n", p);
+		*p=0;
+		p++;
 	}
 	return EXIT_SUCCESS;
 }
