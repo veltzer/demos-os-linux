@@ -13,4 +13,4 @@ Fix the problem and compare all the solution you can find to this problem in ter
 
 Hints:
 * make sure you compile with optimization (-O2).
-* threads can be created either using the `pthread` API or C++ thread support.
+* threads can be created either using the `pthread` `API` or `C++` thread support.

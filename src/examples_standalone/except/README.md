@@ -1,4 +1,4 @@
-# Exception handling speed in GCC/G++
+# Exception handling speed in `GCC`/G++
 
 Do an example that investigates exception handling speed.
 Look at `man g++` under `-fexception`. There is a claim there

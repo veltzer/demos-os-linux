@@ -10,8 +10,8 @@ mypthread_cond_signal (3) - operations on conditions
 mypthread_cond_wait (3) - operations on conditions
 ```
 
-with the same semantics as the pthread library API.
+with the same semantics as the pthread library `API`.
 
-Bonus: suggest a way to improve the `pthread_cond` API to enable to signal a specific thread.
+Bonus: suggest a way to improve the `pthread_cond` `API` to enable to signal a specific thread.
 Implement your enhancement.
-Demonstrate by using your newly defined condition API to implement a fine grained readers/writer lock.
+Demonstrate by using your newly defined condition `API` to implement a fine grained readers/writer lock.

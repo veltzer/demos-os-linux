@@ -5,7 +5,7 @@ This example shows how to dynamically call a function from a DSO which is not kn
 This example uses the `dlopen(3)` set of functions.
 
 These set of functions can be used for various purposes:
-* Provide a plugin functionality to an application (think of a media player written in C/C++ that can be extended with many coded plugins).
+* Provide a plugin functionality to an application (think of a media player written in C/`C++` that can be extended with many coded plugins).
 * Enable an application to call functions of a library whose dependencies conflict with the dependencies of the application (different C library etc).
 
 Usage example:

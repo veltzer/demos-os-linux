@@ -16,7 +16,7 @@ This demonstration show that:
   destructors are going to be called once per child ending, unless the child
   end abruptly (not through `exit(3)` but rather by `_exit(2)`, `_Exit(2)` or abnormal
   termination using signal).
-* what happens when you `clone(2)` ? (the multi-threading case)
+* what happens when you `clone(2)` ? (the multi-`threading` case)
   Nothing. This example demonstrates that cloning does not call either constructors
   or destructors.
 * what happens when you have more than one library doing such stuff ? where does the order

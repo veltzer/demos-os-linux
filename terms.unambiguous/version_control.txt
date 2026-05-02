@@ -1,0 +1,15 @@
+Azure Repos
+Bitbucket
+Gerrit
+Git
+GitHub
+GitLab
+Perforce
+SVN
+Subversion
+git bisect
+git diff
+git log
+git rebase
+Gitea
+Forgejo

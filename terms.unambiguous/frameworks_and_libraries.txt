@@ -1,0 +1,139 @@
+.NET
+ACE
+Anaconda
+ASP.NET
+asyncio
+BeautifulSoup
+Chart.js
+Cordova
+D3.js
+Django
+Entity Framework
+Express.js
+FastAPI
+Flutter
+GraphX
+GStreamer
+JPA
+jQuery
+Jupyter
+Keras
+libcoap
+LINQ
+Lodash
+Material-UI
+Matplotlib
+MLlib
+Moment.js
+Moq
+NLTK
+Node.js
+NumPy
+OpenCV
+OpenMP
+Playwright
+Puppeteer
+PySpark
+PyTorch
+React Native
+Redux
+RxJS
+scikit-learn
+scrapy
+Seaborn
+spaCy
+Spring Boot
+Spring Cloud
+STL
+Tailwind CSS
+TensorFlow
+Three.js
+Tokio
+twisted
+Unity
+Unreal Engine
+Vue.js
+Vuex
+Windsurf
+Xamarin
+xUnit
+ASP.NET Core
+Actix Web
+Angular Material
+Apollo Federation
+CSS Modules
+Compose Multiplatform
+Context API
+Django REST Framework
+Eio
+Eloquent ORM
+Entity Framework Core
+Intel TBB
+Java EE
+Jetpack Compose
+Kemal
+Kotlin Multiplatform
+Lwt
+Minimal APIs
+ORM
+ORMs
+OpenZeppelin
+Phoenix LiveView
+React Navigation
+React Router
+Redoc
+Redux Toolkit
+Ruby on Rails
+Spring Data
+Spring Data JPA
+Spring MVC
+Spring Security
+Swagger UI
+TanStack Query
+Vue 3
+Vue Router
+Action Cable
+Active Job
+Apollo Client
+Apollo Router
+Apollo Server
+AssertJ
+Autofac
+Blazor Server
+Blazor WebAssembly
+Chai
+Create React App
+Durable Functions
+EF Core
+Expo Router
+Gorilla WebSocket
+GraphQL Code Generator
+Guice
+Hamcrest
+Jakarta EE
+Laravel Breeze
+Laravel Dusk
+Laravel Forge
+Laravel Fortify
+Laravel Horizon
+Material Design 3
+NUnit
+Polars
+R2DBC
+Re-frame
+React DevTools
+React Hook Form
+React Native CLI
+React Native Reanimated
+React Query
+React Suspense
+RTK Query
+Semantic Kernel
+Sequelize
+SQLAlchemy
+TypeORM
+Vue Test Utils
+CSS Grid
+Ionide
+Expecto
+FsCheck

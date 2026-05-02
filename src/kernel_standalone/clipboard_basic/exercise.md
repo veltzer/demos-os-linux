@@ -12,6 +12,6 @@ allows user space to read and write to that buffer.
 test your driver this way:
 $ echo "hello" > /dev/mybuffer
 or
-$ cat /etc/passwd > /dev/mybuffer
+$ cat `/etc/passwd` > /dev/mybuffer
 and then:
 $ cat /dev/mybuffer

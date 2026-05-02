@@ -1,0 +1,45 @@
+Assembly
+C#
+C++
+C++11
+C++14
+C++17
+C++20
+C++23
+C++98
+C17
+C2X
+C99
+COBOL
+ES6
+Fortran
+Java
+Java 11
+Java 17
+Java 8
+JavaScript
+Kotlin
+MATLAB
+Objective-C
+PHP
+PL/SQL
+Perl
+PowerShell
+Python
+Python 2
+Python 3
+Python 3.6
+Python 3.7
+Python 3.8
+Python 3.9
+SQL
+Scala
+T-SQL
+TypeScript
+Clojure
+ClojureScript
+Erlang
+F#
+OCaml
+Haskell
+Lua

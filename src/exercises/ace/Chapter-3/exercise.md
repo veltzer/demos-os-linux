@@ -6,7 +6,7 @@ We have to protect the variable so that only one thread will be able to update i
 We will use 3 threads.
 * The initial value of LockedCounter is zero.
 * Use 3 threads each one of them will try to increment the LockedCounter.
-* Each thread will use mutex to prevent other threads from updating or testing
+* Each thread will use `mutex` to prevent other threads from updating or testing
   this variable at the same time.
 * Only if LockedCounter modulus 3 = n (for thread n) then thread n will do
   the increment.
@@ -23,16 +23,16 @@ We will use 3 threads.
     * What will happen if you increase number of cores?
 
 Notes:
-use slide 3-39 for mutex support for this exercise.
+use slide 3-39 for `mutex` support for this exercise.
 
 ## Solution notes
 
 Are the results good?
 * Nope. We attempt many times per each time slice.
 What is the influence of printing inside the loop?
-* Improves the results because print is read which yields the CPU.
+* Improves the results because print is read which yields the `CPU`.
 Would yielding help?
-* Yes, if the two threads in question are on the same CPU.
+* Yes, if the two threads in question are on the same `CPU`.
 How would you improve it further?
 * A condition could help by waking the right thread each time.
 How would the thread number influence the result?

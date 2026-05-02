@@ -7,7 +7,7 @@ just do `make trace` to see the trace.
 do `make trace_only_func` to trace only the function 'func' from our
 own `libadd.so` DSO.
 
-to trace an app using ltrace:
+to trace an app using `ltrace`:
 
 ```shell
 ltrace [yourapp.elf]

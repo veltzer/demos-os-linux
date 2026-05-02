@@ -1,0 +1,26 @@
+BDD
+CI/CD
+CQRS
+DDD
+Design Patterns
+DevOps
+Event Sourcing
+Event-Driven Architecture
+Kanban
+MCP
+Microservices
+OO
+SDLC
+SOA
+SOLID
+TDD
+Clean Architecture
+Continuous Delivery
+DI
+Domain-Driven Design
+GDPR
+Hexagonal Architecture
+IoC
+SaaS
+WCAG 2.2
+Saga Pattern

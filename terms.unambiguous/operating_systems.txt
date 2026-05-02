@@ -1,0 +1,20 @@
+Android
+CentOS
+Debian
+FreeBSD
+FreeRTOS
+Linux
+RHEL
+RTAI
+SUSE
+Ubuntu
+Ubuntu 22.04
+Unix
+Windows
+Windows Server
+Xenomai
+iOS
+macOS
+NixOS
+VxWorks
+Rocky Linux

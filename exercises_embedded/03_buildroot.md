@@ -1,13 +1,13 @@
-# Exercise: Building an ARM64 System with Buildroot
+# Exercise: Building an ARM64 System with `Buildroot`
 
 ## Introduction
 
-In the previous exercise, we built an ARM64 Linux system by hand — compiling the kernel, building BusyBox, manually creating device nodes, writing init scripts, and assembling the root filesystem piece by piece. While educational, this process was tedious and error-prone.
+In the previous exercise, we built an ARM64 `Linux` system by hand — compiling the kernel, building `BusyBox`, manually creating device nodes, writing init scripts, and assembling the root filesystem piece by piece. While educational, this process was tedious and error-prone.
 
-**Buildroot** automates all of this. It's a complete build system that generates:
+**`Buildroot`** automates all of this. It's a complete build system that generates:
 
 - Cross-compilation toolchain
-- Linux kernel
+- `Linux` kernel
 - Root filesystem with packages
 - Bootloader (optional)
 - Complete disk images ready to flash
@@ -20,51 +20,51 @@ All from a single `make` command.
 
 By the end of this exercise, you will be able to:
 
-1. Understand what Buildroot is and when to use it
-2. Configure a Buildroot project for ARM64
+1. Understand what `Buildroot` is and when to use it
+2. Configure a `Buildroot` project for ARM64
 3. Customize the kernel, packages, and root filesystem
-4. Generate bootable images for QEMU and real hardware
+4. Generate bootable images for `QEMU` and real hardware
 5. Add custom packages and configuration
 6. Debug common build issues
 
 ---
 
-## What is Buildroot?
+## What is `Buildroot`?
 
-Buildroot is a **simple, efficient, and easy-to-use tool** to generate embedded Linux systems through cross-compilation. It is:
+`Buildroot` is a **simple, efficient, and easy-to-use tool** to generate embedded `Linux` systems through cross-compilation. It is:
 
 | Feature | Description |
 |---------|-------------|
-| **Makefile-based** | Familiar build system, no complex abstractions |
+| **`Makefile`-based** | Familiar build system, no complex abstractions |
 | **Self-contained** | Downloads and builds its own toolchain |
 | **Reproducible** | Same config always produces same output |
 | **Lightweight** | Minimal dependencies, fast builds |
 | **Well-documented** | Excellent manual and active community |
 
-### Buildroot vs. The Manual Approach
+### `Buildroot` vs. The Manual Approach
 
-| Task | Manual Approach | Buildroot |
+| Task | Manual Approach | `Buildroot` |
 |------|-----------------|-----------|
-| Toolchain | Install from apt | Auto-generated or downloaded |
+| Toolchain | Install from `apt` | Auto-generated or downloaded |
 | Kernel config | Manual `make defconfig` | Integrated, per-board defaults |
-| BusyBox | Separate download/build | Built-in package |
+| `BusyBox` | Separate download/build | Built-in package |
 | Root filesystem | Hand-create directories | Auto-generated |
 | Init scripts | Write from scratch | Provided by packages |
 | Device nodes | Manual `mknod` | Handled by devtmpfs/mdev |
 | Build time | Hours of manual work | Single `make` command |
 
-### Buildroot vs. Yocto
+### `Buildroot` vs. `Yocto`
 
-| Aspect | Buildroot | Yocto |
+| Aspect | `Buildroot` | `Yocto` |
 |--------|-----------|-------|
 | Complexity | Simple | Complex |
 | Learning curve | Hours | Weeks |
 | Flexibility | Good | Excellent |
-| Package count | ~2,500 | ~10,000+ |
+| Package count | ~2,`500` | ~10,000+ |
 | Build time | 30-60 min | 2-4 hours |
 | Use case | Small/medium systems | Production, large teams |
 
-**Rule of thumb**: Use Buildroot for learning and smaller projects; consider Yocto for complex production systems.
+**Rule of thumb**: Use `Buildroot` for learning and smaller projects; consider `Yocto` for complex production systems.
 
 ---
 
@@ -72,9 +72,9 @@ Buildroot is a **simple, efficient, and easy-to-use tool** to generate embedded 
 
 ### System Requirements
 
-- Ubuntu 20.04+ x86_64 (or similar Linux distribution)
+- `Ubuntu` 20.04+ x86_64 (or similar `Linux` distribution)
 - At least 10GB free disk space
-- 4GB+ RAM recommended
+- 4GB+ `RAM` recommended
 - Internet connection
 
 ### Install Dependencies
@@ -95,7 +95,7 @@ sudo apt install -y \
 
 ---
 
-## Step 1: Download Buildroot
+## Step 1: Download `Buildroot`
 
 ```bash
 # Create working directory
@@ -140,13 +140,13 @@ buildroot/
 
 ### Key Insight: Everything is a Package
 
-In Buildroot, everything — including the toolchain, kernel, and BusyBox — is a "package" with a consistent build interface.
+In `Buildroot`, everything — including the toolchain, kernel, and `BusyBox` — is a "package" with a consistent build interface.
 
 ---
 
 ## Step 3: List Available Configurations
 
-Buildroot includes pre-made configurations for many boards:
+`Buildroot` includes pre-made configurations for many boards:
 
 ```bash
 # List all defconfigs
@@ -160,7 +160,7 @@ You'll see `qemu_aarch64_virt_defconfig` — this is exactly what we need.
 
 ---
 
-## Step 4: Configure for QEMU ARM64
+## Step 4: Configure for `QEMU` ARM64
 
 ```bash
 # Apply the QEMU ARM64 configuration
@@ -170,9 +170,9 @@ make qemu_aarch64_virt_defconfig
 This single command configures:
 - ARM64 architecture
 - Toolchain (downloads or builds one)
-- Linux kernel with appropriate options
-- BusyBox-based root filesystem
-- Virtio drivers for QEMU
+- `Linux` kernel with appropriate options
+- `BusyBox`-based root filesystem
+- Virtio drivers for `QEMU`
 - Serial console support
 
 ### Examine the Configuration
@@ -216,11 +216,11 @@ This will take **30-60 minutes** on first build (downloading and compiling toolc
 2. **Host utilities**: Builds tools needed on build machine
 3. **Packages**: Compiles selected target packages
 4. **Root filesystem**: Assembles everything into a filesystem
-5. **Images**: Generates final disk/initrd images
+5. **Images**: Generates final disk/`initrd` images
 
 ### Monitor Progress
 
-Buildroot shows each package being built:
+`Buildroot` shows each package being built:
 
 ```
 >>> toolchain-buildroot >>>  Downloading
@@ -263,7 +263,7 @@ output/
 
 ---
 
-## Step 7: Boot with QEMU
+## Step 7: Boot with `QEMU`
 
 ### Option A: Use the Provided Script
 
@@ -271,7 +271,7 @@ output/
 ./output/images/start-qemu.sh
 ```
 
-### Option B: Manual QEMU Command
+### Option B: Manual `QEMU` Command
 
 ```bash
 qemu-system-aarch64 \
@@ -310,7 +310,7 @@ ps aux
 ip addr
 ```
 
-### Exit QEMU
+### Exit `QEMU`
 
 Press `Ctrl+A` then `X`
 
@@ -329,7 +329,7 @@ Navigate to **System configuration**:
 - `System hostname`: Change to your preferred name
 - `System banner`: Add a welcome message
 - `Root password`: Set a password (leave empty for none)
-- `Init system`: Choose BusyBox init, systemd, or OpenRC
+- `Init system`: Choose `BusyBox` init, `systemd`, or OpenRC
 
 ### 8.2 Add Packages
 
@@ -427,7 +427,7 @@ EOF
 chmod +x board/mycompany/myboard/rootfs-overlay/usr/bin/sysinfo
 ```
 
-### 9.3 Configure Buildroot to Use Overlay
+### 9.3 Configure `Buildroot` to Use Overlay
 
 ```bash
 make menuconfig
@@ -511,14 +511,14 @@ hostname
 nano --version
 ```
 
-### Exercise 2: Add SSH Access (20 minutes)
+### Exercise 2: Add `SSH` Access (20 minutes)
 
-1. Enable the `dropbear` SSH server package
+1. Enable the `dropbear` `SSH` server package
 2. Rebuild the system
 3. Boot with network support
-4. SSH into your system from the host
+4. `SSH` into your system from the host
 
-**Hint:** Use QEMU with port forwarding:
+**Hint:** Use `QEMU` with port forwarding:
 ```bash
 -netdev user,id=net0,hostfwd=tcp::2222-:22
 ```
@@ -528,7 +528,7 @@ Then: `ssh -p 2222 root@localhost`
 ### Exercise 3: Create a Custom Application (30 minutes)
 
 1. Create a simple "Hello ARM64" C program
-2. Cross-compile it using Buildroot's toolchain
+2. Cross-compile it using `Buildroot`'s toolchain
 3. Add it to the root filesystem via overlay
 4. Verify it runs on the target
 
@@ -548,19 +548,19 @@ EOF
 file hello  # Should show ARM aarch64
 ```
 
-### Exercise 4: Enable systemd (30 minutes)
+### Exercise 4: Enable `systemd` (30 minutes)
 
-1. Change init system from BusyBox to systemd
+1. Change init system from `BusyBox` to `systemd`
 2. Note the additional dependencies that get selected
 3. Rebuild and observe the boot process differences
 4. Compare filesystem size before and after
 
-**Path:** System configuration → Init system → systemd
+**Path:** System configuration → Init system → `systemd`
 
 ### Exercise 5: Generate Documentation (15 minutes)
 
 1. Run `make manual` to build documentation
-2. Explore the generated HTML manual
+2. Explore the generated `HTML` manual
 3. Run `make legal-info` to generate license information
 4. Review what licenses your system uses
 
@@ -600,7 +600,7 @@ make <package>
 
 ### "No space left on device"
 
-Buildroot needs significant disk space:
+`Buildroot` needs significant disk space:
 
 ```bash
 # Check output size
@@ -610,11 +610,11 @@ du -sh output/
 make clean
 ```
 
-### QEMU Boot Fails
+### `QEMU` Boot Fails
 
 1. Verify kernel was built: `ls output/images/Image`
 2. Check root filesystem: `ls output/images/rootfs.ext4`
-3. Ensure QEMU is installed: `qemu-system-aarch64 --version`
+3. Ensure `QEMU` is installed: `qemu-system-aarch64 --version`
 
 ### Changes Not Appearing
 
@@ -633,7 +633,7 @@ make
 
 ### 1. Use Out-of-Tree Builds
 
-Keep your customizations separate from Buildroot source:
+Keep your customizations separate from `Buildroot` source:
 
 ```bash
 make O=/path/to/output BR2_EXTERNAL=/path/to/external
@@ -692,7 +692,7 @@ cat output/legal-info/manifest.csv
 | Clean build | `make clean` |
 | Full clean | `make distclean` |
 | Kernel config | `make linux-menuconfig` |
-| BusyBox config | `make busybox-menuconfig` |
+| `BusyBox` config | `make busybox-menuconfig` |
 | Rebuild package | `make <pkg>-rebuild` |
 | Save config | `make savedefconfig` |
 | Show packages | `make show-targets` |
@@ -700,14 +700,14 @@ cat output/legal-info/manifest.csv
 
 ---
 
-## Comparison: Manual vs. Buildroot
+## Comparison: Manual vs. `Buildroot`
 
-| Metric | Manual BusyBox Build | Buildroot |
+| Metric | Manual `BusyBox` Build | `Buildroot` |
 |--------|---------------------|-----------|
 | Setup time | 2-4 hours | 10 minutes |
 | Build commands | 20+ | 2 (`make defconfig`, `make`) |
 | Configuration | Edit multiple files | Single menuconfig |
-| Package management | Manual | Built-in (2,500+ packages) |
+| Package management | Manual | Built-in (2,`500`+ packages) |
 | Reproducibility | Difficult | Automatic |
 | Documentation | You write it | Generated |
 | Maintenance | High effort | Low effort |
@@ -716,7 +716,7 @@ cat output/legal-info/manifest.csv
 
 ## Summary
 
-Buildroot transforms what was a complex, multi-hour manual process into:
+`Buildroot` transforms what was a complex, multi-hour manual process into:
 
 ```bash
 git clone https://github.com/buildroot/buildroot.git
@@ -726,15 +726,15 @@ make -j$(nproc)
 ./output/images/start-qemu.sh
 ```
 
-Five commands to a complete, bootable ARM64 Linux system.
+Five commands to a complete, bootable ARM64 `Linux` system.
 
 ---
 
 ## Further Reading
 
-- [Buildroot Manual](https://buildroot.org/downloads/manual/manual.html)
-- [Buildroot Training Materials](https://bootlin.com/doc/training/buildroot/)
-- [Buildroot Mailing List](http://lists.buildroot.org/mailman/listinfo/buildroot)
+- [`Buildroot` Manual](https://buildroot.org/downloads/manual/manual.html)
+- [`Buildroot` Training Materials](https://bootlin.com/doc/training/buildroot/)
+- [`Buildroot` Mailing List](http://lists.buildroot.org/mailman/listinfo/buildroot)
 
 ---
 
@@ -743,4 +743,4 @@ Five commands to a complete, bootable ARM64 Linux system.
 1. Try building for real hardware (Raspberry Pi 4: `make raspberrypi4_64_defconfig`)
 2. Create a custom BR2_EXTERNAL tree for your packages
 3. Explore advanced topics: secure boot, firmware updates, factory flashing
-4. Compare with Yocto Project for larger-scale builds
+4. Compare with `Yocto` Project for larger-scale builds

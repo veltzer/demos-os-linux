@@ -1,0 +1,18 @@
+Angular
+Boost
+Bootstrap
+Cypress
+Electron
+Flask
+Giraffe
+Hardhat
+Hibernate
+Ionic
+Pandas
+Prism
+React
+Reagent
+Sentence Transformers
+Spectral
+Spring
+Testing Library

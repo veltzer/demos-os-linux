@@ -1,8 +1,8 @@
-# Exercise: Implementing RAII for File Handling in C++
+# Exercise: Implementing `RAII` for File Handling in `C++`
 
 ## Objective
 
-Implement a C++ class that demonstrates the Resource Acquisition Is Initialization (RAII) idiom for managing file resources.
+Implement a `C++` class that demonstrates the Resource Acquisition Is Initialization (`RAII`) idiom for managing file resources.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ Implement a C++ class that demonstrates the Resource Acquisition Is Initializati
     * Ensure that the file is properly closed even if an exception is thrown.
     * Prevent copying of `File` objects to avoid double deletion of resources.
 * Implement a function `useFile` that demonstrates the usage of your `File` class.
-* In the `main` function, call `useFile` to show how RAII manages the file resource.
+* In the `main` function, call `useFile` to show how `RAII` manages the file resource.
 
 ## Bonus
 

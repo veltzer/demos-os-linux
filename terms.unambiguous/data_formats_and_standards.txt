@@ -1,0 +1,20 @@
+Avro
+CSS
+CSV
+HTML
+INI
+JSON
+LaTeX
+Markdown
+MessagePack
+PDF
+Parquet
+Protocol Buffers
+TOML
+TSV
+XML
+YAML
+protobuf
+ELF
+JSON Schema
+OpenAPI 3.x

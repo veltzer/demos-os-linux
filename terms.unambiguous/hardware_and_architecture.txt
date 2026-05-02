@@ -1,0 +1,38 @@
+ARM
+ASIC
+Bluetooth
+BSP
+CPU
+DMA
+Ethernet
+FPGA
+GPIO
+GPU
+HDD
+I2C
+IOMMU
+IRQ
+ISA
+MMU
+PCI
+PCIe
+RAM
+RISC-V
+SoC
+SPI
+SSD
+TLB
+UART
+USB
+WiFi
+x64
+x86
+CAN FD
+IPMI
+ARM Cortex-M
+CAN 2.0A
+CAN 2.0B
+NXP i.MX RT
+SAE J1939
+Vector CANoe
+WindSh

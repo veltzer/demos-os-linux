@@ -1,0 +1,6 @@
+Atom
+Cursor
+Eclipse
+Nano
+Rider
+Vim

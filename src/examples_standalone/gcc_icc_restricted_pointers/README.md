@@ -1,4 +1,4 @@
-# GCC and ICC restricted pointer comparison
+# `GCC` and ICC restricted pointer comparison
 
 This folder explores restricted pointers in gcc and intel compilers.
 

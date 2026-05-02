@@ -1,4 +1,4 @@
-# Using precompiled headers with GCC
+# Using precompiled headers with `GCC`
 
 This example explores the features of gcc precompiled headers.
 

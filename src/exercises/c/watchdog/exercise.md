@@ -2,7 +2,7 @@
 
 * Write a watchdog type process.
 
-* Use multiprocessing (fork/exec/wait).
+* Use `multiprocessing` (fork/exec/wait).
 
 * Use signal handling to get signaled when a child dies.
 

@@ -1,6 +1,6 @@
 # Making a library executable
 
-If you want to see an example of such an idea just run your own libc library
+If you want to see an example of such an idea just run your own `libc` library
 
 ```text
 fermat$ /lib/libc.so.6

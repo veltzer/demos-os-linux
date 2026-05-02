@@ -18,5 +18,5 @@ decides to write something or disconnect from the pipe.
 If the writer writes data, wakeup the reader and consume the data.
 If the writer disconnects from the pipe, wakeup the reader and return EOF.
 
-Compare your results with the Linux implementation of a pipe, use pipemeter.
+Compare your results with the `Linux` implementation of a pipe, use pipemeter.
 Are your results better? Worse? Why?

@@ -1,4 +1,4 @@
-# GCC how to prevent warnings on system includes
+# `GCC` how to prevent warnings on system includes
 
 This example shows that third party headers in project should be included
 using the `-isystem [folder]` flags of the compiler. This makes the compiler

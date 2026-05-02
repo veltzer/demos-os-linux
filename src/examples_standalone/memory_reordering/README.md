@@ -1,6 +1,6 @@
-# CPU Memory Reordering
+# `CPU` Memory Reordering
 
-This example demonstrates CPU store-load reordering using the classic
+This example demonstrates `CPU` store-load reordering using the classic
 Preshing/Dekker-style test.
 
 ## The experiment
@@ -22,12 +22,12 @@ the store and the subsequent load within each thread, making it happen.
 make run
 ```
 
-This builds and runs two variants over 500 000 iterations each:
+This builds and runs two variants over `500` 000 iterations each:
 
-- `main_no_barriers.elf` — compiler barrier only, CPU free to reorder
+- `main_no_barriers.elf` — compiler barrier only, `CPU` free to reorder
 - `main_with_barriers.elf` — `mfence` instruction prevents reordering
 
-Typical output on x86-64:
+Typical output on `x86`-64:
 
 ```txt
 === Without barriers ===
@@ -43,11 +43,11 @@ Rate       : 0.0000%
 
 ## Why it happens
 
-x86-64 has a strong memory model (TSO — Total Store Order) but still allows
+`x86`-64 has a strong memory model (TSO — Total Store Order) but still allows
 one specific reordering: a store followed by a load to a *different* address
 can be reordered because the store sits in the store buffer while the load
 goes to the cache directly. The `mfence` instruction drains the store buffer
 before any subsequent load, closing the window.
 
-On architectures with weaker memory models (ARM, POWER) the reordering rate
+On architectures with weaker memory models (`ARM`, POWER) the reordering rate
 would be much higher and more barrier types would be needed.

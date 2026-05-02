@@ -1,4 +1,4 @@
-# Const use in C++
+# Const use in `C++`
 
 * Write a proper `Rectangle` class with the following methods:
     * Constructor

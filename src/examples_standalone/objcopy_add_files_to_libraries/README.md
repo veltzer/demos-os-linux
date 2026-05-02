@@ -1,4 +1,4 @@
-# Using `objcopy(1)` to add content to ELF files
+# Using `objcopy(1)` to add content to `ELF` files
 
 This demo is about relinking an already existing so to be exactly as before
 but with added object files within.

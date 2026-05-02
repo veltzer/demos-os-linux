@@ -1,0 +1,8 @@
+bat
+dig
+fd
+file
+find
+ping
+ps
+top

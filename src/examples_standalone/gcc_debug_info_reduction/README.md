@@ -1,4 +1,4 @@
-# GCC debug info reduction
+# `GCC` debug info reduction
 
 This example shows how to reduce the size of debug info files.
 
