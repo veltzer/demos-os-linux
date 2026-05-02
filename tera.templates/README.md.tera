@@ -1,0 +1,25 @@
+{% set project = load_python(path="config/project.py") -%}
+{% set personal = load_python(path="config/personal.py") -%}
+{% set version = version_str(path="config/version.py") -%}
+## {{ project.name }}
+
+version: {{ version }}
+
+description: {{ project.description_short }}
+
+website: https://{{ personal.github_username }}.github.io/{{ project.name }}
+
+## Build
+
+{% for wf in workflow_names() -%}
+![{{ wf.name }}](https://github.com/{{ personal.github_username }}/{{ project.name }}/workflows/{{ wf.name }}/badge.svg)
+{% endfor %}
+{% if project.description_long is defined -%}
+{{ project.description_long }}
+{% endif %}
+## Contact
+
+chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
+
+{% include "tera.snippets/main.md.tera" %}
+{{ personal.fullname }}, Copyright © {{ copyright_years() }}

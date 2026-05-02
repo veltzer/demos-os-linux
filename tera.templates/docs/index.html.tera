@@ -1,0 +1,34 @@
+{% set project = load_python(path="config/project.py") -%}
+{% set personal = load_python(path="config/personal.py") -%}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{ project.name }}</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
+		<link rel="icon" type="image/x-icon" href="../static/favicon.ico"/>
+		<meta name="Description" content="{{ project.description_short }}"/>
+		<meta name="Keywords" content="{{ personal.fullname }}, {{ personal.slug }}, {{ project.name }}, {{ project.keywords | join(sep=", ") }}"/>
+	</head>
+	<body>
+		<h1>Welcome to the <i>{{ project.name }}</i> web site</h1>
+		<p>Some related <b>{{ project.name }}</b> project links:</p>
+		<ul>
+			<li>
+			The <b>{{ project.name }}</b> github project is <a title="{{ project.name }} github project" href="https://github.com/{{ personal.github_username }}/{{ project.name }}">here</a>
+			</li>
+			<li>
+			The <b>{{ project.name }}</b> web site for the project is <a title="{{ project.name }} web site" href="https://{{ personal.github_username }}.github.io/{{ project.name }}">here</a>
+			</li>
+			<li>
+			The <b>{{ project.name }}</b> git clone link is <a title="{{ project.name }} git clone link" href="git://github.com/{{ personal.github_username }}/{{ project.name }}.git">here</a>
+
+			</li>
+			<li>
+		</ul>
+		<p>
+			Copyright {{ personal.fullname }} © {{ copyright_years() }}
+			<a href="mailto:{{ personal.email }}">{{ personal.email }}</a>
+		</p>
+	</body>
+</html>

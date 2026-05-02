@@ -254,3 +254,18 @@ src_dirs = ["config", "script"]
 [processor.shellcheck]
 src_dirs = [ "src", "misc", "scripts"]
 args = ["--severity=error", "--shell=bash"]
+
+[processor.tera]
+dep_inputs = [
+    "config/project.py",
+    "config/personal.py",
+    "config/python.py",
+    "config/version.py",
+    "config/shared.py",
+]
+
+[analyzer.markdown]
+
+[analyzer.tera]
+
+[analyzer.python]

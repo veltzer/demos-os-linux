@@ -1,18 +1,16 @@
-<%!
-    import pydmt.helpers.git
-    file_number = pydmt.helpers.git.count_files("src/**/*.cc") +\
-	pydmt.helpers.git.count_files("src/**/*.c")
-%>This project is a source code repository for instructors or expert programmers
+{% set cc_count = git_count_files(pattern="src/**/*.cc") -%}
+{% set c_count = git_count_files(pattern="src/**/*.c") -%}
+This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
-${"##"} Number of examples and their selection
+## Number of examples and their selection
 
-Currently there are ${file_number} examples in this repo.
+Currently there are {{ cc_count + c_count }} examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
 
-${"##"} Topics covered by the examples
+## Topics covered by the examples
 * Multi-threading
 * Multi-processing
 * Locking
@@ -22,25 +20,25 @@ ${"##"} Topics covered by the examples
 * Various compiler directives
 * Many more...
 
-${"##"} Platforms supported
+## Platforms supported
 Only ia64 is supported. I used to support i386 but I don't have a 32 bit
 machine anymore.
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
 
-${"##"} Contributing
+## Contributing
 This project needs help. fork, commit and request me to pull.
 Just open a github account, modify and add examples, commit and ask me to pull...
 A lot of the code is documented but some of it is not. More documentation would be welcome.
 I would give attribution to whomever contributes.
 
-${"##"} License
+## License
 Code is licensed GPL3 and I hold the copyright unless explicitly stolen as attributed in the source code.
 I encourage people to use this source code as aid for instructing courses.
 Please give me some credit if you do wind up using this package and consider dropping
 me a note about the fact that you did use the package so I could feel good...
 
-${"##"} Similar projects
+## Similar projects
 * Michael Kerrisk, the maintainer and author of many of the Linux manual pages has a similar project he calls
 TLPI (The Linux Programming Interface) of programs he used in his book of the same title. You can find
 it here http://man7.org/tlpi/code/.
@@ -57,7 +55,7 @@ it here http://man7.org/tlpi/code/.
 * https://github.com/AnthonyCalandra/modern-cpp-features
 * https://github.com/angrave/SystemProgramming/wiki
 
-${"##"} Using it
+## Using it
 * you need python on your machine:
     try:
         `python --version`
