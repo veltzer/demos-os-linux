@@ -1,132 +1,136 @@
-Ansible
-Argo CD
-Azure DevOps
-CircleCI
-Codefresh
-DataDog
-Docker
-Docker Desktop
-ELK Stack
-Fluentd
-GitHub Actions
-GitLab CI
-Grafana
-Istio
-Jaeger
-Jenkins
-Kibana
-Kubernetes
-Kustomize
-Linkerd
-Logstash
-Logz.io
-Minikube
-Nexus
-OpenShift
-OpenTelemetry
-Podman Compose
-Prometheus
-StepAction
-TaskRun
-TeamCity
-Terraform
-Travis CI
-Zipkin
 ActiveGate
+Alertmanager
+Ansible
 Ansible Galaxy
+Argo CD
 Argo Rollouts
+Argo Workflows
 ArgoCD
 Auto DevOps
+Azure DevOps
+Berkshelf
+Buildah
+Buildkit
+Buildkite
 CNCF
+CRD
+CRDs
 Chaos Mesh
 Chaos Monkey
+Chef Habitat
+Chef Infra
 Cilium Service Mesh
+CircleCI
+Clair
+Claude Code
+Codecov
+Codefresh
 ConfigMaps
+Copilot Workspace
+CoreDNS
 Cosign
+Crossplane
+DataDog
+Datadog Agent
 Davis AI
+Debezium
 Dependabot
 DevSecOps
+Docker
 Docker Compose
+Docker Desktop
 DynaKube
 Dynatrace
+ELK Stack
+External Secrets Operator
+Falco
 Flagger
+Flagsmith
+Fluent Bit
+Fluentd
 Flux
+Flux CD
+Flux v2
+GitHub Actions
 GitHub Marketplace
+GitLab CI
+Grafana
 Grafana Loki
+GrowthBook
+HelmChart
+HelmRelease
+HelmRepository
+Istio
 JMX
 JSON6902
+Jaeger
+Jenkins
+Kaniko
+Karpenter
+Kibana
+Knative
+Kubebuilder
+Kubeflow Pipelines
+Kubernetes
+Kustomization
 Kustomizations
+Kustomize
 Kyverno
+LaunchDarkly
+Linkerd
 Litmus Chaos
+Logstash
+Logz.io
 MSBuild
 MetricsQL
+Minikube
+Nexus
+Notary v2
 OPA
 OPA Gatekeeper
 OneAgent
+OpenShift
+OpenTelemetry
+Operator Lifecycle Manager
 Operator SDK
 PagerDuty
 PipelineRun
 PipelineRuns
+Podman Compose
+Prometheus
+Rekor
+Resilience4j
 SLS
 SLSA
 Salt Cloud
 Salt SSH
 SaltStack
 Sealed Secrets
+Skopeo
 Smartscape
 SonarQube
+StatsD
+StepAction
+Strimzi
 TCO
+TaskRun
+TeamCity
 Tekton
 Tekton Chains
 Tekton Hub
 Tekton Triggers
 Telegraf
+Terraform
 Test Kitchen
 Testcontainers
+Toxiproxy
+Travis CI
 Trivy
 VMAlert
 VictoriaMetrics
-Zabbix
-k6
-Alertmanager
-Argo Workflows
-Berkshelf
-Buildah
-Buildkit
-Buildkite
-Chef Habitat
-Chef Infra
-Clair
-CoreDNS
-Crossplane
-External Secrets Operator
-Falco
-Fluent Bit
-Flux CD
-Flux v2
-HelmChart
-HelmRelease
-HelmRepository
-Kaniko
-Karpenter
-Knative
-Kubeflow Pipelines
-Kustomization
-Notary v2
-Operator Lifecycle Manager
-Rekor
-Skopeo
-StatsD
 Wolfi
-Codecov
-Datadog Agent
-Copilot Workspace
-Claude Code
-CRD
-CRDs
-Debezium
-Flagsmith
-GrowthBook
-Kubebuilder
-LaunchDarkly
-Strimzi
+Zabbix
+Zalando
+Zipkin
+k6
+pybreaker

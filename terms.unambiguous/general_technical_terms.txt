@@ -1,131 +1,135 @@
 AIDL
 ALSA
-Amazon Web Services
 API
+Amazon Web Services
+BIOS
 Barebox
 Binder
-BIOS
 BitBake
-bool
 Buildroot
 BusyBox
-calloc
-Camunda
-cgroups
 CLI
-Cloud Computing
-consteval
-constexpr
-containerd
-coreboot
+CREATE TABLE
 CRUD
+Camunda
+Cloud Computing
 D-Bus
 Dalvik
 Device Tree
 Dialogflow CX
-dmalloc
 Docker HUB
 Dockerfile
 Dynatrace Query Language
-eBPF
+ETL
+EXPLAIN ANALYZE
 Elastic APM
 Elastic Block Store
 Elastic Compute Cloud
 Elastic File System
-epoll
+Ethereum
 Etherscan
-ETL
-float64
-futex
 GIL
+GROUP BY
+GRUB
 GitOps
 Grafana Agent
-GRUB
 Hyper-V
+I/O
+ID
 IDEs
-initramfs
-initrd
-inotify
-int
-ioctl
 IPC
+JVM
 Jamf
 Jira
-kickstart
 KVM
-libc
-libuv
 Makefile
-malloc
 MapReduce
 Microsoft Intune
 Microsoft Sentinel
 Microsoft Teams
 Microsoft Threat Modeling Tool
-mmap
-multiprocessing
-mutex
-Nagios
 NDK
-netfilter
+Nagios
 NoSQL
-nullptr
 OCI
 OOP
+ORDER BY
 OpenCL
 OpenEmbedded
-Packer
-Pipewire
+OpenGL
+PE
 POSIX
 PREEMPT_RT
-preseed
+Packer
+Pipewire
 Proxmox
 QEMU
-RabbitMQ
+Quicksort
 RAII
 RDD
-realloc
-Relational Database Service
 REST API
-runc
-Salesforce
+RabbitMQ
+Relational Database Service
 SDK
+Salesforce
 ServiceNow
-shared_ptr
 Simple Storage Service
-size_t
-str
-subprocess
-sysfs
 Tailscale
-threading
-tmpfs
-typeof
 U-Boot
 UML
-Unicode
-unique_ptr
 UNIX
+Unicode
+VMWare
 Valgrind
 Virtual Private Cloud
 VirtualBox
-VMWare
+Vulkan
 Wayland
 Web Services
 WebGL
 X11
 Yocto
-Zscaler
-CREATE TABLE
-EXPLAIN ANALYZE
-Ethereum
-GROUP BY
-I/O
-ID
-JVM
-ORDER BY
-PE
-httpfs
-Quicksort
 Zalando
+Zscaler
+bool
+calloc
+cgroups
+consteval
+constexpr
+containerd
+coreboot
+dmalloc
+eBPF
+epoll
+float64
+futex
+getrusage
+httpfs
+initramfs
+initrd
+inotify
+int
+ioctl
+kickstart
+libc
+libuv
+malloc
+mmap
+multiprocessing
+mutex
+netfilter
+nullptr
 popcount
+prctl
+preseed
+realloc
+runc
+shared_ptr
+size_t
+str
+subprocess
+sysfs
+threading
+tmpfs
+typeof
+unique_ptr

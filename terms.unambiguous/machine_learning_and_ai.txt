@@ -1,83 +1,83 @@
 AI
+AI Fairness 360
 Aider
+Anthropic Agent SDK
 Apache Mahout
+AudioLDM
 AutoGen
+BERT
 CRISP-DM
 CatBoost
 ChatGPT
 Cline
 CrewAI
+DALL-E
+DDPM
+DGL
+Deep Learning
+DiffusionPipeline
+DreamBooth
 EDA
+EU AI Act
+Explainable AI
+Fairlearn
+FastText
+Faster R-CNN
+Feature-engine
+Federated Averaging
+Federated Learning
 GPT
+Gemini API
+GloVe
+Grad-CAM++
+GradCAM
+GraphRNN
 H2O.ai
 Hugging Face
+Hugging Face Diffusers
+Hugging Face Hub
+Hugging Face Transformers
+Hyperopt
+Imagen
 KNN
 Kubeflow
+LIME
 LLM
 LLMs
+LM Studio
 LSTM
 LangChain
 LangGraph
 LightGBM
-ML
-MLflow
-Machine Learning
-OpenAI
-RAG
-RNN
-SVM
-Weka
-XGBoost
-DDPM
-DGL
-Deep Learning
-DreamBooth
-EU AI Act
-Faster R-CNN
-Hugging Face Diffusers
-Hugging Face Transformers
-LIME
 LlamaIndex
 LoRA
+ML
 MLOps
+MLflow
+Machine Learning
 Mask R-CNN
+ModelScope
+MusicGen
 NIST AI RMF
+ONNX
+OpenAI
+OpenAI Agents SDK
 OpenAI Gymnasium
 PySyft
 PyTorch Geometric
+RAG
+RNN
 SHAP
+SVM
 Stable Baselines3
 Stable Diffusion
 Tecton
 TensorFlow Federated
-Weights & Biases
-sentence-transformers
-AI Fairness 360
-AudioLDM
-BERT
-DALL-E
-DiffusionPipeline
-Explainable AI
-Fairlearn
-FastText
-Feature-engine
-Federated Averaging
-Federated Learning
-GloVe
-GradCAM
-Grad-CAM++
-GraphRNN
-Hugging Face Hub
-Hyperopt
-Imagen
-LM Studio
-ModelScope
-MusicGen
-ONNX
 TensorFlow Serving
 U-Net
 VideoLDM
+Weights & Biases
+Weka
 Word2Vec
-Anthropic Agent SDK
-OpenAI Agents SDK
-Gemini API
+XGBoost
+sentence-transformers

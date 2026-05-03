@@ -1,5 +1,7 @@
 Crunchy
+Druid
 Flyway
+Hive
 Iceberg
 Impala
 Oracle

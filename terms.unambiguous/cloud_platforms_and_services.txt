@@ -1,32 +1,171 @@
+ADLS
 AMIs
 API Gateway
 AWS
+AWS API Gateway
+AWS App Mesh
+AWS Budgets
+AWS CDK
+AWS Certificate Manager
 AWS Certified Cloud Practitioner
+AWS CloudFormation
+AWS CloudFront
 AWS CloudTrail
+AWS CodePipeline
+AWS Config
+AWS Control Tower
+AWS Cost Explorer
+AWS DataSync
+AWS Direct Connect
+AWS Fargate
+AWS Glue
+AWS IAM
 AWS Identity and Access Management
+AWS KMS
+AWS Lambda
 AWS Management Console
+AWS Network Firewall
+AWS Organizations
+AWS SAM
+AWS SDK
+AWS SageMaker
+AWS Secrets Manager
+AWS Security Hub
+AWS Shield
+AWS Snow Family
+AWS Step Functions
+AWS Systems Manager
+AWS Transit Gateway
+AWS WAF
 AWS Well-Architected Framework
+AWS X-Ray
+Amazon API Gateway
+Amazon Athena
 Amazon CloudFront
 Amazon CloudWatch
 Amazon DynamoDB
 Amazon EBS
 Amazon EC2
+Amazon ECR
+Amazon ECS
 Amazon EFS
+Amazon EKS
+Amazon EMR
+Amazon EventBridge
 Amazon Glacier
+Amazon GuardDuty
 Amazon Lambda
 Amazon Machine Images
+Amazon OpenSearch Service
+Amazon QuickSight
 Amazon RDS
+Amazon Redshift
 Amazon Route 53
 Amazon S3
+Amazon SNS
+Amazon SQS
 Amazon VPC
+Anthos
+Apigee
+App Engine
+Application Security Groups
 Auto Scaling
+AutoML
 Azure
+Azure AD
+Azure AI Search
+Azure API Management
+Azure Active Directory
+Azure App Service
+Azure Arc
+Azure Artifacts
+Azure Backup
+Azure Bastion
+Azure Blob
+Azure Boards
+Azure CDN
+Azure CLI
+Azure Cache for Redis
+Azure Cognitive Services
+Azure Container Apps
+Azure Container Instances
+Azure Cosmos DB
+Azure Cost Management
+Azure DDoS Protection
+Azure DNS
+Azure Data Factory
+Azure Data Lake Storage Gen2
+Azure Databricks
+Azure Event Grid
+Azure Event Hubs
+Azure ExpressRoute
+Azure Files
+Azure Firewall
+Azure Front Door
+Azure Functions
+Azure Key Vault
+Azure Kubernetes Service
+Azure Load Balancer
+Azure Logic Apps
+Azure ML
+Azure Machine Learning
+Azure Migrate
+Azure Monitor
+Azure OpenAI
+Azure OpenAI Service
+Azure Pipelines
+Azure Policy
+Azure Private Link
+Azure SQL
+Azure SQL Database
+Azure Sentinel
+Azure Service Bus
+Azure SignalR Service
+Azure Site Recovery
+Azure Static Web Apps
+Azure Stream Analytics
+Azure Synapse Analytics
+Azure Traffic Manager
+Azure Virtual WAN
+Azure Well-Architected Framework
+BigQuery
+Binary Authorization
+Cloud Armor
+Cloud Build
+Cloud CDN
+Cloud DNS
+Cloud Endpoints
+Cloud Functions
+Cloud Interconnect
+Cloud KMS
+Cloud Load Balancing
+Cloud Logging
+Cloud Monitoring
+Cloud NAT
+Cloud Router
+Cloud Run
+Cloud SQL
+Cloud Scheduler
+Cloud Spanner
+Cloud Storage
+Cloud Tasks
+Cloud VPN
 CloudFlare
 CloudFormation
 CloudFront
+CloudFront Functions
 CloudWatch
+CloudWatch Logs
+Cloudflare Access
 CodeDeploy
+Compute Engine
+Cosmos DB
+Cost Explorer
+Databricks
+Dedicated Interconnect
 DigitalOcean
+Direct Connect
+DynamoDB Streams
 EBS
 EC2
 ECR
@@ -34,93 +173,37 @@ ECS
 EFS
 EKS
 ELB
-Elastic Load Balancing
-FSx
-GCP
-Google Cloud Platform
-Heroku
-IAM
-IBM Cloud
-Lambda
-Netlify
-Oracle Cloud
-RDS
-Route 53
-S3
-SNS
-SQS
-VPC
-Vercel
-ADLS
-AWS Control Tower
-AWS Glue
-AWS KMS
-AWS Lambda
-AWS Organizations
-AWS Secrets Manager
-AWS Step Functions
-AWS X-Ray
-Amazon ECR
-Amazon ECS
-Amazon EKS
-Amazon SQS
-Anthos
-App Engine
-Application Security Groups
-AutoML
-Azure AD
-Azure AI Search
-Azure Blob
-Azure Boards
-Azure Cognitive Services
-Azure DNS
-Azure Data Factory
-Azure Databricks
-Azure Firewall
-Azure Functions
-Azure Key Vault
-Azure Machine Learning
-Azure Monitor
-Azure OpenAI
-Azure OpenAI Service
-Azure Pipelines
-Azure Policy
-Azure SQL Database
-Azure Sentinel
-Azure Service Bus
-Azure Site Recovery
-Azure Stream Analytics
-Azure Synapse Analytics
-Azure Virtual WAN
-Azure Well-Architected Framework
-BigQuery
-Binary Authorization
-Cloud Armor
-Cloud Build
-Cloud DNS
-Cloud Functions
-Cloud KMS
-Cloud Logging
-Cloud Monitoring
-Cloud Router
-Cloud Run
-Cloud SQL
-Cloud Storage
-CloudWatch Logs
-Compute Engine
-Databricks
-Direct Connect
-DynamoDB Streams
 EMR
+Elastic Load Balancing
+Entra ID
 Event Hubs
 ExpressRoute
+FSx
+GCP
+GCP IAM
+GCP Secret Manager
 GCS
 GKE
 Global Accelerator
 Glue
 Google Cloud
+Google Cloud Dataflow
+Google Cloud Functions
+Google Cloud Platform
+Google Kubernetes Engine
+Google Workspace
+Heroku
+IAM
+IBM Cloud
+Identity-Aware Proxy
 KMS
 Kinesis
+Kinesis Data Analytics
+Kinesis Data Firehose
+Kinesis Data Streams
+Lake Formation
+Lambda
+Lambda@Edge
 Logic Apps
 Microsoft Azure
 Microsoft Defender for Cloud
@@ -128,120 +211,37 @@ Microsoft Entra ID
 Microsoft Purview
 Model Garden
 NAT Gateway
+Netlify
 Network Security Groups
+Oracle Cloud
 Parameter Store
 Private Google Access
 Private Link
 Private Service Connect
+RDS
 Redshift
+Redshift Serverless
+Redshift Spectrum
+Route 53
 Route 53 Resolver
+S3
+SNS
+SQS
 Secrets Manager
 Security Command Center
 Shared VPC
 Step Functions
-Transit Gateway
-VNet
-VPC Service Controls
-VPN Gateway
-Vertex AI
-AWS API Gateway
-AWS App Mesh
-AWS Budgets
-AWS CDK
-AWS Certificate Manager
-AWS CloudFormation
-AWS CloudFront
-AWS CodePipeline
-AWS Config
-AWS Cost Explorer
-AWS DataSync
-AWS Direct Connect
-AWS Fargate
-AWS IAM
-AWS Network Firewall
-AWS SAM
-AWS SDK
-AWS SageMaker
-AWS Security Hub
-AWS Shield
-AWS Snow Family
-AWS Systems Manager
-AWS Transit Gateway
-AWS WAF
-Amazon API Gateway
-Amazon Athena
-Amazon EMR
-Amazon EventBridge
-Amazon GuardDuty
-Amazon OpenSearch Service
-Amazon QuickSight
-Amazon Redshift
-Amazon SNS
-Azure Active Directory
-Azure API Management
-Azure App Service
-Azure Arc
-Azure Artifacts
-Azure Backup
-Azure Bastion
-Azure CDN
-Azure CLI
-Azure Cache for Redis
-Azure Container Apps
-Azure Container Instances
-Azure Cosmos DB
-Azure Cost Management
-Azure DDoS Protection
-Azure Data Lake Storage Gen2
-Azure Event Grid
-Azure Event Hubs
-Azure ExpressRoute
-Azure Files
-Azure Front Door
-Azure Kubernetes Service
-Azure Load Balancer
-Azure Logic Apps
-Azure ML
-Azure Migrate
-Azure Private Link
-Azure SQL
-Azure SignalR Service
-Azure Static Web Apps
-Azure Traffic Manager
-Cloud CDN
-Cloud Endpoints
-Cloud Interconnect
-Cloud Load Balancing
-Cloud NAT
-Cloud Scheduler
-Cloud Spanner
-Cloud Tasks
-Cloud VPN
-CloudFront Functions
-Cloudflare Access
-Cosmos DB
-Cost Explorer
-Dedicated Interconnect
-GCP IAM
-GCP Secret Manager
-Google Cloud Dataflow
-Google Cloud Functions
-Google Kubernetes Engine
-Google Workspace
-Identity-Aware Proxy
-Kinesis Data Analytics
-Kinesis Data Firehose
-Kinesis Data Streams
-Lake Formation
-Lambda@Edge
-Redshift Serverless
-Redshift Spectrum
 Storage Gateway
 Traffic Director
+Transit Gateway
 Trusted Advisor
+VNet
+VPC
+VPC Service Controls
+VPN Gateway
+Vercel
+Vertex AI
 Vertex AI Feature Store
 Vertex AI Pipelines
 Vertex AI Workbench
 Virtual WAN
-Entra ID
-Apigee

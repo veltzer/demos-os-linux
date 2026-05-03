@@ -4,17 +4,17 @@ Debian
 FreeBSD
 FreeRTOS
 Linux
+NixOS
 RHEL
 RTAI
+Rocky Linux
 SUSE
 Ubuntu
 Ubuntu 22.04
 Unix
+VxWorks
 Windows
 Windows Server
 Xenomai
 iOS
 macOS
-NixOS
-VxWorks
-Rocky Linux
