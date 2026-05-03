@@ -1,5 +1,0 @@
-New Relic
-Slack
-Stripe
-Tableau
-Unbound

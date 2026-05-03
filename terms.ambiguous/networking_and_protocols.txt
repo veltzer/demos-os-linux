@@ -1,3 +1,0 @@
-Dynamic DNS
-Envoy
-Pulsar

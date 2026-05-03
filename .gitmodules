@@ -1,0 +1,3 @@
+[submodule "terms"]
+	path = terms
+	url = git@github.com:veltzer/terms.git
