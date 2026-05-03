@@ -5,9 +5,7 @@ CocoaPods
 Earthly
 GNU make
 Gradle
-Hatch
 Leiningen
-Maven
 Nix
 Nixpkgs
 NuGet

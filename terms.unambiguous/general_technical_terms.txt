@@ -56,7 +56,6 @@ OOP
 ORDER BY
 OpenCL
 OpenEmbedded
-OpenGL
 PE
 POSIX
 PREEMPT_RT
@@ -83,13 +82,11 @@ VMWare
 Valgrind
 Virtual Private Cloud
 VirtualBox
-Vulkan
 Wayland
 Web Services
 WebGL
 X11
 Yocto
-Zalando
 Zscaler
 bool
 calloc
@@ -103,7 +100,6 @@ eBPF
 epoll
 float64
 futex
-getrusage
 httpfs
 initramfs
 initrd
@@ -120,7 +116,6 @@ mutex
 netfilter
 nullptr
 popcount
-prctl
 preseed
 realloc
 runc

@@ -14,7 +14,6 @@ CrewAI
 DALL-E
 DDPM
 DGL
-Deep Learning
 DiffusionPipeline
 DreamBooth
 EDA
@@ -54,7 +53,6 @@ LoRA
 ML
 MLOps
 MLflow
-Machine Learning
 Mask R-CNN
 ModelScope
 MusicGen

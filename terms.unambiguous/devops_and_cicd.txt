@@ -84,7 +84,6 @@ Logz.io
 MSBuild
 MetricsQL
 Minikube
-Nexus
 Notary v2
 OPA
 OPA Gatekeeper
@@ -107,7 +106,6 @@ Salt SSH
 SaltStack
 Sealed Secrets
 Skopeo
-Smartscape
 SonarQube
 StatsD
 StepAction

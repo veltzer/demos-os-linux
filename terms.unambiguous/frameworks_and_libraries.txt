@@ -50,7 +50,6 @@ GraphQL Code Generator
 GraphX
 Guice
 Hamcrest
-Hystrix
 Intel TBB
 Ionide
 JPA
@@ -108,7 +107,6 @@ React Suspense
 Redoc
 Redux
 Redux Toolkit
-Resilience4j
 Ruby on Rails
 RxJS
 SQLAlchemy
@@ -142,7 +140,6 @@ Xamarin
 asyncio
 jQuery
 libcoap
-pybreaker
 scikit-learn
 scrapy
 spaCy

@@ -4,7 +4,6 @@ Appium
 BDD Mockito
 Chef InSpec
 ChefSpec
-ChromeDriver
 Common Test
 Cypress Cloud
 DataDriver
@@ -35,7 +34,6 @@ Spring Cloud Contract
 TestNG
 TestRail
 Testcontainers Cloud
-Toxiproxy
 WireMock
 X-ray
 k6 Cloud
