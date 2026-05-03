@@ -1,9 +1,11 @@
 Azure Repos
 Bitbucket
+Forgejo
 Gerrit
 Git
 GitHub
 GitLab
+Gitea
 Perforce
 SVN
 Subversion
@@ -11,5 +13,3 @@ git bisect
 git diff
 git log
 git rebase
-Gitea
-Forgejo

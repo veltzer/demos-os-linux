@@ -2,40 +2,40 @@ Bazel
 CMake
 Carthage
 CocoaPods
+Earthly
+GNU make
 Gradle
 Hatch
 Leiningen
 Maven
+Nix
+Nixpkgs
 NuGet
+POM
+Pulumi
 PyPI
 SBT
 SPM
 Scratchbox
+WrapDB
 apt
 autotools
 conda
 distutils
+dotnet
 flake8
 meson
+nix develop
+nix-shell
 npm
+opam
 pipenv
+pkg-config
 pydoc
 pylint
+rebar3
 setuptools
 venv
 virtualenv
 yarn
 yum
-GNU make
-Nix
-Nixpkgs
-POM
-WrapDB
-dotnet
-nix develop
-nix-shell
-opam
-pkg-config
-rebar3
-Earthly
-Pulumi

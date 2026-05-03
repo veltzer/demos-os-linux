@@ -1,11 +1,18 @@
 BDD
 CI/CD
 CQRS
+Clean Architecture
+Continuous Delivery
 DDD
+DI
 Design Patterns
 DevOps
+Domain-Driven Design
 Event Sourcing
 Event-Driven Architecture
+GDPR
+Hexagonal Architecture
+IoC
 Kanban
 MCP
 Microservices
@@ -13,14 +20,7 @@ OO
 SDLC
 SOA
 SOLID
-TDD
-Clean Architecture
-Continuous Delivery
-DI
-Domain-Driven Design
-GDPR
-Hexagonal Architecture
-IoC
 SaaS
-WCAG 2.2
 Saga Pattern
+TDD
+WCAG 2.2

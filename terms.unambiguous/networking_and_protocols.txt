@@ -1,31 +1,69 @@
+5G NR
+ACLs
 AMQP
+API keys
+API-First
 ARP
+ActiveMQ
+ActiveMQ Artemis
+Apache Pulsar
+Automotive Ethernet
+BGP
+BIND
+CIDR
 CoAP
+Confluent Schema Registry
+Consul Connect
 DHCP
 DNS
 DPDK
+DoH
+DoT
 FTP
 GraphQL
-gRPC
+HATEOAS
 HTTP
 HTTPS
 ICMP
 IMAP
+IP
 IPv4
 IPv6
+JDBC
+JMS
+JSON-RPC
 JWT
+JetStream
+Kafka Connect
 LDAP
+LLMNR
 LwM2M
 MQTT
-Netlink
+Modbus
+NAT
+NATS
+NATS JetStream
+NBT-NS
 NFS
+NXDOMAIN
+Netlink
 OAuth
+OSPF
+OpenAPI
+OpenWire
 POP3
-PromQL
 PXE
+PromQL
+Pulsar Functions
+Pulsar IO
+RADIUS
 REST
+REST APIs
+RESTful APIs
 SAML
+SCTP
 SFTP
+SLAAC
 SMB
 SMTP
 SNMP
@@ -33,54 +71,16 @@ SOAP
 SSE
 SSH
 SSL
+STOMP
+Server-Sent Events
 TCP
+TCP/IP
 TFTP
 TLS
-UDP
-WebSocket
-5G NR
-ACLs
-API keys
-API-First
-ActiveMQ
-ActiveMQ Artemis
-Apache Pulsar
-Automotive Ethernet
-BGP
-BIND
-Consul Connect
-DoH
-DoT
-IP
-JDBC
-JMS
-JetStream
-NAT
-NATS
-NXDOMAIN
-OpenAPI
-OpenWire
-Pulsar IO
-REST APIs
-RESTful APIs
-STOMP
-TCP/IP
 TTL
-CIDR
-HATEOAS
-JSON-RPC
-LLMNR
-Modbus
-NBT-NS
-OSPF
-RADIUS
-SCTP
-Server-Sent Events
-SLAAC
+UDP
 VLAN
 VXLAN
-Confluent Schema Registry
-Kafka Connect
-NATS JetStream
-Pulsar Functions
 Web3
+WebSocket
+gRPC

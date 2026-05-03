@@ -11,15 +11,22 @@ C17
 C2X
 C99
 COBOL
+Clojure
+ClojureScript
 ES6
+Erlang
+F#
 Fortran
+Haskell
 Java
 Java 11
 Java 17
 Java 8
 JavaScript
 Kotlin
+Lua
 MATLAB
+OCaml
 Objective-C
 PHP
 PL/SQL
@@ -36,10 +43,3 @@ SQL
 Scala
 T-SQL
 TypeScript
-Clojure
-ClojureScript
-Erlang
-F#
-OCaml
-Haskell
-Lua

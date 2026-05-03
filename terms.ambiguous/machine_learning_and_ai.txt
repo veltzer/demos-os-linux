@@ -3,9 +3,11 @@ CNN
 Claude
 Codex
 Copilot
-deep learning
+Deep Learning
 Diffusers
 Feast
 Gemini
 Grok
+Machine Learning
 Sora
+deep learning
