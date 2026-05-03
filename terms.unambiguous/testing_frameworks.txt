@@ -41,3 +41,5 @@ RSpec
 Testcontainers Cloud
 PactFlow
 WireMock
+ChromeDriver
+Toxiproxy

@@ -78,3 +78,5 @@ Netcat
 pgAdmin
 theHarvester
 truffleHog
+getrusage
+prctl
