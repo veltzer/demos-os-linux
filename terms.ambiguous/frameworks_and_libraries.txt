@@ -9,6 +9,7 @@ Hardhat
 Hibernate
 Ionic
 Pandas
+Polly
 Prism
 React
 Reagent

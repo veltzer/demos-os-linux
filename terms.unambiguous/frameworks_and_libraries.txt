@@ -137,3 +137,13 @@ CSS Grid
 Ionide
 Expecto
 FsCheck
+AbortController
+ApplicationEventPublisher
+EventBus
+EventTarget
+Hystrix
+MediatR
+OpenGL
+Resilience4j
+Vulkan
+pybreaker

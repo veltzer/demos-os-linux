@@ -122,3 +122,11 @@ Codecov
 Datadog Agent
 Copilot Workspace
 Claude Code
+CRD
+CRDs
+Debezium
+Flagsmith
+GrowthBook
+Kubebuilder
+LaunchDarkly
+Strimzi

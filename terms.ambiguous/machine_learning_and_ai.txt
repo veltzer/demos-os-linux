@@ -3,6 +3,7 @@ CNN
 Claude
 Codex
 Copilot
+deep learning
 Diffusers
 Feast
 Gemini
