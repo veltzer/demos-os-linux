@@ -1,6 +1,0 @@
-Delta
-Druid
-Hive
-Pig
-Storm
-Synapse

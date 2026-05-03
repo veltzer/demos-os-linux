@@ -1,5 +1,0 @@
-Athena
-Aurora
-Conductor
-Glacier
-Spanner
