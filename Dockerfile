@@ -18,7 +18,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 
-RUN curl -fsSL "https://github.com/veltzer/rsconstruct/releases/latest/download/rsconstruct-linux-x86_64" \
+# CACHEBUST is set per build to ensure the curl below always refetches
+# `latest` (otherwise the buildx layer cache would serve a stale binary
+# even when a new rsconstruct release exists).
+ARG CACHEBUST=1
+RUN echo "cachebust=${CACHEBUST}" \
+    && curl -fsSL "https://github.com/veltzer/rsconstruct/releases/latest/download/rsconstruct-linux-x86_64" \
         -o /usr/local/bin/rsconstruct \
     && chmod +x /usr/local/bin/rsconstruct \
     && rsconstruct version
