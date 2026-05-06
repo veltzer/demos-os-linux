@@ -8,8 +8,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         gh \
         python3 \
-        python3-pip \
-    && rm -rf /var/lib/apt/lists/*
+        python3-venv \
+        software-properties-common \
+    && add-apt-repository universe \
+    && apt-get update
+
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:${PATH}"
 
 RUN curl -fsSL "https://github.com/veltzer/rsconstruct/releases/latest/download/rsconstruct-linux-x86_64" \
         -o /usr/local/bin/rsconstruct \
