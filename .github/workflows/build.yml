@@ -21,6 +21,11 @@ jobs:
     steps:
     - name: rsconstruct version
       run: rsconstruct version
+    - name: trust the workspace dir
+      # Container runs as root; checkout dir is owned by the runner user.
+      # Modern git refuses to operate on a tree owned by a different uid
+      # ("dubious ownership"). Mark all dirs safe inside the container.
+      run: git config --global --add safe.directory '*'
     - uses: actions/checkout@v6
     - uses: actions/setup-node@v6
     - uses: ruby/setup-ruby@v1
