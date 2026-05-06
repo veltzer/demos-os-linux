@@ -8,6 +8,7 @@ concurrency:
 permissions:
   pages: write
   id-token: write
+  packages: read
 
 jobs:
   build:
