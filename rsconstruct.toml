@@ -73,6 +73,8 @@ system = [
 	"uncrustify",
 	"indent",
 	"valgrind",
+	# spell-check dictionary used by the zspell processor
+	"hunspell-en-us",
 ]
 pip = [
 	"pymakehelper",
