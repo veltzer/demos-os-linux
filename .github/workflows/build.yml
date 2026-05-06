@@ -12,11 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    container: ghcr.io/veltzer/demos-os-linux-ci:latest
     steps:
     - uses: actions/checkout@v6
-    - uses: actions/setup-python@v6
-      with:
-        python-version: '3.x'
     - uses: actions/setup-node@v6
     - uses: ruby/setup-ruby@v1
       with:
@@ -24,26 +22,11 @@ jobs:
     - uses: actions/cache@v5
       with:
         path: .rsconstruct
-        # Primary key is unique per run so every successful run saves a fresh
-        # cache. restore-keys lets the run start from the most recent cache
-        # matching the prefix. Without this (static key), actions/cache never
-        # re-saves once the first cache exists.
         key: rsconstruct-${{ runner.os }}-${{ github.run_id }}
         restore-keys: |
           rsconstruct-${{ runner.os }}-
-    - name: install rsconstruct
-      run: |
-        gh release download --repo veltzer/rsconstruct --pattern 'rsconstruct-linux-x86_64' --output /usr/local/bin/rsconstruct
-        chmod +x /usr/local/bin/rsconstruct
-        rsconstruct version
-      env:
-        GH_TOKEN: ${{ github.token }}
-    - name: install
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y binutils-dev indent valgrind
-        rsconstruct tools install-deps --yes
-        rsconstruct tools install --yes
+    - name: install language tools
+      run: rsconstruct tools install --yes
     - name: build
       run: rsconstruct build -j0
     - name: status
