@@ -43,6 +43,6 @@ jobs:
       # linux_module is excluded in CI: it builds against /lib/modules/$(uname -r)/build
       # which doesn't exist inside a container (no matching kernel headers for the host's
       # azure kernel). Run those demos on a real host.
-      run: rsconstruct build -j0 -x linux_module
+      run: rsconstruct build -x linux_module
     - name: status
       run: rsconstruct status
