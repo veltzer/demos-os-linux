@@ -73,6 +73,15 @@ system = [
 	"uncrustify",
 	"indent",
 	"valgrind",
+	# tools referenced by example Makefiles to demonstrate observability,
+	# linking, and ELF concepts
+	"strace",
+	"ltrace",
+	"gdb",
+	"tcpdump",
+	"netcat-openbsd",
+	"flex",
+	"patch",
 	# spell-check dictionary used by the zspell processor
 	"hunspell-en-us",
 ]
