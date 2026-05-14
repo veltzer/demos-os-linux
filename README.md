@@ -9,6 +9,7 @@ website: https://veltzer.github.io/demos-os-linux
 ## Build
 
 ![build](https://github.com/veltzer/demos-os-linux/workflows/build/badge.svg)
+![image](https://github.com/veltzer/demos-os-linux/workflows/image/badge.svg)
 
 demos-os-linux is a project to demo and explore the Linux user space C/C++ API
 
@@ -21,7 +22,7 @@ who want to explore the Linux C/C++ API.
 
 ## Number of examples and their selection
 
-Currently there are 1108 examples in this repo.
+Currently there are 1109 examples in this repo.
 These are the examples I found are useful in explaining the Linux API.
 The idea is to provide a good coverage of all major features and to resolve disputes
 about exactly how a certain API works.
