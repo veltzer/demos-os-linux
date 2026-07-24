@@ -175,6 +175,7 @@ args = [
 	"--error-exitcode=1",
 	"--enable=warning,style,performance,portability",
 	"--check-level=exhaustive",
+	"--inline-suppr",
 	"--suppressions-list=.cppcheck-suppressions",
 ]
 
