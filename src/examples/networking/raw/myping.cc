@@ -41,8 +41,8 @@
 
 int main(int argc, char** argv) {
 	char buf[400];
-	struct ip *ip=(struct ip *)buf;
-	struct icmphdr *icmp=(struct icmphdr *)(ip + 1);
+	struct ip *ip=reinterpret_cast<struct ip *>(buf);
+	struct icmphdr *icmp=reinterpret_cast<struct icmphdr *>(ip + 1);
 	struct sockaddr_in dst;
 	int offset;
 	int num=100;
@@ -101,7 +101,7 @@ int main(int argc, char** argv) {
 			else
 				ip->ip_len=htons(418);	/* make total 65538 */
 			/* sending time */
-			CHECK_NOT_M1(sendto(s, buf, sizeof(buf), 0, (struct sockaddr *)&dst, sizeof(dst)));
+			CHECK_NOT_M1(sendto(s, buf, sizeof(buf), 0, reinterpret_cast<struct sockaddr *>(&dst), sizeof(dst)));
 			printf("sendto() is OK.\n");
 			/* IF offset=0, define our ICMP structure */
 			if(offset==0) {

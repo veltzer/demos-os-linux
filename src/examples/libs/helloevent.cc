@@ -74,15 +74,15 @@ int main() {
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(PORT);
 
-	listener = evconnlistener_new_bind(base, listener_cb, (void*)base,
+	listener = evconnlistener_new_bind(base, listener_cb, static_cast<void*>(base),
 		LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
-		(struct sockaddr*)&sin,
+		reinterpret_cast<struct sockaddr*>(&sin),
 		sizeof(sin));
 	if (!listener) {
 		fprintf(stderr, "Could not create a listener!\n");
 		return 1;
 	}
-	signal_event = evsignal_new(base, SIGINT, signal_cb, (void*)base);
+	signal_event = evsignal_new(base, SIGINT, signal_cb, static_cast<void*>(base));
 	if (!signal_event || event_add(signal_event, NULL)<0) {
 		fprintf(stderr, "Could not create/add a signal event!\n");
 		return 1;
@@ -103,7 +103,7 @@ static void listener_cb(struct evconnlistener *listener __attribute__((unused)),
 	int socklen __attribute__((unused)),
 	void* user_data)
 {
-	struct event_base *base = (struct event_base*) user_data;
+	struct event_base *base = static_cast<struct event_base*>(user_data);
 	struct bufferevent *bev;
 
 	bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
@@ -139,7 +139,7 @@ static void conn_eventcb(struct bufferevent *bev __attribute__((unused)), short 
 }
 
 static void signal_cb(evutil_socket_t sig __attribute__((unused)), short events __attribute__((unused)), void* user_data __attribute__((unused))) {
-	struct event_base *base = (struct event_base*)user_data;
+	struct event_base *base = static_cast<struct event_base*>(user_data);
 	struct timeval delay = { 2, 0 };
 	printf("Caught an interrupt signal; exiting cleanly in two seconds.\n");
 	event_base_loopexit(base, &delay);

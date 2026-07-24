@@ -60,7 +60,7 @@ typedef struct _thread_data{
 } thread_data;
 
 static void* atomic_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		__sync_add_and_fetch(td->value, 1);
@@ -69,7 +69,7 @@ static void* atomic_worker(void* p) {
 	return NULL;
 }
 static void* machine_barrier_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		*(td->value)+=1;
@@ -79,7 +79,7 @@ static void* machine_barrier_worker(void* p) {
 	return NULL;
 }
 static void* compiler_barrier_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		*(td->value)+=1;
@@ -89,7 +89,7 @@ static void* compiler_barrier_worker(void* p) {
 	return NULL;
 }
 static void* regular_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		*(td->value)+=1;
@@ -109,7 +109,7 @@ static void* regular_worker(void* p) {
 	return NULL;
 }
 static void* volatile_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		*(td->vvalue)+=1;
@@ -118,7 +118,7 @@ static void* volatile_worker(void* p) {
 	return NULL;
 }
 static void* mutex_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		CHECK_ZERO_ERRNO(pthread_mutex_lock(td->m));
@@ -129,7 +129,7 @@ static void* mutex_worker(void* p) {
 	return NULL;
 }
 static void* observer(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	TRACE("start thread %d, running on core %d", td->num, sched_getcpu());
 	while(true) {
 		CHECK_NOT_M1(usleep(td->usleep_interval));

@@ -46,7 +46,7 @@ typedef struct _threaddata{
 } threaddata;
 
 void* test_memcpy(void* p) {
-	threaddata* td=(threaddata*)p;
+	threaddata* td=static_cast<threaddata*>(p);
 	void* buf1=td->buf1;
 	const void* buf2=td->buf2;
 	size_t size=td->size;
@@ -63,13 +63,13 @@ void* test_memcpy(void* p) {
 }
 
 void* test_char(void* p) {
-	threaddata* td=(threaddata*)p;
+	threaddata* td=static_cast<threaddata*>(p);
 	void* buf1=td->buf1;
 	const void* buf2=td->buf2;
 	size_t size=td->size;
 	unsigned int loop=td->loop;
-	char* bbuf1=(char*)buf1;
-	const char* bbuf2=(const char*)buf2;
+	char* bbuf1=static_cast<char*>(buf1);
+	const char* bbuf2=static_cast<const char*>(buf2);
 	measure m;
 	measure_init(&m, "char by char", loop);
 	measure_start(&m);
@@ -84,7 +84,7 @@ void* test_char(void* p) {
 }
 
 void* test_imp1(void* p) {
-	threaddata* td=(threaddata*)p;
+	threaddata* td=static_cast<threaddata*>(p);
 	void* buf1=td->buf1;
 	const void* buf2=td->buf2;
 	size_t size=td->size;
@@ -95,7 +95,7 @@ void* test_imp1(void* p) {
 	for(unsigned int i=0; i < loop; i++) {
 		for(unsigned int j=0; j<size/sizeof(int); j++) {
 			// cppcheck-suppress unreadVariable
-			((int*)buf1)[j]=((int*)buf2)[j];
+			static_cast<int*>(buf1)[j]=static_cast<const int*>(buf2)[j];
 		}
 	}
 	measure_end(&m);
@@ -104,7 +104,7 @@ void* test_imp1(void* p) {
 }
 
 void* test_imp2(void* p) {
-	threaddata* td=(threaddata*)p;
+	threaddata* td=static_cast<threaddata*>(p);
 	void* buf1=td->buf1;
 	const void* buf2=td->buf2;
 	size_t size=td->size;
@@ -113,8 +113,8 @@ void* test_imp2(void* p) {
 	measure_init(&m, "int by int (implementation II)", loop);
 	measure_start(&m);
 	for(unsigned int i=0; i<loop; i++) {
-		int* pbuf1=(int*)buf1;
-		const int* pbuf2=(const int*)buf2;
+		int* pbuf1=static_cast<int*>(buf1);
+		const int* pbuf2=static_cast<const int*>(buf2);
 		for(unsigned int j=0; j<size/sizeof(int); j++) {
 			*pbuf1=*pbuf2;
 			pbuf1++;

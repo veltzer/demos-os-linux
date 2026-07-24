@@ -69,6 +69,8 @@ public:
 	Time() { }
 	Time( int hr, int min ) {
 		imp_ = new TimeImp( hr, min ); }
+	Time( const Time& ) = delete;
+	Time& operator=( const Time& ) = delete;
 	virtual void tell() {
 		imp_->tell(); }
 protected:

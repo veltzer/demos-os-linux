@@ -45,7 +45,7 @@
 // const char* serv_proto="tcp";
 
 void* worker(void* arg) {
-	int fd=*((int*)arg);
+	int fd=*(static_cast<int*>(arg));
 	const unsigned int buflen=1024;
 	char buff[buflen];
 	ssize_t res;
@@ -71,8 +71,8 @@ int main(int argc, char** argv) {
 	}
 	const unsigned int port1=atoi(argv[1]);
 	const unsigned int port2=atoi(argv[2]);
-	printf("contact me at localhost:%d\n", port1);
-	printf("contact me at localhost:%d\n", port2);
+	printf("contact me at localhost:%u\n", port1);
+	printf("contact me at localhost:%u\n", port2);
 
 	// lets open the socket
 	int sockfd1=CHECK_NOT_M1(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));
@@ -91,9 +91,9 @@ int main(int argc, char** argv) {
 
 	// lets bind to the socket to the address
 	server.sin_port=htons(port1);
-	CHECK_NOT_M1(bind(sockfd1, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd1, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 	server.sin_port=htons(port2);
-	CHECK_NOT_M1(bind(sockfd2, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd2, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 
 	// lets listen in...
 	int backlog=get_backlog();
@@ -111,14 +111,14 @@ int main(int argc, char** argv) {
 		// or the call to accept(2) will fail...
 		socklen_t addrlen=sizeof(client);
 		if(s.isReadActive(sockfd1)) {
-			int fd=CHECK_NOT_M1(accept(sockfd1, (struct sockaddr *)&client, &addrlen));
+			int fd=CHECK_NOT_M1(accept(sockfd1, reinterpret_cast<struct sockaddr *>(&client), &addrlen));
 			// spawn a thread to handle the connection to that client...
 			pthread_t thread;
 			int* p=new int(fd);
 			CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, p));
 		}
 		if(s.isReadActive(sockfd2)) {
-			int fd=CHECK_NOT_M1(accept(sockfd2, (struct sockaddr *)&client, &addrlen));
+			int fd=CHECK_NOT_M1(accept(sockfd2, reinterpret_cast<struct sockaddr *>(&client), &addrlen));
 			// spawn a thread to handle the connection to that client...
 			pthread_t thread;
 			int* p=new int(fd);

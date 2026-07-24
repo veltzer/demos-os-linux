@@ -107,7 +107,7 @@ int main(void) {
 	// float* fourfloatarray={ 5, 3, 2, 1 };
 	// but this is...
 	float fourfloatarray[]={ 5, 3, 2, 1 };
-	printf("size of fourfloatarray is %zd\n", sizeof(fourfloatarray));
+	printf("size of fourfloatarray is %zu\n", sizeof(fourfloatarray));
 // this does not compile
 // float zerofloatarray[]={};
 // printf("size of zerofloatarray is %zd\n", sizeof(zerofloatarray));

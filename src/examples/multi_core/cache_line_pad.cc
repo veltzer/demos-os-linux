@@ -80,6 +80,7 @@ struct bar{
 static_assert(sizeof(bar)==LEVEL2_CACHE_LINESIZE, "size of bar is wrong");
 
 // same as before, applied to a Class instead...
+// cppcheck-suppress noConstructor
 class MyClass{
 private:
 	char c1;
@@ -123,9 +124,9 @@ void myfunction(char c, struct bar mybar, char l, struct foo myfoo) {
 
 int main() {
 	printf("LEVEL2_CACHE_LINESIZE=%d\n", LEVEL2_CACHE_LINESIZE);
-	printf("sizeof(foo)=%zd\n", sizeof(foo));
-	printf("sizeof(bar)=%zd\n", sizeof(bar));
-	printf("sizeof(MyClass)=%zd\n", sizeof(MyClass));
+	printf("sizeof(foo)=%zu\n", sizeof(foo));
+	printf("sizeof(bar)=%zu\n", sizeof(bar));
+	printf("sizeof(MyClass)=%zu\n", sizeof(MyClass));
 	struct bar mybar;
 	struct foo myfoo;
 	CHECK_ASSERT((unsigned long)&mybar%LEVEL2_CACHE_LINESIZE==0);
@@ -134,7 +135,7 @@ int main() {
 	// cppcheck-suppress uninitvar
 	myfunction('4', mybar, '5', myfoo);
 #endif	/* __x86_64__ */
-	printf("sizeof(barestruct)=%zd\n", sizeof(barestruct));
-	printf("sizeof(mystruct)=%zd\n", sizeof(mystruct));
+	printf("sizeof(barestruct)=%zu\n", sizeof(barestruct));
+	printf("sizeof(mystruct)=%zu\n", sizeof(mystruct));
 	return EXIT_SUCCESS;
 }

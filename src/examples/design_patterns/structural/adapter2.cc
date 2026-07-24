@@ -30,6 +30,8 @@ template <class TYPE>									// 2. Design a "wrapper" or
 class ExecuteAdapter : public ExecuteInterface { //	 "adapter" class
 public:
 	ExecuteAdapter( TYPE* o, void (TYPE::*m)() ) { object = o; method =m; }
+	ExecuteAdapter(const ExecuteAdapter&) = delete;
+	ExecuteAdapter& operator=(const ExecuteAdapter&) = delete;
 	~ExecuteAdapter() override									 { delete object; }
 	// 4. The adapter/wrapper "maps" the new to the legacy implementation
 	void execute() override				 /* the new */	{ (object->*method)(); }

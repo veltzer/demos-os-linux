@@ -45,7 +45,7 @@ const char* serv_name="http-alt";
 const char* serv_proto="tcp";
 
 void* worker(void* arg) {
-	int fd=*((int*)arg);
+	int fd=*(static_cast<int*>(arg));
 	TRACE("thread %d starting", gettid());
 	TRACE("thread %d got fd %d", gettid(), fd);
 	const unsigned int buflen=1024;
@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 	}
 	const char* host=argv[1];
 	const unsigned int port=atoi(argv[2]);
-	printf("contact me at host %s port %d\n", host, port);
+	printf("contact me at host %s port %u\n", host, port);
 
 	// lets get the port number using getservbyname(3)
 	// struct servent* p_servent=(struct servent*)CHECK_NOT_NULL(getservbyname(serv_name,serv_proto));
@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// lets bind to the socket to the address
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 	printf("bind was successful\n");
 
 	// lets listen in...
@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
 	while(true) {
 		struct sockaddr_in client;
 		socklen_t addrlen;
-		int fd=CHECK_NOT_M1(accept(sockfd, (struct sockaddr *)&client, &addrlen));
+		int fd=CHECK_NOT_M1(accept(sockfd, reinterpret_cast<struct sockaddr *>(&client), &addrlen));
 		printf("accepted fd %d\n", fd);
 		// spawn a thread to handle the connection to that client...
 		pthread_t thread;

@@ -54,7 +54,7 @@ struct thread_info {
 
 static void *worker(void *arg)
 {
-	struct thread_info *info = (struct thread_info *)arg;
+	struct thread_info *info = static_cast<struct thread_info *>(arg);
 
 	info->tid = gettid();
 
@@ -112,7 +112,7 @@ int main(void)
 		int n = CHECK_NOT_M1(epoll_wait(epfd, events, NUM_THREADS, -1));
 
 		for(int i = 0; i < n; i++) {
-			struct thread_info *info = (struct thread_info *)events[i].data.ptr;
+			struct thread_info *info = static_cast<struct thread_info *>(events[i].data.ptr);
 
 			printf("[Main] Detected thread %d (tid=%d) died! "
 				"(slept %d secs, %d remaining)\n",

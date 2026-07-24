@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// lets connect...
-	CHECK_NOT_M1(connect(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(connect(sockfd, reinterpret_cast<struct sockaddr*>(&server), sizeof(server)));
 	printf("connected successfully\n");
 
 	// lets send "hello"...

@@ -42,13 +42,13 @@ static int myglobalvalue;
 
 int main() {
 	int mystackvalue;
-	int* pvar=(int*)CHECK_NOT_VOIDP(mmap(
+	int* pvar=static_cast<int*>(CHECK_NOT_VOIDP(mmap(
 		NULL,
 		getpagesize(),
 		PROT_READ | PROT_WRITE,
 		MAP_SHARED | MAP_ANONYMOUS,
 		-1,
-		0), MAP_FAILED);
+		0), MAP_FAILED));
 	*pvar=1;
 	mystackvalue=1;
 	myglobalvalue=1;

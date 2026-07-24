@@ -36,6 +36,7 @@ int always_false(void) {
 
 int main(void) {
 	global=0;
+	// cppcheck-suppress knownConditionTrueFalse
 	if(always_false() && always_false()) {
 		printf("You should not be here...\n");
 	}

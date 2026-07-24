@@ -56,7 +56,7 @@ int trace(const char *fmt, ...) {
 }
 
 int main() {
-	printf("sizeof(__builtin_va_list) is [%zd]\n", sizeof(__builtin_va_list));
+	printf("sizeof(__builtin_va_list) is [%zu]\n", sizeof(__builtin_va_list));
 	trace("%s %d %f\n", "Hello", 5, 3.14);
 	// the next line will produce a compile time error (passing int as string...)
 	// trace("%s %s %f\n","Hello",5,3.14);

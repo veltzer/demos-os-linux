@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 	counter=0;
 	// print the address of counter to force the compiler
 	// to allocate it on the stack
-	printf("address of counter is %p\n", (void*)&counter);
+	printf("address of counter is %p\n", static_cast<void*>(&counter));
 	measure_init(&m, "regular adds (best barrier)", attempts);
 	measure_start(&m);
 	for(int i=0; i<attempts; i++) {

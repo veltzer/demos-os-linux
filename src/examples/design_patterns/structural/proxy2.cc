@@ -28,6 +28,8 @@ class POP {			 // Persistent Object Pointer
 	ANYTYPE*	ptr;
 public:
 	explicit POP( const string& id ) : oid(id), ptr(0) { }
+	// cppcheck-suppress noCopyConstructor
+	// cppcheck-suppress noOperatorEq
 	~POP()				{ delete ptr; }
 	ANYTYPE* operator->() {
 		if ( ! ptr)

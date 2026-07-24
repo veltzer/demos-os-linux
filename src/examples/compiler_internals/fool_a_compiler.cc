@@ -47,9 +47,9 @@ int main(int argc, char**) {
 	int* pi=&argc+2;
 	// int* pi=&i;
 	// the next TWO print statements are neccessary to make the magic at the end happen...
-	printf("&i is %p\n", (void*)&i);
-	printf("&pi is %p\n", (void*)pi);
-	printf("pi is %p\n", (void*)pi);
+	printf("&i is %p\n", static_cast<void*>(&i));
+	printf("&pi is %p\n", static_cast<void*>(pi));
+	printf("pi is %p\n", static_cast<void*>(pi));
 	unsigned long sum=0;
 	for(i=0; i<100; i++) {
 		sum+=i*i*i;

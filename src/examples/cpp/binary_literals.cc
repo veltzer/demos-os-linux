@@ -81,11 +81,17 @@ int main() {
 	assert(binary(100000000)==256);
 	assert(binary(0000000000001)==1);
 	// GCC native only syntax
+	// cppcheck-suppress knownConditionTrueFalse
 	assert(0b11==3);
+	// cppcheck-suppress knownConditionTrueFalse
 	assert(0b111==7);
+	// cppcheck-suppress knownConditionTrueFalse
 	assert(0b1111==15);
+	// cppcheck-suppress knownConditionTrueFalse
 	assert(0b11111111==255);
+	// cppcheck-suppress knownConditionTrueFalse
 	assert(0b100000000==256);
+	// cppcheck-suppress knownConditionTrueFalse
 	assert(0b0000000000001==1);
 	// this will fail
 	// assert(binary(11)==4);

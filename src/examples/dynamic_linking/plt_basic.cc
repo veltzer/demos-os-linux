@@ -39,9 +39,9 @@ int main() {
 	__typeof__(printf)* p_printf=&printf;
 	__typeof__(snprintf)* p_snprintf=&snprintf;
 	__typeof__(atoi)* p_atoi=&atoi;
-	printf("&printf is %p\n", (void*)p_printf);
-	printf("&snprintf is %p\n", (void*)p_snprintf);
-	printf("&atoi is %p\n", (void*)p_atoi);
+	printf("&printf is %p\n", reinterpret_cast<void*>(p_printf));
+	printf("&snprintf is %p\n", reinterpret_cast<void*>(p_snprintf));
+	printf("&atoi is %p\n", reinterpret_cast<void*>(p_atoi));
 	proc_print_mmap_self();
 	return EXIT_SUCCESS;
 }

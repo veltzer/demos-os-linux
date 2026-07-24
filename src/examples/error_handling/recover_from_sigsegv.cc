@@ -55,7 +55,7 @@ static void handler_safe(int sig __attribute__((unused)), siginfo_t *si __attrib
 	TRACE("start");
 	// cppcheck-suppress constVariablePointer
 	// cppcheck-suppress unreadVariable
-	ucontext_t *context = (ucontext_t*)uap;
+	ucontext_t *context = static_cast<ucontext_t*>(uap);
 	/*
 	 * alternativly, try to jump to a "safe place"
 	 */
@@ -73,7 +73,7 @@ static int jmp_rel;
 static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
-	ucontext_t *context = (ucontext_t*)uap;
+	ucontext_t *context = static_cast<ucontext_t*>(uap);
 	TRACE("REG_EIP is %x", context->uc_mcontext.gregs[REG_EIP]);
 	/*
 	 * On my particular system, compiled with gcc -O2, the offending instruction
@@ -90,7 +90,7 @@ static uintptr_t jmp_abs;
 static void handler_jmp_abs(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
-	ucontext_t *context = (ucontext_t*)uap;
+	ucontext_t *context = static_cast<ucontext_t*>(uap);
 	/*
 	 * We will jump to some address in this handler.
 	 * You better set the address right before hand...

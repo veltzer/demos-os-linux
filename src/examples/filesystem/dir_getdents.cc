@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
 	int fd=CHECK_NOT_M1(open(dirname, O_RDONLY | O_DIRECTORY));
 	char buf[1024];
 	while(true) {
-		int nread=CHECK_NOT_M1(syscall_getdents(fd, (struct linux_dirent*)buf, sizeof(buf)));
+		int nread=CHECK_NOT_M1(syscall_getdents(fd, reinterpret_cast<struct linux_dirent*>(buf), sizeof(buf)));
 		if(nread==0) {
 			break;
 		}
@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 			);
 		int bpos=0;
 		while(bpos < nread) {
-			const struct linux_dirent * d = (const struct linux_dirent *) (buf + bpos);
+			const struct linux_dirent * d = reinterpret_cast<const struct linux_dirent *>(buf + bpos);
 			char d_type = *(buf + bpos + d->d_reclen - 1);
 			printf("%8ld %-10s %8d %10lu %s\n",
 				d->d_ino,

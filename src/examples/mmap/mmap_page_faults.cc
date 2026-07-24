@@ -34,7 +34,7 @@ int main() {
 	const unsigned long length = 4*1024*1024*1024L;
 	const int pagesize = getpagesize();
 	// allocate the memory
-	char* p=(char*)CHECK_NOT_VOIDP(mmap(
+	char* p=static_cast<char*>(CHECK_NOT_VOIDP(mmap(
 		NULL,
 		length,
 		PROT_READ|PROT_WRITE,
@@ -42,7 +42,7 @@ int main() {
 		MAP_ANONYMOUS|MAP_PRIVATE,
 		-1,
 		0
-		), MAP_FAILED);
+		), MAP_FAILED));
 	// slowly use the memory
 	int counter = 0;
 	while(true) {

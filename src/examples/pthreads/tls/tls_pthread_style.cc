@@ -40,14 +40,14 @@ pthread_key_t key_myid;
 static void* worker(void* arg) {
 	CHECK_ZERO_ERRNO(pthread_setspecific(key_myid, arg));
 	// now lets pull our id
-	int myid=*(int*)CHECK_NOT_NULL(pthread_getspecific(key_myid));
+	int myid=*static_cast<int*>(CHECK_NOT_NULL(pthread_getspecific(key_myid)));
 	TRACE("myid is [%d]", myid);
 	return NULL;
 }
 
 static void id_dealloc(void* ptr) {
 	TRACE("deallocated [%p]", ptr);
-	int* p=(int*)ptr;
+	int* p=static_cast<int*>(ptr);
 	free(p);
 }
 
@@ -55,9 +55,9 @@ static void run_threads() {
 	const unsigned int num=4;
 	pthread_t threads[num];
 	for(unsigned int i=0; i<num; i++) {
-		int* p=(int*)malloc(sizeof(int));
+		int* p=static_cast<int*>(CHECK_NOT_NULL(malloc(sizeof(int))));
 		*p=i;
-		TRACE("allocated [%p]", (void*)p);
+		TRACE("allocated [%p]", static_cast<void*>(p));
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, p));
 	}
 	for(unsigned int i=0; i<num; i++) {

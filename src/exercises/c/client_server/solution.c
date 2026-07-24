@@ -60,7 +60,7 @@ int main(void) {
 		CHECK_NOT_M1(read(fdindex, &buffer, sizeof(buffer)));
 	}
 	if (buffer.ID > 0) {
-		printf("Now printing job: %d file: %s\n", buffer.ID, buffer.path);
+		printf("Now printing job: %u file: %s\n", buffer.ID, buffer.path);
 	}
 	CHECK_NOT_M1(lseek(fdindex, -(off_t)sizeof(buffer), SEEK_CUR));
 	buffer.ID=0;

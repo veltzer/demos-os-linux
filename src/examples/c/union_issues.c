@@ -56,9 +56,12 @@ int main(void) {
 	printf("li.HighPart is %u\n", li.HighPart);
 	printf("li.QuadPart is %lli\n", li.QuadPart);
 	// this is the offsets of it's relevant parts...
-	printf("offset of LowPart is %zd\n", OffsetOf(LARGE_INTEGER, LowPart));
-	printf("offset of HighPart is %zd\n", OffsetOf(LARGE_INTEGER, HighPart));
-	printf("offset of QuadPart is %zd\n", OffsetOf(LARGE_INTEGER, QuadPart));
+	// cppcheck-suppress intToPointerCast
+	printf("offset of LowPart is %td\n", OffsetOf(LARGE_INTEGER, LowPart));
+	// cppcheck-suppress intToPointerCast
+	printf("offset of HighPart is %td\n", OffsetOf(LARGE_INTEGER, HighPart));
+	// cppcheck-suppress intToPointerCast
+	printf("offset of QuadPart is %td\n", OffsetOf(LARGE_INTEGER, QuadPart));
 	// or we could use the built in...
 	printf("offset of LowPart is %zd\n", __builtin_offsetof(LARGE_INTEGER, LowPart));
 	printf("offset of HighPart is %zd\n", __builtin_offsetof(LARGE_INTEGER, HighPart));

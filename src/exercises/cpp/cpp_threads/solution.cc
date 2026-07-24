@@ -33,7 +33,7 @@ using namespace std;
  */
 
 void* MyThread::realsvc(void* arg) {
-	MyThread* t=(MyThread*)arg;
+	MyThread* t=static_cast<MyThread*>(arg);
 	t->svc();
 	return NULL;
 }
@@ -45,7 +45,7 @@ MyThread::~MyThread() {
 }
 
 void MyThread::start() {
-	CHECK_ZERO_ERRNO(pthread_create(&myid, NULL, realsvc, (void*)this));
+	CHECK_ZERO_ERRNO(pthread_create(&myid, NULL, realsvc, static_cast<void*>(this)));
 }
 
 void MyThread::join() {

@@ -21,6 +21,7 @@
 #include <stdio.h>	// for printf(3)
 #include <mcheck.h>	// for mcheck(3), states, mprobe(3)
 #include <string.h>	// for strcpy(3)
+#include <err_utils.h>	// for CHECK_NOT_NULL()
 
 /*
  * This is a demo of using the mcheck feature of the GNU C standard library
@@ -61,8 +62,8 @@ int main() {
 	// use my own handler...
 	mcheck(myhandler);
 	const int size_of_buffer=10;
-	char* buf=(char*)malloc(size_of_buffer);
-	char* buf2=(char*)malloc(size_of_buffer);
+	char* buf=static_cast<char*>(CHECK_NOT_NULL(malloc(size_of_buffer)));
+	char* buf2=static_cast<char*>(CHECK_NOT_NULL(malloc(size_of_buffer)));
 	const int to_overrun=1;
 	int i;
 	for(i=size_of_buffer; i<size_of_buffer+to_overrun; i++) {

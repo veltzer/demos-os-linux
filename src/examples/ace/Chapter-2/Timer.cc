@@ -68,7 +68,7 @@ int main() {
 	for(long i=0; i < NUMBER_TIMERS; i++) {
 		timer_id[i]=reactor.schedule_timer(
 			th,
-			(const void*)i,	// argument sent to handle_timeout()
+			reinterpret_cast<const void*>(i),	// argument sent to handle_timeout()
 			ACE_Time_Value(10 * i + 1)	// set timer to go off with delay
 			);
 	}

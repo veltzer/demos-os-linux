@@ -202,7 +202,7 @@ void list_subdevice_info(snd_ctl_t *ctl, int card, int device) {
 		if ((status=is_input(ctl, card, device, sub)) < 0) {
 			error("cannot get rawmidi information %d:%d: %s", card, device, snd_strerror(status));
 		}
-	} else if (status)
+	} else
 		in=1;
 	if (status==0)
 		return;

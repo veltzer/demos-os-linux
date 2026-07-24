@@ -49,7 +49,7 @@ typedef struct _thread_data{
 } thread_data;
 
 static void* reader(void* data) {
-	thread_data* td=(thread_data*)data;
+	thread_data* td=static_cast<thread_data*>(data);
 	int fd=CHECK_NOT_M1(open(td->filein, O_RDONLY));
 	CircularPipe* cp=td->cp;
 	do {
@@ -64,7 +64,7 @@ static void* reader(void* data) {
 }
 
 static void* writer(void* data) {
-	thread_data* td=(thread_data*)data;
+	thread_data* td=static_cast<thread_data*>(data);
 	int fd=CHECK_NOT_M1(open(td->fileout, O_WRONLY|O_CREAT|O_TRUNC, 0644));
 	CircularPipe* cp=td->cp;
 	do {

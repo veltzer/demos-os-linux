@@ -46,7 +46,7 @@ void* worker(void*) {
 		// now print the performance counter
 		unsigned long long current=getticks();
 		unsigned int mic_diff=get_mic_diff(previous, current);
-		printf("performance counter is %llu, diff in micros is %d\n", current, mic_diff);
+		printf("performance counter is %llu, diff in micros is %u\n", current, mic_diff);
 		previous=current;
 	}
 	return NULL;

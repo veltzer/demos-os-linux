@@ -29,7 +29,7 @@
 
 int main() {
 	size_t n=CHECK_POSITIVE(confstr(_CS_PATH, NULL, (size_t)0));
-	char *pathbuf=(char*)CHECK_NOT_NULL(malloc(n));
+	char *pathbuf=static_cast<char*>(CHECK_NOT_NULL(malloc(n)));
 	CHECK_IN_RANGE(confstr(_CS_PATH, pathbuf, n), 1, n+1);
 	printf("confstr(_CS_PATH) returned %s\n", pathbuf);
 	free(pathbuf);

@@ -114,10 +114,10 @@ int main() {
 	// my_system("modprobe iptable_filter");
 	// my_system("modprobe ip_queue");
 	my_system("iptables -A OUTPUT -j QUEUE");
-	struct nfq_handle * handle = (struct nfq_handle *)CHECK_NOT_NULL(nfq_open());
+	struct nfq_handle * handle = static_cast<struct nfq_handle *>(CHECK_NOT_NULL(nfq_open()));
 	CHECK_NOT_NEGATIVE(nfq_unbind_pf(handle, AF_INET));
 	CHECK_NOT_NEGATIVE(nfq_bind_pf(handle, AF_INET));
-	struct nfq_q_handle * queue = (struct nfq_q_handle *)CHECK_NOT_NULL(nfq_create_queue(handle, 0, &manage_packet, NULL));
+	struct nfq_q_handle * queue = static_cast<struct nfq_q_handle *>(CHECK_NOT_NULL(nfq_create_queue(handle, 0, &manage_packet, NULL)));
 	CHECK_NOT_NEGATIVE(nfq_set_mode(queue, NFQNL_COPY_PACKET, 0xffff));
 	struct nfnl_handle * netlink_handle = nfq_nfnlh(handle);
 	uint32_t nfqueue_fd = nfnl_fd(netlink_handle);

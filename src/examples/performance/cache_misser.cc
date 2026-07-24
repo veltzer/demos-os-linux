@@ -19,6 +19,7 @@
 #include <firstinclude.h>
 #include <stdlib.h>	// for malloc(3), EXIT_SUCCESS, EXIT_FAILURE, rand(3), atoi(3)
 #include <stdio.h>	// for printf(3), fprintf(3), stderr
+#include <err_utils.h>	// for CHECK_NOT_NULL()
 
 /*
  * This is a sample which misses the cache on purpose...
@@ -50,7 +51,7 @@ int main(int argc, char** argv) {
 	unsigned int size=atoi(argv[1]);
 	unsigned int times=atoi(argv[2]);
 	unsigned int random=atoi(argv[3]);
-	char* p=(char*)malloc(size);
+	char* p=static_cast<char*>(CHECK_NOT_NULL(malloc(size)));
 	for(unsigned int i=0; i<size; i++) {
 		p[i]=i%256;
 	}

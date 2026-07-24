@@ -52,7 +52,7 @@ static void function(void) {
  */
 
 void debug(const void* ptr) {
-	const char* p=(const char*)ptr;
+	const char* p=static_cast<const char*>(ptr);
 	for(int i=0; i<40; i++) {
 		printf("p[%d]=%d\n", i, p[i]);
 	}
@@ -63,7 +63,7 @@ void debug(const void* ptr) {
  * value...
  */
 char* find_cell(void* ptr, char val) {
-	char* p=(char*)ptr;
+	char* p=static_cast<char*>(ptr);
 	while(*p!=val) {
 		p++;
 	}
@@ -75,7 +75,7 @@ char* find_cell(void* ptr, char val) {
  */
 void segv_handler(int sig __attribute__((unused))) {
 	fprintf(stderr, "in segv_handler, changing protection for the page...\n");
-	CHECK_NOT_M1(mprotect(page_adr((void*)function), getpagesize(), PROT_READ|PROT_WRITE|PROT_EXEC));
+	CHECK_NOT_M1(mprotect(page_adr(reinterpret_cast<void*>(function)), getpagesize(), PROT_READ|PROT_WRITE|PROT_EXEC));
 }
 
 int main() {
@@ -88,9 +88,9 @@ int main() {
 	// if you are in gcc 4.5 then search for times-1
 	// if you are in gcc 4.4 then search for times
 	// p has to be volatile or else the assignment to it will not happen
-	volatile char* p=find_cell((void*)function, times);
-	fprintf(stderr, "address of function is %p\n", (void*)function);
-	fprintf(stderr, "address of p is %p\n", (void*)p);
+	volatile char* p=find_cell(reinterpret_cast<void*>(function), times);
+	fprintf(stderr, "address of function is %p\n", reinterpret_cast<void*>(function));
+	fprintf(stderr, "address of p is %p\n", static_cast<void*>(const_cast<char*>(p)));
 	// fprintf(stderr,"*function is %c\n",*(char*)function);
 	// *(char*)(function)=5;
 	// fprintf(stderr,"*function is %c\n",*(char*)function);

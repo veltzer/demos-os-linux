@@ -41,7 +41,7 @@ int ids[num];
 void* rets[num];
 
 static void* worker(void* p) {
-	int id=*(int *)p;
+	int id=*static_cast<int*>(p);
 	if(id==0) {
 		// CHECK_NOT_M1(prctl(PR_SET_NAME,"t1"));
 		CHECK_ZERO_ERRNO(pthread_setname_np(pthread_self(), "t1"));

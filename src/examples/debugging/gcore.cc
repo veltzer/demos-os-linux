@@ -58,7 +58,7 @@ int main() {
 #endif	// DO_FORK
 	printf("take a photo of me with 'gcore %d'...\n", getpid());
 	for(volatile unsigned int i=0; i<10000; i++) {
-		printf("i is %d\n", i);
+		printf("i is %u\n", i);
 #ifdef DO_SLEEP
 		CHECK_NOT_M1(usleep(5));
 #endif	// DO_SLEEP

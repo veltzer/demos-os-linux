@@ -41,7 +41,7 @@ int main(void) {
 	// as well
 	/* fflush(stdout); */
 	CHECK_INT(scanf("%d", &size), 1);
-	p=(float*)malloc(sizeof(float)*size);
+	p=(float*)CHECK_NOT_NULL(malloc(sizeof(float)*size));
 	for(i=0; i<size; i++) {
 		printf("please give me the %d'th element: ", i);
 		CHECK_INT(scanf("%f", &p[i]), 1);

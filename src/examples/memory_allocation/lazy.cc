@@ -45,7 +45,7 @@
 int main() {
 	const unsigned int page_number=2000;
 	int page_size=getpagesize();
-	char *p=(char *)malloc(page_size * page_number);
+	char *p=static_cast<char*>(CHECK_NOT_NULL(malloc(page_size * page_number)));
 	unsigned int page_counter=0;
 	bool over=false;
 	unsigned int pagenum;
@@ -84,15 +84,15 @@ int main() {
 			proc_print_mem_stats_self();
 			break;
 		case 3:
-			p=(char *)malloc(page_size * page_number);
+			p=static_cast<char*>(CHECK_NOT_NULL(malloc(page_size * page_number)));
 			proc_print_mem_stats_self();
 			break;
 		case 4:
-			p=(char *)calloc(page_size, page_number);
+			p=static_cast<char*>(CHECK_NOT_NULL(calloc(page_size, page_number)));
 			proc_print_mem_stats_self();
 			break;
 		case 5:
-			p=(char *)malloc(page_size * page_number);
+			p=static_cast<char*>(CHECK_NOT_NULL(malloc(page_size * page_number)));
 			memset(p, 5, page_size*page_number);
 			proc_print_mem_stats_self();
 			break;

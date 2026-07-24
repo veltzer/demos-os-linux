@@ -38,9 +38,9 @@ static void registry_global(void* data __attribute__((unused)), struct wl_regist
 	uint32_t name, const char *interface,
 	uint32_t version __attribute__((unused))) {
 	if (strcmp(interface, "wl_compositor") == 0) {
-		compositor = (struct wl_compositor *) wl_registry_bind(registry, name, &wl_compositor_interface, 1);
+		compositor = static_cast<struct wl_compositor *>(wl_registry_bind(registry, name, &wl_compositor_interface, 1));
 	} else if (strcmp(interface, "wl_shell") == 0) {
-		shell = (struct wl_shell *) wl_registry_bind(registry, name, &wl_shell_interface, 1);
+		shell = static_cast<struct wl_shell *>(wl_registry_bind(registry, name, &wl_shell_interface, 1));
 	}
 }
 
@@ -55,7 +55,7 @@ static const struct wl_registry_listener registry_listener = {
 };
 
 int main() {
-	struct wl_display *display = (struct wl_display*)CHECK_NOT_NULL(wl_display_connect(NULL));
+	struct wl_display *display = static_cast<struct wl_display*>(CHECK_NOT_NULL(wl_display_connect(NULL)));
 	struct wl_registry *registry = wl_display_get_registry(display);
 	wl_registry_add_listener(registry, &registry_listener, NULL);
 	wl_display_roundtrip(display);

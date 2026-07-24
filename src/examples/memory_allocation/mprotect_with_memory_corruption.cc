@@ -24,7 +24,7 @@
 
 // this code simulates a memory corruption
 void bad_code(void* precious_data) {
-	char* p=(char*)precious_data;
+	char* p=static_cast<char*>(precious_data);
 	p[0]=5;
 }
 

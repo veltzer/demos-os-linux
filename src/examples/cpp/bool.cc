@@ -35,8 +35,8 @@
  */
 
 int main() {
-	printf("sizeof(_Bool) is %zd\n", sizeof(_Bool));
-	printf("sizeof(bool) is %zd\n", sizeof(bool));
+	printf("sizeof(_Bool) is %zu\n", sizeof(_Bool));
+	printf("sizeof(bool) is %zu\n", sizeof(bool));
 	printf("_Bool is really %s\n", stringify(_Bool));
 	printf("bool is really %s\n", stringify(bool));
 	printf("true is really %s\n", stringify(true));
@@ -49,35 +49,41 @@ int main() {
 	int i0=0;
 	bool ib0=(bool)i0;
 	bool ib7=(bool)i7;
+	// cppcheck-suppress knownConditionTrueFalse
 	if(ib0) {
 		printf("bool(0) is true\n");
 	} else {
 		printf("bool(0) is false\n");
 	}
+	// cppcheck-suppress knownConditionTrueFalse
 	if(ib7) {
 		printf("bool(7) is true\n");
 	} else {
 		printf("bool(7) is false\n");
 	}
 	const char* p0=(const char*)0;
+	// cppcheck-suppress intToPointerCast
 	const char* p7=(const char*)7;
 	// cppcheck-suppress knownPointerToBool
 	bool pb0=(bool)p0;
 	// cppcheck-suppress knownPointerToBool
 	bool pb7=(bool)p7;
+	// cppcheck-suppress knownConditionTrueFalse
 	if(pb0) {
 		printf("bool((char*)0) is true\n");
 	} else {
 		printf("bool((char*)0) is false\n");
 	}
+	// cppcheck-suppress knownConditionTrueFalse
 	if(pb7) {
 		printf("bool((char*)7) is true\n");
 	} else {
 		printf("bool((char*)7) is false\n");
 	}
+	// cppcheck-suppress cstyleCast
 	const char* ptrue=(const char*)true;
 	const char* pfalse=(const char*)false;
-	printf("true cast to char* is %p\n", (const void*)ptrue);
-	printf("false cast to char* is %p\n", (const void*)pfalse);
+	printf("true cast to char* is %p\n", static_cast<const void*>(ptrue));
+	printf("false cast to char* is %p\n", static_cast<const void*>(pfalse));
 	return EXIT_SUCCESS;
 }

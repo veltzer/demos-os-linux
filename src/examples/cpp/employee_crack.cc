@@ -25,6 +25,7 @@
 // This is in the HH file //
 ////////////////////////////
 
+// cppcheck-suppress noConstructor
 class Employee{
 private:
 	int salary;
@@ -49,6 +50,7 @@ void Employee::setSalary(int newsalary) {
 ///////////////////////////////
 int main() {
 	Employee e;
+	// cppcheck-suppress dangerousTypeCast
 	int* p=(int*)&e;
 	*p=1200;
 	e.printSalary();

@@ -34,7 +34,7 @@
 
 // cppcheck-suppress constParameterPointer
 void __attribute__((noinline)) print_address_of(int* ptr) {
-	printf("ptr is %p\n", (void*)ptr);
+	printf("ptr is %p\n", static_cast<void*>(ptr));
 }
 
 void __attribute__((noinline)) printit(int val) {

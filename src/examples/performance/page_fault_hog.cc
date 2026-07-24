@@ -32,7 +32,7 @@ void minor_fault_hog_function() {
 		void* p=CHECK_NOT_NULL(mmap(NULL, size, PROT_READ | PROT_WRITE, flags, -1, 0));
 		// memset(p, 0, size);
 		for(unsigned int j=0; j<size; j+=2) {
-			((char*)p)[j]=j;
+			static_cast<char*>(p)[j]=j;
 		}
 		CHECK_ZERO(munmap(p, size));
 	}

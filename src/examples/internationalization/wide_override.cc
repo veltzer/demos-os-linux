@@ -29,7 +29,7 @@
 #define wchar_t char
 
 int main() {
-	printf("size of char is %zd\n", sizeof(char));
-	printf("size of wchar_t is %zd\n", sizeof(wchar_t));
+	printf("size of char is %zu\n", sizeof(char));
+	printf("size of wchar_t is %zu\n", sizeof(wchar_t));
 	return EXIT_SUCCESS;
 }

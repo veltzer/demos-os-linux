@@ -36,7 +36,7 @@ void scanthedir(const char* dirname) {
 	char linkname[MAXPATHLEN+MAXPATHLEN+1];
 	char linktarget[MAXPATHLEN];
 	int linktargetsize;
-	DIR* sdir=(DIR*)CHECK_NOT_NULL(opendir(dirname));
+	DIR* sdir=static_cast<DIR*>(CHECK_NOT_NULL(opendir(dirname)));
 	while((dircontent=readdir(sdir))) {
 		if ((strcmp(dircontent->d_name, "." )==0) || strcmp(dircontent->d_name, "..")==0)
 			continue;
@@ -47,7 +47,7 @@ void scanthedir(const char* dirname) {
 				snprintf(fddirname, MAXPATHLEN+3, "%s/fd", tmpdir);
 				printf("%s\n", dircontent->d_name);
 				if(access(fddirname, R_OK)==0) {
-					DIR* fddir=(DIR*)CHECK_NOT_NULL(opendir(fddirname));
+					DIR* fddir=static_cast<DIR*>(CHECK_NOT_NULL(opendir(fddirname)));
 					while((fddircontent=readdir(fddir))) {
 						if ((strcmp(fddircontent->d_name, "." )==0) || strcmp(fddircontent->d_name, "..")==0)
 							continue;

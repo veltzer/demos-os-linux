@@ -34,9 +34,9 @@
 int main() {
 	for(int i=0; i<10; i++) {
 		// cppcheck-suppress allocaCalled
-		char* p=(char*)alloca(10);
+		char* p=static_cast<char*>(alloca(10));
 		bzero(p, 10);
-		printf("p1 is %p\n", (void*)p);
+		printf("p1 is %p\n", static_cast<void*>(p));
 	}
 	return EXIT_SUCCESS;
 }

@@ -27,7 +27,7 @@ void print_my_value(const int* p) {
 
 int main() {
 	const int i=5;
-	int* p=(int*)&i;
+	int* p=const_cast<int*>(&i);
 	*p=7;
 	cout << "i is " << i << endl;
 	print_my_value(&i);

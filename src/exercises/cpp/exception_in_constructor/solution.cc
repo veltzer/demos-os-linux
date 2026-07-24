@@ -35,6 +35,9 @@ public:
 		}
 	}
 
+	Resource(const Resource&) = delete;
+	Resource& operator=(const Resource&) = delete;
+
 	~Resource() {
 		if(file_handle) fclose(file_handle);
 	}

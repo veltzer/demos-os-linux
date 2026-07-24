@@ -30,9 +30,9 @@
 static __thread int myid;
 
 static void* worker(void* arg) {
-	int* pint=(int*)arg;
+	int* pint=static_cast<int*>(arg);
 	myid=*pint;
-	TRACE("going to deallocate [%p]", (void*)pint);
+	TRACE("going to deallocate [%p]", static_cast<void*>(pint));
 	free(pint);
 	// now lets pull our id
 	TRACE("myid is [%d]", myid);
@@ -43,9 +43,9 @@ int main() {
 	const unsigned int num=4;
 	pthread_t threads[num];
 	for(unsigned int i=0; i<num; i++) {
-		int* p=(int*)malloc(sizeof(int));
+		int* p=static_cast<int*>(CHECK_NOT_NULL(malloc(sizeof(int))));
 		*p=i;
-		TRACE("allocated [%p]", (void*)p);
+		TRACE("allocated [%p]", static_cast<void*>(p));
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, p));
 	}
 	myid=1000;

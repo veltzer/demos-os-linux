@@ -90,7 +90,7 @@ int main() {
 	// int arr[size]={ 4,5,7,6 };
 	mergesort(arr, size);
 	for(unsigned int i=0; i<size; i++) {
-		printf("%d: %d\n", i, arr[i]);
+		printf("%u: %d\n", i, arr[i]);
 	}
 	return EXIT_SUCCESS;
 }

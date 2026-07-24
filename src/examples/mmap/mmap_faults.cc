@@ -67,7 +67,7 @@ int main() {
 	// loop and the sum variable...
 	volatile int sum=0;
 	for(int i=0; i<size; i+=pagesize) {
-		sum+=((char*)res)[i];
+		sum+=static_cast<char*>(res)[i];
 	}
 	CHECK_NOT_M1(munmap(res, stat_buf.st_size));
 	getrusage_show_vmem();

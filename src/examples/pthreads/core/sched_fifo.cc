@@ -53,7 +53,7 @@ static int min_priority=0;
 
 static void* thread_body(void* arg) {
 	pid_t tid=gettid();
-	int pri=*(int *)arg;
+	int pri=*static_cast<int*>(arg);
 	CHECK_NOT_M1(nice(pri));
 	printf("thread %d starting\n", tid);
 	printf("pri is %d\n", pri);

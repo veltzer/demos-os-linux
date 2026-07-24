@@ -23,6 +23,7 @@
 #include <execinfo.h>
 #include <string.h>
 #include <demangle_utils.hh>	// for error_demangle()
+#include <err_utils.h>	// for CHECK_NOT_NULL()
 
 /*
  * This is an example of using setjmp/longjmp to simulate exception handling
@@ -50,7 +51,7 @@ static error_data *last_error;
 static jmp_buf env;
 
 inline void error_create(const char *message) {
-	error_data *p=(error_data *)malloc(sizeof(error_data));
+	error_data *p=static_cast<error_data*>(CHECK_NOT_NULL(malloc(sizeof(error_data))));
 
 	p->size=backtrace(p->array, max_stack_frames);
 	p->symbols=backtrace_symbols(p->array, p->size);

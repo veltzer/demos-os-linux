@@ -45,8 +45,8 @@ int print_widget (FILE *stream, const struct printf_info *info, const void* cons
 	int len;
 
 	/* Format the output into a string. */
-	w = *((const Widget **) (args[0]));
-	len = asprintf(&buffer, "<Widget %p: %s>", (void*)w, w->name);
+	w = *static_cast<const Widget* const*>(args[0]);
+	len = asprintf(&buffer, "<Widget %p: %s>", static_cast<const void*>(w), w->name);
 	if (len == -1)
 		return -1;
 	/* Pad to the minimum field width and print to the stream. */

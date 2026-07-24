@@ -30,11 +30,11 @@
  */
 
 int main() {
-	printf("sizeof(pointer)=%ld (should be 8 on 64 bit and 4 on 32 bit)\n", sizeof(NULL));
-	printf("sizeof(size_t)=%ld (should be 8 on 64 bit and 4 on 32 bit)\n", sizeof(size_t));
+	printf("sizeof(pointer)=%zu (should be 8 on 64 bit and 4 on 32 bit)\n", sizeof(NULL));
+	printf("sizeof(size_t)=%zu (should be 8 on 64 bit and 4 on 32 bit)\n", sizeof(size_t));
 	size_t size_to_alloc=1;
 	while(true) {
-		printf("attempting size %ld...", size_to_alloc);
+		printf("attempting size %zu...", size_to_alloc);
 		CHECK_NOT_EOF(fflush(stdout));
 		void* p=CHECK_NOT_NULL(malloc(size_to_alloc));
 		printf("OK\n");

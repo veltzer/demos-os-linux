@@ -64,7 +64,7 @@ void do_some_random_access() {
 }
 
 static void* worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	shared_data* sd=td->shared;
 	if(td->num==0) {
 		unsigned long attempts=0;

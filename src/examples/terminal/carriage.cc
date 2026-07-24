@@ -41,13 +41,13 @@
 int main() {
 	printf("stdout, no flush (bad updates)\n");
 	for(unsigned int i=1000; i>0; i--) {
-		printf("i is %10d\r", i);
+		printf("i is %10u\r", i);
 		CHECK_NOT_M1(usleep(10000));
 	}
 	printf("\n\n");
 	printf("stdout, with flush (good updates, overhead on calling flush)\n");
 	for(unsigned int i=1000; i>0; i--) {
-		printf("i is %10d\r", i);
+		printf("i is %10u\r", i);
 		fflush(stdout);
 		CHECK_NOT_M1(usleep(10000));
 	}
@@ -55,13 +55,13 @@ int main() {
 	printf("stdout, no buffer (good updates, no call to flush so good performance)\n");
 	CHECK_NOT_M1(setvbuf(stdout, NULL, _IONBF, 0));
 	for(unsigned int i=1000; i>0; i--) {
-		printf("i is %10d\r", i);
+		printf("i is %10u\r", i);
 		CHECK_NOT_M1(usleep(10000));
 	}
 	printf("\n\n");
 	printf("stderr, unbuffered naturally so no flush\n");
 	for(unsigned int i=1000; i>0; i--) {
-		fprintf(stderr, "i is %10d\r", i);
+		fprintf(stderr, "i is %10u\r", i);
 		CHECK_NOT_M1(usleep(10000));
 	}
 	printf("\n\n");

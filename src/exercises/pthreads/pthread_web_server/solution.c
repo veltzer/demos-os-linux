@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 	unsigned int port=atoi(argv[1]);
-	printf("contact me at port %d\n", port);
+	printf("contact me at port %u\n", port);
 
 	// lets get the port number using getservbyname(3)
 	// struct servent* p_servent=(struct servent*)CHECK_NOT_NULL(getservbyname(serv_name,serv_proto));
@@ -122,7 +122,7 @@ int main(int argc, char** argv) {
 		printf("accepted fd %d\n", fd);
 		// spawn a thread to handle the connection to that client...
 		pthread_t thread;
-		int* p=(int*)malloc(sizeof(int));
+		int* p=(int*)CHECK_NOT_NULL(malloc(sizeof(int)));
 		*p=fd;
 		CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, p));
 	}

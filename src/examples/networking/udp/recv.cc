@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
 	// print
 	printf("If you want to send to this app you can just use nc like this:\n");
-	printf("nc -u localhost %d < /etc/passwd\n", port);
+	printf("nc -u localhost %u < /etc/passwd\n", port);
 	printf("and then:\n");
 	printf("cmp /etc/passwd [yourfile]\n");
 
@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// lets bind...
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 	TRACE("binded successfully");
 
 	// lets create the peer address
@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
 	char* buf=new char[buflen];
 	int ret;
 	int fd=CHECK_NOT_M1(open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666));
-	while((ret=recvfrom(sockfd, buf, buflen, 0, (struct sockaddr *)&peer_addr, &peer_len))>0) {
+	while((ret=recvfrom(sockfd, buf, buflen, 0, reinterpret_cast<struct sockaddr *>(&peer_addr), &peer_len))>0) {
 		TRACE("peer address is %s", inet_ntoa(peer_addr.sin_addr));
 		const unsigned int prlen=20;
 		char prbuf[prlen];

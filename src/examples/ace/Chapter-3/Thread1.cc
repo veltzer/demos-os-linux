@@ -39,7 +39,7 @@ public:
 
 // The starting point for the worker threads
 static void* worker(void* arguments) {
-	Args *arg=(Args*)arguments;
+	Args *arg=static_cast<Args*>(arguments);
 	for(int i=0; i<arg->iterations; i++) {
 		ACE_DEBUG((LM_DEBUG, "(%t) Trying to get a hold of this iteration\n"));
 		// lock the mutex
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 	ACE_thread_t* threads=new ACE_thread_t[thread_num];
 	ACE_hthread_t* threadHandles=new ACE_hthread_t[thread_num];
 	// Spawn the worker threads
-	if(ACE_Thread::spawn_n(threads, thread_num, worker, (void*)&arg, THR_JOINABLE | THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, NULL, 0, threadHandles)!=thread_num) {
+	if(ACE_Thread::spawn_n(threads, thread_num, worker, static_cast<void*>(&arg), THR_JOINABLE | THR_NEW_LWP, ACE_DEFAULT_THREAD_PRIORITY, NULL, 0, threadHandles)!=thread_num) {
 		ACE_DEBUG((LM_DEBUG, "Error in spawning thread\n"));
 	}
 	// Wait for all the threads to exit before you let the main fall through

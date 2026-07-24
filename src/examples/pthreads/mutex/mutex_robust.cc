@@ -76,7 +76,7 @@ int main() {
 	CHECK_ZERO_ERRNO(pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED));
 	CHECK_ZERO_ERRNO(pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST));
 
-	pthread_mutex_t* mylock=(pthread_mutex_t*)shared;
+	pthread_mutex_t* mylock=static_cast<pthread_mutex_t*>(shared);
 	// create the mutex with the SHARED attribute
 	CHECK_ZERO_ERRNO(pthread_mutex_init(mylock, &attr));
 	CHECK_ZERO_ERRNO(pthread_mutexattr_destroy(&attr));

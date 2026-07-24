@@ -48,7 +48,7 @@ int main(int argc, char** argv, char** envp) {
 	unsigned int type=atoi(argv[1]);
 	const int size=100;
 	fprintf(stderr, "starting\n");
-	char* buffer=(char*)malloc(size);
+	char* buffer=static_cast<char*>(malloc(size));
 	switch(type) {
 	case 0:
 		for(int i=0; i>-50; i--) {

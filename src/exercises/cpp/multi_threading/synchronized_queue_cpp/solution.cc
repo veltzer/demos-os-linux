@@ -87,7 +87,7 @@ typedef struct _thread_data{
 } thread_data;
 
 void *worker(void *p) {
-	thread_data* td=(thread_data *)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	if(td->producer) {
 		for(unsigned int i=0; i<td->count; i++) {
 			td->queue->put(rand()%td->max_msg);

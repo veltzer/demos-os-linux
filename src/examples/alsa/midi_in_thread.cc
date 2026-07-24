@@ -73,7 +73,7 @@ int main(int argc, const char *argv[]) {
 
 void* midiinfunction(void* arg) {
 	// this is the parameter passed via last argument of pthread_create():
-	snd_rawmidi_t* midiin=(snd_rawmidi_t*)arg;
+	snd_rawmidi_t* midiin=static_cast<snd_rawmidi_t*>(arg);
 	char buffer[1];
 	int count=0;
 	while (1) {

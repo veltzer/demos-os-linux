@@ -43,7 +43,7 @@ void* rets[num];
 pthread_barrier_t barrier;
 
 static void* worker(void* p) {
-	int id=*(int *)p;
+	int id=*static_cast<int*>(p);
 	// fill in my own thread id so that the other threads
 	// may know about me (and so kill me).
 	pids[id]=gettid();

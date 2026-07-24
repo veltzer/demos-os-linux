@@ -28,7 +28,7 @@
 int main() {
 	unsigned int counter=0;
 	while(true) {
-		printf("%d: This is yet another log message\n", counter);
+		printf("%u: This is yet another log message\n", counter);
 		CHECK_NOT_M1(usleep(100));
 		counter++;
 	}

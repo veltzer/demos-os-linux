@@ -19,6 +19,7 @@
 #include <firstinclude.h>
 #include <string.h>	// for memcpy(3)
 #include <cstdlib>
+#include <err_utils.h>	// for CHECK_NOT_NULL()
 
 /*
  * This is a simple example that spends lots of time in a function.
@@ -68,8 +69,8 @@ public:
 
 int main() {
 	const unsigned int size=1024*1024;
-	char* buf1=(char*)malloc(size);
-	char* buf2=(char*)malloc(size);
+	char* buf1=static_cast<char*>(CHECK_NOT_NULL(malloc(size)));
+	char* buf2=static_cast<char*>(CHECK_NOT_NULL(malloc(size)));
 	A::performance_hog_function(buf1, buf2, size);
 	return EXIT_SUCCESS;
 }

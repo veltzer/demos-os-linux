@@ -29,8 +29,8 @@
 
 int main() {
 	setlocale(LC_ALL, "");
-	wprintf(L"size of char is %d\n", sizeof(char));
-	wprintf(L"size of wchar_t is %d\n", sizeof(wchar_t));
+	wprintf(L"size of char is %zu\n", sizeof(char));
+	wprintf(L"size of wchar_t is %zu\n", sizeof(wchar_t));
 	// const char* s1="hello";
 	const wchar_t *s2=L"קרמ\n";
 	// const wchar_t* s3=WS("מרק");

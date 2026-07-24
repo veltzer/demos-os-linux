@@ -104,7 +104,7 @@ void* func(void*) {
 	measure_init(&m, "regular file operations (nonbuffreed, flushed, synchroneous)", number);
 	measure_start(&m);
 	for(unsigned int i=0; i < number; i++) {
-		fprintf(f, "this is a message %d", i);
+		fprintf(f, "this is a message %u", i);
 		fflush(f);
 	}
 	measure_end(&m);
@@ -117,7 +117,7 @@ void* func(void*) {
 	measure_init(&m, "regular file operations (nonbuffreed, flushed, synchroneous)", number);
 	measure_start(&m);
 	for(unsigned int i=0; i < number; i++) {
-		fprintf(f, "this is a message %d", i);
+		fprintf(f, "this is a message %u", i);
 	}
 	measure_end(&m);
 	CHECK_ZERO_ERRNO(fclose(f));

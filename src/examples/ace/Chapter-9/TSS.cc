@@ -46,12 +46,13 @@ public:
 		// Set our identifier in TSS.
 		ACE_DEBUG((LM_DEBUG, "(%t) Setting TSS TID: %u \n", tid));
 		this->tss_ctx_->set_attribute("thread_id", &tid);
+		// cppcheck-suppress knownConditionTrueFalse
 		while(handle_requests()>0) {
 		}
 		return 0;
 	}
 	int handle_requests(void) {
-		ACE_thread_t *tid=(ACE_thread_t *)this->tss_ctx_->get_attribute("thread_id");
+		ACE_thread_t *tid=static_cast<ACE_thread_t *>(this->tss_ctx_->get_attribute("thread_id"));
 		ACE_DEBUG((LM_DEBUG, "(%t) Received TSS TID: %u \n", *tid));
 		// do work.
 		ACE_DEBUG((LM_DEBUG, "Doing some work for thread %t\n"));

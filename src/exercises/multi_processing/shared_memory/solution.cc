@@ -32,8 +32,8 @@ int main(int argc, char**) {
 	if(argc==1) {
 		printf("running server...\n");
 		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), IPC_CREAT | 0666));
-		int* p_int=(int*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
-		printf("the addres of the shared memory is at %p\n", (void*)p_int);
+		int* p_int=static_cast<int*>(CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1));
+		printf("the addres of the shared memory is at %p\n", static_cast<void*>(p_int));
 		for(int i=0;i<100;i++) {
 			*p_int=i;
 			printf("server wrote %d\n", i);
@@ -43,8 +43,8 @@ int main(int argc, char**) {
 	} else {
 		printf("running client...\n");
 		int shmid=CHECK_NOT_M1(shmget(key, getpagesize(), 0));
-		const int* p_int=(const int*)CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
-		printf("the addres of the shared memory is at %p\n", (const void*)p_int);
+		const int* p_int=static_cast<const int*>(CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1));
+		printf("the addres of the shared memory is at %p\n", static_cast<const void*>(p_int));
 		for(int i=0;i<100;i++) {
 			int data=*p_int;
 			printf("client got number %d\n", data);

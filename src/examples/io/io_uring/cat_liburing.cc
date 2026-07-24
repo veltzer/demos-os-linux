@@ -84,11 +84,11 @@ int get_completion_and_print(struct io_uring *ring) {
 		fprintf(stderr, "Async readv failed.\n");
 		return 1;
 	}
-	const struct file_info *fi = (const struct file_info*)io_uring_cqe_get_data(cqe);
+	const struct file_info *fi = static_cast<const struct file_info*>(io_uring_cqe_get_data(cqe));
 	int blocks = (int) fi->file_sz / BLOCK_SZ;
 	if (fi->file_sz % BLOCK_SZ) blocks++;
 	for(int i = 0; i < blocks; i++)
-		output_to_console((char*)(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
+		output_to_console(static_cast<char*>(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
 	io_uring_cqe_seen(ring, cqe);
 	return 0;
 }
@@ -106,7 +106,7 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 	int blocks = (int) file_sz / BLOCK_SZ;
 	if (file_sz % BLOCK_SZ)
 		blocks++;
-	struct file_info *fi = (struct file_info*)CHECK_NOT_NULL(malloc(sizeof(*fi) + (sizeof(struct iovec) * blocks)));
+	struct file_info *fi = static_cast<struct file_info*>(CHECK_NOT_NULL(malloc(sizeof(*fi) + (sizeof(struct iovec) * blocks))));
 	// char *buff = (char*)CHECK_NOT_NULL(malloc(file_sz));
 	/*
 	 * For each block of the file we need to read, we allocate an iovec struct
@@ -153,6 +153,7 @@ int main(int argc, char *argv[]) {
 	io_uring_queue_init(QUEUE_DEPTH, &ring, 0);
 	for(int i = 1; i < argc; i++) {
 		int ret = submit_read_request(argv[i], &ring);
+		// cppcheck-suppress knownConditionTrueFalse
 		if (ret) {
 			fprintf(stderr, "Error reading file: %s\n", argv[i]);
 			return 1;

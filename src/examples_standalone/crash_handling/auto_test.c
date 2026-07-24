@@ -40,6 +40,7 @@ int main(int argc,char** argv,char** envp) {
 }
 
 void croak(void) {
+	// cppcheck-suppress intToPointerCast
 	int* ip=(int*)17;
 	char* p=sbrk(0);
 	memset(p-1024,42,1024);

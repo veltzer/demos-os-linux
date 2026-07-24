@@ -55,13 +55,13 @@ int main(int argc, char** argv) {
 	// parameters
 	const char* filename=argv[1];
 	// code
-	printf("sizeof(time_t) is %zd\n", sizeof(time_t));
+	printf("sizeof(time_t) is %zu\n", sizeof(time_t));
 	struct stat sb;
 	CHECK_NOT_M1(stat(filename, &sb));
 	unsigned int myint=(unsigned int)sb.st_mtime;
 	printf("myint is %u\n", myint);
 	// lets guess the year according to myint
-	printf("the year is %d\n", 1970+myint/(3600*24*365));
+	printf("the year is %u\n", 1970+myint/(3600*24*365));
 	// lets print the time using ctime_r(3)
 	// buffer must be at least 26 bytes long (see documentation of ctime(3))
 	char buf[30];

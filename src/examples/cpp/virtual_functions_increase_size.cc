@@ -60,12 +60,12 @@ int main() {
 	cout << "sizeof(A2) is " << sizeof(A2) << endl;
 	A2 obj1(4), obj2(5);
 	// this is the vtable
-	void** vp1=(void**)&obj1;
-	void** vp2=(void**)&obj2;
+	void** vp1=reinterpret_cast<void**>(&obj1);
+	void** vp2=reinterpret_cast<void**>(&obj2);
 	assert(*vp1==*vp2);
 	// this is where the data is
-	intptr_t* p1=(intptr_t*)&obj1;
-	intptr_t* p2=(intptr_t*)&obj2;
+	intptr_t* p1=reinterpret_cast<intptr_t*>(&obj1);
+	intptr_t* p2=reinterpret_cast<intptr_t*>(&obj2);
 	assert(4==*(p1+1));
 	assert(5==*(p2+1));
 	return EXIT_SUCCESS;

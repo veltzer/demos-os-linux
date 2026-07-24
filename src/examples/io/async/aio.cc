@@ -59,7 +59,7 @@ int main() {
 	CHECK_ZERO(aio_suspend(cblist, 1, NULL));
 	int ret=CHECK_NOT_M1(aio_return(&my_aiocb));
 	printf("got ret of %d\n", ret);
-	char* buf=(char*)my_aiocb.aio_buf;
+	char* buf=static_cast<char*>(const_cast<void*>(my_aiocb.aio_buf));
 	buf[ret]='\0';
 	printf("%s\n", buf);
 	return EXIT_SUCCESS;

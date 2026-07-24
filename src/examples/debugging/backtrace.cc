@@ -78,7 +78,7 @@ void print_trace(bool full) {
 	if(!full) {
 		nptrs-=2;
 	}
-	fprintf(stderr, "backtrace() returned %d addresses\n", nptrs);
+	fprintf(stderr, "backtrace() returned %u addresses\n", nptrs);
 	// the reason we print to stdout and not to stderr
 	// (which would be more correct) is because we want
 	// this demo to be filtered directly to c++filt

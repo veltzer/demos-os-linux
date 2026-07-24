@@ -26,6 +26,7 @@
 
 using namespace std;
 
+// cppcheck-suppress noConstructor
 class MyClass{
 private:
 	int x;

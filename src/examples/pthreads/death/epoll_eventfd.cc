@@ -39,7 +39,7 @@ typedef struct {
 
 // Worker thread function
 void* worker_thread(void* arg) {
-	thread_info_t* info = (thread_info_t*)arg;
+	thread_info_t* info = static_cast<thread_info_t*>(arg);
 
 	// Simulate some work with random duration
 	int sleep_time = 1 + (rand() % 5);
@@ -85,7 +85,7 @@ int main() {
 
 		// Process completed threads
 		for(int i = 0; i < nfds; i++) {
-			thread_info_t* info = (thread_info_t*)events[i].data.ptr;
+			thread_info_t* info = static_cast<thread_info_t*>(events[i].data.ptr);
 			if (events[i].events & EPOLLIN) {
 				// Read from eventfd to clear the signal
 				uint64_t value;

@@ -62,9 +62,9 @@ int main(int argc, char** argv) {
 	}
 	for(unsigned int i=0; i<num; i++) {
 		if(be_thread_safe) {
-			printf("i=%d, rand_r(&seed)=%d\n", i, rand_r(&seed));
+			printf("i=%u, rand_r(&seed)=%d\n", i, rand_r(&seed));
 		} else {
-			printf("i=%d, rand()=%d\n", i, rand());
+			printf("i=%u, rand()=%d\n", i, rand());
 		}
 	}
 	return EXIT_SUCCESS;

@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// lets bind to the socket to the address
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 
 	// lets listen in...
 	int backlog=get_backlog();
@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
 	CHECK_NOT_M1(epoll_ctl(epollfd, EPOLL_CTL_ADD, sockfd, &ev));
 
 	// message to the user
-	printf("contact me at host %s port %d\n", host, port);
+	printf("contact me at host %s port %u\n", host, port);
 	// go into the endless service loop
 	struct epoll_event* events=new struct epoll_event[maxevents];
 	while(true) {
@@ -106,7 +106,7 @@ int main(int argc, char** argv) {
 			if(currfd==sockfd) {
 				struct sockaddr_in local;
 				socklen_t addrlen=sizeof(local);
-				int realfd=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
+				int realfd=CHECK_NOT_M1(accept4(sockfd, reinterpret_cast<struct sockaddr*>(&local), &addrlen, SOCK_NONBLOCK));
 				struct epoll_event cev;
 				cev.events=EPOLLIN|EPOLLRDHUP;
 				cev.data.fd=realfd;

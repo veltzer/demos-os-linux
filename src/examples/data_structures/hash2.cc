@@ -40,11 +40,11 @@ int main() {
 	/* starting with small table, and letting it grow does not work */
 	hcreate(30);
 	for(int i=0; i<24; i++) {
-		e.key=(char*)(data[i]);
+		e.key=const_cast<char*>(data[i]);
 		/* data is just an integer, instead of a
 		 * pointer to something
 		 */
-		e.data=(void*)(unsigned long)i;
+		e.data=reinterpret_cast<void*>(static_cast<unsigned long>(i));
 		ep=hsearch(e, ENTER);
 		/* there should be no failures */
 		if(ep==NULL) {
@@ -56,7 +56,7 @@ int main() {
 		/* print two entries from the table, and
 		 * show that two are not in the table
 		 */
-		e.key=(char*)(data[i]);
+		e.key=const_cast<char*>(data[i]);
 		ep=hsearch(e, FIND);
 		printf("%9.9s -> %9.9s:%zd\n",
 			e.key,

@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	// Cast the h_addr_list to in_addr since h_addr_list also has the ip address in long format
-	addr_list = (struct in_addr **)host->h_addr_list;
+	addr_list = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
 	// Print all IP addresses for this hostname
 	for(i = 0; addr_list[i] != NULL; i++) {

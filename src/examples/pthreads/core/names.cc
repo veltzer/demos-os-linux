@@ -72,7 +72,7 @@ typedef struct _thread_data{
 } thread_data;
 
 void* worker(void* arg) {
-	thread_data* td=(thread_data*)arg;
+	thread_data* td=static_cast<thread_data*>(arg);
 
 	char name[name_length];
 

@@ -44,7 +44,7 @@
  */
 
 void* worker(void* p) {
-	int num=*(int *)p;
+	int num=*static_cast<int*>(p);
 	// TRACE("starting thread [%d]", num);
 	int cpunum=CHECK_NOT_M1(sched_getcpu());
 	TRACE("thread [%d] running on cpu [%d]", num, cpunum);

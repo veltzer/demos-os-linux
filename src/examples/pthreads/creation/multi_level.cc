@@ -41,7 +41,7 @@ typedef struct _thread_data{
 
 // cppcheck-suppress constParameterCallback
 void* create_threads(void* arg) {
-	const thread_data* pd=(const thread_data*)arg;
+	const thread_data* pd=static_cast<const thread_data*>(arg);
 	int num=pd->num;
 	int level=pd->level;
 	int highest=pd->highest;

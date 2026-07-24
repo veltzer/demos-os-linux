@@ -59,7 +59,7 @@ typedef struct _thread_data{
 
 void* work(void* data) {
 	// get the thread data
-	thread_data* td=(thread_data*)data;
+	thread_data* td=static_cast<thread_data*>(data);
 	// get the current time
 	struct timespec start;
 	CHECK_NOT_M1(clock_gettime(CLOCK_REALTIME, &start));

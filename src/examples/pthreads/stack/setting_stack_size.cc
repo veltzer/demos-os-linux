@@ -43,12 +43,12 @@
 void ensure_space(unsigned int size) {
 	// prefault stack pages by allocating on the stack and touching them
 	// cppcheck-suppress allocaCalled
-	char* buf = (char*)alloca(size);
+	char* buf = static_cast<char*>(alloca(size));
 	bzero(buf, size);
 }
 
 void* worker(void* p) {
-	int num=*(int *)p;
+	int num=*static_cast<int*>(p);
 	ensure_space((num+1)*100*1024);
 	fprintf(stderr, "starting thread %d\n", num);
 	CHECK_ZERO(sleep(100));

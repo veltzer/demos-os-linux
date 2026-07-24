@@ -36,7 +36,7 @@
  */
 
 static void* worker(void* p) {
-	int num=*(int *)p;
+	int num=*static_cast<int *>(p);
 	TRACE("starting thread %d", num);
 	while(1) {
 		printf("thread %d is running...\n", num);

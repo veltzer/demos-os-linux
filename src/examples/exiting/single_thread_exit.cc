@@ -39,7 +39,7 @@
  */
 
 static void* worker(void* p) {
-	int num=*(int *)p;
+	int num=*static_cast<int*>(p);
 	printf("starting thread %d\n", num);
 	for(int i=0; i<60; i++) {
 		printf("%d: thread %d is alive...\n", i, num);

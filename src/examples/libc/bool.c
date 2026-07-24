@@ -35,8 +35,8 @@
  */
 
 int main(void) {
-	printf("sizeof(_Bool) is %zd\n", sizeof(_Bool));
-	printf("sizeof(bool) is %zd\n", sizeof(bool));
+	printf("sizeof(_Bool) is %zu\n", sizeof(_Bool));
+	printf("sizeof(bool) is %zu\n", sizeof(bool));
 	printf("_Bool is really %s\n", stringify(_Bool));
 	printf("bool is really %s\n", stringify(bool));
 	printf("true is really %s\n", stringify(true));

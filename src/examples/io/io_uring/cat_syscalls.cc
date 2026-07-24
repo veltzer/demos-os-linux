@@ -171,25 +171,25 @@ int app_setup_uring(struct submitter *s) {
 	}
 	/* Save useful fields in a global app_io_sq_ring struct for later
 	 * easy reference */
-	sring->head = (unsigned int*)sq_ptr + p.sq_off.head;
-	sring->tail = (unsigned int*)sq_ptr + p.sq_off.tail;
-	sring->ring_mask = (unsigned int*)sq_ptr + p.sq_off.ring_mask;
-	sring->ring_entries = (unsigned int*)sq_ptr + p.sq_off.ring_entries;
-	sring->flags = (unsigned int*)sq_ptr + p.sq_off.flags;
-	sring->array = (unsigned int*)sq_ptr + p.sq_off.array;
+	sring->head = static_cast<unsigned int*>(sq_ptr) + p.sq_off.head;
+	sring->tail = static_cast<unsigned int*>(sq_ptr) + p.sq_off.tail;
+	sring->ring_mask = static_cast<unsigned int*>(sq_ptr) + p.sq_off.ring_mask;
+	sring->ring_entries = static_cast<unsigned int*>(sq_ptr) + p.sq_off.ring_entries;
+	sring->flags = static_cast<unsigned int*>(sq_ptr) + p.sq_off.flags;
+	sring->array = static_cast<unsigned int*>(sq_ptr) + p.sq_off.array;
 
 	/* Map in the submission queue entries array */
-	CHECK_NOT_VOIDP(s->sqes = (io_uring_sqe*)mmap(0, p.sq_entries * sizeof(struct io_uring_sqe),
+	CHECK_NOT_VOIDP(s->sqes = static_cast<io_uring_sqe*>(mmap(0, p.sq_entries * sizeof(struct io_uring_sqe),
 		PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE,
-		s->ring_fd, IORING_OFF_SQES), MAP_FAILED);
+		s->ring_fd, IORING_OFF_SQES)), MAP_FAILED);
 
 	/* Save useful fields in a global app_io_cq_ring struct for later
 	 * easy reference */
-	cring->head = (unsigned int*)cq_ptr + p.cq_off.head;
-	cring->tail = (unsigned int*)cq_ptr + p.cq_off.tail;
-	cring->ring_mask = (unsigned int*)cq_ptr + p.cq_off.ring_mask;
-	cring->ring_entries = (unsigned int*)cq_ptr + p.cq_off.ring_entries;
-	cring->cqes = (io_uring_cqe*)cq_ptr + p.cq_off.cqes;
+	cring->head = static_cast<unsigned int*>(cq_ptr) + p.cq_off.head;
+	cring->tail = static_cast<unsigned int*>(cq_ptr) + p.cq_off.tail;
+	cring->ring_mask = static_cast<unsigned int*>(cq_ptr) + p.cq_off.ring_mask;
+	cring->ring_entries = static_cast<unsigned int*>(cq_ptr) + p.cq_off.ring_entries;
+	cring->cqes = static_cast<io_uring_cqe*>(cq_ptr) + p.cq_off.cqes;
 
 	return 0;
 }
@@ -226,13 +226,13 @@ void read_from_cq(struct submitter *s) {
 			break;
 		/* Get the entry */
 		struct io_uring_cqe *cqe = &cring->cqes[head & *s->cq_ring.ring_mask];
-		const struct file_info *fi = (struct file_info*) cqe->user_data;
+		const struct file_info *fi = reinterpret_cast<struct file_info*>(cqe->user_data);
 		if (cqe->res < 0)
 			fprintf(stderr, "Error: %s\n", strerror(abs(cqe->res)));
 		int blocks = (int) fi->file_sz / BLOCK_SZ;
 		if (fi->file_sz % BLOCK_SZ) blocks++;
 		for(int i = 0; i < blocks; i++)
-			output_to_console((char*)(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
+			output_to_console(static_cast<char*>(fi->iovecs[i].iov_base), fi->iovecs[i].iov_len);
 		head++;
 	} while (1);
 	*cring->head = head;
@@ -260,7 +260,7 @@ int submit_to_sq(char *file_path, struct submitter *s) {
 	off_t bytes_remaining = file_sz;
 	int blocks = (int) file_sz / BLOCK_SZ;
 	if (file_sz % BLOCK_SZ) blocks++;
-	fi = (file_info*)malloc(sizeof(*fi) + sizeof(struct iovec) * blocks);
+	fi = static_cast<file_info*>(malloc(sizeof(*fi) + sizeof(struct iovec) * blocks));
 	if (!fi) {
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 1;
@@ -324,8 +324,9 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "%s: usage: %s <filename>\n", argv[0], argv[0]);
 		return EXIT_FAILURE;
 	}
-	CHECK_NOT_NULL(s = (submitter*)malloc(sizeof(*s)));
+	CHECK_NOT_NULL(s = static_cast<submitter*>(malloc(sizeof(*s))));
 	memset(s, 0, sizeof(*s));
+	// cppcheck-suppress knownConditionTrueFalse
 	if(app_setup_uring(s)) {
 		fprintf(stderr, "Unable to setup uring!\n");
 		return EXIT_FAILURE;

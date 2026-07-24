@@ -28,7 +28,7 @@
 const int j=1024;
 
 int main() {
-	int* p=(int*)&j;
+	int* p=const_cast<int*>(&j);
 	for(int i=0; i<1000; i++) {
 		if(i%10==0) {
 			(*p)++;

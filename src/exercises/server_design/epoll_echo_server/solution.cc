@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
 	}
 	const char* host=argv[1];
 	const unsigned int port=atoi(argv[2]);
-	printf("contact me at host %s port %d\n", host, port);
+	printf("contact me at host %s port %u\n", host, port);
 
 	// lets open the socket
 	int sockfd=CHECK_NOT_M1(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));
@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// lets bind to the socket to the address
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr*>(&server), sizeof(server)));
 	printf("bind was successful\n");
 
 	// lets listen in...
@@ -99,7 +99,7 @@ int main(int argc, char** argv) {
 			if(currfd==sockfd) {
 				struct sockaddr_in local;
 				socklen_t addrlen=sizeof(local);
-				int conn_sock=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
+				int conn_sock=CHECK_NOT_M1(accept4(sockfd, reinterpret_cast<struct sockaddr*>(&local), &addrlen, SOCK_NONBLOCK));
 				struct epoll_event conn_ev;
 				conn_ev.events=EPOLLIN|EPOLLRDHUP;
 				conn_ev.data.fd=conn_sock;
