@@ -64,3 +64,10 @@ constParameterReference
 assertWithSideEffect
 uselessOverride
 unusedLabelConfiguration
+functionStatic
+dangerousTypeCast
+intToPointerCast
+constParameter
+useStlAlgorithm
+throwInEntryPoint
+duplicateCondition
