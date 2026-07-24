@@ -25,7 +25,7 @@ class Vector2D {
 	private:
 		double x, y;
 	public:
-		Vector2D(double x = 0.0, double y = 0.0) : x(x), y(y) {}
+		explicit Vector2D(double x = 0.0, double y = 0.0) : x(x), y(y) {}
 
 		// Overloading the + operator
 		Vector2D operator+(const Vector2D& other) const {

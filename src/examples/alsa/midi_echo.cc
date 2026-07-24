@@ -72,8 +72,8 @@ void echomidi(snd_rawmidi_t* midiin, snd_rawmidi_t* midiout) {
 	int argsLeft=0;	// bytes left to read for a command
 	int transpose=6;// transposition for note out
 	int newnote;	// temp storage for output note
-	int status;	// storage for error codes
 	while(true) {
+		int status;	// storage for error codes
 		if ((status=snd_rawmidi_read(midiin, &readbuffer, 1)) < 0) {
 			errormessage("Problem reading MIDI input: %s", snd_strerror(status));
 		}

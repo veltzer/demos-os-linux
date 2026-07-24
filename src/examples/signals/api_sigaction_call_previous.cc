@@ -56,6 +56,7 @@
 static unsigned int counter;
 static my_signal_handler old_action;
 
+// cppcheck-suppress constParameterCallback
 static void handler(int sig, siginfo_t *si, void* unused) {
 	fprintf(stderr, "sighandler: counter is %d\n", counter);
 	fprintf(stderr, "sighandler: got signal %s\n", strsignal(sig));

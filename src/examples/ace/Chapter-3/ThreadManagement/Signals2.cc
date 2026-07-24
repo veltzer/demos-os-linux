@@ -60,9 +60,11 @@ public:
 	void process_message(ACE_Message_Block *mb);
 };
 
+// cppcheck-suppress functionStatic
 void SignalableTask::process_message(ACE_Message_Block *) {
 }
 
+// cppcheck-suppress functionStatic
 void SignalableTask::handle_alert(void) {
 }
 

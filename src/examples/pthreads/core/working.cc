@@ -32,6 +32,7 @@
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
+// cppcheck-suppress constParameterCallback
 void* worker(void* p __attribute__((unused))) {
 	// int num=*(int *)p;
 	// TRACE("starting thread %d", num);

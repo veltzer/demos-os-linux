@@ -65,12 +65,14 @@ void* kill_malloc(size_t size, const void* caller) {
 	return NULL;
 }
 
+// cppcheck-suppress constParameterPointer
 void * kill_realloc(void *ptr, size_t size, const void *caller) {
 	printf("Realloc called from %p\n", caller);
 	abort();
 	return NULL;
 }
 
+// cppcheck-suppress constParameterPointer
 void kill_free(void *ptr, const void *caller) {
 	printf("Free called from %p\n", caller);
 	abort();

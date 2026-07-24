@@ -37,14 +37,14 @@ public:
 		receiver = rec;
 		action = act;
 	}
-	/*virtual*/ void execute( int& num ) { (receiver->*action)( num ); }
+	/*virtual*/ void execute( int& num ) override { (receiver->*action)( num ); }
 };
 
 class MacroCommand : public Command {
 	vector<Command*> list;
 public:
 	void add( Command* cmd ) { list.push_back( cmd ); }
-	/*virtual*/ void execute( int& num ) {
+	/*virtual*/ void execute( int& num ) override {
 		for(unsigned int i=0; i < list.size(); i++)
 			list[i]->execute( num );
 	}

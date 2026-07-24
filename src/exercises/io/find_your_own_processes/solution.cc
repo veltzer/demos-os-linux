@@ -28,8 +28,8 @@
 #include <err_utils.h>	// for CHECK_NOT_M1(), CHECK_NOT_NULL()
 
 void scanthedir(const char* dirname) {
-	struct dirent* dircontent;
-	struct dirent* fddircontent;
+	const struct dirent* dircontent;
+	const struct dirent* fddircontent;
 	struct stat statbuf;
 	char tmpdir[MAXPATHLEN];
 	char fddirname[MAXPATHLEN+3];

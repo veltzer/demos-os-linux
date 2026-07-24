@@ -30,7 +30,7 @@
 #define NUM_RUNS 500 // Fewer runs as matrix mult takes longer
 #define WARMUP_RUNS 1
 
-void scalar_matrix_multiply(float* A, float* B, float* C, int n) {
+void scalar_matrix_multiply(const float* A, const float* B, float* C, int n) {
 	// Initialize result matrix to zero
 	memset(C, 0, n * n * sizeof(float));
 

@@ -59,8 +59,8 @@ int main() {
 	} else {
 		printf("bool(7) is false\n");
 	}
-	char* p0=(char*)0;
-	char* p7=(char*)7;
+	const char* p0=(const char*)0;
+	const char* p7=(const char*)7;
 	// cppcheck-suppress knownPointerToBool
 	bool pb0=(bool)p0;
 	// cppcheck-suppress knownPointerToBool
@@ -75,9 +75,9 @@ int main() {
 	} else {
 		printf("bool((char*)7) is false\n");
 	}
-	char* ptrue=(char*)true;
-	char* pfalse=(char*)false;
-	printf("true cast to char* is %p\n", (void*)ptrue);
-	printf("false cast to char* is %p\n", (void*)pfalse);
+	const char* ptrue=(const char*)true;
+	const char* pfalse=(const char*)false;
+	printf("true cast to char* is %p\n", (const void*)ptrue);
+	printf("false cast to char* is %p\n", (const void*)pfalse);
 	return EXIT_SUCCESS;
 }

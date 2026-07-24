@@ -45,7 +45,7 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)), 
 		environp++;
 	}
 	const char* varname="WHOWANTSSOUP";
-	char* ptr=getenv(varname);
+	const char* ptr=getenv(varname);
 	if(ptr==NULL) {
 		cout << "Please stand in line (define environment variable WHOWANTSSOUP)" << endl;
 		cout << "in bash use [export WHOWANTSSOUP=kramer]" << endl;

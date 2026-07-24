@@ -45,7 +45,7 @@ private:
 	int val;
 
 public:
-	MyThread(int ival) : val(ival) {
+	explicit MyThread(int ival) : val(ival) {
 	}
 	int getVal() {
 		return val;

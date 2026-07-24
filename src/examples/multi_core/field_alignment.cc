@@ -63,7 +63,7 @@ int main() {
 	printf("sizeof(medium)=%zd\n", sizeof(medium));
 	printf("sizeof(medium2)=%zd\n", sizeof(medium2));
 	for(int i=1; i<200; i++) {
-		char* p=(char*)malloc(i);
+		const char* p=(const char*)malloc(i);
 		CHECK_ASSERT(p!=NULL);
 		CHECK_ASSERT((unsigned long)p%4==0);
 	}

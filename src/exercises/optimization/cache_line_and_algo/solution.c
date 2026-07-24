@@ -82,7 +82,7 @@ void process_cache_friendly(int *arr, size_t size) {
 }
 
 // Function to verify results are identical
-int verify_results(int *arr1, int *arr2, size_t size) {
+int verify_results(const int *arr1, const int *arr2, size_t size) {
 	for(size_t i = 0; i < size; i++) {
 		if (arr1[i] != arr2[i]) {
 			printf("Mismatch at index %zu: %d vs %d\n", i, arr1[i], arr2[i]);

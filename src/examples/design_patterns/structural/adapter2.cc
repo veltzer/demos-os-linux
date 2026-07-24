@@ -30,9 +30,9 @@ template <class TYPE>									// 2. Design a "wrapper" or
 class ExecuteAdapter : public ExecuteInterface { //	 "adapter" class
 public:
 	ExecuteAdapter( TYPE* o, void (TYPE::*m)() ) { object = o; method =m; }
-	~ExecuteAdapter()									 { delete object; }
+	~ExecuteAdapter() override									 { delete object; }
 	// 4. The adapter/wrapper "maps" the new to the legacy implementation
-	void execute()				 /* the new */	{ (object->*method)(); }
+	void execute() override				 /* the new */	{ (object->*method)(); }
 private:
 	TYPE* object;											 // ptr-to-object attribute
 	void (TYPE::*method)();	 /* the old */		 // ptr-to-member-function

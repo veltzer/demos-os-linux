@@ -112,10 +112,10 @@ int main() {
 		}
 	}
 	// send "End" and close the connections
-	for(int i=0; i<3; i++) {
-		peer[i].send_n("End", 4, 0);
-		peer[i].recv(buffer, sizeof(buffer));
-		peer[i].close();
+	for(int j=0; j<3; j++) {
+		peer[j].send_n("End", 4, 0);
+		peer[j].recv(buffer, sizeof(buffer));
+		peer[j].close();
 	}
 	return EXIT_SUCCESS;
 }

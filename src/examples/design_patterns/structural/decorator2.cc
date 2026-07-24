@@ -27,34 +27,34 @@ class I { public:
 };
 
 class A : public I { public:
-	~A() { cout << "A dtor" << '\n'; }
-	/*virtual*/ void doIt() { cout << 'A'; }
+	~A() override { cout << "A dtor" << '\n'; }
+	/*virtual*/ void doIt() override { cout << 'A'; }
 };
 
 class D : public I {
 	I* wrappee;
 public:
-	D( I* inner )			 { wrappee = inner; }
-	~D()						{ delete wrappee; }
-	/*virtual*/ void doIt() { wrappee->doIt(); }
+	explicit D( I* inner )			 { wrappee = inner; }
+	~D() override						{ delete wrappee; }
+	/*virtual*/ void doIt() override { wrappee->doIt(); }
 };
 
 class X : public D { public:
-	X( I* core ) : D(core) { }
-	~X() { cout << "X dtor" << "	"; }
-	/*virtual*/ void doIt() { D::doIt(); cout << 'X'; }
+	explicit X( I* core ) : D(core) { }
+	~X() override { cout << "X dtor" << "	"; }
+	/*virtual*/ void doIt() override { D::doIt(); cout << 'X'; }
 };
 
 class Y : public D { public:
-	Y( I* core ) : D(core) { }
-	~Y() { cout << "Y dtor" << "	"; }
-	/*virtual*/ void doIt() { D::doIt(); cout << 'Y'; }
+	explicit Y( I* core ) : D(core) { }
+	~Y() override { cout << "Y dtor" << "	"; }
+	/*virtual*/ void doIt() override { D::doIt(); cout << 'Y'; }
 };
 
 class Z : public D { public:
-	Z( I* core ) : D(core) { }
-	~Z() { cout << "Z dtor" << "	"; }
-	/*virtual*/ void doIt() { D::doIt(); cout << 'Z'; }
+	explicit Z( I* core ) : D(core) { }
+	~Z() override { cout << "Z dtor" << "	"; }
+	/*virtual*/ void doIt() override { D::doIt(); cout << 'Z'; }
 };
 
 int main() {

@@ -34,6 +34,7 @@
  */
 
 const unsigned long long loop=10000000000L;
+// cppcheck-suppress constParameterCallback
 static void* worker(void* p __attribute__((unused))) {
 	int current=errno;
 	for(unsigned long long i=0; i<loop; i++) {

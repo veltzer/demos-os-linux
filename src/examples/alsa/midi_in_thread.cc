@@ -76,11 +76,11 @@ void* midiinfunction(void* arg) {
 	snd_rawmidi_t* midiin=(snd_rawmidi_t*)arg;
 	char buffer[1];
 	int count=0;
-	int status;
 	while (1) {
 		if (midiin==NULL) {
 			break;
 		}
+		int status;
 		if ((status=snd_rawmidi_read(midiin, buffer, 1)) < 0) {
 			errormessage("Problem reading MIDI input: %s", snd_strerror(status));
 		}

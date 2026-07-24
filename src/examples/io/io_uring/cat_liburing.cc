@@ -65,7 +65,7 @@ off_t get_file_size(int fd) {
  * We use buffered output here to be efficient,
  * since we need to output character-by-character.
  * */
-void output_to_console(char *buf, int len) {
+void output_to_console(const char *buf, int len) {
 	while (len--) {
 		fputc(*buf++, stdout);
 	}
@@ -84,7 +84,7 @@ int get_completion_and_print(struct io_uring *ring) {
 		fprintf(stderr, "Async readv failed.\n");
 		return 1;
 	}
-	struct file_info *fi = (struct file_info*)io_uring_cqe_get_data(cqe);
+	const struct file_info *fi = (const struct file_info*)io_uring_cqe_get_data(cqe);
 	int blocks = (int) fi->file_sz / BLOCK_SZ;
 	if (fi->file_sz % BLOCK_SZ) blocks++;
 	for(int i = 0; i < blocks; i++)

@@ -37,7 +37,7 @@ namespace banking {
 	class AccountBase : public IAccount
 	{
 	public:
-		AccountBase(double balance = 0) :_balance(balance) {}
+		explicit AccountBase(double balance = 0) :_balance(balance) {}
 		double getBalance() const override { return _balance; }
 		void withdraw(double val) override {
 			Authenticate();
@@ -52,10 +52,15 @@ namespace banking {
 			CloseConnection();
 		}
 		void deposit(double val) override { _balance += val; }
+		// cppcheck-suppress functionStatic
 		void Authenticate() { cout << "Authenticate" << endl; }
+		// cppcheck-suppress functionStatic
 		void ConnectRemoteDB() { cout << "ConnectRemoteDB" << endl; }
+		// cppcheck-suppress functionStatic
 		void SaveChanges() { cout << "SaveChanges" << endl; }
+		// cppcheck-suppress functionStatic
 		void ReportError() { cout << "ReportError" << endl; }
+		// cppcheck-suppress functionStatic
 		void CloseConnection() { cout << "CloseConnection" << endl; }
 	private:
 		double _balance;
@@ -63,10 +68,10 @@ namespace banking {
 	class CheckingAccount : public AccountBase
 	{
 	public:
-		CheckingAccount(double balance = 0, double overdraft = 0) :AccountBase(balance), _overdraft(overdraft) {}
+		explicit CheckingAccount(double balance = 0, double overdraft = 0) :AccountBase(balance), _overdraft(overdraft) {}
 		// cppcheck-suppress uselessOverride
 		void withdraw(double val) override { AccountBase::withdraw(val); }
-		~CheckingAccount() { cout << "bye checking" << endl; }
+		~CheckingAccount() override { cout << "bye checking" << endl; }
 	private:
 		__attribute__((unused)) double _overdraft;
 	};
@@ -74,15 +79,15 @@ namespace banking {
 	{
 	public:
 		using AccountBase::AccountBase;
-		void setInterestRate(double val) { _intRate = val; }
-		~SavingAccount() { cout << "bye saving" << endl; }
+		static void setInterestRate(double val) { _intRate = val; }
+		~SavingAccount() override { cout << "bye saving" << endl; }
 	private:
 		static double _intRate;
 	};
 	class AccountDecorator : public IAccount
 	{
 	public:
-		AccountDecorator(unique_ptr<IAccount> account) :_account(std::move(account)) {}
+		explicit AccountDecorator(unique_ptr<IAccount> account) :_account(std::move(account)) {}
 	protected:
 		unique_ptr<IAccount> _account;
 	};
@@ -125,7 +130,7 @@ namespace banking {
 	class SavingAccountProxy : public IAccount
 	{
 	public:
-		SavingAccountProxy(double balance):_balance(balance){}
+		explicit SavingAccountProxy(double balance):_balance(balance){}
 		double getBalance() const override {
 			Load();
 			return _account->getBalance();

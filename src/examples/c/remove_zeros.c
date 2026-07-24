@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_INT()
 
-void print_array(int* ar, int size) {
+void print_array(const int* ar, int size) {
 	int i;
 	for(i=0; i<size; i++)
 		printf("ar[%d]=%d\n", i, ar[i]);
@@ -52,6 +52,7 @@ int main(void) {
 		CHECK_INT(scanf("%d", &ar[i]), 1);
 	}
 	// print the array before...
+	// cppcheck-suppress uninitvar
 	print_array(ar, size);
 	// remove the zeros...
 	int newsize=remove_zeros(ar, size);

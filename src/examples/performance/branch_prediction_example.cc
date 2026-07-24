@@ -42,7 +42,7 @@ using namespace std;
  * EXTRA_COMPILE_FLAGS_BEFORE=-O3
  */
 
-void do_work(int* data, unsigned int arraySize, const char* msg) {
+void do_work(const int* data, unsigned int arraySize, const char* msg) {
 	clock_t start = clock();
 
 	long long sum = 0;
@@ -61,7 +61,7 @@ void do_work(int* data, unsigned int arraySize, const char* msg) {
 	cout << "sum = " << sum << endl;
 }
 
-void do_work_no_if(int* data, unsigned int arraySize, const char* msg) {
+void do_work_no_if(const int* data, unsigned int arraySize, const char* msg) {
 	clock_t start = clock();
 
 	long long sum = 0;

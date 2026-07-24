@@ -40,6 +40,7 @@
  * - only wait for SIGALRM in the mysleep() function.
  */
 
+// cppcheck-suppress constParameterCallback
 static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* unused __attribute__((unused))) {
 	// do nothing?!?
 }

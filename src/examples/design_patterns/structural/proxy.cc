@@ -26,7 +26,7 @@ using namespace std;
 class RealImage {
 	int id;
 public:
-	RealImage( int i ) { id = i; cout << "	$$ ctor: "<< id << '\n'; }
+	explicit RealImage( int i ) { id = i; cout << "	$$ ctor: "<< id << '\n'; }
 	~RealImage()					 { cout << "	dtor: " << id << '\n'; }
 	void draw()					{ cout << "	drawing image " << id << '\n'; }
 };

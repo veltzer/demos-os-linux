@@ -26,6 +26,7 @@
  */
 
 bool called(int* b) __attribute__((noinline));
+// cppcheck-suppress constParameterPointer
 bool called(int* b) {
 	int a;
 	return &a < b;

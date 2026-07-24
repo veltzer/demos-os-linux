@@ -39,7 +39,7 @@ void Quit(int returnCode) {
 	exit(returnCode);
 }
 
-void handleKeyPress(SDL_keysym *keysym) {
+void handleKeyPress(const SDL_keysym *keysym) {
 	switch(keysym->sym) {
 	case SDLK_ESCAPE:
 		Quit(0);

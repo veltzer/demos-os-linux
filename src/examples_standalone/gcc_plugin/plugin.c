@@ -117,6 +117,7 @@ static unsigned speller_exec(void) {
 	unsigned i;
 	const_tree str, op;
 	basic_block bb;
+	/* cppcheck-suppress variableScope */
 	gimple stmt;
 	gimple_stmt_iterator gsi;
 
@@ -134,6 +135,7 @@ static unsigned speller_exec(void) {
 static struct gimple_opt_pass speller_pass;
 
 /* Return 0 on success or error code on failure */
+/* cppcheck-suppress constParameterPointer */
 int plugin_init(struct plugin_name_args *info, /* Argument infor */ struct plugin_gcc_version *ver) /* Version of GCC */ {
 	struct register_pass_info pass;
 

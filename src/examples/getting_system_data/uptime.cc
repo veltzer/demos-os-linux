@@ -43,7 +43,7 @@ void uptime(float *time1, float *time2) {
 	char buf[size];
 	CHECK_NOT_M1(read(d, buf, size));
 	char *saveptr;
-	char *ptr=strtok_r(buf, " ", &saveptr);
+	const char *ptr=strtok_r(buf, " ", &saveptr);
 	*time1=atof(ptr);
 	ptr=strtok_r(NULL, " ", &saveptr);
 	*time2=atof(ptr);

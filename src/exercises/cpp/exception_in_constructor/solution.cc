@@ -25,7 +25,7 @@ using namespace std;
 
 class Resource{
 public:
-	Resource(const char* filename) {
+	explicit Resource(const char* filename) {
 		if(!is_valid_file(filename)) {
 			throw invalid_argument("file name is empty or non-existent");
 		}
@@ -45,7 +45,7 @@ public:
 	}
 
 private:
-	bool is_valid_file(const char* filename) {
+	static bool is_valid_file(const char* filename) {
 		return filename != nullptr && strlen(filename) > 0;
 	}
 

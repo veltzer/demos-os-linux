@@ -53,7 +53,7 @@ void do_backtrace() {
 		unw_get_reg(&cursor, UNW_REG_IP, &pc);
 		fname[0] = '\0';
 		(void)unw_get_proc_name(&cursor, fname, sizeof(fname), &offset);
-		char* fname_demangled=cplus_demangle(fname, DMGL_PARAMS);
+		const char* fname_demangled=cplus_demangle(fname, DMGL_PARAMS);
 		if(fname_demangled==NULL) {
 			fname_demangled=fname;
 		}

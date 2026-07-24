@@ -179,7 +179,6 @@ void CreateWindow() {
 // SETUP GL CONTEXT
 void SetupGL() {
 	char font_string[128];
-	XFontStruct* font_struct;
 	// CREATE GL CONTEXT AND MAKE IT CURRENT
 	if((glc=glXCreateContext(dpy, vi, NULL, GL_TRUE))==NULL) {
 		fprintf(stderr, "cannot create gl context\n");
@@ -191,7 +190,7 @@ void SetupGL() {
 	// FIND A FONT
 	for(int font_size=14; font_size < 32; font_size+=2) {
 		sprintf(font_string, "-adobe-courier-*-r-normal--%i-*", font_size);
-		font_struct=XLoadQueryFont(dpy, font_string);
+		XFontStruct* font_struct=XLoadQueryFont(dpy, font_string);
 		if(font_struct!=NULL) {
 			glXUseXFont(font_struct->fid, 32, 192, 32);
 			break;

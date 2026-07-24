@@ -63,7 +63,7 @@ public:
 	}
 
 protected:
-	virtual void svc() {
+	void svc() override {
 		pid_t tid=gettid();
 		cout << "thread " << tid << " starting" << endl;
 		for(int i=0; i<limit; i++) {

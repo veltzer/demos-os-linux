@@ -29,9 +29,11 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
+// cppcheck-suppress constParameterCallback
 void* PrintHello(void* threadid) {
-	int *id_ptr, taskid;
-	id_ptr=(int *) threadid;
+	const int *id_ptr;
+	int taskid;
+	id_ptr=(const int *) threadid;
 	taskid=*id_ptr;
 	printf("Thread %d says hello\n", taskid);
 	return (void*)((long)taskid*2);

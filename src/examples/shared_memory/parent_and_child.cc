@@ -62,6 +62,7 @@ int main() {
 	} else {
 		TRACE("child setting value to 5");
 		*pvar = 5;
+		// cppcheck-suppress unreadVariable
 		mystackvalue = 5;
 		myglobalvalue = 5;
 		TRACE("child dying");

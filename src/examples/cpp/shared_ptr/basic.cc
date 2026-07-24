@@ -33,7 +33,7 @@ using namespace std;
 
 class Resource {
 public:
-	Resource(int value) : data(value) {
+	explicit Resource(int value) : data(value) {
 		cout << "Resource constructed with value " << data << endl;
 	}
 	~Resource() {

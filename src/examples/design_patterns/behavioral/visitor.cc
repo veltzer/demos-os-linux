@@ -39,17 +39,17 @@ public:
 };
 
 class Primitive : public Component { public:
-	Primitive( int val ) : Component( val ) { }
-	/*virtual*/ void accept( Visitor& v, Component* c ) { v.visit( this, c ); }
+	explicit Primitive( int val ) : Component( val ) { }
+	/*virtual*/ void accept( Visitor& v, Component* c ) override { v.visit( this, c ); }
 };
 
 class Composite : public Component {
 	vector<Component*> children;
 public:
-	Composite( int val ) : Component( val ) { }
+	explicit Composite( int val ) : Component( val ) { }
 	void add( Component* ele ) { children.push_back( ele ); }
-	/*virtual*/ void accept( Visitor& v, Component* c ) { v.visit( this, c ); }
-	/*virtual*/ void traverse() {
+	/*virtual*/ void accept( Visitor& v, Component* c ) override { v.visit( this, c ); }
+	/*virtual*/ void traverse() override {
 		Component::traverse();
 		for(unsigned int i=0; i < children.size(); i++)
 			children[i]->traverse();
@@ -59,8 +59,8 @@ public:
 
 
 class AddVisitor : public Visitor { public:
-	/*virtual*/ void visit( Primitive*, Component* ) {/* does not make sense */}
-	/*virtual*/ void visit( Composite* node, Component* c ) { node->add( c ); }
+	/*virtual*/ void visit( Primitive*, Component* ) override {/* does not make sense */}
+	/*virtual*/ void visit( Composite* node, Component* c ) override { node->add( c ); }
 };
 
 int main() {

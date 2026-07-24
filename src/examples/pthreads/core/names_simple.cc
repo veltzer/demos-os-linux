@@ -41,17 +41,17 @@ int ids[num];
 void* rets[num];
 
 static void* worker(void* p) {
-	int num=*(int *)p;
-	if(num==0) {
+	int id=*(int *)p;
+	if(id==0) {
 		// CHECK_NOT_M1(prctl(PR_SET_NAME,"t1"));
 		CHECK_ZERO_ERRNO(pthread_setname_np(pthread_self(), "t1"));
 	}
-	if(num==1) {
+	if(id==1) {
 		// CHECK_NOT_M1(prctl(PR_SET_NAME,"t2"));
 		CHECK_ZERO_ERRNO(pthread_setname_np(pthread_self(), "t2"));
 	}
 	while(1) {
-		printf("thread %d is running...\n", num);
+		printf("thread %d is running...\n", id);
 		sleep(1);
 	}
 	return NULL;

@@ -36,7 +36,7 @@ public:
 
 class HA_CommandHandler: public ACE_Task_Base {
 public:
-	HA_CommandHandler(ExitHandler & eh) : eh_(eh) {
+	explicit HA_CommandHandler(ExitHandler & eh) : eh_(eh) {
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, "(%t) starting up \n"));

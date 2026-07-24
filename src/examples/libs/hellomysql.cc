@@ -36,14 +36,14 @@ using namespace std;
 
 int main() {
 	MYSQL mysql;
-	MYSQL *ret0=mysql_init(&mysql);
+	const MYSQL *ret0=mysql_init(&mysql);
 	if (!ret0) {
 		cerr << "init failed" << endl;
 		cerr << mysql_error(&mysql) << endl;
 		return EXIT_FAILURE;
 	}
 	cout << "after init" << endl;
-	MYSQL *ret1=mysql_real_connect(&mysql, "database", "master", "master", "mysql", 0, NULL, 0);
+	const MYSQL *ret1=mysql_real_connect(&mysql, "database", "master", "master", "mysql", 0, NULL, 0);
 	if (!ret1) {
 		cerr << "connect failed" << endl;
 		cerr << mysql_error(&mysql) << endl;

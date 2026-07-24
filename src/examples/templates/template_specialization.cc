@@ -34,7 +34,7 @@ private:
 	unsigned int size;
 
 public:
-	Vector(unsigned int isize) {
+	explicit Vector(unsigned int isize) {
 		size=isize;
 	}
 	unsigned int getSize() {
@@ -47,7 +47,7 @@ private:
 	unsigned int size;
 
 public:
-	Vector(unsigned int isize) {
+	explicit Vector(unsigned int isize) {
 		size=isize/8;
 	}
 	unsigned int getSize() {

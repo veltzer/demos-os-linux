@@ -24,6 +24,7 @@ using namespace std;
 // Base class
 class Shape{
 public:
+	// cppcheck-suppress functionStatic
 	void draw() {
 		cout << "Drawing a shape..." << endl;
 	}

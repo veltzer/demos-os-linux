@@ -27,7 +27,7 @@ class POP {			 // Persistent Object Pointer
 	string oid;
 	ANYTYPE*	ptr;
 public:
-	POP( const string& id ) : oid(id), ptr(0) { }
+	explicit POP( const string& id ) : oid(id), ptr(0) { }
 	~POP()				{ delete ptr; }
 	ANYTYPE* operator->() {
 		if ( ! ptr)
@@ -41,7 +41,7 @@ class Person {
 	string name;
 	int	 age;
 public:
-	Person( const string& n ) : name(n), age(32) { }
+	explicit Person( const string& n ) : name(n), age(32) { }
 	const string& getName()	{ return name; }
 	int	 getAge()	 { return age; }
 };

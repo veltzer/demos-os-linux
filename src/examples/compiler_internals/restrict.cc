@@ -46,24 +46,24 @@
  * EXTRA_COMPILE_FLAGS_BEFORE=-mtune=corei7 -O3
  */
 
-void add_no_restrict(int* arr, int num, int* result) __attribute__ ((noinline));
-void add_no_restrict(int* arr, int num, int* result) {
+void add_no_restrict(const int* arr, int num, int* result) __attribute__ ((noinline));
+void add_no_restrict(const int* arr, int num, int* result) {
 	*result=0;
 	for(int i=0; i<num; i++) {
 		*result+=arr[i];
 	}
 }
 
-void add_one_restrict(int* __restrict arr, int num, int* result) __attribute__ ((noinline));
-void add_one_restrict(int* __restrict arr, int num, int* result) {
+void add_one_restrict(const int* __restrict arr, int num, int* result) __attribute__ ((noinline));
+void add_one_restrict(const int* __restrict arr, int num, int* result) {
 	*result=0;
 	for(int i=0; i<num; i++) {
 		*result+=arr[i];
 	}
 }
 
-void add_temp(int* arr, int num, int* result) __attribute__ ((noinline));
-void add_temp(int* arr, int num, int* result) {
+void add_temp(const int* arr, int num, int* result) __attribute__ ((noinline));
+void add_temp(const int* arr, int num, int* result) {
 	int temp=0;
 	for(int i=0; i<num; i++) {
 		temp+=arr[i];
@@ -71,8 +71,8 @@ void add_temp(int* arr, int num, int* result) {
 	*result=temp;
 }
 
-void add_restrict(int* __restrict arr, int num, int* __restrict result) __attribute__ ((noinline));
-void add_restrict(int* __restrict arr, int num, int* __restrict result) {
+void add_restrict(const int* __restrict arr, int num, int* __restrict result) __attribute__ ((noinline));
+void add_restrict(const int* __restrict arr, int num, int* __restrict result) {
 	*result=0;
 	for(int i=0; i<num; i++) {
 		*result+=arr[i];

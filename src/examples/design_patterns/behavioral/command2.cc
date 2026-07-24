@@ -23,7 +23,7 @@ using namespace std;
 
 class Number {
 public:
-	Number( int value ) { _value = _copy = value; }
+	explicit Number( int value ) { _value = _copy = value; }
 	int getValue() { return _value; }
 	void increment() { _copy = _value++; }
 	void decrement() { _copy = _value--; }
@@ -51,7 +51,7 @@ public:
 	SimpleCommand( Number* receiver, Action action ) {
 		_receiver = receiver;
 		_action = action; }
-	virtual void execute() { (_receiver->*_action)(); }
+	void execute() override { (_receiver->*_action)(); }
 protected:
 	Number* _receiver;
 	Action _action;
@@ -60,8 +60,8 @@ protected:
 class MacroCommand : public Command {
 public:
 	MacroCommand() : _list() { _numCommands = 0; }
-	void add( Command* cmd ) { _list[_numCommands++] = cmd; }
-	virtual void execute();
+	void add( Command* cmd ) override { _list[_numCommands++] = cmd; }
+	void execute() override;
 private:
 	Command* _list[10];
 	int _numCommands;

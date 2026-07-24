@@ -65,6 +65,7 @@ static void usageError(const char *progName, const char *msg) {
 	exit(EXIT_FAILURE);
 }
 
+// cppcheck-suppress constParameterCallback
 static void handler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* ucontext __attribute__((unused))) {
 	printf("got event on descriptor %d\n", si->si_fd);
 	printf("got code %d\n", si->si_code);
@@ -74,7 +75,6 @@ int main(int argc, char** argv) {
 	struct sigaction sa;
 	int events, fnum;
 	const int NOTIFY_SIG = SIGRTMIN;
-	char *p;
 	if (argc < 2 || strcmp(argv[1], "--help") == 0)
 		usageError(argv[0], NULL);
 	/* Establish handler for notification signal */
@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
 	// this will ensure that we don't lose messages
 	CHECK_NOT_M1(sigaction(NOTIFY_SIG, &sa, NULL));
 	for(fnum = 1; fnum < argc; fnum++) {
-		p = strchr(argv[fnum], ':');	/* Look for optional ':' */
+		char *p = strchr(argv[fnum], ':');	/* Look for optional ':' */
 		if (p == NULL) {/* Default is all events + multishot */
 			events = DN_ACCESS | DN_ATTRIB | DN_CREATE | DN_DELETE | DN_MODIFY | DN_RENAME | DN_MULTISHOT;
 		} else {/* ':' present, parse event chars */

@@ -68,7 +68,7 @@ void* worker(void*) {
 	return NULL;
 }
 
-void print_mallinfo(struct mallinfo* pmallinfo) {
+void print_mallinfo(const struct mallinfo* pmallinfo) {
 	fprintf(stderr, "arena is [%d]\n", pmallinfo->arena);
 	fprintf(stderr, "ordblks is [%d]\n", pmallinfo->ordblks);
 	fprintf(stderr, "smblks is [%d]\n", pmallinfo->smblks);

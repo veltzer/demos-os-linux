@@ -67,6 +67,7 @@ inline void my_trace(tracelevel level, const char* file, const char* base_file, 
 
 class A{
 public:
+	// cppcheck-suppress functionStatic
 	void thisMethod(int a, int b) {
 		MY_TRACE(LEVEL_DEBUG, "did you know that %d+%d=%d?\n", a, b, a+b);
 	}

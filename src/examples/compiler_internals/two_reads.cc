@@ -32,6 +32,7 @@
  * fears it may change value.
  */
 
+// cppcheck-suppress constParameterPointer
 void __attribute__((noinline)) print_address_of(int* ptr) {
 	printf("ptr is %p\n", (void*)ptr);
 }

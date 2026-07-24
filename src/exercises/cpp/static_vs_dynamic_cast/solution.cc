@@ -33,7 +33,7 @@ private:
 	double radius;
 
 public:
-	Circle(double radius) {
+	explicit Circle(double radius) {
 		this->radius = radius;
 	}
 	double getArea() override{
@@ -46,7 +46,7 @@ private:
 	double side;
 
 public:
-	Square(double side) {
+	explicit Square(double side) {
 		this->side = side;
 	}
 	double getArea() override{
@@ -87,7 +87,7 @@ int main() {
 
 	// Static cast
 	// compiles because of the compiler stupidity
-	Circle* c1 = static_cast<Circle*>(&shape);
+	const Circle* c1 = static_cast<Circle*>(&shape);
 	cout << c1 << endl;
 	// does not compile
 	// Circle* c2 = static_cast<Circle*>(&square);

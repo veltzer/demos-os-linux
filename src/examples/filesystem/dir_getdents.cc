@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 			);
 		int bpos=0;
 		while(bpos < nread) {
-			struct linux_dirent * d = (struct linux_dirent *) (buf + bpos);
+			const struct linux_dirent * d = (const struct linux_dirent *) (buf + bpos);
 			char d_type = *(buf + bpos + d->d_reclen - 1);
 			printf("%8ld %-10s %8d %10lu %s\n",
 				d->d_ino,

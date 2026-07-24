@@ -54,6 +54,7 @@ void die(void) {
 	return;
 }
 
+// cppcheck-suppress constParameterCallback
 void print_message_function(void *dummy) {
 	printf("Morituri te salutant!\n");
 	die();

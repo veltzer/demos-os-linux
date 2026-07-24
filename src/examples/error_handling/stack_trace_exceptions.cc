@@ -77,7 +77,7 @@ public:
 
 	void print() {
 		for(int i=nSize-drop_frames-1; i>=0; i--) {
-			char *symbol=symbols[i];
+			const char *symbol=symbols[i];
 			cerr
 				<< symbol << ","
 				<< endl;

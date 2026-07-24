@@ -60,7 +60,7 @@ static uint32_t nfqueue_packet_get_id(struct nfq_data *packet) {
 
 static uint32_t nfqueue_packet_get_hook(struct nfq_data *packet) {
 	uint32_t hook = -1;
-	struct nfqnl_msg_packet_hdr *packetHeader;
+	const struct nfqnl_msg_packet_hdr *packetHeader;
 	if((packetHeader = nfq_get_msg_packet_hdr(packet)) != NULL )
 		hook = packetHeader->hook;
 	return hook;
@@ -97,7 +97,9 @@ static int manage_packet(struct nfq_q_handle *qh,
 static bool over=false;
 
 static void handler(int sig __attribute__((unused)),
+	// cppcheck-suppress constParameterCallback
 	siginfo_t *si __attribute__((unused)),
+	// cppcheck-suppress constParameterCallback
 	void* unused __attribute__((unused))) {
 	over=true;
 }

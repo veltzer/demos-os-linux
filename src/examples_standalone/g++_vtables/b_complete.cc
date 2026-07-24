@@ -19,6 +19,7 @@
 #include <firstinclude.h>
 #include "b.h"
 
+// cppcheck-suppress functionStatic
 void B::foo(void) {
 }
 

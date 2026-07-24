@@ -43,6 +43,7 @@ int mypthread_spin_init(mypthread_spinlock_t* lock) {
 	lock->val=0;
 	return 0;
 }
+// cppcheck-suppress constParameterPointer
 int mypthread_spin_destroy(mypthread_spinlock_t* lock __attribute__((unused))) {
 	// do nothing
 	return 0;

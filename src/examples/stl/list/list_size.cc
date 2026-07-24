@@ -50,9 +50,8 @@ int main() {
 	measure m;
 	measure_init(&m, "one l.size()", attempts);
 	measure_start(&m);
-	volatile __attribute__((unused)) int s;
 	for(unsigned int i = 0; i < attempts; i++) {
-		s=l.size();
+		volatile __attribute__((unused)) int s=l.size();
 	}
 	measure_end(&m);
 	measure_print(&m);

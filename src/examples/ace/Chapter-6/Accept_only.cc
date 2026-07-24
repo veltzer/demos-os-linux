@@ -74,7 +74,7 @@ protected:
 
 class LoopStopper: public ACE_Event_Handler {
 public:
-	LoopStopper(int signum) {
+	explicit LoopStopper(int signum) {
 		ACE_Reactor::instance()->register_handler(signum, this);
 	}
 

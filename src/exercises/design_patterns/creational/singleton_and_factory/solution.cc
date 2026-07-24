@@ -37,6 +37,7 @@ public:
 		return instance;
 	}
 
+	// cppcheck-suppress functionStatic
 	void log(const string& message) {
 		cout << "LOG: " << message << endl;
 	}

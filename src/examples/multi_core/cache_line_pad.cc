@@ -54,12 +54,18 @@
 struct foo{
 	union _un{
 		struct _pad_struct{
+			// cppcheck-suppress unusedStructMember
 			char irrelevant[LEVEL2_CACHE_LINESIZE];
+		// cppcheck-suppress unusedStructMember
 		} pad_struct;
 		struct _real{
+			// cppcheck-suppress unusedStructMember
 			char c1;
+			// cppcheck-suppress unusedStructMember
 			int i1;
+			// cppcheck-suppress unusedStructMember
 			char c2;
+		// cppcheck-suppress unusedStructMember
 		} real;
 	} un;
 };

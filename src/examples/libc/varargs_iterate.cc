@@ -38,7 +38,8 @@ void trace(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 void trace(const char *fmt, ...) {
 	va_list ap;
 	int d;
-	char c, *s;
+	char c;
+	const char *s;
 	float f;
 	va_start(ap, fmt);
 	while(*fmt) {

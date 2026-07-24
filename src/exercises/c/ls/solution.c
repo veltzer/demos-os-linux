@@ -47,6 +47,7 @@
 // see 'info ls' for more info...
 const double oldsecs=192*24*60*60;
 
+// cppcheck-suppress constParameterCallback
 static int strcmp_wrap(const void* pa, const void* pb, void* extra __attribute__((unused))) {
 	const char** ppa=(const char**)pa;
 	const char** ppb=(const char**)pb;
@@ -117,7 +118,7 @@ int main(void) {
 	int num_files=0;
 	int num_blocks=0;
 	// no need to check the return code of readdir(3) (see the manual page for it...)
-	struct dirent* dircontent;
+	const struct dirent* dircontent;
 	while((dircontent=readdir(d))) {
 		if(hidedots && dircontent->d_name[0]=='.') {
 			continue;
@@ -152,26 +153,26 @@ int main(void) {
 	int size_link=lrint(ceil(log10(max_link+1)));
 	qsort_r(arr, num_files, sizeof(char*), strcmp_wrap, NULL);
 	printf("total %d\n", num_blocks/2);
-	for(int i=0; i<num_files; i++) {
+	for(int j=0; j<num_files; j++) {
 		// dont show . files...
-		if(hidedots && arr[i][0]=='.') {
+		if(hidedots && arr[j][0]=='.') {
 			continue;
 		}
 		struct stat buf;
-		CHECK_NOT_M1(lstat(arr[i], &buf));
+		CHECK_NOT_M1(lstat(arr[j], &buf));
 		char p[11];
 		mode_t m=buf.st_mode;
 		filetype(m, p);
-		struct passwd *pwd=getpwuid(buf.st_uid);
-		struct group* grp=getgrgid(buf.st_gid);
+		const struct passwd *pwd=getpwuid(buf.st_uid);
+		const struct group* grp=getgrgid(buf.st_gid);
 		struct tm mytm;
 		CHECK_NOT_NULL(localtime_r(&buf.st_mtime, &mytm));
 		char mybuf[256];
-		const char* format_same_year="%b %e %R";
-		const char* format_other_year="%b %e " " %Y";
 		if(difftime(now, buf.st_mtime)<oldsecs) {
+			const char* format_same_year="%b %e %R";
 			CHECK_NOT_ZERO(strftime(mybuf, sizeof(mybuf), format_same_year, &mytm));
 		} else {
+			const char* format_other_year="%b %e " " %Y";
 			CHECK_NOT_ZERO(strftime(mybuf, sizeof(mybuf), format_other_year, &mytm));
 		}
 		printf("%s %*zd %s %s %*ld %s %s\n",
@@ -183,7 +184,7 @@ int main(void) {
 			size_width,
 			buf.st_size,
 			mybuf,
-			arr[i]
+			arr[j]
 			);
 	}
 	return EXIT_SUCCESS;

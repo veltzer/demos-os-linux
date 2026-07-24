@@ -39,9 +39,9 @@ private:
 	Base& base;
 
 public:
-	Derived1(Base& ibase) : base(ibase) {
+	explicit Derived1(Base& ibase) : base(ibase) {
 	}
-	virtual void act(void) {
+	void act(void) override {
 		base.act();
 		cout << "in Derived1" << endl;
 	}
@@ -52,9 +52,9 @@ private:
 	Base& base;
 
 public:
-	Derived2(Base& ibase) : base(ibase) {
+	explicit Derived2(Base& ibase) : base(ibase) {
 	}
-	virtual void act(void) {
+	void act(void) override {
 		base.act();
 		cout << "in Derived2" << endl;
 	}
@@ -65,9 +65,9 @@ private:
 	Base& base;
 
 public:
-	Derived3(Base& ibase) : base(ibase) {
+	explicit Derived3(Base& ibase) : base(ibase) {
 	}
-	virtual void act(void) {
+	void act(void) override {
 		base.act();
 		cout << "in Derived3" << endl;
 	}

@@ -36,7 +36,7 @@
 
 class Manager: public ACE_Process {
 public:
-	Manager(const char* program_name) {
+	explicit Manager(const char* program_name) {
 		ACE_TRACE("Manager::Manager");
 		ACE_OS::strcpy(programName_, program_name);
 	}
@@ -151,7 +151,7 @@ public:
 #endif
 	}
 
-	char* readLine(char* str) {
+	static char* readLine(char* str) {
 		ACE_TRACE("Slave::readLine");
 
 		int i=0;

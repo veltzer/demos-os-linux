@@ -38,7 +38,7 @@ void abuse_vector_once() {
 	for(int i=0; i<array_size; i++) {
 		v.push_back(i);
 		if(i%modulu==0) {
-			void* p __attribute__((unused))=malloc(2);
+			const void* p __attribute__((unused))=malloc(2);
 		}
 	}
 }

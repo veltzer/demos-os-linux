@@ -41,17 +41,17 @@ int ids[num];
 void* rets[num];
 
 static void* worker(void* p) {
-	int num=*(int *)p;
+	int id=*(int *)p;
 	// fill in my own thread id so that the other threads
 	// may know about me (and so kill me).
-	pids[num]=gettid();
-	if(num==0) {
+	pids[id]=gettid();
+	if(id==0) {
 		while(true) {
 			printf("thread 0 is alive...\n");
 			sleep(1);
 		}
 	}
-	if(num==1) {
+	if(id==1) {
 		int i=0;
 		while(true) {
 			printf("thread 1 is alive...\n");

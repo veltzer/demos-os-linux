@@ -57,8 +57,10 @@ public:
 	}
 	~MyMutex() {
 	}
+	// cppcheck-suppress functionStatic
 	void lock() {
 	}
+	// cppcheck-suppress functionStatic
 	void unlock() {
 	}
 };

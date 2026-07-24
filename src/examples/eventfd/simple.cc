@@ -49,7 +49,9 @@ int main(int argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 	// parameters
+	// cppcheck-suppress variableScope
 	unsigned int loop_count=atoi(argv[1]);
+	// cppcheck-suppress variableScope
 	unsigned int max_rand=atoi(argv[2]);
 
 	// create the event fd

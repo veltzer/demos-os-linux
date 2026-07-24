@@ -58,7 +58,7 @@ public:
 		return 0;
 	}
 
-	void handle_alert();
+	static void handle_alert();
 };
 
 void SignalableTask::handle_alert() {

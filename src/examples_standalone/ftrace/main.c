@@ -25,6 +25,7 @@ int call_func(int a, int b) {
 
 int main(void) {
 	int res;
+	// cppcheck-suppress unreadVariable
 	res=call_func(1, 1);
 	return EXIT_SUCCESS;
 }

@@ -55,6 +55,7 @@
 // count the number of signals we get
 static unsigned int counter=0;
 
+// cppcheck-suppress constParameterCallback
 static void handler(int sig, siginfo_t *si, void* unused) {
 	fprintf(stderr, "sighandler: counter is %d\n", counter);
 	fprintf(stderr, "sighandler: got signal %s\n", strsignal(sig));

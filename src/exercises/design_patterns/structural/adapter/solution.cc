@@ -32,6 +32,7 @@ public:
 // Class that needs to be adapted
 class LegacyClass {
 public:
+	// cppcheck-suppress functionStatic
 	void oldRequest() {
 		cout << "LegacyClass: Handling old request." << endl;
 	}

@@ -51,6 +51,7 @@ void endfunc2() {
 	fprintf(stderr, "Hey! I am doing some cleanup work 2\n");
 	fprintf(stderr, "I was registered with atexit(3)\n");
 }
+// cppcheck-suppress constParameterCallback
 void endfunc3(int exit_code, void* ptr) {
 	fprintf(stderr, "Hey! I am doing some cleanup work 3\n");
 	fprintf(stderr, "I was registered with on_exit(3)\n");

@@ -26,11 +26,11 @@
 
 int main() {
 	unsigned long i=0xabcd0123;
-	void* p=(void*)i;
-	char* cp=(char*)i;
+	const void* p=(void*)i;
+	const char* cp=(char*)i;
 
 	printf("void* printed as '%%p' is %p\n", p);
-	printf("char* (and any other pointer) printed as '%%p' is %p\n", (void*)cp);
+	printf("char* (and any other pointer) printed as '%%p' is %p\n", (const void*)cp);
 	printf("'%%lx' is %lx\n", i);
 	printf("'%%lX' is %lX\n", i);
 	printf("'%%#lx' is %#lx\n", i);

@@ -50,6 +50,7 @@ static void id_dealloc(void* ptr) {
 	free(ptr);
 }
 
+// cppcheck-suppress constParameterCallback
 static void* worker(void* arg) {
 	CHECK_ZERO_ERRNO(my_pthread_setspecific(key_myid, arg));
 	// now lets pull our id

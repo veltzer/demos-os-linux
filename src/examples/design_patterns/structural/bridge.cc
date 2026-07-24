@@ -43,7 +43,7 @@ public:
 		else
 			strcpy( whichM_, " AM" );
 	}
-	void tell() {
+	void tell() override {
 		cout << "time is " << hr_ << ":" << min_ << whichM_ << endl;
 	}
 protected:
@@ -57,7 +57,7 @@ public:
 			strcpy( zone_, " Eastern Standard Time" );
 		else if (zone == 6)
 			strcpy( zone_, " Central Standard Time" ); }
-	/* virtual */ void tell() {
+	/* virtual */ void tell() override {
 		cout << "time is " << setw(2) << setfill('0') << hr_ << min_
 			<< zone_ << endl; }
 protected:
