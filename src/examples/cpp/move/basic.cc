@@ -27,7 +27,7 @@ using namespace std;
 
 class MyClass{
 public:
-	MyClass(string str) : data(std::move(str)) {
+	explicit MyClass(string str) : data(std::move(str)) {
 	}
 	MyClass(const MyClass& other) : data(other.data) {
 		cout << "Copy constructor called" << endl;

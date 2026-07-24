@@ -94,6 +94,7 @@ void* test_imp1(void* p) {
 	measure_start(&m);
 	for(unsigned int i=0; i < loop; i++) {
 		for(unsigned int j=0; j<size/sizeof(int); j++) {
+			// cppcheck-suppress unreadVariable
 			((int*)buf1)[j]=((int*)buf2)[j];
 		}
 	}
@@ -113,7 +114,7 @@ void* test_imp2(void* p) {
 	measure_start(&m);
 	for(unsigned int i=0; i<loop; i++) {
 		int* pbuf1=(int*)buf1;
-		int* pbuf2=(int*)buf2;
+		const int* pbuf2=(const int*)buf2;
 		for(unsigned int j=0; j<size/sizeof(int); j++) {
 			*pbuf1=*pbuf2;
 			pbuf1++;

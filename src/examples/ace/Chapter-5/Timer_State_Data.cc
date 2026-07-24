@@ -33,7 +33,7 @@
 
 class TemperatureSensor{
 public:
-	TemperatureSensor(const char *location) : location_(location), count_(0), temperature_(0.0) {
+	explicit TemperatureSensor(const char *location) : location_(location), count_(0), temperature_(0.0) {
 	}
 	const char *location() const{
 		return this->location_;
@@ -66,6 +66,7 @@ public:
 	}
 
 private:
+	// cppcheck-suppress functionStatic
 	void updateAverageTemperature(TemperatureSensor *) {
 	}
 	int counter_;

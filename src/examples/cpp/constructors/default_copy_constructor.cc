@@ -33,7 +33,7 @@ private:
 	int a;
 
 public:
-	Foo(int ia) : a(ia) {
+	explicit Foo(int ia) : a(ia) {
 	}
 	void print() {
 		cout << a << endl;

@@ -57,7 +57,7 @@ private:
 	mutex mutex_;
 
 public:
-	PersonPool(size_t count) : memory_pool_(sizeof(Person)) {
+	explicit PersonPool(size_t count) : memory_pool_(sizeof(Person)) {
 		// Pre-allocate all objects
 		for(size_t i = 0; i < count; ++i) {
 			void* mem = memory_pool_.malloc();
@@ -137,7 +137,7 @@ int main() {
 		cout << "Successfully got all 100 objects\n";
 
 		// Try to get one more (should throw)
-		Person* extra = pool.get();
+		const Person* extra = pool.get();
 		cout << "ERROR: Should not reach here!\n";
 	extra->display();
 

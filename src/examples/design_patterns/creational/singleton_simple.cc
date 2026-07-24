@@ -38,6 +38,7 @@ public:
 	static Singleton& getInstance() {
 		return instance;
 	}
+	// cppcheck-suppress functionStatic
 	void print() {
 		cout << "Hello from Singleton" << endl;
 	}

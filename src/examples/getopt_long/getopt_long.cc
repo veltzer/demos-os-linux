@@ -28,7 +28,6 @@
  */
 
 int main(int argc, char** argv) {
-	int c;
 	int digit_optind=0;
 	while(true) {
 		int this_option_optind=optind ? optind:1;
@@ -42,7 +41,7 @@ int main(int argc, char** argv) {
 			{"file", required_argument, 0, 0},
 			{0, 0, 0, 0}
 		};
-		c=getopt_long(argc, argv, "abc:d:012", long_options, &option_index);
+		int c=getopt_long(argc, argv, "abc:d:012", long_options, &option_index);
 		if (c==-1)
 			break;
 		switch (c) {

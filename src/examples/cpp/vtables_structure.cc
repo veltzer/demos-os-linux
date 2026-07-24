@@ -44,6 +44,7 @@ using namespace std;
 
 struct MemberFnPtr {
 	void* ptr;
+	// cppcheck-suppress unusedStructMember
 	ptrdiff_t adj;
 };
 
@@ -100,9 +101,9 @@ int main() {
 	// of declaration
 	A a;
 	void** va=*(void***)&a;
-	void* vAamethod0=extract_fn_ptr(&B::vamethod0);
-	void* vAamethod1=extract_fn_ptr(&B::vamethod1);
-	void* vAamethod2=extract_fn_ptr(&B::vamethod2);
+	const void* vAamethod0=extract_fn_ptr(&B::vamethod0);
+	const void* vAamethod1=extract_fn_ptr(&B::vamethod1);
+	const void* vAamethod2=extract_fn_ptr(&B::vamethod2);
 	assert(vAamethod0==va[0]);
 	assert(vAamethod1==va[1]);
 	assert(vAamethod2==va[2]);
@@ -112,11 +113,11 @@ int main() {
 	// show that the vtable of b has same charactersitics as vtable of A...
 	B b;
 	void** vb=*(void***)&b;
-	void* vBamethod0=extract_fn_ptr(&B::vamethod0);
-	void* vBamethod1=extract_fn_ptr(&B::vamethod1);
-	void* vBamethod2=extract_fn_ptr(&B::vamethod2);
-	void* vBbmethod0=extract_fn_ptr(&B::vbmethod0);
-	void* vBbmethod1=extract_fn_ptr(&B::vbmethod1);
+	const void* vBamethod0=extract_fn_ptr(&B::vamethod0);
+	const void* vBamethod1=extract_fn_ptr(&B::vamethod1);
+	const void* vBamethod2=extract_fn_ptr(&B::vamethod2);
+	const void* vBbmethod0=extract_fn_ptr(&B::vbmethod0);
+	const void* vBbmethod1=extract_fn_ptr(&B::vbmethod1);
 	assert(vBamethod0==vb[0]);
 	assert(vBamethod1==vb[1]);
 	assert(vBamethod2==vb[2]);

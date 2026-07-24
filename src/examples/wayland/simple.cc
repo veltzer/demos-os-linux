@@ -44,9 +44,8 @@ static void registry_global(void* data __attribute__((unused)), struct wl_regist
 	}
 }
 
-static void registry_global_remove(void* data __attribute__((unused)),
-	struct wl_registry *registry __attribute__((unused)),
-	uint32_t name __attribute__((unused))) {
+// cppcheck-suppress constParameterCallback
+static void registry_global_remove(void* data __attribute__((unused)), struct wl_registry *registry __attribute__((unused)), uint32_t name __attribute__((unused))) {
 	// Do nothing
 }
 

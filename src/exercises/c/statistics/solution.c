@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS, malloc(3), free(3)
 #include <err_utils.h>	// for CHECK_INT()
 
-float get_average(float* p, int size) {
+float get_average(const float* p, int size) {
 	int i;
 	float sum=0;
 	for(i=0; i<size; i++) {

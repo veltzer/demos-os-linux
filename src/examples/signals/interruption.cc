@@ -57,10 +57,10 @@ int main() {
 	} else {
 		signal_register_handler_sigaction(SIGUSR1, handler, SA_RESTART);
 	}
-	int ret;
 	printf("signal me with [kill -s SIGUSR1 %d]\n", getpid());
 	bool matchingError=false;
 	while(true) {
+		int ret;
 		printf("enter number a: ");
 		fflush(stdout);
 		int a;

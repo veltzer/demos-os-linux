@@ -64,8 +64,8 @@ int PrintMessages(SHARED_ALLOC *shared) {
 	{
 		MALLOC_LIFO_RECORD record(*shared);
 		for(void *temp=0; record.next(temp)!=0; record.advance()) {
-			Record *record=reinterpret_cast<Record *>(temp);
-			ACE_DEBUG((LM_DEBUG, "%C\n", record->name()));
+			Record *rec=reinterpret_cast<Record *>(temp);
+			ACE_DEBUG((LM_DEBUG, "%C\n", rec->name()));
 		}
 	}
 	return 0;

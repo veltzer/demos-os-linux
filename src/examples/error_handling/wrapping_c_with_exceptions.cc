@@ -56,8 +56,8 @@ void myhandler(int sig) {
 
 int main() {
 	// here is an example of using this construct
-	int fd[2];
 	try {
+		int fd[2];
 		syscall(pipe(fd), -1);
 		syscall(signal(SIGPIPE, myhandler), SIG_ERR);
 	} catch (const exception& e) {

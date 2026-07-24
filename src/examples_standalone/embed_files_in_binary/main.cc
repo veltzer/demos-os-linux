@@ -48,7 +48,7 @@ int main() {
 		read_size=CHECK_NOT_M1(read(fd, ptr, left));
 	}
 	printf("The next line should say [%s]\n", buffer);
-	char *p=&_binary_data_txt_start;
+	const char *p=&_binary_data_txt_start;
 	while(p!=&_binary_data_txt_end)
 		putchar(*p++);
 	return EXIT_SUCCESS;

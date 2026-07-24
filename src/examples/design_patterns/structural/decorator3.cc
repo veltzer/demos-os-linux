@@ -27,27 +27,27 @@ class TextField : public Widget {						 // 3. "Core" class & "isa"
 	int width, height;
 public:
 	TextField( int w, int h ) { width = w; height = h; }
-	/*virtual*/ void draw() { cout << "TextField: " << width << ", " << height << '\n'; }
+	/*virtual*/ void draw() override { cout << "TextField: " << width << ", " << height << '\n'; }
 };
 																	 // 2. 2nd level base class
 class Decorator : public Widget {						 // 3. "isa" relationship
 	Widget* wid;												 // 4. "hasa" relationship
 public:
-	Decorator( Widget* w ) { wid = w; }
-	~Decorator() { delete wid; }
-	/*virtual*/ void draw() { wid->draw(); }			// 5. Delegation
+	explicit Decorator( Widget* w ) { wid = w; }
+	~Decorator() override { delete wid; }
+	/*virtual*/ void draw() override { wid->draw(); }			// 5. Delegation
 };
 
 class BorderDecorator : public Decorator { public: // 6. Optional embellishment
-	BorderDecorator( Widget* w ) : Decorator( w ) { }
-	/*virtual*/ void draw() {
+	explicit BorderDecorator( Widget* w ) : Decorator( w ) { }
+	/*virtual*/ void draw() override {
 		Decorator::draw();									 // 7. Delegate to base class
 		cout << "	BorderDecorator" << '\n';			//	 and add extra stuff
 } };
 
 class ScrollDecorator : public Decorator { public: // 6. Optional embellishment
-	ScrollDecorator( Widget* w ) : Decorator( w ) { }
-	/*virtual*/ void draw() {
+	explicit ScrollDecorator( Widget* w ) : Decorator( w ) { }
+	/*virtual*/ void draw() override {
 		Decorator::draw();									 // 7. Delegate to base class
 		cout << "	ScrollDecorator" << '\n';			//	 and add extra stuff
 } };

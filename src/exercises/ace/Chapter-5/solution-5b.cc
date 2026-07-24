@@ -33,7 +33,7 @@ bool Termination=false;
 
 class Net_Handler: public ACE_Event_Handler {
 public:
-	Net_Handler(ACE_SOCK_Stream & s);
+	explicit Net_Handler(ACE_SOCK_Stream & s);
 	virtual int handle_input(ACE_HANDLE handle);
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
 	virtual void terminate();
@@ -106,7 +106,7 @@ int Net_Handler::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask) {
 
 class Net_Listener: public ACE_Event_Handler {
 public:
-	Net_Listener(int local_address);
+	explicit Net_Listener(int local_address);
 	~Net_Listener(void);
 	virtual int handle_input(ACE_HANDLE handle);
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
@@ -175,7 +175,7 @@ public:
 	int signum;
 
 public:
-	CatchSignal(int isignum) : listener(NULL), signum(isignum) {
+	explicit CatchSignal(int isignum) : listener(NULL), signum(isignum) {
 	}
 	virtual~CatchSignal() {
 	}

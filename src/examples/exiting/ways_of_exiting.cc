@@ -50,7 +50,7 @@ private:
 	int val;
 
 public:
-	A(int ival) {
+	explicit A(int ival) {
 		val=ival;
 	}
 	~A() {
@@ -85,8 +85,8 @@ int main() {
 		if(read==-1) {
 			break;
 		}
-		int a=atoi(line);
-		switch(a) {
+		int choice=atoi(line);
+		switch(choice) {
 		case 1:
 			abort();
 			break;
@@ -109,7 +109,7 @@ int main() {
 			over=true;
 			break;
 		default:
-			printf("I dont know what you mean by '%d'...\n", a);
+			printf("I dont know what you mean by '%d'...\n", choice);
 			break;
 		}
 	}

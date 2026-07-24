@@ -48,16 +48,16 @@ private:
 };
 
 class A : public FSMstate { public:
-	void on() { cout << "A, on ==> A" << endl; }
-	void off() { cout << "A, off ==> B" << endl; }
-	void ack() { cout << "A, ack ==> C" << endl; }
+	void on() override { cout << "A, on ==> A" << endl; }
+	void off() override { cout << "A, off ==> B" << endl; }
+	void ack() override { cout << "A, ack ==> C" << endl; }
 };
 class B : public FSMstate { public:
-	void off() { cout << "B, off ==> A" << endl; }
-	void ack() { cout << "B, ack ==> C" << endl; }
+	void off() override { cout << "B, off ==> A" << endl; }
+	void ack() override { cout << "B, ack ==> C" << endl; }
 };
 class C : public FSMstate { public:
-	void ack() { cout << "C, ack ==> B" << endl; }
+	void ack() override { cout << "C, ack ==> B" << endl; }
 };
 
 FSM::FSM() {

@@ -34,7 +34,8 @@ const char *data[]={
 };
 
 int main() {
-	ENTRY e, *ep;
+	ENTRY e;
+	const ENTRY* ep;
 
 	/* starting with small table, and letting it grow does not work */
 	hcreate(30);

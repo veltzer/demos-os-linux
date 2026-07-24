@@ -28,7 +28,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lrt
  */
 
-void print_timespec(const char *msg, struct timespec *ts) {
+void print_timespec(const char *msg, const struct timespec *ts) {
 	printf("%s %ld %ld\r", msg, ts->tv_sec, ts->tv_nsec);
 	fflush(stdout);
 }

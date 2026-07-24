@@ -55,7 +55,7 @@ int main() {
 	// GET POSSIBLE SCREEN RESOLUTIONS
 	//
 	int num_sizes;
-	XRRScreenSize* xrrs=XRRSizes(dpy, 0, &num_sizes);
+	const XRRScreenSize* xrrs=XRRSizes(dpy, 0, &num_sizes);
 	//
 	// LOOP THROUGH ALL POSSIBLE RESOLUTIONS,
 	// GETTING THE SELECTABLE DISPLAY FREQUENCIES
@@ -66,7 +66,7 @@ int main() {
 		printf("%i: %i x %i (%immx%imm)", i, xrrs[i].width, xrrs[i].height, xrrs[i].mwidth, xrrs[i].mheight);
 		// print the rates of each size
 		int num_rates;
-		short* rates=XRRRates(dpy, 0, i, &num_rates);
+		const short* rates=XRRRates(dpy, 0, i, &num_rates);
 		for(int j=0; j<num_rates; j++) {
 			possible_frequencies[i][j]=rates[j];
 			printf(" %i", rates[j]);

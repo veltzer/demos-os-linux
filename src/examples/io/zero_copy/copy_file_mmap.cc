@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 	size_t len=statbuf.st_size;
 	int fd_dst=CHECK_NOT_M1(open(fileout, O_RDWR|O_CREAT|O_LARGEFILE, statbuf.st_mode));
 	CHECK_NOT_M1(ftruncate(fd_dst, len));
-	void* src=CHECK_NOT_VOIDP(mmap(NULL, len, PROT_READ, MAP_PRIVATE, fd_src, 0), MAP_FAILED);
+	const void* src=CHECK_NOT_VOIDP(mmap(NULL, len, PROT_READ, MAP_PRIVATE, fd_src, 0), MAP_FAILED);
 	void* dst=CHECK_NOT_VOIDP(mmap(NULL, len, PROT_WRITE, MAP_SHARED, fd_dst, 0), MAP_FAILED);
 	CHECK_NOT_M1(close(fd_src));
 	CHECK_NOT_M1(close(fd_dst));

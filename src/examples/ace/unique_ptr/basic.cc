@@ -37,7 +37,7 @@ private:
 	const char *p;
 
 public:
-	A(const char *ip) : p(ip) {
+	explicit A(const char *ip) : p(ip) {
 		cout << "in constructor of " << p << endl;
 	}
 	~A() {

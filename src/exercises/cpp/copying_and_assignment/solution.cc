@@ -26,7 +26,7 @@ public:
 	string() : m_data(nullptr) {
 	}
 
-	string(const char* str)
+	explicit string(const char* str)
 	{
 		if (str) {
 			size_t str_len = strlen(str);

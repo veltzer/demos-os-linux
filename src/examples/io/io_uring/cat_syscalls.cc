@@ -199,7 +199,7 @@ int app_setup_uring(struct submitter *s) {
  * We use buffered output here to be efficient,
  * since we need to output character-by-character.
  * */
-void output_to_console(char *buf, int len) {
+void output_to_console(const char *buf, int len) {
 	while (len--) {
 		fputc(*buf++, stdout);
 	}
@@ -212,9 +212,7 @@ void output_to_console(char *buf, int len) {
  * */
 
 void read_from_cq(struct submitter *s) {
-	struct file_info *fi;
 	struct app_io_cq_ring *cring = &s->cq_ring;
-	struct io_uring_cqe *cqe;
 	unsigned head;
 
 	head = *cring->head;
@@ -227,8 +225,8 @@ void read_from_cq(struct submitter *s) {
 		if (head == *cring->tail)
 			break;
 		/* Get the entry */
-		cqe = &cring->cqes[head & *s->cq_ring.ring_mask];
-		fi = (struct file_info*) cqe->user_data;
+		struct io_uring_cqe *cqe = &cring->cqes[head & *s->cq_ring.ring_mask];
+		const struct file_info *fi = (struct file_info*) cqe->user_data;
 		if (cqe->res < 0)
 			fprintf(stderr, "Error: %s\n", strerror(abs(cqe->res)));
 		int blocks = (int) fi->file_sz / BLOCK_SZ;

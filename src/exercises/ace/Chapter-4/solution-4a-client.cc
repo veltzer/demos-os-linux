@@ -41,7 +41,6 @@ public:
 		ACE_INET_Addr addr;
 		ACE_SOCK_Connector connector;
 		ACE_SOCK_Stream peer;
-		int bc;
 		static char buf[64];
 		ACE_Time_Value timeout(10, 0);
 		int i=0;
@@ -51,7 +50,7 @@ public:
 			ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Client connect"), 1);
 		}
 		while(true) {
-			bc=peer.recv(buf, sizeof(buf));
+			int bc=peer.recv(buf, sizeof(buf));
 			peer.send_n("OK", 3, 0);
 			buf[bc]=0;
 			if (!ACE_OS::strcmp(buf, "End")) {

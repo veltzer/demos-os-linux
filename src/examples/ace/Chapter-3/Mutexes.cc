@@ -48,7 +48,7 @@ public:
 	enum {
 		NUM_USES=10
 	};
-	HA_CommandHandler(HA_Device_Repository & rep) : rep_(rep) {
+	explicit HA_CommandHandler(HA_Device_Repository & rep) : rep_(rep) {
 	}
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, "(%t) Handler Thread running\n"));

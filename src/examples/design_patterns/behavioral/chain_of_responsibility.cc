@@ -28,7 +28,7 @@ class Link {
 	static int	theBid;				// 4. Current bid and bidder
 	static Link* bidder;
 public:
-	Link( int num ) { id = num; next = 0; }
+	explicit Link( int num ) { id = num; next = 0; }
 	~Link() { delete next; }
 	void addLast( Link* l ) {
 		if (next) next->addLast( l ); // 2. Handle and/or pass on

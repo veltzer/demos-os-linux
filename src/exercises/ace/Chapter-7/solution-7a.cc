@@ -61,8 +61,8 @@ int PrintMessages(SHARED_ALLOC *shared, int index) {
 	ACE_DEBUG((LM_DEBUG, "The following records were found in storage %d:\n", index + 1));
 	MALLOC_LIFO_RECORD record(*shared);
 	for(void *temp=0; record.next(temp)!=0; record.advance()) {
-		Record *record=reinterpret_cast<Record *>(temp);
-		ACE_DEBUG((LM_DEBUG, "%C\n", record->name()));
+		Record *rec=reinterpret_cast<Record *>(temp);
+		ACE_DEBUG((LM_DEBUG, "%C\n", rec->name()));
 	}
 	return 0;
 }
@@ -106,7 +106,6 @@ char *StoreName[3];
 
 int main(int argc, char** argv __attribute__((unused))) {
 	ACE_MMAP_Memory_Pool_Options* options[3];
-	int index;
 	StoreName[0]=(char*)"Exercise_7a-store.0";
 	StoreName[1]=(char*)"Exercise_7a-store.1";
 	StoreName[2]=(char*)"Exercise_7a-store.2";
@@ -137,6 +136,7 @@ int main(int argc, char** argv __attribute__((unused))) {
 		while(type) {
 			type=GetMessageType(buffer);
 			ACE_DEBUG((LM_DEBUG, "Buffer: <%C>\n", buffer));
+			int index;
 			switch (type) {
 			case 0:
 				continue;

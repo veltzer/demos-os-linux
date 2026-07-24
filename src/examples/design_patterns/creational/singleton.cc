@@ -32,7 +32,7 @@ public:
 			 globalObj_ = new GlobalClass;
 		 return globalObj_; }
  protected:
-	 GlobalClass( int v=0 ) {
+	 explicit GlobalClass( int v=0 ) {
 		 value_ = v; }
 	 ~GlobalClass() { }
  private:

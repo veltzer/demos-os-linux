@@ -56,22 +56,32 @@ typedef struct _struct_empty{
 typedef struct _struct_emptyarray{
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
+	// cppcheck-suppress unusedStructMember
 	char a[0];
 #pragma GCC diagnostic pop
 } struct_emptyarray;
 typedef struct _struct_char{
+	// cppcheck-suppress unusedStructMember
 	char c;
 } struct_char;
 typedef struct _struct_charintchar{
+	// cppcheck-suppress unusedStructMember
 	char c1;
+	// cppcheck-suppress unusedStructMember
 	int i;
+	// cppcheck-suppress unusedStructMember
 	char c2;
 } struct_charintchar;
 typedef struct _struct_char5{
+	// cppcheck-suppress unusedStructMember
 	char c1;
+	// cppcheck-suppress unusedStructMember
 	char c2;
+	// cppcheck-suppress unusedStructMember
 	char c3;
+	// cppcheck-suppress unusedStructMember
 	char c4;
+	// cppcheck-suppress unusedStructMember
 	char c5;
 } struct_char5;
 

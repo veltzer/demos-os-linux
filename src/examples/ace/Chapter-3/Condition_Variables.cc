@@ -34,7 +34,7 @@ public:
 	int is_free(void) {
 		return this->owner_==0;
 	}
-	int is_owner(ACE_Task_Base *tb) {
+	int is_owner(const ACE_Task_Base *tb) {
 		return this->owner_==tb;
 	}
 	ACE_Task_Base* get_owner(void) {
@@ -43,7 +43,7 @@ public:
 	void set_owner(ACE_Task_Base *owner) {
 		this->owner_=owner;
 	}
-	int update_device(int device_id);
+	static int update_device(int device_id);
 
 private:
 	ACE_Task_Base* owner_;

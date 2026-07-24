@@ -43,7 +43,6 @@ int main(int argc, char** argv) {
 	char buf[400];
 	struct ip *ip=(struct ip *)buf;
 	struct icmphdr *icmp=(struct icmphdr *)(ip + 1);
-	struct hostent *hp, *hp2;
 	struct sockaddr_in dst;
 	int offset;
 	int num=100;
@@ -60,6 +59,7 @@ int main(int argc, char** argv) {
 	num=atoi(argv[3]);
 	/* Loop based on the packet number */
 	for(int i=1; i<=num; i++) {
+		struct hostent *hp, *hp2;
 		int on=1;
 		bzero(buf, sizeof(buf));
 		/* Create RAW socket */

@@ -27,7 +27,7 @@ class Request_Handler: public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_MT_SYNCH> {
 	// This class is the Svc_Handler used by <Acceptor>.
 
 public:
-	Request_Handler(ACE_Thread_Manager * tm=0);
+	explicit Request_Handler(ACE_Thread_Manager * tm=0);
 	// The default constructor makes sure the right reactor is used.
 
 protected:
@@ -36,5 +36,6 @@ protected:
 	virtual int handle_close(ACE_HANDLE fd, ACE_Reactor_Mask=0);
 
 private:
+	// cppcheck-suppress unusedStructMember
 	size_t nr_msgs_rcvd_;
 };

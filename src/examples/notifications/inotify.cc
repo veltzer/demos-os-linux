@@ -57,6 +57,7 @@
 
 // signal handling functions
 static bool stop=false;
+// cppcheck-suppress constParameterCallback
 static void myhandler(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* unused __attribute__((unused))) {
 	printf("got signal, you probably want me to stop so I'm stopping...\n");
 	stop=true;
@@ -117,7 +118,7 @@ int main() {
 		int i=0;
 		int rec_num=0;
 		while(i<res) {
-			struct inotify_event* ie=(struct inotify_event*)(buf+i);
+			const struct inotify_event* ie=(const struct inotify_event*)(buf+i);
 			// print the event
 			printf("event-> file %s, mask ", ie->name);
 			print_mask(ie->mask);

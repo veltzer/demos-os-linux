@@ -46,11 +46,11 @@ int main(int argc, char** argv) {
 	printf("2^31-1 is %22lld\n", (2ll<<30)-1);
 	unsigned int num=atoi(argv[1]);
 	int be_thread_safe=atoi(argv[2]);
-	int use_srandom=atoi(argv[3]);
 	int use_seed=atoi(argv[4]);
 	unsigned int seed=(unsigned int)atoi(argv[5]);
 	if(use_seed) {
 		if(!be_thread_safe) {
+			int use_srandom=atoi(argv[3]);
 			if(use_srandom) {
 				printf("initializing seed to %u using srandom\n", seed);
 				srandom(seed);

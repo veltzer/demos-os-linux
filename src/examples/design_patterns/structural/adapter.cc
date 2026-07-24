@@ -56,7 +56,7 @@ public:
 			: LegacyRectangle( x, y, x+w, y+h ) {
 		cout << "RectangleAdapter: create. (" << x << "," << y
 			<< "), width = " << w << ", height = " << h << endl; }
-	virtual void draw() {
+	void draw() override {
 		cout << "RectangleAdapter: draw." << endl;
 		oldDraw(); }
 };

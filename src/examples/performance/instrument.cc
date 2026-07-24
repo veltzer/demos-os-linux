@@ -52,10 +52,12 @@
  */
 
 extern "C" void __cyg_profile_func_enter(void* this_fn, void* call_site) __attribute__((no_instrument_function));
+// cppcheck-suppress constParameterPointer
 extern "C" void __cyg_profile_func_enter(void* this_fn, void* call_site) {
 	printf("entering %p,%p\n", this_fn, call_site);
 }
 extern "C" void __cyg_profile_func_exit(void* this_fn, void* call_site) __attribute__((no_instrument_function));
+// cppcheck-suppress constParameterPointer
 extern "C" void __cyg_profile_func_exit(void* this_fn, void* call_site) {
 	printf("exiting %p,%p\n", this_fn, call_site);
 }

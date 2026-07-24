@@ -32,7 +32,7 @@ Singleton* Singleton::get_instance() {
 }
 
 int main() {
-	Singleton* s1=Singleton::get_instance();
-	Singleton* s2=Singleton::get_instance();
+	const Singleton* s1=Singleton::get_instance();
+	const Singleton* s2=Singleton::get_instance();
 	assert(s1 == s2);
 }

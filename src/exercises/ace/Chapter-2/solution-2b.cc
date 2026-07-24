@@ -120,7 +120,6 @@ static void *producer(void*) {
 		// Allocate a new buffer.
 		char* buffer=rb.read('\n');
 		ACE_Message_Block *mb;
-		int timer_id;
 		int type;
 		float delay;
 		static float AbsoluteDelay=0.0;
@@ -141,6 +140,7 @@ static void *producer(void*) {
 			reactor.schedule_timer(th, (const void *)2, ACE_Time_Value(AbsoluteDelay + 0.2));
 			break;
 		} else {
+			int timer_id;
 			// Enqueue the message in priority order.
 			sscanf(buffer, "%d %f", &type, &delay);
 			AbsoluteDelay+=delay;
@@ -157,6 +157,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue1 in handle_timeout()
+				// cppcheck-suppress unreadVariable
 				timer_id=reactor.schedule_timer(th, (const void *)1, ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case1: timer id=%d\n", timer_id));
 				break;
@@ -167,6 +168,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue1 in handle_timeout()
+				// cppcheck-suppress unreadVariable
 				timer_id=reactor.schedule_timer(th, (const void *)1, ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case2: timer id=%d\n", timer_id));
 				break;
@@ -177,6 +179,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue2 in handle_timeout()
+				// cppcheck-suppress unreadVariable
 				timer_id=reactor.schedule_timer(th, (const void *)2, ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case3: timer id=%d\n", timer_id));
 				break;

@@ -48,7 +48,7 @@ public:
 		val=-7.6;
 	}
 
-	A(double ival) {
+	explicit A(double ival) {
 		val=ival;
 	}
 

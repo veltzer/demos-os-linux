@@ -50,21 +50,21 @@ static char* seq_filename;
 static snd_seq_tick_time_t tick;
 
 snd_seq_t *open_seq() {
-	snd_seq_t *seq_handle;
-	if (snd_seq_open(&seq_handle, "default", SND_SEQ_OPEN_DUPLEX, 0) < 0) {
+	snd_seq_t *handle;
+	if (snd_seq_open(&handle, "default", SND_SEQ_OPEN_DUPLEX, 0) < 0) {
 		fprintf(stderr, "Error opening ALSA sequencer.\n");
 		exit(EXIT_FAILURE);
 	}
-	snd_seq_set_client_name(seq_handle, "miniArp");
-	if ((port_out_id=snd_seq_create_simple_port(seq_handle, "miniArp", SND_SEQ_PORT_CAP_READ|SND_SEQ_PORT_CAP_SUBS_READ, SND_SEQ_PORT_TYPE_APPLICATION)) < 0) {
+	snd_seq_set_client_name(handle, "miniArp");
+	if ((port_out_id=snd_seq_create_simple_port(handle, "miniArp", SND_SEQ_PORT_CAP_READ|SND_SEQ_PORT_CAP_SUBS_READ, SND_SEQ_PORT_TYPE_APPLICATION)) < 0) {
 		fprintf(stderr, "Error creating sequencer port.\n");
 		exit(EXIT_FAILURE);
 	}
-	if ((port_in_id=snd_seq_create_simple_port(seq_handle, "miniArp", SND_SEQ_PORT_CAP_WRITE|SND_SEQ_PORT_CAP_SUBS_WRITE, SND_SEQ_PORT_TYPE_APPLICATION)) < 0) {
+	if ((port_in_id=snd_seq_create_simple_port(handle, "miniArp", SND_SEQ_PORT_CAP_WRITE|SND_SEQ_PORT_CAP_SUBS_WRITE, SND_SEQ_PORT_TYPE_APPLICATION)) < 0) {
 		fprintf(stderr, "Error creating sequencer port.\n");
 		exit(EXIT_FAILURE);
 	}
-	return seq_handle;
+	return handle;
 }
 
 void set_tempo() {
@@ -103,9 +103,8 @@ void clear_queue() {
 
 void arpeggio() {
 	snd_seq_event_t ev;
-	double dt;
 	for(int l1=0; l1 < seq_len; l1++) {
-		dt=(l1 % 2==0) ? (double)swing / 16384.0:-(double)swing / 16384.0;
+		double dt=(l1 % 2==0) ? (double)swing / 16384.0:-(double)swing / 16384.0;
 		snd_seq_ev_clear(&ev);
 		snd_seq_ev_set_note(&ev, 0, sequence[2][l1] + transpose, 127, sequence[1][l1]);
 		snd_seq_ev_schedule_tick(&ev, queue_id, 0, tick);

@@ -223,7 +223,7 @@ int ClientService::handle_close(ACE_HANDLE, ACE_Reactor_Mask mask) {
 // Listing 12 code/ch07
 class LoopStopper: public ACE_Event_Handler {
 public:
-	LoopStopper(int signum);
+	explicit LoopStopper(int signum);
 
 	// Called when object is signaled by OS.
 	virtual int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0);

@@ -21,15 +21,16 @@
 #include <stdlib.h>
 
 // restricted pointers assumption
-int sum(int *a, int *b) {
+int sum(int *a, const int *b) {
 	*a = 4;
 	return *b;
 }
 
 int main(int argc, char **argv) {
 	int src = 6;
-	int *a, *b;
-	a = b = &src;
+	int *a;
+	const int *b;
+	b = a = &src;
 	printf("%d", sum(a, b)); // Prints 4
 	return EXIT_SUCCESS;
 }

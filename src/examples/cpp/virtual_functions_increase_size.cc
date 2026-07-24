@@ -34,8 +34,9 @@ class A1{
 public:
 	intptr_t a;
 
-	A1(int val) : a(val) {
+	explicit A1(int val) : a(val) {
 	}
+	// cppcheck-suppress functionStatic
 	void dosomething() {
 		cout << "Hello from A1" << endl;
 	}
@@ -45,7 +46,7 @@ class A2{
 public:
 	intptr_t a;
 
-	A2(int val) : a(val) {
+	explicit A2(int val) : a(val) {
 	}
 
 	virtual void dosomething() {

@@ -51,7 +51,7 @@ public:
 	}
 
 	int get() const { return counter; }
-	const char* name() const { return "Broken (no sync)"; }
+	static const char* name() { return "Broken (no sync)"; }
 };
 
 // =============================================================================
@@ -69,7 +69,7 @@ public:
 	}
 
 	int get() const { return counter; }
-	const char* name() const { return "Volatile only (still broken)"; }
+	static const char* name() { return "Volatile only (still broken)"; }
 };
 
 // =============================================================================
@@ -93,7 +93,7 @@ public:
 		return counter;
 	}
 
-	const char* name() const { return "Mutex protected"; }
+	static const char* name() { return "Mutex protected"; }
 };
 
 // =============================================================================
@@ -115,7 +115,7 @@ public:
 		return counter.load();
 	}
 
-	const char* name() const { return "Atomic operations"; }
+	static const char* name() { return "Atomic operations"; }
 };
 
 // =============================================================================
@@ -136,7 +136,7 @@ public:
 		return counter.load(memory_order_relaxed);
 	}
 
-	const char* name() const { return "Atomic (relaxed ordering)"; }
+	static const char* name() { return "Atomic (relaxed ordering)"; }
 };
 
 // =============================================================================
@@ -157,7 +157,7 @@ public:
 		return counter.load();
 	}
 
-	const char* name() const { return "Volatile + Atomic"; }
+	static const char* name() { return "Volatile + Atomic"; }
 };
 
 // =============================================================================

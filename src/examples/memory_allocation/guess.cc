@@ -96,15 +96,15 @@ int main() {
 	// lets do some random allocatinons...
 	for(unsigned int i=0; i<10000; i++) {
 		unsigned int size=random()%10000;
-		void* g=mguess_guess();
-		void* p=malloc(size);
-		unsigned int blk_size=get_block_size(p);
+		const void* g=mguess_guess();
+		void* ptr=malloc(size);
+		unsigned int blk_size=get_block_size(ptr);
 		unsigned int real_size=round_it(size);
 		mguess_allocated(size);
 		if(debug) {
-			printf("g is %p, p is %p, size is %d, blk_size is %d, real_size is %d\n", g, p, size, blk_size, real_size);
+			printf("g is %p, p is %p, size is %d, blk_size is %d, real_size is %d\n", g, ptr, size, blk_size, real_size);
 		}
-		assert(g==p);
+		assert(g==ptr);
 		assert(blk_size==real_size);
 	}
 	mguess_fini();

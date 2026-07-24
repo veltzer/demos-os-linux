@@ -59,7 +59,7 @@ const char* rw(bool v) {
 	}
 }
 
-void print_entry(const char* msg, void* p, void* right_address) {
+void print_entry(const char* msg, const void* p, const void* right_address) {
 	printf("%-40s [%p] [%s]\n", msg, p, rw(p==right_address));
 }
 
@@ -67,7 +67,7 @@ int main() {
 	printf("%-40s [%d]\n", "stack_vars_direction_up", stack_vars_direction_up());
 	printf("%-40s [%d]\n", "stack_function_direction_up", stack_function_direction_up());
 	printf("\n");
-	void* right_address=proc_get_stack_adr();
+	const void* right_address=proc_get_stack_adr();
 	print_entry("proc_get_stack_adr", proc_get_stack_adr(), right_address);
 	print_entry("getstackpointer", getstackpointer(), right_address);
 	print_entry("getstackpointer(aligned)", stack_align_pointer(getstackpointer()), right_address);

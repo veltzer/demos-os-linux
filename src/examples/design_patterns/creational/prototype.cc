@@ -57,13 +57,13 @@ Image* Image::findAndClone( imageType type )
 
 class LandSatImage : public Image {
 public:
-	imageType returnType() { return LSAT; }
-	void draw() { cout << "LandSatImage::draw " << _id << endl; }
+	imageType returnType() override { return LSAT; }
+	void draw() override { cout << "LandSatImage::draw " << _id << endl; }
 	// When clone() is called, call the one-argument ctor with a dummy arg
-	Image* clone() { return new LandSatImage( 1 ); }
+	Image* clone() override { return new LandSatImage( 1 ); }
 protected:
 	// This is only called from clone()
-	LandSatImage(int) { _id = _count++; }
+	explicit LandSatImage(int) { _id = _count++; }
 private:
 	// Mechanism for initializing an Image subclass - this causes the
 	// default ctor to be called, which registers the subclass's prototype
@@ -83,11 +83,11 @@ int LandSatImage::_count = 1;
 
 class SpotImage : public Image {
 public:
-	imageType returnType() { return SPOT; }
-	void draw() { cout << "SpotImage::draw " << _id << endl; }
-	Image* clone() { return new SpotImage( 1 ); }
+	imageType returnType() override { return SPOT; }
+	void draw() override { cout << "SpotImage::draw " << _id << endl; }
+	Image* clone() override { return new SpotImage( 1 ); }
 protected:
-	SpotImage( int ) { _id = _count++; }
+	explicit SpotImage( int ) { _id = _count++; }
 private:
 	SpotImage() { addPrototype( this ); }
 	static SpotImage _spotImage;

@@ -33,6 +33,7 @@ public:
 		printf("Hello\n");
 	}
 
+	// cppcheck-suppress functionStatic
 	void doit(void) {
 		inner();
 	}

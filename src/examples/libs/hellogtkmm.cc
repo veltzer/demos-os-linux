@@ -35,7 +35,7 @@ using namespace std;
 
 class HelloWorld: public Gtk::Window {
 public:
-	HelloWorld(Gtk::Main&);
+	explicit HelloWorld(Gtk::Main&);
 	virtual~HelloWorld();
 
 protected:

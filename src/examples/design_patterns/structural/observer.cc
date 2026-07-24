@@ -35,11 +35,11 @@ public:
 /////////////////////////////////////////////////////////////////////
 
 class Lighting : public AlarmListener {
-	public: /*virtual*/ void alarm() { cout << "lights up" << '\n'; }
+	public: /*virtual*/ void alarm() override { cout << "lights up" << '\n'; }
 };
 
 class Gates : public AlarmListener {
-	public: /*virtual*/ void alarm() { cout << "gates close" << '\n'; }
+	public: /*virtual*/ void alarm() override { cout << "gates close" << '\n'; }
 };
 
 class CheckList {
@@ -54,9 +54,9 @@ public:
 } };
 							// class inheri. // type inheritance
 class Surveillance : public CheckList, public AlarmListener {
-	/*virtual*/ void isolate() { cout << "	train the cameras" << '\n'; }
+	/*virtual*/ void isolate() override { cout << "	train the cameras" << '\n'; }
 public:
-	/*virtual*/ void alarm() {
+	/*virtual*/ void alarm() override {
 		cout << "Surveillance - by the numbers:" << '\n';
 		byTheNumbers();
 } };

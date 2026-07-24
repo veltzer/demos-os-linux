@@ -29,7 +29,9 @@ void func(char **p __attribute__((unused))) {
 }
 
 typedef struct _Foobar{
+	// cppcheck-suppress unusedStructMember
 	int i;
+	// cppcheck-suppress unusedStructMember
 	int j;
 } Foobar;
 

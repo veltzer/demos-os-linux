@@ -47,10 +47,12 @@ public:
 	}
 	// Errno::flags_ is a static variable, so we've got to protect it
 	// with a mutex since it isn't kept in thread-specific storage.
+	// cppcheck-suppress functionStatic
 	int flags(void) {
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, ace_mon, Errno::lock_, -1);
 		return Errno::flags_;
 	}
+	// cppcheck-suppress functionStatic
 	void flags(int f) {
 		ACE_GUARD(ACE_Thread_Mutex, ace_mon, Errno::lock_);
 		Errno::flags_=f;

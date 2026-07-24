@@ -53,7 +53,7 @@ void* guess_next_address(void* prev, unsigned int size) {
 int main() {
 	void* prev=NULL;
 	for(unsigned int sizeToAlloc=1; sizeToAlloc<100; sizeToAlloc++) {
-		void* guess=NULL;
+		const void* guess=NULL;
 		if(prev!=NULL) {
 			guess=guess_next_address(prev, sizeToAlloc);
 		}

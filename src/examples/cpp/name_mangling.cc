@@ -33,6 +33,7 @@ public:
 	void doit();
 };
 
+// cppcheck-suppress functionStatic
 void A::doit() {
 	cout << "Hello, World!" << endl;
 }

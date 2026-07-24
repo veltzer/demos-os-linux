@@ -42,7 +42,7 @@
  */
 
 // this next function takes an address and aligns it to page size
-inline void* align_address(void* addr) {
+inline void* align_address(const void* addr) {
 	unsigned long uladdr=(unsigned long)addr;
 	int ps=getpagesize();
 	return (void*) (uladdr & ~(ps-1));
@@ -69,7 +69,7 @@ void* malloc_align(unsigned int size) {
 	int ps=getpagesize();
 	int pages=size / ps + 1;
 	int new_size=pages * ps;
-	void* ptr=malloc(new_size);
+	const void* ptr=malloc(new_size);
 	unsigned long iptr=(unsigned long)ptr;
 
 	iptr=(iptr / ps + 1) * ps;
@@ -121,7 +121,7 @@ int main() {
 	proc_print_mmap(NULL);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-	void* ptr=(void*)main;
+	const void* ptr=(void*)main;
 #pragma GCC diagnostic pop
 	printf("ptr is %p\n", ptr);
 	printf("ptr aligned is %p\n", align_address(ptr));

@@ -32,8 +32,11 @@ const int MSGSZ=128;
 const int MAXQUEUE=32768;
 
 typedef struct mymsgbuf{
+	// cppcheck-suppress unusedStructMember
 	long mtype;
+	// cppcheck-suppress unusedStructMember
 	long fromID;
+	// cppcheck-suppress unusedStructMember
 	char mtext[MSGSZ];
 } message_buf;
 

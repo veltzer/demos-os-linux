@@ -50,8 +50,11 @@ static void safe_func(void) {
 	exit(EXIT_SUCCESS);
 }
 
+// cppcheck-suppress constParameterCallback
 static void handler_safe(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
+	// cppcheck-suppress constVariablePointer
+	// cppcheck-suppress unreadVariable
 	ucontext_t *context = (ucontext_t*)uap;
 	/*
 	 * alternativly, try to jump to a "safe place"
@@ -66,6 +69,7 @@ static void handler_safe(int sig __attribute__((unused)), siginfo_t *si __attrib
 }
 
 static int jmp_rel;
+// cppcheck-suppress constParameterCallback
 static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
@@ -82,6 +86,7 @@ static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __att
 }
 
 static uintptr_t jmp_abs;
+// cppcheck-suppress constParameterCallback
 static void handler_jmp_abs(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__

@@ -23,7 +23,7 @@
  * This example shows how to pass an array by reference in C
  */
 
-void print_array(double* ar, int size) {
+void print_array(const double* ar, int size) {
 	int i;
 	for(i=0; i<size; i++)
 		printf("ar[%d]=%f\n", i, ar[i]);

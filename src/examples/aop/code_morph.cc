@@ -51,8 +51,8 @@ static void function(void) {
  * A function to dump a certain portion of the memory for debugging purposes...
  */
 
-void debug(void* ptr) {
-	char* p=(char*)ptr;
+void debug(const void* ptr) {
+	const char* p=(const char*)ptr;
 	for(int i=0; i<40; i++) {
 		printf("p[%d]=%d\n", i, p[i]);
 	}

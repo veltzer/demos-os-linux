@@ -38,8 +38,11 @@
  */
 
 typedef struct _s1{
+	// cppcheck-suppress unusedStructMember
 	unsigned int f1 : 4;
+	// cppcheck-suppress unusedStructMember
 	unsigned int f2 : 3;
+	// cppcheck-suppress unusedStructMember
 	unsigned int f3 : 2;
 } s1;
 
@@ -52,7 +55,7 @@ typedef struct _s2{
 
 int main(void) {
 	unsigned char data[]={0x12, 0x34, 0x56, 0x78};
-	s2* v2=(s2*)data;
+	const s2* v2=(const s2*)data;
 	PRINT_SIZEOF(s1);
 	PRINT_SIZEOF(s2);
 #if __BYTE_ORDER == __LITTLE_ENDIAN

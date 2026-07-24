@@ -42,8 +42,10 @@
 typedef struct _shared_data{
 	unsigned int attempts;
 	unsigned int small;
+	// cppcheck-suppress unusedStructMember
 	char buffer1[64];
 	unsigned int large;
+	// cppcheck-suppress unusedStructMember
 	char buffer2[64];
 	bool running;
 } shared_data;

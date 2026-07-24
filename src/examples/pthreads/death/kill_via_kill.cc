@@ -43,17 +43,17 @@ void* rets[num];
 pthread_barrier_t barrier;
 
 static void* worker(void* p) {
-	int num=*(int *)p;
+	int id=*(int *)p;
 	// fill in my own thread id so that the other threads
 	// may know about me (and so kill me).
-	pids[num]=gettid();
+	pids[id]=gettid();
 	CHECK_ONEOFTWO(pthread_barrier_wait(&barrier), 0, PTHREAD_BARRIER_SERIAL_THREAD);
-	if(num==0) {
+	if(id==0) {
 		while(true) {
 			pause();
 		}
 	}
-	if(num==1) {
+	if(id==1) {
 		CHECK_NOT_M1(kill(pids[0], SIGKILL));
 	}
 	return NULL;

@@ -84,9 +84,9 @@ int main(int argc, char** argv) {
 			}
 		}
 		printf("started\n");
-		for(int i=0; i<size; i++) {
-			pthread_mutex_t* mutex=mtxs+i;
-			pthread_mutexattr_t* attr=attrs+i;
+		for(int j=0; j<size; j++) {
+			pthread_mutex_t* mutex=mtxs+j;
+			pthread_mutexattr_t* attr=attrs+j;
 			pthread_print_mutexattr(attr);
 			printf("before critical section\n");
 			CHECK_ZERO_ERRNO(pthread_mutex_lock(mutex));

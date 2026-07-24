@@ -55,7 +55,7 @@ static std::map<int, std::vector<int> > children;
 
 static void scan_proc(void) {
 	DIR* d=(DIR*)CHECK_NOT_NULL(opendir("/proc"));
-	struct dirent* ent;
+	const struct dirent* ent;
 	while((ent=readdir(d))!=NULL) {
 		if(!isdigit(ent->d_name[0])) {
 			continue;
@@ -69,7 +69,7 @@ static void scan_proc(void) {
 			continue;
 		}
 		char line[1024];
-		char* res=fgets(line, sizeof(line), f);
+		const char* res=fgets(line, sizeof(line), f);
 		CHECK_ZERO(fclose(f));
 		if(res==NULL) {
 			continue;

@@ -100,10 +100,10 @@ int main(int argc, char** argv) {
 				struct sockaddr_in local;
 				socklen_t addrlen=sizeof(local);
 				int conn_sock=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
-				struct epoll_event ev;
-				ev.events=EPOLLIN|EPOLLRDHUP;
-				ev.data.fd=conn_sock;
-				CHECK_NOT_M1(epoll_ctl(epollfd, EPOLL_CTL_ADD, conn_sock, &ev));
+				struct epoll_event conn_ev;
+				conn_ev.events=EPOLLIN|EPOLLRDHUP;
+				conn_ev.data.fd=conn_sock;
+				CHECK_NOT_M1(epoll_ctl(epollfd, EPOLL_CTL_ADD, conn_sock, &conn_ev));
 			} else {
 				if(events[n].events & EPOLLRDHUP) {
 					CHECK_NOT_M1(epoll_ctl(epollfd, EPOLL_CTL_DEL, currfd, NULL));

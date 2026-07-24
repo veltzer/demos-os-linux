@@ -61,6 +61,7 @@ public:
 		return 2 * (width + height);
 	}
 
+	// cppcheck-suppress functionStatic
 	bool is_intersectiog(const Rectangle& r __attribute__((unused))) {
 		// TBD
 		return true;

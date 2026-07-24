@@ -44,6 +44,7 @@ public:
 	int c;
 	char d;
 
+	// cppcheck-suppress functionStatic
 	void dosomething() {
 		for(int i=0; i<4; i++) {
 			cout << "Hello from A, i is " << i << endl;
@@ -58,6 +59,7 @@ public:
 	int e;
 	char f;
 	// cppcheck-suppress duplInheritedMember
+	// cppcheck-suppress functionStatic
 	void dosomething() {
 		for(int i=0; i<4; i++) {
 			cout << "Hello from B, i is " << i << endl;

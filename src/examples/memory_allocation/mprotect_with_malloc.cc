@@ -67,7 +67,7 @@ void do_write(char* buf) {
 	}
 }
 
-int do_read(char* buf) {
+int do_read(const char* buf) {
 	int i;
 	int sum=0;
 	for(i=0; i<10; i++) {

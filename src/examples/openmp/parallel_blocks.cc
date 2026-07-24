@@ -41,6 +41,7 @@ int main() {
 	double wtime=omp_get_wtime();
 
 	omp_set_num_threads(3);
+	// cppcheck-suppress variableScope
 	int id;
 	#pragma omp parallel default(shared) private(id)
 	{

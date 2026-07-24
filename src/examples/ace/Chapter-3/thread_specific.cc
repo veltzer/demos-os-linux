@@ -52,6 +52,7 @@ extern "C" void cleanup(void* ptr) {
 }
 
 // This worker function is the entry point for each thread.
+// cppcheck-suppress constParameterCallback
 static void* worker(void* c) {
 	intptr_t count=reinterpret_cast<intptr_t>(c);
 	ACE_thread_key_t key=ACE_OS::NULL_key;

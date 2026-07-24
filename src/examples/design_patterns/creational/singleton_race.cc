@@ -78,7 +78,7 @@ Singleton* Singleton::instance = nullptr;
 
 void createSingleton(int threadId, vector<pair<int, void*>>& results, mutex& resultsMutex) {
 	cout << "Thread " << threadId << " starting..." << endl;
-	Singleton* singleton = Singleton::getInstance();
+	const Singleton* singleton = Singleton::getInstance();
 	cout << "Thread " << threadId << " got instance at: " << singleton->getAddress()
 		<< " with value: " << singleton->getValue() << endl;
 	lock_guard<mutex> lock(resultsMutex);

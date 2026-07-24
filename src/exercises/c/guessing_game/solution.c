@@ -22,10 +22,9 @@
 #include <err_utils.h>	// for CHECK_INT()
 
 int main(void) {
-	int rand_number;
 	int cont=1;
 	while(cont) {
-		rand_number=rand()%100;
+		int rand_number=rand()%100;
 		// printf("rand_number is %d\n",rand_number);
 		int guess=-1;
 		while(guess!=rand_number) {

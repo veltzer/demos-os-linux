@@ -36,7 +36,7 @@ void phone_entry_init(phone_entry* pe) {
 	pe->used=0;
 }
 
-int find_empty_cell(phone_entry* phonebook, const int size) {
+int find_empty_cell(const phone_entry* phonebook, const int size) {
 	int i;
 	for(i=0; i<size; i++) {
 		if(phonebook[i].used==0) {
@@ -47,7 +47,7 @@ int find_empty_cell(phone_entry* phonebook, const int size) {
 	exit(EXIT_FAILURE);
 }
 
-int find_cell_by_name(phone_entry* phonebook, const int size, const char* name) {
+int find_cell_by_name(const phone_entry* phonebook, const int size, const char* name) {
 	int i;
 	for(i=0; i<size; i++) {
 		if(strcmp(name, phonebook[i].name)==0) {
@@ -78,7 +78,7 @@ void delete_entry(phone_entry* phonebook, const int size) {
 	}
 }
 
-void find_entry(phone_entry* phonebook, const int size) {
+void find_entry(const phone_entry* phonebook, const int size) {
 	char name[256];
 	printf("give me a name to find: ");
 	CHECK_INT(scanf("%255s", name), 1);
@@ -90,7 +90,7 @@ void find_entry(phone_entry* phonebook, const int size) {
 	}
 }
 
-void print_phonebook(phone_entry* phonebook, const int size) {
+void print_phonebook(const phone_entry* phonebook, const int size) {
 	int i;
 	for(i=0; i<size; i++) {
 		if(phonebook[i].used) {

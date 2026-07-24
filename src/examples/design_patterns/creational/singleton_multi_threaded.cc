@@ -39,6 +39,7 @@ public:
 		return p;
 	}
 
+	// cppcheck-suppress functionStatic
 	void someOperation() {
 		cout << "Performing some operation in the Singleton." << endl;
 	}

@@ -43,15 +43,15 @@ void Machine::off() { current->off( this ); }
 class ON : public State {
 public:
 	ON() { cout << "	ON-ctor "; };
-	~ON() { cout << "	dtor-ON\n"; };
-	void off( Machine* m );
+	~ON() override { cout << "	dtor-ON\n"; };
+	void off( Machine* m ) override;
 };
 
 class OFF : public State {
 public:
 	OFF() { cout << "	OFF-ctor "; };
-	~OFF() { cout << "	dtor-OFF\n"; };
-	void on( Machine* m ) {
+	~OFF() override { cout << "	dtor-OFF\n"; };
+	void on( Machine* m ) override {
 		cout << "	going from OFF to ON";
 		m->setCurrent( new ON() );
 		delete this;

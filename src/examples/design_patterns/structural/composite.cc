@@ -27,32 +27,32 @@ class Component { public: virtual void traverse() = 0; };
 class Primitive : public Component {
 	int value;
 public:
-	Primitive( int val ) { value = val; }
-	void traverse()		{ cout << value << " "; }
+	explicit Primitive( int val ) { value = val; }
+	void traverse() override		{ cout << value << " "; }
 };
 
 class Composite : public Component {
 	vector<Component*> children;
 	int					 value;
 public:
-	Composite( int val )	 { value = val; }
+	explicit Composite( int val )	 { value = val; }
 	void add( Component* c ) { children.push_back( c ); }
-	void traverse() {
+	void traverse() override {
 		cout << value << " ";
 		for(unsigned int i=0; i < children.size(); i++)
 			 children[i]->traverse();
 } };
 
 class Row : public Composite { public:	 // Two different kinds of "con-
-	Row( int val ) : Composite( val ) { }	// tainer" classes. Most of the
-	void traverse() {							 // "meat" is in the Composite
+	explicit Row( int val ) : Composite( val ) { }	// tainer" classes. Most of the
+	void traverse() override {							 // "meat" is in the Composite
 		cout << "Row";							 // base class.
 		Composite::traverse();
 } };
 
 class Column : public Composite { public:
-	Column( int val ) : Composite( val ) { }
-	void traverse() {
+	explicit Column( int val ) : Composite( val ) { }
+	void traverse() override {
 		cout << "Col";
 		Composite::traverse();
 } };

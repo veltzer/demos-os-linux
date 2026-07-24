@@ -150,7 +150,7 @@ private:
 
 class CompletionCallBack: public ACE_Future_Observer<int> {
 public:
-	CompletionCallBack(MessageAgentProxy& proxy) : proxy_(proxy) {
+	explicit CompletionCallBack(MessageAgentProxy& proxy) : proxy_(proxy) {
 	}
 	virtual void update(const ACE_Future<int>& future) {
 		int result=0;

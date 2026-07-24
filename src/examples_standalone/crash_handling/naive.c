@@ -114,6 +114,7 @@ static inline char * code2str(int code, int signal) {
 	return "Unhandled signal handler";
 }
 
+/* cppcheck-suppress constParameterCallback */
 void fault_handler (int signal, siginfo_t * siginfo, void* context) {
 	#define MAX_FRAMES 25
 
@@ -121,7 +122,6 @@ void fault_handler (int signal, siginfo_t * siginfo, void* context) {
 	int num_frames;
 	struct timespec timestamp;
 	char ** symbols;
-	int i;
 
 	/* Grab time stamp */
 	clock_gettime(CLOCK_REALTIME, &timestamp);
@@ -154,6 +154,7 @@ void fault_handler (int signal, siginfo_t * siginfo, void* context) {
 	symbols=backtrace_symbols(frames, num_frames);
 
 	if(symbols) {
+		int i;
 		for(i=0; i< num_frames; i++) {
 			fprintf(stderr, "%s\n", symbols[i]);
 		}
@@ -190,10 +191,15 @@ int main(int argc,char** argv,char** envp) {
 	act.sa_flags=SA_SIGINFO;
 
 	/* Register the handler for all exception signals. */
+	/* cppcheck-suppress unreadVariable */
 	ret=sigaction (SIGSEGV, &act, NULL);
+	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGILL, &act, NULL);
+	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGFPE, &act, NULL);
+	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGBUS, &act, NULL);
+	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGQUIT, &act, NULL);
 
 	printf("Starting first run\n");

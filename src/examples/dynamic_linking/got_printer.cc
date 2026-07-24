@@ -34,6 +34,7 @@ const char* get_symbol_name(void* addr) {
 }
 
 // Callback function for dl_iterate_phdr
+// cppcheck-suppress constParameterCallback
 static int callback(struct dl_phdr_info *info, size_t, void *) {
 	ElfW(Addr) addr = info->dlpi_addr;
 	const ElfW(Phdr) *phdr = info->dlpi_phdr;
