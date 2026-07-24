@@ -176,7 +176,6 @@ args = [
 	"--enable=warning,style,performance,portability",
 	"--check-level=exhaustive",
 	"--inline-suppr",
-	"--suppressions-list=.cppcheck-suppressions",
 ]
 
 [processor.make]

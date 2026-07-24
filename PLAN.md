@@ -87,9 +87,8 @@ Largest single ID. Convert C-style casts in `.cc` files to `static_cast`/
 
 ### Step 6 - finish
 
-`.cppcheck-suppressions` is an empty file (kept because `rsconstruct.toml` references
-it). Final verification: full cppcheck run over all 1015 files with
-`--suppressions-list` pointing at the empty file exits 0; full GCC+Clang builds pass.
+`.cppcheck-suppressions` has been completely deleted and its `--suppressions-list` flag removed
+from `rsconstruct.toml`. Final verification: full cppcheck run over all 1015 files without any suppressions file exits 0; full GCC+Clang builds pass.
 
 ## Caveats
 
