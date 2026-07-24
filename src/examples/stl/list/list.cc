@@ -47,7 +47,7 @@ int main() {
 
 	// lets iterate and print
 	list<int>::iterator i;
-	for(i=l.begin(); i!=l.end(); i++)
+	for(i=l.begin(); i!=l.end(); ++i)
 		cout << *i << " ";
 	cout << endl;
 	return EXIT_SUCCESS;

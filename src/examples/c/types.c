@@ -37,7 +37,9 @@ int main(void) {
 	long long l4=INT64_MAX;
 	fprintf(stderr, "l4 is %lld\n", l4);
 	// long long max=9223372036854775807LL;
+	// cppcheck-suppress sizeofwithnumericparameter
 	fprintf(stderr, "sizeof(3.14) is %zd\n", sizeof(3.14));
+	// cppcheck-suppress sizeofwithnumericparameter
 	fprintf(stderr, "sizeof(3.14f) is %zd\n", sizeof(3.14f));
 	// float f=1.6676;
 	// double d=1.8988f;

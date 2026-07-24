@@ -127,7 +127,7 @@ int main() {
 		cerr << "c is " << c << endl;
 		try {
 			doBadCode(c % 2);
-		} catch (exception& e) {
+		} catch (const exception& e) {
 			cerr << "Got exception, lets continue anyway" << endl;
 		}
 	}

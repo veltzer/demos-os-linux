@@ -40,7 +40,7 @@ int main() {
 	mysqlpp::StoreQueryResult res=query.store();
 	unsigned int j=0;
 	cout << "Records Found: " << res.size() << endl;
-	for(mysqlpp::StoreQueryResult::iterator i=res.begin(); i!=res.end(); i++) {
+	for(mysqlpp::StoreQueryResult::iterator i=res.begin(); i!=res.end(); ++i) {
 		mysqlpp::Row row=*i;
 		cout << j << ":" << row["name"] << endl;
 		j++;

@@ -48,7 +48,6 @@ void maximum_subset(char str[], int index, char curr[], char best[]) {
 		length_of_best=length_of_curr;
 	}
 	maximum_subset(str, index+1, curr, best);
-	length_of_best=strlen(best);
 	strcpy(curr, tmp_curr);
 	length_of_curr=tmp_length_of_curr;
 	/* skip the current character */

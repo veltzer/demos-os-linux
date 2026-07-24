@@ -60,7 +60,7 @@ int main() {
 	try {
 		syscall(pipe(fd), -1);
 		syscall(signal(SIGPIPE, myhandler), SIG_ERR);
-	} catch (exception& e) {
+	} catch (const exception& e) {
 		cerr << "cought exception" << endl;
 	}
 	return EXIT_SUCCESS;

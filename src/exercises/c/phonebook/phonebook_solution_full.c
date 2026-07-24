@@ -60,16 +60,16 @@ int find_cell_by_name(phone_entry* phonebook, const int size, const char* name) 
 void add_entry(phone_entry* phonebook, const int size) {
 	int entry=find_empty_cell(phonebook, size);
 	printf("give me the name for the new entry: ");
-	CHECK_INT(scanf("%s", phonebook[entry].name), 1);
+	CHECK_INT(scanf("%19s", phonebook[entry].name), 1);
 	printf("give me the phone for the new entry: ");
-	CHECK_INT(scanf("%s", phonebook[entry].phone), 1);
+	CHECK_INT(scanf("%19s", phonebook[entry].phone), 1);
 	phonebook[entry].used=1;
 }
 
 void delete_entry(phone_entry* phonebook, const int size) {
 	char name[256];
 	printf("give me a name to delete: ");
-	CHECK_INT(scanf("%s", name), 1);
+	CHECK_INT(scanf("%255s", name), 1);
 	int entry=find_cell_by_name(phonebook, size, name);
 	if(entry==-1) {
 		fprintf(stderr, "you moron! give me a name in the book\n");
@@ -81,7 +81,7 @@ void delete_entry(phone_entry* phonebook, const int size) {
 void find_entry(phone_entry* phonebook, const int size) {
 	char name[256];
 	printf("give me a name to find: ");
-	CHECK_INT(scanf("%s", name), 1);
+	CHECK_INT(scanf("%255s", name), 1);
 	int entry=find_cell_by_name(phonebook, size, name);
 	if(entry==-1) {
 		fprintf(stderr, "you moron! there is no one by that name\n");

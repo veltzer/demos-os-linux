@@ -41,9 +41,11 @@ int f_max_a(int a, int b) {
 	return (a > b ? a:b);
 }
 int f_min_b(int a, int b) {
+	// cppcheck-suppress shiftTooManyBitsSigned
 	return b + ((a-b) & (a-b)>>31);
 }
 int f_max_b(int a, int b) {
+	// cppcheck-suppress shiftTooManyBitsSigned
 	return a - ((a-b) & (a-b)>>31);
 }
 
@@ -67,6 +69,7 @@ int main() {
 	long sum_b=0;
 	for(int i=0; i<10000; i++) {
 		for(int j=0; j<10000; j++) {
+			// cppcheck-suppress shiftTooManyBitsSigned
 			sum_b+=min_b(i, j);
 		}
 	}

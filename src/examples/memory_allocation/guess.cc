@@ -64,6 +64,7 @@ void mguess_allocated(unsigned int size) {
 
 unsigned int get_block_size(void* p) {
 	unsigned int* u=(unsigned int*)p;
+	// cppcheck-suppress nullPointerArithmeticOutOfMemory
 	u-=1;
 	if(debug) {
 		printf("*u is %d (char ptr is %d)\n", *u, *((char*)u));

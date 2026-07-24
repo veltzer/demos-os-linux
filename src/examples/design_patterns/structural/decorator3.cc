@@ -21,7 +21,7 @@
 
 using namespace std;
 
-class Widget { public: virtual void draw() = 0; }; // 1. "lowest common denom"
+class Widget { public: virtual ~Widget() {} virtual void draw() = 0; }; // 1. "lowest common denom"
 
 class TextField : public Widget {						 // 3. "Core" class & "isa"
 	int width, height;
@@ -34,6 +34,7 @@ class Decorator : public Widget {						 // 3. "isa" relationship
 	Widget* wid;												 // 4. "hasa" relationship
 public:
 	Decorator( Widget* w ) { wid = w; }
+	~Decorator() { delete wid; }
 	/*virtual*/ void draw() { wid->draw(); }			// 5. Delegation
 };
 
@@ -58,6 +59,7 @@ int main() {
 									new ScrollDecorator(
 										new TextField( 80, 24 ))));
 	aWidget->draw();
+	delete aWidget;
 	return 0;
 }
 

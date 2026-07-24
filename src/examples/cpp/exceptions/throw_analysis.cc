@@ -58,7 +58,9 @@ int main() {
 	pthread_t thread;
 	CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, NULL));
 	CHECK_ZERO(sleep(5));
+	// cppcheck-suppress throwInEntryPoint
 	throw 20;
+	// cppcheck-suppress unreachableCode
 	cout << "Where did this go?" << endl;
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));
 	return EXIT_SUCCESS;

@@ -40,7 +40,7 @@
 void errormessage(const char *format, ...);
 void* midiinfunction(void* arg);
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char *argv[]) {
 	int status;
 	int mode=0;
 	pthread_t midiinthread;

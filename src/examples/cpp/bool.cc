@@ -61,7 +61,9 @@ int main() {
 	}
 	char* p0=(char*)0;
 	char* p7=(char*)7;
+	// cppcheck-suppress knownPointerToBool
 	bool pb0=(bool)p0;
+	// cppcheck-suppress knownPointerToBool
 	bool pb7=(bool)p7;
 	if(pb0) {
 		printf("bool((char*)0) is true\n");

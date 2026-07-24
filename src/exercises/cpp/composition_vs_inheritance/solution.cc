@@ -32,6 +32,7 @@ public:
 // Inherited class
 class Circle: public Shape {
 public:
+	// cppcheck-suppress duplInheritedMember
 	void draw() {
 		Shape::draw();
 		cout << "Drawing a circle..." << endl;

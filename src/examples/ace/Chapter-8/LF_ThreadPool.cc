@@ -31,8 +31,7 @@
 
 class Follower{
 public:
-	Follower(ACE_Thread_Mutex & leader_lock) : cond_(leader_lock) {
-		owner_=ACE_Thread::self();
+	Follower(ACE_Thread_Mutex & leader_lock) : cond_(leader_lock), owner_(ACE_Thread::self()) {
 	}
 
 	int wait(void) {

@@ -39,10 +39,10 @@ public:
 		add_sec_context_thr(secCtx);
 		return (*func)(arg);
 	}
-	void add_sec_context_thr(ACE_TSS<SecurityContext>& secCtx);
+	void add_sec_context_thr(const ACE_TSS<SecurityContext>& secCtx);
 };
 
-void HA_ThreadHook::add_sec_context_thr(ACE_TSS<SecurityContext>& secCtx) {
+void HA_ThreadHook::add_sec_context_thr(const ACE_TSS<SecurityContext>& secCtx) {
 	secCtx->user=0;
 }
 

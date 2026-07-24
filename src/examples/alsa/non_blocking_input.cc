@@ -80,7 +80,7 @@ void errormessage(const char *format, ...);
 
 ///////////////////////////////////////////////////////////////////////////
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char *argv[]) {
 	int status;
 	int mode=SND_RAWMIDI_NONBLOCK;
 	snd_rawmidi_t* midiin=NULL;

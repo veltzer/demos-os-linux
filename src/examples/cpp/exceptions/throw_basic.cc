@@ -31,7 +31,9 @@ using namespace std;
 
 int main() {
 	cout << "Starting to run..." << endl;
+	// cppcheck-suppress throwInEntryPoint
 	throw 20;
+	// cppcheck-suppress unreachableCode
 	cout << "Where did this go?" << endl;
 	return EXIT_SUCCESS;
 }

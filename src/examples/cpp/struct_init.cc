@@ -50,6 +50,7 @@ int main() {
 	cout << "v3.a is " << v3.a << endl;
 	cout << "v3.b is " << v3.b << endl;
 	// this is the GNU style...
+	// cppcheck-suppress unusedLabel
 	struct mystruct v4={ a : 6, b : 7 };
 	cout << "v4.a is " << v4.a << endl;
 	cout << "v4.b is " << v4.b << endl;

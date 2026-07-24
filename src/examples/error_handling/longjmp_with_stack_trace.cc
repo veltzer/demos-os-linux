@@ -104,7 +104,6 @@ void func(int counter) {
 	if (counter % 3==0) {
 		error_create("some error");
 	}
-	counter++;
 	fprintf(stderr, "this is the continuation of the function\n");
 }
 

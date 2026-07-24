@@ -101,7 +101,7 @@ void errormessage(const char *format, ...) {
 	putc('\n', stderr);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char *argv[]) {
 	int status;
 	int mode=SND_RAWMIDI_SYNC;
 	snd_rawmidi_t* midiout=NULL;

@@ -47,6 +47,7 @@ int main(void) {
 	a a3={5};
 	a a4={6, 7, 8};
 	a a5={ .k=9 };
+	// cppcheck-suppress unusedLabel
 	a a6={ j:10 };
 	a a7;
 

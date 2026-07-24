@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 	current_test_type=(test_type)atoi(argv[1]);
 	// lets allocate a buffer of 1GB
 	const size_t size_to_alloc=(size_t)atoi(argv[2]);
-	printf("size_to_alloc is %lu\n", size_to_alloc);
+	printf("size_to_alloc is %zu\n", size_to_alloc);
 	const unsigned int number_of_pages_to_touch=100;
 	// memset(buf, 1, size_to_alloc);
 	// madvise(buf, size_to_alloc, MADV_RANDOM);

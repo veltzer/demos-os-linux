@@ -27,6 +27,7 @@ int main(void) {
 	printf("the area of the rectangle is %d\n", rectangle_area(r));
 	rectangle_destroy(r);
 
+	// cppcheck-suppress allocaCalled
 	rectangle* r2=(rectangle*)alloca(sizeof_rectangle());
 	construct_rectangle(r2, 7, 8);
 	printf("r2 is at %p\n", r2);

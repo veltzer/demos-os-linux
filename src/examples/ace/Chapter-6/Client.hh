@@ -34,7 +34,7 @@ class Client: public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> {
 	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 
 public:
-	Client() : notifier_(0, this, ACE_Event_Handler::WRITE_MASK) {
+	Client() : iterations_(0), notifier_(0, this, ACE_Event_Handler::WRITE_MASK) {
 	}
 	// Called when the connection is established.
 	virtual int open(void* =0);

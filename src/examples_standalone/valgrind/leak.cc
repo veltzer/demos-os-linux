@@ -28,5 +28,6 @@ int main() {
 	void* p=malloc(100);
 	// we print the pointer so that the allocation will not be optimized away...
 	printf("got pointer [%p]\n", p);
+	// cppcheck-suppress memleak
 	return EXIT_SUCCESS;
 }

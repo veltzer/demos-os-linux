@@ -34,7 +34,7 @@
 
 void print_counters(long long* arr, int num) {
 	for(int i=0; i<num; i++) {
-		printf("%d: %llu\n", i, arr[i]);
+		printf("%d: %lld\n", i, arr[i]);
 	}
 }
 

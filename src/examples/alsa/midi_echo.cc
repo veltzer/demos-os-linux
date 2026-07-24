@@ -40,7 +40,7 @@ void echomidi(snd_rawmidi_t* midiin, snd_rawmidi_t* midiout);
 
 ///////////////////////////////////////////////////////////////////////////
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char *argv[]) {
 	int status;	// for storing error codes
 	int mode=SND_RAWMIDI_SYNC;	// automatic MIDI out flushing
 	snd_rawmidi_t* midiin=NULL;	// structure to access MIDI input

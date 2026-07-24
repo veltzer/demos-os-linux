@@ -35,7 +35,7 @@ using namespace std;
  */
 
 // A function to be executed in newly created threads
-void task(const string id) {
+void task(const string& id) {
 	for(int counter = 0; counter < 5; counter++) {
 		cout << id << " " << counter << endl;
 		this_thread::sleep_for(chrono::seconds(1));

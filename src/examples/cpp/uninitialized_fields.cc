@@ -29,6 +29,7 @@ class A{
 public:
 	int a;
 	int b;
+	// cppcheck-suppress uninitMemberVar
 	A() {
 		a=6;
 	}

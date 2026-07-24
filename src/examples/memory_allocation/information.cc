@@ -57,6 +57,7 @@ void* worker(void*) {
 	// lets allocate and deallocate memory...
 	// we use alloca(3) for the list of pointers so as not to apply
 	// more pressure on the memory allocating subsystem...
+	// cppcheck-suppress allocaCalled
 	void** arr=(void**)alloca(sizeof(void*)*num_allocations);
 	for(unsigned int i=0; i<num_allocations; i++) {
 		arr[i]=malloc(size_to_alloc);

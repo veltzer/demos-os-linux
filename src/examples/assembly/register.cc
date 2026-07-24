@@ -26,6 +26,7 @@
  */
 
 static inline unsigned long getbx() {
+	// cppcheck-suppress unassignedVariable
 	unsigned long val;
 	#if __i386__
 	asm ("movl %%ebx, %0" : "=r" (val));

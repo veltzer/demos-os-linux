@@ -93,6 +93,7 @@ __attribute__((no_stack_protector, always_inline))
 static inline long raw_syscall6(long n, long a1, long a2, long a3, long a4, long a5, long a6)
 {
 	long ret;
+	// cppcheck-suppress syntaxError
 	register long r10 asm("r10") = a4;
 	register long r8 asm("r8") = a5;
 	register long r9 asm("r9") = a6;
