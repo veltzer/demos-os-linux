@@ -37,6 +37,7 @@ int main() {
 	FILE* fp=CHECK_NOT_NULL_FILEP(open_memstream(&ptr, &sizeloc));
 	const char* to_print="Hello, World!\n";
 	CHECK_INT_NOERRNO(fwrite(to_print, strlen(to_print), 1, fp), 1);
+	// cppcheck-suppress deallocuse
 	CHECK_ZERO_ERRNO(fclose(fp));
 	printf("ptr is now [%s]\n", ptr);
 	printf("sizeloc is now [%zd]\n", sizeloc);

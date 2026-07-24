@@ -33,8 +33,7 @@ private:
 	string message;
 
 public:
-	MyException(const char* imessage) {
-		message = imessage;
+	MyException(const char* imessage) : message(imessage) {
 	}
 	virtual const char* operator()() {
 		return message.c_str();

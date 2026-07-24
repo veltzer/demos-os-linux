@@ -154,6 +154,7 @@ TEST(
 	true,
 	__sync_synchronize()
 	);
+// cppcheck-suppress syntaxError
 TEST(
 	emptasm,
 	"Empty assembly block which works on some compilers but not on others.\n"

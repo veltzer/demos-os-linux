@@ -31,7 +31,7 @@
 
 class Errno {
 public:
-	Errno() {
+	Errno() : errno_(0), lineno_(0) {
 	}
 	int error(void) {
 		return this->errno_;

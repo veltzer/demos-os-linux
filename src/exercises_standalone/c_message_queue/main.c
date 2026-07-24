@@ -65,8 +65,8 @@ int main(void) {
 	const unsigned int consumers=1;
 	const unsigned int thread_num=producers+consumers;
 	unsigned int i;
-	pthread_t* threads=(pthread_t*)malloc(thread_num*sizeof(pthread_t));
-	thread_data* tds=(thread_data*)malloc(thread_num*sizeof(thread_data));
+	pthread_t* threads=(pthread_t*)CHECK_NOT_NULL(malloc(thread_num*sizeof(pthread_t)));
+	thread_data* tds=(thread_data*)CHECK_NOT_NULL(malloc(thread_num*sizeof(thread_data)));
 
 	srand(getpid());
 	mq m;

@@ -35,6 +35,7 @@ protected:
 class B: public A {
 public:
 	int c;
+	// cppcheck-suppress duplInheritedMember
 	int b;
 
 	void doSomething(int a) {

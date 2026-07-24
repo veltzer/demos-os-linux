@@ -160,6 +160,7 @@ int main(int argc, char** argv) {
 			printf("after...\n");
 		}
 	}
+// cppcheck-suppress unusedLabel
 mylabel:
 	printf("after fault...\n");
 	return EXIT_SUCCESS;

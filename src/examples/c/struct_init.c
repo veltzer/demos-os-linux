@@ -44,6 +44,7 @@ int main(void) {
 #ifdef __clang__
 #pragma GCC diagnostic ignored "-Wgnu-designator"
 #endif
+	// cppcheck-suppress unusedLabelConfiguration
 	struct mystruct v2={ a: 8, b: 9 };
 #pragma GCC diagnostic pop
 	printf("v2.a is %d\n", v2.a);

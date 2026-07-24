@@ -25,6 +25,7 @@
 */
 
 int main(int argc,char** argv,char** envp) {
+	// cppcheck-suppress nullPointer
 	*(volatile char*)0=0;
 	return EXIT_SUCCESS;
 }

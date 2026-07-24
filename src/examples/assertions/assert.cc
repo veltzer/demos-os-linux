@@ -52,6 +52,7 @@
  */
 
 int main() {
+	// cppcheck-suppress duplicateExpression
 	assert(1==1);
 	printf("in here 1\n");
 #define NDEBUG

@@ -40,7 +40,7 @@ private:
 	ACE_Task_Base *owner_;
 };
 
-HA_Device_Repository::HA_Device_Repository() {
+HA_Device_Repository::HA_Device_Repository() : owner_(0) {
 	(void)owner_;
 }
 

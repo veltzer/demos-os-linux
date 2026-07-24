@@ -25,6 +25,7 @@ using namespace std;
 class Base {
 public:
 	Base() {}
+	// cppcheck-suppress virtualDestructor
 	~Base() { cout << "Base destructor" << endl; }
 };
 

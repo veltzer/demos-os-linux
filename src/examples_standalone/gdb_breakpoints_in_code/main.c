@@ -30,6 +30,7 @@ int main(int argc,char** argv,char** envp) {
 	asm("int $3");
 	i=7;
 	raise(SIGTRAP);
+	// cppcheck-suppress unreachableCode
 	i=9;
 	return EXIT_SUCCESS;
 }

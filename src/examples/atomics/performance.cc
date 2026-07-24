@@ -78,6 +78,7 @@ int main(int argc, char** argv) {
 	measure_init(&m, "regular adds (no barrier-loop probably goes away here)", attempts);
 	measure_start(&m);
 	for(int i=0; i<attempts; i++) {
+		// cppcheck-suppress useStlAlgorithm
 		counter++;
 	}
 	measure_end(&m);
@@ -87,6 +88,7 @@ int main(int argc, char** argv) {
 	measure_init(&m, "volatile adds (volatile is close to a barrier)", attempts);
 	measure_start(&m);
 	for(int i=0; i<attempts; i++) {
+		// cppcheck-suppress useStlAlgorithm
 		vcounter++;
 	}
 	measure_end(&m);

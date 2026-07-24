@@ -178,6 +178,7 @@ void parse_sequence() {
 		}
 		c=fgetc(f);
 		pos++;
+		// cppcheck-suppress checkCastIntToCharAndBack
 		if(c==EOF) {
 			break;
 		}
@@ -188,6 +189,7 @@ void parse_sequence() {
 		// cppcheck-suppress invalidFunctionArgStr
 		sequence[2][seq_len]+=12*atoi(&c);
 		c=fgetc(f); pos++;
+		// cppcheck-suppress checkCastIntToCharAndBack
 		if(c==EOF) {
 			break;
 		}
@@ -199,6 +201,7 @@ void parse_sequence() {
 		// cppcheck-suppress invalidFunctionArgStr
 		sequence[1][seq_len]=TICKS_PER_QUARTER / atoi(&c);
 		c=fgetc(f); pos++;
+		// cppcheck-suppress checkCastIntToCharAndBack
 		if(c==EOF) {
 			break;
 		}
@@ -241,6 +244,7 @@ int main(int argc, char** argv) {
 	snd_seq_start_queue(seq_handle, queue_id, NULL);
 	snd_seq_drain_output(seq_handle);
 	int npfd=snd_seq_poll_descriptors_count(seq_handle, POLLIN);
+	// cppcheck-suppress allocaCalled
 	struct pollfd *pfd=(struct pollfd *)alloca(npfd * sizeof(struct pollfd));
 	snd_seq_poll_descriptors(seq_handle, pfd, npfd, POLLIN);
 	transpose=0;

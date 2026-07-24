@@ -33,6 +33,7 @@ bool Circle::inside(double ix, double iy) {
 	return distance2 <= radius*radius;
 }
 
+// cppcheck-suppress constParameterReference
 ostream& operator<<(ostream& os, Circle& obj) {
 	os << "radius is " << obj.radius << endl;
 	os << "x is " << obj.x << endl;

@@ -54,7 +54,7 @@ void do_list() {
 	}
 	list<int>::iterator i;
 	int counter=0;
-	for(i=l.begin(); i!=l.end(); i++) {
+	for(i=l.begin(); i!=l.end(); ++i) {
 		if(counter==postoact) {
 			for(int j=0; j<numtoremove; j++) {
 				l.remove(postoremove+j);
@@ -72,7 +72,7 @@ void do_vector() {
 	}
 	vector<int>::iterator i;
 	int counter=0;
-	for(i=l.begin(); i!=l.end(); i++) {
+	for(i=l.begin(); i!=l.end(); ++i) {
 		if(counter==postoact) {
 			for(int j=0; j<numtoremove; j++) {
 				l.erase(l.begin()+postoremove);

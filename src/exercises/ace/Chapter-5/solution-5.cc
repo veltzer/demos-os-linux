@@ -122,8 +122,7 @@ public:
 	}
 };
 
-Net_Listener::Net_Listener(int local_address) {
-	acceptor=ACE_INET_Addr(local_address, ACE_LOCALHOST);
+Net_Listener::Net_Listener(int local_address) : acceptor(ACE_INET_Addr(local_address, ACE_LOCALHOST)) {
 	this->reactor(ACE_Reactor::instance());
 	int result=this->reactor()->register_handler(this, ACE_Event_Handler::ACCEPT_MASK);
 	ACE_ASSERT(result==0);

@@ -57,6 +57,7 @@ class B: public A {
 public:
 	int e;
 	char f;
+	// cppcheck-suppress duplInheritedMember
 	void dosomething() {
 		for(int i=0; i<4; i++) {
 			cout << "Hello from B, i is " << i << endl;

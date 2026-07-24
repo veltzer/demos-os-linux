@@ -59,7 +59,7 @@ protected:
 
 class MacroCommand : public Command {
 public:
-	MacroCommand() { _numCommands = 0; }
+	MacroCommand() : _list() { _numCommands = 0; }
 	void add( Command* cmd ) { _list[_numCommands++] = cmd; }
 	virtual void execute();
 private:

@@ -48,9 +48,11 @@ int main() {
 	print_address_of(&a);
 	print_address_of(&j);
 	a=i;
+	// cppcheck-suppress redundantAssignment
 	a=i;
 	printit(a);
 	a=j;
+	// cppcheck-suppress redundantAssignment
 	a=j;
 	printit(a);
 	return EXIT_SUCCESS;

@@ -58,8 +58,8 @@ int main() {
 	double dbin_size=(double)range/(double)num_bins;
 	#ifdef DO_PRINT
 	printf("num_bins is %u\n", num_bins);
-	printf("min_range is %lu\n", min_range);
-	printf("max_range is %lu\n", max_range);
+	printf("min_range is %ld\n", min_range);
+	printf("max_range is %ld\n", max_range);
 	printf("range is %lu\n", range);
 	printf("dbin_size is %lf\n", dbin_size);
 	#endif	// DO_PRINT

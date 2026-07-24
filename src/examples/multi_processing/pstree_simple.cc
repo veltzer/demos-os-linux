@@ -92,7 +92,7 @@ static void scan_proc(void) {
 
 static void print_tree(int pid, int depth) {
 	printf("%*s%s(%d)\n", depth*4, "", names[pid].c_str(), pid);
-	std::vector<int>& kids=children[pid];
+	const std::vector<int>& kids=children[pid];
 	for(unsigned int i=0; i<kids.size(); i++) {
 		print_tree(kids[i], depth+1);
 	}

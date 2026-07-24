@@ -34,13 +34,13 @@ int main() {
 	int fd =CHECK_NOT_M1(memfd_create(name, 0));
 
 	// Write data to the memfd
-	int ret = CHECK_NOT_M1(write(fd, data, strlen(data)));
+	CHECK_NOT_M1(write(fd, data, strlen(data)));
 
 	// Seek to the beginning of the file
 	CHECK_NOT_M1(lseek(fd, 0, SEEK_SET));
 
 	// Read data from the memfd
-	ret = CHECK_NOT_M1(read(fd, buf, sizeof(buf) - 1));
+	int ret = CHECK_NOT_M1(read(fd, buf, sizeof(buf) - 1));
 	buf[ret] = '\0';
 
 	printf("Read from memfd: %s\n", buf);

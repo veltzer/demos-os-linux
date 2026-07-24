@@ -41,11 +41,11 @@ int main() {
 		cout << "6 is in the map" << endl;
 		cout << "its partner is " << m.find(6)->second << endl;
 	}
-	for(map<int, int>::iterator i=m.begin(); i!=m.end(); i++) {
+	for(map<int, int>::iterator i=m.begin(); i!=m.end(); ++i) {
 		cout << i->first << ": " << i->second << endl;
 	}
 	m.erase(5);
-	for(map<int, int>::iterator i=m.begin(); i!=m.end(); i++) {
+	for(map<int, int>::iterator i=m.begin(); i!=m.end(); ++i) {
 		cout << i->first << ": " << i->second << endl;
 	}
 	return EXIT_SUCCESS;

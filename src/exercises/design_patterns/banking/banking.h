@@ -64,6 +64,7 @@ namespace banking {
 	{
 	public:
 		CheckingAccount(double balance = 0, double overdraft = 0) :AccountBase(balance), _overdraft(overdraft) {}
+		// cppcheck-suppress uselessOverride
 		void withdraw(double val) override { AccountBase::withdraw(val); }
 		~CheckingAccount() { cout << "bye checking" << endl; }
 	private:

@@ -75,6 +75,7 @@ int main(int, char** argv) {
 	}
 	closelog();
 	if (myttyname) {
+		// cppcheck-suppress deallocuse
 		CHECK_ZERO_ERRNO(fclose(newout));
 	}
 	return EXIT_SUCCESS;

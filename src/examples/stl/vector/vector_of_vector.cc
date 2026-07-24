@@ -34,6 +34,7 @@ using namespace std;
  */
 
 int main() {
+	// cppcheck-suppress unusedVariable
 	vector<vector<int> > v;
 	return EXIT_SUCCESS;
 }

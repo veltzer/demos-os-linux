@@ -35,6 +35,7 @@ void analyze_status(int status) {
 		printf("WIFSIGNALED: true\n");
 		printf("WTERMSIG: %d\n", WTERMSIG(status));
 		#ifdef WCOREDUMP
+		// cppcheck-suppress syntaxError
 		printf("WCOREDUMP: %s\n", WCOREDUMP(status) ? "true" : "false");
 		#endif
 	} else {
@@ -49,6 +50,7 @@ void analyze_status(int status) {
 	}
 
 	#ifdef WIFCONTINUED
+	// cppcheck-suppress syntaxError
 	printf("WIFCONTINUED: %s\n", WIFCONTINUED(status) ? "true" : "false");
 	#endif
 }

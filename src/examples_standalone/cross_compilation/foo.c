@@ -22,6 +22,7 @@
 
 int main(int argc, char** argv, char** envp) {
 	printf("I'm here...\n");
+	// cppcheck-suppress nullPointer
 	*(volatile char*)0=0;
 	printf("Where did this go?...\n");
 	return EXIT_SUCCESS;

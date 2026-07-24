@@ -27,6 +27,7 @@ typedef int Dimension;
 /////////////////////////// Desired interface ///////////////////////////
 class Rectangle {
 public:
+	virtual ~Rectangle() {}
 	virtual void draw() = 0;
 };
 
@@ -63,5 +64,6 @@ public:
 int main() {
 	Rectangle* r = new RectangleAdapter( 120, 200, 60, 40 );
 	r->draw();
+	delete r;
 	return 0;
 }

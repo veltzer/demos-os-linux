@@ -25,6 +25,7 @@ int main(void) {
 	while(1) {
 		printf("trying to access address [%p]\n", (void*)p);
 		*p=0;
+		// cppcheck-suppress nullPointerArithmeticOutOfMemory
 		p++;
 	}
 	return EXIT_SUCCESS;

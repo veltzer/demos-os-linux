@@ -47,6 +47,7 @@ void do_something() {
 }
 
 void my_func(size_t size) {
+	// cppcheck-suppress allocaCalled
 	char* p=(char*)alloca(size);
 	// this will show that we can use the memory
 	p[0]=0;

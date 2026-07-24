@@ -19,11 +19,11 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for fopen(3), fgets(3), printf(3)
 #include <unistd.h>	// for sleep(3)
-#include <err_utils.h>	// for CHECK_NOT_NULL()
+#include <err_utils.h>	// for CHECK_NOT_NULL(), CHECK_NOT_NULL_FILEP()
 #include <stdlib.h>	// for EXIT_SUCCESS
 
 int main() {
-	FILE* f=fopen("myfile", "r");
+	FILE* f=CHECK_NOT_NULL_FILEP(fopen("myfile", "r"));
 	while(true) {
 		char buf[1024];
 		CHECK_NOT_NULL(fgets(buf, 1024, f));

@@ -32,6 +32,7 @@ typedef struct _foo{
 foo giveMeFoo(void) {
 	// following line causes a compilation error...
 	// return {3,4};
+	// cppcheck-suppress unassignedVariable
 	foo f;
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wuninitialized"

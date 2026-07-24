@@ -66,7 +66,7 @@ void critical1() {
 }
 
 void critical2() {
-	CHECK_NOT_M1(lseek(fdindex, -1 * sizeof(buffer), SEEK_CUR));
+	CHECK_NOT_M1(lseek(fdindex, -(off_t)sizeof(buffer), SEEK_CUR));
 	buffer.ID=0;
 	CHECK_NOT_M1(write(fdindex, &buffer, sizeof(buffer)));
 }
