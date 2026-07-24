@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
 			int ret=pause();
 			CHECK_ASSERT(ret==-1 && errno==EINTR);
 		}
-		printf("parent: got %d signals...\n", got_signals);
+		printf("parent: got %u signals...\n", got_signals);
 	} else {
 		// child
 		// no error return code for getppid(2)
@@ -113,7 +113,7 @@ int main(int argc, char** argv) {
 		for(unsigned int i=0; i<num_signals; i++) {
 			CHECK_NOT_M1(kill(ppid, the_signal));
 		}
-		printf("child: send %d signals...\n", num_signals);
+		printf("child: send %u signals...\n", num_signals);
 	}
 	return EXIT_SUCCESS;
 }

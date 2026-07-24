@@ -91,6 +91,7 @@ void echomidi(snd_rawmidi_t* midiin, snd_rawmidi_t* midiout) {
 		}
 		if ((argsLeft==0) && (((buffer[0] & 0xf0)==0x90) || ((buffer[0] & 0xf0)==0x80))) {
 			newnote=buffer[1] + transpose;
+			// cppcheck-suppress knownConditionTrueFalse
 			if ((newnote > 0) && (newnote < 128)) {
 				buffer[1]=(unsigned char)newnote;
 				if ((status=snd_rawmidi_write(midiout, buffer, 3)) < 0) {

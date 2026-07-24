@@ -80,10 +80,20 @@ int main() {
 	cout << "sizeof(C) is " << sizeof(C) << endl;
 	cout << "sizeof(struct empty) is " << sizeof(struct empty) << endl;
 	// cout << "__builtin_offsetof(e,B) " << __builtin_offsetof(e,B) << endl;
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(B,e) " << CppOffsetOf(B, e) << endl;
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(A,a) " << CppOffsetOf(A, a) << endl;
+	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(A,b) " << CppOffsetOf(A, b) << endl;
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(A,c) " << CppOffsetOf(A, c) << endl;
+	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(A,d) " << CppOffsetOf(A, d) << endl;
 
 	A* a=new A();

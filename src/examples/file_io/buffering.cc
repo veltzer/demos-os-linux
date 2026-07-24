@@ -47,7 +47,7 @@ void printBuffDetails(FILE *s, const char *name) {
 	} else {
 		printf("stream is not line buffered\n");
 		size_t bufSize=__fbufsize(s);
-		printf("size of buffer is %zd\n", bufSize);
+		printf("size of buffer is %zu\n", bufSize);
 	}
 	printf("\n");
 	fflush(stdout);

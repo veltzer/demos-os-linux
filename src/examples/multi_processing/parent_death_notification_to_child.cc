@@ -39,9 +39,9 @@ static unsigned int counter=0;
 
 static void handler(int sig, siginfo_t *si, void* unused __attribute__((unused))) {
 	printf("sighandler: gettid() is %d\n", gettid());
-	printf("sighandler: counter is %d\n", counter);
+	printf("sighandler: counter is %u\n", counter);
 	printf("sighandler: got signal %s\n", strsignal(sig));
-	printf("sighandler: si is %p\n", (void*)si);
+	printf("sighandler: si is %p\n", static_cast<void*>(si));
 	printf("sighandler: address is: 0x%lx\n", (long) si->si_addr);
 	printf("sighandler: psiginfo follows...\n");
 	psiginfo(si, "sighandler");

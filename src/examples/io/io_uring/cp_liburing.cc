@@ -93,7 +93,7 @@ static int queue_read(struct io_uring *ring, off_t size, off_t offset) {
 	struct io_uring_sqe *sqe;
 	struct io_data *data;
 
-	data = (io_data*)malloc(size + sizeof(*data));
+	data = static_cast<io_data*>(malloc(size + sizeof(*data)));
 	if (!data)
 		return 1;
 	sqe = io_uring_get_sqe(ring);
@@ -143,6 +143,7 @@ int copy_file(struct io_uring *ring, off_t insize) {
 				break;
 			if (this_size > BS)
 				this_size = BS;
+			// cppcheck-suppress knownConditionTrueFalse
 			else if (!this_size)
 				break;
 			if (queue_read(ring, this_size, offset))
@@ -179,7 +180,7 @@ int copy_file(struct io_uring *ring, off_t insize) {
 			}
 			if (!cqe)
 				break;
-			data = (io_data*)io_uring_cqe_get_data(cqe);
+			data = static_cast<io_data*>(io_uring_cqe_get_data(cqe));
 			if (cqe->res < 0) {
 				if (cqe->res == -EAGAIN) {
 					queue_prepped(ring, data);
@@ -191,7 +192,7 @@ int copy_file(struct io_uring *ring, off_t insize) {
 				return 1;
 			} else if (cqe->res != (int)data->iov.iov_len) {
 				/* short read/write; adjust and requeue */
-				data->iov.iov_base = (char*)(data->iov.iov_base)+cqe->res;
+				data->iov.iov_base = static_cast<char*>(data->iov.iov_base)+cqe->res;
 				data->iov.iov_len -= cqe->res;
 				queue_prepped(ring, data);
 				io_uring_cqe_seen(ring, cqe);

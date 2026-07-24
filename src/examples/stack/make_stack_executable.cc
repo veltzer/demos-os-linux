@@ -35,7 +35,7 @@ int main() {
 	proc_get_stack_info(&adr_start, &adr_end);
 	printf("before...\n");
 	proc_print_mmap_self_filter("[stack]");
-	CHECK_NOT_M1(mprotect((void*)adr_start, adr_end-adr_start, PROT_READ | PROT_WRITE | PROT_EXEC));
+	CHECK_NOT_M1(mprotect(reinterpret_cast<void*>(adr_start), adr_end-adr_start, PROT_READ | PROT_WRITE | PROT_EXEC));
 	printf("after...\n");
 	proc_print_mmap_self_filter("[stack]");
 	return EXIT_SUCCESS;

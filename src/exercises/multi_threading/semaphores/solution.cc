@@ -55,13 +55,13 @@ void forks(int semid, int id, int amount) {
 
 int main(int argc, char** argv) {
 	if(argc!=2) {
-		fprintf(stderr, "%s: usage: %s [0-%d)\n", argv[0], argv[0], NPHIL);
+		fprintf(stderr, "%s: usage: %s [0-%u)\n", argv[0], argv[0], NPHIL);
 		exit(EXIT_FAILURE);
 	}
 	// parameters
 	int id=atoi(argv[1]);
 	if(id<(int)0 || id>=(int)NPHIL) {
-		fprintf(stderr, "%s: bad argument %s, argument must be numeric value between 0 and %d\n", argv[0], argv[1], NPHIL);
+		fprintf(stderr, "%s: bad argument %s, argument must be numeric value between 0 and %u\n", argv[0], argv[1], NPHIL);
 		exit(EXIT_FAILURE);
 	}
 	// so things will not be boring..

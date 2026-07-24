@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
 	/* error buffer */
 	char errbuf[PCAP_ERRBUF_SIZE];
 	/* Open capture device */
-	pcap_t* handle=(pcap_t*)CHECK_NOT_NULL(pcap_open_live(dev, SNAP_LEN, 0, 1000, errbuf));
+	pcap_t* handle=static_cast<pcap_t*>(CHECK_NOT_NULL(pcap_open_live(dev, SNAP_LEN, 0, 1000, errbuf)));
 
 	/* Set the direction - we only want incoming packets */
 	CHECK_NOT_M1(pcap_setdirection(handle, PCAP_D_IN));

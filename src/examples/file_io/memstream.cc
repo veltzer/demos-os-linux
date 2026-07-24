@@ -40,7 +40,7 @@ int main() {
 	// cppcheck-suppress deallocuse
 	CHECK_ZERO_ERRNO(fclose(fp));
 	printf("ptr is now [%s]\n", ptr);
-	printf("sizeloc is now [%zd]\n", sizeloc);
+	printf("sizeloc is now [%zu]\n", sizeloc);
 	// we must free the pointer outselves! (free(3) does not return a success code)
 	free(ptr);
 	return EXIT_SUCCESS;

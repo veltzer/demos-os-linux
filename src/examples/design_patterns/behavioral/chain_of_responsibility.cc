@@ -29,6 +29,8 @@ class Link {
 	static Link* bidder;
 public:
 	explicit Link( int num ) { id = num; next = 0; }
+	// cppcheck-suppress noCopyConstructor
+	// cppcheck-suppress noOperatorEq
 	~Link() { delete next; }
 	void addLast( Link* l ) {
 		if (next) next->addLast( l ); // 2. Handle and/or pass on

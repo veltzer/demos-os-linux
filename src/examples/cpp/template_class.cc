@@ -20,6 +20,7 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
+// cppcheck-suppress noConstructor
 template<class T> class AverageMaker{
 private:
 	T data;

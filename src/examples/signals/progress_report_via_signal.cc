@@ -59,7 +59,7 @@ static void handler(int sig __attribute__((unused))) {
 	CHECK_ZERO(alarm(interval));
 	char buf[100];
 	times+=1;
-	int len=snprintf(buf, sizeof(buf), "progress report number [%02d], [%012lld] units of work done...\r", times, i);
+	int len=snprintf(buf, sizeof(buf), "progress report number [%02d], [%012llu] units of work done...\r", times, i);
 	CHECK_NOT_M1(write(STDERR_FILENO, buf, len));
 }
 

@@ -25,6 +25,8 @@ class Machine {
 	class State* current;
 public:
 	Machine();
+	Machine(const Machine&) = delete;
+	Machine& operator=(const Machine&) = delete;
 	void setCurrent( State* s ) { current = s; }
 	void on();
 	void off();

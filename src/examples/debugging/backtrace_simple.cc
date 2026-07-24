@@ -39,7 +39,7 @@ void print_trace(bool full) {
 	if(!full) {
 		nptrs-=2;
 	}
-	fprintf(stderr, "backtrace() returned %d addresses\n", nptrs);
+	fprintf(stderr, "backtrace() returned %u addresses\n", nptrs);
 	backtrace_symbols_fd(buffer, nptrs, fileno(stderr));
 }
 

@@ -52,7 +52,7 @@ static void id_dealloc(void*) {
 
 int main() {
 	CHECK_ZERO_ERRNO(pthread_key_create(&key_myid, id_dealloc));
-	int* p=(int*)malloc(sizeof(int));
+	int* p=static_cast<int*>(CHECK_NOT_NULL(malloc(sizeof(int))));
 	*p=1000;
 	CHECK_ZERO_ERRNO(pthread_setspecific(key_myid, p));
 	CHECK_NOT_NULL(pthread_getspecific(key_myid));

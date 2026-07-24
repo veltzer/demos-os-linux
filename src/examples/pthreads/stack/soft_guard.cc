@@ -40,11 +40,11 @@ void check_stack() {
 	size_t stacksize;
 	CHECK_ZERO_ERRNO(pthread_attr_getstack(&at, &stackaddr, &stacksize));
 	void* myaddr=&at;
-	unsigned int diff=(char*)myaddr-(char*)stackaddr;
+	unsigned int diff=static_cast<char*>(myaddr)-static_cast<char*>(stackaddr);
 	if(diff<stacksize*0.2) {
 		fprintf(stderr, "You are too close to the stack edge...\n");
 		fprintf(stderr, "======================================\n");
-		fprintf(stderr, "stacksize is %zd\n", stacksize);
+		fprintf(stderr, "stacksize is %zu\n", stacksize);
 		fprintf(stderr, "stackaddr %p\n", stackaddr);
 		fprintf(stderr, "myaddr %p\n", myaddr);
 		fprintf(stderr, "diff %u\n", diff);
@@ -66,7 +66,7 @@ void call_big() {
 	my_big_struct biggie;
 	bzero(&biggie, sizeof(my_big_struct));
 	check_stack();
-	printf("disregard this print %p\n", (void*)&biggie);
+	printf("disregard this print %p\n", static_cast<void*>(&biggie));
 }
 
 void* doit(void*) {

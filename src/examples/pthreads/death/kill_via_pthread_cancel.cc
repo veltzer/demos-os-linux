@@ -90,7 +90,7 @@ void* target_thread_func(void *) {
  * request to the target thread.
  */
 void* canceler_thread_func(void *arg) {
-	pthread_t target_tid = *(pthread_t *)arg;
+	pthread_t target_tid = *static_cast<pthread_t *>(arg);
 	printf("Canceler thread (TID: %lu): Started.\n", (unsigned long)pthread_self());
 	sleep(3);
 	printf("Canceler thread: Sending cancellation request to target thread %lu...\n", (unsigned long)target_tid);

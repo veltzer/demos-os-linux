@@ -67,7 +67,7 @@ int main() {
 	// CHECK_ASSERT(ret==-1 && errno==EINTR);
 	// }
 	// lets try to access the pointer after the allocated area...
-	char* illegal=((char*)p)+size+5;
+	char* illegal=static_cast<char*>(p)+size+5;
 	*illegal=8;
 	assert((unsigned long)p%getpagesize()==0);
 	if(do_mlock) {

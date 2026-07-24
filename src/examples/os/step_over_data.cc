@@ -43,24 +43,24 @@ sighandler_t old_handler;
  */
 void segv_handler(int sig) {
 	// printf("in segv handler\n");
-	printf("in segv handler: ptr=%p, offset is %ld\n", (void*)ptr, long(ptr)%page_size);
+	printf("in segv handler: ptr=%p, offset is %ld\n", static_cast<void*>(ptr), long(ptr)%page_size);
 	// call the old handler...
 	old_handler(sig);
 }
 
 int main() {
 	page_size=CHECK_NOT_M1(sysconf(_SC_PAGESIZE));
-	printf("page size is %d\n", page_size);
+	printf("page size is %u\n", page_size);
 	my_system("pmap %d", getpid());
-	printf("address of a is %p, look it up above...\n", (void*)&a);
-	printf("address of ptr is %p, look it up above...\n", (void*)&ptr);
-	printf("address of page_size is %p, look it up above...\n", (void*)&page_size);
-	printf("address of old_handler is %p, look it up above...\n", (void*)&old_handler);
+	printf("address of a is %p, look it up above...\n", static_cast<void*>(&a));
+	printf("address of ptr is %p, look it up above...\n", static_cast<void*>(&ptr));
+	printf("address of page_size is %p, look it up above...\n", static_cast<void*>(&page_size));
+	printf("address of old_handler is %p, look it up above...\n", static_cast<void*>(&old_handler));
 	waitkey(NULL);
 	// lets install our own SIGSEGV signal handler so that we could print the address we
 	// failed at...
 	old_handler=signal_register_handler_signal(SIGSEGV, segv_handler);
-	ptr=(char*)&a;
+	ptr=reinterpret_cast<char*>(&a);
 	// the next line is really needed. If I leave it out then the seg fault happens much
 	// sooner since I'm stepping over stuff which is needed by the libc library for either
 	// catching the signal or doing printf. I know it is weird that libc puts stuff in

@@ -24,6 +24,7 @@ int main(void) {
 	char* p=(char*)malloc(17);
 	while(1) {
 		printf("trying to access address [%p]\n", (void*)p);
+		// cppcheck-suppress nullPointerOutOfMemory
 		*p=0;
 		// cppcheck-suppress nullPointerArithmeticOutOfMemory
 		p++;

@@ -58,7 +58,7 @@ static int callback(struct dl_phdr_info *info, size_t, void *) {
 			if (got && got_size) {
 				printf("GOT for %s:\n", info->dlpi_name);
 				for(size_t i = 0; i < got_size; ++i) {
-					void *func_addr = (void*)got[i];
+					void *func_addr = reinterpret_cast<void*>(got[i]);
 			if(func_addr==NULL)
 				continue;
 					const char *func_name = get_symbol_name(func_addr);

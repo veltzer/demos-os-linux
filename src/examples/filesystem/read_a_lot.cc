@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 	while(true) {
 		CHECK_NOT_M1(lseek(fd, 0, SEEK_SET));
 		CHECK_INT(read(fd, buffer, len), len);
-		printf("content is %s, counter is %d\n", buffer, counter);
+		printf("content is %s, counter is %u\n", buffer, counter);
 		counter++;
 		CHECK_ZERO(sleep(1));
 	}

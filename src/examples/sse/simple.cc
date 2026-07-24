@@ -38,8 +38,8 @@ typedef union f4vector{
 } f4vector;
 
 int main() {
-	printf("sizeof(v4sf) is %zd\n", sizeof(v4sf));
-	printf("sizeof(f4vector) is %zd\n", sizeof(f4vector));
+	printf("sizeof(v4sf) is %zu\n", sizeof(v4sf));
+	printf("sizeof(f4vector) is %zu\n", sizeof(f4vector));
 	f4vector a, b, c;
 
 	a.f[0] = 1; a.f[1] = 2; a.f[2] = 3; a.f[3] = 4;

@@ -51,7 +51,7 @@ typedef struct _threaddata{
 } threaddata;
 
 static void* worker(void* p) {
-	threaddata* td=(threaddata*)p;
+	threaddata* td=static_cast<threaddata*>(p);
 	measure m;
 	Stat s(40, 100, 40*100/2);
 	measure_init(&m, "", 1);

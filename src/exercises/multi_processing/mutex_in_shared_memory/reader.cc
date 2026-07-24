@@ -34,8 +34,8 @@ int main() {
 	int fd=CHECK_NOT_M1(shm_open("data", O_CREAT | O_RDWR, 0666));
 	const size_t region_size = sizeof(int) + sizeof(pthread_mutex_t);
 	CHECK_NOT_M1(ftruncate(fd, region_size));
-	int* data=(int*)CHECK_NOT_VOIDP(mmap(NULL, region_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0), MAP_FAILED);
-	pthread_mutex_t* lock=(pthread_mutex_t*)(data+1);
+	int* data=static_cast<int*>(CHECK_NOT_VOIDP(mmap(NULL, region_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0), MAP_FAILED));
+	pthread_mutex_t* lock=reinterpret_cast<pthread_mutex_t*>(data+1);
 	int counter=0;
 	measure m;
 	measure_init(&m, "wait for lock", 1);

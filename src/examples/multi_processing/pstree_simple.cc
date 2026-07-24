@@ -54,7 +54,7 @@ static std::map<int, int> parents;
 static std::map<int, std::vector<int> > children;
 
 static void scan_proc(void) {
-	DIR* d=(DIR*)CHECK_NOT_NULL(opendir("/proc"));
+	DIR* d=static_cast<DIR*>(CHECK_NOT_NULL(opendir("/proc")));
 	const struct dirent* ent;
 	while((ent=readdir(d))!=NULL) {
 		if(!isdigit(ent->d_name[0])) {

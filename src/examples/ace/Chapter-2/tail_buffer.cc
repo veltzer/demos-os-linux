@@ -106,7 +106,7 @@ int main() {
 	// Create a Message queue. This one is on the stack so we want
 	// to keep ourselves from returning from main...
 	ACE_Message_Queue<ACE_MT_SYNCH> msg_queue(max_queue);
-	if (thr_mgr.spawn(ACE_THR_FUNC(producer), (void*)&msg_queue, THR_NEW_LWP|THR_DETACHED)==-1) {
+	if (thr_mgr.spawn(ACE_THR_FUNC(producer), static_cast<void*>(&msg_queue), THR_NEW_LWP|THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn"), 1);
 	}
 	// Wait for producer and consumer threads to exit.

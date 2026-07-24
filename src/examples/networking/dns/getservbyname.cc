@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
 	}
 	// getservbyname() - opens the etc.services file and returns the
 	// values for the requested service and protocol.
-	struct servent *serv=(struct servent*)CHECK_NOT_NULL(getservbyname(argv[1], argv[2]));
+	struct servent *serv=static_cast<struct servent*>(CHECK_NOT_NULL(getservbyname(argv[1], argv[2])));
 	// Print it.
 	printf("Name: %s Port: %d Protocol: %s\n", serv->s_name, ntohs(serv->s_port), serv->s_proto);
 	return EXIT_SUCCESS;

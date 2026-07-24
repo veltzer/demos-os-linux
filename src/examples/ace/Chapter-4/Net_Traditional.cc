@@ -40,7 +40,7 @@ int main() {
 	srvr.sin_port=htons(50000);
 	int fd=socket(AF_INET, SOCK_STREAM, 0);
 	assert(fd>=0);
-	assert(connect(fd, (struct sockaddr*)&srvr, sizeof(srvr))==0);
+	assert(connect(fd, reinterpret_cast<struct sockaddr*>(&srvr), sizeof(srvr))==0);
 	char buf[64];
 	memset(buf, 0, sizeof(buf));
 	int res=write(fd, "uptime\n", 7);

@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 	// server.sin_port=htons(port);
 
 	// lets bind...
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 	TRACE("binded successfully");
 
 	// lets create the address
@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 		int bytes=ret;
 		char* pbuf=buf;
 		while(bytes>0) {
-			int written=CHECK_NOT_M1(sendto(sockfd, pbuf, bytes, 0, (struct sockaddr *)&peer_addr, sizeof(peer_addr)));
+			int written=CHECK_NOT_M1(sendto(sockfd, pbuf, bytes, 0, reinterpret_cast<struct sockaddr *>(&peer_addr), sizeof(peer_addr)));
 			TRACE("sendto %d bytes", written);
 			bytes-=written;
 			pbuf+=written;

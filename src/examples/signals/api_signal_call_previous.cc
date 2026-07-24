@@ -38,7 +38,7 @@ static sighandler_t old_handler;
 static void handler(int sig) {
 	counter++;
 	psignal(sig, "handler");
-	fprintf(stderr, "handler: start %d handler, sig is %d, name is %s\n", counter, sig, strsignal(sig));
+	fprintf(stderr, "handler: start %u handler, sig is %d, name is %s\n", counter, sig, strsignal(sig));
 	fprintf(stderr, "handler: calling old handler\n");
 	old_handler(sig);
 	fprintf(stderr, "handler: end\n");

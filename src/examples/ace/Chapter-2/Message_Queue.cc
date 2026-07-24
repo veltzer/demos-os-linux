@@ -80,6 +80,7 @@ int Message_Receiver::copy_payload(ACE_Message_Block *mb, int payload_length) {
 
 int Message_Receiver::handle_input(ACE_HANDLE) {
 	DeviceCommandHeader dch;
+	// cppcheck-suppress knownConditionTrueFalse
 	if (this->read_header(&dch) < 0) {
 		return -1;
 	}
@@ -91,7 +92,7 @@ int Message_Receiver::handle_input(ACE_HANDLE) {
 	ACE_Message_Block *mb;
 	ACE_NEW_RETURN(mb, ACE_Message_Block(dch.length_ + sizeof dch), -1);
 	// Copy the header.
-	mb->copy((const char *)&dch, sizeof dch);
+	mb->copy(reinterpret_cast<const char *>(&dch), sizeof dch);
 	// Copy the payload.
 	if (this->copy_payload(mb, dch.length_) < 0) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Recieve Failure"), -1);

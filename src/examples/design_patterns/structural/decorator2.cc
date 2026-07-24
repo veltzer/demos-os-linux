@@ -35,6 +35,8 @@ class D : public I {
 	I* wrappee;
 public:
 	explicit D( I* inner )			 { wrappee = inner; }
+	D( const D& ) = delete;
+	D& operator=( const D& ) = delete;
 	~D() override						{ delete wrappee; }
 	/*virtual*/ void doIt() override { wrappee->doIt(); }
 };

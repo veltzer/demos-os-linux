@@ -34,6 +34,8 @@ class Decorator : public Widget {						 // 3. "isa" relationship
 	Widget* wid;												 // 4. "hasa" relationship
 public:
 	explicit Decorator( Widget* w ) { wid = w; }
+	Decorator( const Decorator& ) = delete;
+	Decorator& operator=( const Decorator& ) = delete;
 	~Decorator() override { delete wid; }
 	/*virtual*/ void draw() override { wid->draw(); }			// 5. Delegation
 };

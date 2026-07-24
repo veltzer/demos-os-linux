@@ -33,6 +33,8 @@
 
 class SocketHandler: public ACE_Task_Base {
 public:
+	SocketHandler() : value(0) {
+	}
 	void set_value(int ivalue) {
 		value=ivalue;
 		ACE_DEBUG((LM_DEBUG, "(%t) Setting value %d\n", value));

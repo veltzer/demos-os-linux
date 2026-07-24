@@ -30,7 +30,7 @@
 
 int main(int, char** argv) {
 	double(*p_func)(double)=(__typeof__(p_func))dlsym(RTLD_NEXT, argv[1]);
-	printf("p_func is %p\n", (void*)p_func);
+	printf("p_func is %p\n", reinterpret_cast<void*>(p_func));
 	double val=atof(argv[2]);
 	printf("this is just a junk print %lf\n", cos(val));
 	printf("%s(%lf) is %lf\n", argv[1], val, p_func(val));

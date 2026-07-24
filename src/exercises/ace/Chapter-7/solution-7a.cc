@@ -106,9 +106,9 @@ char *StoreName[3];
 
 int main(int argc, char** argv __attribute__((unused))) {
 	ACE_MMAP_Memory_Pool_Options* options[3];
-	StoreName[0]=(char*)"Exercise_7a-store.0";
-	StoreName[1]=(char*)"Exercise_7a-store.1";
-	StoreName[2]=(char*)"Exercise_7a-store.2";
+	StoreName[0]=const_cast<char*>("Exercise_7a-store.0");
+	StoreName[1]=const_cast<char*>("Exercise_7a-store.1");
+	StoreName[2]=const_cast<char*>("Exercise_7a-store.2");
 	if(argc>1) {
 		// Use an existing file
 		ACE_MMAP_Memory_Pool_Options option0(ACE_DEFAULT_BASE_ADDR, ACE_MMAP_Memory_Pool_Options::FIRSTCALL_FIXED);

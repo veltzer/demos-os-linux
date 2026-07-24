@@ -48,7 +48,7 @@ void do_something() {
 
 void my_func(size_t size) {
 	// cppcheck-suppress allocaCalled
-	char* p=(char*)alloca(size);
+	char* p=static_cast<char*>(alloca(size));
 	// this will show that we can use the memory
 	p[0]=0;
 	// this will REALLY allocate and will cause a segfault...
@@ -65,7 +65,7 @@ int main() {
 	CHECK_NOT_M1(setrlimit(RLIMIT_STACK, &rlim));
 	const size_t size=1024*1024;
 	for(unsigned int i=0; i<100; i++) {
-		printf("trying to allocate %zd\n", i*size);
+		printf("trying to allocate %zu\n", i*size);
 		my_func(size*i);
 	}
 	return EXIT_SUCCESS;

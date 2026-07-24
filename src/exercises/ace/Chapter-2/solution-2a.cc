@@ -179,10 +179,10 @@ int main() {
 	if (thr_mgr.spawn(ACE_THR_FUNC(producer), (void *)NULL, THR_NEW_LWP | THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn producer"), 1);
 	}
-	if (thr_mgr.spawn(ACE_THR_FUNC(consumer), (void *)&msg_queue1, THR_NEW_LWP | THR_DETACHED)==-1) {
+	if (thr_mgr.spawn(ACE_THR_FUNC(consumer), static_cast<void*>(&msg_queue1), THR_NEW_LWP | THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn consumer1"), 1);
 	}
-	if (thr_mgr.spawn(ACE_THR_FUNC(consumer), (void *)&msg_queue2, THR_NEW_LWP | THR_DETACHED)==-1) {
+	if (thr_mgr.spawn(ACE_THR_FUNC(consumer), static_cast<void*>(&msg_queue2), THR_NEW_LWP | THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn consumer2"), 1);
 	}
 	// Wait for producer and consumers threads to exit.

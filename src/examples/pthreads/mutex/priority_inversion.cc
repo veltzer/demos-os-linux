@@ -32,7 +32,7 @@
  */
 
 void* worker(void* p) {
-	int num=*(int *)p;
+	int num=*static_cast<int *>(p);
 	TRACE("starting thread %d", num);
 	TRACE("ending thread %d", num);
 	return NULL;

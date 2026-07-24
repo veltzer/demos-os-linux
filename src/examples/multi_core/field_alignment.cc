@@ -59,11 +59,11 @@ void myfunction(char c1, int i1, char c2) {
 }
 
 int main() {
-	printf("sizeof(small)=%zd\n", sizeof(small));
-	printf("sizeof(medium)=%zd\n", sizeof(medium));
-	printf("sizeof(medium2)=%zd\n", sizeof(medium2));
+	printf("sizeof(small)=%zu\n", sizeof(small));
+	printf("sizeof(medium)=%zu\n", sizeof(medium));
+	printf("sizeof(medium2)=%zu\n", sizeof(medium2));
 	for(int i=1; i<200; i++) {
-		const char* p=(const char*)malloc(i);
+		const char* p=static_cast<const char*>(malloc(i));
 		CHECK_ASSERT(p!=NULL);
 		CHECK_ASSERT((unsigned long)p%4==0);
 	}

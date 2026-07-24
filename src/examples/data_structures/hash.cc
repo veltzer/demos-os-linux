@@ -40,7 +40,7 @@ int hash_destroy( void) {
 
 const char* hash_get(const char* key) {
 	ENTRY item;
-	item.key=(char*)key;
+	item.key=const_cast<char*>(key);
 	ENTRY* ritem;
 	int ret=hsearch_r(item, FIND, &ritem, &HTAB);
 	if(ret==0) {
@@ -52,8 +52,8 @@ const char* hash_get(const char* key) {
 
 int hash_put(const char* key, const char* data) {
 	ENTRY item;
-	item.key=(char*)key;
-	item.data=(void*)data;
+	item.key=const_cast<char*>(key);
+	item.data=const_cast<char*>(data);
 	ENTRY* ritem;
 	return hsearch_r(item, ENTER, &ritem, &HTAB);
 }

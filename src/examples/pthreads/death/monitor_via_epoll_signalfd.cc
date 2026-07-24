@@ -80,7 +80,7 @@ typedef struct {
  * sleeps for 5 seconds, and then exits.
  */
 void* target_thread_func(void *arg) {
-	shared_data_t *data = (shared_data_t *)arg;
+	shared_data_t *data = static_cast<shared_data_t*>(arg);
 	pid_t my_tid = gettid();
 	printf("Target thread (TID: %d): Started.\n", my_tid);
 	CHECK_ZERO_ERRNO(pthread_mutex_lock(&data->mutex));

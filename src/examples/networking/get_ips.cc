@@ -50,9 +50,9 @@ int main() {
 			if (id->ifa_addr->sa_family == AF_INET || id->ifa_addr->sa_family == AF_INET6) {
 				void* sin;
 				if (id->ifa_addr->sa_family == AF_INET) {
-					sin = &(((struct sockaddr_in *)(id->ifa_addr))->sin_addr);
+					sin = &(reinterpret_cast<struct sockaddr_in *>(id->ifa_addr)->sin_addr);
 				} else {
-					sin = &(((struct sockaddr_in6 *)(id->ifa_addr))->sin6_addr);
+					sin = &(reinterpret_cast<struct sockaddr_in6 *>(id->ifa_addr)->sin6_addr);
 				}
 				char buf[256];
 				CHECK_NOT_NULL_CONST(inet_ntop(id->ifa_addr->sa_family, sin, buf, sizeof(buf)));

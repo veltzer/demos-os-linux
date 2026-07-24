@@ -55,21 +55,21 @@ typedef struct _thread_data{
 } thread_data;
 
 static void* shared_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	for(unsigned long long i=0; i<td->attempts; i++) {
 		td->shared[td->num]+=1;
 	}
 	return NULL;
 }
 static void* nonshared_worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	for(unsigned long long i=0; i<td->attempts; i++) {
 		td->nonshared[td->num]+=1;
 	}
 	return NULL;
 }
 static void* observer(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	INFO("start thread %d, running on core %d", td->num, sched_getcpu());
 	while(true) {
 		CHECK_NOT_M1(usleep(td->usleep_interval));
@@ -151,7 +151,7 @@ int main(int argc, char** argv) {
 	cpu_set_t* cpu_sets=new cpu_set_t[thread_num];
 	void** rets=new void*[thread_num];
 
-	int *shared=(int*)malloc_one_cache_line();
+	int *shared=static_cast<int*>(malloc_one_cache_line());
 
 	measure m;
 	measure_init(&m, "single attempt", attempts);
@@ -159,7 +159,7 @@ int main(int argc, char** argv) {
 	for(int i=0; i<thread_num; i++) {
 		data[i].num=i;
 		data[i].attempts=attempts;
-		data[i].nonshared=(int*)malloc_one_cache_line();
+		data[i].nonshared=static_cast<int*>(malloc_one_cache_line());
 		data[i].shared=shared;
 		data[i].usleep_interval=usleep_interval;
 		CPU_ZERO(cpu_sets+i);

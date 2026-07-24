@@ -61,7 +61,7 @@ typedef struct _threaddata{
 
 #define CREATE_FUNCS(name, code, code_before, code_after) \
 	void* thread1_ ## name(void* param) { \
-		threaddata* pd=(threaddata*)param; \
+		threaddata* pd=static_cast<threaddata*>(param); \
 		MersenneTwister random(1); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
 			/* Wait for signal */ \
@@ -81,7 +81,7 @@ typedef struct _threaddata{
 		return NULL; \
 	} \
 	void* thread2_ ## name(void* param) { \
-		threaddata* pd=(threaddata*)param; \
+		threaddata* pd=static_cast<threaddata*>(param); \
 		MersenneTwister random(2); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
 			/* Wait for signal */ \
@@ -101,7 +101,7 @@ typedef struct _threaddata{
 		return NULL; \
 	} \
 	void* thread1v_ ## name(void* param) { \
-		threaddata* pd=(threaddata*)param; \
+		threaddata* pd=static_cast<threaddata*>(param); \
 		MersenneTwister random(1); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
 			/* Wait for signal */ \
@@ -121,7 +121,7 @@ typedef struct _threaddata{
 		return NULL; \
 	} \
 	void* thread2v_ ## name(void* param) { \
-		threaddata* pd=(threaddata*)param; \
+		threaddata* pd=static_cast<threaddata*>(param); \
 		MersenneTwister random(2); \
 		for(unsigned int i=0; i<pd->iterations; i++) { \
 			/* Wait for signal */ \

@@ -39,6 +39,8 @@ protected:
 	}
 
 public:
+	ExitHandler() : a(0) {
+	}
 	void setA(int ia) {
 		a=ia;
 	}

@@ -76,7 +76,7 @@ public:
  * function or not.
  */
 void setSecret(void* a, int val, bool has_virt) {
-	int* p=(int*)a;
+	int* p=static_cast<int*>(a);
 	if(has_virt) {
 		p++;
 	}

@@ -113,15 +113,15 @@ int main() {
 	memset(pt3, 0, size);
 	memset(pt4, 0, size);
 	memset(pt5, 0, size);
-	printf("pt1 is %p (%ld)\n", pt1, (unsigned long)pt1 % ps);
-	printf("pt2 is %p (%ld)\n", pt2, (unsigned long)pt2 % ps);
-	printf("pt3 is %p (%ld)\n", pt3, (unsigned long)pt3 % ps);
-	printf("pt4 is %p (%ld)\n", pt4, (unsigned long)pt4 % ps);
-	printf("pt5 is %p (%ld)\n", pt5, (unsigned long)pt5 % ps);
+	printf("pt1 is %p (%lu)\n", pt1, (unsigned long)pt1 % ps);
+	printf("pt2 is %p (%lu)\n", pt2, (unsigned long)pt2 % ps);
+	printf("pt3 is %p (%lu)\n", pt3, (unsigned long)pt3 % ps);
+	printf("pt4 is %p (%lu)\n", pt4, (unsigned long)pt4 % ps);
+	printf("pt5 is %p (%lu)\n", pt5, (unsigned long)pt5 % ps);
 	proc_print_mmap(NULL);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-	const void* ptr=(void*)main;
+	const void* ptr=reinterpret_cast<void*>(main);
 #pragma GCC diagnostic pop
 	printf("ptr is %p\n", ptr);
 	printf("ptr aligned is %p\n", align_address(ptr));

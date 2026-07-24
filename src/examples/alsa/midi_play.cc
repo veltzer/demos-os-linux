@@ -244,7 +244,7 @@ int main(int argc, char** argv) {
 	snd_seq_drain_output(seq_handle);
 	int npfd=snd_seq_poll_descriptors_count(seq_handle, POLLIN);
 	// cppcheck-suppress allocaCalled
-	struct pollfd *pfd=(struct pollfd *)alloca(npfd * sizeof(struct pollfd));
+	struct pollfd *pfd=static_cast<struct pollfd *>(alloca(npfd * sizeof(struct pollfd)));
 	snd_seq_poll_descriptors(seq_handle, pfd, npfd, POLLIN);
 	transpose=0;
 	swing=0;

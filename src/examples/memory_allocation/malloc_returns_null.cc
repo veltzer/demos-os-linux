@@ -30,14 +30,14 @@
  */
 
 int main() {
-	printf("sizeof(size_t) is [%zd]...\n", sizeof(size_t));
+	printf("sizeof(size_t) is [%zu]...\n", sizeof(size_t));
 	unsigned int num_gigs=4;
 	size_t size=num_gigs*1024L*1024L*1024L;
 	unsigned int counter=0;
 	while(true) {
 		CHECK_NOT_NULL(malloc(size));
 		counter+=num_gigs;
-		printf("allocted %d gigs..\n", counter);
+		printf("allocted %u gigs..\n", counter);
 	}
 	return EXIT_SUCCESS;
 }

@@ -26,6 +26,7 @@
 
 int main(void) {
 	int c=1;
+	// cppcheck-suppress knownConditionTrueFalse
 	int d=c==1 ? 4:5;
 	printf("d is %d\n", d);
 	/*

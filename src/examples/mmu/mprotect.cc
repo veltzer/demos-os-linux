@@ -35,17 +35,17 @@ char mystring[100]="asdkjfhasdfkjhasdfsadfsadfasd";
 const char* myotherstring="Hello, World!";
 
 int main() {
-	fprintf(stderr, "mystring is %p\n", (void*)mystring);
-	fprintf(stderr, "myotherstring is %p\n", (const void*)myotherstring);
+	fprintf(stderr, "mystring is %p\n", static_cast<void*>(mystring));
+	fprintf(stderr, "myotherstring is %p\n", static_cast<const void*>(myotherstring));
 	fprintf(stderr, "mypid is %d\n", getpid());
 	// while(true) {
 	// int ret=pause();
 	// CHECK_ASSERT(ret==-1 && errno==EINTR);
 	// }
 	unsigned long modulu=(unsigned long)myotherstring%4096;
-	void* protectme=(void*)(myotherstring-modulu);
+	void* protectme=const_cast<char*>(myotherstring-modulu);
 	mprotect(protectme, 4096, PROT_READ|PROT_WRITE|PROT_EXEC);
-	char* p=(char*)myotherstring;
+	char* p=const_cast<char*>(myotherstring);
 	*(p+4)='e';
 	fprintf(stderr, "myotherstring is %s\n", myotherstring);
 	/*

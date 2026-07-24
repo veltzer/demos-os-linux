@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
 	buffer.ID=currid+1;
 	strcpy(buffer.path, argv[1]);
 	CHECK_NOT_M1(write(fdindex, &buffer, sizeof(buffer)));
-	printf("file %s spooled, JobID: %d\n", buffer.path, buffer.ID);
+	printf("file %s spooled, JobID: %u\n", buffer.path, buffer.ID);
 	CHECK_NOT_M1(lseek(fdindex, 0, SEEK_SET));
 	currid++;
 	CHECK_NOT_M1(write(fdindex, &currid, sizeof(int)));

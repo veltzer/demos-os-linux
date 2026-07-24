@@ -53,6 +53,7 @@ void* func(void*) {
 	measure m;
 	measure_init(&m, name, 1);
 	measure_start(&m);
+	// cppcheck-suppress dangerousTypeCast
 	int* pi=(int*)(buf+diff);
 	for(int j=0; j<1000000; j++) {
 		for(unsigned int i=0; i<num_of_ints; i++) {
@@ -66,7 +67,7 @@ void* func(void*) {
 
 int main() {
 	const unsigned int size_to_alloc=num_of_ints*sizeof(int)+500;
-	buf=(char*)malloc(size_to_alloc);
+	buf=static_cast<char*>(CHECK_NOT_NULL(malloc(size_to_alloc)));
 	for(unsigned int i=0; i<size_to_alloc; i++) {
 		buf[i]=rand()%256;
 	}

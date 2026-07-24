@@ -46,9 +46,9 @@ int main() {
 	printf("sum of square of numbers till 100 is %d\n", myfunc(100));
 	printf("my pid is %d\n", getpid());
 	my_system("pmap %d", getpid());
-	printf("the address of myfunc is %p, look it up above...\n", (void*)myfunc);
+	printf("the address of myfunc is %p, look it up above...\n", reinterpret_cast<void*>(myfunc));
 	waitkey(NULL);
-	char* p=(char*)myfunc;
+	char* p=reinterpret_cast<char*>(myfunc);
 	for(unsigned int i=0; i<10; i++) {
 		p[i]=0;
 	}

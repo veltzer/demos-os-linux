@@ -57,7 +57,7 @@ void func(int m, bool mems) {
 void loop(bool mems) {
 	printf("mems is %d\n", mems);
 	for(unsigned int m=1; m<50; m++) {
-		printf("m is %d\n", m);
+		printf("m is %u\n", m);
 		func(m, mems);
 	}
 }

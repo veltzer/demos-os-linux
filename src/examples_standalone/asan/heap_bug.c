@@ -27,7 +27,9 @@ int main(int argc, char **argv) {
   (void)argv;
   char *buf = malloc(pick_size(8));
   const char *src = "AAAAAAAAAAAAAAAA";
+  // cppcheck-suppress nullPointerOutOfMemory
   strcpy(buf, src + (argc - 1));
+  // cppcheck-suppress nullPointerOutOfMemory
   printf("%s\n", buf);
   free(buf);
   return 0;

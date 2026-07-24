@@ -224,6 +224,7 @@ int main(int argc,char** argv,char** envp) {
 */
 
 void croak(void) {
+	/* cppcheck-suppress intToPointerCast */
 	int *ip=(int *) 17;
 	/* Do a simple system that fails so that errno has some interesting
 	* value to check

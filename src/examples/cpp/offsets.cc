@@ -43,9 +43,11 @@ using namespace std;
 
 class NameEmpty{
 };
+// cppcheck-suppress noConstructor
 class NameOnechar{
 	__attribute__((unused)) char c;
 };
+// cppcheck-suppress noConstructor
 class NameTwochar{
 	__attribute__((unused)) char c;
 	__attribute__((unused)) char c2;
@@ -107,17 +109,33 @@ int main() {
 	cout << "sizeof(NameMultInherit) is " << sizeof(NameMultInherit) << endl;
 	// this shows the use of the CppOffsetOf macro we defined above and that the first
 	// field comes right after the vtable pointer...
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(NameOneVirtOneField,x) is " << CppOffsetOf(NameOneVirtOneField, x) << endl;
 	// now lets see what happends of we have more than one field...
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(NameOneVirtTwoField,y) is " << CppOffsetOf(NameOneVirtTwoField, y) << endl;
 	// the next prints prove that the object is laid out this way: vtable for parent 1, data for
 	// parent 1, vtable for parent 2, data for parent 2, ...
 
+	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(NameFMultInherit,x) is " << CppOffsetOf(NameFMultInherit, x) << endl;
+	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(NameFMultInherit,m) is " << CppOffsetOf(NameFMultInherit, m) << endl;
+	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(NameFMultInherit,y) is " << CppOffsetOf(NameFMultInherit, y) << endl;
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CppOffsetOf(NameFMultInherit,z) is " << CppOffsetOf(NameFMultInherit, z) << endl;
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CastOffsetOf(NameFMultInherit,NameOneVirtOneField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtOneField) << endl;
+	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress intToPointerCast
 	cout << "CastOffsetOf(NameFMultInherit,NameOneVirtTwoField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtTwoField) << endl;
 	return EXIT_SUCCESS;
 }

@@ -77,7 +77,7 @@ int main() {
 	server.sin_port=htons(port);
 
 	// lets bind to the socket to the address
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr*>(&server), sizeof(server)));
 	DEBUG("bind was successful");
 
 	// lets listen in...
@@ -88,7 +88,7 @@ int main() {
 	while(true) {
 		struct sockaddr_in client;
 		socklen_t addrlen;
-		int fd=CHECK_NOT_M1(accept(sockfd, (struct sockaddr *)&client, &addrlen));
+		int fd=CHECK_NOT_M1(accept(sockfd, reinterpret_cast<struct sockaddr*>(&client), &addrlen));
 		DEBUG("accepted fd %d", fd);
 		// send a reply on the file descriptor
 		CHECK_NOT_M1(write(fd, my_response, strlen(my_response)));

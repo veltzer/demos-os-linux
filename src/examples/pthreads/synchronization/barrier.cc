@@ -39,7 +39,7 @@ typedef struct _thread_data{
 } thread_data;
 
 static void* worker(void* p) {
-	thread_data* td=(thread_data*)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	INFO("start thread (%d), on cpu %d", td->num, sched_getcpu());
 	for(int i=0; i<td->attempts; i++) {
 		// block on the barrier

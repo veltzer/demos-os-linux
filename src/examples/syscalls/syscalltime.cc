@@ -81,7 +81,7 @@ void emptyfunc() {
 
 // cppcheck-suppress constParameterCallback
 void* func(void* p) {
-	const thread_data* td=(const thread_data*)p;
+	const thread_data* td=static_cast<const thread_data*>(p);
 	unsigned int count=td->count;
 	char buf[1024];
 	snprintf(buf, sizeof(buf), "%s", td->name);

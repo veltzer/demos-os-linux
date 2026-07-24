@@ -42,7 +42,7 @@ char* host;
 
 void* worker(void* arg) {
 	// get the thread number
-	int threadid=*(int*)arg;
+	int threadid=*static_cast<int*>(arg);
 	// lets open the socket
 	int sockfd=CHECK_NOT_M1(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));
 	printf("%d: opened socket with sockfd %d\n", threadid, sockfd);
@@ -56,7 +56,7 @@ void* worker(void* arg) {
 	server.sin_port=htons(port);
 
 	// lets connect...
-	CHECK_NOT_M1(connect(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(connect(sockfd, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 	printf("%d: connected successfully\n", threadid);
 	unsigned int rbuflen=getpagesize();
 	char* rbuf=new char[rbuflen];
@@ -94,10 +94,10 @@ int main(int argc, char** argv) {
 	port=atoi(argv[4]);
 
 	// print the parameters
-	printf("numthreads is %d\n", numthreads);
-	printf("numrequests is %d\n", numrequests);
+	printf("numthreads is %u\n", numthreads);
+	printf("numrequests is %u\n", numrequests);
 	printf("host is %s\n", host);
-	printf("port is %d\n", port);
+	printf("port is %u\n", port);
 
 	pthread_t* threads=new pthread_t[numthreads];
 	for(unsigned int i=0; i<numthreads; i++) {

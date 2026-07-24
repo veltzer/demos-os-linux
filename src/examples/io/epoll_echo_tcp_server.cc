@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 	const unsigned int port=atoi(argv[1]);
-	printf("contact me using [telnet localhost %d]\n", port);
+	printf("contact me using [telnet localhost %u]\n", port);
 
 	// lets open the socket
 	int sockfd=CHECK_NOT_M1(socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));
@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// lets bind to the socket to the address
-	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
+	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr *>(&server), sizeof(server)));
 	printf("bind was successful\n");
 
 	// lets listen in
@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
 			if(events[n].data.fd==sockfd) {
 				struct sockaddr_in local;
 				socklen_t addrlen;
-				int conn_sock=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
+				int conn_sock=CHECK_NOT_M1(accept4(sockfd, reinterpret_cast<struct sockaddr*>(&local), &addrlen, SOCK_NONBLOCK));
 				struct epoll_event ev;
 				ev.events=EPOLLIN|EPOLLET|EPOLLOUT|EPOLLRDHUP;
 				ev.data.fd=conn_sock;

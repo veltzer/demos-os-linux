@@ -33,7 +33,7 @@ int main() {
 	unsigned long sourcelen=strlen(source);
 	unsigned long destlen=100;
 	unsigned char *dest=new unsigned char[destlen];
-	int code=compress2(dest, &destlen, (const unsigned char *)source, sourcelen, Z_DEFAULT_COMPRESSION);
+	int code=compress2(dest, &destlen, reinterpret_cast<const unsigned char*>(source), sourcelen, Z_DEFAULT_COMPRESSION);
 	if (code!=Z_OK) {
 		printf("compress failed with code [%d]\n", code);
 		return EXIT_FAILURE;

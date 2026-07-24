@@ -75,7 +75,7 @@ unsigned int sum_print_opt() __attribute__((noinline));
 unsigned int sum_print_opt() {
 	unsigned int sum=0;
 	for(unsigned int i=0; i<100; i++) {
-		printf("i is %d\n", i);
+		printf("i is %u\n", i);
 		sum+=i;
 	}
 	return sum;

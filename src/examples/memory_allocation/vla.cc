@@ -61,12 +61,12 @@ void function(int len) {
 		sum+=array[i];
 	}
 	printf("sum is %d\n", sum);
-	printf("array location is %p\n", (void*)array);
+	printf("array location is %p\n", static_cast<void*>(array));
 }
 
 void print_stack_adr() {
 	int a;
-	printf("stack location is %p\n", (void*)&a);
+	printf("stack location is %p\n", static_cast<void*>(&a));
 }
 
 int main() {

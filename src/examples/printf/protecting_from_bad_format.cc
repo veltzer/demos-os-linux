@@ -30,7 +30,7 @@
  */
 
 int main() {
-	char* malicious_string=(char*)CHECK_NOT_NULL(malloc(20));
+	char* malicious_string=static_cast<char*>(CHECK_NOT_NULL(malloc(20)));
 	memset(malicious_string, 0, 20);
 	printf(malicious_string, 45);
 	free(malicious_string);

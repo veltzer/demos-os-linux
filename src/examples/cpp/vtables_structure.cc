@@ -80,6 +80,7 @@ template <class T> void* convert(void(T::*p)()) {
 #ifndef __clang__
 #pragma GCC diagnostic ignored "-Wpmf-conversions"
 #endif
+	// cppcheck-suppress cstyleCast
 	void* ret=(void*)p;
 #pragma GCC diagnostic pop
 	return ret;
@@ -94,12 +95,15 @@ int main() {
 	// show that the first pointer in any object is the v table
 	A obj1, obj2;
 	// this is the vtable
+	// cppcheck-suppress cstyleCast
 	void** vp1=(void**)&obj1;
+	// cppcheck-suppress cstyleCast
 	void** vp2=(void**)&obj2;
 	assert(*vp1==*vp2);
 	// now lets show that the vtable simply has all methods in order
 	// of declaration
 	A a;
+	// cppcheck-suppress cstyleCast
 	void** va=*(void***)&a;
 	const void* vAamethod0=extract_fn_ptr(&B::vamethod0);
 	const void* vAamethod1=extract_fn_ptr(&B::vamethod1);
@@ -112,6 +116,7 @@ int main() {
 	assert(sizeof(B)==8);
 	// show that the vtable of b has same charactersitics as vtable of A...
 	B b;
+	// cppcheck-suppress cstyleCast
 	void** vb=*(void***)&b;
 	const void* vBamethod0=extract_fn_ptr(&B::vamethod0);
 	const void* vBamethod1=extract_fn_ptr(&B::vamethod1);

@@ -27,7 +27,7 @@
  */
 
 int main() {
-	Display* display = (Display*)CHECK_NOT_NULL(XOpenDisplay(NULL));
+	Display* display = static_cast<Display*>(CHECK_NOT_NULL(XOpenDisplay(NULL)));
 	int screen = DefaultScreen(display);
 	Window window = XCreateSimpleWindow(
 		display,

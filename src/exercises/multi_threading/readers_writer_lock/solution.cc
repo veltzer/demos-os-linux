@@ -104,7 +104,7 @@ static unsigned int readers=0;
 static unsigned int writers=0;
 
 void *worker(void *p) {
-	thread_data* td=(thread_data *)p;
+	thread_data* td=static_cast<thread_data*>(p);
 	if(td->reader) {
 		for(unsigned int i=0; i<td->loops; i++) {
 			CHECK_ZERO(mypthread_rwlock_rdlock(td->lock));

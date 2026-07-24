@@ -90,6 +90,7 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// bind to the socket to the address
+	// cppcheck-suppress dangerousTypeCast
 	CHECK_NOT_M1(bind(sockfd, (struct sockaddr *)&server, sizeof(server)));
 
 	// listen
@@ -111,7 +112,7 @@ int main(int argc, char** argv) {
 	map<int, int> timermap;
 
 	// message to the user
-	printf("contact me at host %s port %d\n", host, port);
+	printf("contact me at host %s port %u\n", host, port);
 	// go into the endless service loop
 	struct epoll_event* events=new struct epoll_event[maxevents];
 	while(true) {
@@ -122,6 +123,7 @@ int main(int argc, char** argv) {
 			if(currfd==sockfd) {
 				struct sockaddr_in local;
 				socklen_t addrlen=sizeof(local);
+				// cppcheck-suppress dangerousTypeCast
 				int realfd=CHECK_NOT_M1(accept4(sockfd, (struct sockaddr*)&local, &addrlen, SOCK_NONBLOCK));
 				CircularPipe* cp=new CircularPipe(bufsize);
 				fdbuffermap[realfd]=cp;

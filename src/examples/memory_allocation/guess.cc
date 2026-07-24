@@ -57,17 +57,17 @@ unsigned int round_it(unsigned int size) {
 void mguess_allocated(unsigned int size) {
 	unsigned int real=round_it(size);
 	if(debug) {
-		printf("real is %d,diff is %d, p is %p\n", real, real-size, (void*)p);
+		printf("real is %u,diff is %u, p is %p\n", real, real-size, static_cast<void*>(p));
 	}
 	p+=real;
 }
 
 unsigned int get_block_size(void* p) {
-	unsigned int* u=(unsigned int*)p;
+	unsigned int* u=static_cast<unsigned int*>(p);
 	// cppcheck-suppress nullPointerArithmeticOutOfMemory
 	u-=1;
 	if(debug) {
-		printf("*u is %d (char ptr is %d)\n", *u, *((char*)u));
+		printf("*u is %u (char ptr is %d)\n", *u, *(reinterpret_cast<char*>(u)));
 	}
 #pragma GCC diagnostic ignored "-Wuninitialized"
 #pragma GCC diagnostic ignored "-Warray-bounds"
@@ -76,7 +76,7 @@ unsigned int get_block_size(void* p) {
 
 /* initialize the guessing system */
 void mguess_init(void) {
-	p=(char*)malloc(1);
+	p=static_cast<char*>(malloc(1));
 	mguess_allocated(1);
 }
 
@@ -102,7 +102,7 @@ int main() {
 		unsigned int real_size=round_it(size);
 		mguess_allocated(size);
 		if(debug) {
-			printf("g is %p, p is %p, size is %d, blk_size is %d, real_size is %d\n", g, ptr, size, blk_size, real_size);
+			printf("g is %p, p is %p, size is %u, blk_size is %u, real_size is %u\n", g, ptr, size, blk_size, real_size);
 		}
 		assert(g==ptr);
 		assert(blk_size==real_size);

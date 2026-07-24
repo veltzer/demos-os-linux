@@ -30,7 +30,7 @@
 int main() {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-	printf("address of main is %p\n", (void*)&main);
+	printf("address of main is %p\n", reinterpret_cast<void*>(&main));
 #pragma GCC diagnostic pop
 	return EXIT_SUCCESS;
 }

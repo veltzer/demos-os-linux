@@ -58,10 +58,10 @@ int main(int argc, char** argv) {
 	int choice=atoi(argv[1]);
 	if(choice==0) {
 		printf("going to call a function badly\n");
-		char* f=(char*)func;
+		char* f=reinterpret_cast<char*>(func);
 		f++;
 		f++;
-		void(*g)()=(void(*)())f;
+		void(*g)()=reinterpret_cast<void(*)()>(f);
 		g();
 	}
 	if(choice==1) {
@@ -76,17 +76,17 @@ int main(int argc, char** argv) {
 		printf("going to write on a read only string\n");
 		// cppcheck-suppress stringLiteralWrite
 		const char* hello="hello";
-		char* p=(char*)hello;
+		char* p=const_cast<char*>(hello);
 		p[2]='g';
 	}
 	if(choice==3) {
 		printf("going to write over code\n");
-		char* p=(char*)func;
+		char* p=reinterpret_cast<char*>(func);
 		p[2]='g';
 	}
 	if(choice==4) {
 		printf("going to write a constant in the data segment\n");
-		int* p=(int*)&a;
+		int* p=const_cast<int*>(&a);
 		*p=5;
 		// printf("p is %p\n", p);
 		// proc_print_mmap_self_only();

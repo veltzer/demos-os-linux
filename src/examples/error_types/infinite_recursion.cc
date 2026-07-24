@@ -42,7 +42,7 @@ void show_stack_size() {
 	static unsigned int print_num=0;
 	struct rusage usage;
 	CHECK_NOT_M1(getrusage(RUSAGE_SELF, &usage));
-	printf("print_num is %d\n", print_num);
+	printf("print_num is %u\n", print_num);
 	printf("usage.ru_maxrss=%lu\n", usage.ru_maxrss);
 	// printf("usage.ru_ixrss=%lu\n",usage.ru_ixrss);
 	// printf("usage.ru_idrss=%lu\n",usage.ru_idrss);

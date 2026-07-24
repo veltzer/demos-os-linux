@@ -57,7 +57,7 @@ void do_backtrace() {
 		if(fname_demangled==NULL) {
 			fname_demangled=fname;
 		}
-		printf("%p:(%s+%p) [%p]\n", (void*)pc, fname_demangled, (void*)offset, (void*)pc);
+		printf("%p:(%s+%p) [%p]\n", reinterpret_cast<void*>(pc), fname_demangled, reinterpret_cast<void*>(offset), reinterpret_cast<void*>(pc));
 	}
 }
 

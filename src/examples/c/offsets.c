@@ -42,16 +42,16 @@ typedef struct _mystruct{
 
 int main(void) {
 	// using our own macro
-	printf("field_a is in offset %zd\n", myoffsetof(mystruct, field_a));
-	printf("field_b is in offset %zd\n", myoffsetof(struct _mystruct, field_b));
-	printf("field_c is in offset %zd\n", myoffsetof(mystruct, field_c));
+	printf("field_a is in offset %zu\n", myoffsetof(mystruct, field_a));
+	printf("field_b is in offset %zu\n", myoffsetof(struct _mystruct, field_b));
+	printf("field_c is in offset %zu\n", myoffsetof(mystruct, field_c));
 	// using a libc macro
-	printf("field_a is in offset %zd\n", offsetof(mystruct, field_a));
-	printf("field_b is in offset %zd\n", offsetof(struct _mystruct, field_b));
-	printf("field_c is in offset %zd\n", offsetof(mystruct, field_c));
+	printf("field_a is in offset %zu\n", offsetof(mystruct, field_a));
+	printf("field_b is in offset %zu\n", offsetof(struct _mystruct, field_b));
+	printf("field_c is in offset %zu\n", offsetof(mystruct, field_c));
 	// using a gcc builtin
-	printf("field_a is in offset %zd\n", __builtin_offsetof(mystruct, field_a));
-	printf("field_b is in offset %zd\n", __builtin_offsetof(struct _mystruct, field_b));
-	printf("field_c is in offset %zd\n", __builtin_offsetof(mystruct, field_c));
+	printf("field_a is in offset %zu\n", __builtin_offsetof(mystruct, field_a));
+	printf("field_b is in offset %zu\n", __builtin_offsetof(struct _mystruct, field_b));
+	printf("field_c is in offset %zu\n", __builtin_offsetof(mystruct, field_c));
 	return 0;
 }

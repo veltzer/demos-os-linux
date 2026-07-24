@@ -36,7 +36,7 @@ int main() {
 	FILE* fp=CHECK_NOT_NULL_FILEP(fopen("/etc/motd", "r"));
 	while ((read = getline(&line, &len, fp)) != -1) {
 		printf("Retrieved line of length %zd :\n", read);
-		printf("len is %zd :\n", len);
+		printf("len is %zu :\n", len);
 		printf("%s", line);
 	}
 	if(!feof(fp)) {

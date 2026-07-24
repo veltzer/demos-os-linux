@@ -27,10 +27,13 @@ private:
 	int salary;
 
 public:
+	Employee();
 	void printSalary();
 	void setSalary(int newsalary);
 };
 
+Employee::Employee(): salary(0) {
+}
 void Employee::printSalary() {
 	cout << "Hello" << salary << endl;
 }

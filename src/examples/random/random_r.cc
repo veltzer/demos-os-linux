@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 	for(unsigned int i=0; i<num; i++) {
 		int32_t result;
 		CHECK_NOT_M1(random_r(&data, &result));
-		printf("i=%d, random_r(&data, &result)=%d\n", i, result);
+		printf("i=%u, random_r(&data, &result)=%d\n", i, result);
 	}
 	return EXIT_SUCCESS;
 }

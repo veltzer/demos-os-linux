@@ -55,19 +55,19 @@ int main() {
 	void* arr[num_chunks];
 	// lets allocate the memory
 	for(unsigned int i=0; i<num_chunks; i++) {
-		printf("allocating block number %d\n", i);
+		printf("allocating block number %u\n", i);
 		arr[i]=CHECK_NOT_NULL(malloc(chunk_size));
 		show_vmem();
 	}
 	// lets touch the memory
 	for(unsigned int i=0; i<num_chunks; i++) {
-		printf("touching block number %d\n", i);
+		printf("touching block number %u\n", i);
 		bzero(arr[i], chunk_size);
 		show_vmem();
 	}
 	// lets release the memory
 	for(unsigned int i=0; i<num_chunks; i++) {
-		printf("freeing block number %d\n", i);
+		printf("freeing block number %u\n", i);
 		free(arr[i]);
 		show_vmem();
 	}

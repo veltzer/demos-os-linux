@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
 	unsigned long sum;
 	switch(current_test_type) {
 	case TYPE_MEMSET:
-		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		buf=static_cast<char*>(CHECK_NOT_NULL(malloc(size_to_alloc)));
 		memset(buf, 0, size_to_alloc);
 		/*
 		 * sum=0;
@@ -80,11 +80,11 @@ int main(int argc, char** argv) {
 		 */
 		break;
 	case TYPE_MEMSET1:
-		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		buf=static_cast<char*>(CHECK_NOT_NULL(malloc(size_to_alloc)));
 		memset(buf, 1, size_to_alloc);
 		break;
 	case TYPE_TOUCH:
-		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		buf=static_cast<char*>(CHECK_NOT_NULL(malloc(size_to_alloc)));
 		vbuf=buf;
 		size=size_to_alloc/4096;
 		sum=0;
@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
 		printf("sum is %lu\n", sum);
 		break;
 	case TYPE_MLOCKALL:
-		buf=(char*)CHECK_NOT_NULL(malloc(size_to_alloc));
+		buf=static_cast<char*>(CHECK_NOT_NULL(malloc(size_to_alloc)));
 		CHECK_NOT_M1(mlockall(MCL_CURRENT|MCL_FUTURE));
 		break;
 	case TYPE_NOTSET:
@@ -125,7 +125,7 @@ int main(int argc, char** argv) {
 		}
 		pages-=pages_to_touch;
 		counter++;
-		printf("I touched some memory, %d\n", counter);
+		printf("I touched some memory, %u\n", counter);
 		// sleep
 		sleep(1);
 	}

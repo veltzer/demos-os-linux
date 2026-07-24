@@ -91,16 +91,16 @@ int main(int argc, char** argv) {
 		ACE_OS::exit(EXIT_FAILURE);
 	}
 	int port=ACE_OS::atoi(argv[1]);
-	if (argc > 1) {
+	if (argc > 2) {
 		int value=ACE_OS::atoi(argv[2]);
 		if (value > FinalDelay) {
 			FinalDelay=value;
 		}
 	}
-	Client client1((char *)(ACE_LOCALHOST), port);
+	Client client1(const_cast<char *>(ACE_LOCALHOST), port);
 
 	port++;
-	Client client2((char *)(ACE_LOCALHOST), port);
+	Client client2(const_cast<char *>(ACE_LOCALHOST), port);
 
 	client1.connect_to_server();
 	client2.connect_to_server();

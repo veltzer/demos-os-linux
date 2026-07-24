@@ -34,7 +34,7 @@
 
 static void handler(int sig, siginfo_t *si, void* unused __attribute__((unused))) {
 	printf("got signal %s\n", strsignal(sig));
-	printf("si is %p\n", (void*)si);
+	printf("si is %p\n", static_cast<void*>(si));
 	printf("Got SIGSEGV at address: 0x%lx\n", (long) si->si_addr);
 	psiginfo(si, "This is a message\n");
 	exit(EXIT_FAILURE);
@@ -81,7 +81,7 @@ int main() {
 	if(handle_sigv) {
 		signal_register_handler_sigaction(SIGSEGV, handler, 0);
 	}
-	char* buffer=(char*)mymalloc(10, 1);
+	char* buffer=const_cast<char*>(static_cast<const char*>(mymalloc(10, 1)));
 
 	TRACE("before trying to read the memory");
 	int sum=do_read(buffer);

@@ -56,8 +56,8 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "%s: megs must be divisible by intervals...\n", argv[0]);
 		return EXIT_FAILURE;
 	}
-	char* buf=(char*)malloc(bufsize);
-	char* buf2=(char*)malloc(bufsize);
+	char* buf=static_cast<char*>(CHECK_NOT_NULL(malloc(bufsize)));
+	char* buf2=static_cast<char*>(CHECK_NOT_NULL(malloc(bufsize)));
 	char* ptr=buf;
 	char* ptr2=buf;
 

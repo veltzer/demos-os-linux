@@ -129,10 +129,10 @@ int main() {
 	 */
 	// third way: two threads in the background
 	ACE_Message_Queue<ACE_MT_SYNCH> msg_queue(max_queue);
-	if(thr_mgr.spawn(ACE_THR_FUNC(producer), (void*)&msg_queue, THR_NEW_LWP|THR_DETACHED)==-1) {
+	if(thr_mgr.spawn(ACE_THR_FUNC(producer), static_cast<void*>(&msg_queue), THR_NEW_LWP|THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn"), 1);
 	}
-	if(thr_mgr.spawn(ACE_THR_FUNC(consumer), (void*)&msg_queue, THR_NEW_LWP|THR_DETACHED)==-1) {
+	if(thr_mgr.spawn(ACE_THR_FUNC(consumer), static_cast<void*>(&msg_queue), THR_NEW_LWP|THR_DETACHED)==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn"), 1);
 	}
 	thr_mgr.wait();

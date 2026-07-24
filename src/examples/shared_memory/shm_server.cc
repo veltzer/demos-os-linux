@@ -51,8 +51,8 @@ int main() {
 	int shmid=CHECK_NOT_M1(shmget(key, sizeof(shared_data), IPC_CREAT|IPC_EXCL|0666));
 	printf("shmid is %d\n", shmid);
 	void* ptr=CHECK_NOT_VOIDP(shmat(shmid, NULL, 0), (void*)-1);
-	shared_data* dateptr=(shared_data*)ptr;
-	printf("pointer is %p\n", (void*)dateptr);
+	shared_data* dateptr=static_cast<shared_data*>(ptr);
+	printf("pointer is %p\n", static_cast<void*>(dateptr));
 	int count=0;
 	printf("shared memory was created, you can now run the client\n");
 	printf("you can see info about the shared memory using \"ipcs -m -i %d\"\n", shmid);

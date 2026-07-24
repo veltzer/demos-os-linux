@@ -68,13 +68,13 @@ int main() {
 		free_pointer=p;
 		break;
 	case METHOD_MALLOC:
-		mp=(char*)CHECK_NOT_NULL(malloc(size));
+		mp=static_cast<char*>(CHECK_NOT_NULL(malloc(size)));
 		CHECK_NOT_NULL(malloc(10));
 		// mincore_pointer=mp+pagesize-(unsigned long)mp%pagesize;
 		mincore_pointer=mp-(unsigned long)mp%pagesize;
 		// memset_size=size-(unsigned long)mp%pagesize;
 		memset_size=size+pagesize;
-		free_pointer=(void*)mp;
+		free_pointer=static_cast<void*>(mp);
 		break;
 	case METHOD_MMAP:
 		break;

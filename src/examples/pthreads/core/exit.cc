@@ -33,7 +33,7 @@
 void* PrintHello(void* threadid) {
 	const int *id_ptr;
 	int taskid;
-	id_ptr=(const int *) threadid;
+	id_ptr=static_cast<const int *>(threadid);
 	taskid=*id_ptr;
 	printf("Thread %d says hello\n", taskid);
 	return (void*)((long)taskid*2);
@@ -51,7 +51,7 @@ int main() {
 	}
 	// start all threads giving each it's input
 	for(int i=0; i<NUM_THREADS; i++) {
-		CHECK_ZERO_ERRNO(pthread_create(&threads[i], NULL, PrintHello, (void*)(t+i)));
+		CHECK_ZERO_ERRNO(pthread_create(&threads[i], NULL, PrintHello, static_cast<void*>(t+i)));
 	}
 	// wait for all threads to finish, order does not matter
 	for(int i=0; i<NUM_THREADS; i++) {

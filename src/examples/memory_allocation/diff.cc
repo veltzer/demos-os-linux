@@ -45,7 +45,7 @@ void* guess_next_address(void* prev, unsigned int size) {
 		}
 	}
 	size+=8-size%8;
-	char* cprev=(char*)prev;
+	char* cprev=static_cast<char*>(prev);
 	cprev+=size;
 	return cprev;
 }

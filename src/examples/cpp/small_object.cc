@@ -39,38 +39,47 @@ using namespace std;
 
 class Empty{
 };
+// cppcheck-suppress noConstructor
 class Char{
 	char c;
 };
+// cppcheck-suppress noConstructor
 class Short{
 	short s;
 };
+// cppcheck-suppress noConstructor
 class TwoChars{
 	char c1;
 	char c2;
 };
+// cppcheck-suppress noConstructor
 class CharInt{
 	char c;
 	int i;
 };
+// cppcheck-suppress noConstructor
 class IntChar{
 	int i;
 	char c;
 };
+// cppcheck-suppress noConstructor
 class CharIntChar{
 	char c1;
 	int i;
 	char c2;
 };
+// cppcheck-suppress noConstructor
 class CharCharInt{
 	char c1;
 	char c2;
 	int i;
 };
+// cppcheck-suppress noConstructor
 class ShortInt{
 	short s;
 	int i;
 };
+// cppcheck-suppress noConstructor
 class IntShort{
 	int i;
 	short s;

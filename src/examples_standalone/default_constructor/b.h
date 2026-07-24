@@ -18,6 +18,7 @@
 
 #include <firstinclude.h>
 
+// cppcheck-suppress noConstructor
 class B {
 	private:
 		int i;

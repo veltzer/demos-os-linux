@@ -38,7 +38,7 @@
 int main(void) {
 	register unsigned int i;
 	for(i=0; i<100; i++) {
-		printf("i is %d\n", i);
+		printf("i is %u\n", i);
 		int reg;
 		__asm__ volatile("movl %%ebx, %0;" : "=r" (reg));
 		printf("reg is %d\n", reg);
