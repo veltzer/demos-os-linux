@@ -35,10 +35,10 @@ typedef struct _mq {
 } *mq;
 
 int mq_init(mq* mqp, const int maxsize) {
-	mq m=(mq)malloc(sizeof(struct _mq));
+	mq m=(mq)CHECK_NOT_NULL(malloc(sizeof(struct _mq)));
 	CHECK_ZERO_ERRNO(pthread_mutex_init(&m->mutex, NULL));
 	CHECK_ZERO_ERRNO(pthread_cond_init(&m->cond, NULL));
-	m->messages=(void**)malloc(maxsize*sizeof(void*));
+	m->messages=(void**)CHECK_NOT_NULL(malloc(maxsize*sizeof(void*)));
 	m->maxsize=maxsize;
 	m->size=0;
 	*mqp=m;

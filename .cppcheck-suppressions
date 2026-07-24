@@ -1,9 +1,0 @@
-cstyleCast
-knownConditionTrueFalse
-invalidPrintfArgType_sint
-noConstructor
-nullPointerOutOfMemory
-noCopyConstructor
-noOperatorEq
-dangerousTypeCast
-intToPointerCast

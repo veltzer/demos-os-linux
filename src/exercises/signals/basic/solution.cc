@@ -61,7 +61,7 @@ void critical1() {
 		bufsize=CHECK_NOT_M1(read(fdindex, &buffer, sizeof(buffer)));
 	}
 	if (buffer.ID > 0) {
-		printf("Now printing job: %d file: %s\n", buffer.ID, buffer.path);
+		printf("Now printing job: %u file: %s\n", buffer.ID, buffer.path);
 	}
 }
 
@@ -76,7 +76,7 @@ void sigint(int sig __attribute__((unused))) {
 	char pathname[MAXPATHLEN];
 	struct stat statbuf;
 	char strPID[10];
-	DIR* sdir=(DIR*)CHECK_NOT_NULL(opendir("/tmp"));
+	DIR* sdir=CHECK_NOT_NULL(opendir("/tmp"));
 	if (cri1done && !cri2done) {
 		critical2();
 	}

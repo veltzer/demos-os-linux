@@ -98,7 +98,7 @@ int main(int argc, char** argv) {
 		smfd,	/* fd: our file descriptor */
 		0	/* offset: from the begining of the file */
 		), MAP_FAILED);
-	int* iptr=(int*)ptr;
+	int* iptr=static_cast<int*>(ptr);
 	// lets fork...
 	const int num_processes=(argc-1)/2;
 	int process_num=0;

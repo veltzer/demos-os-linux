@@ -37,7 +37,7 @@ static void __attribute__((constructor)) init(void) {
 	// handle=dlopen("/lib/libm-2.12.1.so", RTLD_LAZY);
 	// handle=CHECK_NOT_NULL(dlopen(NULL, RTLD_LAZY | RTLD_NEXT));
 	void* sym=CHECK_NOT_NULL(dlsym(RTLD_NEXT, "sin"));
-	psin=(double(*)(double))sym;
+	psin=reinterpret_cast<double(*)(double)>(sym);
 	TRACE("end");
 }
 

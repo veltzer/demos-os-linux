@@ -42,7 +42,7 @@ static void* (*orig_malloc)(size_t)=NULL;
 
 void malloc_setup(void) {
 	if(orig_malloc==NULL) {
-		orig_malloc=(void* (*)(size_t))dlsym(RTLD_NEXT, "malloc");
+		orig_malloc=reinterpret_cast<void* (*)(size_t)>(dlsym(RTLD_NEXT, "malloc"));
 		assert(orig_malloc!=NULL);
 	}
 }
@@ -62,7 +62,7 @@ void* malloc(size_t size) {
 	 * the above 'malloc_setup' function
 	 */
 	if(orig_malloc==NULL) {
-		orig_malloc=(void* (*)(size_t))dlsym(RTLD_NEXT, "malloc");
+		orig_malloc=reinterpret_cast<void* (*)(size_t)>(dlsym(RTLD_NEXT, "malloc"));
 		assert(orig_malloc!=NULL);
 	}
 	assert(malloc_allowed);

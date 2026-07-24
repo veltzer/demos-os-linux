@@ -89,6 +89,7 @@ void * kill_memalign(size_t alignment, size_t size, const void *caller) {
 */
 
 void croak(void) {
+	// cppcheck-suppress intToPointerCast
 	int *ip=(int *) 17;
 	char * p=sbrk(0);
 

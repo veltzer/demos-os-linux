@@ -31,7 +31,7 @@
 void* PrintHello(void *threadid) {
 	const int *id_ptr;
 	int taskid;
-	id_ptr=(const int *) threadid;
+	id_ptr=static_cast<const int *>(threadid);
 	int stime;
 	stime=1+(int) (10.0*rand()/(RAND_MAX+1.0));
 	CHECK_ZERO(sleep(stime));
@@ -48,7 +48,7 @@ int main() {
 	srand(time(NULL));
 	for(int i=0; i<NUM_THREADS; i++) {
 		t[i]=i;
-		CHECK_ZERO_ERRNO(pthread_create(&threads[i], NULL, PrintHello, (void *) &t[i]));
+		CHECK_ZERO_ERRNO(pthread_create(&threads[i], NULL, PrintHello, &t[i]));
 	}
 	for(int i=0; i<NUM_THREADS; i++) {
 		int stime=1+(int) (10.0*rand()/(RAND_MAX+1.0));

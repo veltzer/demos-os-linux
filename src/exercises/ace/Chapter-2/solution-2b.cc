@@ -56,12 +56,12 @@ public:
 		// ACE_DEBUG ((LM_DEBUG, "Timer timed out at %d! arg=%d\n", tv.sec(), argument));
 		// Activate the consumer
 		if (argument==1) {
-			if (thr_mgr.spawn(ACE_THR_FUNC(consumer), (void *)&msg_queue1, THR_NEW_LWP | THR_DETACHED)==-1) {
+			if (thr_mgr.spawn(ACE_THR_FUNC(consumer), reinterpret_cast<void *>(&msg_queue1), THR_NEW_LWP | THR_DETACHED)==-1) {
 				ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn consumer1"), 1);
 			}
 			return 1;
 		} else {
-			if (thr_mgr.spawn(ACE_THR_FUNC(consumer), (void *)&msg_queue2, THR_NEW_LWP | THR_DETACHED)==-1) {
+			if (thr_mgr.spawn(ACE_THR_FUNC(consumer), reinterpret_cast<void *>(&msg_queue2), THR_NEW_LWP | THR_DETACHED)==-1) {
 				ACE_ERROR_RETURN((LM_ERROR, "%p\n", "spawn consumer2"), 1);
 			}
 			return 1;
@@ -135,9 +135,9 @@ static void *producer(void*) {
 				ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 			}
 			// Specify queue1 in handle_timeout()
-			reactor.schedule_timer(th, (const void *)1, ACE_Time_Value(AbsoluteDelay + 0.1));
+			reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay + 0.1));
 			// Specify queue2 in handle_timeout()
-			reactor.schedule_timer(th, (const void *)2, ACE_Time_Value(AbsoluteDelay + 0.2));
+			reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(2)), ACE_Time_Value(AbsoluteDelay + 0.2));
 			break;
 		} else {
 			int timer_id;
@@ -158,7 +158,7 @@ static void *producer(void*) {
 				}
 				// Specify queue1 in handle_timeout()
 				// cppcheck-suppress unreadVariable
-				timer_id=reactor.schedule_timer(th, (const void *)1, ACE_Time_Value(AbsoluteDelay));
+				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case1: timer id=%d\n", timer_id));
 				break;
 
@@ -169,7 +169,7 @@ static void *producer(void*) {
 				}
 				// Specify queue1 in handle_timeout()
 				// cppcheck-suppress unreadVariable
-				timer_id=reactor.schedule_timer(th, (const void *)1, ACE_Time_Value(AbsoluteDelay));
+				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case2: timer id=%d\n", timer_id));
 				break;
 
@@ -180,7 +180,7 @@ static void *producer(void*) {
 				}
 				// Specify queue2 in handle_timeout()
 				// cppcheck-suppress unreadVariable
-				timer_id=reactor.schedule_timer(th, (const void *)2, ACE_Time_Value(AbsoluteDelay));
+				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(2)), ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case3: timer id=%d\n", timer_id));
 				break;
 
@@ -190,7 +190,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue2 in handle_timeout()
-				timer_id=reactor.schedule_timer(th, (const void *)2, ACE_Time_Value(AbsoluteDelay));
+				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(2)), ACE_Time_Value(AbsoluteDelay));
 				ACE_DEBUG((LM_DEBUG, "case4: timer id=%d\n", timer_id));
 				break;
 
