@@ -49,7 +49,7 @@ int main() {
 			cout << i << ": " << this_thread::get_id() << " " << endl;
 		}));
 	}
-	for(auto& fut:futures) {
+	for(auto& fut : futures) {
 		fut.get();
 	}
 }

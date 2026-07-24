@@ -40,7 +40,7 @@ class Rectangle: public Shape {
 			cout << "give me b" << endl;
 			cin >> b;
 		}
-		virtual void print_me() const override {
+		void print_me() const override {
 			cout << "Rectangle" << endl;
 			cout << "a is " << a << endl;
 			cout << "b is " << b << endl;
