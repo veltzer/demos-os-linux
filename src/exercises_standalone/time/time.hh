@@ -36,5 +36,5 @@ public:
 	int getSeconds();
 
 private:
-	int m_hours, m_minutes, m_seconds;
+	int m_hours{0}, m_minutes{0}, m_seconds{0};
 };

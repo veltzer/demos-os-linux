@@ -125,7 +125,7 @@ int main(void) {
 		}
 		num_files++;
 	}
-	char** arr=(char**)malloc(sizeof(char*)*num_files);
+	char** arr=(char**)CHECK_NOT_NULL(malloc(sizeof(char*)*num_files));
 	int i=0;
 	// this function does not have an error state
 	rewinddir(d);
@@ -135,7 +135,7 @@ int main(void) {
 		if(hidedots && dircontent->d_name[0]=='.') {
 			continue;
 		}
-		arr[i]=(char*)malloc(256);
+		arr[i]=(char*)CHECK_NOT_NULL(malloc(256));
 		strncpy(arr[i], dircontent->d_name, 256);
 		struct stat buf;
 		CHECK_NOT_M1(lstat(arr[i], &buf));

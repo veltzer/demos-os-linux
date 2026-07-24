@@ -47,6 +47,7 @@ void *worker(void *p) {
 		}
 	} else {
 		int counter=0;
+		// cppcheck-suppress knownConditionTrueFalse
 		while(!over) {
 			// generate a fake message
 			char* msg=(char*)malloc(256);

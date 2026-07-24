@@ -35,7 +35,7 @@
 void cut_first_line(const char* filename, FILE* output) {
 	FILE* input=CHECK_NOT_NULL_FILEP(fopen(filename, "r"));
 	size_t n=1024;
-	char* lineptr=(char*)malloc(n);
+	char* lineptr=static_cast<char*>(CHECK_NOT_NULL(malloc(n)));
 	int active=0;
 	int ret=CHECK_NOT_M1(getline(&lineptr, &n, input));
 	while(ret>0) {

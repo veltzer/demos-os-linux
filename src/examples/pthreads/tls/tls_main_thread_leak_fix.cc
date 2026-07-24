@@ -38,7 +38,7 @@ static void delfunc(int exitstatus __attribute__((unused)), void* ptr) {
 
 static int my_pthread_setspecific(pthread_key_t key, const void* value) {
 	if(pthread_main_np()) {
-		CHECK_ZERO(on_exit(delfunc, (void*)value));
+		CHECK_ZERO(on_exit(delfunc, const_cast<void*>(value)));
 	}
 	return pthread_setspecific(key, value);
 }
@@ -54,7 +54,7 @@ static void id_dealloc(void* ptr) {
 static void* worker(void* arg) {
 	CHECK_ZERO_ERRNO(my_pthread_setspecific(key_myid, arg));
 	// now lets pull our id
-	int myid=*(int*)CHECK_NOT_NULL(pthread_getspecific(key_myid));
+	int myid=*static_cast<int*>(CHECK_NOT_NULL(pthread_getspecific(key_myid)));
 	TRACE("my id is %d", myid);
 	return NULL;
 }
@@ -63,7 +63,7 @@ static void run_threads() {
 	const unsigned int num=4;
 	pthread_t threads[num];
 	for(unsigned int i=0; i<num; i++) {
-		int* p=(int*)malloc(sizeof(int));
+		int* p=static_cast<int*>(CHECK_NOT_NULL(malloc(sizeof(int))));
 		*p=i;
 		CHECK_ZERO_ERRNO(pthread_create(threads + i, NULL, worker, p));
 	}
@@ -74,7 +74,7 @@ static void run_threads() {
 
 int main() {
 	CHECK_ZERO_ERRNO(pthread_key_create(&key_myid, id_dealloc));
-	int* p=(int*)malloc(sizeof(int));
+	int* p=static_cast<int*>(CHECK_NOT_NULL(malloc(sizeof(int))));
 	*p=1000;
 	worker(p);
 	run_threads();

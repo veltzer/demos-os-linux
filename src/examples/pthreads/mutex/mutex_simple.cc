@@ -32,7 +32,7 @@
 static pthread_mutex_t mylock;
 
 static void* worker(void* p) {
-	unsigned int id=*(unsigned int*)p;
+	unsigned int id=*static_cast<unsigned int*>(p);
 	int counter=0;
 	while(counter<10) {
 		TRACE("%d before lock", id);
@@ -40,6 +40,7 @@ static void* worker(void* p) {
 		CHECK_ZERO(sleep(1));
 		// this simulates a bug. see what this thread is doing using
 		// strace on the process or thread id or pstack(1)
+		// cppcheck-suppress knownConditionTrueFalse
 		if(id==1 && counter==10) {
 			CHECK_ZERO(sleep(1000));
 		}
