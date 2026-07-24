@@ -1,1 +1,32 @@
-filter=-whitespace/tab,-whitespace/comments,-whitespace/indent,-whitespace/operators,-whitespace/semicolon,-whitespace/line_length,-whitespace/braces,-whitespace/parens,-whitespace/comma,-whitespace/blank_line,-whitespace/newline,-readability/casting,-readability/braces,-readability/multiline_comment,-runtime/int,-runtime/arrays,-runtime/printf,-runtime/threadsafe_fn,-runtime/casting,-build/include_subdir,-build/namespaces,-build/include_what_you_use,-build/include_order,-build/include,-build/header_guard
+# Whitespace formatting rules
+filter=-whitespace/tab
+filter=-whitespace/comments
+filter=-whitespace/indent
+filter=-whitespace/operators
+filter=-whitespace/semicolon
+filter=-whitespace/line_length
+filter=-whitespace/braces
+filter=-whitespace/parens
+filter=-whitespace/comma
+filter=-whitespace/blank_line
+filter=-whitespace/newline
+
+# Readability rules
+filter=-readability/casting
+filter=-readability/braces
+filter=-readability/multiline_comment
+
+# Runtime rules
+filter=-runtime/int
+filter=-runtime/arrays
+filter=-runtime/printf
+filter=-runtime/threadsafe_fn
+filter=-runtime/casting
+
+# Build & include rules
+filter=-build/include_subdir
+filter=-build/namespaces
+filter=-build/include_what_you_use
+filter=-build/include_order
+filter=-build/include
+filter=-build/header_guard
