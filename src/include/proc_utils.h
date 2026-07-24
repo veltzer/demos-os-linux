@@ -205,7 +205,7 @@ static inline void set_thread_name_proc(char* name) {
  * get the current stack from /proc
  */
 static inline void* proc_get_start_stack(void) {
-	// TODO
+	// TODO(mark.veltzer)
 	return (void*)NULL;
 }
 

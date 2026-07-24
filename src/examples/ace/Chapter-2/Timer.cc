@@ -33,7 +33,7 @@
  */
 
 const int NUMBER_TIMERS=10;
-volatile static bool done=false;
+static volatile bool done=false;
 static int count=0;
 static int last_arrived=-1;
 

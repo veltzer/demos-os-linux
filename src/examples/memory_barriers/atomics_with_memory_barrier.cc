@@ -47,7 +47,7 @@ void write_x_then_y()
 
 void read_x_then_y()
 {
-	while (!x.load(memory_order_seq_cst)); // Wait for x to be true
+	while (!x.load(memory_order_seq_cst)) {} // Wait for x to be true
 	if (y.load(memory_order_seq_cst)) { // Then check y
 		++z;
 	}
@@ -55,7 +55,7 @@ void read_x_then_y()
 
 void read_y_then_x()
 {
-	while (!y.load(memory_order_seq_cst)); // Wait for y to be true
+	while (!y.load(memory_order_seq_cst)) {} // Wait for y to be true
 	if (x.load(memory_order_seq_cst)) { // Then check x
 		++z;
 	}

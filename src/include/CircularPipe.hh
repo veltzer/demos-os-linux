@@ -42,7 +42,7 @@ private:
 	size_t pos_write;
 
 public:
-	inline CircularPipe(const size_t isize) {
+	explicit inline CircularPipe(const size_t isize) {
 		size=isize;
 		buf=(char*)CHECK_NOT_NULL(malloc(size));
 		pos_read=0;

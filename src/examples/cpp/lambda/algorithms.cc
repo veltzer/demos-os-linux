@@ -37,7 +37,7 @@ int main() {
 		return x*x*12+x*4+7;
 	};
 	transform(v.begin(), v.end(), v.begin(), f);
-	for(int num: v) {
+	for(int num : v) {
 		cout << num << " ";
 	}
 	cout << endl;

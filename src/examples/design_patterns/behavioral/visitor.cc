@@ -31,7 +31,7 @@ class Visitor { public:
 class Component {
 	int value;
 public:
-	Component( int val )	 { value = val; }
+	explicit Component( int val )	 { value = val; }
 	virtual void traverse() { cout << value << " "; }
 	// Having add() here sacrifices safety, but it supports transparency
 	// virtual void add( Component* ) { }

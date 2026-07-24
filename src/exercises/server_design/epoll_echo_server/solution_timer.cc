@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
 				const int buflen=1024;
 				char buffer[buflen];
 				ssize_t len=CHECK_NOT_M1(read(realfd, buffer, buflen));
-				// TODO: handle short writes!
+				// TODO(mark.veltzer): handle short writes!
 				CHECK_INT(write(realfd, buffer, len), len);
 				// reset the timer on the timerfd
 				setup_timer(timerfd);

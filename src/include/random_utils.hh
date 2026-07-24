@@ -45,7 +45,7 @@ class MersenneTwister{
 	int m_index;
 
 public:
-	MersenneTwister(unsigned int seed);
+	explicit MersenneTwister(unsigned int seed);
 	// Declare noinline so that the function call acts as a compiler barrier:
 	unsigned int integer() __attribute__((noinline));
 };

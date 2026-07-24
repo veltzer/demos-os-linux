@@ -35,7 +35,7 @@ class Rectangle: public Shape {
 		double a, b;
 	public:
 		Rectangle(double ia, double ib):a(ia), b(ib) {}
-		virtual void print_me() const override {
+		void print_me() const override {
 			cout << "Rectangle" << endl;
 			cout << "a is " << a << endl;
 			cout << "b is " << b << endl;
