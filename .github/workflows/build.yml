@@ -38,7 +38,7 @@ jobs:
         restore-keys: |
           rsconstruct-${{ runner.os }}-
     - name: install language tools
-      run: rsconstruct tools install --yes
+      run: rsconstruct tools install
     - name: build
       # linux_module is excluded in CI: it builds against /lib/modules/$(uname -r)/build
       # which doesn't exist inside a container (no matching kernel headers for the host's
