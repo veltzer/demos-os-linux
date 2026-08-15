@@ -33,7 +33,7 @@ using namespace std;
  * References:
  * http://stackoverflow.com/questions/3209918/how-to-implement-an-exchanger-rendezvous-pattern-in-c
  *
- * EXTRA_LINK_FLAGS_AFTER=-lboost_thread -lboost_system -lpthread
+ * EXTRA_LINK_FLAGS_AFTER=-lboost_thread -lpthread
  */
 
 class Worker1{
