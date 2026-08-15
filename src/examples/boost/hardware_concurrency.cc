@@ -26,7 +26,7 @@ using namespace std;
 /*
  * A simple boost threads app
  *
- * EXTRA_LINK_FLAGS_AFTER=-lboost_thread -lboost_system
+ * EXTRA_LINK_FLAGS_AFTER=-lboost_thread
  */
 
 int main() {

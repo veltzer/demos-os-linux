@@ -30,4 +30,10 @@ RUN echo "cachebust=${CACHEBUST}" \
 
 WORKDIR /build
 COPY rsconstruct.toml ./
-RUN rsconstruct tools install-deps
+# install-deps installs the [dependencies] section; install installs the
+# external tools the enabled processors need (clang, ruff, mypy, mdl, ...).
+# Both are required: baking the tools into the image keeps the build job from
+# having to install them on every run, and means the job no longer depends on
+# the runtime binary's prompting behaviour.
+RUN rsconstruct tools install-deps \
+    && rsconstruct tools install

@@ -9,9 +9,38 @@ permissions:
   pages: write
   id-token: write
   packages: read
+  # needed by wait-for-image to query the image workflow's run status
+  actions: read
 
 jobs:
+  # The container image below is resolved when this job starts, so if the same
+  # push also rebuilds the image (image.yml triggers on Dockerfile /
+  # rsconstruct.toml), we would silently run against the previous `latest` and
+  # get a stale rsconstruct. Wait for that run to publish before pulling.
+  wait-for-image:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: wait for the image workflow on this commit
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        for _ in $(seq 60); do
+          status=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow image.yml \
+            --commit "$GITHUB_SHA" --json status,conclusion \
+            --jq '.[0] | select(.) | .status + " " + (.conclusion // "")')
+          # No image run for this commit: the image is unchanged, `latest` is current.
+          [ -z "$status" ] && echo "no image run for this commit" && exit 0
+          case "$status" in
+            "completed success"*) echo "image published" && exit 0 ;;
+            completed*) echo "image run did not succeed: $status" && exit 1 ;;
+          esac
+          echo "image run in progress ($status), waiting..."
+          sleep 15
+        done
+        echo "timed out waiting for the image workflow" && exit 1
+
   build:
+    needs: wait-for-image
     runs-on: ubuntu-24.04
     container:
       image: ghcr.io/veltzer/demos-os-linux-ci:latest
