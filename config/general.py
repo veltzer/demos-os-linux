@@ -1,12 +1,12 @@
 """ general config """
 
 import datetime
-import subprocess
 import os
 import socket
+import subprocess
 
 general_current_folder = os.path.basename(os.getcwd())
-general_current_year = datetime.datetime.now().year
+general_current_year = datetime.datetime.now(datetime.timezone.utc).year
 general_homedir = os.path.expanduser("~")
 # d.general_hostname=subprocess.check_output(["hostname"]).decode().rstrip()
 general_hostname = socket.gethostname()

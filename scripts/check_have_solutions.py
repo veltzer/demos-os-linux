@@ -4,10 +4,10 @@
 This script will check that every exercise in src/exercises has a solution.
 """
 
+import glob
 import os
 import os.path
 import sys
-import glob
 
 
 def main():

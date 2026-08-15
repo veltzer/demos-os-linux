@@ -4,8 +4,8 @@
 This script runs "git ls-files" and checks that no files are symbolic links
 """
 
-import subprocess
 import os.path
+import subprocess
 
 
 def main():

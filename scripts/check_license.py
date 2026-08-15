@@ -7,8 +7,8 @@ have, at their begining, the license specified in
 "support/license.txt"
 """
 
-import sys
 import os
+import sys
 
 
 def main():
@@ -48,9 +48,8 @@ def main():
                     first_line = content.split("\n")[0]
                     # print(f"first_line is {first_line}")
                     rest = "\n".join(content.split("\n")[1:])
-                    if first_line=="// SPDX-License-Identifier: GPL-2.0":
-                        if rest.startswith(new_lic):
-                            continue
+                    if first_line=="// SPDX-License-Identifier: GPL-2.0" and rest.startswith(new_lic):
+                        continue
                     print(current_file)
                     error=True
     if error:

@@ -5,8 +5,8 @@ This script moves over all source file and switches their license.
 It only does so if they carry the old license.
 """
 
-import sys
 import os
+import sys
 
 if len(sys.argv)>1:
     raise ValueError("this script does not accept parameters on the cmd line")

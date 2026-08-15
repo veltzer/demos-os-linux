@@ -15,7 +15,6 @@ import re
 import subprocess
 import sys
 
-
 SOURCE_EXTENSIONS = {".c", ".cc", ".h", ".hh"}
 
 # Directories to exclude from firstinclude check
@@ -71,7 +70,7 @@ def check_ws(files):
         for i, line in enumerate(content.splitlines(), 1):
             if "  " in line:
                 errors.append(f"{f}:{i}: double space")
-            if line.endswith(" ") or line.endswith("\t"):
+            if line.endswith((" ", "\t")):
                 errors.append(f"{f}:{i}: trailing whitespace")
     return errors
 
@@ -162,7 +161,7 @@ def check_firstinclude(files):
                 break
             # Skip comments and blank lines at the top
             stripped = line.strip()
-            if stripped == "" or stripped.startswith("/*") or stripped.startswith("*") or stripped.startswith("//"):
+            if stripped == "" or stripped.startswith(("/*", "*", "//")):
                 continue
             break
         if not found:
