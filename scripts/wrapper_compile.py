@@ -7,9 +7,9 @@ It will scan the source file in order to find specific flags
 to be added to the compilation or linkage.
 """
 
-import sys
-import subprocess
 import os
+import subprocess
+import sys
 
 
 def system_check_output(cmd):

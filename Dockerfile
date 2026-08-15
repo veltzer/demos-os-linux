@@ -30,4 +30,4 @@ RUN echo "cachebust=${CACHEBUST}" \
 
 WORKDIR /build
 COPY rsconstruct.toml ./
-RUN rsconstruct tools install-deps --yes
+RUN rsconstruct tools install-deps

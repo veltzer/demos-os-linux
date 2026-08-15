@@ -1,8 +1,8 @@
 """ os level dependencies """
 
 import os
-import sys
 import platform
+import sys
 
 # debug this script?
 opt_debug=False
