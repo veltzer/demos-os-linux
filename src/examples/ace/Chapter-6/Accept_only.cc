@@ -96,6 +96,9 @@ int main() {
 	if(acceptor.open(port_to_listen)==-1) {
 		return 1;
 	}
+	// RAII: the constructor registers the signal handler with the reactor,
+	// so the variable is deliberately never read.
+	// cppcheck-suppress unreadVariable
 	LoopStopper loopstopper(SIGINT);
 
 	ACE_Reactor::instance()->run_reactor_event_loop();

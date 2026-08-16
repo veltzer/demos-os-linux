@@ -47,7 +47,10 @@ void operator delete(void *pointer) {
 
 class A{
 public:
+	// cppcheck-suppress unusedStructMember
 	int x;
+	// this demo only shows ctor/dtor running in kernel context; x is never used
+	// cppcheck-suppress uninitMemberVar
 	A() {
 		myprintk("inside A's constructor!\n");
 	}

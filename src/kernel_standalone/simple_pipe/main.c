@@ -186,6 +186,9 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count,
 		loff_t *ppos)
 {
 	struct my_pipe_t *pipe;
+	/* kernel style declares at the top of the function; the chunk vars are
+	 * only used inside the wrap-around branch below. */
+	/* cppcheck-suppress variableScope */
 	size_t data, work_size, first_chunk, second_chunk, ret;
 
 	pr_debug("start\n");
@@ -228,6 +231,9 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 		size_t count, loff_t *ppos)
 {
 	struct my_pipe_t *pipe;
+	/* kernel style declares at the top of the function; the chunk vars are
+	 * only used inside the wrap-around branch below. */
+	/* cppcheck-suppress variableScope */
 	size_t work_size, room, first_chunk, second_chunk, ret;
 
 	pr_debug("start\n");

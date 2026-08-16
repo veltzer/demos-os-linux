@@ -63,7 +63,7 @@ int main() {
 	if (do_single) {
 		// the size of data that we need
 		const unsigned int size=1000000;
-		ptr=CHECK_NOT_VOIDP((void *)(unsigned long)ioctl(d, IOCTL_DEMO_MAP, size), MAP_FAILED);
+		ptr=CHECK_NOT_VOIDP(reinterpret_cast<void *>(static_cast<unsigned long>(ioctl(d, IOCTL_DEMO_MAP, size))), MAP_FAILED);
 		// proc_print_mmap("demo");
 		// klog_show_clear();
 		waitkey(NULL);
@@ -86,7 +86,7 @@ int main() {
 			do_prog(i, 10, count);
 			unsigned int size=(i % 1000 + 1) * 4096;
 			char c=i % 20 + 'a';
-			ptr=CHECK_NOT_NULL((void *)(unsigned long)ioctl(d, IOCTL_DEMO_MAP, size));
+			ptr=CHECK_NOT_NULL(reinterpret_cast<void *>(static_cast<unsigned long>(ioctl(d, IOCTL_DEMO_MAP, size))));
 			// set the buffer to c
 			memset(ptr, c, size);
 			// get buffer from user space

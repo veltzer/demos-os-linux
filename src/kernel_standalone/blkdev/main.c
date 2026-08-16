@@ -79,7 +79,7 @@ static void memblock_transfer(struct memblock_dev *dev, sector_t sector,
 							unsigned int nsect, char *buffer, int write)
 {
 	unsigned long offset = sector * 512;
-	unsigned long nbytes = nsect * 512;
+	unsigned long nbytes = (unsigned long)nsect * 512;
 
 	if ((offset + nbytes) > dev->size) {
 		pr_notice("memblock: Beyond-end %s (%lu %u)\n",

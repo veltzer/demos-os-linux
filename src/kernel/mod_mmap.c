@@ -214,20 +214,22 @@ static void kern_vma_close(struct vm_area_struct *vma)
 #ifdef DO_FREE
 	unsigned int order;
 #endif /* DO_FREE */
-	unsigned int size = vma->vm_end - vma->vm_start;
-	void *addr = vma->vm_private_data;
+	/* named apart from the module-level 'size'/'addr' statics: these are the
+	 * values of the vma being closed, not the module's own allocation */
+	unsigned int vma_size = vma->vm_end - vma->vm_start;
+	void *vma_addr = vma->vm_private_data;
 
 	pr_debug("start");
 	pr_debug("pointer as long is %lu", vma->vm_start);
 	pr_debug("pointer as pointer is %p", (void *)(vma->vm_start));
-	pr_debug("addr is %p", addr);
-	pr_debug("size is %d", size);
+	pr_debug("addr is %p", vma_addr);
+	pr_debug("size is %d", vma_size);
 #ifdef DO_FREE
 	if (do_kmalloc)
-		kfree(addr);
+		kfree(vma_addr);
 	else {
-		order = get_order(size);
-		free_pages((unsigned long)addr, order);
+		order = get_order(vma_size);
+		free_pages((unsigned long)vma_addr, order);
 	}
 #endif /* DO_FREE */
 }

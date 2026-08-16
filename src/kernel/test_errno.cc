@@ -43,6 +43,7 @@ int main() {
 	// file to be used
 	const char *filename="/dev/drv_errno";
 	// hold results of syscalls and errnos
+	// cppcheck-suppress variableScope
 	int res, myerrno;
 	// default value for errno before we start
 	const int def_errno=2005;

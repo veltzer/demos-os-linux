@@ -77,6 +77,7 @@ static void *reader(void * /*arg*/) {
     return nullptr;
 }
 
+// cppcheck-suppress constParameter
 int main(int argc, char *argv[]) {
     long iterations = 1000000;
     if (argc > 1)

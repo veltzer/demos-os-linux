@@ -102,12 +102,12 @@ FILE* outfile;
 		/* this taking of the address of a to have the compiler actually store
 		 * a on the stack at all! If we don't do this the compiler will treat
 		 * a as a register for the entire scope of this function! */ \
-		int *pa=&a; \
+		const int *pa=&a; \
 		/* this printing is essential to keep the compiler from telling us
 		 * that 'pa' is an unused variable. */ \
-		fprintf(outfile, "pa is %p\n", (void*)pa); \
-		fprintf(outfile, "p is %p\n", (void*)p); \
-		fprintf(outfile, "&a is %p\n", (void*)&a); \
+		fprintf(outfile, "pa is %p\n", static_cast<const void*>(pa)); \
+		fprintf(outfile, "p is %p\n", static_cast<void*>(p)); \
+		fprintf(outfile, "&a is %p\n", static_cast<void*>(&a)); \
 		fprintf(outfile, "now starting\n"); \
 		/* this loop will force the compiler to load a into a register */ \
 		a=100; \
@@ -212,6 +212,9 @@ TEST(
 	false,
 	asm volatile("" : "=r" (u)::)
 	);
+// The C-style volatile casts below are the very technique these tests
+// demonstrate, so they are deliberate and must not be rewritten.
+// cppcheck-suppress cstyleCast
 TEST(
 	singvarvol,
 	"Attempt to use volatile on left side to barrier the compiler.\n"
@@ -219,6 +222,7 @@ TEST(
 	false,
 	*(volatile int *)&a=a;
 	);
+// cppcheck-suppress cstyleCast
 TEST(
 	singvarvolright,
 	"Attempt to use volatile on right side to barrier the compiler\n"
@@ -226,6 +230,7 @@ TEST(
 	false,
 	a=*(volatile int*)&a;
 	);
+// cppcheck-suppress cstyleCast
 TEST(
 	singvarvol2,
 	"Attempt to use volatile to barrier the compiler\n"
@@ -233,6 +238,7 @@ TEST(
 	false,
 	{ int y=a; *(volatile int*)&a=y; }
 	);
+// cppcheck-suppress cstyleCast
 TEST(
 	singvarvolright2,
 	"Attempt to use volatile on right side to barrier the compiler\n"

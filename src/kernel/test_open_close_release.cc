@@ -68,8 +68,10 @@ static int d, d2;
 static const char *filename="/dev/mod_open_close_release";
 
 void do_open_close(void) {
-	int d=CHECK_NOT_M1(open(filename, O_RDWR));
-	CHECK_NOT_M1(close(d));
+	// deliberately local: this fd is opened and closed here, unlike the
+	// file-scope 'd' that do_close() below closes
+	int local_d=CHECK_NOT_M1(open(filename, O_RDWR));
+	CHECK_NOT_M1(close(local_d));
 }
 
 void do_close(void) {

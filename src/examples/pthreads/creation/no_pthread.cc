@@ -111,10 +111,10 @@ static void setup_tls(uintptr_t stack_guard)
 		raw_syscall3(SYS_write, 2, (long)"mmap failed\n", 12);
 		raw_syscall1(SYS_exit, 1);
 	}
-	struct minimal_tcb *tcb = (struct minimal_tcb *)ret;
+	struct minimal_tcb *tcb = reinterpret_cast<struct minimal_tcb *>(ret);
 
 	// Zero manually - memset might use TLS
-	volatile char *p = (volatile char *)tcb;
+	volatile char *p = reinterpret_cast<volatile char *>(tcb);
 	for(size_t i = 0; i < sizeof(*tcb); i++)
 		p[i] = 0;
 
@@ -158,7 +158,7 @@ int main(void)
 	int pidfd = -1;
 	void *stack;
 
-	stack = (int*)CHECK_NOT_VOIDP(mmap(NULL, STACK_SIZE, PROT_READ | PROT_WRITE,
+	stack = CHECK_NOT_VOIDP(mmap(NULL, STACK_SIZE, PROT_READ | PROT_WRITE,
 		MAP_PRIVATE | MAP_ANONYMOUS | MAP_STACK, -1, 0), MAP_FAILED);
 	g_msg = "no pthreads!";
 	asm volatile("mov %%fs:0x28, %0" : "=r"(g_stack_guard));

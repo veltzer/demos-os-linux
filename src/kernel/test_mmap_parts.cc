@@ -43,15 +43,15 @@ bool do_ioctl_once_write=false;
 bool do_stress_ioctl=false;
 bool do_stress_mmap=true;
 
-void print_data(void *data, int size) {
+void print_data(const void *data, int size) {
 	int msize;
 	if (size < 256) {
 		msize=size;
 	} else {
 		msize=256;
 	}
-	char *pdata=(char *)malloc(msize);
-	strncpy(pdata, (char *)data, msize - 1);
+	char *pdata=static_cast<char *>(malloc(msize));
+	strncpy(pdata, static_cast<const char *>(data), msize - 1);
 	pdata[msize - 1]='\0';
 	fprintf(stderr, "data is [%s]\n", pdata);
 	free(pdata);
@@ -91,13 +91,13 @@ int main() {
 		klog_clear();
 		// trying to map memory
 		res=CHECK_NOT_M1(ioctl(d, 4, NULL));
-		void *p=(void *)(unsigned long)res;
+		const void *p=reinterpret_cast<void *>(static_cast<unsigned long>(res));
 		printf("the pointer I got is %p\n", p);
 		klog_show();
 		proc_print_mmap("demo");
 		klog_clear();
 		// trying to unmap memory
-		res=CHECK_NOT_M1(ioctl(d, 5, NULL));
+		CHECK_NOT_M1(ioctl(d, 5, NULL));
 		klog_show();
 		proc_print_mmap("demo");
 	}
@@ -106,14 +106,14 @@ int main() {
 		klog_clear();
 		// trying to map memory
 		res=CHECK_NOT_M1(ioctl(d, 4, NULL));
-		void *p=(void *)(unsigned long)res;
+		void *p=reinterpret_cast<void *>(static_cast<unsigned long>(res));
 		printf("the pointer I got is %p\n", p);
 		klog_show();
 		proc_print_mmap("demo");
 		memset(p, 0, size);
 		klog_clear();
 		// trying to unmap memory
-		res=CHECK_NOT_M1(ioctl(d, 5, NULL));
+		CHECK_NOT_M1(ioctl(d, 5, NULL));
 		klog_show();
 		proc_print_mmap("demo");
 	}
@@ -122,10 +122,10 @@ int main() {
 		for (int i=0; i < number; i++) {
 			// trying to map memory
 			res=CHECK_NOT_M1(ioctl(d, 4, NULL));
-			void *p=(void *)(unsigned long)res;
+			const void *p=reinterpret_cast<void *>(static_cast<unsigned long>(res));
 			printf("the pointer I got is %p\n", p);
 			// trying to unmap memory
-			res=CHECK_NOT_M1(ioctl(d, 5, NULL));
+			CHECK_NOT_M1(ioctl(d, 5, NULL));
 		}
 	}
 	if (do_stress_mmap) {

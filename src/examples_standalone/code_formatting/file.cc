@@ -293,7 +293,11 @@ int main() {
 	ACE_DEBUG((LM_DEBUG, "(%P|%t) Connect to me using localhost:%d\n", port));
 
 	ClientAcceptor acceptor;
+	// Both objects are RAII: their constructors register the signal handlers
+	// with the reactor, so the variables are deliberately never read.
+	// cppcheck-suppress unreadVariable
 	LogSwitcher logswitcher(SIGUSR1, SIGUSR2);
+	// cppcheck-suppress unreadVariable
 	LoopStopper loopstopper(SIGINT);
 
 	acceptor.reactor(ACE_Reactor::instance());

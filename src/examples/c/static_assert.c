@@ -66,6 +66,8 @@ int main(void) {
 	// cppcheck-suppress duplicateExpression
 	PR_STATIC_ASSERT(1==1);
 	// this is a built in gcc static assertion, no flags needed
+	/* the tautology is the point: it shows a passing _Static_assert */
+	/* cppcheck-suppress duplicateExpression */
 	_Static_assert(1==1, "fail message");
 	// cppcheck-suppress duplicateExpression
 	ct_assert(1==1);

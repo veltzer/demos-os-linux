@@ -120,6 +120,7 @@ int main() {
 		int rec_num=0;
 		while(i<res) {
 			// cppcheck-suppress dangerousTypeCast
+			// cppcheck-suppress cstyleCast
 			const struct inotify_event* ie=(const struct inotify_event*)(buf+i);
 			// print the event
 			printf("event-> file %s, mask ", ie->name);

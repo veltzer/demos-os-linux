@@ -43,15 +43,15 @@ bool do_play=false;
 bool do_stress=false;
 bool do_vma=true;
 
-void print_data(void *data, int size) {
+void print_data(const void *data, int size) {
 	int msize;
 	if (size < 256) {
 		msize=size;
 	} else {
 		msize=256;
 	}
-	char *pdata=(char *)malloc(msize);
-	strncpy(pdata, (char *)data, msize - 1);
+	char *pdata=static_cast<char *>(malloc(msize));
+	strncpy(pdata, static_cast<const char *>(data), msize - 1);
 	pdata[msize - 1]='\0';
 	fprintf(stderr, "data is [%s]\n", pdata);
 	free(pdata);
@@ -123,7 +123,7 @@ int main() {
 	}
 	if (do_vma) {
 		CHECK_NOT_M1(ioctl(d, IOCTL_MMAP_PRINT, data));
-		void *p=(void *)((char *)data + size / 2);
+		void *p=static_cast<char *>(data) + size / 2;
 		CHECK_NOT_M1(ioctl(d, IOCTL_MMAP_PRINT, p));
 		waitkey(NULL);
 	}

@@ -45,6 +45,8 @@ static int __init mod_init(void)
 	);
 	/* lets manipulate the memory */
 	for (i = 0; i < size; i++)
+		/* the explicit loop is the teaching point here */
+		/* cppcheck-suppress useStandardLibrary */
 		((char *)addr)[i] = 0;
 	/* lets release the memory */
 	free_pages(addr, order);
