@@ -57,7 +57,7 @@ typedef struct _thread_data{
 // do select in a loop until the program is over
 static void *function_wait(void *p) {
 	INFO("start");
-	thread_data* pd=(thread_data*)p;
+	thread_data* pd=static_cast<thread_data*>(p);
 
 	const unsigned int max_events=10;
 	// any value above 0 will do for epoll_create(2)
@@ -95,7 +95,7 @@ static void *function_wait(void *p) {
 // read a number from the user and wake up that file descriptor
 static void *function_wakeup(void *p) {
 	INFO("start\n");
-	thread_data* pd=(thread_data*)p;
+	thread_data* pd=static_cast<thread_data*>(p);
 	while(!pd->over) {
 		printf("1) wake up fd\n");
 		printf("2) reset fd\n");

@@ -49,7 +49,7 @@ const bool do_dataseg_test=true;
 const bool do_malloc_test=true;
 const bool do_stacks_test=true;
 
-static void show_data(char *data, unsigned int size __attribute__((unused))) {
+static void show_data(const char *data, unsigned int size __attribute__((unused))) {
 	printf("data is [");
 	// int psize=min(size,10);
 // fwrite(data,1,psize,stdout);
@@ -111,11 +111,11 @@ int main() {
 		do_test(data, csize, "stack");
 	}
 	if (do_valloc_test) {
-		char *data=(char *)valloc(csize);
+		char *data=static_cast<char *>(valloc(csize));
 		do_test(data, csize, "valloc");
 	}
 	if (do_malloc_test) {
-		char *data=(char *)malloc(csize);
+		char *data=static_cast<char *>(malloc(csize));
 		do_test(data, csize, "malloc");
 	}
 	if (do_dataseg_test) {

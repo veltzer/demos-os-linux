@@ -35,7 +35,10 @@ void analyze_status(int status) {
 		printf("WIFSIGNALED: true\n");
 		printf("WTERMSIG: %d\n", WTERMSIG(status));
 		#ifdef WCOREDUMP
+		// cppcheck misparses the glibc macro and mistakes the ternary's
+		// const char* result for an int
 		// cppcheck-suppress syntaxError
+		// cppcheck-suppress invalidPrintfArgType_s
 		printf("WCOREDUMP: %s\n", WCOREDUMP(status) ? "true" : "false");
 		#endif
 	} else {
@@ -50,7 +53,10 @@ void analyze_status(int status) {
 	}
 
 	#ifdef WIFCONTINUED
+	// cppcheck misparses the glibc macro and mistakes the ternary's
+	// const char* result for an int
 	// cppcheck-suppress syntaxError
+	// cppcheck-suppress invalidPrintfArgType_s
 	printf("WIFCONTINUED: %s\n", WIFCONTINUED(status) ? "true" : "false");
 	#endif
 }

@@ -52,6 +52,8 @@ static int kern_open(struct inode *inode, struct file *filp)
 	struct polldev *pd;
 
 	pr_info("start");
+	/* kmalloc_obj uses *pd only for its size, it is not dereferenced */
+	/* cppcheck-suppress uninitvar */
 	pd = kmalloc_obj(*pd, GFP_KERNEL);
 	if (!pd)
 		return -ENOMEM;

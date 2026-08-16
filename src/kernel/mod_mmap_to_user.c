@@ -58,6 +58,7 @@ static void *alloc_mem(unsigned int size)
 	/* kernel address to be returned */
 	void *kaddr;
 	/* order of allocation in case we use get_free_pages */
+	/* cppcheck-suppress variableScope */
 	int order;
 
 	pr_debug("start");
@@ -75,6 +76,7 @@ static void *alloc_mem(unsigned int size)
 static void free_mem(void *kptr, unsigned int size)
 {
 	/* order of allocation in case we use get_free_pages */
+	/* cppcheck-suppress variableScope */
 	int order;
 
 	pr_debug("start");
@@ -91,8 +93,10 @@ static void free_mem(void *kptr, unsigned int size)
 static unsigned long map_to_user(struct file *filp, void *kptr,
 	unsigned int size)
 {
-	/* the user space address to be returned */
-	unsigned long uptr;
+	/* the user space address to be returned; named apart from the
+	 * module-level 'uptr' static that the ioctl handler stores into
+	 */
+	unsigned long mapped_uptr;
 	/* the mmap struct to hold the semaphore of */
 	/* struct mm_struct *mm; */
 	/* flags to pass to do_mmap_pgoff */
@@ -114,7 +118,7 @@ static unsigned long map_to_user(struct file *filp, void *kptr,
 	 */
 	oldval = filp->private_data;
 	filp->private_data = kptr;
-	uptr = vm_mmap(
+	mapped_uptr = vm_mmap(
 		filp, /* file pointer for which filp->mmap will be called */
 		0, /* address - this is the address we recommend for user space - best not to ... */
 		size, /* size */
@@ -127,13 +131,13 @@ static unsigned long map_to_user(struct file *filp, void *kptr,
 	 * vm_mmap does not need the semaphore to be held
 	 * up_write(&mm->mmap_sem);
 	 */
-	if (IS_ERR_VALUE(uptr))
+	if (IS_ERR_VALUE(mapped_uptr))
 		pr_err("ERROR: problem calling do_mmap_pgoff");
 	else {
-		pr_debug("addr for user space is (lu) %lu / (p) %p", uptr,
-			(void *)uptr);
+		pr_debug("addr for user space is (lu) %lu / (p) %p", mapped_uptr,
+			(void *)mapped_uptr);
 	}
-	return uptr;
+	return mapped_uptr;
 }
 
 /*
@@ -269,6 +273,8 @@ static vm_fault_t kern_vma_fault(struct vm_fault *vmf)
 	/* for new kernels */
 	offset = (unsigned long)vmf->address - vmf->vma->vm_start;
 	kaddr = vmf->vma->vm_private_data;
+	/* void* arithmetic is a GCC extension the kernel relies on */
+	/* cppcheck-suppress arithOperationsOnVoidPointer */
 	kaddr += offset;
 	page = virt_to_page(kaddr);
 	if (page == NULL) {
@@ -289,6 +295,8 @@ static const struct vm_operations_struct kern_vm_ops = {
 /*
  * The mmap implementation.
  */
+/* signature is fixed by file_operations.mmap; it cannot take a const filp */
+/* cppcheck-suppress constParameterCallback */
 static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 {
 	/*

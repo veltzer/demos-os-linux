@@ -121,6 +121,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	/* some unsigned ints for address manipulation... */
 	unsigned long bpointer, offset, aligned, newsize;
 	/* the newly created vma */
+	/* cppcheck-suppress constVariablePointer */
 	struct vm_area_struct *vma;
 
 	pr_debug("start with ioctl %u", cmd);
@@ -171,6 +172,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			1,/* write */
 			pages
 		);
+		/* kept for the commented-out VM_DONTCOPY line below */
+		/* cppcheck-suppress unreadVariable */
 		vma = find_vma(current->mm, bpointer);
 		// vma->vm_flags |= VM_DONTCOPY;
 		mmap_write_unlock(current->mm);
@@ -192,6 +195,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			kfree(pages);
 			return -EFAULT;
 		}
+		/* void* arithmetic is a GCC extension the kernel relies on */
+		/* cppcheck-suppress arithOperationsOnVoidPointer */
 		ptr = vptr + offset;
 		size = b.size;
 		pr_debug("after vmap - vptr is %p", vptr);

@@ -29,6 +29,8 @@
 
 // Driver private data structure
 struct example_phy_priv {
+	/* placeholder for real driver state; this is a skeleton driver */
+	/* cppcheck-suppress unusedStructMember */
 	int some_data;
 };
 

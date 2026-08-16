@@ -243,6 +243,8 @@ static int map_sys_call_table(void)
 		pr_err("unable to ioremap");
 		return -ENOMEM;
 	}
+	/* void* arithmetic is a GCC extension the kernel relies on */
+	/* cppcheck-suppress arithOperationsOnVoidPointer */
 	sys_call_adr_precise = sys_call_adr+offset;
 	pr_debug("got precise %p", sys_call_adr_precise);
 	return 0;

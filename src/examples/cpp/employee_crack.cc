@@ -51,6 +51,7 @@ void Employee::setSalary(int newsalary) {
 int main() {
 	Employee e;
 	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress cstyleCast
 	int* p=(int*)&e;
 	*p=1200;
 	e.printSalary();

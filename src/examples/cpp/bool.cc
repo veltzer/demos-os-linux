@@ -61,8 +61,10 @@ int main() {
 	} else {
 		printf("bool(7) is false\n");
 	}
+	// cppcheck-suppress cstyleCast
 	const char* p0=(const char*)0;
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	const char* p7=(const char*)7;
 	// cppcheck-suppress knownPointerToBool
 	bool pb0=(bool)p0;

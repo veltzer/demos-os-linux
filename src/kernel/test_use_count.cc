@@ -39,7 +39,9 @@ int main() {
 	my_system("sudo chmod 666 %s", filename);
 	printf("run something like watch --interval=0.2 lsmod\n");
 	// file descriptor
+	// cppcheck-suppress variableScope
 	int fd;
+	// cppcheck-suppress variableScope
 	int fd2;
 	while(true) {
 		fd=CHECK_NOT_M1(open(filename, O_RDWR));

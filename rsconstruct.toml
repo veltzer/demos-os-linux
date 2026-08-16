@@ -73,6 +73,8 @@ system = [
 	"uncrustify",
 	"indent",
 	"valgrind",
+	# aarch64 cross compiler for src/examples_standalone/cross_compilation
+	"gcc-aarch64-linux-gnu",
 	# tools referenced by example Makefiles to demonstrate observability,
 	# linking, and ELF concepts
 	"strace",

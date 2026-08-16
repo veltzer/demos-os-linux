@@ -55,6 +55,8 @@ static int __init mod_init(void)
 	int i;
 #endif /* DO_LOOP */
 #ifdef DO_INC
+	/* used further down, inside the matching #ifdef DO_INC block */
+	/* cppcheck-suppress unusedVariable */
 	unsigned int size;
 	unsigned int inc;
 	bool stop;

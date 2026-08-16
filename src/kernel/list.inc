@@ -56,7 +56,7 @@ int api_list_isempty(void *lptr) {
  * Init an iterator
  */
 void *api_list_iter_init(void *lptr) {
-	struct list_head *lp;
+	const struct list_head *lp;
 	if(lptr==NULL) {
 		pr_err("iter_init on null list");
 		return NULL;
@@ -69,8 +69,8 @@ void *api_list_iter_init(void *lptr) {
  * Is the iterator over
  */
 int api_list_iter_isover(void *lptr, void *iter) {
-	struct list_head *lp;
-	struct list_head *li;
+	const struct list_head *lp;
+	const struct list_head *li;
 	if(lptr==NULL) {
 		pr_err("iter_isover on null list");
 		return 0;
@@ -83,9 +83,13 @@ int api_list_iter_isover(void *lptr, void *iter) {
 /*
  * Get the current value from the current iterator
  */
+/* lptr is only NULL-checked here (the work goes through 'iter'), but the
+ * api_list_* functions deliberately share one uniform signature, and the
+ * mutating ones cannot take a const list. */
+/* cppcheck-suppress constParameterPointer */
 void *api_list_iter_getval(void *lptr, void *iter) {
 	struct list_head* lp;
-	list_struct* entry;
+	const list_struct* entry;
 	if(lptr==NULL) {
 		pr_err("iter_getval on null list");
 		return NULL;
@@ -99,8 +103,12 @@ void *api_list_iter_getval(void *lptr, void *iter) {
 /*
  * Advance the iterator one step
  */
+/* lptr is only NULL-checked here (the work goes through 'iter'), but the
+ * api_list_* functions deliberately share one uniform signature, and the
+ * mutating ones cannot take a const list. */
+/* cppcheck-suppress constParameterPointer */
 void *api_list_iter_next(void *lptr, void *iter) {
-	struct list_head* lp;
+	const struct list_head* lp;
 	if(lptr==NULL) {
 		pr_err("iter_next on null list");
 		return NULL;
@@ -112,6 +120,10 @@ void *api_list_iter_next(void *lptr, void *iter) {
 /*
  * Delete an element at the current position of the iterator
  */
+/* lptr is only NULL-checked here (the work goes through 'iter'), but the
+ * api_list_* functions deliberately share one uniform signature, and the
+ * mutating ones cannot take a const list. */
+/* cppcheck-suppress constParameterPointer */
 void api_list_iter_del(void *lptr, void *iter) {
 	struct list_head *lp;
 	list_struct* entry;
@@ -131,7 +143,6 @@ void *api_list_del(void *lptr) {
 	struct list_head *lp;
 	struct list_head *prev;
 	list_struct* entry;
-	void* ret;
 	if(lptr==NULL) {
 		pr_err("del on null list");
 		return NULL;
@@ -143,6 +154,7 @@ void *api_list_del(void *lptr) {
 		pr_err("ERROR - pop should not be called on an empty list");
 		return NULL;
 	} else {
+		void* ret;
 		entry = list_entry(prev, struct _list_struct, list);
 		ret = entry->ptr;
 		list_del(prev);
@@ -174,7 +186,6 @@ void api_list_add(void *lptr, void *ptr) {
  */
 void api_list_print(void *lptr) {
 	struct list_head *lp = (struct list_head *)lptr;
-	void* item;
 	void* iter = api_list_iter_init(lp);
 	if(lptr==NULL) {
 		pr_err("print on null list");
@@ -182,7 +193,7 @@ void api_list_print(void *lptr) {
 	}
 
 	while (!api_list_iter_isover(lp, iter)) {
-		item = api_list_iter_getval(lp, iter);
+		void* item = api_list_iter_getval(lp, iter);
 		pr_info("item is %ld", (int)item);
 		iter = api_list_iter_next(lp, iter);
 	}

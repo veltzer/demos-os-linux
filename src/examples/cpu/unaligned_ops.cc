@@ -54,6 +54,7 @@ void* func(void*) {
 	measure_init(&m, name, 1);
 	measure_start(&m);
 	// cppcheck-suppress dangerousTypeCast
+	// cppcheck-suppress cstyleCast
 	int* pi=(int*)(buf+diff);
 	for(int j=0; j<1000000; j++) {
 		for(unsigned int i=0; i<num_of_ints; i++) {

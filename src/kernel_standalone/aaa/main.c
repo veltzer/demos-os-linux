@@ -67,6 +67,8 @@ static ssize_t read_aaa(struct file *file, char __user *buf, size_t count,
 	size_t remaining;
 
 	ret = access_ok(buf, count);
+	if (!ret)
+		return ret;
 	remaining = count;
 	while (remaining) {
 		ssize_t current_transfer = min_t(size_t, remaining, 128);

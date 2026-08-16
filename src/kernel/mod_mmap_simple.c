@@ -61,6 +61,8 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	/* int i; */
 	char str[256];
 	void *ptr;
+	/* kernel style declares at the top of the function */
+	/* cppcheck-suppress variableScope */
 	unsigned int order;
 
 	unsigned long private;
@@ -215,20 +217,24 @@ void kern_vma_open(struct vm_area_struct *vma)
 
 void kern_vma_close(struct vm_area_struct *vma)
 {
-	unsigned int size = vma->vm_end - vma->vm_start;
+	/* named apart from the module-level 'size'/'addr' statics: these are the
+	 * values of the vma being closed, not the module's own allocation */
+	unsigned int vma_size = vma->vm_end - vma->vm_start;
+	/* kernel style declares at the top of the function */
+	/* cppcheck-suppress variableScope */
 	unsigned int order;
-	void *addr = vma->vm_private_data;
+	void *vma_addr = vma->vm_private_data;
 
 	pr_debug("start");
 	pr_debug("pointer as long is %lu", vma->vm_start);
 	pr_debug("pointer as pointer is %p", (void *)(vma->vm_start));
-	pr_debug("addr is %p", addr);
-	pr_debug("size is %d", size);
+	pr_debug("addr is %p", vma_addr);
+	pr_debug("size is %d", vma_size);
 	if (do_kmalloc)
-		kfree(addr);
+		kfree(vma_addr);
 	else {
-		order = get_order(size);
-		free_pages((unsigned long)addr, order);
+		order = get_order(vma_size);
+		free_pages((unsigned long)vma_addr, order);
 	}
 }
 
@@ -245,16 +251,16 @@ static const struct vm_operations_struct kern_remap_vm_ops = {
  */
 static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 {
-	unsigned int size, order, pg_num;
-	unsigned long addr, phys;
+	unsigned int vma_size, order, pg_num;
+	unsigned long vma_addr, phys;
 	void *kaddr;
 	int res;
 
 	pr_debug("start");
-	size = vma->vm_end - vma->vm_start;
-	order = get_order(size);
-	addr = __get_free_pages(GFP_KERNEL, order);
-	kaddr = (void *)addr;
+	vma_size = vma->vm_end - vma->vm_start;
+	order = get_order(vma_size);
+	vma_addr = __get_free_pages(GFP_KERNEL, order);
+	kaddr = (void *)vma_addr;
 	phys = virt_to_phys(kaddr);
 	pg_num = phys >> PAGE_SHIFT;
 	res = remap_pfn_range(
@@ -264,8 +270,8 @@ static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 		vma->vm_start,
 		/* how many pages */
 		pg_num,
-		/* size (derived from the vma) */
-		size,
+		/* vma_size (derived from the vma) */
+		vma_size,
 		/* protection */
 		vma->vm_page_prot
 	);

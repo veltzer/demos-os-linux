@@ -111,31 +111,39 @@ int main() {
 	// field comes right after the vtable pointer...
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(NameOneVirtOneField,x) is " << CppOffsetOf(NameOneVirtOneField, x) << endl;
 	// now lets see what happends of we have more than one field...
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(NameOneVirtTwoField,y) is " << CppOffsetOf(NameOneVirtTwoField, y) << endl;
 	// the next prints prove that the object is laid out this way: vtable for parent 1, data for
 	// parent 1, vtable for parent 2, data for parent 2, ...
 
 	// cppcheck-suppress cstyleCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(NameFMultInherit,x) is " << CppOffsetOf(NameFMultInherit, x) << endl;
 	// cppcheck-suppress cstyleCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(NameFMultInherit,m) is " << CppOffsetOf(NameFMultInherit, m) << endl;
 	// cppcheck-suppress cstyleCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(NameFMultInherit,y) is " << CppOffsetOf(NameFMultInherit, y) << endl;
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(NameFMultInherit,z) is " << CppOffsetOf(NameFMultInherit, z) << endl;
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CastOffsetOf(NameFMultInherit,NameOneVirtOneField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtOneField) << endl;
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress cstyleCast
 	cout << "CastOffsetOf(NameFMultInherit,NameOneVirtTwoField) is " << CastOffsetOf(NameFMultInherit, NameOneVirtTwoField) << endl;
 	return EXIT_SUCCESS;
 }
