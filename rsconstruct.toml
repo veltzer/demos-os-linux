@@ -254,10 +254,10 @@ src_dirs = ["src"]
 batch = true
 
 [processor.mypy]
-src_dirs = ["config", "scripts"]
+src_dirs = ["scripts"]
 
 [processor.ruff]
-src_dirs = ["config", "scripts"]
+src_dirs = ["scripts"]
 
 [processor.shellcheck]
 src_dirs = [ "src", "misc", "scripts"]
@@ -266,11 +266,11 @@ args = ["--severity=error", "--shell=bash"]
 [processor.tera]
 src_dirs = ["tera.templates"]
 dep_inputs = [
-    "config/project.py",
-    "config/personal.py",
-    "config/python.py",
-    "config/version.py",
-    "config/shared.py",
+    "config/project.lua",
+    "config/personal.lua",
+    "config/python.lua",
+    "config/version.lua",
+    "config/shared.lua",
 ]
 
 [analyzer.markdown]

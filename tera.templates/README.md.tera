@@ -1,25 +1,25 @@
-{% set project = load_python(path="config/project.py") -%}
-{% set personal = load_python(path="config/personal.py") -%}
-{% set version = version_str(path="config/version.py") -%}
-## {{ project.name }}
+{% set project = load_lua(path="config/project.lua") -%}
+{% set personal = load_lua(path="config/personal.lua") -%}
+{% set version = version_str(path="config/version.lua") -%}
+## {{ project.NAME }}
 
 version: {{ version }}
 
-description: {{ project.description_short }}
+description: {{ project.DESCRIPTION_SHORT }}
 
-website: https://{{ personal.github_username }}.github.io/{{ project.name }}
+website: https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}
 
 ## Build
 
 {% for wf in workflow_names() -%}
-![{{ wf.name }}](https://github.com/{{ personal.github_username }}/{{ project.name }}/workflows/{{ wf.name }}/badge.svg)
+![{{ wf.name }}](https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}/workflows/{{ wf.name }}/badge.svg)
 {% endfor %}
-{% if project.description_long is defined -%}
-{{ project.description_long }}
+{% if project.DESCRIPTION_LONG is defined -%}
+{{ project.DESCRIPTION_LONG }}
 {% endif %}
 ## Contact
 
 chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
 
 {% include "tera.snippets/main.md.tera" %}
-{{ personal.fullname }}, Copyright © {{ copyright_years() }}
+{{ personal.FULLNAME }}, Copyright © {{ copyright_years() }}
