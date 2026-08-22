@@ -86,6 +86,9 @@ system = [
 	"patch",
 	# spell-check dictionary used by the zspell processor
 	"hunspell-en-us",
+	# runtime for the mdl checker (`rsconstruct tools install` does
+	# `gem install mdl`); the CI container image has no ruby otherwise
+	"ruby",
 ]
 pip = [
 	"pymakehelper",
