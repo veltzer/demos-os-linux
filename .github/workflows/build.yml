@@ -6,8 +6,6 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  pages: write
-  id-token: write
   packages: read
   # needed by wait-for-image to query the image workflow's run status
   actions: read
