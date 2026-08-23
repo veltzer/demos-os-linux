@@ -2,14 +2,16 @@
 
 ## Status
 
-The project ships **both** `Makefile` and `rsconstruct.toml` today. CI runs only
-through `rsconstruct` (see `.github/workflows/build.yml`). The Makefile is still
-the local developer workflow and contains years of accumulated tooling that
-rsconstruct does not yet replicate.
+**The Makefile is gone** (removed in `ad252f1f`, "Remove the top-level
+Makefile; rsconstruct builds everything"). `rsconstruct.toml` now drives both
+CI (see `.github/workflows/build.yml`) and the local developer workflow, so
+the mission's original goal — retire the Makefile by porting each behavior or
+consciously dropping it — is complete.
 
-The goal of this mission is to retire the Makefile by either porting each
-behavior into rsconstruct or consciously dropping it. This document is the
-inventory of what still lives only in the Makefile.
+This document is kept as the record of that port. The inventory below
+describes what the Makefile used to do and how each item was resolved; it is
+history, not an outstanding work list. Items still marked as open are
+follow-ups that outlived the Makefile itself.
 
 ## What rsconstruct already covers (per `rsconstruct.toml`)
 
@@ -22,7 +24,7 @@ inventory of what still lives only in the Makefile.
 | `cpplint`                      | `processor.cpplint`                                        |
 | Per-folder Makefiles           | `processor.make` (recursively invokes `make` in subdirs)   |
 | Kernel module builds           | `processor.linux_module`                                   |
-| `mdl`, `rumdl`, `zspell`       | `processor.mdl`, `processor.rumdl`, `processor.zspell`     |
+| `rumdl`, `zspell`              | `processor.rumdl`, `processor.zspell`                      |
 | `taplo`, `iyamllint`           | `processor.taplo`, `processor.iyamllint`                   |
 | `mypy`, `ruff`                 | `processor.mypy`, `processor.ruff`                         |
 | `shellcheck`                   | `processor.shellcheck`                                     |
@@ -51,10 +53,11 @@ flags. rsconstruct invokes the compiler directly. Porting options:
 - keep the wrapper but call it from rsconstruct's `cc =` field.
 
 ### 3. Markdown checks
-- `out/%.mdl` rule runs `gems/bin/mdl` with `GEM_HOME=gems` against each `.md`
-  under `src/`. rsconstruct has `processor.mdl`, so this is mostly a port; check
-  whether the bundled `gems/` directory and `.mdlrc`/`.mdl.style.rb` are
-  honored.
+- **Done.** The `out/%.mdl` rule ran `gems/bin/mdl` with `GEM_HOME=gems`
+  against each `.md` under `src/`. Markdown is now linted by
+  `processor.rumdl` alone, configured in `.rumdl.toml`; `processor.mdl`, the
+  bundled `gems/` directory, `Gemfile`, `.mdlrc`/`.mdl.style.rb` and the
+  `ruby` dependency have all been dropped.
 - `out/%.aspell` rule runs `aspell list` and errors on any unknown word.
   No rsconstruct processor for aspell. Either port (custom `script.*`
   processor) or migrate to `zspell` which is already wired in.
@@ -167,7 +170,7 @@ needs updating.
 
 - Are disassembly / `.p` outputs used in classes? If yes, they need a porting
   story; if no, they are dead weight.
-- Is the bundled `gems/` directory (Bundler-managed `mdl`) intentional, or
-  can we depend on the system-installed `mdl` only? The CI uses the system one.
+- ~~Is the bundled `gems/` directory (Bundler-managed `mdl`) intentional?~~
+  Resolved: `mdl` is gone entirely, replaced by `rumdl`. No ruby in the build.
 - Does anyone still run the format targets locally? `format_astyle` and
   `format_indent` already self-`$(error)`; only `format_uncrustify` is live.

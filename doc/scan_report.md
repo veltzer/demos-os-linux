@@ -115,15 +115,18 @@ objects, ACE thread arrays.
 
 ## Build-environment notes
 
-The build system requires a few tools that may not be installed by default:
+The build is driven by `rsconstruct` (see `rsconstruct.toml`); the external
+tools the enabled processors need are installed with:
 
-- **`mdl` (Ruby gem)** — install into the project-local `gems/` directory:
-  ```
-  GEM_HOME=gems gem install mdl --install-dir gems
-  ```
-  The Makefile calls `gems/bin/mdl` with `GEM_HOME=gems`; do not install via
-  `bundle install --path gems` because that lands gems under
-  `gems/ruby/<version>/` and the binary wrapper breaks.
-- **`aspell`** — dictionary is at `.aspell.en.pws`. When adding new
-  technical terms to markdown files, append them to that file and bump the
-  count in the header line.
+```bash
+rsconstruct tools install-deps   # the [dependencies] section
+rsconstruct tools install        # the per-processor tools
+```
+
+- **markdown** — linted by `rumdl`, configured in `.rumdl.toml`. The repo
+  used to run the `mdl` Ruby gem out of a project-local `gems/` directory as
+  well; that has been dropped, along with the `Gemfile` and the `ruby`
+  dependency, since `rumdl` covers the same rule set.
+- **spell-check** — the `zspell` processor reads its word list from
+  `.zspell-words`. When adding new technical terms to markdown files, append
+  them to that file.
