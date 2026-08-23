@@ -1,17 +1,23 @@
-## demos-os-linux
-
-version: 0.0.1
+# *demos-os-linux* project by Mark Veltzer
 
 description: demos-os-linux is a project to demo and explore the Linux user space C/C++ API
 
-website: https://veltzer.github.io/demos-os-linux
+project website: https://veltzer.github.io/demos-os-linux
 
-## Build
+author: Mark Veltzer
+
+version: 0.0.1
+
+![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+
+## github
+
+![License](https://img.shields.io/github/license/veltzer/demos-os-linux)
+
+## build
 
 ![build](https://github.com/veltzer/demos-os-linux/workflows/build/badge.svg)
 ![image](https://github.com/veltzer/demos-os-linux/workflows/image/badge.svg)
-
-demos-os-linux is a project to demo and explore the Linux user space C/C++ API
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
@@ -92,8 +98,11 @@ it here http://man7.org/tlpi/code/.
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
 
-## Contact
+## contact me
 
-chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
+[mailto](mailto:mark.veltzer@gmail.com)
+![gitter](https://img.shields.io/gitter/room/veltzer/mark.veltzer)
+![discord](https://img.shields.io/discord/719336281624281119)
+![discord](https://img.shields.io/discord/719336282194444302)
 
 Mark Veltzer, Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
