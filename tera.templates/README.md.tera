@@ -1,25 +1,47 @@
 {% set project = load_lua(path="config/project.lua") -%}
 {% set personal = load_lua(path="config/personal.lua") -%}
-{% set version = version_str(path="config/version.lua") -%}
-## {{ project.NAME }}
-
-version: {{ version }}
+# *{{ project.NAME }}* project by {{ personal.FULLNAME }}
 
 description: {{ project.DESCRIPTION_SHORT }}
 
-website: https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}
+project website: https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}
 
-## Build
+author: {{ personal.FULLNAME }}
+
+version: {{ version_str(path="config/version.lua") }}
+
+![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+
+## github
+
+![License](https://img.shields.io/github/license/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }})
+
+## build
 
 {% for wf in workflow_names() -%}
 ![{{ wf.name }}](https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}/workflows/{{ wf.name }}/badge.svg)
 {% endfor %}
-{% if project.DESCRIPTION_LONG is defined -%}
-{{ project.DESCRIPTION_LONG }}
-{% endif -%}
-{% include "tera.snippets/main.md.tera" %}
-## Contact
+{%- if project.PYPI | default(value=false) %}
+## pypi
 
-chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
+![PyPI - Status](https://img.shields.io/pypi/status/{{ project.NAME }})
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ project.NAME }})
+![PyPI - License](https://img.shields.io/pypi/l/{{ project.NAME }})
+![PyPI - Package Name](https://img.shields.io/pypi/v/{{ project.NAME }})
+![PyPI - Format](https://img.shields.io/pypi/format/{{ project.NAME }})
+
+## pypi download
+
+![PyPI - Downloads](https://img.shields.io/pypi/dd/{{ project.NAME }})
+![PyPI - Downloads](https://img.shields.io/pypi/dw/{{ project.NAME }})
+![PyPI - Downloads](https://img.shields.io/pypi/dm/{{ project.NAME }})
+{% endif -%}
+{% include "tera.snippets/main.md.tera" ignore missing %}
+## contact me
+
+[mailto](mailto:{{ personal.EMAIL }})
+![gitter](https://img.shields.io/gitter/room/veltzer/mark.veltzer)
+![discord](https://img.shields.io/discord/719336281624281119)
+![discord](https://img.shields.io/discord/719336282194444302)
 
 {{ personal.FULLNAME }}, Copyright © {{ copyright_years() }}
