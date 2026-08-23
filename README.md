@@ -12,11 +12,6 @@ website: https://veltzer.github.io/demos-os-linux
 ![image](https://github.com/veltzer/demos-os-linux/workflows/image/badge.svg)
 
 demos-os-linux is a project to demo and explore the Linux user space C/C++ API
-
-## Contact
-
-chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
-
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
@@ -96,5 +91,9 @@ it here http://man7.org/tlpi/code/.
     .[c|cc].
     You must be at the root of the project to issue the `make` command.
 * the most important part: tweak the examples, try to prove me (my comments) wrong, have fun!
+
+## Contact
+
+chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
 
 Mark Veltzer, Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
