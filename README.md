@@ -17,7 +17,6 @@ version: 0.0.1
 ## build
 
 ![build](https://github.com/veltzer/demos-os-linux/workflows/build/badge.svg)
-![image](https://github.com/veltzer/demos-os-linux/workflows/image/badge.svg)
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
