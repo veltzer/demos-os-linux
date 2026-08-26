@@ -157,6 +157,11 @@ include_paths = ["src/include"]
 cc = "clang"
 cxx = "clang++"
 cflags = [
+	# Ubuntu 26.04 ships a prerelease gcc-16 tree alongside gcc-15, and clang
+	# picks the highest-numbered one - but only gcc-15 ships libstdc++.so, so
+	# the link fails with "cannot find -lstdc++". Pin clang to the gcc-15 tree,
+	# which is the one g++ itself uses.
+	"--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/15",
 	"-O2",
 	"-Wall",
 	"-Werror",
@@ -164,6 +169,7 @@ cflags = [
 	"-pedantic",
 ]
 cxxflags = [
+	"--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/15",
 	"-O2",
 	"-Wall",
 	"-Werror",
@@ -206,7 +212,14 @@ pkg_config = [
 
 [processor.clang_tidy]
 src_dirs = ["src"]
-compiler_args = ["-Isrc/include"]
+# The --gcc-install-dir pin is the same workaround as in cc_single_file.clang
+# above: without it clang-tidy resolves against the prerelease gcc-16 tree,
+# which ships no C++ headers, and every .cc fails with "'iostream' file not
+# found".
+compiler_args = [
+	"-Isrc/include",
+	"--gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/15",
+]
 src_exclude_dirs = "${no_single_excludes_clang_tidy}"
 src_exclude_paths = [
 	"src/examples/compiler_internals/varargs_size.cc",
