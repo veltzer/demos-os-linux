@@ -4,14 +4,25 @@ LABEL org.opencontainers.image.source=https://github.com/veltzer/demos-os-linux
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# gcc-15/g++-15 are pinned explicitly: the C/C++ processors compile with gcc
+# and g++, and the clang processors resolve their libstdc++ headers out of the
+# gcc tree via --gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/15 (see
+# rsconstruct.toml). Ubuntu 26.04 also ships a prerelease gcc-16 that carries
+# no C++ headers, so the version is pinned rather than left to `g++`.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
         git \
         gh \
+        gcc-15 \
+        g++-15 \
+        make \
+        pkg-config \
         python3 \
         python3-venv \
         software-properties-common \
+    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 100 \
+        --slave /usr/bin/g++ g++ /usr/bin/g++-15 \
     && add-apt-repository universe \
     && apt-get update
 
