@@ -13,26 +13,49 @@ permissions:
 
 jobs:
   # The build job below resolves the container image when it starts, so a push
-  # that changes the image inputs must republish `latest` before the build pulls
-  # it - otherwise we silently run against a stale rsconstruct. Keeping both jobs
-  # in one workflow makes that a plain `needs:` instead of polling for the run of
-  # a separate workflow.
+  # that changes the image inputs must republish before the build pulls it -
+  # otherwise we silently run against a stale rsconstruct. Keeping both jobs in
+  # one workflow makes that a plain `needs:` instead of polling for the run of a
+  # separate workflow, and lets this job hand the build job an exact image ref
+  # rather than a mutable tag both sides have to agree on.
   image:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
+    outputs:
+      image: ${{ steps.ref.outputs.image }}
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 2
+          # Full history: the change check below diffs across the whole push
+          # range, which can be many commits deep.
+          fetch-depth: 0
+      - name: resolve the image tag for this run
+        id: tag
+        # `latest` is mutable, so re-running an old workflow would pull today's
+        # image rather than the one the run originally used. Every build also
+        # gets an immutable run-scoped tag, and the build job consumes that one.
+        run: |
+          echo "immutable=ghcr.io/veltzer/demos-os-linux-ci:run-${{ github.run_id }}-${{ github.run_attempt }}" >> "$GITHUB_OUTPUT"
       - name: check whether the image inputs changed
         id: changed
         run: |
-          # First commit on a branch (or a forced push with no usable parent):
-          # rebuild rather than risk pulling a stale image.
-          if ! git rev-parse --verify -q HEAD~1 >/dev/null; then
-            echo "result=true" >> "$GITHUB_OUTPUT"
-            exit 0
+          # Rebuild unconditionally when we cannot establish a trustworthy base
+          # to diff against: a scheduled/dispatch run (no push range), the first
+          # commit on a branch, or a force-push whose `before` is gone.
+          rebuild() { echo "result=true" >> "$GITHUB_OUTPUT"; exit 0; }
+
+          before="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" != push ]; then
+            rebuild
           fi
-          if git diff --quiet HEAD~1 HEAD -- Dockerfile rsconstruct.toml .github/workflows/cicd.yml; then
+          # All-zero `before` means a newly created branch or tag.
+          case "$before" in
+            ''|0000000000000000000000000000000000000000) rebuild ;;
+          esac
+          git rev-parse --verify -q "$before^{commit}" >/dev/null || rebuild
+
+          # Diff the whole push range, not just the tip commit: a push of
+          # several commits can change the image inputs in any one of them.
+          if git diff --quiet "$before" "${{ github.sha }}" -- Dockerfile rsconstruct.toml .github/workflows/cicd.yml; then
             echo "result=false" >> "$GITHUB_OUTPUT"
           else
             echo "result=true" >> "$GITHUB_OUTPUT"
@@ -50,17 +73,32 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/veltzer/demos-os-linux-ci:latest
+          # Both tags point at the same digest. `latest` is what a fresh clone
+          # or a sibling tool reaches for; the run-scoped tag is what makes an
+          # old run re-runnable against the image it actually used.
+          tags: |
+            ghcr.io/veltzer/demos-os-linux-ci:latest
+            ${{ steps.tag.outputs.immutable }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
             CACHEBUST=${{ github.run_id }}
+      - name: publish the image ref for the build job
+        id: ref
+        # When nothing changed we did not push, so the run-scoped tag does not
+        # exist and the build job has to fall back to `latest`.
+        run: |
+          if [ "${{ steps.changed.outputs.result }}" = true ]; then
+            echo "image=${{ steps.tag.outputs.immutable }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "image=ghcr.io/veltzer/demos-os-linux-ci:latest" >> "$GITHUB_OUTPUT"
+          fi
 
   build:
     needs: image
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     container:
-      image: ghcr.io/veltzer/demos-os-linux-ci:latest
+      image: ${{ needs.image.outputs.image }}
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
