@@ -16,7 +16,7 @@ import json
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 OWNER = "veltzer"
 PACKAGE = "demos-os-linux-ci"
@@ -24,7 +24,7 @@ CLUSTER_WINDOW_SECONDS = 60
 
 
 def parse_ts(s: str) -> datetime:
-    return datetime.fromisoformat(s.replace("Z", "+00:00"))
+    return datetime.fromisoformat(s)
 
 
 def fetch_versions() -> list[dict]:
@@ -93,7 +93,7 @@ def main() -> None:
     targets: list[dict] = [v for c in orphaned_clusters for v in c]
     verb = "Deleting" if args.yes else "Would delete"
     print(f"{verb} {len(targets)} version row(s) across {len(orphaned_clusters)} orphaned push(es):")
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     for v in targets:
         ts = parse_ts(v["created_at"])
         age_s = int((now - ts).total_seconds())

@@ -17,7 +17,7 @@ import json
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 OWNER = "veltzer"
 PACKAGE = "demos-os-linux-ci"
@@ -46,7 +46,7 @@ def fetch_versions() -> list[dict]:
 
 
 def parse_ts(s: str) -> datetime:
-    return datetime.fromisoformat(s.replace("Z", "+00:00"))
+    return datetime.fromisoformat(s)
 
 
 def cluster(versions: list[dict]) -> list[list[dict]]:
@@ -86,7 +86,7 @@ def main() -> None:
         return
 
     clusters = cluster(versions)
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
 
     rows: list[tuple[str, str, str, str]] = []
     for idx, group in enumerate(clusters):
