@@ -1,3 +1,11 @@
+# Deliberately NOT the fleet's shared build.yml (rsmultigit check-same skips
+# this repo because the file is named cicd.yml). The demos here need a large
+# native toolchain - pinned gcc-15/g++-15, clang against that gcc tree, kernel
+# and multimedia dev libraries (see Dockerfile) - that would take most of the
+# run to apt-install on a bare runner. So the `image` job publishes that
+# toolchain as a container image to ghcr.io (rebuilt only when its inputs
+# change) and the `build` job runs rsconstruct inside it. Everything below
+# that differs from build.yml exists to serve that two-job shape.
 name: build
 on:
   push:
