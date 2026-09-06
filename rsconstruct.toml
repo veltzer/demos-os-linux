@@ -285,6 +285,11 @@ dep_inputs = [
 [analyzer.python]
 
 [processor.terms]
+# The submodule moved from terms/ to shared/shared-terms, matching the layout
+# teaching-syllabi and teaching-slides already use. The processor defaults to
+# terms/unambiguous, so the new location has to be named explicitly.
+dir_terms_unambiguous = "shared/shared-terms/unambiguous"
+dir_terms_ambiguous = "shared/shared-terms/ambiguous"
 src_dirs = [
   "src",
   "exercises_embedded",
