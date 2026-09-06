@@ -18,8 +18,8 @@ second way (better):
     `apt`-get update
     `apt`-get install linux-image-$(uname -r)-dbgsym
 
-    * remark - the current ddebs archive DOES NOT carry a dbgsym kernel package for the -lowlatency
-    kernels. You will have to use a -generic kernel to use systemtap.
+- remark - the current ddebs archive DOES NOT carry a dbgsym kernel package for the -lowlatency
+  kernels. You will have to use a -generic kernel to use systemtap.
 
 ## How to run the scripts
 ======================
