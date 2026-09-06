@@ -4,6 +4,9 @@ LABEL org.opencontainers.image.source=https://github.com/veltzer/demos-os-linux
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# npm is listed explicitly: rsconstruct installs htmlhint with `npm install
+# -g`, but Ubuntu's `nodejs` package only Suggests npm, so --no-install-recommends
+# leaves the image without it and the tool install fails to spawn.
 # gcc-15/g++-15 are pinned explicitly: the C/C++ processors compile with gcc
 # and g++, and the clang processors resolve their libstdc++ headers out of the
 # gcc tree via --gcc-install-dir=/usr/lib/gcc/x86_64-linux-gnu/15 (see
@@ -17,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc-15 \
         g++-15 \
         make \
+        npm \
         pkg-config \
         python3 \
         python3-venv \
