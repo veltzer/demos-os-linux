@@ -5,8 +5,8 @@
 Remove all 73 globally suppressed cppcheck IDs from `.cppcheck-suppressions` and make
 the file empty, while keeping the whole project clean under:
 
-	cppcheck --error-exitcode=1 --enable=warning,style,performance,portability \
-		--check-level=exhaustive --suppressions-list=.cppcheck-suppressions --inline-suppr
+    cppcheck --error-exitcode=1 --enable=warning,style,performance,portability \
+        --check-level=exhaustive --suppressions-list=.cppcheck-suppressions --inline-suppr
 
 as run by the `[processor.cppcheck]` section of `rsconstruct.toml` (cppcheck 2.19.0,
 1015 `.c`/`.cc` files under `src/`, kernel dirs excluded).

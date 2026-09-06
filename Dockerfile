@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 100 \
         --slave /usr/bin/g++ g++ /usr/bin/g++-15 \
     && add-apt-repository universe \
-    && apt-get update
+    && apt-get update \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"

@@ -2,7 +2,9 @@
 
 Create a class called circle with three members of type double:
 * radios: double -> radius of the circle
+
 * x: double -> x position of the center
+
 * y: double -> y position of the center
 
 * Create one constructor or more for the circle.

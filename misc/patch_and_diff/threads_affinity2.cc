@@ -35,7 +35,7 @@ void another_func() {
 }
 
 void *worker(void *p) {
-	int num=*(int *)p;
+	int num=*static_cast<int *>(p);
 	fprintf(stderr, "starting thread %d\n", num);
 	fprintf(stderr, "ending thread %d\n", num);
 	return NULL;

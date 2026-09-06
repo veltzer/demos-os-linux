@@ -15,4 +15,4 @@ There are 3 ways to achieve this:
 * Another way to call the original libraries version then create a library of your own with the same interface, load the original library using dlopen and call it whenever you want.
 
 ## References
-[here](http://www.linuxjournal.com/article/7795)
+[Modifying a dynamic library without recompiling (`Linux` Journal)](http://www.linuxjournal.com/article/7795)

@@ -175,7 +175,7 @@ cxxflags = [
 ]
 
 [processor.cppcheck]
-src_dirs = ["src"]
+src_dirs = ["src", "misc/patch_and_diff"]
 src_exclude_dirs = "${kernel_excludes}"
 args = [
 	"--error-exitcode=1",
@@ -238,7 +238,8 @@ args = ["--config=.cpplint"]
 dep_inputs = [".cpplint"]
 
 [processor.rumdl]
-src_dirs = ["src"]
+src_dirs = ["src", "doc", "exercises_embedded", "misc"]
+src_files = ["PLAN.md", "README.md"]
 
 [processor.zspell]
 src_dirs = ["src"]
@@ -267,8 +268,7 @@ src_dirs = ["scripts"]
 src_dirs = ["scripts"]
 
 [processor.shellcheck]
-src_dirs = [ "src", "misc", "scripts"]
-args = ["--severity=error", "--shell=bash"]
+src_dirs = ["src", "misc", "scripts"]
 
 [processor.tera]
 src_dirs = ["tera.templates"]
@@ -295,3 +295,23 @@ src_dirs = [
 # lint the GitHub Actions workflow files with actionlint
 [processor.actionlint]
 src_dirs = [".github/workflows"]
+
+# ─── yaml ────────────────────────────────────────────────────────────────────
+
+[processor.yamllint]
+src_dirs = ["src"]
+
+# ─── docker ──────────────────────────────────────────────────────────────────
+
+[processor.hadolint]
+src_files = ["Dockerfile"]
+
+# ─── lua ─────────────────────────────────────────────────────────────────────
+
+[processor.luacheck]
+src_dirs = ["config"]
+
+# ─── html ────────────────────────────────────────────────────────────────────
+
+[processor.htmlhint]
+src_dirs = ["docs", "support"]

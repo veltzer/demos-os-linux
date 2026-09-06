@@ -24,7 +24,6 @@
 			The <b>{{ project.NAME }}</b> git clone link is <a title="{{ project.NAME }} git clone link" href="git://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}.git">here</a>
 
 			</li>
-			<li>
 		</ul>
 		<p>
 			Copyright {{ personal.FULLNAME }} © {{ copyright_years() }}

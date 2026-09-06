@@ -6,4 +6,4 @@ mechanism in order that every thrown exception will show you a stack trace.
 The idea is to override `__cxw_throw` correctly.
 
 References:
-[here](https://gist.github.com/nkuln/2020860)
+[this gist showing how to override throw](https://gist.github.com/nkuln/2020860)

@@ -140,7 +140,7 @@ qemu-system-aarch64 \
 
 You'll see `UEFI` initialization, then `GRUB`, then the kernel booting. First boot takes 1-3 minutes as cloud-init runs. Look for:
 
-```
+```text
 Ubuntu 22.04.x LTS ubuntu ttyAMA0
 
 ubuntu login:
@@ -148,7 +148,7 @@ ubuntu login:
 
 ### Step 5.3: Log in
 
-```
+```text
 Username: ubuntu
 Password: ubuntu
 ```

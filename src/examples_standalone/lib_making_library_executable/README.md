@@ -22,5 +22,5 @@ For bug reporting instructions, please see:
 ```
 
 The ideas for this come from
-[here](http://gcc.gnu.org/ml/gcc-help/2003-07/msg00232.html)
+[this gcc-help thread on executable libraries](http://gcc.gnu.org/ml/gcc-help/2003-07/msg00232.html)
 and the sources of the glibc library.

@@ -18,4 +18,4 @@ Show that it works.
 
 Allocate major and minor number either statically (hardcoded) or dynamically.
 
-Copy as much at you want from [here](https://github.com/veltzer/demos-os-linux/tree/master/src/kernel)
+Copy as much at you want from [the kernel examples in this repository](https://github.com/veltzer/demos-os-linux/tree/master/src/kernel)

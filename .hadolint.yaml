@@ -1,0 +1,15 @@
+# hadolint config, shared fleet-wide (rsmultigit check-same).
+ignored:
+  # Version pinning inside package-manager installs (apt/pip/apk/gem/dnf/zypper/
+  # npm): the fleet deliberately does not pin versions in manifests -
+  # reproducibility comes from lockfiles - so these rules contradict policy.
+  - DL3008
+  - DL3013
+  - DL3018
+  - DL3028
+  - DL3033
+  - DL3037
+  - DL3041
+  # "Multiple consecutive RUN instructions": the Dockerfiles are teaching
+  # material where one instruction per step is the point.
+  - DL3059

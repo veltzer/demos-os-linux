@@ -519,9 +519,9 @@ cat > ~/arm64-scratch/rootfs/etc/motd << 'EOF'
    /_\ | _ \  \/  |/ /| || |  
   / _ \|   / |\/| / _ \_  _| 
  /_/ \_\_|_\_|  |_\___/ |_|  
-                              
+
  BusyBox Linux - Built from Scratch
- 
+
 EOF
 ```
 

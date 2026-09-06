@@ -82,7 +82,7 @@ Before we begin, let's understand the key terms:
 
 ### The Layer Model
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    Your Custom Layer                     │
 │                    (meta-mylayer)                        │
@@ -159,7 +159,7 @@ cd poky
 ls -la
 ```
 
-```
+```text
 poky/
 ├── bitbake/          # BitBake build engine
 ├── documentation/    # Documentation source
@@ -178,7 +178,7 @@ poky/
 ls meta/
 ```
 
-```
+```text
 meta/
 ├── classes/          # Shared build classes (.bbclass)
 ├── conf/             # Layer configuration
@@ -217,7 +217,7 @@ This script:
 
 You'll see:
 
-```
+```text
 You had no conf/local.conf file. This configuration file has therefore been
 created for you from /home/user/yocto-lab/poky/meta-poky/conf/templates/default/local.conf.sample
 ...
@@ -232,7 +232,7 @@ You can now run 'bitbake <target>'
 ls build-arm64/
 ```
 
-```
+```text
 build-arm64/
 └── conf/
     ├── bblayers.conf   # Defines which layers to use
@@ -379,7 +379,7 @@ First build takes **2-4 hours** depending on:
 
 `BitBake` shows progress:
 
-```
+```text
 Loading cache: 100% |#####################################| Time: 0:00:00
 Loaded 1662 entries from dependency cache.
 NOTE: Resolving any missing task queue dependencies
@@ -418,7 +418,7 @@ After successful build:
 ls -la tmp/deploy/images/qemuarm64/
 ```
 
-```
+```text
 tmp/deploy/images/qemuarm64/
 ├── core-image-minimal-qemuarm64.rootfs.ext4
 ├── core-image-minimal-qemuarm64.rootfs.manifest
@@ -496,7 +496,7 @@ Press `Ctrl+A` then `X`
 
 `BitBake` breaks each recipe into tasks:
 
-```
+```text
 do_fetch      → Download source
 do_unpack     → Extract source
 do_patch      → Apply patches
@@ -666,7 +666,7 @@ bitbake-layers create-layer ../meta-mylayer
 
 This creates:
 
-```
+```text
 meta-mylayer/
 ├── conf/
 │   └── layer.conf       # Layer configuration
@@ -1060,7 +1060,7 @@ bitbake-layers add-layer ../meta-mylayer
 ```bash
 bitbake my-custom-image
 ```
-```
+```text
 
 ---
 

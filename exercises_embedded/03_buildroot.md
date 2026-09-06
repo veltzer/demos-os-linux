@@ -121,7 +121,7 @@ cd buildroot-2024.02
 
 Before building, let's understand what's inside:
 
-```
+```text
 buildroot/
 ├── arch/           # Architecture-specific configs
 ├── board/          # Board-specific files (scripts, overlays)
@@ -184,7 +184,7 @@ make menuconfig
 
 Navigate the menus to explore:
 
-```
+```text
 ┌─────────────────── Buildroot Configuration ───────────────────┐
 │  Target options          → Architecture, CPU, ABI             │
 │  Toolchain               → Compiler, C library selection      │
@@ -222,7 +222,7 @@ This will take **30-60 minutes** on first build (downloading and compiling toolc
 
 `Buildroot` shows each package being built:
 
-```
+```text
 >>> toolchain-buildroot >>>  Downloading
 >>> linux 6.6.x >>>  Extracting
 >>> busybox 1.36.x >>>  Building
@@ -242,7 +242,7 @@ ls -la output/images/
 
 You'll see:
 
-```
+```text
 output/images/
 ├── Image           # Linux kernel (uncompressed)
 ├── rootfs.ext2     # Root filesystem (ext2 format)
@@ -252,7 +252,7 @@ output/images/
 
 ### Output Directory Structure
 
-```
+```text
 output/
 ├── build/          # Package build directories
 ├── host/           # Tools for the build machine
@@ -335,7 +335,7 @@ Navigate to **System configuration**:
 
 Navigate to **Target packages** and explore:
 
-```
+```text
 Target packages
 ├── Audio and video applications
 ├── Compressors and decompressors
@@ -353,7 +353,7 @@ Target packages
 
 Let's add some useful packages:
 
-```
+```text
 Target packages → Networking applications
     [*] dropbear (SSH server - lightweight)
     [*] wget
@@ -434,7 +434,7 @@ make menuconfig
 ```
 
 Navigate to:
-```
+```text
 System configuration
     → Root filesystem overlay directories
 ```
@@ -654,7 +654,7 @@ git commit -m "Add custom ARM64 configuration"
 
 Create an external tree for your organization's packages:
 
-```
+```text
 my-external/
 ├── external.mk
 ├── external.desc

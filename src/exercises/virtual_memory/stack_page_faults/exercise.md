@@ -5,6 +5,7 @@
 (first use little stack and then little by little use more stack).
 Think: How do you allocate more space on the stack each time?
 Use either recursion or a data structure allocated directly on the stack.
+
 * Prevent those page faults in at least two different ways: by
 pre-allocating the pages or by calling `mlock(2)`
 
