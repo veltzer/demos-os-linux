@@ -34,16 +34,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 
-# pymakehelper: three per-example Makefiles under src/ shell out to it
-# (`pymakehelper only_print_on_error ...`). pyproject.toml declares it for the
-# local venv, but nothing declares it for CI: the make processor only
-# requires `make`, and rsconstruct's tool registry has no pymakehelper entry
-# for required_tools to name. The targets that use it were always restored
-# from cache in CI until a cold build finally ran them (run 34101555910,
-# "make: pymakehelper: No such file or directory"). Same venv the processor
-# tools go into, so it is on PATH for the build job.
-RUN pip install --no-cache-dir pymakehelper
-
 # CACHEBUST is set per build to ensure the curl below always refetches
 # `latest` (otherwise the buildx layer cache would serve a stale binary
 # even when a new rsconstruct release exists).
@@ -55,7 +45,12 @@ RUN echo "cachebust=${CACHEBUST}" \
     && rsconstruct version
 
 WORKDIR /build
-COPY rsconstruct.toml ./
+# install-deps reads all three: [dependencies].system from rsconstruct.toml,
+# and the Python set from uv.lock (the pinned closure pyproject.toml resolves
+# to -- pymakehelper and the dev tools). Copying only rsconstruct.toml left
+# the installer with no lock to read, so the Makefiles that shell out to
+# pymakehelper failed the first time a cold build ran them.
+COPY rsconstruct.toml pyproject.toml uv.lock ./
 # install-deps installs the [dependencies] section; install installs the
 # external tools the enabled processors need (clang, ruff, mypy, rumdl, ...).
 # Both are required: baking the tools into the image keeps the build job from

@@ -63,7 +63,7 @@ jobs:
 
           # Diff the whole push range, not just the tip commit: a push of
           # several commits can change the image inputs in any one of them.
-          if git diff --quiet "$before" "${{ github.sha }}" -- Dockerfile rsconstruct.toml .github/workflows/cicd.yml; then
+          if git diff --quiet "$before" "${{ github.sha }}" -- Dockerfile rsconstruct.toml pyproject.toml uv.lock .github/workflows/cicd.yml; then
             echo "result=false" >> "$GITHUB_OUTPUT"
           else
             echo "result=true" >> "$GITHUB_OUTPUT"
