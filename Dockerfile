@@ -34,6 +34,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 
+# pymakehelper: three per-example Makefiles under src/ shell out to it
+# (`pymakehelper only_print_on_error ...`). pyproject.toml declares it for the
+# local venv, but nothing declares it for CI: the make processor only
+# requires `make`, and rsconstruct's tool registry has no pymakehelper entry
+# for required_tools to name. The targets that use it were always restored
+# from cache in CI until a cold build finally ran them (run 34101555910,
+# "make: pymakehelper: No such file or directory"). Same venv the processor
+# tools go into, so it is on PATH for the build job.
+RUN pip install --no-cache-dir pymakehelper
+
 # CACHEBUST is set per build to ensure the curl below always refetches
 # `latest` (otherwise the buildx layer cache would serve a stale binary
 # even when a new rsconstruct release exists).
