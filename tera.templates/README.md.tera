@@ -42,8 +42,6 @@ version: {{ version_str(path="config/version.lua") }}
 {% include "tera.snippets/main.md.tera" ignore missing %}
 ## contact me
 
-[mailto](mailto:{{ personal.EMAIL }})
-![discord](https://img.shields.io/discord/719336281624281119)
-![discord](https://img.shields.io/discord/719336282194444302)
+[{{ personal.EMAIL }}](mailto:{{ personal.EMAIL }})
 
 {{ personal.FULLNAME }}, Copyright © {{ copyright_years() }}
