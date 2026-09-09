@@ -119,6 +119,11 @@ jobs:
       # ("dubious ownership"). Mark all dirs safe inside the container.
       run: git config --global --add safe.directory '*'
     - uses: actions/checkout@v6
+      with:
+        # The terms check reads shared/shared-terms, a submodule. Without
+        # this the directory checks out empty and the check passes on
+        # nothing; same setting as the shared build.yml.
+        submodules: recursive
     - uses: actions/cache@v5
       with:
         path: .rsconstruct
