@@ -38,6 +38,10 @@ lib*.so.*
 *.gcda
 *.map
 *.bin
+# cmake in-source build output; builds belong in build/ (ignored above)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
 
 # kernel stuff
 *.ko
