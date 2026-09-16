@@ -89,6 +89,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cpplint"
+version = "2.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c5/83/47a9e7513ba4d943a9dac2f6752b444377c91880f4f4968799b4f42d89cc/cpplint-2.0.2.tar.gz", hash = "sha256:8a5971e4b5490133e425284f0c566c7ade0b959e61018d2c9af3ff7f357ddc57", size = 373781, upload-time = "2025-04-08T01:22:26.017Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/66/65/08d3a5039b565231c501b31d1a973d4222e9803c03b2c31a9c08bdec3e30/cpplint-2.0.2-py3-none-any.whl", hash = "sha256:7ec188b5a08e604294ae7e7f88ec3ece2699de857f0533b305620c8cf237cad5", size = 81987, upload-time = "2025-04-08T01:22:24.101Z" },
+]
+
+[[package]]
 name = "demos-os-linux"
 version = "0.0.0"
 source = { virtual = "." }
@@ -98,6 +107,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "cpplint" },
     { name = "mypy" },
     { name = "pylint" },
     { name = "pytest" },
@@ -110,6 +120,7 @@ requires-dist = [{ name = "pymakehelper" }]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "cpplint" },
     { name = "mypy" },
     { name = "pylint" },
     { name = "pytest" },
