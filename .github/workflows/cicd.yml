@@ -31,7 +31,7 @@ jobs:
     outputs:
       image: ${{ steps.ref.outputs.image }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           # Full history: the change check below diffs across the whole push
           # range, which can be many commits deep.
@@ -118,7 +118,7 @@ jobs:
       # Modern git refuses to operate on a tree owned by a different uid
       # ("dubious ownership"). Mark all dirs safe inside the container.
       run: git config --global --add safe.directory '*'
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
       with:
         # The terms check reads shared/shared-terms, a submodule. Without
         # this the directory checks out empty and the check passes on
