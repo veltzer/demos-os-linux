@@ -10,7 +10,6 @@ dependencies = [
 dev = [
     "cpplint",
     "mypy",
-    "pylint",
     "pytest",
     "ruff",
     "yamllint",
