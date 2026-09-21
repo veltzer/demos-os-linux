@@ -124,7 +124,7 @@ jobs:
         # this the directory checks out empty and the check passes on
         # nothing; same setting as the shared build.yml.
         submodules: recursive
-    - uses: actions/cache@v5
+    - uses: actions/cache@v6
       with:
         path: .rsconstruct
         key: rsconstruct-${{ runner.os }}-${{ github.run_id }}
