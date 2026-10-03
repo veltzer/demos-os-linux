@@ -318,5 +318,5 @@ src_dirs = ["config"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
-[processor.htmlhint]
+[processor.tidy]
 src_dirs = ["docs", "support"]
