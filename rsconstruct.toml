@@ -115,7 +115,7 @@ no_single_excludes_clang_tidy = [
   "/libs/"
 ]
 
-[processor.cc_single_file.gcc]
+[processor.generator.cc_single_file.gcc]
 src_dirs = ["src"]
 src_exclude_dirs = "${no_single_excludes}"
 include_paths = ["src/include"]
@@ -137,7 +137,7 @@ cxxflags = [
 	"-pedantic",
 ]
 
-[processor.cc_single_file.clang]
+[processor.generator.cc_single_file.clang]
 src_dirs = ["src"]
 src_exclude_dirs = "${no_single_excludes_clang}"
 src_exclude_paths = [
@@ -174,7 +174,7 @@ cxxflags = [
 	"-pedantic",
 ]
 
-[processor.cppcheck]
+[processor.checker.cppcheck]
 src_dirs = ["src", "misc/patch_and_diff"]
 src_exclude_dirs = "${kernel_excludes}"
 args = [
@@ -184,7 +184,7 @@ args = [
 	"--inline-suppr",
 ]
 
-[processor.make]
+[processor.checker.make]
 src_dirs = ["src"]
 src_exclude_paths = ["Makefile"]
 src_exclude_dirs = "${kernel_excludes}"
@@ -207,7 +207,7 @@ pkg_config = [
 	"Qt6Widgets",
 ]
 
-[processor.clang_tidy]
+[processor.checker.clang_tidy]
 src_dirs = ["src"]
 # The --gcc-install-dir pin is the same workaround as in cc_single_file.clang
 # above: without it clang-tidy resolves against the prerelease gcc-16 tree,
@@ -231,46 +231,46 @@ src_exclude_paths = [
 	"src/exercises/real_time/volatile_atomic_etc/solution.cc",
 ]
 
-[processor.cpplint]
+[processor.checker.cpplint]
 src_dirs = ["src"]
 src_exclude_dirs = "${kernel_excludes}"
 args = ["--config=.cpplint"]
 dep_inputs = [".cpplint"]
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_dirs = ["src", "doc", "exercises_embedded", "misc"]
 src_files = ["PLAN.md", "README.md"]
 
-[processor.zspell]
+[processor.checker.zspell]
 src_dirs = ["src"]
 
-# [processor.checkpatch]
+# [processor.checker.checkpatch]
 # src_dirs = ["src/kernel"]
 # args = ["--no-tree"]
 
-[processor.linux_module]
+[processor.creator.linux_module]
 src_dirs = ["src/kernel_standalone"]
 
-[processor.cc]
+[processor.creator.cc]
 src_dirs = ["src"]
 
-[processor.script.check_all]
+[processor.checker.script.check_all]
 enabled=false
 command = "scripts/check_all.py"
 src_extensions = [".c", ".cc"]
 src_dirs = ["src"]
 batch = true
 
-[processor.mypy]
+[processor.checker.mypy]
 src_dirs = ["scripts"]
 
-[processor.ruff]
+[processor.checker.ruff]
 src_dirs = ["scripts"]
 
-[processor.shellcheck]
+[processor.checker.shellcheck]
 src_dirs = ["src", "misc", "scripts"]
 
-[processor.tera]
+[processor.generator.tera]
 src_dirs = ["tera.templates"]
 dep_inputs = [
     "config/project.lua",
@@ -284,7 +284,7 @@ dep_inputs = [
 
 [analyzer.python]
 
-[processor.terms]
+[processor.checker.terms]
 # The submodule moved from terms/ to shared/shared-terms, matching the layout
 # teaching-syllabi and teaching-slides already use. The processor defaults to
 # terms/unambiguous, so the new location has to be named explicitly.
@@ -298,25 +298,25 @@ src_dirs = [
 ]
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
 
 # ─── yaml ────────────────────────────────────────────────────────────────────
 
-[processor.yamllint]
+[processor.checker.yamllint]
 src_dirs = ["src"]
 
 # ─── docker ──────────────────────────────────────────────────────────────────
 
-[processor.hadolint]
+[processor.checker.hadolint]
 src_files = ["Dockerfile"]
 
 # ─── lua ─────────────────────────────────────────────────────────────────────
 
-[processor.luacheck]
+[processor.checker.luacheck]
 src_dirs = ["config"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
-[processor.tidy]
+[processor.checker.tidy]
 src_dirs = ["docs", "support"]
