@@ -56,5 +56,5 @@ COPY rsconstruct.toml pyproject.toml uv.lock ./
 # Both are required: baking the tools into the image keeps the build job from
 # having to install them on every run, and means the job no longer depends on
 # the runtime binary's prompting behaviour.
-RUN rsconstruct tools install-deps \
-    && rsconstruct tools install
+RUN rsconstruct tool install-deps \
+    && rsconstruct tool install
