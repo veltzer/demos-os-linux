@@ -1,4 +1,4 @@
-# hadolint config, shared fleet-wide (rsmultigit check-same).
+# hadolint config, shared fleet-wide (rsmultigit check same).
 ignored:
   # Version pinning inside package-manager installs (apt/pip/apk/gem/dnf/zypper/
   # npm): the fleet deliberately does not pin versions in manifests -

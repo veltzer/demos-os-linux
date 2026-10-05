@@ -1,4 +1,4 @@
-# Deliberately NOT the fleet's shared build.yml (rsmultigit check-same skips
+# Deliberately NOT the fleet's shared build.yml (rsmultigit check same skips
 # this repo because the file is named cicd.yml). The demos here need a large
 # native toolchain - pinned gcc-15/g++-15, clang against that gcc tree, kernel
 # and multimedia dev libraries (see Dockerfile) - that would take most of the
