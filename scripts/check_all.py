@@ -107,30 +107,6 @@ def check_include(files):
     return errors
 
 
-def check_license(files):
-    """All source files must start with the project license."""
-    license_path = "support/license_new.txt"
-    if not os.path.exists(license_path):
-        return [f"license file {license_path} not found"]
-    with open(license_path) as f:
-        license_text = f.read()
-    errors = []
-    for path in files:
-        content = read_file(path)
-        if content is None:
-            continue
-        if content.startswith(license_text):
-            continue
-        # kernel files may have SPDX first line
-        lines = content.split("\n")
-        if lines[0] == "// SPDX-License-Identifier: GPL-2.0":
-            rest = "\n".join(lines[1:])
-            if rest.startswith(license_text):
-                continue
-        errors.append(f"{path}: missing or wrong license header")
-    return errors
-
-
 def check_exit(files):
     """No exit(1) calls — use EXIT_FAILURE instead."""
     errors = []
@@ -380,7 +356,6 @@ ALL_CHECKS = [
     ("check_ws", check_ws),
     ("check_ace_include", check_ace_include),
     ("check_include", check_include),
-    ("check_license", check_license),
     ("check_exit", check_exit),
     ("check_firstinclude", check_firstinclude),
     ("check_perror", check_perror),

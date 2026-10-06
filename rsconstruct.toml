@@ -237,6 +237,35 @@ src_exclude_dirs = "${kernel_excludes}"
 args = ["--config=.cpplint"]
 dep_inputs = [".cpplint"]
 
+# Every C/C++ source starts with the project license (support/license_new.txt,
+# which scripts/switch_license.py writes; keep the two in sync). Kernel
+# sources put the SPDX line first. Same rule scripts/check_all.py and
+# scripts/check_license.py used to apply, verified identical before the switch.
+[processor.checker.license_header]
+src_dirs = ["src", "misc"]
+src_extensions = [".c", ".cc", ".h", ".hh", ".S"]
+skip_shebang = false
+optional_prefix_lines = ["// SPDX-License-Identifier: GPL-2.0"]
+header_lines = [
+    "/*",
+    " * This file is part of the demos-os-linux package.",
+    " * Copyright (C) 2011-2026 Mark Veltzer <mark.veltzer@gmail.com>",
+    " *",
+    " * demos-os-linux is free software: you can redistribute it and/or modify",
+    " * it under the terms of the GNU General Public License as published by",
+    " * the Free Software Foundation, either version 3 of the License, or",
+    " * (at your option) any later version.",
+    " *",
+    " * demos-os-linux is distributed in the hope that it will be useful,",
+    " * but WITHOUT ANY WARRANTY; without even the implied warranty of",
+    " * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the",
+    " * GNU General Public License for more details.",
+    " *",
+    " * You should have received a copy of the GNU General Public License",
+    " * along with demos-os-linux. If not, see <http://www.gnu.org/licenses/>.",
+    " */",
+]
+
 [processor.checker.rumdl]
 src_dirs = ["src", "doc", "exercises_embedded", "misc"]
 src_files = ["PLAN.md", "README.md"]

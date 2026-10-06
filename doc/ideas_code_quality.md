@@ -26,9 +26,10 @@ on demo code. Could gradually re-enable specific useful ones:
 
 ## Trim check_all.py to project-specific checks only
 
-Once clang-format handles style, keep only checks that no existing tool handles:
+Once clang-format handles style, keep only checks that no existing tool handles
+(the license header check already moved to rsconstruct's `license_header`
+processor):
 
-- `check_license` -- custom license header
 - `check_firstinclude` -- `#include <firstinclude.h>` convention
 - `check_have_solutions` -- exercises must have solutions
 - `check_exit` / `check_exitzero` -- EXIT_SUCCESS/EXIT_FAILURE
