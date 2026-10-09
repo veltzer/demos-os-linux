@@ -400,10 +400,7 @@ static int pipe_release(struct inode *inode, struct file *filp)
 static ssize_t pipe_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
 {
 	struct my_pipe_t *pipe;
-	/* kernel style declares at the top of the function; the chunk vars are
-	 * only used inside the wrap-around branch below. */
-	/* cppcheck-suppress variableScope */
-	size_t data, work_size, first_chunk, second_chunk, ret;
+	size_t data, work_size, ret;
 
 	pr_debug("%s: start with buf %p\n", __func__, buf);
 	if (!access_ok(buf, count))
@@ -442,14 +439,14 @@ static ssize_t pipe_read(struct file *file, char __user *buf, size_t count, loff
 			return ret;
 		}
 	} else {
-		first_chunk = min(work_size, pipe->size-pipe->read_pos);
+		size_t first_chunk = min(work_size, pipe->size-pipe->read_pos);
 		ret = pipe_copy_to_user(pipe, first_chunk, &buf);
 		if (ret) {
 			pipe_unlock(pipe);
 			return ret;
 		}
 		if (first_chunk < work_size) {
-			second_chunk = work_size-first_chunk;
+			size_t second_chunk = work_size-first_chunk;
 			ret = pipe_copy_to_user(pipe, second_chunk, &buf);
 			if (ret) {
 				pipe_unlock(pipe);
@@ -468,10 +465,7 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 		size_t count, loff_t *ppos)
 {
 	struct my_pipe_t *pipe;
-	/* kernel style declares at the top of the function; the chunk vars are
-	 * only used inside the wrap-around branch below. */
-	/* cppcheck-suppress variableScope */
-	size_t work_size, room, first_chunk, second_chunk, ret;
+	size_t work_size, room, ret;
 
 	if (!access_ok(buf, count))
 		return -EFAULT;
@@ -496,14 +490,14 @@ static ssize_t pipe_write(struct file *file, const char __user *buf,
 	pr_debug("work_size is %zd\n", work_size);
 	/* copy_from_user data from the pipe */
 	if (pipe->read_pos <= pipe->write_pos) {
-		first_chunk = min(work_size, pipe->size-pipe->write_pos);
+		size_t first_chunk = min(work_size, pipe->size-pipe->write_pos);
 		ret = pipe_copy_from_user(pipe, first_chunk, &buf);
 		if (ret) {
 			pipe_unlock(pipe);
 			return ret;
 		}
 		if (first_chunk < work_size) {
-			second_chunk = work_size-first_chunk;
+			size_t second_chunk = work_size-first_chunk;
 			ret = pipe_copy_from_user(pipe, second_chunk, &buf);
 			if (ret) {
 				pipe_unlock(pipe);

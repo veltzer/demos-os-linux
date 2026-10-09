@@ -157,8 +157,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue1 in handle_timeout()
-				// cppcheck-suppress unreadVariable
-				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay));
+				reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case1: timer id=%d\n", timer_id));
 				break;
 
@@ -168,8 +167,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue1 in handle_timeout()
-				// cppcheck-suppress unreadVariable
-				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay));
+				reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(1)), ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case2: timer id=%d\n", timer_id));
 				break;
 
@@ -179,8 +177,7 @@ static void *producer(void*) {
 					ACE_ERROR((LM_ERROR, "(%t) %p\n", "put_next"));
 				}
 				// Specify queue2 in handle_timeout()
-				// cppcheck-suppress unreadVariable
-				timer_id=reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(2)), ACE_Time_Value(AbsoluteDelay));
+				reactor.schedule_timer(th, reinterpret_cast<const void *>(static_cast<uintptr_t>(2)), ACE_Time_Value(AbsoluteDelay));
 				// ACE_DEBUG ((LM_DEBUG , "case3: timer id=%d\n", timer_id));
 				break;
 

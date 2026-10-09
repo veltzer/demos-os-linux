@@ -38,14 +38,10 @@ int main() {
 	my_system("sudo insmod ./mod_use_count.ko");
 	my_system("sudo chmod 666 %s", filename);
 	printf("run something like watch --interval=0.2 lsmod\n");
-	// file descriptor
-	// cppcheck-suppress variableScope
-	int fd;
-	// cppcheck-suppress variableScope
-	int fd2;
+
 	while(true) {
-		fd=CHECK_NOT_M1(open(filename, O_RDWR));
-		fd2=CHECK_NOT_M1(open(filename, O_RDWR));
+		int fd=CHECK_NOT_M1(open(filename, O_RDWR));
+		int fd2=CHECK_NOT_M1(open(filename, O_RDWR));
 		CHECK_NOT_M1(usleep(1000000));
 		// CHECK_ZERO(sleep(1));
 		CHECK_NOT_M1(close(fd));

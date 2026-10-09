@@ -118,7 +118,7 @@ off_t get_file_size(int fd) {
  * it does offer you a certain strange geeky peace.
  * */
 
-int app_setup_uring(struct submitter *s) {
+void app_setup_uring(struct submitter *s) {
 	struct app_io_sq_ring *sring = &s->sq_ring;
 	struct app_io_cq_ring *cring = &s->cq_ring;
 	struct io_uring_params p;
@@ -191,7 +191,6 @@ int app_setup_uring(struct submitter *s) {
 	cring->ring_entries = static_cast<unsigned int*>(cq_ptr) + p.cq_off.ring_entries;
 	cring->cqes = static_cast<io_uring_cqe*>(cq_ptr) + p.cq_off.cqes;
 
-	return 0;
 }
 
 /*
@@ -326,11 +325,7 @@ int main(int argc, char *argv[]) {
 	}
 	CHECK_NOT_NULL(s = static_cast<submitter*>(malloc(sizeof(*s))));
 	memset(s, 0, sizeof(*s));
-	// cppcheck-suppress knownConditionTrueFalse
-	if(app_setup_uring(s)) {
-		fprintf(stderr, "Unable to setup uring!\n");
-		return EXIT_FAILURE;
-	}
+	app_setup_uring(s);
 	for(int i = 1; i < argc; i++) {
 		if(submit_to_sq(argv[i], s)) {
 			fprintf(stderr, "Error reading file\n");

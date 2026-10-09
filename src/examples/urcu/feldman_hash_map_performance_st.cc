@@ -29,13 +29,7 @@
 
 using namespace std;
 
-// Define a hash map using Michael's hash map from liburcu
-struct KeyVal {
-	// cppcheck-suppress unusedStructMember
-	int key;
-	// cppcheck-suppress unusedStructMember
-	int val;
-};
+
 
 /*
  * EXTRA_LINK_FLAGS_AFTER=-lcds

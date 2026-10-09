@@ -190,17 +190,12 @@ int main(int argc,char** argv,char** envp) {
 	/* We want the 3 parameter form of the handler with the siginfo_t addtional data */
 	act.sa_flags=SA_SIGINFO;
 
-	/* Register the handler for all exception signals. */
-	/* cppcheck-suppress unreadVariable */
 	ret=sigaction (SIGSEGV, &act, NULL);
-	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGILL, &act, NULL);
-	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGFPE, &act, NULL);
-	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGBUS, &act, NULL);
-	/* cppcheck-suppress unreadVariable */
 	ret|=sigaction (SIGQUIT, &act, NULL);
+	(void)ret;
 
 	printf("Starting first run\n");
 	fflush(NULL);

@@ -76,14 +76,14 @@ int main() {
 
 	FILE *f1=CHECK_NOT_NULL_FILEP(fopen(writeFileName, "w"));
 	printBuffDetails(f1, "newly created file for writing without write(3)");
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(f1));
+	int f1_res = fclose(f1);
+	CHECK_ZERO_ERRNO(f1_res);
 	CHECK_NOT_M1(unlink(writeFileName));
 
 	FILE *f2=CHECK_NOT_NULL_FILEP(fopen(readFileName, "r"));
 	printBuffDetails(f2, "newly created file for reading without read(3)");
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(f2));
+	int f2_res = fclose(f2);
+	CHECK_ZERO_ERRNO(f2_res);
 
 	FILE *f3=CHECK_NOT_NULL_FILEP(fopen(writeFileName, "w"));
 	const char* hello="hello";
@@ -92,22 +92,22 @@ int main() {
 	// no error return code for setbuffer(3)
 	setbuffer(f3, buf, sizeof(buf));
 	printBuffDetails(f3, "newly created file for writing with setbuffer(3)");
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(f3));
+	int f3_res = fclose(f3);
+	CHECK_ZERO_ERRNO(f3_res);
 	CHECK_NOT_M1(unlink(writeFileName));
 
 	FILE *f4=CHECK_NOT_NULL_FILEP(fopen(writeFileName, "w"));
 	CHECK_INT_NOERRNO(fwrite(hello, strlen(hello), 1, f4), 1);
 	printBuffDetails(f4, "newly created file for writing with write(3)");
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(f4));
+	int f4_res = fclose(f4);
+	CHECK_ZERO_ERRNO(f4_res);
 	CHECK_NOT_M1(unlink(writeFileName));
 
 	FILE *f5=CHECK_NOT_NULL_FILEP(fopen(readFileName, "r"));
 	// lets read something
 	CHECK_INT_NOERRNO(fread(buf, sizeof(buf), 1, f5), 1);
 	printBuffDetails(f5, "newly created file for reading with read(3)");
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(f5));
+	int f5_res = fclose(f5);
+	CHECK_ZERO_ERRNO(f5_res);
 	return EXIT_SUCCESS;
 }

@@ -55,11 +55,6 @@ static int __init mod_init(void)
 	int i;
 #endif /* DO_LOOP */
 #ifdef DO_INC
-	/* used further down, inside the matching #ifdef DO_INC block */
-	/* cppcheck-suppress unusedVariable */
-	unsigned int size;
-	unsigned int inc;
-	bool stop;
 #endif /* DO_INC */
 #ifdef DO_ONE
 	const unsigned int size = 1024 * 1024 * 24;
@@ -85,10 +80,11 @@ static int __init mod_init(void)
 	dma_free_coherent(NULL, size, vptr, device_addr);
 #endif /* DO_ONE */
 #ifdef DO_INC
-	inc = 1024*512;
-	size = 1024*512; /* half a meg */
-	stop = false;
-	while (!stop) {
+	{
+		unsigned int inc = 1024*512;
+		unsigned int size = 1024*512; /* half a meg */
+		bool stop = false;
+		while (!stop) {
 		/*
 		 * vptr = dma_alloc_coherent(NULL, size, &device_addr, GFP_DMA);
 		 * vptr = kmalloc(size,GFP_DMA);
@@ -104,6 +100,7 @@ static int __init mod_init(void)
 		 */
 		kfree(vptr);
 		size += inc;
+		}
 	}
 #endif /* DO_INC */
 	pr_debug("end");

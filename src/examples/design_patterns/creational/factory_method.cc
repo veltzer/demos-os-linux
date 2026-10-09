@@ -26,21 +26,20 @@
 
 using namespace std;
 
-// cppcheck-suppress noConstructor
 class MyClass{
 private:
 	int x;
 	int y;
 
 public:
+	MyClass() : x(0), y(0) {}
+
 	void print() const{
 		cout << x << " " << y << endl;
 	}
 	// Constructor emulation
 	static MyClass* create() {
 		MyClass* obj = new MyClass();
-		obj->x = 0;
-		obj->y = 0;
 		return obj;
 	}
 };

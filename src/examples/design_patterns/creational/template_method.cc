@@ -34,8 +34,7 @@ protected:
 	virtual void stepFor() { cout << "A.stepFor" << '\n'; }
 private:
 	// 2. Common implementations of individual steps are defined in base class
-	// cppcheck-suppress functionStatic
-	void stepOne() { cout << "A.stepOne" << '\n'; }
+	static void stepOne() { cout << "A.stepOne" << '\n'; }
 	// 3. Steps requiring peculiar impls are "placeholders" in the base class
 	virtual void stepTwo() = 0;
 	virtual void stepThr() = 0;
@@ -50,12 +49,10 @@ class B : public A {
 		step3_3();
 	}
 	// 2. Common implementations of individual steps are defined in base class
-	// cppcheck-suppress functionStatic
-	void step3_1() { cout << "B.step3_1" << '\n'; }
+	static void step3_1() { cout << "B.step3_1" << '\n'; }
 	// 3. Steps requiring peculiar impls are "placeholders" in the base class
 	virtual void step3_2() = 0;
-	// cppcheck-suppress functionStatic
-	void step3_3() { cout << "B.step3_3" << '\n'; }
+	static void step3_3() { cout << "B.step3_3" << '\n'; }
 };
 
 class C : public B {

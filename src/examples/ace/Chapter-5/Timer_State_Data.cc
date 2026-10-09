@@ -66,8 +66,7 @@ public:
 	}
 
 private:
-	// cppcheck-suppress functionStatic
-	void updateAverageTemperature(TemperatureSensor *) {
+	static void updateAverageTemperature(TemperatureSensor *) {
 	}
 	int counter_;
 	float averageTemperature_;

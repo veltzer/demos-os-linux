@@ -23,6 +23,7 @@
 #include <signal.h>	// for signal(2)
 #include <alsa/asoundlib.h>
 #include <err_utils.h>	// for CHECK_ZERO(), CHECK_NOT_M1()
+#include <vector>
 
 /*
  * An example of playing midi.
@@ -150,7 +151,7 @@ void midi_action() {
 
 void parse_sequence() {
 	FILE *f;
-	char c;
+	int c;
 	unsigned int pos=0;
 	if (!(f=fopen(seq_filename, "r"))) {
 		fprintf(stderr, "Couldn't open sequence file %s\n", seq_filename);
@@ -177,7 +178,6 @@ void parse_sequence() {
 		}
 		c=fgetc(f);
 		pos++;
-		// cppcheck-suppress checkCastIntToCharAndBack
 		if(c==EOF) {
 			break;
 		}
@@ -185,32 +185,25 @@ void parse_sequence() {
 			sequence[2][seq_len]++;
 			c=fgetc(f); pos++;
 		}
-		// cppcheck-suppress invalidFunctionArgStr
-		sequence[2][seq_len]+=12*atoi(&c);
+		sequence[2][seq_len]+=12*(c - '0');
 		c=fgetc(f); pos++;
-		// cppcheck-suppress checkCastIntToCharAndBack
 		if(c==EOF) {
 			break;
 		}
-		// cppcheck-suppress invalidFunctionArgStr
-		if(atoi(&c)==0) {
-			fprintf(stderr, "error: atoi(&c)==0 with c=%s, pos=%u\n", &c, pos);
+		if((c - '0')==0) {
+			fprintf(stderr, "error: (c - '0')==0 with c=%c, pos=%u\n", c, pos);
 			exit(EXIT_FAILURE);
 		}
-		// cppcheck-suppress invalidFunctionArgStr
-		sequence[1][seq_len]=TICKS_PER_QUARTER / atoi(&c);
+		sequence[1][seq_len]=TICKS_PER_QUARTER / (c - '0');
 		c=fgetc(f); pos++;
-		// cppcheck-suppress checkCastIntToCharAndBack
 		if(c==EOF) {
 			break;
 		}
-		// cppcheck-suppress invalidFunctionArgStr
-		if(atoi(&c)==0) {
-			fprintf(stderr, "error: atoi(&c)==0 with c=%s, pos=%u\n", &c, pos);
+		if((c - '0')==0) {
+			fprintf(stderr, "error: (c - '0')==0 with c=%c, pos=%u\n", c, pos);
 			exit(EXIT_FAILURE);
 		}
-		// cppcheck-suppress invalidFunctionArgStr
-		sequence[0][seq_len]=TICKS_PER_QUARTER / atoi(&c);
+		sequence[0][seq_len]=TICKS_PER_QUARTER / (c - '0');
 		seq_len++;
 	}
 	CHECK_ZERO_ERRNO(fclose(f));
@@ -243,8 +236,8 @@ int main(int argc, char** argv) {
 	snd_seq_start_queue(seq_handle, queue_id, NULL);
 	snd_seq_drain_output(seq_handle);
 	int npfd=snd_seq_poll_descriptors_count(seq_handle, POLLIN);
-	// cppcheck-suppress allocaCalled
-	struct pollfd *pfd=static_cast<struct pollfd *>(alloca(npfd * sizeof(struct pollfd)));
+	std::vector<struct pollfd> pfd_vec(npfd);
+	struct pollfd *pfd = pfd_vec.data();
 	snd_seq_poll_descriptors(seq_handle, pfd, npfd, POLLIN);
 	transpose=0;
 	swing=0;

@@ -61,9 +61,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 	/* int i; */
 	char str[256];
 	void *ptr;
-	/* kernel style declares at the top of the function */
-	/* cppcheck-suppress variableScope */
-	unsigned int order;
+
 
 	unsigned long private;
 	unsigned long adjusted;
@@ -190,7 +188,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned lo
 		if (do_kmalloc)
 			kfree(kernel_addr);
 		else {
-			order = get_order(size);
+			unsigned int order = get_order(size);
 			free_pages((unsigned long)kernel_addr, order);
 		}
 		return ret;
@@ -220,9 +218,7 @@ void kern_vma_close(struct vm_area_struct *vma)
 	/* named apart from the module-level 'size'/'addr' statics: these are the
 	 * values of the vma being closed, not the module's own allocation */
 	unsigned int vma_size = vma->vm_end - vma->vm_start;
-	/* kernel style declares at the top of the function */
-	/* cppcheck-suppress variableScope */
-	unsigned int order;
+
 	void *vma_addr = vma->vm_private_data;
 
 	pr_debug("start");
@@ -233,7 +229,7 @@ void kern_vma_close(struct vm_area_struct *vma)
 	if (do_kmalloc)
 		kfree(vma_addr);
 	else {
-		order = get_order(vma_size);
+		unsigned int order = get_order(vma_size);
 		free_pages((unsigned long)vma_addr, order);
 	}
 }

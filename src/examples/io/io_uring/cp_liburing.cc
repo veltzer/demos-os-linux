@@ -143,9 +143,6 @@ int copy_file(struct io_uring *ring, off_t insize) {
 				break;
 			if (this_size > BS)
 				this_size = BS;
-			// cppcheck-suppress knownConditionTrueFalse
-			else if (!this_size)
-				break;
 			if (queue_read(ring, this_size, offset))
 				break;
 			insize -= this_size;

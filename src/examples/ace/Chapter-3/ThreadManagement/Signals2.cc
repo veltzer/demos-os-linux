@@ -56,15 +56,13 @@ public:
 		}
 		ACE_NOTREACHED(return 0);
 	}
-	void handle_alert();
-	void process_message(ACE_Message_Block *mb);
+	static void handle_alert();
+	static void process_message(ACE_Message_Block *mb);
 };
 
-// cppcheck-suppress functionStatic
 void SignalableTask::process_message(ACE_Message_Block *) {
 }
 
-// cppcheck-suppress functionStatic
 void SignalableTask::handle_alert(void) {
 }
 

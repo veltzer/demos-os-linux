@@ -30,10 +30,9 @@ using namespace std;
 
 class A{
 public:
-	void doit();
+	static void doit();
 };
 
-// cppcheck-suppress functionStatic
 void A::doit() {
 	cout << "Hello, World!" << endl;
 }

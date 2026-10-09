@@ -112,8 +112,8 @@ int main(int, char** argv) {
 	}
 	closelog();
 	if (myttyname) {
-		// cppcheck-suppress deallocuse
-		CHECK_ZERO_ERRNO(fclose(newout));
+		int ret = fclose(newout);
+		CHECK_ZERO_ERRNO(ret);
 	}
 	return EXIT_SUCCESS;
 }

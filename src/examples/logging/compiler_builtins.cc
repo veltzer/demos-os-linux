@@ -48,8 +48,7 @@
 
 class A{
 public:
-	// cppcheck-suppress functionStatic
-	void thisMethod(int, int) {
+	static void thisMethod(int, int) {
 		PRINT_BUILTINS();
 	}
 };

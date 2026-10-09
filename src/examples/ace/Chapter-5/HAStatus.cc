@@ -94,8 +94,7 @@ int ClientAcceptor::handle_input(ACE_HANDLE) {
 	if(this->acceptor_.accept(client->peer())==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "Failed to accept "), -1);
 	}
-	// cppcheck-suppress ignoredReturnValue
-	p.release();
+	client = p.release();
 	client->reactor(this->reactor());
 	if(client->open()==-1) {
 		client->handle_close(ACE_INVALID_HANDLE, 0);

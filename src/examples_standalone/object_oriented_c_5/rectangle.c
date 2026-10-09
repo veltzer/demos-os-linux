@@ -32,7 +32,7 @@ typedef struct _rectangle {
 
 rectangle* create_rectangle(const int width, const int height) {
 	rectangle* this=(rectangle*)malloc(sizeof(rectangle));
-	// cppcheck-suppress nullPointerOutOfMemory
+	if (!this) return NULL;
 	this->vtable=vtable;
 	this->height=height;
 	this->width=width;

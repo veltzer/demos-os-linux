@@ -40,8 +40,7 @@ static void* worker(void* p) {
 		CHECK_ZERO(sleep(1));
 		// this simulates a bug. see what this thread is doing using
 		// strace on the process or thread id or pstack(1)
-		// cppcheck-suppress knownConditionTrueFalse
-		if(id==1 && counter==10) {
+		if(id==1 && counter==9) {
 			CHECK_ZERO(sleep(1000));
 		}
 		CHECK_ZERO_ERRNO(pthread_mutex_unlock(&mylock));

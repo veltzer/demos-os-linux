@@ -96,7 +96,7 @@ int get_completion_and_print(struct io_uring *ring) {
 /*
  * Submit the readv request via liburing
  * */
-int submit_read_request(char *file_path, struct io_uring *ring) {
+void submit_read_request(char *file_path, struct io_uring *ring) {
 	int file_fd;
 	CHECK_NOT_M1(file_fd=open(file_path, O_RDONLY));
 	off_t file_sz = get_file_size(file_fd);
@@ -139,7 +139,6 @@ int submit_read_request(char *file_path, struct io_uring *ring) {
 	/* Finally, submit the request */
 	io_uring_submit(ring);
 
-	return 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -152,12 +151,7 @@ int main(int argc, char *argv[]) {
 	/* Initialize io_uring */
 	io_uring_queue_init(QUEUE_DEPTH, &ring, 0);
 	for(int i = 1; i < argc; i++) {
-		int ret = submit_read_request(argv[i], &ring);
-		// cppcheck-suppress knownConditionTrueFalse
-		if (ret) {
-			fprintf(stderr, "Error reading file: %s\n", argv[i]);
-			return 1;
-		}
+		submit_read_request(argv[i], &ring);
 		get_completion_and_print(&ring);
 	}
 	/* Call the clean-up function. */

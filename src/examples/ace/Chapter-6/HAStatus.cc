@@ -112,8 +112,7 @@ int ClientAcceptor::handle_input(ACE_HANDLE) {
 	if(this->acceptor_.accept(client->peer())==-1) {
 		ACE_ERROR_RETURN((LM_ERROR, "%p", "Failed to accept client connection"), -1);
 	}
-	// cppcheck-suppress ignoredReturnValue
-	p.release();
+	client = p.release();
 	client->reactor(this->reactor());
 	if(client->open()==-1) {
 		client->handle_close(ACE_INVALID_HANDLE, 0);
@@ -300,10 +299,10 @@ int main() {
 	ClientAcceptor acceptor;
 	// RAII: both constructors register signal handlers with the reactor,
 	// so the variables are deliberately never read.
-	// cppcheck-suppress unreadVariable
 	LogSwitcher logswitcher(SIGUSR1, SIGUSR2);
-	// cppcheck-suppress unreadVariable
+	(void)logswitcher;
 	LoopStopper loopstopper(SIGINT);
+	(void)loopstopper;
 
 	acceptor.reactor(ACE_Reactor::instance());
 	if(acceptor.open(port_to_listen)==-1) {

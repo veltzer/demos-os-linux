@@ -36,9 +36,8 @@ public:
 
 	explicit A1(int val) : a(val) {
 	}
-	// cppcheck-suppress functionStatic
 	void dosomething() {
-		cout << "Hello from A1" << endl;
+		cout << "Hello from A1, a=" << a << endl;
 	}
 };
 

@@ -51,9 +51,10 @@ private:
 	unsigned int AttemptCounter;
 
 public:
+	SharedResource(const SharedResource&) = delete;
+	SharedResource& operator=(const SharedResource&) = delete;
+
 	SharedResource() {
-		// cppcheck-suppress noCopyConstructor
-		// cppcheck-suppress noOperatorEq
 		cond=new ACE_Condition_Thread_Mutex*[num_threads];
 		for(unsigned int i=0; i<num_threads; i++) {
 			cond[i]=new ACE_Condition_Thread_Mutex(m);

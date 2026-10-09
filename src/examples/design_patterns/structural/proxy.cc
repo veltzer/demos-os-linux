@@ -39,8 +39,8 @@ class Image {
 	static int next;
 public:
 	Image() { id = next++; theRealThing = 0; } // 3. Initialized to null
-	// cppcheck-suppress noCopyConstructor
-	// cppcheck-suppress noOperatorEq
+	Image(const Image&) = delete;
+	Image& operator=(const Image&) = delete;
 	~Image() { delete theRealThing; }
 	void draw() {
 		// 4. When a request comes in, the real object is created "on first use"

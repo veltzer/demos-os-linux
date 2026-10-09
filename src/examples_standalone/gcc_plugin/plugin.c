@@ -117,13 +117,11 @@ static unsigned speller_exec(void) {
 	unsigned i;
 	const_tree str, op;
 	basic_block bb;
-	/* cppcheck-suppress variableScope */
-	gimple stmt;
 	gimple_stmt_iterator gsi;
 
 	FOR_EACH_BB(bb)
 		for(gsi=gsi_start_bb(bb); !gsi_end_p(gsi); gsi_next(&gsi)) {
-			stmt = gsi_stmt(gsi);
+			gimple stmt = gsi_stmt(gsi);
 			for(i=0; i<gimple_num_ops(stmt); ++i)
 				if ((op = gimple_op(stmt, i)) && (str = is_str_cst(op)))
 					spell_check(stmt, str);

@@ -43,6 +43,7 @@ Singleton& Singleton::get_instance() {
 int main() {
 	Singleton& s1=Singleton::get_instance();
 	Singleton& s2=Singleton::get_instance();
-	// cppcheck-suppress assertWithSideEffect
-	assert(addressof(s1) == addressof(s2));
+	const Singleton* p1 = addressof(s1);
+	const Singleton* p2 = addressof(s2);
+	assert(p1 == p2);
 }

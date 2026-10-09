@@ -42,9 +42,7 @@
 int main() {
 	// file to be used
 	const char *filename="/dev/drv_errno";
-	// hold results of syscalls and errnos
-	// cppcheck-suppress variableScope
-	int res, myerrno;
+
 	// default value for errno before we start
 	const int def_errno=2005;
 
@@ -52,8 +50,8 @@ int main() {
 	int d=CHECK_NOT_M1(open(filename, O_RDWR));
 	for(int i=-10; i < 10; i++) {
 		errno=def_errno;
-		res=ioctl(d, 0, i);
-		myerrno=errno;
+		int res=ioctl(d, 0, i);
+		int myerrno=errno;
 		printf("kernel returned %d, I got %d and errno is %d\n", i, res, myerrno);
 	}
 	CHECK_NOT_M1(close(d));

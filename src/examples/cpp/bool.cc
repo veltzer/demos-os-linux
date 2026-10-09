@@ -61,15 +61,13 @@ int main() {
 	} else {
 		printf("bool(7) is false\n");
 	}
-	// cppcheck-suppress cstyleCast
-	const char* p0=(const char*)0;
+	const char* p0=reinterpret_cast<const char*>(0);
 	// cppcheck-suppress intToPointerCast
-	// cppcheck-suppress cstyleCast
-	const char* p7=(const char*)7;
+	const char* p7=reinterpret_cast<const char*>(7);
 	// cppcheck-suppress knownPointerToBool
-	bool pb0=(bool)p0;
+	bool pb0=static_cast<bool>(p0);
 	// cppcheck-suppress knownPointerToBool
-	bool pb7=(bool)p7;
+	bool pb7=static_cast<bool>(p7);
 	// cppcheck-suppress knownConditionTrueFalse
 	if(pb0) {
 		printf("bool((char*)0) is true\n");
@@ -82,9 +80,8 @@ int main() {
 	} else {
 		printf("bool((char*)7) is false\n");
 	}
-	// cppcheck-suppress cstyleCast
-	const char* ptrue=(const char*)true;
-	const char* pfalse=(const char*)false;
+	const char* ptrue=reinterpret_cast<const char*>(true);
+	const char* pfalse=reinterpret_cast<const char*>(false);
 	printf("true cast to char* is %p\n", static_cast<const void*>(ptrue));
 	printf("false cast to char* is %p\n", static_cast<const void*>(pfalse));
 	return EXIT_SUCCESS;

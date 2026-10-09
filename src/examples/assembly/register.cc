@@ -26,15 +26,13 @@
  */
 
 static inline unsigned long getbx() {
-	// cppcheck-suppress unassignedVariable
-	unsigned long val;
+	unsigned long val = 0;
 	#if __i386__
 	asm ("movl %%ebx, %0" : "=r" (val));
 	#endif	// __i386__
 	#if __x86_64__
 	val=5;
 	#endif	// __x86_64__
-	// cppcheck-suppress uninitvar
 	return val;
 }
 

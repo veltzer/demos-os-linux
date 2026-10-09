@@ -44,8 +44,7 @@ public:
 	~A() {
 		cout << "in destructor" << endl;
 	}
-	// cppcheck-suppress functionStatic
-	void doit() {
+	static void doit() {
 		cout << "in doit" << endl;
 	}
 };

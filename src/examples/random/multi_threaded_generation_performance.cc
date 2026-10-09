@@ -66,8 +66,7 @@ atomic<int> counter_random_r;
 
 static void* worker(void*) {
 	while(!stop_rand) {
-		// cppcheck-suppress ignoredReturnValue
-		rand();
+		(void)rand();
 		counter_rand++;
 	}
 	unsigned int seed=gettid();

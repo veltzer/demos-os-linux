@@ -44,10 +44,9 @@ public:
 	int c;
 	char d;
 
-	// cppcheck-suppress functionStatic
-	void dosomething() {
+	virtual void dosomething() {
 		for(int i=0; i<4; i++) {
-			cout << "Hello from A, i is " << i << endl;
+			cout << "Hello from A, a is " << a << " i is " << i << endl;
 		}
 	}
 	virtual~A() {
@@ -58,11 +57,9 @@ class B: public A {
 public:
 	int e;
 	char f;
-	// cppcheck-suppress duplInheritedMember
-	// cppcheck-suppress functionStatic
-	void dosomething() {
+	void dosomething() override {
 		for(int i=0; i<4; i++) {
-			cout << "Hello from B, i is " << i << endl;
+			cout << "Hello from B, e is " << e << " i is " << i << endl;
 		}
 	}
 };

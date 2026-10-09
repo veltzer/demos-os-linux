@@ -50,5 +50,5 @@ class Circle {
 
 		bool inside(double, double);
 
-		friend ostream& operator<<(ostream& os, Circle& obj);
+		friend ostream& operator<<(ostream& os, const Circle& obj);
 };

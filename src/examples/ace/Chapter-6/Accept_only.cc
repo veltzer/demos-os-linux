@@ -98,8 +98,8 @@ int main() {
 	}
 	// RAII: the constructor registers the signal handler with the reactor,
 	// so the variable is deliberately never read.
-	// cppcheck-suppress unreadVariable
 	LoopStopper loopstopper(SIGINT);
+	(void)loopstopper;
 
 	ACE_Reactor::instance()->run_reactor_event_loop();
 	return EXIT_SUCCESS;

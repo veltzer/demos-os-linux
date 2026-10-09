@@ -62,8 +62,8 @@ int main() {
 		FILE* newout=CHECK_NOT_NULL_FILEP(fopen(myttyname, "w"));
 		const char* hello="you can still write to this terminal after you reopen it\n";
 		CHECK_INT_NOERRNO(fwrite(hello, strlen(hello), 1, newout), 1);
-		// cppcheck-suppress deallocuse
-		CHECK_ZERO_ERRNO(fclose(newout));
+		int ret = fclose(newout);
+		CHECK_ZERO_ERRNO(ret);
 	}
 	return EXIT_SUCCESS;
 }

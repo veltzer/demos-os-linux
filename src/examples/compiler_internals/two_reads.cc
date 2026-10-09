@@ -32,9 +32,8 @@
  * fears it may change value.
  */
 
-// cppcheck-suppress constParameterPointer
-void __attribute__((noinline)) print_address_of(int* ptr) {
-	printf("ptr is %p\n", static_cast<void*>(ptr));
+void __attribute__((noinline)) print_address_of(const int* ptr) {
+	printf("ptr is %p\n", static_cast<const void*>(ptr));
 }
 
 void __attribute__((noinline)) printit(int val) {
@@ -44,7 +43,7 @@ void __attribute__((noinline)) printit(int val) {
 int main() {
 	volatile int i=6;
 	int j=8;
-	int a;
+	int a = 0;
 	// to make the compiler actually instantiate a and j
 	print_address_of(&a);
 	print_address_of(&j);

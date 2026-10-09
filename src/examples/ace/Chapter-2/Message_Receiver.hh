@@ -34,7 +34,7 @@ struct DeviceCommandHeader{
 class HA_Device_Repository{
 public:
 	HA_Device_Repository();
-	int update_device(int device_id, char *commands);
+	static int update_device(int device_id, char *commands);
 
 private:
 	ACE_Task_Base *owner_;
@@ -44,7 +44,6 @@ HA_Device_Repository::HA_Device_Repository() : owner_(0) {
 	(void)owner_;
 }
 
-// cppcheck-suppress functionStatic
 int HA_Device_Repository::update_device(int, char *) {
 	return 0;
 }

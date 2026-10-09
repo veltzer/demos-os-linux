@@ -57,15 +57,13 @@ static void *alloc_mem(unsigned int size)
 {
 	/* kernel address to be returned */
 	void *kaddr;
-	/* order of allocation in case we use get_free_pages */
-	/* cppcheck-suppress variableScope */
-	int order;
+
 
 	pr_debug("start");
 	if (do_kmalloc) {
 		kaddr = kmalloc(size, GFP_KERNEL);
 	} else {
-		order = get_order(size);
+		int order = get_order(size);
 		kaddr = (void *)__get_free_pages(GFP_KERNEL, order);
 	}
 	if (((unsigned long)kaddr) % PAGE_SIZE != 0)
@@ -75,16 +73,14 @@ static void *alloc_mem(unsigned int size)
 
 static void free_mem(void *kptr, unsigned int size)
 {
-	/* order of allocation in case we use get_free_pages */
-	/* cppcheck-suppress variableScope */
-	int order;
+
 
 	pr_debug("start");
 	if (do_kmalloc) {
 		/* kfree does not return error code */
 		kfree(kptr);
 	} else {
-		order = get_order(size);
+		int order = get_order(size);
 		/* free pages does not return error code */
 		free_pages((unsigned long)kptr, order);
 	}

@@ -26,7 +26,7 @@ const unsigned int MAX_STR_LEN=64;
 void maximum_subset(char str[], int index, char curr[], char best[]) {
 	int length_of_curr, length_of_best;
 	char tmp_curr[MAX_STR_LEN];
-	int tmp_length_of_curr;
+
 	/* End of the recursion */
 	// printf("called with [%s, %d, %s, %s]\n", str, index, curr, best);
 	if(str[index]=='\0') {
@@ -36,7 +36,7 @@ void maximum_subset(char str[], int index, char curr[], char best[]) {
 	length_of_best=strlen(best);
 	/* Use the current character as an extension of current or as new string */
 	strcpy(tmp_curr, curr);
-	tmp_length_of_curr=length_of_curr;
+
 	if(!(length_of_curr>0 && str[index]>curr[length_of_curr-1])) {
 		length_of_curr=0;
 	}
@@ -45,13 +45,9 @@ void maximum_subset(char str[], int index, char curr[], char best[]) {
 	curr[length_of_curr]='\0';
 	if(length_of_curr>length_of_best) {
 		strcpy(best, curr);
-		// cppcheck-suppress unreadVariable
-		length_of_best=length_of_curr;
 	}
 	maximum_subset(str, index+1, curr, best);
 	strcpy(curr, tmp_curr);
-	// cppcheck-suppress unreadVariable
-	length_of_curr=tmp_length_of_curr;
 	/* skip the current character */
 	maximum_subset(str, index+1, curr, best);
 }

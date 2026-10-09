@@ -41,11 +41,9 @@ int main() {
 	double wtime=omp_get_wtime();
 
 	omp_set_num_threads(3);
-	// cppcheck-suppress variableScope
-	int id;
-	#pragma omp parallel default(shared) private(id)
+	#pragma omp parallel default(shared)
 	{
-		id=omp_get_thread_num();
+		int id=omp_get_thread_num();
 		for(double i=1; i<10; i++) {
 			printf(" i=%f, i*i=%f, %d\n", i, i*i, id);
 		}

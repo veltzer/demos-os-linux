@@ -37,8 +37,8 @@ int main() {
 	FILE* fp=CHECK_NOT_NULL_FILEP(open_memstream(&ptr, &sizeloc));
 	const char* to_print="Hello, World!\n";
 	CHECK_INT_NOERRNO(fwrite(to_print, strlen(to_print), 1, fp), 1);
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(fp));
+	int f_res = fclose(fp);
+	CHECK_ZERO_ERRNO(f_res);
 	printf("ptr is now [%s]\n", ptr);
 	printf("sizeloc is now [%zu]\n", sizeloc);
 	// we must free the pointer outselves! (free(3) does not return a success code)

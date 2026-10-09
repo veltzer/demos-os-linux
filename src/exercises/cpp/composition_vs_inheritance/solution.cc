@@ -24,8 +24,8 @@ using namespace std;
 // Base class
 class Shape{
 public:
-	// cppcheck-suppress functionStatic
-	void draw() {
+	virtual ~Shape() = default;
+	virtual void draw() {
 		cout << "Drawing a shape..." << endl;
 	}
 };
@@ -33,8 +33,7 @@ public:
 // Inherited class
 class Circle: public Shape {
 public:
-	// cppcheck-suppress duplInheritedMember
-	void draw() {
+	void draw() override {
 		Shape::draw();
 		cout << "Drawing a circle..." << endl;
 	}

@@ -19,6 +19,7 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for scanf(3), printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
+#include <string.h>	// for memset(3)
 #include <err_utils.h>	// for CHECK_INT()
 
 void print_array(const int* ar, int size) {
@@ -45,6 +46,7 @@ int main(void) {
 
 	// read the array from the user...
 	int ar[size];
+	memset(ar, 0, sizeof(int) * size);
 	int i;
 	for(i=0; i<size; i++) {
 		printf("give me the %d element: ", i);
@@ -52,7 +54,6 @@ int main(void) {
 		CHECK_INT(scanf("%d", &ar[i]), 1);
 	}
 	// print the array before...
-	// cppcheck-suppress uninitvar
 	print_array(ar, size);
 	// remove the zeros...
 	int newsize=remove_zeros(ar, size);

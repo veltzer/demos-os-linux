@@ -25,16 +25,15 @@
  * This example shows one way to find if the stack goes up or down
  */
 
-bool called(int* b) __attribute__((noinline));
-// cppcheck-suppress constParameterPointer
-bool called(int* b) {
+bool called(const int* b) __attribute__((noinline));
+bool called(const int* b) {
 	int a;
 	return &a < b;
 }
 
 bool stack_is_up() __attribute__((noinline));
 bool stack_is_up() {
-	int b;
+	int b = 0;
 	return called(&b);
 }
 

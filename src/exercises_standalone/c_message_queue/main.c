@@ -47,8 +47,7 @@ void *worker(void *p) {
 		}
 	} else {
 		int counter=0;
-		// cppcheck-suppress knownConditionTrueFalse
-		while(!over) {
+		while(true) {
 			// generate a fake message
 			char* msg=(char*)malloc(256);
 			sprintf(msg, "message %d from producer %d", counter, mynum);

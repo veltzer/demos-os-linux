@@ -53,7 +53,7 @@ int main(void)
 #endif // PIDFD_THREAD
 	printf("Test 3: Checking kernel config...\n");
 	FILE *f = CHECK_NOT_NULL_FILEP(fopen("/proc/config.gz", "r"));
-	// cppcheck-suppress deallocuse
-	CHECK_ZERO_ERRNO(fclose(f));
+	int ret = fclose(f);
+	CHECK_ZERO_ERRNO(ret);
 	return EXIT_SUCCESS;
 }

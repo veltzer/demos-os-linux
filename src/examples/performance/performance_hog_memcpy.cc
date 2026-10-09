@@ -57,8 +57,7 @@ public:
 	// the function is not inlined on purpose so it would show up in profilers
 	// use this example to see that the actual memcpy(3) function
 	// is tuned to the cpu you are running on...
-	// cppcheck-suppress constParameterPointer
-	static void performance_hog_function(char* buf1, char* buf2, unsigned int size) __attribute__((noinline)) {
+	static void performance_hog_function(char* buf1, const char* buf2, unsigned int size) __attribute__((noinline)) {
 		for(unsigned int i=0; i<1000000; i++) {
 			for(unsigned int j=0; j<1000000; j++) {
 				memcpy(buf1, buf2, size);
@@ -69,8 +68,8 @@ public:
 
 int main() {
 	const unsigned int size=1024*1024;
-	char* buf1=static_cast<char*>(CHECK_NOT_NULL(malloc(size)));
-	char* buf2=static_cast<char*>(CHECK_NOT_NULL(malloc(size)));
+	char* buf1=static_cast<char*>(CHECK_NOT_NULL(calloc(1, size)));
+	const char* buf2=static_cast<char*>(CHECK_NOT_NULL(calloc(1, size)));
 	A::performance_hog_function(buf1, buf2, size);
 	return EXIT_SUCCESS;
 }

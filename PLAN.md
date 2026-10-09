@@ -30,13 +30,13 @@ Baseline without the suppressions list: **1194 findings in 455 files**.
 
 ## Steps
 
-### Step 0 - enable inline suppressions (config only)
+### [x] Step 0 - enable inline suppressions (config only)
 
 Add `--inline-suppr` to the cppcheck args in `rsconstruct.toml`. Without it the
 per-line suppressions cannot replace the global ones. The Makefile cppcheck rule
 already passes it.
 
-### Step 1 - delete the 14 already-clean IDs (config only)
+### [x] Step 1 - delete the 14 already-clean IDs (config only)
 
 These have zero findings today and their lines are simply removed:
 
@@ -45,7 +45,7 @@ identicalInnerCondition, invalidContainer, invalidFunctionArgStr,
 invalidPrintfArgType_s, negativeIndex, returnDanglingLifetime, stringLiteralWrite,
 uninitStructMember, uninitvar, unknownMacro, zerodiv`
 
-### Step 2 - Tier A: the ~30 small IDs (about 90 findings, <=6 each)
+### [x] Step 2 - Tier A: the ~30 small IDs (about 90 findings, <=6 each)
 
 Includes `memleak, deallocuse, syntaxError, invalidscanf, nullPointer,
 shiftTooManyBitsSigned, allocaCalled, useInitializationList, uninitMemberVar,
@@ -63,7 +63,7 @@ Mixed real fixes and intentional-demo annotations. The 4 `syntaxError` findings 
 investigated individually (likely cppcheck parse limitations -> file-level inline
 suppression with a comment).
 
-### Step 3 - Tier B: mechanical medium IDs (about 400 findings)
+### [x] Step 3 - Tier B: mechanical medium IDs (about 400 findings)
 
 - `missingOverride` (71) - add `override`
 - `noExplicitConstructor` (77) - add `explicit`
@@ -72,7 +72,7 @@ suppression with a comment).
   `constParameterCallback` (26) - add `const`
 - `unusedStructMember` (32), `variableScope` (27) - per-site small edits
 
-### Step 4 - Tier C: judgment-call IDs (about 330 findings)
+### [x] Step 4 - Tier C: judgment-call IDs (about 330 findings)
 
 - `invalidPrintfArgType_sint` (120) - fix printf format specifiers
 - `nullPointerOutOfMemory` (41) - unchecked `malloc` results: check or annotate
@@ -80,12 +80,12 @@ suppression with a comment).
 - `noConstructor` (20), `noCopyConstructor` (9), `noOperatorEq` (9)
 - `unreadVariable` (15), `shadowVariable` (13), `postfixOperator` (6) and the rest
 
-### Step 5 - Tier D: `cstyleCast` (338)
+### [x] Step 5 - Tier D: `cstyleCast` (338)
 
 Largest single ID. Convert C-style casts in `.cc` files to `static_cast`/
 `reinterpret_cast` in a few sweeps, or annotate where the C-style cast is the demo.
 
-### Step 6 - finish
+### [ ] Step 6 - finish
 
 `.cppcheck-suppressions` has been completely deleted and its `--suppressions-list` flag removed
 from `rsconstruct.toml`. Final verification: full cppcheck run over all 1015 files without any suppressions file exits 0; full GCC+Clang builds pass.

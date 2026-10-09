@@ -58,10 +58,9 @@ public:
 		return 0;
 	}
 
-	void handle_alert();
+	static void handle_alert();
 };
 
-// cppcheck-suppress functionStatic
 void SignalableTask::handle_alert() {
 }
 

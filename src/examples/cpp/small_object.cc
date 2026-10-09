@@ -39,50 +39,41 @@ using namespace std;
 
 class Empty{
 };
-// cppcheck-suppress noConstructor
 class Char{
-	char c;
+	char c = 0;
 };
-// cppcheck-suppress noConstructor
 class Short{
-	short s;
+	short s = 0;
 };
-// cppcheck-suppress noConstructor
 class TwoChars{
-	char c1;
-	char c2;
+	char c1 = 0;
+	char c2 = 0;
 };
-// cppcheck-suppress noConstructor
 class CharInt{
-	char c;
-	int i;
+	char c = 0;
+	int i = 0;
 };
-// cppcheck-suppress noConstructor
 class IntChar{
-	int i;
-	char c;
+	int i = 0;
+	char c = 0;
 };
-// cppcheck-suppress noConstructor
 class CharIntChar{
-	char c1;
-	int i;
-	char c2;
+	char c1 = 0;
+	int i = 0;
+	char c2 = 0;
 };
-// cppcheck-suppress noConstructor
 class CharCharInt{
-	char c1;
-	char c2;
-	int i;
+	char c1 = 0;
+	char c2 = 0;
+	int i = 0;
 };
-// cppcheck-suppress noConstructor
 class ShortInt{
-	short s;
-	int i;
+	short s = 0;
+	int i = 0;
 };
-// cppcheck-suppress noConstructor
 class IntShort{
-	int i;
-	short s;
+	int i = 0;
+	short s = 0;
 };
 
 int main() {

@@ -47,16 +47,14 @@
 int main() {
 	const int size=1000;
 	char* buf=static_cast<char*>(malloc(size));
-	// cppcheck-suppress nullPointerOutOfMemory
+	if(!buf) return EXIT_FAILURE;
 	memset(buf, 0, 8);
-	// cppcheck-suppress nullPointerOutOfMemory
 	memset(buf, 0, size);
 	for(int i=0; i<size; i++) {
-		// cppcheck-suppress nullPointerOutOfMemory
 		buf[i]=0;
 	}
 	wchar_t* buf2=static_cast<wchar_t*>(malloc(size*sizeof(wchar_t)));
-	// cppcheck-suppress nullPointerOutOfMemory
+	if(!buf2) { free(buf); return EXIT_FAILURE; }
 	wmemset(buf2, 0, size);
 	disassemble_main();
 	return EXIT_SUCCESS;

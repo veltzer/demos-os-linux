@@ -48,12 +48,6 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "%s: example: %s 10000 2\n", argv[0], argv[0]);
 		exit(EXIT_FAILURE);
 	}
-	// parameters
-	// cppcheck-suppress variableScope
-	unsigned int loop_count=atoi(argv[1]);
-	// cppcheck-suppress variableScope
-	unsigned int max_rand=atoi(argv[2]);
-
 	// create the event fd
 	int efd=CHECK_NOT_M1(eventfd(0, EFD_NONBLOCK));
 
@@ -96,6 +90,8 @@ int main(int argc, char** argv) {
 		printf("parent sum is %llu\n", sum);
 	} else {
 		// child branch
+		unsigned int loop_count=atoi(argv[1]);
+		unsigned int max_rand=atoi(argv[2]);
 		// so we will get good random numbers
 		srand(getpid());
 		for(unsigned int i=0; i<loop_count; i++) {
