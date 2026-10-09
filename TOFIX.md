@@ -22,7 +22,7 @@ Findings from a code scan on 2026-10-04.
 
 - `tera.snippets/main.md.tera:24` - "Only ia64 is supported": ia64 is Itanium. The repo targets x86_64 (`rsconstruct.toml` pins `/usr/lib/gcc/x86_64-linux-gnu/15`, and has an aarch64 cross example).
 - `HOWTO:9-10` - `make DO_MKDBG=1` describes the deleted root Makefile build. Now it works only inside `src/*_standalone/*` dirs that include `Makefile.mk`. Update it, or fold the still-valid `EXTRA_COMPILE_FLAGS_*` tips into the README snippet.
-- `PLAN.md:1` - a plan to empty `.cppcheck-suppressions`. That work is done: the file is gone (commit 2504658f) and `--inline-suppr` is in `rsconstruct.toml`. Delete `PLAN.md` and its entry in `[processor.rumdl].src_files` (`rsconstruct.toml`).
+
 - `doc/rsconstruct_port_mission.md:156` and `:166` - says to delete `wrapper_compile.py` once nothing references it (nothing does now: `scripts/wrapper_compile.py` is dead), and to delete `Makefile.mk`, which 81 standalone Makefiles still include. Delete `scripts/wrapper_compile.py` and bring the port doc up to date with the finished port.
 - `pyproject.toml:13` - `pytest` is in the dev group, but the repo has no Python tests and no pytest processor. Remove it. `pyproject.toml:23` `mypy_path = "src:python:scripts"` names a `python/` dir that does not exist (and `src/` has no Python). Set it to `scripts`.
 - `support/redirector.html`, `support/astyle.cfg`, `support/uncrustify.cfg`, `support/uncrustify.full.cfg` - nothing references them (`code_formatting` has its own configs), and `redirector.html` points at a `static/favicon.ico` that does not exist. Delete them.
