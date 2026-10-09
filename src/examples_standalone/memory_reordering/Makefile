@@ -1,16 +1,16 @@
 .PHONY: all
 all: main_no_barriers.elf main_with_barriers.elf flag_data_no_barriers.elf flag_data_with_barriers.elf
 
-main_no_barriers.elf: main.cpp
+main_no_barriers.elf: main.cc
 	g++ -O2 -pthread -o $@ $<
 
-main_with_barriers.elf: main.cpp
+main_with_barriers.elf: main.cc
 	g++ -O2 -pthread -DUSE_BARRIERS -o $@ $<
 
-flag_data_no_barriers.elf: flag_data.cpp
+flag_data_no_barriers.elf: flag_data.cc
 	g++ -O2 -pthread -o $@ $<
 
-flag_data_with_barriers.elf: flag_data.cpp
+flag_data_with_barriers.elf: flag_data.cc
 	g++ -O2 -pthread -DUSE_BARRIERS -o $@ $<
 
 .PHONY: run

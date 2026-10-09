@@ -1,6 +1,6 @@
 # Memory Reordering Examples — Improvement TODO
 
-## main.cpp (Dekker test)
+## main.cc (Dekker test)
 
 1. **Missing error checking on pthread/sem calls** — `pthread_create`, `sem_init`, `sem_wait`, `sem_post` can all fail. None are checked. At minimum `pthread_create` should be checked.
 
@@ -12,11 +12,11 @@
 
 1. **Portability of `mfence`** — The `mfence` is `x86`-only. A `#ifdef __x86_64__` guard (or use of `__sync_synchronize()`) would make the intent clearer and fail at compile time on other architectures rather than silently assembling the wrong thing.
 
-## flag_data.cpp
+## flag_data.cc
 
-1. **Same cleanup/error-checking issues as main.cpp** (points 1-2 above).
+1. **Same cleanup/error-checking issues as main.cc** (points 1-2 above).
 
-1. **`observed` is a global but only used in one thread and main** — Could be returned via the semaphore pattern like `r1`/`r2` in main.cpp, or at least made thread-local + copied. Minor clarity issue.
+1. **`observed` is a global but only used in one thread and main** — Could be returned via the semaphore pattern like `r1`/`r2` in main.cc, or at least made thread-local + copied. Minor clarity issue.
 
 1. **The header comment says "store-load barrier" but the reordering in question is store-store** — The comment on line 7 says "the `CPU` may reorder the two stores so ready becomes visible before data". The barrier function is named `store_barrier` but uses `mfence` which is a full fence. The naming could be more precise (e.g., `store_store_barrier` or just `full_barrier`).
 
@@ -28,4 +28,4 @@
 
 ## README.md
 
-1. **README does not mention flag_data.cpp** — It only describes the Dekker test. The flag+data example and its "why you will not see reordering on `x86`" story are missing.
+1. **README does not mention flag_data.cc** — It only describes the Dekker test. The flag+data example and its "why you will not see reordering on `x86`" story are missing.
