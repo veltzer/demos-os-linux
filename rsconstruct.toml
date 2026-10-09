@@ -290,7 +290,7 @@ src_extensions = [".c", ".cc"]
 src_dirs = ["src"]
 batch = true
 
-[processor.checker.mypy]
+[processor.checker.pyrefly]
 src_dirs = ["scripts"]
 
 [processor.checker.ruff]
