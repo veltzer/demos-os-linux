@@ -1,0 +1,13 @@
+# rsconstruct.lock: the exact tool versions this project builds with.
+# Written by `rsconstruct tool lock`; move to newer releases with
+# `rsconstruct tool lock --upgrade`. Commit this file; do not edit it by hand.
+
+version = 1
+
+[rsconstruct]
+version = "0.9.140"
+
+[binary.rumdl]
+url = "https://github.com/rvben/rumdl/releases/download/v0.2.66/rumdl-v0.2.66-x86_64-unknown-linux-gnu.tar.gz"
+sha256 = "2ca8703a66b17a73f6f85435d06f8d62484c1361d6b015f82bc46f9f642959a4"
+executable_sha256 = "12b47b3018e202259e2dba444f9fbcf168c6f8ffd2bc4d8f0e5ee410c79ec7af"
