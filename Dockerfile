@@ -49,8 +49,10 @@ WORKDIR /build
 # and the Python set from uv.lock (the pinned closure pyproject.toml resolves
 # to -- pymakehelper and the dev tools). Copying only rsconstruct.toml left
 # the installer with no lock to read, so the Makefiles that shell out to
-# pymakehelper failed the first time a cold build ran them.
-COPY rsconstruct.toml pyproject.toml uv.lock ./
+# pymakehelper failed the first time a cold build ran them. rsconstruct.lock
+# pins the external tool versions `tool install` fetches; without it the image
+# carries whatever is newest and the build job reinstalls to the locked ones.
+COPY rsconstruct.toml rsconstruct.lock pyproject.toml uv.lock ./
 # install-deps installs the [dependencies] section; install installs the
 # external tools the enabled processors need (clang, ruff, mypy, rumdl, ...).
 # Both are required: baking the tools into the image keeps the build job from
