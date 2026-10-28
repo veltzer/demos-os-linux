@@ -45,18 +45,15 @@ RUN echo "cachebust=${CACHEBUST}" \
     && rsconstruct version
 
 WORKDIR /build
-# install-deps reads all three: [dependencies].system from rsconstruct.toml,
-# and the Python set from uv.lock (the pinned closure pyproject.toml resolves
-# to -- pymakehelper and the dev tools). Copying only rsconstruct.toml left
-# the installer with no lock to read, so the Makefiles that shell out to
-# pymakehelper failed the first time a cold build ran them. rsconstruct.lock
-# pins the external tool versions `tool install` fetches; without it the image
-# carries whatever is newest and the build job reinstalls to the locked ones.
+# `tool install machine` reads all four: [dependencies].system and the
+# enabled processors from rsconstruct.toml, the locked versions from
+# rsconstruct.lock, and pyproject.toml/uv.lock to know the project needs uv.
 COPY rsconstruct.toml rsconstruct.lock pyproject.toml uv.lock ./
-# install-deps installs the [dependencies] section; install installs the
-# external tools the enabled processors need (clang, ruff, mypy, rumdl, ...).
-# Both are required: baking the tools into the image keeps the build job from
-# having to install them on every run, and means the job no longer depends on
-# the runtime binary's prompting behaviour.
-RUN rsconstruct tool install-deps \
-    && rsconstruct tool install
+# The image carries what belongs on the machine: the [dependencies] system
+# packages, the tools that only come as system packages (clang, ...), and uv
+# (into /opt/venv, outside the project). Baking them in keeps the build job
+# from installing them on every run. What belongs to the project - the
+# repo's .venv (ruff, mypy, pymakehelper, ...) and .rsconstruct/tools
+# (rumdl, ...) - lives in the job's checkout, so the build job installs it
+# there with `tool install project`.
+RUN rsconstruct tool install machine

@@ -119,8 +119,8 @@ The build is driven by `rsconstruct` (see `rsconstruct.toml`); the external
 tools the enabled processors need are installed with:
 
 ```bash
-rsconstruct tool install-deps   # the [dependencies] section
-rsconstruct tool install        # the per-processor tools
+rsconstruct tool install machine   # system packages and machine-only tools
+rsconstruct tool install project   # the repo's .venv and .rsconstruct/tools
 ```
 
 - **markdown** — linted by `rumdl`, configured in `.rumdl.toml`. The repo
