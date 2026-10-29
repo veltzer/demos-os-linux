@@ -47,13 +47,14 @@ RUN echo "cachebust=${CACHEBUST}" \
 WORKDIR /build
 # `tool install machine` reads all four: [dependencies].system and the
 # enabled processors from rsconstruct.toml, the locked versions from
-# rsconstruct.lock, and pyproject.toml/uv.lock to know the project needs uv.
+# rsconstruct.lock, and pyproject.toml/uv.lock, which pin the project's
+# Python tools.
 COPY rsconstruct.toml rsconstruct.lock pyproject.toml uv.lock ./
 # The image carries what belongs on the machine: the [dependencies] system
-# packages, the tools that only come as system packages (clang, ...), and uv
-# (into /opt/venv, outside the project). Baking them in keeps the build job
-# from installing them on every run. What belongs to the project - the
-# repo's .venv (ruff, mypy, pymakehelper, ...) and .rsconstruct/tools
-# (rumdl, ...) - lives in the job's checkout, so the build job installs it
-# there with `tool install project`.
+# packages and the tools that only come as system packages (clang, ...).
+# Baking them in keeps the build job from installing them on every run.
+# What belongs to the project - uv, the repo's .venv (ruff, mypy,
+# pymakehelper, ...) and .rsconstruct/tools (rumdl, ...) - lives in the
+# job's checkout, so the build job installs it there with `tool install
+# project`.
 RUN rsconstruct tool install machine
