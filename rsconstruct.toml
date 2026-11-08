@@ -188,6 +188,13 @@ args = [
 src_dirs = ["src"]
 src_exclude_paths = ["Makefile"]
 src_exclude_dirs = "${kernel_excludes}"
+# These two demos compile in place: the binaries and the strace log they
+# compare are the demonstration's throwaway by-products (gitignored), not
+# outputs, so a sandboxed make may write them.
+sandbox_writable = [
+    "src/examples_standalone/gcc_reproducible_builds",
+    "src/examples_standalone/gcc_unlink_before_create_target",
+]
 
 [analyzer.icpp]
 src_exclude_dirs = "${kernel_excludes}"
