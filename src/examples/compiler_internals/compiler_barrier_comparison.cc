@@ -19,8 +19,9 @@
 #include <firstinclude.h>
 #include <stdio.h>	// for printf(3), fprintf(3)
 #include <stdlib.h>	// for srandom(3), EXIT_SUCCESS
+#include <unistd.h>	// for isatty(3), STDOUT_FILENO
 #include <err_utils.h>	// for CHECK_NOT_NULL_FILEP()
-#include <lowlevel_utils.h>	// for stack_vars_direction_up()
+#include <us_helper.h>	// for stringify()
 
 /*
  * This is an example of a compiler barrier
@@ -56,6 +57,35 @@
  * ====================
  * Used to work in some versions of gcc but stopped working. Better not to use.
  *
+ * How the "someone else changed the variable" is simulated
+ * ========================================================
+ * Every test first writes CORRECT_VAL into 'a' with an inline asm store that
+ * declares no "memory" clobber and does not list 'a' as an output. The
+ * compiler trusts the declared constraints of an asm, so it believes memory is
+ * untouched and keeps using the copy of 'a' it has in a register. This is
+ * exactly what another thread or a device writing to 'a' looks like from the
+ * compiler's point of view.
+ * The asm is deliberately *not* volatile: clang (LLVM) assumes that any
+ * asm volatile may read and write any memory whose address has escaped (and
+ * &a escapes via fprintf below), so a volatile asm would not hide the store
+ * from clang. To keep the non-volatile asm from being deleted it produces a
+ * dummy output which is written to a volatile sink.
+ * Older versions of this demo wrote through a pointer that was walked from
+ * a neighbouring stack variable into 'a' (p=&u; p++). That is undefined
+ * behaviour and newer gcc (15) no longer falls for it, so the demo stopped
+ * showing anything.
+ *
+ * gcc vs clang
+ * ============
+ * The two compilers disagree about what an asm volatile without a "memory"
+ * clobber may do:
+ * - gcc believes the declared constraints: an empty asm volatile("") or one
+ *   that only names another variable ('u') is not a barrier for 'a'.
+ * - clang treats every asm volatile as possibly reading and writing any
+ *   memory whose address has escaped, so all of those are barriers for 'a'.
+ * Tests whose outcome differs between the compilers give their expectation
+ * with BY_COMPILER(gcc_expectation, clang_expectation).
+ *
  * Notes:
  * - the loop that you see in the code forces the compiler to use a register
  * to hold the 'a' variable (if you compile with optimisation ofcourse).
@@ -85,20 +115,80 @@
 
 FILE* outfile;
 
+/*
+ * Receives the dummy output of HIDDEN_STORE so that the (non volatile) asm
+ * is not removed as dead code.
+ */
+volatile int hidden_store_sink;
+
+/*
+ * Store 'val' into '*p' behind the compiler's back: no "memory" clobber and
+ * '*p' is not an output, so the optimizer does not know memory changed.
+ * Not volatile on purpose, see "How the ... is simulated" above.
+ * '*p' is passed as an "m" *input*: that tells the compiler the asm reads
+ * '*p', so the pending store of 3200 to 'a' must happen before the asm (without
+ * it the asm has no dependencies and gcc may hoist it above that store, making
+ * every real barrier look broken). Since '*p' is not an output, the compiler
+ * still believes the asm left it unchanged.
+ * The dummy output is 0, not 'val', and on x86 'val' is passed as an
+ * immediate when possible: no register should be left holding CORRECT_VAL,
+ * otherwise a test like asm volatile("" : "=r" (a)) (which leaves in 'a'
+ * whatever the chosen register happened to hold) "works" by pure accident.
+ */
+#if defined(__x86_64__) || defined(__i386__)
+#define HIDDEN_STORE(p, val) do { \
+		int hidden_store_out; \
+		asm("movl %2, %1\n\txorl %0, %0" : "=r" (hidden_store_out) : "m" (*(p)), "ir" (val)); \
+		hidden_store_sink=hidden_store_out; \
+	} while(0)
+#elif defined(__aarch64__)
+#define HIDDEN_STORE(p, val) do { \
+		int hidden_store_out; \
+		asm("str %w2, %1\n\tmov %w0, wzr" : "=r" (hidden_store_out) : "m" (*(p)), "r" (val)); \
+		hidden_store_sink=hidden_store_out; \
+	} while(0)
+#else
+#error "HIDDEN_STORE is not implemented for this architecture"
+#endif
+
+/*
+ * Color the verdict line green (as expected) or red (not as expected),
+ * but only when stdout is a terminal so redirected output stays clean.
+ */
+static bool use_color() {
+	static const bool tty=isatty(STDOUT_FILENO);
+	return tty;
+}
+
+static const char* color_start(bool as_expected) {
+	if(!use_color()) {
+		return "";
+	}
+	return as_expected ? "\033[32m" : "\033[31m";
+}
+
+static const char* color_end() {
+	return use_color() ? "\033[0m" : "";
+}
+
+/* expectation for tests where gcc and clang behave differently */
+#ifdef __clang__
+#define BY_COMPILER(gcc_expected, clang_expected) (clang_expected)
+#else
+#define BY_COMPILER(gcc_expected, clang_expected) (gcc_expected)
+#endif
+
 #define TEST(shortname, desc, expected, code) \
 	void test_ ## shortname() __attribute__((noinline)); \
 	void test_ ## shortname(volatile int& val_before, volatile int& val_after) { \
 		int a=0; \
-		int u=0; \
+		/* only used by the "wrong variable" tests */ \
+		[[maybe_unused]] int u=0; \
 		const int CORRECT_VAL=2000; \
 		const int WRONG_VAL=3200; \
-		/* p will point to a but the compiler does not know it.*/ \
-		int* p=&u; \
-		if(stack_vars_direction_up()) { \
-			p--; \
-		} else { \
-			p++; \
-		} \
+		/* p points to a; the store through it below is done in asm \
+		 * so the compiler does not see it. */ \
+		int* p=&a; \
 		/* this taking of the address of a to have the compiler actually store
 		 * a on the stack at all! If we don't do this the compiler will treat
 		 * a as a register for the entire scope of this function! */ \
@@ -115,8 +205,9 @@ FILE* outfile;
 			a+=a; \
 		} \
 		/* at this point the compiler emits an instruction to store the \
-		 * register back into the memory address of a */ \
-		*p=CORRECT_VAL; \
+		 * register back into the memory address of a. Then we change a \
+		 * in memory without the compiler knowing about it. */ \
+		HIDDEN_STORE(p, CORRECT_VAL); \
 		val_before=a; \
 		code; \
 		val_after=a; \
@@ -130,15 +221,13 @@ FILE* outfile;
 		} else { \
 			printf("compiler did not use register for value\n"); \
 		} \
-		if(val_after==CORRECT_VAL) { \
-			printf("barrier worked\n"); \
-			if(!expected) \
-			printf("*** NOT AS EXPECTED ***\n"); \
-		} else { \
-			printf("barrier did not work\n"); \
-			if(expected) \
-			printf("*** NOT AS EXPECTED ***\n"); \
-		} \
+		const bool worked=(val_after==CORRECT_VAL); \
+		const bool as_expected=(worked==static_cast<bool>(expected)); \
+		printf("%scompiler barrier %s %s%s\n", \
+			color_start(as_expected), \
+			worked ? "worked" : "did not work", \
+			as_expected ? "as expected" : "*** NOT AS EXPECTED ***", \
+			color_end()); \
 		printf("===========================================\n"); \
 	}
 
@@ -158,8 +247,9 @@ TEST(
 TEST(
 	emptasm,
 	"Empty assembly block which works on some compilers but not on others.\n"
-	"On gcc 4.5.2 it did work but newer compilers see that you are not really doing anything in the block.\n",
-	false,
+	"On gcc 4.5.2 it did work but newer gcc see that you are not really doing anything in the block.\n"
+	"clang treats any asm volatile as touching escaped memory so there it is a barrier.\n",
+	BY_COMPILER(false, true),
 	asm volatile("")
 	);
 TEST(
@@ -194,22 +284,26 @@ TEST(
 	);
 TEST(
 	singvarbar2,
-	"A single variable read.\n"
-	"This tells the compiler that someone read the variable, which means nothing since there is no reason to re-read it.\n",
+	"A single variable output in a register.\n"
+	"This tells the compiler that the asm wrote some value into a register which is now 'a'.\n"
+	"The asm does not actually write anything so the value of 'a' is whatever was in that register.\n"
+	"Whether you get the right value is pure luck - do not rely on this.\n",
 	false,
 	asm volatile("" : "=r" (a)::)
 	);
 TEST(
 	singvarbar3,
-	"A single variable barrier on the wrong variable1 (write)\n",
-	false,
+	"A single variable barrier on the wrong variable1 (write)\n"
+	"Not a barrier for 'a' on gcc. On clang any asm volatile is a barrier for escaped memory.\n",
+	BY_COMPILER(false, true),
 	asm volatile("" : "=g" (u)::)
 	);
 TEST(
 	singvarbar4,
 	"A single variable barrier on the wrong variable1 (read)\n"
-	"This actually worked on some gcc versions because of a bug.\n",
-	false,
+	"This actually worked on some gcc versions because of a bug.\n"
+	"On clang any asm volatile is a barrier for escaped memory.\n",
+	BY_COMPILER(false, true),
 	asm volatile("" : "=r" (u)::)
 	);
 // The C-style volatile casts below are the very technique these tests
@@ -225,9 +319,10 @@ TEST(
 // cppcheck-suppress cstyleCast
 TEST(
 	singvarvolright,
-	"Attempt to use volatile on right side to barrier the compiler\n"
-	"This worked once but no more\n",
-	false,
+	"Use a volatile read to force re-reading the variable from memory.\n"
+	"A volatile access cannot be optimized away so the compiler must load 'a' from memory.\n"
+	"This is a legitimate single variable re-read (it is what READ_ONCE() does in the kernel).\n",
+	true,
 	a=*(volatile int*)&a;
 	);
 // cppcheck-suppress cstyleCast
@@ -270,8 +365,9 @@ TEST(
 TEST(
 	lkmlu,
 	"A solution suggested on lkml.\n"
-	"doing the same on the wrong barrier is wrong.\n",
-	false,
+	"doing the same on the wrong barrier is wrong.\n"
+	"On clang any asm volatile is a barrier for escaped memory so there it works.\n",
+	BY_COMPILER(false, true),
 	asm volatile("" : "=m" (u) : "m" (u))
 	);
 
