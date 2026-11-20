@@ -75,13 +75,14 @@ jobs:
           fi
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
         if: steps.changed.outputs.result == 'true'
+      # Unconditional: an unchanged image still needs its digest looked up.
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
-        if: steps.changed.outputs.result == 'true'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        id: push
         if: steps.changed.outputs.result == 'true'
         with:
           context: .
@@ -98,17 +99,25 @@ jobs:
             CACHEBUST=${{ github.run_id }}
       - name: publish the image ref for the build job
         id: ref
-        # When nothing changed we did not push, so the run-scoped tag does not
-        # exist and the build job has to fall back to `latest`.
+        # The build job gets the image by digest, never by tag: `latest` is
+        # shared by every branch, so a push elsewhere could republish it
+        # between this job and the build job. When something changed, the
+        # digest is the one just pushed; when nothing did, it is what
+        # `latest` names right now.
         env:
           CHANGED: ${{ steps.changed.outputs.result }}
-          IMMUTABLE: ${{ steps.tag.outputs.immutable }}
+          PUSHED: ${{ steps.push.outputs.digest }}
         run: |
           if [ "$CHANGED" = true ]; then
-            echo "image=$IMMUTABLE" >> "$GITHUB_OUTPUT"
+            digest=$PUSHED
           else
-            echo "image=ghcr.io/veltzer/demos-os-linux-ci:latest" >> "$GITHUB_OUTPUT"
+            digest=$(docker buildx imagetools inspect ghcr.io/veltzer/demos-os-linux-ci:latest --format '{{json .Manifest}}' | jq -r .digest)
           fi
+          case "$digest" in
+            sha256:*) ;;
+            *) echo "no image digest (got '$digest')" >&2; exit 1 ;;
+          esac
+          echo "image=ghcr.io/veltzer/demos-os-linux-ci@$digest" >> "$GITHUB_OUTPUT"
 
   build:
     needs: image
@@ -118,18 +127,21 @@ jobs:
       # pulls the toolchain image from ghcr.io
       packages: read
     container:
-      # The image job above decides the ref at run time (the tag it just
-      # pushed, or `latest` when the image inputs did not change), so there
-      # is no fixed digest to write here, which is what zizmor asks for.
+      # Pinned by digest, which the image job above resolves at run time (the
+      # image it just pushed, or what `latest` named when the image inputs did
+      # not change). zizmor cannot see a digest through the expression.
       image: ${{ needs.image.outputs.image }} # zizmor: ignore[unpinned-images]
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      # rsconstruct runs every tool under bwrap, which makes user, mount and
-      # network namespaces and an overlay mount. A container may not do that
-      # by default ("bwrap: Creating new namespace failed: Operation not
-      # permitted"); these are the capabilities and confinement it needs,
-      # short of --privileged.
+      # rsconstruct runs every tool under bwrap, which makes mount and network
+      # namespaces and an overlay mount. The container runs as root, so bwrap
+      # uses real capabilities rather than a user namespace. Each option below
+      # is needed; without it bwrap fails as noted (tested 2026-11-20):
+      #   SYS_ADMIN            Creating new namespace failed: Operation not permitted
+      #   NET_ADMIN            loopback: Failed RTM_NEWADDR (setting up --unshare-net)
+      #   seccomp=unconfined   pivot_root: Operation not permitted
+      #   apparmor=unconfined  Failed to make / slave: Permission denied
       options: >-
         --cap-add SYS_ADMIN
         --cap-add NET_ADMIN
