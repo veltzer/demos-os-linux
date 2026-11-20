@@ -125,6 +125,16 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+      # rsconstruct runs every tool under bwrap, which makes user, mount and
+      # network namespaces and an overlay mount. A container may not do that
+      # by default ("bwrap: Creating new namespace failed: Operation not
+      # permitted"); these are the capabilities and confinement it needs,
+      # short of --privileged.
+      options: >-
+        --cap-add SYS_ADMIN
+        --cap-add NET_ADMIN
+        --security-opt seccomp=unconfined
+        --security-opt apparmor=unconfined
     steps:
     - name: rsconstruct version
       run: rsconstruct version
