@@ -15,9 +15,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Read-only by default; each job below asks for what it needs.
 permissions:
   contents: read
-  packages: write
 
 jobs:
   # The build job below resolves the container image when it starts, so a push
@@ -28,6 +28,10 @@ jobs:
   # rather than a mutable tag both sides have to agree on.
   image:
     runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+      # publishes the toolchain image to ghcr.io
+      packages: write
     outputs:
       image: ${{ steps.ref.outputs.image }}
     steps:
@@ -36,6 +40,7 @@ jobs:
           # Full history: the change check below diffs across the whole push
           # range, which can be many commits deep.
           fetch-depth: 0
+          persist-credentials: false
       - name: resolve the image tag for this run
         id: tag
         # `latest` is mutable, so re-running an old workflow would pull today's
@@ -68,15 +73,15 @@ jobs:
           else
             echo "result=true" >> "$GITHUB_OUTPUT"
           fi
-      - uses: docker/setup-buildx-action@v4
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
         if: steps.changed.outputs.result == 'true'
-      - uses: docker/login-action@v4
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         if: steps.changed.outputs.result == 'true'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v7
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         if: steps.changed.outputs.result == 'true'
         with:
           context: .
@@ -95,9 +100,12 @@ jobs:
         id: ref
         # When nothing changed we did not push, so the run-scoped tag does not
         # exist and the build job has to fall back to `latest`.
+        env:
+          CHANGED: ${{ steps.changed.outputs.result }}
+          IMMUTABLE: ${{ steps.tag.outputs.immutable }}
         run: |
-          if [ "${{ steps.changed.outputs.result }}" = true ]; then
-            echo "image=${{ steps.tag.outputs.immutable }}" >> "$GITHUB_OUTPUT"
+          if [ "$CHANGED" = true ]; then
+            echo "image=$IMMUTABLE" >> "$GITHUB_OUTPUT"
           else
             echo "image=ghcr.io/veltzer/demos-os-linux-ci:latest" >> "$GITHUB_OUTPUT"
           fi
@@ -105,8 +113,15 @@ jobs:
   build:
     needs: image
     runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+      # pulls the toolchain image from ghcr.io
+      packages: read
     container:
-      image: ${{ needs.image.outputs.image }}
+      # The image job above decides the ref at run time (the tag it just
+      # pushed, or `latest` when the image inputs did not change), so there
+      # is no fixed digest to write here, which is what zizmor asks for.
+      image: ${{ needs.image.outputs.image }} # zizmor: ignore[unpinned-images]
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
@@ -124,6 +139,7 @@ jobs:
         # this the directory checks out empty and the check passes on
         # nothing; same setting as the shared build.yml.
         submodules: recursive
+        persist-credentials: false
     - uses: actions/cache@v6
       with:
         path: .rsconstruct

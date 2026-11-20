@@ -359,6 +359,11 @@ src_dirs = [
 [processor.checker.iactionlint]
 src_dirs = [".github/workflows"]
 
+# audit the GitHub Actions workflow files for security problems with zizmor
+# (policy: .github/zizmor.yml)
+[processor.checker.zizmor]
+src_dirs = [".github/workflows"]
+
 # ─── yaml ────────────────────────────────────────────────────────────────────
 
 [processor.checker.iyamllint]
