@@ -1,5 +1,8 @@
 ---
 # hadolint config, shared fleet-wide (rsmultigit check same).
+# Every finding fails the build, style included (hadolint's own default
+# stops at info, so style findings would pass silently).
+failure-threshold: style
 ignored:
   # Version pinning inside package-manager installs (apt/pip/apk/gem/dnf/zypper/
   # npm): the fleet deliberately does not pin versions in manifests -
