@@ -5,7 +5,7 @@
 
 description: demos-os-linux is a project to demo and explore the Linux user space C/C++ API
 
-project website: https://veltzer.github.io/demos-os-linux
+project website: <https://veltzer.github.io/demos-os-linux>
 
 author: Mark Veltzer
 
@@ -59,19 +59,19 @@ me a note about the fact that you did use the package so I could feel good...
 ## Similar projects
 * Michael Kerrisk, the maintainer and author of many of the Linux manual pages has a similar project he calls
 TLPI (The Linux Programming Interface) of programs he used in his book of the same title. You can find
-it here http://man7.org/tlpi/code/.
-* https://github.com/bradfa/tlpi-dist
-* https://github.com/dev-area/linux
-* https://github.com/tsuna/contextswitch
-* https://github.com/gurugio/lowlevelprogramming-university
-* https://github.com/devendranaga/linux-systems-programming-with-c
-* https://github.com/devendranaga/gists
-* https://github.com/PacktPublishing/Linux-Kernel-Programming
-* https://github.com/beejjorgensen/bgnet
-* https://github.com/yuzhidi/AdvancedLinuxProgramming
-* https://github.com/Light-City/CPlusPlusThings
-* https://github.com/AnthonyCalandra/modern-cpp-features
-* https://github.com/angrave/SystemProgramming/wiki
+it here <http://man7.org/tlpi/code/>.
+* <https://github.com/bradfa/tlpi-dist>
+* <https://github.com/dev-area/linux>
+* <https://github.com/tsuna/contextswitch>
+* <https://github.com/gurugio/lowlevelprogramming-university>
+* <https://github.com/devendranaga/linux-systems-programming-with-c>
+* <https://github.com/devendranaga/gists>
+* <https://github.com/PacktPublishing/Linux-Kernel-Programming>
+* <https://github.com/beejjorgensen/bgnet>
+* <https://github.com/yuzhidi/AdvancedLinuxProgramming>
+* <https://github.com/Light-City/CPlusPlusThings>
+* <https://github.com/AnthonyCalandra/modern-cpp-features>
+* <https://github.com/angrave/SystemProgramming/wiki>
 
 ## Using it
 * you need python on your machine:
