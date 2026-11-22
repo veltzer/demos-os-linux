@@ -18,6 +18,7 @@ version: 0.0.1
 ## build
 
 ![build](https://github.com/veltzer/demos-os-linux/workflows/build/badge.svg)
+
 This project is a source code repository for instructors or expert programmers
 who want to explore the Linux C/C++ API.
 
@@ -39,18 +40,21 @@ about exactly how a certain API works.
 * Many more...
 
 ## Platforms supported
+
 Only ia64 is supported. I used to support i386 but I don't have a 32 bit
 machine anymore.
 Other platforms will be supported if someone is willing to do the work and submit
 the patches.
 
 ## Contributing
+
 This project needs help. fork, commit and request me to pull.
 Just open a github account, modify and add examples, commit and ask me to pull...
 A lot of the code is documented but some of it is not. More documentation would be welcome.
 I would give attribution to whomever contributes.
 
 ## License
+
 Code is licensed GPL3 and I hold the copyright unless explicitly stolen as attributed in the source code.
 I encourage people to use this source code as aid for instructing courses.
 Please give me some credit if you do wind up using this package and consider dropping

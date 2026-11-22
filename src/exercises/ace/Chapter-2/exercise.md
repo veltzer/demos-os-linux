@@ -16,6 +16,7 @@ Does the message type change anything in message order?
 If not? what can you do?
 
 ## Exercise 2-A
+
 Modify Exercise 2 accordingly:
 * Set message type 1-4 using: `mb->msg_type(int);`
 * For any other type create message type 5, send it to Queue1 setting High priority of 10.
@@ -23,6 +24,7 @@ Modify Exercise 2 accordingly:
   consumer) to Queue2.
 
 ## Exercise 2-B
+
 Modify Exercise 2 accordingly:
 * Set message type 1-4 using: `mb->msg_type (int);`
 * Each message line will contain 3 fields: type delay in sec. and the message body.

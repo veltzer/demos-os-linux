@@ -75,6 +75,7 @@ UB is the point of the demo.
 ## Systemic / style
 
 ### Memory leaks in demo code
+
 Many short-lived demo programs never free allocated memory — acceptable
 because the process exits immediately, but sets a poor example. Notable
 clusters: ACE timer/signal handlers (Chapter-5 files), design pattern

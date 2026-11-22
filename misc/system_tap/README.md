@@ -1,6 +1,7 @@
 # This is an example of how to use system tap
 
 ## How to install systemtap on ubuntu
+
 first:
     `apt`-get install systemtap
 
@@ -22,6 +23,7 @@ second way (better):
   kernels. You will have to use a -generic kernel to use systemtap.
 
 ## How to run the scripts
+
 ======================
 - The scripts here should be run by a member of the 'stapusr' group.
 - Just as yourself to the three groups: 'stapusr', 'stapsys', 'stapdev'
@@ -35,6 +37,7 @@ is still required:
   So it has to be run as user: ???
 
 ## Finding scripts to run
+
 ======================
 It seems that systemtap has undergone lots of source level changes recently and some of the scripts
 in this folder no longer work.

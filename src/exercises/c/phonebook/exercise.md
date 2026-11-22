@@ -1,5 +1,6 @@
 This is an exercise for beginner C programmers
 ==============================================
+
 write a phonebook application in C.
 A phonebook is *AT MOST* 100 entries where for each entry we have
 name and a phone. A name is at most 20 characters in length.

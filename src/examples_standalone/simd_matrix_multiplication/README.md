@@ -157,6 +157,7 @@ gcc -mavx -march=native -O3 matrix_mult.c -o matrix_mult -lm
 - Any domain with matrix operations
 
 ## Conclusion
+
 This example demonstrates how SIMD instructions can significantly accelerate compute-bound operations when properly implemented with attention to:
 - Memory alignment
 - Cache efficiency

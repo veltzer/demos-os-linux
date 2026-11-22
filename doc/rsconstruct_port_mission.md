@@ -45,6 +45,7 @@ These need a decision (port, drop, or keep as a side-channel target).
   no addressable intermediate object.
 
 ### 2. The `wrapper_compile.py` shim
+
 `scripts/wrapper_compile.py` wraps every compile/link with optional **ccache**,
 **timing**, and **dbg** behavior controlled by the `CCACHE` and `DO_MKDBG`
 flags. rsconstruct invokes the compiler directly. Porting options:
@@ -63,6 +64,7 @@ flags. rsconstruct invokes the compiler directly. Porting options:
   processor) or migrate to `zspell` which is already wired in.
 
 ### 4. The `check_*` targets (project-wide grep-based hygiene)
+
 Roughly 25 phony targets named `check_ws`, `check_main`, `check_ace_include`,
 `check_include`, `check_license`, `check_exit`, `check_pgrep`,
 `check_firstinclude`, `check_check`, `check_perror`, `check_fixme`,
@@ -92,6 +94,7 @@ the developer, not on every build. They could stay as a small `Makefile.dev`
 or be ported to `scripts/format.py` and removed from rsconstruct's scope.
 
 ### 6. Kernel-related ergonomics
+
 The Makefile has many `kernel_*` phony targets that are pure operator
 conveniences:
 - `kernel_clean`, `kernel_check`, `kernel_build`, `kernel_help`
@@ -114,12 +117,14 @@ All convenience targets, none of which rsconstruct should grow. Move to
 `scripts/`.
 
 ### 8. Pylint
+
 `out/pylint.stamp` runs `pylint` over every `.py` under the tree, gated by
 `DO_PYLINT`. rsconstruct already runs `ruff` and `mypy` via processors, so
 `pylint` is redundant unless we keep it for the stricter style checks.
 Decision: drop, unless someone asks for it back.
 
 ### 9. Shell-script syntax check — DONE
+
 ~~`$(ALL_STAMP)` rule runs `shellcheck --severity=error --shell=bash` against
 every `*.sh` under `src/`.~~ Ported: `processor.shellcheck` now passes
 `["--severity=error", "--shell=bash"]` and the Makefile rule plus
@@ -127,6 +132,7 @@ every `*.sh` under `src/`.~~ Ported: `processor.shellcheck` now passes
 `--source-path` were dropped — no scripts use `source`/`.` directives.
 
 ### 10. CI-aware behavior
+
 The Makefile flips `DO_STP=0` / `DO_CHP=0` when `GITHUB_WORKFLOW` is set. In an
 rsconstruct world this becomes either:
 - Two `rsconstruct.toml` profiles (one per environment), or
@@ -134,6 +140,7 @@ rsconstruct world this becomes either:
 - Just removing the variants if CI is the source of truth.
 
 ### 11. Build-flag switches
+
 Many `DO_*` toggles at the top of the Makefile:
 `DO_GCC`, `DO_CLANG`, `DO_CPPCHECK`, `DO_TIDY`, `DO_CPPLINT`, `DO_PYLINT`,
 `DO_MD_MDL`, `DO_MD_ASPELL`, `DO_CHECK_ALL`, `DO_CHECK_SYNTAX`, `DO_STP`,
@@ -144,6 +151,7 @@ Many `DO_*` toggles at the top of the Makefile:
 or a build-profile mechanism if rsconstruct grows one.
 
 ### 12. `out/` directory layout
+
 Make builds into `out/` mirroring source paths. rsconstruct uses `out/<processor>/...`.
 Any tool, IDE config, or `.gitignore` rule that assumed the Makefile's layout
 needs updating.

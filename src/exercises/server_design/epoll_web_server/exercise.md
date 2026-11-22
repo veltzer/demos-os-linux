@@ -39,6 +39,7 @@ You can find the relevant details in the following link.
 [`HTTP` protocol made easy](http://www.jmarshall.com/easy/http/#sample)
 
 ## Phase 2
+
 Add multi `threading` to your server. The extra threads will create dynamic
 content to be delivered to the client when the requested URL is not the
 name of a physical file. Use the pthread(3) `API` to create and manage the

@@ -1,9 +1,11 @@
 # Exercise: Implementing a PHY Driver for the `Linux` Kernel
 
 ## Objective
+
 Develop a basic PHY (Physical Layer) driver for the `Linux` kernel, demonstrating understanding of kernel module development and network device drivers.
 
 ## Background
+
 PHY drivers in the `Linux` kernel manage the physical layer of network interfaces. They handle tasks such as link detection, speed negotiation, and status reporting.
 
 ## Requirements

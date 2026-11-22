@@ -1,6 +1,7 @@
 # Building plugins for `gcc(1)`
 
 ## Notes
+
 It turns out the plugin must be built with g++ since the support library for the
 plugin has all the symbols mangled.
 
