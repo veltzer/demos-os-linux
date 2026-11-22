@@ -434,6 +434,7 @@ make menuconfig
 ```
 
 Navigate to:
+
 ```text
 System configuration
     → Root filesystem overlay directories
@@ -506,6 +507,7 @@ make help               # Show all targets
 4. Rebuild and verify your changes
 
 **Verification:**
+
 ```bash
 hostname
 nano --version
@@ -519,6 +521,7 @@ nano --version
 4. `SSH` into your system from the host
 
 **Hint:** Use `QEMU` with port forwarding:
+
 ```bash
 -netdev user,id=net0,hostfwd=tcp::2222-:22
 ```

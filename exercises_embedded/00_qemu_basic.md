@@ -230,16 +230,20 @@ Or from the `QEMU` console, press `Ctrl-A` then `X` to force quit.
 1. **Modify kernel parameters:** Edit `GRUB` inside the VM to add `earlycon` and observe the difference in boot messages.
 
 2. **Dump the device tree:** Inside the VM, run:
+
    ```bash
    sudo apt install device-tree-compiler
    dtc -I fs /sys/firmware/devicetree/base > virt.dts
    ```
+
    Examine the structure and compare it to device trees you've worked with on real hardware.
 
 3. **Create a writable overlay:** Instead of modifying the base image, use a QCOW2 overlay:
+
    ```bash
    qemu-img create -f qcow2 -b jammy-server-cloudimg-arm64.img -F qcow2 overlay.qcow2
    ```
+
    Then boot from `overlay.qcow2`. This lets you snapshot and revert easily.
 
 4. **Add a second network interface:** Add another `-netdev` and `-device virtio-net-pci` pair and configure both interfaces inside the guest.
@@ -247,9 +251,11 @@ Or from the `QEMU` console, press `Ctrl-A` then `X` to force quit.
 5. **Emulate different CPUs:** Try `-cpu max` to see all features QEMU can emulate, or `-cpu cortex-a53` for a simpler core. Compare `lscpu` output.
 
 6. **Attach a second disk:** Create a new image and attach it:
+
    ```bash
    qemu-img create -f qcow2 data.qcow2 5G
    ```
+
    Add `-drive if=virtio,format=qcow2,file=data.qcow2` to your QEMU command, then partition and mount it inside the guest.
 
 ---
@@ -257,6 +263,7 @@ Or from the `QEMU` console, press `Ctrl-A` then `X` to force quit.
 ## Quick Reference
 
 **Start VM:**
+
 ```bash
 cd ~/qemu-arm64-lab && qemu-system-aarch64 \
     -machine virt -cpu cortex-a72 -smp 2 -m 2048 \
@@ -270,6 +277,7 @@ cd ~/qemu-arm64-lab && qemu-system-aarch64 \
 ```
 
 **SSH in:**
+
 ```bash
 `ssh` -p 2222 ubuntu@localhost
 ```

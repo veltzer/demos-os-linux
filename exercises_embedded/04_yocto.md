@@ -887,6 +887,7 @@ The `SDK` installer will be at:
 3. Verify the packages are installed
 
 **Verification:**
+
 ```bash
 htop --version
 nano --version
@@ -1057,9 +1058,11 @@ bitbake-layers add-layer ../meta-mylayer
 ```
 
 ## Build
+
 ```bash
 bitbake my-custom-image
 ```
+
 ```text
 
 ---

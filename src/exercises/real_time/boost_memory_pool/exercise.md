@@ -10,6 +10,7 @@ Now use Boost::Pool to create a pool of 256 People at startup time and show how 
 a hold of a Person object by getting one from the pool and how to return one to the pool.
 
 here is rough code for how this should work:
+
 ```C++
 Pool<Person> p(count=100);
 Person* p1=p.get();
