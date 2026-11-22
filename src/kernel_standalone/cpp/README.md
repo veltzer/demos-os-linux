@@ -2,6 +2,7 @@
 
 The problem:
 `C++` has lots of issues which are not dealt with in the kernel.
+
 * problems in linking.
 * exception handling that needs to be turned off.
 * memory management functions (like new and delete) which need to be implemented.
@@ -9,6 +10,7 @@ In addition, the kernel headers are not suitable for inclusion for a `C++` compi
 since they conflict with many `C++` constructs ('class' for instance and more).
 
 The idea:
+
 * separate the "top part" - the one that is getting called by `Linux`, like driver
 entry and exit points, interrupt functions, tasklets, whatever and handle them in a C layer.
 expose APIs for all of these facilities and other low level facilities (`printk`, hardware access

@@ -8,5 +8,6 @@
 * Change the loop variable at runtime using gdb and circumvent the bug.
 
 ## Hints
+
 * info registers
 * google search for "setting register values in gdb"

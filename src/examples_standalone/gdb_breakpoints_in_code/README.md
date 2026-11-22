@@ -6,6 +6,7 @@ you want to break using the debugger `API`/language.
 
 This example shows that there are several ways by which you can trigger
 a debugger interaction:
+
 * `asm("int 3")`
 * `raise(SIGTRAP)`
 * something illegal?!?

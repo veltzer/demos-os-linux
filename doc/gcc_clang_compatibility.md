@@ -73,6 +73,7 @@ Clang forbids `inline` on global replacement allocation functions (`-Winline-new
 When source-level fixes are impossible because the code uses fundamentally GCC-only features, exclude from Clang builds via `exclude_paths` or `exclude_dirs` in `rsconstruct.toml`.
 
 Cases that require exclusion:
+
 - `__builtin_va_arg_pack_len` (GCC-only builtin)
 - GCC-only compiler flags via `EXTRA_COMPILE_FLAGS` (`-finstrument-functions-exclude-function-list`, `-fno-diagnostics-show-caret`, `-ftrack-macro-expansion`, `-Wno-clobbered`, `-Wno-use-after-free`)
 - Redefining glibc `extern inline` functions (e.g., `atoi`) -- Clang can't redefine them

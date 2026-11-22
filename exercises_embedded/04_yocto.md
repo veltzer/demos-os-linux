@@ -147,6 +147,7 @@ cd poky
 ```
 
 **Release branches** (named after releases):
+
 - `scarthgap` — `Yocto` 5.0 (2024, LTS)
 - `nanbield` — `Yocto` 4.3 (2023)
 - `kirkstone` — `Yocto` 4.0 (2022, LTS)
@@ -210,6 +211,7 @@ source oe-init-build-env build-arm64
 ```
 
 This script:
+
 1. Creates the `build-arm64/` directory
 2. Sets up environment variables
 3. Adds `BitBake` to your PATH
@@ -334,6 +336,7 @@ find ../meta* -name "*.conf" -path "*/machine/*" | xargs -I{} basename {} .conf
 ```
 
 Common machines:
+
 - `qemuarm64` — `QEMU` ARM64 (our target)
 - `qemuarm` — `QEMU` `ARM` 32-bit
 - `qemux86-64` — `QEMU` x86_64
@@ -373,6 +376,7 @@ bitbake core-image-minimal
 ### What to Expect
 
 First build takes **2-4 hours** depending on:
+
 - Internet speed (downloading sources)
 - `CPU` cores (parallel compilation)
 - Disk speed (many small files)
@@ -450,6 +454,7 @@ runqemu qemuarm64 nographic
 ```
 
 This automatically:
+
 - Locates the kernel and rootfs
 - Sets up networking with TAP/TUN
 - Configures serial console
@@ -903,6 +908,7 @@ file /bin/busybox
 4. Boot and run it
 
 **Hints:**
+
 - Use `uname()` syscall for system info
 - Recipe should inherit nothing special (simple `Makefile` project)
 - Install to `/usr/bin`

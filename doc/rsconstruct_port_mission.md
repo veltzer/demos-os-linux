@@ -36,6 +36,7 @@ follow-ups that outlived the Makefile itself.
 These need a decision (port, drop, or keep as a side-channel target).
 
 ### 1. Build artifacts beyond `.elf`
+
 - **Disassembly** (`out/gcc/<base>.dis`) via `objdump --disassemble --source [--demangle]`.
   Useful for teaching; the targets `C_GCC_DIS` / `CC_GCC_DIS` produce one per source
   file. No rsconstruct equivalent today.
@@ -49,11 +50,13 @@ These need a decision (port, drop, or keep as a side-channel target).
 `scripts/wrapper_compile.py` wraps every compile/link with optional **ccache**,
 **timing**, and **dbg** behavior controlled by the `CCACHE` and `DO_MKDBG`
 flags. rsconstruct invokes the compiler directly. Porting options:
+
 - ignore (drop ccache support);
 - teach rsconstruct to use ccache via `cc = "ccache gcc"` style overrides;
 - keep the wrapper but call it from rsconstruct's `cc =` field.
 
 ### 3. Markdown checks
+
 - **Done.** The `out/%.mdl` rule ran `gems/bin/mdl` with `GEM_HOME=gems`
   against each `.md` under `src/`. Markdown is now linted by
   `processor.rumdl` alone, configured in `.rumdl.toml`; `processor.mdl`, the
@@ -78,12 +81,14 @@ currently `enabled = false` in `rsconstruct.toml`.
 
 These are pure git-grep / shell pipelines and depend on `pymakehelper no_err`
 to invert the exit code (find = pass, find = fail). Two reasonable paths:
+
 - Reimplement each as logic inside `scripts/check_all.py` and turn the
   processor on.
 - Drop the ones that have outlived their value (the file is full of comments
   showing several already disabled).
 
 ### 5. Code-formatting targets
+
 - `format_uncrustify` runs `uncrustify` against the entire user-space tree
   (different `-l C` vs `-l CPP` invocations).
 - `format_astyle` and `format_indent` exist but `$(error ...)` out — explicitly
@@ -97,6 +102,7 @@ or be ported to `scripts/format.py` and removed from rsconstruct's scope.
 
 The Makefile has many `kernel_*` phony targets that are pure operator
 conveniences:
+
 - `kernel_clean`, `kernel_check`, `kernel_build`, `kernel_help`
 - `kernel_tail[f]`, `kernel_syslog_tail[f]`, `kernel_dmesg`, `kernel_dmesg_clean`
 - `kernel_halt`, `kernel_reboot`, `kernel_makeeasy`
@@ -105,6 +111,7 @@ These are not build steps — they are interactive shortcuts (some require
 sudo). Drop or move to a `scripts/kernel.sh` helper.
 
 ### 7. Source-tree introspection targets
+
 - `sloccount`, `cloc`, `count_files`
 - `find_not_source`, `find_not_target`, `find_not_source_target`,
   `find_exercises`
@@ -135,6 +142,7 @@ every `*.sh` under `src/`.~~ Ported: `processor.shellcheck` now passes
 
 The Makefile flips `DO_STP=0` / `DO_CHP=0` when `GITHUB_WORKFLOW` is set. In an
 rsconstruct world this becomes either:
+
 - Two `rsconstruct.toml` profiles (one per environment), or
 - Per-processor `enabled = !ci` switches, or
 - Just removing the variants if CI is the source of truth.

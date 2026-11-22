@@ -1,6 +1,7 @@
 # Reverse debugging in `gdb(1)`
 
 In order to do reverse debugging:
+
 * compile the program with debug information.
 * run `gdb`:
 

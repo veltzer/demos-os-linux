@@ -18,6 +18,7 @@ If not? what can you do?
 ## Exercise 2-A
 
 Modify Exercise 2 accordingly:
+
 * Set message type 1-4 using: `mb->msg_type(int);`
 * For any other type create message type 5, send it to Queue1 setting High priority of 10.
 * Such message when received will be modified to type 4 and re-sent (by the appropriate
@@ -26,6 +27,7 @@ Modify Exercise 2 accordingly:
 ## Exercise 2-B
 
 Modify Exercise 2 accordingly:
+
 * Set message type 1-4 using: `mb->msg_type (int);`
 * Each message line will contain 3 fields: type delay in sec. and the message body.
 * Each time a message is read by the producer it will activate a timer according to the

@@ -11,6 +11,7 @@ run `make time` to see the difference between calling a billion functions
 statically vs dynamically.
 
 Where does this difference come from? Two sources.
+
 * the `-fpic` flag passed to the compiler when compiling the compilation units
 of the dynamic library forces constrains on the compiler which create slower
 code. Compiler needs to always code relative jumps instead of absolute ones.

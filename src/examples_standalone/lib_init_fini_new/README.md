@@ -1,6 +1,7 @@
 # New library initialization and cleanup feature
 
 This demonstration show that:
+
 * any function in a shared object that you want called before an application starts
   to use your shared object can be labeled with `__attribute__(constructor)`.
 * the same goes for finishing `(__attribute__(destructor))`.

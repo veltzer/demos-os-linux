@@ -9,11 +9,13 @@ The example demonstrates the performance difference between scalar and SIMD impl
 ## Key Concepts
 
 ### Matrix Multiplication
+
 - Each element in the result matrix C[i,j] is the dot product of row i from matrix A and column j from matrix B
 - Computational complexity: O(n³)
 - Very compute-intensive operation (perfect for SIMD)
 
 ### SIMD Implementation ({2)
+
 - Uses AVX instructions (`__m256` type) to process 8 single-precision floats at once
 - Key AVX instructions used:
     - `_mm256_load_ps`: Load 8 aligned floats
@@ -76,11 +78,13 @@ void simd_matrix_multiply(float* A, float* B, float* C, int n) {
 ## Performance Analysis
 
 ### Theoretical Maximum
+
 - AVX processes 8 floats per instruction
 - Ideal speedup would be 8x
 - Achieved ~6.7x in practice (very good efficiency)
 
 ### Why It's Fast
+
 1. Compute-bound operation
     - Many arithmetic operations per memory access
     - High arithmetic intensity
@@ -115,6 +119,7 @@ _mm_prefetch(&B[k * n + j + 8], _MM_HINT_T0);
 - Can hide memory latency
 
 ### Parameter Tuning
+
 - Matrix size affects overall performance
 - Block size affects cache efficiency
 - Can be tuned for specific `CPU` architectures
@@ -130,6 +135,7 @@ gcc -mavx -march=native -O3 matrix_mult.c -o matrix_mult -lm
 - `-O3`: Maximum optimization level
 
 ## Results
+
 - Scalar time: x.xx seconds
 - SIMD time: x.xx seconds
 - Speedup: ~6.7x
@@ -137,6 +143,7 @@ gcc -mavx -march=native -O3 matrix_mult.c -o matrix_mult -lm
 - Demonstrates effective use of SIMD instructions
 
 ## Common Pitfalls
+
 1. Memory alignment
     - Must use aligned loads/stores
     - Must allocate aligned memory
@@ -150,6 +157,7 @@ gcc -mavx -march=native -O3 matrix_mult.c -o matrix_mult -lm
     - Need to handle edge cases properly
 
 ## Applications
+
 - Scientific computing
 - Computer graphics
 - Machine learning
@@ -159,6 +167,7 @@ gcc -mavx -march=native -O3 matrix_mult.c -o matrix_mult -lm
 ## Conclusion
 
 This example demonstrates how SIMD instructions can significantly accelerate compute-bound operations when properly implemented with attention to:
+
 - Memory alignment
 - Cache efficiency
 - Computational intensity

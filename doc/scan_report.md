@@ -82,6 +82,7 @@ clusters: ACE timer/signal handlers (Chapter-5 files), design pattern
 objects, ACE thread arrays.
 
 ### Deprecated APIs still in use
+
 - `pthread_yield()` in `src/examples/pthreads/core/yield.cc` — use
   `sched_yield()`.
 - `auto_ptr` in `src/examples_standalone/code_formatting/file.cc` — removed
@@ -95,6 +96,7 @@ objects, ACE thread arrays.
   — x86 only.
 
 ### Security anti-patterns (demos, not production code)
+
 - Hardcoded DB credentials in `src/examples/lib_examples/hellomysql.cc`.
 - `system()` with interpolated PIDs in `src/examples/logging/syslog.cc`.
 - `sprintf` without bounds in ACE `Chapter-2/Message_Blocks.cc`,
@@ -108,6 +110,7 @@ objects, ACE thread arrays.
 - `mprotect` promoting data to `PROT_EXEC` in `src/examples/mmu/mprotect.cc`.
 
 ### Header hygiene
+
 - `#pragma once` placed after `#include` in some headers (should be first).
 - Missing include guards in `src/examples_standalone/default_constructor/`
   and `src/examples_standalone/g++_vtables/` headers.

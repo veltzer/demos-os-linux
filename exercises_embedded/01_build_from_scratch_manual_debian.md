@@ -87,6 +87,7 @@ make -j$(nproc) Image modules dtbs
 ```
 
 Build artifacts:
+
 - Kernel image: `arch/arm64/boot/Image`
 - Device trees: `arch/arm64/boot/dts/`
 - Modules: throughout the source tree

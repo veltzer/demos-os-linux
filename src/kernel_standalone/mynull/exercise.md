@@ -4,6 +4,7 @@ Use pieces of code from:
 [the null-device example in this repository](https://github.com/veltzer/demos-os-linux/tree/master/src/kernel_standalone/mynull)
 
 Notes
+
 * Call your `/dev` file `mynull` in order not to collide with the actual `/dev/null`
 * Try not to crash your kernel.
 * Show that your driver works.

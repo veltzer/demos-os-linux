@@ -12,5 +12,6 @@ If the child dies of normal circumstances, the watchdog will
 terminate as well.
 
 Use the following system calls
+
 * `fork(2)`
 * `wait(2)`

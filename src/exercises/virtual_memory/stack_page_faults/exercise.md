@@ -1,6 +1,7 @@
 # Stack Page Faults
 
 ## Preventing page faults on stack exercise
+
 * Create an application which creates page fault on the stack
 (first use little stack and then little by little use more stack).
 Think: How do you allocate more space on the stack each time?

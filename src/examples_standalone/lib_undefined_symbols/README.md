@@ -4,6 +4,7 @@ This example shows how to get an error when you link with a library that does no
 undefined symbols.
 
 ## Notes
+
 * when you link a library that does not link with all of it's required dependencies
 you don't get any error from the linker.
 * when you do it with the `--no-undefined` flag you do get an error.
@@ -14,5 +15,6 @@ you don't get any error from the linker.
   even if you pass `--no-undefined`
 
 ## TODO
+
 * `--allow-shlib-undefined`
 * `--no-allow-shlib-undefined`

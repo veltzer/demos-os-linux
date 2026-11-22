@@ -8,6 +8,7 @@
 * When EOF is reached both programs will terminate gracefully.
 
 ## Exercise 4a
+
 * Write a Client and a Server programs that will communicate via three Stream Socket.
 * You may assign the ports internally or via argv[1] parameter.
 * The ports may be with consecutive numbers.

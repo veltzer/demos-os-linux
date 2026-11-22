@@ -33,6 +33,7 @@ one of them breaks).
 ## The `HTTP` protocol
 
 You need just a little bit understanding of the `HTTP` protocol in order to:
+
 1) parse the incoming request and get at the URL which is required.
 2) output a valid `HTTP` response with the content attached at the end.
 You can find the relevant details in the following link.

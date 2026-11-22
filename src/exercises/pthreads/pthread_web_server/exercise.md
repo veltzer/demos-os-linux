@@ -2,6 +2,7 @@
 
 write a web server using the pthread `API`.
 start by building a simple echo server
+
 * see that the echo server works by using
   telnet localhost [your port number]
 * change the server to be a stupid `HTTP` server.

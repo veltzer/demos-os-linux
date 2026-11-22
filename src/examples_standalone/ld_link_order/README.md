@@ -7,6 +7,7 @@ This is the dependency graph for this example:
 main.elf -> liba.so -> libb.so
 
 What are the results?
+
 * if `liba.so` supplies function `a` and `libb.so` supplies function `b` and `a` needs `b`
   and you like in the right order (`-la -lb`) then all is OK. even if liba.so does
   not carry the information that it is dependent on `libb.so`.

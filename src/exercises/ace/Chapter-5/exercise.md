@@ -15,6 +15,7 @@
   a problem using the same port again before appropriate timeout.
 
 ## Exercise 5a
+
 * Write a Connect program that will send data to two of the consecutive ports.
 * The program will read messages each one will have a message type - an integer.
 * Messages having type 1 or 2 will be sent to the first port.
@@ -24,6 +25,7 @@
   gracefully as was done in the previous exercise.
 
 ## Exercise 5b
+
 * Use the program 5 (not 5a) and add signal -1 that will close the program gracefully.
   Hint: Print pid and use 'kill -1 pid' command. Also, use ACE_OS::sleep() to slow the input. This
   will help you while trying to enter the command using another terminal.

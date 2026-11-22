@@ -30,6 +30,7 @@ sudo mount big_file /mnt/my_file -o loop
 ```
 
 Put some file on the new disk:
+
 - go to `/mnt/my_file`
 - and create some files there...
 

@@ -22,6 +22,7 @@ p.put(p1)
 do the same with limit on number of object the pool has (100) and preallocation of all of those objects and thread safety
 
 Hints:
+
 * use `sudo apt-get update` to update your system
 * use `sudo apt-get install g++ gcc` to install g++ and gcc
 * use `sudo apt-get install libboost-all-dev` to install boost development files.

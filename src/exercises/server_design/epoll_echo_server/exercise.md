@@ -22,6 +22,7 @@ Remember to handle errors from *ALL* system calls (you never know when
 one of them breaks).
 
 ## Bonus
+
 * have timeouts for threads.
   If a thread does not send anything for N seconds - disconnect from it.
 * handle async write(2) correctly.

@@ -1,6 +1,7 @@
 # How to make a DSO
 
 This demo shows all the required steps needed in order to make a dynamic library:
+
 * write a bunch of c/c++ files with headers interface files.
 * compile them all, preferably with `-O2` and `-Wall -Werror`.
 * link them with `-shared -fpic` (`-fpic` not strictly needed on Intel).
@@ -13,6 +14,7 @@ This demo shows all the required steps needed in order to make a dynamic library
 * have a look at my `Makefile` to see how to write a makefile for such a library.
 
 How to see what you've created:
+
 * `make show_results`
 * `make show_results_verbose`
 

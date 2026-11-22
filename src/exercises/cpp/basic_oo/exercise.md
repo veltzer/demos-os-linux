@@ -1,6 +1,7 @@
 # Circle object oriented exercise in `C++`
 
 Create a class called circle with three members of type double:
+
 * radios: double -> radius of the circle
 
 * x: double -> x position of the center

@@ -4,6 +4,7 @@ This example shows how to use g++ to compile files from standard input instead o
 a file.
 
 ## NOTES
+
 * you have to tell g++ the language you are compiling as g++ cannot automagically
 deduce the source language from the file extension of the file it is compiling like
 it normally does.

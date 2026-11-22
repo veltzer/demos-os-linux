@@ -30,6 +30,7 @@ The idea is to provide a good coverage of all major features and to resolve disp
 about exactly how a certain API works.
 
 ## Topics covered by the examples
+
 * Multi-threading
 * Multi-processing
 * Locking
@@ -61,6 +62,7 @@ Please give me some credit if you do wind up using this package and consider dro
 me a note about the fact that you did use the package so I could feel good...
 
 ## Similar projects
+
 * Michael Kerrisk, the maintainer and author of many of the Linux manual pages has a similar project he calls
 TLPI (The Linux Programming Interface) of programs he used in his book of the same title. You can find
 it here <http://man7.org/tlpi/code/>.
@@ -78,6 +80,7 @@ it here <http://man7.org/tlpi/code/>.
 * <https://github.com/angrave/SystemProgramming/wiki>
 
 ## Using it
+
 * you need python on your machine:
   try:
   `python --version`

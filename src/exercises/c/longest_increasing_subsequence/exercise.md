@@ -45,4 +45,5 @@ void maximum_subset(char str[], int index, char curr[], char best[]);
 * Make the solution as simple as possible.
 
 ## References
+
 * [definition](https://en.wikipedia.org/wiki/Longest_increasing_subsequence)

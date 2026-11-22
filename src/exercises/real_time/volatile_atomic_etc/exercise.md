@@ -12,5 +12,6 @@ See what happens when you drop `volatile`.
 Fix the problem and compare all the solution you can find to this problem in terms of efficiency.
 
 Hints:
+
 * make sure you compile with optimization (-O2).
 * threads can be created either using the `pthread` `API` or `C++` thread support.

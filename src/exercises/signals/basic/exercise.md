@@ -1,6 +1,7 @@
 # Signals
 
 Write an application that uses temporary files in `/tmp` and simulates database operations.
+
 * Stamp your temporary files with your PID extension.
 * Block critical sections of database update from signals.
 * Create a signal handler that will perform cleanup on exit.

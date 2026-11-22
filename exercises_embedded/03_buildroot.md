@@ -168,6 +168,7 @@ make qemu_aarch64_virt_defconfig
 ```
 
 This single command configures:
+
 - ARM64 architecture
 - Toolchain (downloads or builds one)
 - `Linux` kernel with appropriate options

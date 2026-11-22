@@ -283,6 +283,7 @@ cd ~/qemu-arm64-lab && qemu-system-aarch64 \
 ```
 
 **Credentials:**
+
 - Username: `ubuntu`
 - Password: `ubuntu`
 

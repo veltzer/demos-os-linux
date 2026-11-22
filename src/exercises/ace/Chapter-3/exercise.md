@@ -4,6 +4,7 @@ Write a program that will update a single variable called LockedCounter.
 We have to protect the variable so that only one thread will be able to update it.
 
 We will use 3 threads.
+
 * The initial value of LockedCounter is zero.
 * Use 3 threads each one of them will try to increment the LockedCounter.
 * Each thread will use `mutex` to prevent other threads from updating or testing
@@ -28,6 +29,7 @@ use slide 3-39 for `mutex` support for this exercise.
 ## Solution notes
 
 Are the results good?
+
 * Nope. We attempt many times per each time slice.
 What is the influence of printing inside the loop?
 * Improves the results because print is read which yields the `CPU`.
