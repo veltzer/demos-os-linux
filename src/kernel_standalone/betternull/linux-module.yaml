@@ -1,3 +1,4 @@
+---
 modules:
   - name: betternull
     sources: [main.c]

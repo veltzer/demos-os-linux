@@ -1,3 +1,4 @@
+---
 modules:
   - name: myempty
     sources: [main.c]

@@ -1,3 +1,4 @@
+---
 modules:
   - name: sleep_wakeup
     sources: [main.c]

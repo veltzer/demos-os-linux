@@ -1,3 +1,4 @@
+---
 modules:
   - name: multifile
     sources: [main.c, another_file.c]

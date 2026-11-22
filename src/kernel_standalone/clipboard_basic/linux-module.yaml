@@ -1,3 +1,4 @@
+---
 modules:
   - name: clipboard_basic
     sources: [main.c]

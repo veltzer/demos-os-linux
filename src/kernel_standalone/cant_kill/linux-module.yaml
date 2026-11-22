@@ -1,3 +1,4 @@
+---
 modules:
   - name: cant_kill
     sources: [main.c]

@@ -1,3 +1,4 @@
+---
 modules:
   - name: mod_bootmem_mod
     sources: [mod_bootmem.c]

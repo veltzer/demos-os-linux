@@ -1,3 +1,4 @@
+---
 modules:
   - name: markveltzer
     sources: [main.c]

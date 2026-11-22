@@ -1,3 +1,4 @@
+---
 modules:
   - name: myparam
     sources: [main.c]

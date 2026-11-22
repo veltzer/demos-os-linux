@@ -1,3 +1,4 @@
+---
 modules:
   - name: simple_pipe
     sources: [main.c]

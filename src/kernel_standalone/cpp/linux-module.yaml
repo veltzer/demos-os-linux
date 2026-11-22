@@ -1,3 +1,4 @@
+---
 modules:
   - name: cpp
     sources: [main.c]

@@ -1,3 +1,4 @@
+---
 modules:
   - name: aaa
     sources: [main.c]

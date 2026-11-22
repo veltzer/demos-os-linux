@@ -1,3 +1,4 @@
+---
 modules:
   - name: phy
     sources: [main.c]

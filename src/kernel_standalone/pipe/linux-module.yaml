@@ -1,3 +1,4 @@
+---
 modules:
   - name: pipe
     sources: [main.c]

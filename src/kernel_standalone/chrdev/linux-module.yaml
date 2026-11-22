@@ -1,3 +1,4 @@
+---
 modules:
   - name: chrdev
     sources: [main.c]

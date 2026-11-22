@@ -1,3 +1,4 @@
+---
 modules:
   - name: mynull
     sources: [main.c]

@@ -1,3 +1,4 @@
+---
 modules:
   - name: mod1
     sources: [main1.c]
