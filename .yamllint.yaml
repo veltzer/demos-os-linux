@@ -1,10 +1,22 @@
 extends: default
 
+# yamllint's default config makes comments, comments-indentation,
+# document-start and truthy warnings, which yamllint (and the gate) let pass:
+# here they fail the build like every other rule. Sequences may be indented
+# under their key or not, but one way per file (consistent).
+
 rules:
+  comments:
+    level: error
+  comments-indentation:
+    level: error
+  document-start:
+    level: error
   truthy:
+    level: error
     allowed-values: ['true', 'false']
   line-length:
     max: 240
   indentation:
     spaces: 2
-    indent-sequences: whatever
+    indent-sequences: consistent
