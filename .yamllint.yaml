@@ -7,7 +7,6 @@ rules:
     check-keys: false
   line-length:
     max: 240
-  comments-indentation: disable
   indentation:
     spaces: 2
     indent-sequences: whatever
