@@ -4,7 +4,7 @@
 # and multimedia dev libraries (see Dockerfile) - that would take most of the
 # run to apt-install on a bare runner. So the `image` job publishes that
 # toolchain as a container image to ghcr.io (rebuilt only when its inputs
-# change) and the `build` job runs rsconstruct inside it. Everything below
+# or the rsconstruct release change) and the `build` job runs rsconstruct inside it. Everything below
 # that differs from build.yml exists to serve that two-job shape.
 name: build
 on:
@@ -37,54 +37,64 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          # Full history: the change check below diffs across the whole push
-          # range, which can be many commits deep.
-          fetch-depth: 0
           persist-credentials: false
-      - name: resolve the image tag for this run
+      - name: resolve the rsconstruct release to bake in
+        id: rsc
+        # The image carries one exact rsconstruct release, and that release is
+        # part of the image key below - so a new release yields a new key and
+        # a rebuild, with nothing in this repository having to change.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(gh release view -R veltzer/rsconstruct --json tagName -q .tagName)
+          case "$version" in
+            v[0-9]*) ;;
+            *) echo "no rsconstruct release tag (got '$version')" >&2; exit 1 ;;
+          esac
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: resolve the image tags for this run
         id: tag
         # `latest` is mutable, so re-running an old workflow would pull today's
         # image rather than the one the run originally used. Every build also
         # gets an immutable run-scoped tag, and the build job consumes that one.
-        run: |
-          echo "immutable=ghcr.io/veltzer/demos-os-linux-ci:run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
-      - name: check whether the image inputs changed
-        id: changed
-        # Expressions reach the script as environment variables, never pasted
-        # into its text, where a value would be read as shell.
+        #
+        # The key tag names the image by its content: a hash of every input
+        # file plus the rsconstruct release. Whether to rebuild is then "does
+        # an image with this key exist", which no earlier run can get wrong.
+        # (Diffing the push range could: when a push changed the inputs and its
+        # run was cancelled by the next push, the next range showed no change
+        # and the build ran on a stale image.)
         env:
-          BEFORE: ${{ github.event.before }}
+          FILES_HASH: ${{ hashFiles('Dockerfile', 'rsconstruct.toml', 'rsconstruct.lock', 'pyproject.toml', 'uv.lock', '.github/workflows/cicd.yml') }}
+          RSC_VERSION: ${{ steps.rsc.outputs.version }}
         run: |
-          # Rebuild unconditionally when we cannot establish a trustworthy base
-          # to diff against: a scheduled/dispatch run (no push range), the first
-          # commit on a branch, or a force-push whose `before` is gone.
-          rebuild() { echo "result=true" >> "$GITHUB_OUTPUT"; exit 0; }
-
-          before="${BEFORE}"
-          if [ "${GITHUB_EVENT_NAME}" != push ]; then
-            rebuild
-          fi
-          # All-zero `before` means a newly created branch or tag.
-          case "$before" in
-            ''|0000000000000000000000000000000000000000) rebuild ;;
-          esac
-          git rev-parse --verify -q "$before^{commit}" >/dev/null || rebuild
-
-          # Diff the whole push range, not just the tip commit: a push of
-          # several commits can change the image inputs in any one of them.
-          if git diff --quiet "$before" "${GITHUB_SHA}" -- Dockerfile rsconstruct.toml rsconstruct.lock pyproject.toml uv.lock .github/workflows/cicd.yml; then
-            echo "result=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "result=true" >> "$GITHUB_OUTPUT"
-          fi
-      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
-        if: steps.changed.outputs.result == 'true'
-      # Unconditional: an unchanged image still needs its digest looked up.
+          key=$(printf '%s %s' "$FILES_HASH" "$RSC_VERSION" | sha256sum | cut -c1-32)
+          echo "key=ghcr.io/veltzer/demos-os-linux-ci:inputs-${key}" >> "$GITHUB_OUTPUT"
+          echo "immutable=ghcr.io/veltzer/demos-os-linux-ci:run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+      # Before the existence check below: ghcr answers anonymous inspects of a
+      # private package as "not found", which would mean a needless rebuild.
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: check whether an image for these inputs exists
+        id: changed
+        # A manual dispatch always rebuilds: it is the way to pick up new
+        # Ubuntu packages, which no input file records.
+        env:
+          KEY: ${{ steps.tag.outputs.key }}
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" != push ]; then
+            echo "result=true" >> "$GITHUB_OUTPUT"
+          elif manifest=$(docker buildx imagetools inspect "$KEY" --format '{{json .Manifest}}'); then
+            echo "result=false" >> "$GITHUB_OUTPUT"
+            echo "digest=$(printf '%s' "$manifest" | jq -r .digest)" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+        if: steps.changed.outputs.result == 'true'
       - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         id: push
         if: steps.changed.outputs.result == 'true'
@@ -96,26 +106,28 @@ jobs:
           # old run re-runnable against the image it actually used.
           tags: |
             ghcr.io/veltzer/demos-os-linux-ci:latest
+            ${{ steps.tag.outputs.key }}
             ${{ steps.tag.outputs.immutable }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            CACHEBUST=${{ github.run_id }}
+            RSCONSTRUCT_VERSION=${{ steps.rsc.outputs.version }}
       - name: publish the image ref for the build job
         id: ref
         # The build job gets the image by digest, never by tag: `latest` is
         # shared by every branch, so a push elsewhere could republish it
         # between this job and the build job. When something changed, the
-        # digest is the one just pushed; when nothing did, it is what
-        # `latest` names right now.
+        # digest is the one just pushed; when nothing did, it is the one the
+        # existing key tag names.
         env:
           CHANGED: ${{ steps.changed.outputs.result }}
           PUSHED: ${{ steps.push.outputs.digest }}
+          EXISTING: ${{ steps.changed.outputs.digest }}
         run: |
           if [ "$CHANGED" = true ]; then
             digest=$PUSHED
           else
-            digest=$(docker buildx imagetools inspect ghcr.io/veltzer/demos-os-linux-ci:latest --format '{{json .Manifest}}' | jq -r .digest)
+            digest=$EXISTING
           fi
           case "$digest" in
             sha256:*) ;;
@@ -132,8 +144,7 @@ jobs:
       packages: read  # pull the toolchain image from ghcr.io
     container:
       # Pinned by digest, which the image job above resolves at run time (the
-      # image it just pushed, or what `latest` named when the image inputs did
-      # not change). zizmor cannot see a digest through the expression.
+      # image it just pushed, or the existing one built from the same inputs). zizmor cannot see a digest through the expression.
       image: ${{ needs.image.outputs.image }} # zizmor: ignore[unpinned-images]
       credentials:
         username: ${{ github.actor }}
