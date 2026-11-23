@@ -32,11 +32,11 @@ typedef struct _phone_entry{
 	int used;
 } phone_entry;
 
-void phone_entry_init(phone_entry* pe) {
+static void phone_entry_init(phone_entry* pe) {
 	pe->used=0;
 }
 
-int find_empty_cell(const phone_entry* phonebook, const int size) {
+static int find_empty_cell(const phone_entry* phonebook, const int size) {
 	int i;
 	for(i=0; i<size; i++) {
 		if(phonebook[i].used==0) {
@@ -47,7 +47,7 @@ int find_empty_cell(const phone_entry* phonebook, const int size) {
 	exit(EXIT_FAILURE);
 }
 
-int find_cell_by_name(const phone_entry* phonebook, const int size, const char* name) {
+static int find_cell_by_name(const phone_entry* phonebook, const int size, const char* name) {
 	int i;
 	for(i=0; i<size; i++) {
 		if(strcmp(name, phonebook[i].name)==0) {
@@ -57,7 +57,7 @@ int find_cell_by_name(const phone_entry* phonebook, const int size, const char* 
 	return -1;
 }
 
-void add_entry(phone_entry* phonebook, const int size) {
+static void add_entry(phone_entry* phonebook, const int size) {
 	int entry=find_empty_cell(phonebook, size);
 	printf("give me the name for the new entry: ");
 	CHECK_INT(scanf("%19s", phonebook[entry].name), 1);
@@ -66,7 +66,7 @@ void add_entry(phone_entry* phonebook, const int size) {
 	phonebook[entry].used=1;
 }
 
-void delete_entry(phone_entry* phonebook, const int size) {
+static void delete_entry(phone_entry* phonebook, const int size) {
 	char name[256];
 	printf("give me a name to delete: ");
 	CHECK_INT(scanf("%255s", name), 1);
@@ -78,7 +78,7 @@ void delete_entry(phone_entry* phonebook, const int size) {
 	}
 }
 
-void find_entry(const phone_entry* phonebook, const int size) {
+static void find_entry(const phone_entry* phonebook, const int size) {
 	char name[256];
 	printf("give me a name to find: ");
 	CHECK_INT(scanf("%255s", name), 1);
@@ -90,7 +90,7 @@ void find_entry(const phone_entry* phonebook, const int size) {
 	}
 }
 
-void print_phonebook(const phone_entry* phonebook, const int size) {
+static void print_phonebook(const phone_entry* phonebook, const int size) {
 	int i;
 	for(i=0; i<size; i++) {
 		if(phonebook[i].used) {
@@ -104,7 +104,7 @@ void print_phonebook(const phone_entry* phonebook, const int size) {
 
 static int over=0;
 
-int show_menu(void) {
+static int show_menu(void) {
 	int result;
 	do {
 		printf("here is your menu....\n");

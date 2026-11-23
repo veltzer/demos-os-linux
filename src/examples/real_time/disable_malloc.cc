@@ -51,10 +51,6 @@ void malloc_disable(void) {
 	malloc_allowed=false;
 }
 
-void malloc_enable(void) {
-	malloc_allowed=true;
-}
-
 void* malloc(size_t size) {
 	/*
 	 * We have to have this section here since malloc will be called by various

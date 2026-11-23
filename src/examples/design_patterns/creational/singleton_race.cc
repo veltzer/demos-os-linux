@@ -68,10 +68,6 @@ public:
 		return (void*)this;
 	}
 
-	static void reset() {
-		delete instance;
-		instance = nullptr;
-	}
 };
 
 Singleton* Singleton::instance = nullptr;

@@ -44,7 +44,7 @@ const char* serv_name="http-alt";
 const char* serv_proto="tcp";
 const char* input_file="src/exercises/pthread_web_server/pthread_web_server.http";
 
-void *worker(void* arg) {
+static void *worker(void* arg) {
 	int fd=*((int*)arg);
 	TRACE("thread %d starting", gettid());
 	TRACE("thread %d got fd %d", gettid(), fd);

@@ -32,19 +32,6 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpapi
  */
 
-long long dummy_work(int limit) {
-	if(limit<=0) {
-		return 0;
-	}
-	long long count=0;
-	for(int j=0; j<limit; j++) {
-		for(int i=0; i<limit; i++) {
-			count+=i;
-		}
-	}
-	return count;
-}
-
 int main() {
 	// needs to be adjusted for new API
 	// const unsigned int NUM_EVENTS=2;

@@ -23,7 +23,7 @@
 
 const unsigned int MAX_STR_LEN=64;
 
-void maximum_subset(char str[], int index, char curr[], char best[]) {
+static void maximum_subset(char str[], int index, char curr[], char best[]) {
 	int length_of_curr, length_of_best;
 	char tmp_curr[MAX_STR_LEN];
 
@@ -52,7 +52,7 @@ void maximum_subset(char str[], int index, char curr[], char best[]) {
 	maximum_subset(str, index+1, curr, best);
 }
 
-void check(const char* val, const char* expected) {
+static void check(const char* val, const char* expected) {
 	char str[MAX_STR_LEN];
 	char curr[MAX_STR_LEN];
 	char best[MAX_STR_LEN];

@@ -63,6 +63,6 @@ void trace(const char *fmt, ...) {
 
 int main() {
 	printf("sizeof(va_list) is [%zu]\n", sizeof(va_list));
-	// trace("%s %d %f\n", "Hello", 5, 3.14);
+	trace("%s %d %f\n", "Hello", 5, 3.14);
 	return EXIT_SUCCESS;
 }

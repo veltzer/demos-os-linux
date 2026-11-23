@@ -79,11 +79,9 @@ int main() {
 	// cout << "__builtin_offsetof(e,B) " << __builtin_offsetof(e,B) << endl;
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
-	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(B,e) " << CppOffsetOf(B, e) << endl;
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
-	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(A,a) " << CppOffsetOf(A, a) << endl;
 	// cppcheck-suppress cstyleCast
 	// cppcheck-suppress intToPointerCast
@@ -91,7 +89,6 @@ int main() {
 	cout << "CppOffsetOf(A,b) " << CppOffsetOf(A, b) << endl;
 	// cppcheck-suppress dangerousTypeCast
 	// cppcheck-suppress intToPointerCast
-	// cppcheck-suppress cstyleCast
 	cout << "CppOffsetOf(A,c) " << CppOffsetOf(A, c) << endl;
 	// cppcheck-suppress cstyleCast
 	// cppcheck-suppress intToPointerCast

@@ -57,6 +57,8 @@ int main() {
 	assert(sizeof(A1)+sizeof(nullptr)==sizeof(A2));
 	cout << "sizeof(A1) is " << sizeof(A1) << endl;
 	cout << "sizeof(A2) is " << sizeof(A2) << endl;
+	A1 obj0(3);
+	obj0.dosomething();
 	A2 obj1(4), obj2(5);
 	// this is the vtable
 	void** vp1=reinterpret_cast<void**>(&obj1);

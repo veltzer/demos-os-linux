@@ -91,6 +91,14 @@ int main() {
 	measure_end(&m);
 	measure_print(&m);
 
+	measure_init(&m, "check restrict", loop);
+	measure_start(&m);
+	for(unsigned int i=0; i<loop; i++) {
+		add_check_restrict(arr, array_size, &res);
+	}
+	measure_end(&m);
+	measure_print(&m);
+
 	measure_init(&m, "restrict", loop);
 	measure_start(&m);
 	for(unsigned int i=0; i<loop; i++) {

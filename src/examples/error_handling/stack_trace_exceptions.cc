@@ -67,14 +67,6 @@ public:
 		symbols=backtrace_symbols(array, nSize);
 	}
 
-	/*
-	 * TODO:
-	 * - need to C++'ize the next two methods
-	 */
-	void release() {
-		free(symbols);
-	}
-
 	void print() {
 		for(int i=nSize-drop_frames-1; i>=0; i--) {
 			const char *symbol=symbols[i];

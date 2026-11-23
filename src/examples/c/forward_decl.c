@@ -24,13 +24,13 @@
  * An example of forward declaration of a function
  */
 
-double add(double a, double b);
+static double add(double a, double b);
 
 int main(void) {
 	printf("5.2+5.6 is %f\n", add(5.2, 5.6));
 	return EXIT_SUCCESS;
 }
 
-double add(double a, double b) {
+static double add(double a, double b) {
 	return a+b;
 }

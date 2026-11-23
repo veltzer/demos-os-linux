@@ -38,7 +38,7 @@ private:
 public:
 	explicit TimerHandler(int imyid) : myid(imyid) {
 	}
-	int handle_timeout(const ACE_Time_Value& current_time __attribute__((unused)), const void* arg) {
+	int handle_timeout(const ACE_Time_Value& current_time __attribute__((unused)), const void* arg) override {
 		printf("%d in here %p\n", myid, arg);
 		return 0;
 	}

@@ -56,9 +56,6 @@ public:
 	~A() {
 		printf("im in the destructor\n");
 	}
-	int getVal(void) {
-		return val;
-	}
 };
 void my_atexit(void) {
 	DEBUG("in here");

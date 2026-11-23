@@ -24,8 +24,8 @@
  * This example explores the "const" keyword in C.
  */
 
-void print_it(const int* p) __attribute__((noinline));
-void print_it(const int* p) {
+static void print_it(const int* p) __attribute__((noinline));
+static void print_it(const int* p) {
 	printf("*p=%d\n", *p);
 }
 

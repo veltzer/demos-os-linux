@@ -26,7 +26,9 @@ class Rectangle {
 		double a,b;
 		mutable double precalc_area=0;
 	public:
-		Rectangle(double ia, double ib):a(ia), b(ib) {
+		Rectangle(double ia, double ib) : a(0), b(0) {
+			set_a(ia);
+			set_b(ib);
 		}
 		double get_a() const {
 			return a;
@@ -44,7 +46,7 @@ class Rectangle {
 		}
 		double area() const {
 			if(precalc_area==0) {
-				precalc_area=a*b;
+				precalc_area=a*get_b();
 			}
 			return precalc_area;
 		}

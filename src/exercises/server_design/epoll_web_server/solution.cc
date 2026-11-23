@@ -90,7 +90,6 @@ int main(int argc, char** argv) {
 	server.sin_port=htons(port);
 
 	// bind to the socket to the address
-	// cppcheck-suppress dangerousTypeCast
 	CHECK_NOT_M1(bind(sockfd, reinterpret_cast<struct sockaddr*>(&server), sizeof(server)));
 
 	// listen
@@ -123,7 +122,6 @@ int main(int argc, char** argv) {
 			if(currfd==sockfd) {
 				struct sockaddr_in local;
 				socklen_t addrlen=sizeof(local);
-				// cppcheck-suppress dangerousTypeCast
 				int realfd=CHECK_NOT_M1(accept4(sockfd, reinterpret_cast<struct sockaddr*>(&local), &addrlen, SOCK_NONBLOCK));
 				CircularPipe* cp=new CircularPipe(bufsize);
 				fdbuffermap[realfd]=cp;

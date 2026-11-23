@@ -29,7 +29,7 @@ int global;
 /*
  * This functions always return true but the compiler is too stupid to figure it out...
  */
-int always_false(void) {
+static int always_false(void) {
 	global+=1;
 	return 0;
 }

@@ -77,7 +77,7 @@ private:
 	}
 
 	// prepare() is inherited from ACE_Process.
-	int prepare(ACE_Process_Options& options) {
+	int prepare(ACE_Process_Options& options) override {
 		ACE_TRACE("Manager::prepare");
 
 		options.command_line("%s 1", this->programName_);

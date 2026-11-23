@@ -30,6 +30,10 @@ void bar() {
 	f.setT(5);
 }
 
+void zoo();
+
 int main() {
+	bar();
+	zoo();
 	return EXIT_SUCCESS;
 }

@@ -21,7 +21,7 @@
 class B {
 	public:
 		virtual ~B(void);
-		void foo(void);
+		void vtables_demo_foo(void);
 		virtual void bar(void);
 		virtual void zoo(void);
 };

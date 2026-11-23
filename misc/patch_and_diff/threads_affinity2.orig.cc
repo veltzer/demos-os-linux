@@ -29,10 +29,6 @@
 /*
  * This shows how to create threads with a certain affinity
  */
-void another_func() {
-	printf("Hello, World!");
-}
-
 void *worker(void *p) {
 	int num=*static_cast<int *>(p);
 

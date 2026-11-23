@@ -28,7 +28,7 @@
 
 #define DEBUG
 
-void _check_bounds(void* array, int pos) {
+static void _check_bounds(void* array, int pos) {
 	int size=*((int*)array-1);
 	if(pos<0 || pos>=size) {
 		fprintf(stderr, "array access out of bounds. position [%d]. size [%d]\n", pos, size);
@@ -42,28 +42,28 @@ void _check_bounds(void* array, int pos) {
 #define CHECK_BOUNDS(array, pos)
 #endif	// DEBUG
 
-void* array_construct(int size) {
+static void* array_construct(int size) {
 	int* p=(int*)CHECK_NOT_NULL(malloc((size+1)*sizeof(int)));
 	bzero(p, (size+1)*sizeof(int));
 	p[0]=size;
 	return p+1;
 }
 
-void array_destruct(void* array) {
+static void array_destruct(void* array) {
 	int *p=(int*)array;
 	free(p-1);
 }
 
-int array_size(void* array) {
+static int array_size(void* array) {
 	return *((int*)array-1);
 }
 
-int array_get_value(void* array, int pos) {
+static int array_get_value(void* array, int pos) {
 	CHECK_BOUNDS(array, pos);
 	return ((int*)array)[pos];
 }
 
-void array_set_value(void* array, int pos, int val) {
+static void array_set_value(void* array, int pos, int val) {
 	CHECK_BOUNDS(array, pos);
 #pragma GCC diagnostic ignored "-Warray-bounds"
 	((int*)array)[pos]=val;

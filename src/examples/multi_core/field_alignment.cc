@@ -52,12 +52,6 @@ struct medium2{
 	int i1;
 };
 
-void myfunction(char c1, int i1, char c2) {
-	CHECK_ASSERT((unsigned long)&c1%4==0);
-	CHECK_ASSERT((unsigned long)&i1%4==0);
-	CHECK_ASSERT((unsigned long)&c2%4==0);
-}
-
 int main() {
 	printf("sizeof(small)=%zu\n", sizeof(small));
 	printf("sizeof(medium)=%zu\n", sizeof(medium));

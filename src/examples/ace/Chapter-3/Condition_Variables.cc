@@ -37,9 +37,6 @@ public:
 	int is_owner(const ACE_Task_Base *tb) {
 		return this->owner_==tb;
 	}
-	ACE_Task_Base* get_owner(void) {
-		return this->owner_;
-	}
 	void set_owner(ACE_Task_Base *owner) {
 		this->owner_=owner;
 	}

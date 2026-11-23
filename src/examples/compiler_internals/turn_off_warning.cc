@@ -37,5 +37,6 @@ int* get_address_on_the_stack() {
 }
 
 int main() {
+	(void)get_address_on_the_stack();
 	return EXIT_SUCCESS;
 }

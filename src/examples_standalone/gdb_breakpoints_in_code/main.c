@@ -30,7 +30,6 @@ int main(int argc,char** argv,char** envp) {
 	asm("int $3");
 	i=7;
 	raise(SIGTRAP);
-	// cppcheck-suppress unreachableCode
-	i=9;
+	i=9; // cppcheck-suppress unreachableCode // teaching: the code after raise(SIGTRAP) is shown to gdb on purpose
 	return EXIT_SUCCESS;
 }

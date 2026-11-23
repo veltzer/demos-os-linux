@@ -32,12 +32,6 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpapi
  */
 
-void print_counters(const long long* arr, int num) {
-	for(int i=0; i<num; i++) {
-		printf("%d: %lld\n", i, arr[i]);
-	}
-}
-
 int main() {
 	printf("starting up...\n");
 	int counters=PAPI_num_hwctrs();

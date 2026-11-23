@@ -73,28 +73,9 @@ inline void error_print(FILE *f, error_data *p) {
 	}
 }
 
-inline void error_print_last(FILE *f) {
-	error_print(f, last_error);
-}
-
 inline void error_free(error_data *p) {
 	free(p->symbols);
 	free(p);
-}
-
-inline void error_free_last() {
-	error_free(last_error);
-}
-
-// This function **must** be inlined as if setjmp returns then env will no longer
-// be valid. That's why we don't use it (there is no way to guarantee inlining).
-inline error_data *error_setjmp() {
-	int ret=setjmp(env);
-	if (!ret) {
-		return NULL;
-	} else {
-		return last_error;
-	}
 }
 
 // here is another idea: why not use a macro instead:

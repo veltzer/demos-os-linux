@@ -27,14 +27,14 @@
 #define ARRAY_SIZE (100 * 1024 * 1024 / sizeof(int))
 
 // Function to get high-resolution time
-double get_time(void) {
+static double get_time(void) {
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return ts.tv_sec + ts.tv_nsec / 1e9;
 }
 
 // Initialize array with random data
-void init_array(int *arr, size_t size) {
+static void init_array(int *arr, size_t size) {
 	srand(42); // Fixed seed for reproducible results
 	for(size_t i = 0; i < size; i++) {
 		arr[i] = rand() % 1000;
@@ -42,7 +42,7 @@ void init_array(int *arr, size_t size) {
 }
 
 // Method 1: Process entire array twice (cache-unfriendly)
-void process_cache_unfriendly(int *arr, size_t size) {
+static void process_cache_unfriendly(int *arr, size_t size) {
 	// First pass: add 1 to all elements
 	for(size_t i = 0; i < size; i++) {
 		arr[i] += 1;
@@ -57,7 +57,7 @@ void process_cache_unfriendly(int *arr, size_t size) {
 }
 
 // Method 2: Process in chunks to be cache-friendly
-void process_cache_friendly(int *arr, size_t size) {
+static void process_cache_friendly(int *arr, size_t size) {
 	// Process in chunks that fit in cache
 	// Typical L3 cache is 8-32MB, we'll use 1MB chunks to be safe
 	const size_t chunk_size = 64 * 1024 / sizeof(int); // ~64K integers per chunk
@@ -82,7 +82,7 @@ void process_cache_friendly(int *arr, size_t size) {
 }
 
 // Function to verify results are identical
-int verify_results(const int *arr1, const int *arr2, size_t size) {
+static int verify_results(const int *arr1, const int *arr2, size_t size) {
 	for(size_t i = 0; i < size; i++) {
 		if (arr1[i] != arr2[i]) {
 			printf("Mismatch at index %zu: %d vs %d\n", i, arr1[i], arr2[i]);

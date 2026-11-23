@@ -22,8 +22,13 @@
 
 int main(void) {
 	rectangle* r=(rectangle*)malloc(sizeof(rectangle));
+	if(r==NULL) {
+		perror("malloc");
+		return EXIT_FAILURE;
+	}
 	rectangle_set_width(r,5);
 	rectangle_set_height(r,6);
 	printf("the area of the rectangle is %d\n", rectangle_area(r));
+	printf("the rectangle is %dx%d\n", rectangle_get_width(r), rectangle_get_height(r));
 	return 0;
 }

@@ -7,7 +7,7 @@ This demonstration show that:
 * These hooks will only be called once per application and will NOT be called for threads
   and forks.
 * You must register them using the right flags to the linker.
-  `-Xlinker -init -Xlinker my_init -Xlinker -fini -Xlinker my_fini`
+  `-Xlinker -init -Xlinker foo_lib_init -Xlinker -fini -Xlinker foo_lib_fini`
 * You can also set a build id.
   `-Xlinker --build-id=0xaabbcc`
 * Notice that the order of initialization is derived from the order of linkage.

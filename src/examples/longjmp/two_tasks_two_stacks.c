@@ -27,7 +27,7 @@ jmp_buf env_task_a;
 jmp_buf env_task_b;
 
 // Task A: A "never-ending" function
-void task_a(void) {
+static void task_a(void) {
 	// CRITICAL: Any local variable that you need to persist
 	// across a longjmp MUST be declared volatile.
 	volatile int i = 0;
@@ -51,7 +51,7 @@ void task_a(void) {
 }
 
 // Task B: Another "never-ending" function
-void task_b(void) {
+static void task_b(void) {
 	volatile int j = 0;
 
 	printf("Task B: Started\n");

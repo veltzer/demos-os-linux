@@ -28,8 +28,8 @@
 
 #define make_add(t) t add_ ## t(t a, t b) { return a+b; }
 
-make_add(float)
-make_add(double)
+static make_add(float)
+static make_add(double)
 
 /*
  * float addfloat(float a,float b) {

@@ -37,4 +37,11 @@ ostream& operator<<(ostream& os, const Circle& obj) {
 }
 
 int main() {
+	Circle c(5.6, 2.4, 1.1);
+	cout << "here are the details of the circle " << c << endl;
+	c.set_radius(c.get_radius()*2);
+	c.set_x(c.get_x()+1);
+	c.set_y(c.get_y()+1);
+	cout << "the circle after growing and moving " << c << endl;
+	cout << "is (3,3) inside? " << c.inside(3, 3) << endl;
 }

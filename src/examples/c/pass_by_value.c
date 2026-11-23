@@ -20,7 +20,7 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-void addone(double* a) {
+static void addone(double* a) {
 	*a+=1.0;
 }
 

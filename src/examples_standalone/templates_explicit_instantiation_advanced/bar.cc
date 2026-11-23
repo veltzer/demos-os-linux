@@ -24,7 +24,7 @@
  * It should be compiled WITHOUT any special flags
  * This is the default behaviour of gcc.
  */
-void bar() {
+void advanced_bar_implicit() {
 	Foo<int> f;
 	f.setT(5);
 }

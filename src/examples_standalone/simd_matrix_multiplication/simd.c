@@ -30,7 +30,7 @@
 #define NUM_RUNS 500 // Fewer runs as matrix mult takes longer
 #define WARMUP_RUNS 1
 
-void scalar_matrix_multiply(const float* A, const float* B, float* C, int n) {
+static void scalar_matrix_multiply(const float* A, const float* B, float* C, int n) {
 	// Initialize result matrix to zero
 	memset(C, 0, n * n * sizeof(float));
 
@@ -53,7 +53,7 @@ void scalar_matrix_multiply(const float* A, const float* B, float* C, int n) {
 	}
 }
 
-void simd_matrix_multiply(float* A, float* B, float* C, int n) {
+static void simd_matrix_multiply(float* A, float* B, float* C, int n) {
 	// Initialize result matrix to zero
 	memset(C, 0, n * n * sizeof(float));
 
@@ -89,7 +89,7 @@ static inline double get_time(void) {
 	return ts.tv_sec + ts.tv_nsec * 1e-9;
 }
 
-void init_matrix(float* mat, int n) {
+static void init_matrix(float* mat, int n) {
 	for(int i = 0; i < n * n; i++) {
 		mat[i] = (float)rand() / RAND_MAX * 2.0f - 1.0f;
 	}

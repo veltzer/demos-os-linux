@@ -20,7 +20,7 @@
 #include "b.h"
 
 // cppcheck-suppress functionStatic
-void B::foo(void) {
+void B::vtables_demo_foo(void) {
 }
 
 void B::zoo(void) {

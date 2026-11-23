@@ -21,9 +21,9 @@
 #include "time.hh"
 
 void Time::setTime(int hours, int minutes, int seconds) {
-	m_hours=hours;
-	m_minutes=minutes;
-	m_seconds=seconds;
+	setHours(hours);
+	setMinutes(minutes);
+	setSeconds(seconds);
 }
 
 void Time::Tick() {
@@ -44,25 +44,25 @@ void Time::Tick() {
 void Time::printStd() {
 	const char* part;
 	int hours;
-	if(m_hours>=12) {
+	if(getHours()>=12) {
 		part="PM";
-		hours=m_hours-12;
+		hours=getHours()-12;
 	} else {
 		part="AM";
-		hours=m_hours;
+		hours=getHours();
 	}
 	printf("%2d:%02d:%02d %s\n",
 		hours,
-		m_minutes,
-		m_seconds,
+		getMinutes(),
+		getSeconds(),
 		part
 		);
 }
 
 void Time::printMilitary() {
 	printf("%02d:%02d\n",
-		m_hours,
-		m_minutes
+		getHours(),
+		getMinutes()
 		);
 }
 

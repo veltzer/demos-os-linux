@@ -55,13 +55,6 @@ typedef struct _thread_data{
 	shared_data* shared;
 } thread_data;
 
-static char buffer[100000];
-void do_some_random_access() {
-	unsigned int work=rand()%10000;
-	for(unsigned int i=0; i<work; i++) {
-		buffer[rand()%sizeof(buffer)]=rand()%256;
-	}
-}
 
 static void* worker(void* p) {
 	thread_data* td=static_cast<thread_data*>(p);

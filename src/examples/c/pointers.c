@@ -25,7 +25,7 @@
  * Foobar** to char**.
  */
 
-void func(char **p __attribute__((unused))) {
+static void func(char **p __attribute__((unused))) {
 }
 
 typedef struct _Foobar{
@@ -39,5 +39,6 @@ int main(void) {
 	// releasing the next two lines will trigger a compilation error!!!
 	// Foobar* f=(Foobar*)malloc(sizeof(Foobar));
 	// func(&f);
+	func(NULL);
 	return EXIT_SUCCESS;
 }

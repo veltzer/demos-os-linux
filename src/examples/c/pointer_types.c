@@ -40,20 +40,24 @@
 #define __space1
 #define __space2
 #endif	// DO_IT
-void func1(const void* __space1 pointer __attribute__((unused))) {
+static void func1(const void* __space1 pointer __attribute__((unused))) {
 }
 
-void* __space1 malloc1(unsigned int size __attribute__((unused))) {
+static void* __space1 malloc1(unsigned int size __attribute__((unused))) {
 	return NULL;
 }
 
-void func2(const void* __space2 pointer __attribute__((unused))) {
+static void func2(const void* __space2 pointer __attribute__((unused))) {
 }
 
-void* __space2 malloc2(unsigned int size __attribute__((unused))) {
+static void* __space2 malloc2(unsigned int size __attribute__((unused))) {
 	return NULL;
 }
 
 int main(void) {
+	func1(NULL);
+	func2(NULL);
+	(void)malloc1(0);
+	(void)malloc2(0);
 	return EXIT_SUCCESS;
 }

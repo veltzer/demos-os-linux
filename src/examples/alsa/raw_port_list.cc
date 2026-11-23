@@ -284,39 +284,7 @@ void print_midi_ports(void) {
 	}
 }
 
-// print_card_list -- go through the list of available "soundcards"
-// in the ALSA system, printing their associated numbers and names.
-// Cards may or may not have any MIDI ports available on them (for
-// example, a card might only have an audio interface).
-void print_card_list(void) {
-	int status;
-	int card=-1;	// use -1 to prime the pump of iterating through card list
-	char* longname=NULL;
-	char* shortname=NULL;
-	if ((status=snd_card_next(&card)) < 0) {
-		error("cannot determine card number: %s", snd_strerror(status));
-	}
-	if (card < 0) {
-		error("no sound cards found");
-	}
-	while (card >=0) {
-		printf("Card %d:", card);
-		if ((status=snd_card_get_name(card, &shortname)) < 0) {
-			error("cannot determine card shortname: %s", snd_strerror(status));
-		}
-		if ((status=snd_card_get_longname(card, &longname)) < 0) {
-			error("cannot determine card longname: %s", snd_strerror(status));
-		}
-		printf("\tLONG NAME: %s\n", longname);
-		printf("\tSHORT NAME: %s\n", shortname);
-		if ((status=snd_card_next(&card)) < 0) {
-			error("cannot determine card number: %s", snd_strerror(status));
-		}
-	}
-}
-
 int main() {
-	// print_card_list();
 	print_midi_ports();
 	return EXIT_SUCCESS;
 }

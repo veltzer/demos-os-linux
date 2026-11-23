@@ -59,10 +59,6 @@ public:
 
 	virtual int svc(void);
 
-	void shut_down(void) {
-		shutdown_=1;
-	}
-
 private:
 	int become_leader(void);
 	Follower *make_follower(void);

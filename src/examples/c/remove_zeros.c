@@ -22,13 +22,13 @@
 #include <string.h>	// for memset(3)
 #include <err_utils.h>	// for CHECK_INT()
 
-void print_array(const int* ar, int size) {
+static void print_array(const int* ar, int size) {
 	int i;
 	for(i=0; i<size; i++)
 		printf("ar[%d]=%d\n", i, ar[i]);
 }
 
-int remove_zeros(int* ar, int size) {
+static int remove_zeros(int* ar, int size) {
 	int pos=0;
 	int i;
 	for(i=0; i<size; i++) {

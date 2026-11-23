@@ -24,7 +24,7 @@
 
 int main(int argc,char** argv,char** envp) {
 	void* h=CHECK_NOT_NULL(dlopen("libadd.so", RTLD_NOW));
-	void* sym=CHECK_NOT_NULL(dlsym(h,"func"));
+	void* sym=CHECK_NOT_NULL(dlsym(h,"dlopen_demo_func"));
 	int (*f)(int, int);
 	f=((int(*) (int, int))sym);
 	int result=f(2, 2);

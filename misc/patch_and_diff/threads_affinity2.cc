@@ -30,10 +30,6 @@
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
-void another_func() {
-	printf("Hello, World!");
-}
-
 void *worker(void *p) {
 	int num=*static_cast<int *>(p);
 	fprintf(stderr, "starting thread %d\n", num);

@@ -22,14 +22,14 @@
 extern void _init(void);
 extern void _fini(void);
 
-void my_init(void) {
+void bar_lib_init(void) {
 	// call the original...
 	_init();
-	fprintf(stderr, "I'm in my_init %s\n", __FILE__);
+	fprintf(stderr, "I'm in bar_lib_init %s\n", __FILE__);
 }
 
-void my_fini(void) {
-	fprintf(stderr, "I'm in my_fini %s\n", __FILE__);
+void bar_lib_fini(void) {
+	fprintf(stderr, "I'm in bar_lib_fini %s\n", __FILE__);
 	// call the original...
 	_fini();
 }

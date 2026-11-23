@@ -19,6 +19,11 @@
 #include <firstinclude.h>
 #include <stdlib.h>	// for EXIT_SUCCESS
 
+void func1(void);
+void func2(void);
+
 int main() {
+	func1();
+	func2();
 	return EXIT_SUCCESS;
 }

@@ -32,13 +32,13 @@ struct phone_entry{
 	int used;
 };
 
-void phone_entry_init(struct phone_entry* pe) {
+static void phone_entry_init(struct phone_entry* pe) {
 	pe->used=0;
 }
 
 int over=0;
 
-int show_menu(void) {
+static int show_menu(void) {
 	int result;
 	do {
 		printf("here is your menu....\n");

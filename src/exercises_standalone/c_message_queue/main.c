@@ -32,7 +32,7 @@ typedef struct _thread_data {
 
 static volatile bool over=false;
 
-void *worker(void *p) {
+static void *worker(void *p) {
 	thread_data* td=(thread_data *)p;
 	mq m=td->m;
 	int mynum=td->mynum;

@@ -20,5 +20,5 @@
 #include "a.h"
 
 // cppcheck-suppress functionStatic
-void A::foo(void) {
+void A::vtables_demo_foo(void) {
 }

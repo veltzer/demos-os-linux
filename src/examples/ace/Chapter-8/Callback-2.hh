@@ -28,7 +28,7 @@
 
 class Callback: public ACE_Log_Msg_Callback {
 public:
-	void log(ACE_Log_Record& log_record) {
+	void log(ACE_Log_Record& log_record) override {
 		cerr << "Log Message Received:" << endl;
 		unsigned long msg_severity=log_record.type();
 		ACE_Log_Priority prio=static_cast<ACE_Log_Priority>(msg_severity);

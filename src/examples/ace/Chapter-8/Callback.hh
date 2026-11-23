@@ -26,7 +26,7 @@
 
 class Callback: public ACE_Log_Msg_Callback {
 public:
-	void log(ACE_Log_Record& log_record) {
+	void log(ACE_Log_Record& log_record) override {
 		log_record.print("", 0, cerr);
 		log_record.print("", ACE_Log_Msg::VERBOSE, cerr);
 	}

@@ -29,7 +29,9 @@ private:
 	double height;
 
 public:
-	Rectangle(const double w, const double h) : width(w), height(h) {
+	Rectangle(const double w, const double h) : width(0), height(0) {
+		setWidth(w);
+		setHeight(h);
 		cout << getArea() << endl;
 	}
 
@@ -61,11 +63,6 @@ public:
 		return 2 * (width + height);
 	}
 
-	// cppcheck-suppress functionStatic
-	bool is_intersectiog(const Rectangle& r __attribute__((unused))) {
-		// TBD
-		return true;
-	}
 };
 
 int main() {

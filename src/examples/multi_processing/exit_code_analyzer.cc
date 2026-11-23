@@ -38,7 +38,6 @@ void analyze_status(int status) {
 		// cppcheck misparses the glibc macro and mistakes the ternary's
 		// const char* result for an int
 		// cppcheck-suppress syntaxError
-		// cppcheck-suppress invalidPrintfArgType_s
 		printf("WCOREDUMP: %s\n", WCOREDUMP(status) ? "true" : "false");
 		#endif
 	} else {
@@ -56,7 +55,6 @@ void analyze_status(int status) {
 	// cppcheck misparses the glibc macro and mistakes the ternary's
 	// const char* result for an int
 	// cppcheck-suppress syntaxError
-	// cppcheck-suppress invalidPrintfArgType_s
 	printf("WIFCONTINUED: %s\n", WIFCONTINUED(status) ? "true" : "false");
 	#endif
 }

@@ -35,7 +35,7 @@
 class TimerHandler: public ACE_Event_Handler {
 public:
 	int handle_timeout(const ACE_Time_Value& current_time __attribute__((unused)),
-		const void* arg __attribute__((unused))) {
+		const void* arg __attribute__((unused))) override {
 		ACE_DEBUG((LM_INFO, "handle_timeout\n"));
 		return 0;
 	}
@@ -49,7 +49,7 @@ public:
 	LoopStopper(int signum, int timerId) : timerId_(timerId) {
 		ACE_Reactor::instance()->register_handler(signum, this);
 	}
-	int handle_signal(int, siginfo_t *, ucontext_t *) {
+	int handle_signal(int, siginfo_t *, ucontext_t *) override {
 		// ACE_Reactor::instance()->end_reactor_event_loop ();
 		ACE_Reactor::instance()->cancel_timer(this->timerId_);
 		return 0;
@@ -69,14 +69,14 @@ public:
 		sigs.sig_add (off_sig);
 		ACE_Reactor::instance()->register_handler(sigs, this);
 	}
-	int handle_signal(int signum, siginfo_t *, ucontext_t *) {
+	int handle_signal(int signum, siginfo_t *, ucontext_t *) override {
 		if (signum==this->on_sig_ || signum==this->off_sig_) {
 			this->on_off_=signum==this->on_sig_;
 			ACE_Reactor::instance ()->notify (this);
 		}
 		return 0;
 	}
-	int handle_exception(ACE_HANDLE) {
+	int handle_exception(ACE_HANDLE) override {
 		ACE_DEBUG((LM_INFO, "log reaction\n"));
 		if (this->on_off_)
 			ACE_LOG_MSG->clr_flags(ACE_Log_Msg::SILENT);

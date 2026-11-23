@@ -223,15 +223,6 @@ void CalculateFPS() {
 	}
 }
 
-// EXIT PROGRAM
-void ExitProgram() {
-	glXMakeCurrent(dpy, None, NULL);
-	glXDestroyContext(dpy, glc);
-	XDestroyWindow(dpy, win);
-	XCloseDisplay(dpy);
-	exit(EXIT_SUCCESS);
-}
-
 // CHECK EVENTS
 void CheckKeyboard() {
 	/* TODO: XKeysymToString is deprecated

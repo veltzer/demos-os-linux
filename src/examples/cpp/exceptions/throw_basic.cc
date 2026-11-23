@@ -33,7 +33,6 @@ int main() {
 	cout << "Starting to run..." << endl;
 	// cppcheck-suppress throwInEntryPoint
 	throw 20;
-	// cppcheck-suppress unreachableCode
-	cout << "Where did this go?" << endl;
+	cout << "Where did this go?" << endl; // cppcheck-suppress unreachableCode // teaching: the code after the throw is unreachable on purpose
 	return EXIT_SUCCESS;
 }

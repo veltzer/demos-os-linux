@@ -94,7 +94,6 @@ void* test_imp1(void* p) {
 	measure_start(&m);
 	for(unsigned int i=0; i < loop; i++) {
 		for(unsigned int j=0; j<size/sizeof(int); j++) {
-			// cppcheck-suppress unreadVariable
 			static_cast<int*>(buf1)[j]=static_cast<const int*>(buf2)[j];
 		}
 	}

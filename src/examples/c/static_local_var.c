@@ -20,7 +20,7 @@
 #include <stdio.h>	// for printf(3)
 #include <stdlib.h>	// for EXIT_SUCCESS
 
-void printHello(void) {
+static void printHello(void) {
 	static int count=0;
 	count++;
 	printf("function was called %d times\n", count);

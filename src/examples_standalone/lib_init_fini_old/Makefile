@@ -12,10 +12,10 @@ main.$(SUFFIX_BIN): main.c libfoo.so libbar.so
 	$(Q)gcc $(CFLAGS) -o $@ main.c -L. -lbar -lfoo
 libfoo.so: foo.c
 	$(info doing [$@])
-	$(Q)gcc $(CFLAGS) $(SHARED_FLAGS) -o libfoo.so foo.c -Xlinker -init -Xlinker my_init -Xlinker -fini -Xlinker my_fini -Xlinker --build-id=0xaabbcc
+	$(Q)gcc $(CFLAGS) $(SHARED_FLAGS) -o libfoo.so foo.c -Xlinker -init -Xlinker foo_lib_init -Xlinker -fini -Xlinker foo_lib_fini -Xlinker --build-id=0xaabbcc
 libbar.so: bar.c
 	$(info doing [$@])
-	$(Q)gcc $(CFLAGS) $(SHARED_FLAGS) -o libbar.so bar.c -Xlinker -init -Xlinker my_init -Xlinker -fini -Xlinker my_fini -Xlinker --build-id=0xaabbcc
+	$(Q)gcc $(CFLAGS) $(SHARED_FLAGS) -o libbar.so bar.c -Xlinker -init -Xlinker bar_lib_init -Xlinker -fini -Xlinker bar_lib_fini -Xlinker --build-id=0xaabbcc
 
 .PHONY: run
 run: main.$(SUFFIX_BIN)

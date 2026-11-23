@@ -26,14 +26,12 @@ double banking::SavingAccount::_intRate;
 
 using namespace std;
 using namespace banking;
-void print(const IAccount& p)
-{
-	cout << typeid(p).name() << ' ' << p.getBalance() << endl;
-}
-
 int main() {
 	auto acc = Bank::instance().createSavingAccount(1000);
+	SavingAccount::setInterestRate(0.05);
 	acc->deposit(1000);
+	auto checking = Bank::instance().createCheckingAccount(500, 100);
+	checking->deposit(100);
 	//print(*acc);
 	//acc->withdraw(100);
 	//print(*acc);

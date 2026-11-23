@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 #include <stdlib.h> // for EXIT_SUCCESS
 
-int call_func(int a, int b) {
+static int call_func(int a, int b) {
 	return a + b;
 }
 

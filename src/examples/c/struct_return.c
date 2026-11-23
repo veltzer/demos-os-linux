@@ -29,7 +29,7 @@ typedef struct _foo{
 	int b;
 } foo;
 
-foo giveMeFoo(void) {
+static foo giveMeFoo(void) {
 	// following line causes a compilation error...
 	// return {3,4};
 	// cppcheck-suppress unassignedVariable

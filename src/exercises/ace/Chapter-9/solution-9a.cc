@@ -48,12 +48,12 @@ public:
 		if (signum==SIGUSR1) {
 			ACE_DEBUG((LM_DEBUG, "(%t) received a %S signal\n", signum));
 			MyIndex=0;
-// handle_alert ();
+handle_alert();
 		}
 		if (signum==SIGUSR2) {
 			ACE_DEBUG((LM_DEBUG, "(%t) received a %S signal\n", signum));
 			MyIndex=1;
-// handle_alert ();
+handle_alert();
 		}
 		return 0;
 	}

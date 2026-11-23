@@ -69,6 +69,11 @@ int main() {
 	cout << c2;
 	const Circle& c3=c.concentric_overlap(c2);
 	cout << c3;
+	c.set_radius(c.get_radius()*2);
+	c.set_x(c.get_x()+1);
+	c.set_y(c.get_y()+1);
+	cout << "the circle after growing and moving " << c << endl;
+	cout << "is (3,3) inside? " << c.inside(3, 3) << endl;
 	// next line will not compile
 	//c3.set_radius(6.7);
 	return 0;

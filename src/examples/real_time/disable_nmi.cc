@@ -27,10 +27,6 @@
  * https://stackoverflow.com/questions/55394608/how-do-i-disable-non-maskable-interrupts-programmatically
  */
 
-void NMI_enable() {
-	outb(0x70, inb(0x70) & 0x7F);
-}
-
 void NMI_disable() {
 	outb(0x70, inb(0x70) | 0x80);
 }

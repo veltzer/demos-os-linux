@@ -31,7 +31,6 @@ private:
 
 public:
 	void printSalary();
-	void setSalary(int newsalary);
 };
 
 ////////////////////////////
@@ -40,16 +39,12 @@ public:
 void Employee::printSalary() {
 	printf("my salary is %d\n", salary);
 }
-void Employee::setSalary(int newsalary) {
-	salary=newsalary;
-}
 
 ///////////////////////////////
 // This is in the using part //
 ///////////////////////////////
 int main() {
 	Employee e;
-	// cppcheck-suppress dangerousTypeCast
 	int* p=reinterpret_cast<int*>(&e);
 	*p=1200;
 	e.printSalary();

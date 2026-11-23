@@ -34,21 +34,6 @@
 
 // Using functions
 
-int f_min_a(int a, int b) {
-	return (a < b ? a:b);
-}
-int f_max_a(int a, int b) {
-	return (a > b ? a:b);
-}
-int f_min_b(int a, int b) {
-	// cppcheck-suppress shiftTooManyBitsSigned
-	return b + ((a-b) & (a-b)>>31);
-}
-int f_max_b(int a, int b) {
-	// cppcheck-suppress shiftTooManyBitsSigned
-	return a - ((a-b) & (a-b)>>31);
-}
-
 // Using macro
 
 #define min_a(a, b) ((a) < (b) ? (a):(b))

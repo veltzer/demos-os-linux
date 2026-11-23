@@ -60,8 +60,7 @@ int main() {
 	CHECK_ZERO(sleep(5));
 	// cppcheck-suppress throwInEntryPoint
 	throw 20;
-	// cppcheck-suppress unreachableCode
-	cout << "Where did this go?" << endl;
+	cout << "Where did this go?" << endl; // cppcheck-suppress unreachableCode // teaching: the code after the throw is unreachable on purpose
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));
 	return EXIT_SUCCESS;
 }

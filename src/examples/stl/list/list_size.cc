@@ -53,7 +53,6 @@ int main() {
 	for(unsigned int i = 0; i < attempts; i++) {
 		// the value is deliberately unused: we are timing l.size() itself
 		// and 'volatile' is what stops the compiler hoisting the call.
-		// cppcheck-suppress unreadVariable
 		volatile __attribute__((unused)) int s=l.size();
 	}
 	measure_end(&m);

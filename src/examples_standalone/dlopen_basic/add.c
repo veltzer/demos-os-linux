@@ -18,6 +18,6 @@
 
 #include <firstinclude.h>
 
-int func(int a, int b) {
+int dlopen_demo_func(int a, int b) {
 	return a + b;
 }

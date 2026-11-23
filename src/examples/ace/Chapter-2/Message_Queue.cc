@@ -38,12 +38,9 @@ int HA_CommandHandler::svc(void) {
 			mb->release();
 			break;
 		} else {
-			// Get header pointer, then move past header to payload.
-			/*
-			 * DeviceCommandHeader *dch=(DeviceCommandHeader *)mb->rd_ptr();
-			 * mb->rd_ptr(sizeof(DeviceCommandHeader));
-			 * ACE_DEBUG((LM_DEBUG, "Message for device #%d with " "command payload of:\n%s", dch->deviceId_, mb->rd_ptr())); this->rep_.update_device(dch->deviceId_, mb->rd_ptr());
-			 */
+			// Get header pointer, the payload follows the header.
+			const DeviceCommandHeader *dch=reinterpret_cast<const DeviceCommandHeader *>(mb->rd_ptr());
+			this->rep_.update_device(dch->deviceId_, mb->rd_ptr()+sizeof(DeviceCommandHeader));
 			ACE_DEBUG((LM_DEBUG, "message is %s\n", mb->rd_ptr()));
 			mb->release();
 		}

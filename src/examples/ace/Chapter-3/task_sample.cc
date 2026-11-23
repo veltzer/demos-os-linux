@@ -145,5 +145,14 @@ int Task::svc(void) {
 }
 
 int main() {
+	Task task;
+	const int threads=2;
+	if (task.start(threads)==-1) {
+		ACE_ERROR_RETURN((LM_ERROR, "%p\n", "start"), EXIT_FAILURE);
+	}
+	// Ask the pool to shut down: each thread puts the hangup back for its peers.
+	ACE_Message_Block* hangup=new ACE_Message_Block(0, ACE_Message_Block::MB_HANGUP);
+	task.putq(hangup);
+	task.wait();
 	return EXIT_SUCCESS;
 }

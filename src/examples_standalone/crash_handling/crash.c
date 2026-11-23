@@ -69,7 +69,7 @@ pid_t gettid(void) {
 * distance is the distance is calls from the signal handler
 *
 */
-unsigned int signal_backtrace(void** array, unsigned int size, ucontext_t * context, unsigned int distance) {
+static unsigned int signal_backtrace(void** array, unsigned int size, ucontext_t * context, unsigned int distance) {
 
 	/* WARNING: If you ever remove the inline from the function prototype,
 	* adjust this to match!!!
@@ -201,7 +201,7 @@ retry_write:
 	or clear the flag if value is 0.
 	Return 0 on success, or -1 on error with errno set. */
 
-int set_cloexec_flag (int desc, int value) {
+static int set_cloexec_flag (int desc, int value) {
 	int oldflags=fcntl(desc, F_GETFD, 0);
 
 	/* If reading the flags failed, return error indication now. */

@@ -36,6 +36,5 @@ protected:
 	virtual int handle_close(ACE_HANDLE fd, ACE_Reactor_Mask=0);
 
 private:
-	// cppcheck-suppress unusedStructMember
 	size_t nr_msgs_rcvd_;
 };

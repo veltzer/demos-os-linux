@@ -39,16 +39,16 @@ typedef struct _mypthread_spinlock_t{
 	int val;
 } mypthread_spinlock_t;
 
-int mypthread_spin_init(mypthread_spinlock_t* lock) {
+static int mypthread_spin_init(mypthread_spinlock_t* lock) {
 	lock->val=0;
 	return 0;
 }
 // cppcheck-suppress constParameterPointer
-int mypthread_spin_destroy(mypthread_spinlock_t* lock __attribute__((unused))) {
+static int mypthread_spin_destroy(mypthread_spinlock_t* lock __attribute__((unused))) {
 	// do nothing
 	return 0;
 }
-int mypthread_spin_lock(mypthread_spinlock_t* lock) {
+static int mypthread_spin_lock(mypthread_spinlock_t* lock) {
 	// lets spin!...
 	while(!__sync_bool_compare_and_swap(&(lock->val), 0, 1)) {
 		// on platforms where atomic ops are NOT compiler
@@ -60,7 +60,7 @@ int mypthread_spin_lock(mypthread_spinlock_t* lock) {
 	}
 	return 0;
 }
-int mypthread_spin_unlock(mypthread_spinlock_t* lock) {
+static int mypthread_spin_unlock(mypthread_spinlock_t* lock) {
 	// Think: why is this needed?
 	// atomic_full_barrier();
 	__sync_synchronize();
@@ -76,7 +76,7 @@ const int loops=3;
 mypthread_spinlock_t lock;
 int counter=0;
 
-void* worker(void* p) {
+static void* worker(void* p) {
 	int num=*(int *)p;
 	const int cpu_num=CHECK_NOT_M1(sysconf(_SC_NPROCESSORS_ONLN));
 	fprintf(stderr, "starting thread %d\n", num);

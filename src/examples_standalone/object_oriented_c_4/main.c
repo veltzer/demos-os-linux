@@ -25,6 +25,10 @@ int main(void) {
 	rectangle* r=create_rectangle(5,6);
 	printf("r is at %p\n", r);
 	printf("the area of the rectangle is %d\n", rectangle_area(r));
+	printf("the rectangle is %dx%d\n", rectangle_get_width(r), rectangle_get_height(r));
+	rectangle_set_width(r, 7);
+	rectangle_set_height(r, 8);
+	printf("the rectangle is %dx%d\n", rectangle_get_width(r), rectangle_get_height(r));
 	rectangle_destroy(r);
 
 	// cppcheck-suppress allocaCalled
@@ -35,6 +39,10 @@ int main(void) {
 
 	int i;
 	rectangle* myrectangles=(rectangle*)malloc(100*sizeof_rectangle());
+	if(myrectangles==NULL) {
+		perror("malloc");
+		return EXIT_FAILURE;
+	}
 	char* p=(char*)myrectangles;
 	for(i=0;i<100;i++) {
 		construct_rectangle((rectangle*)p, 7, 8);

@@ -20,4 +20,4 @@
 
 #include <firstinclude.h>
 
-int func(int,int);
+int dlopen_demo_func(int,int);

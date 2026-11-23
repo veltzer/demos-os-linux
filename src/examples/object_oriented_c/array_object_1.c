@@ -28,21 +28,21 @@
  * In this case this is an array of integers.
  */
 
-void* array_construct(int size) {
+static void* array_construct(int size) {
 	int* p=(int*)CHECK_NOT_NULL(malloc(size*sizeof(int)));
 	bzero(p, size*sizeof(int));
 	return p;
 }
 
-void array_destruct(void* array) {
+static void array_destruct(void* array) {
 	free(array);
 }
 
-int array_get_value(void* array, int pos) {
+static int array_get_value(void* array, int pos) {
 	return ((int*)array)[pos];
 }
 
-void array_set_value(void* array, int pos, int val) {
+static void array_set_value(void* array, int pos, int val) {
 	((int*)array)[pos]=val;
 }
 

@@ -21,7 +21,7 @@
 #include <stdlib.h> // for EXIT_SUCCESS
 #include "add.h"
 
-int use(int argc,char** argv,char** envp) {
+int linking_demo_use(int argc,char** argv,char** envp) {
 	printf("2+2 is %d\n", add(2, 2));
 	return EXIT_SUCCESS;
 }

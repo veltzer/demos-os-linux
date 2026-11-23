@@ -46,7 +46,7 @@ public:
 	}
 
 	void display() const {
-		cout << "Person: " << name_ << ", Age: " << age_ << endl;
+		cout << "Person: " << getName() << ", Age: " << getAge() << endl;
 	}
 };
 

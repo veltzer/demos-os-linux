@@ -23,18 +23,18 @@ extern char *build_id;
 extern void _init(void);
 extern void _fini(void);
 
-void my_init(void) {
+void foo_lib_init(void) {
 	// call the original...
 	_init();
-	fprintf(stderr, "I'm in my_init %s\n", __FILE__);
+	fprintf(stderr, "I'm in foo_lib_init %s\n", __FILE__);
 	// how do I get the build id from my own object ? This does not work
 	//extern char* build;
 	//fprintf(stderr, ".note.gnu.build-id is %s", build);
 }
 
 
-void my_fini(void) {
-	fprintf(stderr, "I'm in my_fini %s\n", __FILE__);
+void foo_lib_fini(void) {
+	fprintf(stderr, "I'm in foo_lib_fini %s\n", __FILE__);
 	// call the original...
 	_fini();
 }

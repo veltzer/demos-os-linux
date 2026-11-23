@@ -21,7 +21,7 @@
 #include <stdlib.h>	// for EXIT_SUCCESS
 #include <err_utils.h>	// for CHECK_INT()
 
-int digit_num(long int l) {
+static int digit_num(long int l) {
 	if(l==0) {
 		return 1;
 	}
@@ -39,7 +39,7 @@ int digit_num(long int l) {
 	return digits;
 }
 
-long int get_number(void) {
+static long int get_number(void) {
 	long int ret;
 	CHECK_INT(scanf("%ld", &ret), 1);
 	return ret;

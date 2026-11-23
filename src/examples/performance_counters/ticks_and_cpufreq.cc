@@ -55,20 +55,6 @@
  * TODO:
  * - on multi core the RDTSC reports twice as long. Fix this...
  */
-void long_task(void) {
-	/*
-	 * const int sleep_time=100;
-	 * CHECK_NOT_M1(usleep(sleep_time));
-	 */
-	CHECK_ZERO(sleep(1));
-	/*
-	 * This doesn't really work since the compiler eliminates
-	 * the entire loop when optimizing...:)
-	 * const int count=1000000;
-	 * for(int i=0;i<count;i++) {
-	 * }
-	 */
-}
 
 int main(int argc, char** argv) {
 	if(argc!=2) {

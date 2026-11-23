@@ -55,7 +55,7 @@ class TemperatureQueryHandler: public ACE_Event_Handler {
 public:
 	TemperatureQueryHandler() : ACE_Event_Handler(), counter_(0), averageTemperature_(0.0) {
 	}
-	int handle_timeout(const ACE_Time_Value& current_time, const void* arg) {
+	int handle_timeout(const ACE_Time_Value& current_time, const void* arg) override {
 		time_t epoch=((timespec_t)current_time).tv_sec;
 		const TemperatureSensor *const_sensor=reinterpret_cast<const TemperatureSensor *>(arg);
 		TemperatureSensor *sensor=const_cast<TemperatureSensor *>(const_sensor);
@@ -76,7 +76,7 @@ private:
 // the program politely
 class SigintHandler: public ACE_Event_Handler {
 public:
-	int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) {
+	int handle_signal(int signum, siginfo_t* =0, ucontext_t* =0) override {
 		if(signum==SIGINT) {
 			ACE_Reactor::instance()->end_reactor_event_loop();
 		}

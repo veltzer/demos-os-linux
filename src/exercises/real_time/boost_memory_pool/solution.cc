@@ -42,7 +42,7 @@ public:
 	void setAge(int age) { age_ = age; }
 
 	void display() const {
-		cout << "Person: " << name_ << ", Age: " << age_ << endl;
+		cout << "Person: " << getName() << ", Age: " << getAge() << endl;
 	}
 };
 

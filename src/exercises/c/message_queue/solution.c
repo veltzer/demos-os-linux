@@ -33,7 +33,7 @@ typedef struct _pthread_mq_t {
 	pthread_cond_t cond_full;
 } pthread_mq_t;
 
-int pthread_mq_init(pthread_mq_t* p, int size) {
+static int pthread_mq_init(pthread_mq_t* p, int size) {
 	p->size=size;
 	p->data=(int*)CHECK_NOT_NULL(malloc(sizeof(int)*size));
 	p->min=0;
@@ -44,7 +44,7 @@ int pthread_mq_init(pthread_mq_t* p, int size) {
 	return 0;
 }
 
-int pthread_mq_get(pthread_mq_t* mq, int* value) {
+static int pthread_mq_get(pthread_mq_t* mq, int* value) {
 	CHECK_ZERO_ERRNO(pthread_mutex_lock(&(mq->m)));
 	// while the queue is empty go to sleep
 	while(mq->max==mq->min) {
@@ -61,7 +61,7 @@ int pthread_mq_get(pthread_mq_t* mq, int* value) {
 	return 0;
 }
 
-int pthread_mq_put(pthread_mq_t* mq, int value) {
+static int pthread_mq_put(pthread_mq_t* mq, int value) {
 	CHECK_ZERO_ERRNO(pthread_mutex_lock(&(mq->m)));
 	// while the queue is full go to sleep
 	while((mq->max+1)%mq->size==mq->min) {
@@ -78,7 +78,7 @@ int pthread_mq_put(pthread_mq_t* mq, int value) {
 	return 0;
 }
 
-int pthread_mq_destroy(pthread_mq_t* p) {
+static int pthread_mq_destroy(pthread_mq_t* p) {
 	free(p->data);
 	CHECK_ZERO_ERRNO(pthread_mutex_destroy(&(p->m)));
 	CHECK_ZERO_ERRNO(pthread_cond_destroy(&(p->cond_empty)));
@@ -86,7 +86,7 @@ int pthread_mq_destroy(pthread_mq_t* p) {
 	return 0;
 }
 
-void* func_producer(void* arg) {
+static void* func_producer(void* arg) {
 	pthread_mq_t* mq=(pthread_mq_t*)arg;
 	while(1) {
 		int value;
@@ -102,7 +102,7 @@ void* func_producer(void* arg) {
 	return NULL;
 }
 
-void* func_consumer(void* arg) {
+static void* func_consumer(void* arg) {
 	pthread_mq_t* mq=(pthread_mq_t*)arg;
 	while(1) {
 		int value;

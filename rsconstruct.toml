@@ -174,15 +174,32 @@ cxxflags = [
 	"-pedantic",
 ]
 
-[processor.checker.cppcheck]
-src_dirs = ["src", "misc/patch_and_diff"]
+# One program per file (the examples and exercises are single-file demos): one run per file.
+[processor.checker.cppcheck.programs]
+src_dirs = ["src/examples", "src/exercises", "src/tests", "misc/patch_and_diff"]
 src_exclude_dirs = "${kernel_excludes}"
 args = [
 	"--error-exitcode=1",
-	"--enable=warning,style,performance,portability",
+	"--enable=warning,style,performance,portability,information,unusedFunction",
 	"--check-level=exhaustive",
 	"--inline-suppr",
+	"--library=cppcheck.cfg",
 ]
+dep_inputs = ["cppcheck.cfg"]
+
+# One program per directory (each has a Makefile linking that directory's files): one run per directory.
+[processor.checker.cppcheck.standalone]
+src_dirs = ["src/examples_standalone", "src/exercises_standalone"]
+src_exclude_dirs = "${kernel_excludes}"
+batch_by_dir = true
+args = [
+	"--error-exitcode=1",
+	"--enable=warning,style,performance,portability,information,unusedFunction",
+	"--check-level=exhaustive",
+	"--inline-suppr",
+	"--library=cppcheck.cfg",
+]
+dep_inputs = ["cppcheck.cfg"]
 
 [processor.checker.make]
 src_dirs = ["src"]

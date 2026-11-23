@@ -73,19 +73,6 @@ public:
 	}
 };
 
-// this does not work...
-// dumps core?!?
-template <class T> void* convert(void(T::*p)()) {
-#pragma GCC diagnostic push
-#ifndef __clang__
-#pragma GCC diagnostic ignored "-Wpmf-conversions"
-#endif
-	// cppcheck-suppress cstyleCast
-	void* ret=(void*)p;
-#pragma GCC diagnostic pop
-	return ret;
-}
-
 int main() {
 	// first lets see the size of the object (it should be 4
 	// since it is empty and therefore has size 1 but also
