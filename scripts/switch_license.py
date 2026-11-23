@@ -35,7 +35,7 @@ suffixes=[
 bad_suffixes=[".mod.c"]
 bad_prefixes=["./.venv"]
 root_folder="."
-for root,dirs,files in os.walk(root_folder):
+for root,_dirs,files in os.walk(root_folder):
     for file in files:
         current_file=os.path.join(root,file)
         doit=False

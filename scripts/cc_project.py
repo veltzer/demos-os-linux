@@ -202,23 +202,25 @@ def plan_project(project: Project, out_dir: str) -> list[Output]:
         lib.name: [project.source(s) for s in lib.sources] for lib in project.libraries
     }
     for lib in project.libraries:
-        for rel in lib.sources:
-            outputs.append(
-                Output(
-                    object_path(obj_dir, lib, rel),
-                    [project.manifest, project.source(rel)],
-                )
+        outputs.extend(
+            Output(
+                object_path(obj_dir, lib, rel),
+                [project.manifest, project.source(rel)],
             )
-        for path in library_paths(lib_dir, lib):
-            outputs.append(Output(path, [project.manifest, *lib_sources[lib.name]]))
+            for rel in lib.sources
+        )
+        outputs.extend(
+            Output(path, [project.manifest, *lib_sources[lib.name]])
+            for path in library_paths(lib_dir, lib)
+        )
     for program in project.programs:
-        for rel in program.sources:
-            outputs.append(
-                Output(
-                    object_path(obj_dir, program, rel),
-                    [project.manifest, project.source(rel)],
-                )
+        outputs.extend(
+            Output(
+                object_path(obj_dir, program, rel),
+                [project.manifest, project.source(rel)],
             )
+            for rel in program.sources
+        )
         linked = [s for lib in program.link for s in lib_sources[lib]]
         outputs.append(
             Output(

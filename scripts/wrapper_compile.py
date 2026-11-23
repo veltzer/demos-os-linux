@@ -77,7 +77,7 @@ def handle_first(line, args, string):
 
 def main():
     script=sys.argv.pop(0)
-    doDebug=int(sys.argv.pop(0))
+    do_debug=int(sys.argv.pop(0))
     ccache=int(sys.argv.pop(0))
     link=int(sys.argv.pop(0))
     source=sys.argv.pop(0)
@@ -86,7 +86,7 @@ def main():
 
     # substitutions
 
-    if doDebug:
+    if do_debug:
         print(f"script is [{script}]")
         print(f"source is [{source}]")
         print(f"target is [{target}]")
@@ -109,8 +109,8 @@ def main():
     # scan the source code
     allow_output=False
     with open(source) as stream:
-        for line in stream:
-            line=line.strip()
+        for raw_line in stream:
+            line=raw_line.strip()
             if link:
                 handle(line, args, "EXTRA_LINK_CMD=", True, subs, shell=False)
                 handle(line, args, "EXTRA_LINK_SHELL=", True, subs, shell=True)
@@ -127,7 +127,7 @@ def main():
                 allow_output=True
     if ccache and not link:
         args.insert(0,"ccache")
-    if doDebug:
+    if do_debug:
         print(f"running [{args}]")
     try:
         check_no_output(args, allow_output=allow_output)

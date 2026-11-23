@@ -44,11 +44,10 @@ def git_tracked_sources():
         ["git", "ls-files"],
         capture_output=True, text=True, check=True,
     )
-    files = []
-    for f in result.stdout.splitlines():
-        if any(f.endswith(ext) for ext in SOURCE_EXTENSIONS):
-            files.append(f)
-    return files
+    return [
+        f for f in result.stdout.splitlines()
+        if any(f.endswith(ext) for ext in SOURCE_EXTENSIONS)
+    ]
 
 
 def read_file(path):
@@ -319,9 +318,11 @@ def check_ace(files):
         if content is None:
             continue
         for i, line in enumerate(content.splitlines(), 1):
-            for pat in bad_patterns:
-                if pat in line:
-                    errors.append(f"{f}:{i}: use standard equivalent instead of {pat}")
+            errors.extend(
+                f"{f}:{i}: use standard equivalent instead of {pat}"
+                for pat in bad_patterns
+                if pat in line
+            )
     return errors
 
 

@@ -5,8 +5,8 @@ This demo shows the fact that removing a file does not stop the process accessin
 and even working correctly...
 """
 
-import time
 import shutil
+import time
 
 
 def main():
