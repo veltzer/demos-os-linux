@@ -408,3 +408,7 @@ src_dirs = ["config"]
 
 [processor.checker.itidy]
 src_dirs = ["docs", "support"]
+
+# lint the TOML files of the repo with taplo
+[processor.checker.taplo]
+src_files = [".ruff.toml", ".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
