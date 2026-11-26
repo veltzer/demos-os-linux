@@ -29,9 +29,9 @@ static void func(char **p __attribute__((unused))) {
 }
 
 typedef struct _Foobar{
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	int i;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	int j;
 } Foobar;
 

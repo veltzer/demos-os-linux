@@ -70,11 +70,11 @@ public:
 			CHECK_ASSERT(!ptr);
 			ptr = &t;
 			state = FIRST_ARRIVED;
-			// cppcheck-suppress knownConditionTrueFalse
+			// cppcheck-suppress knownConditionTrueFalse // another thread changes the state while this one waits, which cppcheck does not see
 			while (state == FIRST_ARRIVED) {
 				cv_main.wait(lock);
 			}
-			// cppcheck-suppress knownConditionTrueFalse
+			// cppcheck-suppress knownConditionTrueFalse // another thread changes the state while this one waits, which cppcheck does not see
 			CHECK_ASSERT(state == SECOND_ARRIVED);
 			ptr = 0;
 			state = EMPTY;

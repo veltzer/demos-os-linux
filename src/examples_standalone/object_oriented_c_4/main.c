@@ -31,7 +31,7 @@ int main(void) {
 	printf("the rectangle is %dx%d\n", rectangle_get_width(r), rectangle_get_height(r));
 	rectangle_destroy(r);
 
-	// cppcheck-suppress allocaCalled
+	// cppcheck-suppress allocaCalled // teaching: the example allocates on the stack with alloca on purpose
 	rectangle* r2=(rectangle*)alloca(sizeof_rectangle());
 	construct_rectangle(r2, 7, 8);
 	printf("r2 is at %p\n", r2);

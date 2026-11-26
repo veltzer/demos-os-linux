@@ -53,7 +53,7 @@ static int kern_open(struct inode *inode, struct file *filp)
 
 	pr_info("start");
 	/* kmalloc_obj uses *pd only for its size, it is not dereferenced */
-	/* cppcheck-suppress uninitvar */
+	/* cppcheck-suppress uninitvar ; kmalloc_obj takes only the type of *pd; it does not read it */
 	pd = kmalloc_obj(*pd, GFP_KERNEL);
 	if (!pd)
 		return -ENOMEM;

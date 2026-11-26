@@ -46,7 +46,7 @@ public:
 		// Set our identifier in TSS.
 		ACE_DEBUG((LM_DEBUG, "(%t) Setting TSS TID: %u \n", tid));
 		this->tss_ctx_->set_attribute("thread_id", &tid);
-		// cppcheck-suppress knownConditionTrueFalse
+		// cppcheck-suppress knownConditionTrueFalse // cppcheck resolves the call to a constant; the test is the one the ACE pattern uses
 		while(handle_requests()>0) {
 		}
 		return 0;

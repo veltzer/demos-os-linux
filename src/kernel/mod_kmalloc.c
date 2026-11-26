@@ -67,7 +67,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			return -EFAULT;
 		}
 		/* poison the stale address so a use-after-free is obvious */
-		/* cppcheck-suppress unreadVariable */
+		/* cppcheck-suppress unreadVariable ; poisons the stale address so a use-after-free is obvious */
 		addr = -1;
 		kfree(ptr);
 		ptr = NULL;
@@ -92,7 +92,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 		free_pages(addr, get_order(size));
 		pr_debug("addr is %lx, mod is %ld", addr, addr % PAGE_SIZE);
 		/* poison the stale address so a use-after-free is obvious */
-		/* cppcheck-suppress unreadVariable */
+		/* cppcheck-suppress unreadVariable ; poisons the stale address so a use-after-free is obvious */
 		addr = -1;
 		return 0;
 	/*
@@ -112,7 +112,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			return -EFAULT;
 		}
 		/* poison the stale address so a use-after-free is obvious */
-		/* cppcheck-suppress unreadVariable */
+		/* cppcheck-suppress unreadVariable ; poisons the stale address so a use-after-free is obvious */
 		addr = -1;
 		dma_free_coherent(my_device, size, ptr, dma_handle);
 		ptr = NULL;

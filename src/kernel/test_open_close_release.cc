@@ -85,7 +85,7 @@ void do_open_and_forget(void) {
 void do_open_and_segfault(void) {
 	CHECK_NOT_M1(open(filename, O_RDWR));
 	char *p=(char *)NULL;
-	// cppcheck-suppress nullPointer
+	// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 	*p=0;
 }
 

@@ -50,11 +50,11 @@ static void safe_func(void) {
 	exit(EXIT_SUCCESS);
 }
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 static void handler_safe(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
-	// cppcheck-suppress constVariablePointer
-	// cppcheck-suppress unreadVariable
+	// cppcheck-suppress constVariablePointer // the variable keeps the type the API hands out
+	// cppcheck-suppress unreadVariable // the context is fetched to show how; this handler does not use it
 	ucontext_t *context = static_cast<ucontext_t*>(uap);
 	/*
 	 * alternativly, try to jump to a "safe place"
@@ -69,7 +69,7 @@ static void handler_safe(int sig __attribute__((unused)), siginfo_t *si __attrib
 }
 
 static int jmp_rel;
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
@@ -86,7 +86,7 @@ static void handler_jmp_rel(int sig __attribute__((unused)), siginfo_t *si __att
 }
 
 static uintptr_t jmp_abs;
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 static void handler_jmp_abs(int sig __attribute__((unused)), siginfo_t *si __attribute__((unused)), void* uap __attribute__((unused))) {
 	TRACE("start");
 #if __i386__
@@ -120,22 +120,22 @@ int main(int argc, char** argv) {
 	}
 	if(choice==0) {
 		signal_register_handler_sigaction(SIGSEGV, handler_safe, 0);
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=100;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=101;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=102;
 	}
 	if(choice==1) {
 		// 10 is the size of the instruction
 		jmp_rel=10;
 		signal_register_handler_sigaction(SIGSEGV, handler_jmp_rel, 0);
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=200;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=201;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=202;
 	}
 	if(choice==2) {
@@ -144,28 +144,28 @@ int main(int argc, char** argv) {
 		jmp_abs=(uintptr_t)&&mylabel;
 #pragma GCC diagnostic pop
 		signal_register_handler_sigaction(SIGSEGV, handler_jmp_abs, 0);
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=300;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=301;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)NULL=302;
 	}
 	if(choice==3) {
 		signal_register_handler_sigaction(SIGSEGV, handler_sigjmp, 0);
 		int ret=sigsetjmp(env, 0);
 		if(ret==0) {
-			// cppcheck-suppress nullPointer
+			// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 			*(volatile int*)NULL=400;
-			// cppcheck-suppress nullPointer
+			// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 			*(volatile int*)NULL=401;
-			// cppcheck-suppress nullPointer
+			// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 			*(volatile int*)NULL=402;
 		} else {
 			printf("after...\n");
 		}
 	}
-// cppcheck-suppress unusedLabel
+// cppcheck-suppress unusedLabel // the label is used through &&mylabel, the address the handler resumes at
 mylabel:
 	printf("after fault...\n");
 	return EXIT_SUCCESS;

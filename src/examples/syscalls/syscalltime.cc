@@ -79,7 +79,7 @@ void emptyfunc() __attribute__((noinline));
 void emptyfunc() {
 }
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 void* func(void* p) {
 	const thread_data* td=static_cast<const thread_data*>(p);
 	unsigned int count=td->count;

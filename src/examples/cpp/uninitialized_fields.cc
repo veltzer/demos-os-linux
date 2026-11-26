@@ -29,7 +29,7 @@ class A{
 public:
 	int a;
 	int b;
-	// cppcheck-suppress uninitMemberVar
+	// cppcheck-suppress uninitMemberVar // teaching: the member is left uninitialized on purpose
 	A() {
 		a=6;
 	}

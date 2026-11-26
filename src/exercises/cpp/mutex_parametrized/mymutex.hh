@@ -57,10 +57,10 @@ public:
 	}
 	~MyMutex() {
 	}
-	// cppcheck-suppress functionStatic
+	// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 	void lock() {
 	}
-	// cppcheck-suppress functionStatic
+	// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 	void unlock() {
 	}
 };

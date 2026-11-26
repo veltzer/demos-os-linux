@@ -49,32 +49,32 @@ int main() {
 	int i0=0;
 	bool ib0=(bool)i0;
 	bool ib7=(bool)i7;
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // teaching: the constant condition is what the example evaluates
 	if(ib0) {
 		printf("bool(0) is true\n");
 	} else {
 		printf("bool(0) is false\n");
 	}
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // teaching: the constant condition is what the example evaluates
 	if(ib7) {
 		printf("bool(7) is true\n");
 	} else {
 		printf("bool(7) is false\n");
 	}
 	const char* p0=reinterpret_cast<const char*>(0);
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	const char* p7=reinterpret_cast<const char*>(7);
-	// cppcheck-suppress knownPointerToBool
+	// cppcheck-suppress knownPointerToBool // teaching: the example converts a pointer to bool
 	bool pb0=static_cast<bool>(p0);
-	// cppcheck-suppress knownPointerToBool
+	// cppcheck-suppress knownPointerToBool // teaching: the example converts a pointer to bool
 	bool pb7=static_cast<bool>(p7);
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // teaching: the constant condition is what the example evaluates
 	if(pb0) {
 		printf("bool((char*)0) is true\n");
 	} else {
 		printf("bool((char*)0) is false\n");
 	}
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // teaching: the constant condition is what the example evaluates
 	if(pb7) {
 		printf("bool((char*)7) is true\n");
 	} else {

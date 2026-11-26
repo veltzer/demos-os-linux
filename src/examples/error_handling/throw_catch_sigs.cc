@@ -85,7 +85,7 @@ static void doBadCode(int i) {
 		// turning x into float here would not work since it
 		// will not cause an exception
 		x=0;
-		// cppcheck-suppress zerodiv
+		// cppcheck-suppress zerodiv // teaching: the division by zero is the fault shown
 		y=1 / x;
 		cerr << "y is " << y << endl;
 		cerr << "this is never reached" << endl;
@@ -97,7 +97,7 @@ static void doBadCode(int i) {
 	case 1:
 		cerr << "Lets access some illegal memory address" << endl;
 		p=0;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		p[0]=0;
 		break;
 

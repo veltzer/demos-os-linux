@@ -35,7 +35,7 @@ protected:
 class B: public A {
 public:
 	int c;
-	// cppcheck-suppress duplInheritedMember
+	// cppcheck-suppress duplInheritedMember // teaching: the derived member hides the base one on purpose
 	int b;
 
 	void doSomething(int a) {

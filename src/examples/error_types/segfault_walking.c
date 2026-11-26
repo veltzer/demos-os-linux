@@ -24,9 +24,9 @@ int main(void) {
 	char* p=(char*)malloc(17);
 	while(1) {
 		printf("trying to access address [%p]\n", (void*)p);
-		// cppcheck-suppress nullPointerOutOfMemory
+		// cppcheck-suppress nullPointerOutOfMemory // a failed allocation is not handled in this example
 		*p=0;
-		// cppcheck-suppress nullPointerArithmeticOutOfMemory
+		// cppcheck-suppress nullPointerArithmeticOutOfMemory // a failed allocation is not handled in this example
 		p++;
 	}
 	return EXIT_SUCCESS;

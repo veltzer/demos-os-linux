@@ -69,12 +69,12 @@ int main(int argc, char** argv) {
 		// lets show that the NULL constant is actually the number 0...
 		INFO("NULL is %zd", NULL);
 		char *p=(char*)0;
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		p[0]=0;
 	}
 	if(choice==2) {
 		printf("going to write on a read only string\n");
-		// cppcheck-suppress stringLiteralWrite
+		// cppcheck-suppress stringLiteralWrite // teaching: writing to a string literal is the fault shown
 		const char* hello="hello";
 		char* p=const_cast<char*>(hello);
 		p[2]='g';

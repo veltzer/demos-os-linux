@@ -42,7 +42,7 @@
 
 void ensure_space(unsigned int size) {
 	// prefault stack pages by allocating on the stack and touching them
-	// cppcheck-suppress allocaCalled
+	// cppcheck-suppress allocaCalled // teaching: the example allocates on the stack with alloca on purpose
 	char* buf = static_cast<char*>(alloca(size));
 	bzero(buf, size);
 }

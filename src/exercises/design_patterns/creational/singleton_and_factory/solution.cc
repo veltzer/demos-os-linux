@@ -37,7 +37,7 @@ public:
 		return instance;
 	}
 
-	// cppcheck-suppress functionStatic
+	// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 	void log(const string& message) {
 		cout << "LOG: " << message << endl;
 	}

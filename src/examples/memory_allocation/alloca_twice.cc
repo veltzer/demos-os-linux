@@ -33,7 +33,7 @@
 
 int main() {
 	for(int i=0; i<10; i++) {
-		// cppcheck-suppress allocaCalled
+		// cppcheck-suppress allocaCalled // teaching: the example allocates on the stack with alloca on purpose
 		char* p=static_cast<char*>(alloca(10));
 		bzero(p, 10);
 		printf("p1 is %p\n", static_cast<void*>(p));

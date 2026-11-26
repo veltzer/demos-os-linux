@@ -77,7 +77,7 @@ int Message_Receiver::copy_payload(ACE_Message_Block *mb, int payload_length) {
 
 int Message_Receiver::handle_input(ACE_HANDLE) {
 	DeviceCommandHeader dch;
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // cppcheck resolves the call to a constant; the test is the one the ACE pattern uses
 	if (this->read_header(&dch) < 0) {
 		return -1;
 	}

@@ -25,7 +25,7 @@ using namespace std;
 class Base {
 public:
 	Base() {}
-	// cppcheck-suppress virtualDestructor
+	// cppcheck-suppress virtualDestructor // teaching: the non-virtual destructor is the bug shown
 	~Base() { cout << "Base destructor" << endl; }
 };
 

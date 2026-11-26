@@ -44,7 +44,7 @@ int main(void) {
 #ifdef __clang__
 #pragma GCC diagnostic ignored "-Wgnu-designator"
 #endif
-	// cppcheck-suppress unusedLabelConfiguration
+	// cppcheck-suppress unusedLabelConfiguration // cppcheck reads the GNU 'field:' initializer as a label
 	struct mystruct v2={ a: 8, b: 9 };
 #pragma GCC diagnostic pop
 	printf("v2.a is %d\n", v2.a);
@@ -54,22 +54,22 @@ int main(void) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wuninitialized"
 	struct mystruct v3;
-	// cppcheck-suppress uninitStructMember
-	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
+	// cppcheck-suppress uninitvar // teaching: the example reads uninitialized data on purpose
 	printf("v3.a is %d\n", v3.a);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("v3.b is %d\n", v3.b);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("v3.c is %d\n", v3.c);
 	// this will also always work but because we are accessing the values later
 	// then gcc will 0 them for us...
 	struct mystruct v4;
-	// cppcheck-suppress uninitStructMember
-	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
+	// cppcheck-suppress uninitvar // teaching: the example reads uninitialized data on purpose
 	printf("v4.a is %d\n", v4.a);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("v4.b is %d\n", v4.b);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("v4.c is %d\n", v4.c);
 #pragma GCC diagnostic pop
 	v4.a=10;

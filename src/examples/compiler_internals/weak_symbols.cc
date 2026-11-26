@@ -30,7 +30,7 @@ public:
 	int weak_symbols_demo_foo(T t) __attribute__((noinline));
 };
 
-// cppcheck-suppress functionStatic
+// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 template<class T> int A<T>::weak_symbols_demo_foo(T t __attribute__((unused))) {
 	int sum=0;
 	for(unsigned int i=0; i<100; i++) {

@@ -54,7 +54,7 @@ int main() {
 	long sum_b=0;
 	for(int i=0; i<10000; i++) {
 		for(int j=0; j<10000; j++) {
-			// cppcheck-suppress shiftTooManyBitsSigned
+			// cppcheck-suppress shiftTooManyBitsSigned // teaching: the sign-bit shift is the branchless trick shown
 			sum_b+=min_b(i, j);
 		}
 	}

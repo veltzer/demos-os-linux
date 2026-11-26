@@ -19,7 +19,7 @@
 #include <firstinclude.h>
 #include "c.h"
 
-// cppcheck-suppress functionStatic
+// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 void C::vtables_demo_foo(void) {
 }
 

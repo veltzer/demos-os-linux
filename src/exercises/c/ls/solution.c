@@ -47,7 +47,7 @@
 // see 'info ls' for more info...
 const double oldsecs=192*24*60*60;
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 static int strcmp_wrap(const void* pa, const void* pb, void* extra __attribute__((unused))) {
 	const char** ppa=(const char**)pa;
 	const char** ppb=(const char**)pb;

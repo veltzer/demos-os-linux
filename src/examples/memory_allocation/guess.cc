@@ -64,7 +64,7 @@ void mguess_allocated(unsigned int size) {
 
 unsigned int get_block_size(void* p) {
 	unsigned int* u=static_cast<unsigned int*>(p);
-	// cppcheck-suppress nullPointerArithmeticOutOfMemory
+	// cppcheck-suppress nullPointerArithmeticOutOfMemory // the caller passes a block malloc returned; a failed allocation is not handled in this example
 	u-=1;
 	if(debug) {
 		printf("*u is %u (char ptr is %d)\n", *u, *(reinterpret_cast<char*>(u)));

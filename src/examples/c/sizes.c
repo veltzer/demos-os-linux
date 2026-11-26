@@ -56,32 +56,32 @@ typedef struct _struct_empty{
 typedef struct _struct_emptyarray{
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char a[0];
 #pragma GCC diagnostic pop
 } struct_emptyarray;
 typedef struct _struct_char{
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c;
 } struct_char;
 typedef struct _struct_charintchar{
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c1;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	int i;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c2;
 } struct_charintchar;
 typedef struct _struct_char5{
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c1;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c2;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c3;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c4;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char c5;
 } struct_char5;
 

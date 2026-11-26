@@ -29,7 +29,7 @@
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 void* PrintHello(void* threadid) {
 	const int *id_ptr;
 	int taskid;

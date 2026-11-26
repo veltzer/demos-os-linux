@@ -32,11 +32,11 @@ typedef struct _foo{
 static foo giveMeFoo(void) {
 	// following line causes a compilation error...
 	// return {3,4};
-	// cppcheck-suppress unassignedVariable
+	// cppcheck-suppress unassignedVariable // teaching: the example reads uninitialized data on purpose
 	foo f;
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wuninitialized"
-	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitvar // teaching: the example reads uninitialized data on purpose
 	return f;
 #pragma GCC diagnostic pop
 }

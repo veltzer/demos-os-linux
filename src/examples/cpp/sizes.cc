@@ -77,22 +77,22 @@ int main() {
 	cout << "sizeof(C) is " << sizeof(C) << endl;
 	cout << "sizeof(struct empty) is " << sizeof(struct empty) << endl;
 	// cout << "__builtin_offsetof(e,B) " << __builtin_offsetof(e,B) << endl;
-	// cppcheck-suppress dangerousTypeCast
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress dangerousTypeCast // teaching: the example reinterprets this memory on purpose
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	cout << "CppOffsetOf(B,e) " << CppOffsetOf(B, e) << endl;
-	// cppcheck-suppress dangerousTypeCast
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress dangerousTypeCast // teaching: the example reinterprets this memory on purpose
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	cout << "CppOffsetOf(A,a) " << CppOffsetOf(A, a) << endl;
-	// cppcheck-suppress cstyleCast
-	// cppcheck-suppress intToPointerCast
-	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 	cout << "CppOffsetOf(A,b) " << CppOffsetOf(A, b) << endl;
-	// cppcheck-suppress dangerousTypeCast
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress dangerousTypeCast // teaching: the example reinterprets this memory on purpose
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	cout << "CppOffsetOf(A,c) " << CppOffsetOf(A, c) << endl;
-	// cppcheck-suppress cstyleCast
-	// cppcheck-suppress intToPointerCast
-	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 	cout << "CppOffsetOf(A,d) " << CppOffsetOf(A, d) << endl;
 
 	A* a=new A();

@@ -35,7 +35,7 @@
 /*
  * This callback is called for every packet
  */
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 void got_packet(u_char *args __attribute__((unused)),
 	const struct pcap_pkthdr *header,
 	const u_char *packet __attribute__((unused)))

@@ -32,7 +32,7 @@
  *
  * EXTRA_LINK_FLAGS_AFTER=-lpthread
  */
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 void* worker(void* p __attribute__((unused))) {
 	// int num=*(int *)p;
 	// TRACE("starting thread %d", num);

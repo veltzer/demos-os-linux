@@ -54,18 +54,18 @@
 struct foo{
 	union _un{
 		struct _pad_struct{
-			// cppcheck-suppress unusedStructMember
+			// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 			char irrelevant[LEVEL2_CACHE_LINESIZE];
-		// cppcheck-suppress unusedStructMember
+		// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 		} pad_struct;
 		struct _real{
-			// cppcheck-suppress unusedStructMember
+			// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 			char c1;
-			// cppcheck-suppress unusedStructMember
+			// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 			int i1;
-			// cppcheck-suppress unusedStructMember
+			// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 			char c2;
-		// cppcheck-suppress unusedStructMember
+		// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 		} real;
 	} un;
 };
@@ -80,7 +80,7 @@ struct bar{
 static_assert(sizeof(bar)==LEVEL2_CACHE_LINESIZE, "size of bar is wrong");
 
 // same as before, applied to a Class instead...
-// cppcheck-suppress noConstructor
+// cppcheck-suppress noConstructor // teaching: the class is a bare layout, shown for its size and offsets
 class MyClass{
 private:
 	char c1;
@@ -132,7 +132,7 @@ int main() {
 	CHECK_ASSERT((unsigned long)&mybar%LEVEL2_CACHE_LINESIZE==0);
 	CHECK_ASSERT((unsigned long)&myfoo%LEVEL2_CACHE_LINESIZE!=0);
 #ifndef __x86_64__
-	// cppcheck-suppress uninitvar
+	// cppcheck-suppress uninitvar // teaching: the objects are passed for their layout; their content is never read
 	myfunction('4', mybar, '5', myfoo);
 #endif	/* __x86_64__ */
 	printf("sizeof(barestruct)=%zu\n", sizeof(barestruct));

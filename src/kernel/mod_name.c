@@ -45,7 +45,7 @@ MODULE_DESCRIPTION("A module showing how to refer to the name of the module you 
 static int __init mod_init(void)
 {
 	/* KBUILD_MODNAME is defined by kbuild, cppcheck cannot see it */
-	/* cppcheck-suppress unknownMacro */
+	/* cppcheck-suppress unknownMacro ; cppcheck does not expand this macro; the compiler does */
 	pr_info("this module is called " KBUILD_MODNAME "\n");
 	pr_info("this module is called %s\n", KBUILD_MODNAME);
 	pr_info("this module is called %s\n", THIS_MODULE->name);

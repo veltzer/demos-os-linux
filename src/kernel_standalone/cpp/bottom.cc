@@ -47,10 +47,10 @@ void operator delete(void *pointer) {
 
 class A{
 public:
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	int x;
 	// this demo only shows ctor/dtor running in kernel context; x is never used
-	// cppcheck-suppress uninitMemberVar
+	// cppcheck-suppress uninitMemberVar // teaching: the member is left uninitialized on purpose
 	A() {
 		myprintk("inside A's constructor!\n");
 	}

@@ -36,7 +36,7 @@ static int always_false(void) {
 
 int main(void) {
 	global=0;
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // teaching: the constant condition is what the example evaluates
 	if(always_false() && always_false()) {
 		printf("You should not be here...\n");
 	}

@@ -52,15 +52,15 @@ namespace banking {
 			CloseConnection();
 		}
 		void deposit(double val) override { _balance += val; }
-		// cppcheck-suppress functionStatic
+		// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 		void Authenticate() { cout << "Authenticate" << endl; }
-		// cppcheck-suppress functionStatic
+		// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 		void ConnectRemoteDB() { cout << "ConnectRemoteDB" << endl; }
-		// cppcheck-suppress functionStatic
+		// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 		void SaveChanges() { cout << "SaveChanges" << endl; }
-		// cppcheck-suppress functionStatic
+		// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 		void ReportError() { cout << "ReportError" << endl; }
-		// cppcheck-suppress functionStatic
+		// cppcheck-suppress functionStatic // the function is a member by design, though its body uses no member
 		void CloseConnection() { cout << "CloseConnection" << endl; }
 	private:
 		double _balance;
@@ -69,7 +69,7 @@ namespace banking {
 	{
 	public:
 		explicit CheckingAccount(double balance = 0, double overdraft = 0) :AccountBase(balance), _overdraft(overdraft) {}
-		// cppcheck-suppress uselessOverride
+		// cppcheck-suppress uselessOverride // teaching: the override is written out to show the pattern
 		void withdraw(double val) override { AccountBase::withdraw(val); }
 		~CheckingAccount() override { cout << "bye checking" << endl; }
 	private:

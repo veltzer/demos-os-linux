@@ -47,7 +47,7 @@ void do_something() {
 }
 
 void my_func(size_t size) {
-	// cppcheck-suppress allocaCalled
+	// cppcheck-suppress allocaCalled // teaching: the example allocates on the stack with alloca on purpose
 	char* p=static_cast<char*>(alloca(size));
 	// this will show that we can use the memory
 	p[0]=0;

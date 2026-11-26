@@ -66,7 +66,7 @@ int main() {
 			break;
 
 		case 3:
-			// cppcheck-suppress nullPointer
+			// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 			*((volatile char *)0)=0;
 			break;
 		}

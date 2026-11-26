@@ -31,7 +31,7 @@ int main() {
 	fprintf(stderr, "stderr data2");
 	printf("\n");
 	printf("help me user!!!!");
-	// cppcheck-suppress nullPointer
+	// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 	*(volatile char*)0=0;
 	return EXIT_SUCCESS;
 }

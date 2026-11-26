@@ -38,7 +38,7 @@ int main(void) {
 	CHECK_ZERO(sleep(sleep_time));
 	// no return value for abort(3)
 	TRACE("dying");
-	// cppcheck-suppress nullPointer
+	// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 	*(volatile char*)0=0;
 	// abort();
 	return EXIT_SUCCESS;

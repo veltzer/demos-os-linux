@@ -58,7 +58,7 @@ int main() {
 	pthread_t thread;
 	CHECK_ZERO_ERRNO(pthread_create(&thread, NULL, worker, NULL));
 	CHECK_ZERO(sleep(5));
-	// cppcheck-suppress throwInEntryPoint
+	// cppcheck-suppress throwInEntryPoint // teaching: the uncaught throw is what the example shows
 	throw 20;
 	cout << "Where did this go?" << endl; // cppcheck-suppress unreachableCode // teaching: the code after the throw is unreachable on purpose
 	CHECK_ZERO_ERRNO(pthread_join(thread, NULL));

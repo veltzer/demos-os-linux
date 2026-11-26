@@ -41,7 +41,7 @@ static void *worker(void *p) {
 		CHECK_ZERO(sleep(1));
 		// this simulates a bug. see what this thread is doing using
 		// strace on the process or thread id.
-		// cppcheck-suppress knownConditionTrueFalse
+		// cppcheck-suppress knownConditionTrueFalse // teaching: the branch simulates a bug, to be found with strace
 		if(id==1 && counter==10) {
 			CHECK_ZERO(sleep(1000));
 		}

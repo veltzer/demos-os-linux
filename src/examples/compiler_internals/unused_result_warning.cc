@@ -57,7 +57,7 @@ int main() {
 	// lets turn off gcc warnings locally to avoid the error...
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunused-result"
-	// cppcheck-suppress ignoredReturnValue
+	// cppcheck-suppress ignoredReturnValue // teaching: ignoring the result is the warning this example triggers
 	add(5, 6);
 	#pragma GCC diagnostic pop
 	// another way to ignore the requirement to use the result is to put it in a variable

@@ -66,7 +66,7 @@ static int myfunc(int y, bool end) {
 	int z=myfunc(++y, end);
 	// without this second call gcc would implement a goto instead of calling the function
 	// again!!! - smart ass compiler...
-	// cppcheck-suppress redundantInitialization
+	// cppcheck-suppress redundantInitialization // teaching: the repeated write is the point of the example
 	z=myfunc(++y, end);
 	return z;
 }

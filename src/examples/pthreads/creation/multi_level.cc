@@ -39,7 +39,7 @@ typedef struct _thread_data{
 	int highest;
 } thread_data;
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 void* create_threads(void* arg) {
 	const thread_data* pd=static_cast<const thread_data*>(arg);
 	int num=pd->num;

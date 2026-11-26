@@ -44,7 +44,7 @@ static int mypthread_spin_init(mypthread_spinlock_t* lock) {
 	lock->val=0;
 	return 0;
 }
-// cppcheck-suppress constParameterPointer
+// cppcheck-suppress constParameterPointer // the signature is fixed by the interface this function implements or mirrors
 static int mypthread_spin_destroy(mypthread_spinlock_t* lock __attribute__((unused))) {
 	// do nothing
 	return 0;

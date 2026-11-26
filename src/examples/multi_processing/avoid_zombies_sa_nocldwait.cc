@@ -48,7 +48,7 @@
  * SIG_IGN for SIGCHLD behaves like that too, see sigaction(2)).
  */
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 static void handler(int sig, siginfo_t *si, void* unused __attribute__((unused))) {
 	printf("sighandler: got signal %s\n", strsignal(sig));
 	printf("sighandler: child that died is %d\n", si->si_pid);

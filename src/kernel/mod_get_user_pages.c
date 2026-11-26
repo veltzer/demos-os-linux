@@ -121,7 +121,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 	/* some unsigned ints for address manipulation... */
 	unsigned long bpointer, offset, aligned, newsize;
 	/* the newly created vma */
-	/* cppcheck-suppress constVariablePointer */
+	/* cppcheck-suppress constVariablePointer ; the variable keeps the type the API hands out */
 	struct vm_area_struct *vma;
 
 	pr_debug("start with ioctl %u", cmd);
@@ -173,7 +173,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			pages
 		);
 		/* kept for the commented-out VM_DONTCOPY line below */
-		/* cppcheck-suppress unreadVariable */
+		/* cppcheck-suppress unreadVariable ; kept for the commented-out VM_DONTCOPY line below */
 		vma = find_vma(current->mm, bpointer);
 		// vma->vm_flags |= VM_DONTCOPY;
 		mmap_write_unlock(current->mm);
@@ -196,7 +196,7 @@ static long kern_unlocked_ioctl(struct file *filp, unsigned int cmd,
 			return -EFAULT;
 		}
 		/* void* arithmetic is a GCC extension the kernel relies on */
-		/* cppcheck-suppress arithOperationsOnVoidPointer */
+		/* cppcheck-suppress arithOperationsOnVoidPointer ; kernel code: GNU C counts a void pointer in bytes */
 		ptr = vptr + offset;
 		size = b.size;
 		pr_debug("after vmap - vptr is %p", vptr);

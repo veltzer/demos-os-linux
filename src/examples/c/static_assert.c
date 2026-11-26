@@ -61,14 +61,14 @@ _Static_assert(1==1, "fail message");
 STATIC_ASSERT(1==1, fail);
 
 int main(void) {
-	// cppcheck-suppress duplicateExpression
+	// cppcheck-suppress duplicateExpression // teaching: an assertion that is true by construction
 	COMPILE_TIME_ASSERT(1==1);
-	// cppcheck-suppress duplicateExpression
+	// cppcheck-suppress duplicateExpression // teaching: an assertion that is true by construction
 	PR_STATIC_ASSERT(1==1);
 	// this is a built in gcc static assertion, no flags needed
 	/* the tautology is the point: it shows a passing _Static_assert */
 	_Static_assert(1==1, "fail message");
-	// cppcheck-suppress duplicateExpression
+	// cppcheck-suppress duplicateExpression // teaching: an assertion that is true by construction
 	ct_assert(1==1);
 	STATIC_ASSERT(1==1, fail);
 	// CTC(1==1);

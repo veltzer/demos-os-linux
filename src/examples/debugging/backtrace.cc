@@ -130,7 +130,7 @@ void trace_register(void) {
  */
 void do_fault(void) {
 	char* p=(char*)0;
-	// cppcheck-suppress nullPointer
+	// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 	p[0]=0;
 }
 

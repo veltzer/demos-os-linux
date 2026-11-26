@@ -78,7 +78,7 @@ void do_vector() {
 				l.erase(l.begin()+postoremove);
 			}
 		}
-		// cppcheck-suppress invalidContainer
+		// cppcheck-suppress invalidContainer // teaching: the container is changed while it is iterated, which is the bug shown
 		cout << "visiting " << *i << endl;
 		counter++;
 	}

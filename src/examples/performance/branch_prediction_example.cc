@@ -68,7 +68,7 @@ void do_work_no_if(const int* data, unsigned int arraySize, const char* msg) {
 	for(unsigned i = 0; i < 100000; ++i) {
 		// Primary loop
 		for(unsigned c = 0; c < arraySize; ++c) {
-			// cppcheck-suppress shiftTooManyBitsSigned
+			// cppcheck-suppress shiftTooManyBitsSigned // teaching: the sign-bit shift is the branchless trick shown
 			int t = (data[c] - 128) >> 31;
 			sum += ~t & data[c];
 		}

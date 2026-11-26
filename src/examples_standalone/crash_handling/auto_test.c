@@ -40,7 +40,7 @@ int main(int argc,char** argv,char** envp) {
 }
 
 void croak(void) {
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	int* ip=(int*)17;
 	char* p=sbrk(0);
 	memset(p-1024,42,1024);
@@ -55,7 +55,7 @@ void die(void) {
 	return;
 }
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 void print_message_function(void *dummy) {
 	printf("Morituri te salutant!\n");
 	die();

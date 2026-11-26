@@ -22,7 +22,7 @@
 
 int main(int argc, char** argv, char** envp) {
 	printf("I'm here...\n");
-	// cppcheck-suppress nullPointer
+	// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 	*(volatile char*)0=0;
 	printf("Where did this go?...\n");
 	return EXIT_SUCCESS;

@@ -32,7 +32,7 @@ class CanceledTask: public ACE_Task<ACE_MT_SYNCH> {
 public:
 	virtual int svc(void) {
 		ACE_DEBUG((LM_DEBUG, "(%t) Starting thread\n"));
-		// cppcheck-suppress knownConditionTrueFalse
+		// cppcheck-suppress knownConditionTrueFalse // cppcheck resolves the call to a constant; the test is the one the ACE pattern uses
 		if (this->set_cancel_mode() < 0) {
 			return -1;
 		}

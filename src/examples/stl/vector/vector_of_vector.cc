@@ -34,7 +34,7 @@ using namespace std;
  */
 
 int main() {
-	// cppcheck-suppress unusedVariable
+	// cppcheck-suppress unusedVariable // teaching: the example only declares the variable, to show its type
 	vector<vector<int> > v;
 	return EXIT_SUCCESS;
 }

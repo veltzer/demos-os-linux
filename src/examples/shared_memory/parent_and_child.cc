@@ -62,7 +62,7 @@ int main() {
 	} else {
 		TRACE("child setting value to 5");
 		*pvar = 5;
-		// cppcheck-suppress unreadVariable
+		// cppcheck-suppress unreadVariable // teaching: the child writes to its own copy of the stack, which the parent never sees
 		mystackvalue = 5;
 		myglobalvalue = 5;
 		TRACE("child dying");

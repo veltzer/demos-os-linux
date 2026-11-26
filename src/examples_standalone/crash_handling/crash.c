@@ -120,7 +120,7 @@ static unsigned int signal_backtrace(void** array, unsigned int size, ucontext_t
 * 4. No locking allowed. We don't know in what state the process/thread was when the exception
 * occured.
 */
-/* cppcheck-suppress constParameterCallback */
+/* cppcheck-suppress constParameterCallback ; the signature is fixed by the API that calls this function */
 void fault_handler (int signal, siginfo_t * siginfo, void *context) {
 	int i, ret;
 

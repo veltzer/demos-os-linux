@@ -270,7 +270,7 @@ static vm_fault_t kern_vma_fault(struct vm_fault *vmf)
 	offset = (unsigned long)vmf->address - vmf->vma->vm_start;
 	kaddr = vmf->vma->vm_private_data;
 	/* void* arithmetic is a GCC extension the kernel relies on */
-	/* cppcheck-suppress arithOperationsOnVoidPointer */
+	/* cppcheck-suppress arithOperationsOnVoidPointer ; kernel code: GNU C counts a void pointer in bytes */
 	kaddr += offset;
 	page = virt_to_page(kaddr);
 	if (page == NULL) {
@@ -292,7 +292,7 @@ static const struct vm_operations_struct kern_vm_ops = {
  * The mmap implementation.
  */
 /* signature is fixed by file_operations.mmap; it cannot take a const filp */
-/* cppcheck-suppress constParameterCallback */
+/* cppcheck-suppress constParameterCallback ; the signature is fixed by the API that calls this function */
 static int kern_mmap(struct file *filp, struct vm_area_struct *vma)
 {
 	/*

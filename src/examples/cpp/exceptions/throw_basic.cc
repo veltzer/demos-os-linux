@@ -31,7 +31,7 @@ using namespace std;
 
 int main() {
 	cout << "Starting to run..." << endl;
-	// cppcheck-suppress throwInEntryPoint
+	// cppcheck-suppress throwInEntryPoint // teaching: the uncaught throw is what the example shows
 	throw 20;
 	cout << "Where did this go?" << endl; // cppcheck-suppress unreachableCode // teaching: the code after the throw is unreachable on purpose
 	return EXIT_SUCCESS;

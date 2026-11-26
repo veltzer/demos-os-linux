@@ -44,24 +44,24 @@ struct largestruct{
 
 int main(void) {
 	struct smallstruct vsmall;
-	// cppcheck-suppress uninitvar
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitvar // teaching: the example reads uninitialized data on purpose
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vsmall.a is %d\n", vsmall.a);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vsmall.b is %d\n", vsmall.b);
 	struct largestruct vlarge;
-	// cppcheck-suppress uninitvar
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitvar // teaching: the example reads uninitialized data on purpose
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vlarge.a is %d\n", vlarge.a);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vlarge.b is %d\n", vlarge.b);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vlarge.c is %d\n", vlarge.c);
 	struct largestruct vlarge2;
-	// cppcheck-suppress uninitvar
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitvar // teaching: the example reads uninitialized data on purpose
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vlarge2.a is %d\n", vlarge2.a);
-	// cppcheck-suppress uninitStructMember
+	// cppcheck-suppress uninitStructMember // teaching: the example reads uninitialized data on purpose
 	printf("vlarge2.b is %d\n", vlarge2.b);
 	printf("vlarge2.b(second time) is %d\n", vlarge2.b);
 	return EXIT_SUCCESS;

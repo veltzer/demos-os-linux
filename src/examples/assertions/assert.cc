@@ -52,7 +52,7 @@
  */
 
 int main() {
-	// cppcheck-suppress duplicateExpression
+	// cppcheck-suppress duplicateExpression // teaching: an assertion that is true by construction
 	assert(1==1);
 	printf("in here 1\n");
 #define NDEBUG

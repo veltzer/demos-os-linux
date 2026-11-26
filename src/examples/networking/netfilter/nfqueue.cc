@@ -97,9 +97,9 @@ static int manage_packet(struct nfq_q_handle *qh,
 static bool over=false;
 
 static void handler(int sig __attribute__((unused)),
-	// cppcheck-suppress constParameterCallback
+	// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 	siginfo_t *si __attribute__((unused)),
-	// cppcheck-suppress constParameterCallback
+	// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 	void* unused __attribute__((unused))) {
 	over=true;
 }

@@ -30,7 +30,7 @@ using namespace std;
 
 int main() {
 	int i=0;
-	// cppcheck-suppress zerodiv
+	// cppcheck-suppress zerodiv // teaching: the division by zero is the fault shown
 	int j=1 / i;
 
 	cout << j << endl;

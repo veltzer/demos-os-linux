@@ -44,7 +44,7 @@ using namespace std;
 
 struct MemberFnPtr {
 	void* ptr;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	ptrdiff_t adj;
 };
 
@@ -82,15 +82,15 @@ int main() {
 	// show that the first pointer in any object is the v table
 	A obj1, obj2;
 	// this is the vtable
-	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 	void** vp1=(void**)&obj1;
-	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 	void** vp2=(void**)&obj2;
 	assert(*vp1==*vp2);
 	// now lets show that the vtable simply has all methods in order
 	// of declaration
 	A a;
-	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 	void** va=*(void***)&a;
 	const void* vAamethod0=extract_fn_ptr(&B::vamethod0);
 	const void* vAamethod1=extract_fn_ptr(&B::vamethod1);
@@ -103,7 +103,7 @@ int main() {
 	assert(sizeof(B)==8);
 	// show that the vtable of b has same charactersitics as vtable of A...
 	B b;
-	// cppcheck-suppress cstyleCast
+	// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 	void** vb=*(void***)&b;
 	const void* vBamethod0=extract_fn_ptr(&B::vamethod0);
 	const void* vBamethod1=extract_fn_ptr(&B::vamethod1);

@@ -26,7 +26,7 @@
 
 int main(void) {
 	int c=1;
-	// cppcheck-suppress knownConditionTrueFalse
+	// cppcheck-suppress knownConditionTrueFalse // teaching: the constant condition is what the example evaluates
 	int d=c==1 ? 4:5;
 	printf("d is %d\n", d);
 	/*

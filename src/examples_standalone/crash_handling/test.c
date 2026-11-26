@@ -64,7 +64,7 @@ int main(int argc,char** argv,char** envp) {
 */
 
 void croak(void) {
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	int *ip=(int *) 17;
 	char * p=sbrk(0);
 

@@ -48,11 +48,11 @@ int main() {
 	print_address_of(&a);
 	print_address_of(&j);
 	a=i;
-	// cppcheck-suppress redundantAssignment
+	// cppcheck-suppress redundantAssignment // teaching: the repeated write is the point of the example
 	a=i;
 	printit(a);
 	a=j;
-	// cppcheck-suppress redundantAssignment
+	// cppcheck-suppress redundantAssignment // teaching: the repeated write is the point of the example
 	a=j;
 	printit(a);
 	return EXIT_SUCCESS;

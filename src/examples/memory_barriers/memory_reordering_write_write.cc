@@ -42,10 +42,10 @@
 typedef struct _shared_data{
 	unsigned int attempts;
 	unsigned int small;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char buffer1[64];
 	unsigned int large;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char buffer2[64];
 	bool running;
 } shared_data;

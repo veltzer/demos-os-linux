@@ -32,7 +32,7 @@
  */
 static bool verbose=true;
 
-// cppcheck-suppress constParameterCallback
+// cppcheck-suppress constParameterCallback // the signature is fixed by the API that calls this function
 static int callback(struct dl_phdr_info *info, size_t size __attribute__((unused)), void* data __attribute__((unused))) {
 	printf("name=%s (%d segments)\n", info->dlpi_name, info->dlpi_phnum);
 	if(verbose) {

@@ -32,11 +32,11 @@ const int MSGSZ=128;
 const int MAXQUEUE=32768;
 
 typedef struct mymsgbuf{
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	long mtype;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	long fromID;
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char mtext[MSGSZ];
 } message_buf;
 

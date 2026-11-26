@@ -101,7 +101,7 @@ int main() {
 		TRACE("child after lock");
 		sleep(2);
 		TRACE("child after sleep");
-		// cppcheck-suppress nullPointer
+		// cppcheck-suppress nullPointer // teaching: the null dereference is the crash the example needs
 		*(volatile int*)0=0;
 		TRACE("child after crash?!?");
 		CHECK_ZERO_ERRNO(pthread_mutex_unlock(mylock));

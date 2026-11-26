@@ -243,7 +243,7 @@ TEST(
 	true,
 	__sync_synchronize()
 	);
-// cppcheck-suppress syntaxError
+// cppcheck-suppress syntaxError // cppcheck cannot parse this construct (a macro or inline assembly); the compiler does
 TEST(
 	emptasm,
 	"Empty assembly block which works on some compilers but not on others.\n"
@@ -308,7 +308,7 @@ TEST(
 	);
 // The C-style volatile casts below are the very technique these tests
 // demonstrate, so they are deliberate and must not be rewritten.
-// cppcheck-suppress cstyleCast
+// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 TEST(
 	singvarvol,
 	"Attempt to use volatile on left side to barrier the compiler.\n"
@@ -316,7 +316,7 @@ TEST(
 	false,
 	*(volatile int *)&a=a;
 	);
-// cppcheck-suppress cstyleCast
+// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 TEST(
 	singvarvolright,
 	"Use a volatile read to force re-reading the variable from memory.\n"
@@ -325,7 +325,7 @@ TEST(
 	true,
 	a=*(volatile int*)&a;
 	);
-// cppcheck-suppress cstyleCast
+// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 TEST(
 	singvarvol2,
 	"Attempt to use volatile to barrier the compiler\n"
@@ -333,7 +333,7 @@ TEST(
 	false,
 	{ int y=a; *(volatile int*)&a=y; }
 	);
-// cppcheck-suppress cstyleCast
+// cppcheck-suppress cstyleCast // teaching: the example shows this cast as C writes it
 TEST(
 	singvarvolright2,
 	"Attempt to use volatile on right side to barrier the compiler\n"

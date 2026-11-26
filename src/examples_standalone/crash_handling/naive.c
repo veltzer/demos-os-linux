@@ -114,7 +114,7 @@ static inline char * code2str(int code, int signal) {
 	return "Unhandled signal handler";
 }
 
-/* cppcheck-suppress constParameterCallback */
+/* cppcheck-suppress constParameterCallback ; the signature is fixed by the API that calls this function */
 void fault_handler (int signal, siginfo_t * siginfo, void* context) {
 	#define MAX_FRAMES 25
 
@@ -219,7 +219,7 @@ int main(int argc,char** argv,char** envp) {
 */
 
 void croak(void) {
-	/* cppcheck-suppress intToPointerCast */
+	/* cppcheck-suppress intToPointerCast ; teaching: the integer is turned into a pointer on purpose */
 	int *ip=(int *) 17;
 	/* Do a simple system that fails so that errno has some interesting
 	* value to check

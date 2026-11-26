@@ -56,11 +56,11 @@ int main(void) {
 	printf("li.HighPart is %u\n", li.HighPart);
 	printf("li.QuadPart is %lli\n", li.QuadPart);
 	// this is the offsets of it's relevant parts...
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	printf("offset of LowPart is %td\n", OffsetOf(LARGE_INTEGER, LowPart));
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	printf("offset of HighPart is %td\n", OffsetOf(LARGE_INTEGER, HighPart));
-	// cppcheck-suppress intToPointerCast
+	// cppcheck-suppress intToPointerCast // teaching: the integer is turned into a pointer on purpose
 	printf("offset of QuadPart is %td\n", OffsetOf(LARGE_INTEGER, QuadPart));
 	// or we could use the built in...
 	printf("offset of LowPart is %zd\n", __builtin_offsetof(LARGE_INTEGER, LowPart));

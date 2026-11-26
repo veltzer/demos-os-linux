@@ -93,7 +93,7 @@ void operator delete(void* p, const long unsigned int type) noexcept {
 }
 
 typedef struct _myobj{
-	// cppcheck-suppress unusedStructMember
+	// cppcheck-suppress unusedStructMember // teaching: the member is there for the struct's layout, not to be used
 	char data[10];
 } myobj;
 

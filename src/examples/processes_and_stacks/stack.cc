@@ -45,7 +45,7 @@ void func(int m, bool mems) {
 	const unsigned int size=m*1024*1024;
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wvla"
-	// cppcheck-suppress variableScope
+	// cppcheck-suppress variableScope // teaching: the array sits in this frame on purpose
 	char data[size];
 #pragma GCC diagnostic pop
 	if(mems) {
