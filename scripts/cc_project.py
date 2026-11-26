@@ -243,7 +243,7 @@ def run(cmd: list[str]) -> None:
 
 
 def compile_object(
-    project: Project, target: Target, rel: str, obj: str, pic: bool
+    project: Project, target: Target, rel: str, obj: str, *, pic: bool
 ) -> None:
     source = project.source(rel)
     cxx = is_cxx(source)

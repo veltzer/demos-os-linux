@@ -46,7 +46,7 @@ def check_no_output(args, allow_output):
             # raise ValueError(f"error in executing [{args}]")
 
 
-def handle(line, args, string, process, subs, inject=None, shell=False):
+def handle(line, args, string, process, subs, inject=None, *, shell=False):
     f=line.find(string)
     if f!=-1:
         f=line.find(string)+len(string)
@@ -111,16 +111,16 @@ def main():
         for raw_line in stream:
             line=raw_line.strip()
             if link:
-                handle(line, args, "EXTRA_LINK_CMD=", True, subs, shell=False)
-                handle(line, args, "EXTRA_LINK_SHELL=", True, subs, shell=True)
-                handle(line, args, "EXTRA_LINK_FLAGS_BEFORE=", False, subs, inject=1)
-                handle(line, args, "EXTRA_LINK_FLAGS_AFTER=", False, subs)
+                handle(line, args, "EXTRA_LINK_CMD=", process=True, subs=subs, shell=False)
+                handle(line, args, "EXTRA_LINK_SHELL=", process=True, subs=subs, shell=True)
+                handle(line, args, "EXTRA_LINK_FLAGS_BEFORE=", process=False, subs=subs, inject=1)
+                handle(line, args, "EXTRA_LINK_FLAGS_AFTER=", process=False, subs=subs)
                 handle_first(line, args, "LINKER=")
             else:
-                handle(line, args, "EXTRA_COMPILE_CMD=", True, subs, shell=False)
-                handle(line, args, "EXTRA_COMPILE_SHELL=", True, subs, shell=True)
-                handle(line, args, "EXTRA_COMPILE_FLAGS_BEFORE=", False, subs, inject=1)
-                handle(line, args, "EXTRA_COMPILE_FLAGS_AFTER=", False, subs)
+                handle(line, args, "EXTRA_COMPILE_CMD=", process=True, subs=subs, shell=False)
+                handle(line, args, "EXTRA_COMPILE_SHELL=", process=True, subs=subs, shell=True)
+                handle(line, args, "EXTRA_COMPILE_FLAGS_BEFORE=", process=False, subs=subs, inject=1)
+                handle(line, args, "EXTRA_COMPILE_FLAGS_AFTER=", process=False, subs=subs)
                 handle_first(line, args, "COMPILER=")
             if "ALLOW_OUTPUT" in line:
                 allow_output=True
