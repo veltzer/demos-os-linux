@@ -21,7 +21,7 @@ rules:
     level: error
     allowed-values: ['true', 'false']
   line-length:
-    max: 240
+    max: 120
   indentation:
     spaces: 2
     indent-sequences: consistent
