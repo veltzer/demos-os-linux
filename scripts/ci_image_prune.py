@@ -43,7 +43,8 @@ def fetch_versions() -> list[dict]:
             f"gh api failed (exit {proc.returncode}):\n{proc.stderr.strip()}\n"
             "If this is a 403, run: gh auth refresh -h github.com -s read:packages,delete:packages"
         )
-    return json.loads(proc.stdout)
+    versions: list[dict] = json.loads(proc.stdout)
+    return versions
 
 
 def cluster(versions: list[dict]) -> list[list[dict]]:
