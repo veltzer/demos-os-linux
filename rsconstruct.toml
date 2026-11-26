@@ -412,3 +412,8 @@ src_dirs = ["docs", "support"]
 # lint the TOML files of the repo with taplo
 [processor.checker.taplo]
 src_files = [".ruff.toml", ".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
+
+# every lint suppression names a rule and says why (see the fleet's CLAUDE.md)
+[processor.checker.suppressions]
+src_dirs = [".github", "config", "doc", "exercises_embedded", "misc", "scripts", "src"]
+src_files = [".hadolint.yaml", ".yamllint.yaml", "Dockerfile", "PLAN.md", "README.md"]
