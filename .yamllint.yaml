@@ -1,3 +1,4 @@
+---
 extends: default
 
 # yamllint's default config makes comments, comments-indentation,
