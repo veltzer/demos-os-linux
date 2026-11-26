@@ -98,16 +98,16 @@ wheels = [
 
 [[package]]
 name = "pylogconf"
-version = "0.0.38"
+version = "0.0.39"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "logging-tree" },
     { name = "pyfakeuse" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2c/37/8ead85d08c8124f659ebf7ea3efe7a973a371f2aa9831299aaded8679b3a/pylogconf-0.0.38.tar.gz", hash = "sha256:75108ff8daee387213d441d7cde44fd50819c904a48ff060ccec2a79f3d2024b", size = 4964, upload-time = "2024-10-12T12:02:38.451Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a4/71/25ba4e0da7831f59f56833285b48a8d42c48c73063f56307db82c03228bc/pylogconf-0.0.39.tar.gz", hash = "sha256:1a5bde419b0a0cc56f6431ce7599287f02550a250df30896185e8e89edd4a39c", size = 7158, upload-time = "2026-11-26T17:04:03.43Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2c/59/f828383d74308ffa726e36b196067576ddd0412e5e67886800ec236e72f8/pylogconf-0.0.38-py3-none-any.whl", hash = "sha256:d55113b4ada574173a99f56ff54272e2d66558b5d3002319d1ae2ebd14ca8320", size = 5255, upload-time = "2024-10-12T12:02:37.47Z" },
+    { url = "https://files.pythonhosted.org/packages/f0/7f/16e0b78c4efc49fa11e42023ea924a1abd1aa4c3cd40c24efd5f0561183f/pylogconf-0.0.39-py3-none-any.whl", hash = "sha256:07d9838a9157a321b479247213785d14e937853e6442f10bf9f56bf22e2e686a", size = 5596, upload-time = "2026-11-26T17:04:02.191Z" },
 ]
 
 [[package]]
@@ -145,16 +145,16 @@ wheels = [
 
 [[package]]
 name = "pytconf"
-version = "0.1.26"
+version = "0.1.27"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pyyaml" },
     { name = "termcolor" },
     { name = "yattag" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5b/66/2184f81a8567260c687e5f775bfad28692e52aed66a1b4fb0776436ca18a/pytconf-0.1.26.tar.gz", hash = "sha256:00148f65ba185459f9da66927bb8e412131d3f3ccc560e9a2cfe44124d9e4b9b", size = 13986, upload-time = "2026-11-23T09:42:54.253Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/85/48/05d240858e8cb061594c6db652eafeb037417a582ccf37aaaeff14b360a3/pytconf-0.1.27.tar.gz", hash = "sha256:328fcf80d972a4b2af28b4d9b8e9f14e6fac197a03086f5e01cbc2f8f8ba46f3", size = 14101, upload-time = "2026-11-26T17:03:58.786Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3a/b8/65c1ed61eff7ae4ccacac4bd01c8cea247efc15a75da0e670ac414353c1f/pytconf-0.1.26-py3-none-any.whl", hash = "sha256:2796dc2dfb314a8b01d945807a87141b2fb98fdd723b8b50b0f2f0cd8b9fb7a1", size = 15254, upload-time = "2026-11-23T09:42:52.837Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/d7/8b57baddc57b321d5fa8c9763ae33519cdf170a0fd5a264fe47e56c76b46/pytconf-0.1.27-py3-none-any.whl", hash = "sha256:90a0c545ab925b839edba8bb55835c637e33d648d80f6b6e33553dde42cfebe9", size = 15313, upload-time = "2026-11-26T17:03:57.549Z" },
 ]
 
 [[package]]
