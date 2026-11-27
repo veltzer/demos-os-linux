@@ -9,8 +9,8 @@
 # that differs from build.yml exists to serve that two-job shape.
 name: build
 "on":
-  push:
-  workflow_dispatch:
+  push: {}
+  workflow_dispatch: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
