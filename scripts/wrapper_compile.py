@@ -12,7 +12,7 @@ import subprocess
 import sys
 
 
-def system_check_output(cmd):
+def system_check_output(cmd: str) -> str:
     with subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as pipe:
         (out_stdout,out_stderr)=pipe.communicate()
         status=pipe.returncode
@@ -26,7 +26,7 @@ def system_check_output(cmd):
         return out_stdout.decode()
 
 
-def check_no_output(args, allow_output):
+def check_no_output(args: list[str], *, allow_output: bool) -> None:
     """ Run a command and check that it has not output """
     with subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as pipe:
         (out_stdout,out_stderr)=pipe.communicate()
@@ -44,7 +44,7 @@ def check_no_output(args, allow_output):
             sys.exit(1)
 
 
-def handle(line, args, string, process, subs, inject=None, *, shell=False):
+def handle(line: str, args: list[str], string: str, *, process: bool, subs: dict[str, str], inject: int | None = None, shell: bool = False) -> None:
     f=line.find(string)
     if f!=-1:
         f=line.find(string)+len(string)
@@ -65,14 +65,14 @@ def handle(line, args, string, process, subs, inject=None, *, shell=False):
             args.extend(cmd)
 
 
-def handle_first(line, args, string):
+def handle_first(line: str, args: list[str], string: str) -> None:
     f=line.find(string)
     if f!=-1:
         f=line.find(string)+len(string)
         args[0]=line[f:]
 
 
-def main():
+def main() -> None:
     script=sys.argv.pop(0)
     do_debug=int(sys.argv.pop(0))
     ccache=int(sys.argv.pop(0))

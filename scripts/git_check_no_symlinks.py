@@ -8,7 +8,7 @@ import os.path
 import subprocess
 
 
-def main():
+def main() -> None:
     with subprocess.Popen(["git","ls-files"], stdout=subprocess.PIPE) as pipe:
         assert pipe.stdout is not None
         for line in pipe.stdout:

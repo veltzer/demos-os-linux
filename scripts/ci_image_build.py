@@ -11,11 +11,12 @@ import shutil
 import subprocess
 import sys
 import time
+from typing import Any
 
 WORKFLOW = "image.yml"
 
 
-def run(args: list[str], **kw) -> subprocess.CompletedProcess[str]:
+def run(args: list[str], **kw: Any) -> subprocess.CompletedProcess[str]:
     return subprocess.run(args, check=False, text=True, **kw)
 
 

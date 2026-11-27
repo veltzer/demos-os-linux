@@ -38,7 +38,7 @@ BRACE_CHECK_DIRS = [
 ]
 
 
-def git_tracked_sources():
+def git_tracked_sources() -> list[str]:
     """Return list of git-tracked files with source extensions."""
     result = subprocess.run(
         ["git", "ls-files"],
@@ -50,7 +50,7 @@ def git_tracked_sources():
     ]
 
 
-def read_file(path):
+def read_file(path: str) -> str | None:
     """Read file contents, return None on error."""
     try:
         with open(path) as f:
@@ -59,7 +59,7 @@ def read_file(path):
         return None
 
 
-def check_ws(files):
+def check_ws(files: list[str]) -> list[str]:
     """No double spaces, trailing spaces, or trailing tabs in source."""
     errors = []
     for f in files:
@@ -74,7 +74,7 @@ def check_ws(files):
     return errors
 
 
-def check_ace_include(files):
+def check_ace_include(files: list[str]) -> list[str]:
     """No ACE includes with wrong style."""
     errors = []
     for f in files:
@@ -87,7 +87,7 @@ def check_ace_include(files):
     return errors
 
 
-def check_include(files):
+def check_include(files: list[str]) -> list[str]:
     """#include must be followed by exactly one space."""
     errors = []
     for f in files:
@@ -106,7 +106,7 @@ def check_include(files):
     return errors
 
 
-def check_exit(files):
+def check_exit(files: list[str]) -> list[str]:
     """No exit(1) calls — use EXIT_FAILURE instead."""
     errors = []
     for f in files:
@@ -119,7 +119,7 @@ def check_exit(files):
     return errors
 
 
-def check_firstinclude(files):
+def check_firstinclude(files: list[str]) -> list[str]:
     """All source files must start with #include <firstinclude.h>."""
     errors = []
     for f in files:
@@ -144,7 +144,7 @@ def check_firstinclude(files):
     return errors
 
 
-def check_perror(files):
+def check_perror(files: list[str]) -> list[str]:
     """No raw perror() calls — use err_utils.h macros."""
     errors = []
     for f in files:
@@ -159,7 +159,7 @@ def check_perror(files):
     return errors
 
 
-def check_fixme(files):
+def check_fixme(files: list[str]) -> list[str]:
     """No FIXME comments."""
     errors = []
     for f in files:
@@ -172,7 +172,7 @@ def check_fixme(files):
     return errors
 
 
-def check_while1(files):
+def check_while1(files: list[str]) -> list[str]:
     """Use while(true) instead of while(1)."""
     errors = []
     for f in files:
@@ -185,7 +185,7 @@ def check_while1(files):
     return errors
 
 
-def check_usage(files):
+def check_usage(files: list[str]) -> list[str]:
     """No 'usage' strings printed to stderr (use a consistent pattern)."""
     errors = []
     for f in files:
@@ -198,7 +198,7 @@ def check_usage(files):
     return errors
 
 
-def check_pthread(files):
+def check_pthread(files: list[str]) -> list[str]:
     """Use CHECK_ZERO_ERRNO(pthread_...) not CHECK_ZERO(pthread_...)."""
     errors = []
     for f in files:
@@ -211,7 +211,7 @@ def check_pthread(files):
     return errors
 
 
-def check_usage_2(files):
+def check_usage_2(files: list[str]) -> list[str]:
     """No 'Usage' string (use lowercase or a different pattern)."""
     errors = []
     for f in files:
@@ -224,7 +224,7 @@ def check_usage_2(files):
     return errors
 
 
-def check_exitzero(files):
+def check_exitzero(files: list[str]) -> list[str]:
     """No exit(0) calls — use EXIT_SUCCESS or return."""
     errors = []
     for f in files:
@@ -237,7 +237,7 @@ def check_exitzero(files):
     return errors
 
 
-def check_check_header(files):
+def check_check_header(files: list[str]) -> list[str]:
     """Files including us_helper should not use CHECK_ macros."""
     errors = []
     for f in files:
@@ -252,7 +252,7 @@ def check_check_header(files):
     return errors
 
 
-def check_for(files):
+def check_for(files: list[str]) -> list[str]:
     """Use for(...) not for (...) — no space before paren."""
     errors = []
     for f in files:
@@ -267,7 +267,7 @@ def check_for(files):
     return errors
 
 
-def check_semisemi(files):
+def check_semisemi(files: list[str]) -> list[str]:
     """No double semicolons."""
     errors = []
     for f in files:
@@ -280,7 +280,7 @@ def check_semisemi(files):
     return errors
 
 
-def check_return(files):
+def check_return(files: list[str]) -> list[str]:
     r"""No space before return's paren: return(x) not return (x)."""
     errors = []
     pattern = re.compile(r"\s+return\(")
@@ -294,7 +294,7 @@ def check_return(files):
     return errors
 
 
-def check_braces(files):
+def check_braces(files: list[str]) -> list[str]:
     """No opening brace on its own line at column 0 in source dirs."""
     errors = []
     for f in files:
@@ -309,7 +309,7 @@ def check_braces(files):
     return errors
 
 
-def check_ace(files):
+def check_ace(files: list[str]) -> list[str]:
     """No ACE_TMAIN, ACE_TCHAR, or ACE_TEXT — use standard equivalents."""
     bad_patterns = ["ACE_TMAIN", "ACE_TCHAR", "ACE_TEXT"]
     errors = []
@@ -326,7 +326,7 @@ def check_ace(files):
     return errors
 
 
-def check_no_std(files):
+def check_no_std(files: list[str]) -> list[str]:
     """No std:: prefix — use 'using namespace std' instead."""
     errors = []
     for f in files:
@@ -338,7 +338,7 @@ def check_no_std(files):
     return errors
 
 
-def check_have_solutions():
+def check_have_solutions() -> list[str]:
     """Every exercise with exercise.md must have a solution*.c* file."""
     errors: list[str] = []
     root_folder = "src/exercises"
