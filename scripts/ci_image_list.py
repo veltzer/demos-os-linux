@@ -18,6 +18,7 @@ import shutil
 import subprocess
 import sys
 from datetime import UTC, datetime
+from typing import Any
 
 OWNER = "veltzer"
 PACKAGE = "demos-os-linux-ci"
@@ -26,7 +27,7 @@ PACKAGE = "demos-os-linux-ci"
 CLUSTER_WINDOW_SECONDS = 60
 
 
-def fetch_versions() -> list[dict]:
+def fetch_versions() -> list[dict[str, Any]]:
     if not shutil.which("gh"):
         sys.exit("gh CLI not found on PATH")
     proc = subprocess.run(
@@ -42,7 +43,7 @@ def fetch_versions() -> list[dict]:
             f"gh api failed (exit {proc.returncode}):\n{proc.stderr.strip()}\n"
             "If this is a 403, run: gh auth refresh -h github.com -s read:packages"
         )
-    versions: list[dict] = json.loads(proc.stdout)
+    versions: list[dict[str, Any]] = json.loads(proc.stdout)
     return versions
 
 
@@ -50,10 +51,10 @@ def parse_ts(s: str) -> datetime:
     return datetime.fromisoformat(s)
 
 
-def cluster(versions: list[dict]) -> list[list[dict]]:
+def cluster(versions: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
     """Group versions into clusters that look like a single push."""
     versions_sorted = sorted(versions, key=lambda v: parse_ts(v["created_at"]))
-    groups: list[list[dict]] = []
+    groups: list[list[dict[str, Any]]] = []
     for v in versions_sorted:
         ts = parse_ts(v["created_at"])
         if groups and (ts - parse_ts(groups[-1][-1]["created_at"])).total_seconds() <= CLUSTER_WINDOW_SECONDS:

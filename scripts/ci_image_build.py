@@ -15,7 +15,7 @@ import time
 WORKFLOW = "image.yml"
 
 
-def run(args: list[str], **kw) -> subprocess.CompletedProcess:
+def run(args: list[str], **kw) -> subprocess.CompletedProcess[str]:
     return subprocess.run(args, check=False, text=True, **kw)
 
 
