@@ -49,7 +49,6 @@ for root,_dirs,files in os.walk(root_folder):
             if current_file.startswith(pref):
                 doit=False
         if doit:
-            # print(f"examining [{current_file}]")
             with open(current_file) as stream:
                 content=stream.read()
             if content.startswith(lic_old):
@@ -62,4 +61,3 @@ for root,_dirs,files in os.walk(root_folder):
                 with open(current_file,"wb") as out_f:
                     out_f.write(content.encode("utf-8"))
                     print(f"file [{current_file}] got its license replaced...")
-            # print(f"file [{current_file}] was not replaced")

@@ -34,7 +34,6 @@ def check_no_output(args, allow_output):
         out_stdout = out_stdout.decode()
         out_stderr = out_stderr.decode()
         if status or ((out_stdout!="" or out_stderr!="") and not allow_output):
-            #raise ValueError(f"error in executing [{args}]")
             print(f"could not run [{args}]", file=sys.stderr)
             if out_stderr!="":
                 print("error follows...", file=sys.stderr)
@@ -43,7 +42,6 @@ def check_no_output(args, allow_output):
                 print("output follows...", file=sys.stderr)
                 print(out_stdout, file=sys.stderr)
             sys.exit(1)
-            # raise ValueError(f"error in executing [{args}]")
 
 
 def handle(line, args, string, process, subs, inject=None, *, shell=False):
@@ -131,7 +129,6 @@ def main():
     try:
         check_no_output(args, allow_output=allow_output)
     except ValueError:
-        # print(f"removing [{target}]")
         if os.path.isfile(target):
             os.unlink(target)
         raise
