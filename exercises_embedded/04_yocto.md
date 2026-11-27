@@ -1052,7 +1052,7 @@ git commit -m "Initial layer setup"
 
 Create a README with build instructions:
 
-```markdown
+````markdown
 # My Yocto Build
 
 ## Setup
@@ -1061,7 +1061,7 @@ git clone git://git.yoctoproject.org/poky -b scarthgap
 git clone <your-layer-repo> meta-mylayer
 source poky/oe-init-build-env build
 bitbake-layers add-layer ../meta-mylayer
-```
+````
 
 ## Build
 
