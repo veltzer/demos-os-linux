@@ -652,7 +652,7 @@ echo "  -append 'console=ttyAMA0' -nographic"
 ## Summary
 
 | Component | Source | Output |
-|-----------|--------|--------|
+| ----------- | -------- | -------- |
 | Toolchain | `apt` packages | `aarch64-linux-gnu-gcc` |
 | Kernel | kernel.org | `arch/arm64/boot/Image` |
 | Userspace | `BusyBox` | Single static binary |

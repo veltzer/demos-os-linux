@@ -34,7 +34,7 @@ The `Yocto` Project is an **open-source collaboration project** that provides:
 ### Key Characteristics
 
 | Feature | Description |
-|---------|-------------|
+| --------- | ------------- |
 | **Layer-based** | Modular architecture separates concerns |
 | **Recipe-driven** | Each package defined by a recipe (.bb file) |
 | **Highly configurable** | Override anything at any level |
@@ -47,7 +47,7 @@ The `Yocto` Project is an **open-source collaboration project** that provides:
 ## `Yocto` vs. `Buildroot` vs. Manual
 
 | Aspect | Manual | `Buildroot` | `Yocto` |
-|--------|--------|-----------|-------|
+| -------- | -------- | ----------- | ------- |
 | Learning curve | Medium | Low | High |
 | Setup time | Hours | Minutes | Hour+ |
 | Build time | Minutes | 30-60 min | 2-4 hours |
@@ -66,7 +66,7 @@ The `Yocto` Project is an **open-source collaboration project** that provides:
 Before we begin, let's understand the key terms:
 
 | Term | Definition |
-|------|------------|
+| ------ | ------------ |
 | **Poky** | Reference distribution; starting point for custom distros |
 | **`BitBake`** | Build engine that parses recipes and executes tasks |
 | **Recipe (.bb)** | Instructions to build a single package |
@@ -353,7 +353,7 @@ find ../meta* -name "*-image-*.bb" | head -20
 Common images:
 
 | Image | Description |
-|-------|-------------|
+| ------- | ------------- |
 | `core-image-minimal` | Tiny boot-capable image |
 | `core-image-base` | Console image with hardware support |
 | `core-image-full-cmdline` | Full command-line tools |

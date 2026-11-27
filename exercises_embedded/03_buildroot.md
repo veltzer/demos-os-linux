@@ -34,7 +34,7 @@ By the end of this exercise, you will be able to:
 `Buildroot` is a **simple, efficient, and easy-to-use tool** to generate embedded `Linux` systems through cross-compilation. It is:
 
 | Feature | Description |
-|---------|-------------|
+| --------- | ------------- |
 | **`Makefile`-based** | Familiar build system, no complex abstractions |
 | **Self-contained** | Downloads and builds its own toolchain |
 | **Reproducible** | Same config always produces same output |
@@ -44,7 +44,7 @@ By the end of this exercise, you will be able to:
 ### `Buildroot` vs. The Manual Approach
 
 | Task | Manual Approach | `Buildroot` |
-|------|-----------------|-----------|
+| ------ | ----------------- | ----------- |
 | Toolchain | Install from `apt` | Auto-generated or downloaded |
 | Kernel config | Manual `make defconfig` | Integrated, per-board defaults |
 | `BusyBox` | Separate download/build | Built-in package |
@@ -56,7 +56,7 @@ By the end of this exercise, you will be able to:
 ### `Buildroot` vs. `Yocto`
 
 | Aspect | `Buildroot` | `Yocto` |
-|--------|-----------|-------|
+| -------- | ----------- | ------- |
 | Complexity | Simple | Complex |
 | Learning curve | Hours | Weeks |
 | Flexibility | Good | Excellent |
@@ -690,7 +690,7 @@ cat output/legal-info/manifest.csv
 ## Quick Reference Card
 
 | Task | Command |
-|------|---------|
+| ------ | --------- |
 | Configure | `make menuconfig` |
 | Build | `make -j$(nproc)` |
 | Clean build | `make clean` |
@@ -707,7 +707,7 @@ cat output/legal-info/manifest.csv
 ## Comparison: Manual vs. `Buildroot`
 
 | Metric | Manual `BusyBox` Build | `Buildroot` |
-|--------|---------------------|-----------|
+| -------- | --------------------- | ----------- |
 | Setup time | 2-4 hours | 10 minutes |
 | Build commands | 20+ | 2 (`make defconfig`, `make`) |
 | Configuration | Edit multiple files | Single menuconfig |

@@ -15,21 +15,21 @@ follow-ups that outlived the Makefile itself.
 
 ## What rsconstruct already covers (per `rsconstruct.toml`)
 
-| Capability                     | rsconstruct processor                                      |
-|--------------------------------|------------------------------------------------------------|
-| Compile `.c`/`.cc` with GCC    | `processor.cc_single_file.gcc`                             |
-| Compile `.c`/`.cc` with Clang  | `processor.cc_single_file.clang`                           |
-| `cppcheck`                     | `processor.cppcheck`                                       |
-| `clang-tidy`                   | `processor.clang_tidy`                                     |
-| `cpplint`                      | `processor.cpplint`                                        |
-| Per-folder Makefiles           | `processor.make` (recursively invokes `make` in subdirs)   |
-| Kernel module builds           | `processor.linux_module`                                   |
-| `rumdl`, `zspell`              | `processor.rumdl`, `processor.zspell`                      |
-| `taplo`, `iyamllint`           | `processor.taplo`, `processor.iyamllint`                   |
-| `mypy`, `ruff`                 | `processor.mypy`, `processor.ruff`                         |
-| `shellcheck`                   | `processor.shellcheck`                                     |
-| Whole-project sanity script    | `processor.script.check_all` (currently `enabled=false`)   |
-| OS / pip dependencies          | `[dependencies] system = [...]`, `pip = [...]`             |
+| Capability                    | rsconstruct processor                                    |
+| ----------------------------- | -------------------------------------------------------- |
+| Compile `.c`/`.cc` with GCC   | `processor.cc_single_file.gcc`                           |
+| Compile `.c`/`.cc` with Clang | `processor.cc_single_file.clang`                         |
+| `cppcheck`                    | `processor.cppcheck`                                     |
+| `clang-tidy`                  | `processor.clang_tidy`                                   |
+| `cpplint`                     | `processor.cpplint`                                      |
+| Per-folder Makefiles          | `processor.make` (recursively invokes `make` in subdirs) |
+| Kernel module builds          | `processor.linux_module`                                 |
+| `rumdl`, `zspell`             | `processor.rumdl`, `processor.zspell`                    |
+| `taplo`, `iyamllint`          | `processor.taplo`, `processor.iyamllint`                 |
+| `mypy`, `ruff`                | `processor.mypy`, `processor.ruff`                       |
+| `shellcheck`                  | `processor.shellcheck`                                   |
+| Whole-project sanity script   | `processor.script.check_all` (currently `enabled=false`) |
+| OS / pip dependencies         | `[dependencies] system = [...]`, `pip = [...]`           |
 
 ## What the Makefile still does that rsconstruct does not
 

@@ -128,7 +128,7 @@ qemu-system-aarch64 \
 **Explanation of key options:**
 
 | Option | Purpose |
-|--------|---------|
+| -------- | --------- |
 | `-machine virt` | Use the generic `ARM` virtual machine platform |
 | `-cpu cortex-a72` | Emulate a Cortex-A72 (ARMv8-A) |
 | `-smp 2` | 2 virtual CPUs |

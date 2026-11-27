@@ -401,7 +401,7 @@ export ROOTFS=${HOME}/arm64-rootfs
 ## Summary
 
 | Step | Action | Output |
-|------|--------|--------|
+| ------ | -------- | -------- |
 | 1 | Install toolchain | `aarch64-linux-gnu-gcc` |
 | 2 | Install dependencies | `QEMU`, build tools |
 | 3 | Build kernel | `arch/arm64/boot/Image` |

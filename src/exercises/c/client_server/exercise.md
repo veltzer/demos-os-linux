@@ -10,4 +10,4 @@ This is an advanced `I/O` exercise
     * Scan the index file and find a job to execute.
     * Mark the job selected as "Printed" a simple method can be simply by setting the job `ID` to 0.
     * BroadcastClient.c, In the current implementation, after the last server replies, the client is blocked on the accept() system call. Improve the client so it will be able to send more requests.
-    * further improve your IRC software to incorporate everything you’ve learned in the course.
+    * further improve your IRC software to incorporate everything you've learned in the course.
