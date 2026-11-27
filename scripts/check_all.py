@@ -340,7 +340,7 @@ def check_no_std(files):
 
 def check_have_solutions():
     """Every exercise with exercise.md must have a solution*.c* file."""
-    errors = []
+    errors: list[str] = []
     root_folder = "src/exercises"
     if not os.path.isdir(root_folder):
         return errors
