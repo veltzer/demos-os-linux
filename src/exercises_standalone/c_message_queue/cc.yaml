@@ -1,6 +1,6 @@
 ---
 cc: gcc
-cflags: [-Wall, -Werror]
+cflags: [-Wall, -Werror, -pedantic]
 include_dirs: [src/include]
 
 programs:
